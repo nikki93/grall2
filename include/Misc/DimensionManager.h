@@ -3,7 +3,9 @@
  *
  *       Filename:  DimensionManager.h
  *
- *    Description:  Handles dimension switches etc.
+ *    Description:  Handles dimension switches etc. Dimensions are just flags, so it's
+ *                  possible to have objects existent in both dimensions, or enable both 
+ *                  dimensions at the same time. 
  *
  *        Created:  04/30/2009 11:46:10 AM
  *       Compiler:  gcc
@@ -35,12 +37,15 @@ class DimensionManager
         {
         }
 
+        //Toggle the current dimension. If both dimensions are on, then it switches
+        //to no dimension.
         void switchDimension()
         {
             mCurrentDimension ^= DIM_1 ^ DIM_2;
             //GlbVar.goMgr->forEachGameObject(&DimensionManager::_sendMessage);
         }
 
+        //Enable the given dimension(s).
         void setDimension(int dimension)
         {
             mCurrentDimension = dimension;
@@ -51,6 +56,8 @@ class DimensionManager
         {
             return mCurrentDimension;
         }
+
+        //--- Internal stuff ----------------------------------------------------------
 
         static void _sendMessage(NGF::GameObject *obj)
         {

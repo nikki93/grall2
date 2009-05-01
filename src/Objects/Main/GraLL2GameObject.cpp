@@ -5,6 +5,7 @@ GraLL2GameObject.cpp
 */
 
 #define __GRALL2GAMEOBJECT_CPP__
+
 #include "Objects/Main/GraLL2GameObject.h"
 
 //--- NGF events ----------------------------------------------------------------

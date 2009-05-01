@@ -14,8 +14,8 @@
  * =====================================================================================
  */
 
-#ifndef _TESTWORLD_H_
-#define _TESTWORLD_H_
+#ifndef __TESTWORLD_H__
+#define __TESTWORLD_H__
 
 #include "Globals.h"
 

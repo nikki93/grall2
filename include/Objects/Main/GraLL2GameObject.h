@@ -19,8 +19,8 @@
  * =====================================================================================
  */
 
-#ifndef _GRALL2GAMEOBJECT_H_
-#define _GRALL2GAMEOBJECT_H_
+#ifndef __GRALL2GAMEOBJECT_H__
+#define __GRALL2GAMEOBJECT_H__
 
 #include "Globals.h"
 
