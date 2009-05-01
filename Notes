@@ -1,0 +1,27 @@
++--------------------------+
+|           Todo           |
++--------------------------+
+
+- Start work on the Player GameObject.
+- Add the StaticBrush GameObject.
+
++---------------------------+
+|         ChangeLog         |
++---------------------------+
+
+Tue Apr 28 22:37:30 AST 2009
+----------------------------
+- Added MyGUI initialisation.
+- Added NGF subsystems initialisation.
+- Decided on header file include policy.
+- Added 'GraLL2GameObject' base.
+- Tested Python scripting.
+- Exposed GraLL2GameObject physics functionality to Python.
+
+Thu Apr 30 14:14:03 AST 2009
+----------------------------
+- Added a 'DimensionManager' to manage dimensions.
+- Added loading of dimension information from properties, and dimension-specific functionality (make invisible, 
+  collide only with objects from own dimension) required by all GameObjects to GraLL2GameObject.
+- Finished the final Player model.
+- Cleaned up GraLL2GameObject code.
