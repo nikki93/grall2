@@ -27,12 +27,12 @@ class TestWorld :
         btCollisionShape *mTestShape;
 
     public:
-            TestWorld() {}
-            ~TestWorld() {}
+        TestWorld() {}
+        ~TestWorld() {}
 
-            void init();
-            void tick(const Ogre::FrameEvent &evt);
-            void stop();
+        void init();
+        void tick(const Ogre::FrameEvent &evt);
+        void stop();
 };
 
 #endif

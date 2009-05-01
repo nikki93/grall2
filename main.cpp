@@ -29,7 +29,7 @@ class GameListener :
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
             //Temporary camera movement thing.
-	    OIS::MouseState ms = GlbVar.mouse->getMouseState();
+            OIS::MouseState ms = GlbVar.mouse->getMouseState();
 
             Ogre::Vector3 translate = Ogre::Vector3::ZERO;
             Ogre::Real speed = 15;
@@ -47,8 +47,8 @@ class GameListener :
             GlbVar.ogreCamera->moveRelative(translate * evt.timeSinceLastFrame);
 
             //Physics update.
-	    GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
-	    GlbVar.phyWorld->debugDrawWorld();
+            GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
+            GlbVar.phyWorld->debugDrawWorld();
 
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
@@ -58,46 +58,46 @@ class GameListener :
         //--- Send input events to MyGUI -----------------------------------------------
         bool keyPressed(const OIS::KeyEvent &arg)
         {
-	    switch (arg.key)
-	    {
-		case OIS::KC_F7:
-		    NGF::Serialisation::Serialiser::save("SaveFile");
-		    break;
-
-		case OIS::KC_F8:
-		    GlbVar.goMgr->destroyAll();
-		    NGF::Serialisation::Serialiser::load("SaveFile");
+            switch (arg.key)
+            {
+                case OIS::KC_F7:
+                    NGF::Serialisation::Serialiser::save("SaveFile");
                     break;
 
-		case OIS::KC_Z:
+                case OIS::KC_F8:
+                    GlbVar.goMgr->destroyAll();
+                    NGF::Serialisation::Serialiser::load("SaveFile");
+                    break;
+
+                case OIS::KC_Z:
                     GlbVar.dimMgr->switchDimension();
-		    break;
-	    }
+                    break;
+            }
 
-	    GlbVar.gui->injectKeyPress(arg);
-	    return true;
-	}
-	bool keyReleased(const OIS::KeyEvent &arg)
-	{
-	    GlbVar.gui->injectKeyRelease(arg);
-	    return true;
-	}
+            GlbVar.gui->injectKeyPress(arg);
+            return true;
+        }
+        bool keyReleased(const OIS::KeyEvent &arg)
+        {
+            GlbVar.gui->injectKeyRelease(arg);
+            return true;
+        }
 
-	bool mouseMoved(const OIS::MouseEvent &arg)
-	{
-	    GlbVar.gui->injectMouseMove(arg);
-	    return true;
-	}
-	bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
-	{
-	    GlbVar.gui->injectMousePress(arg, id);
-	    return true;
-	}
-	bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
-	{
-	    GlbVar.gui->injectMouseRelease(arg, id);
-	    return true;
-	}
+        bool mouseMoved(const OIS::MouseEvent &arg)
+        {
+            GlbVar.gui->injectMouseMove(arg);
+            return true;
+        }
+        bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+        {
+            GlbVar.gui->injectMousePress(arg, id);
+            return true;
+        }
+        bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+        {
+            GlbVar.gui->injectMouseRelease(arg, id);
+            return true;
+        }
 };
 
 //--------------------------------------------------------------------------------------
@@ -201,8 +201,8 @@ class Game
             GlbVar.phyWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfig);
 
             //--- MyGUI (GUI) ----------------------------------------------------------
-	    GlbVar.gui = new MyGUI::Gui();
-	    GlbVar.gui->initialise(GlbVar.ogreWindow);
+            GlbVar.gui = new MyGUI::Gui();
+            GlbVar.gui->initialise(GlbVar.ogreWindow);
 
             //--- ~ (Sound) ------------------------------------------------------------
 
@@ -298,7 +298,7 @@ int main(int argc, char *argv[])
     {
         //Init.
         if(!(game.init()))
-            return 0;	
+            return 0;   
         Ogre::LogManager::getSingleton().logMessage("*********** Systems Intialised *************\n");
         game.start();
 

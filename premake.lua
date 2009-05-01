@@ -28,7 +28,7 @@ package.includepaths = {
     -- Absolute include directories.
     -- "<boostdir>",                                                         -- Boost
     "/home/nikki/Development/Libraries/ogre/btogre/include",                 -- BtOgre
-    "/home/nikki/Development/Libraries/ogre/ngf/include",
+    "/home/nikki/Development/Libraries/ogre/ngf/include",                    -- NGF
 
     -- Relative include directories.
     "./include"                                                              -- GraLL2 files
@@ -68,6 +68,8 @@ end
 
 -- Files ------------------------------------------------------------------------------------
 
+-- Also add library .cpp files (Ngf.cpp, BtOgre.cpp etc.). I actually have symlinks to them
+-- but they're not on git (they're listed in .git/info/exclude, that's why).
 package.pchheader = "include/Precomp.h"
 package.files = {
     matchrecursive("*.h", "*.cpp"),
@@ -81,7 +83,7 @@ debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 
 debug.buildoptions = { "-g" --[[ "-pg" ]] }                                  -- '-pg' for gprof
--- debug.linkoptions = { "-pg" }
+-- debug.linkoptions = { "-pg" }                                             -- '-pg' for gprof
 
 -- Release configuration --------------------------------------------------------------------
 
