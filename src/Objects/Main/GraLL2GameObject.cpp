@@ -9,47 +9,22 @@ GraLL2GameObject.cpp
 #include "Objects/Main/GraLL2GameObject.h"
 
 //--- NGF events ----------------------------------------------------------------
-GraLL2GameObject::GraLL2GameObject(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name) 
-    : NGF::GameObject(pos, rot, id , properties, name),
-      mOgreName("id" + StringConverter::toString(mID))
+GraLL2GameObject::GraLL2GameObject() 
+    : NGF::GameObject(Ogre::Vector3(), Ogre::Quaternion(), NGF::ID(), NGF::PropertyList(), Ogre::String()),
+      mOgreName("id" + Ogre::StringConverter::toString(getID()))
 {
     //Load the Python script. Events are called by children though.
-    NGF::Python::PythonGameObject::setScript(properties.getValue("script", 0, ""));
+    NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
 
     //Remember which dimensions we're in.
-    bool dim1 = Ogre::StringConverter::parseBool(properties.getValue("dimension1", 0, "1"));
-    bool dim2 = Ogre::StringConverter::parseBool(properties.getValue("dimension2", 0, "1"));
+    bool dim1 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension1", 0, "1"));
+    bool dim2 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension2", 0, "1"));
     mDimensions = (dim1 ? DimensionManager::DIM_1 : DimensionManager::DIM_NONE) | (dim2 ? DimensionManager::DIM_2 : DimensionManager::DIM_NONE);
-
-    //--- What a our children might do ------------------------------------------
-    //Ogre::String idStr = Ogre::StringConverter::toString(id);
-
-    //Create the Ogre stuff.
-    //mEntity = GlbVar.ogreSmgr->createEntity(idStr + "-testEntity", "Player.mesh");
-    //mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(idStr + "-testNode", pos, rot);
-    //mNode->attachObject(mEntity);
-
-    //Create the Physics stuff.
-    //BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    //mShape = converter.createSphere();
-    //btScalar mass = 5;
-    //btVector3 inertia;
-    //mShape->calculateLocalInertia(mass, inertia);
-
-    //BtOgre::RigidBodyState *ninjaState = new BtOgre::RigidBodyState(mNode);
-    //mBody = new btRigidBody(mass, ninjaState, mShape, inertia);
-    //GlbVar.phyWorld->addRigidBody(mBody, mDimensions, mDimensions);
-    //setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------
 GraLL2GameObject::~GraLL2GameObject()
 {
-    //--- What our children might do --------------------------------------------
-    //delete mShape;
-    //GlbVar.phyWorld->removeRigidBody(mBody);
-    //mNode->detachObject(mEntity);
-    //GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
-    
+    //We only delete stuff we handle. The child will (hopefully) have done the rest.
     delete mBody->getMotionState();
     delete mBody;
 
@@ -60,9 +35,6 @@ void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
 {
     //We can't be seen in dimensions we're not in.
     mNode->setVisible(mDimensions & GlbVar.dimMgr->getCurrentDimension(), true);
-
-    //--- What the Player might do ----------------------------------------------
-    //goToDimension(GlbVar.dimMgr->getCurrentDimension());
 }
 //-------------------------------------------------------------------------------
 

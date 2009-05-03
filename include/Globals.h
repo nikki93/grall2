@@ -67,6 +67,7 @@ enum
 {
     MSG_NONE,
     MSG_DIMENSIONCHANGED,
+    MSG_KEYPRESSED,
 };
 
 //Includes from the project used everywhere.

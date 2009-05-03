@@ -70,19 +70,19 @@ class GraLL2GameObject :
         int mDimensions;
 
     public:
-        GraLL2GameObject(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
-        virtual ~GraLL2GameObject();
+        GraLL2GameObject();
+        virtual ~GraLL2GameObject() = 0;
 
         //--- Events -------------------------------------------------------------------
         virtual void unpausedTick(const Ogre::FrameEvent &evt);
-        virtual void pausedTick(const Ogre::FrameEvent &evt);
-        virtual NGF::MessageReply receiveMessage(NGF::Message msg);
-        virtual void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
+        virtual void pausedTick(const Ogre::FrameEvent &evt) {}
+        virtual NGF::MessageReply receiveMessage(NGF::Message msg) {}
+        virtual void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact) {}
 
-        //--- Utility functions --------------------------------------------------------
+        //--- Non-NGF methods ----------------------------------------------------------
         void setDimension(int dimension);
 
-        //--- NGF macrohacks -----------------------------------------------------------
+        //--- Python interface ---------------------------------------------------------
         virtual NGF_PY_BEGIN_DECL(GraLL2GameObject)
         {
             //getPosition()
@@ -126,6 +126,7 @@ class GraLL2GameObject :
         }
         NGF_PY_END_DECL
 
+        //--- Serialisation ------------------------------------------------------------
         virtual NGF_SERIALISE_BEGIN(GraLL2GameObject)
         {
             GRALL2_SERIALISE_GAMEOBJECT();

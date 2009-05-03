@@ -25,6 +25,9 @@ class GameListener :
     public OIS::KeyListener,
     public OIS::MouseListener
 {
+    protected:
+        static OIS::KeyCode mCurrKey;
+
     public:
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
@@ -55,10 +58,15 @@ class GameListener :
             return GlbVar.woMgr->tick(evt);
         }
 
-        //--- Send input events to MyGUI -----------------------------------------------
+        //--- Send keypress events go GameObjects, and all events to MyGUI -------------
         bool keyPressed(const OIS::KeyEvent &arg)
         {
-            switch (arg.key)
+            //Tell all GameObjects.
+            mCurrKey = arg.key;
+            GlbVar.goMgr->forEachGameObject(GameListener::sendKeyPressMessage);
+
+            //Some stuff we have to do.
+            switch (mCurrKey)
             {
                 case OIS::KC_F7:
                     NGF::Serialisation::Serialiser::save("SaveFile");
@@ -68,15 +76,16 @@ class GameListener :
                     GlbVar.goMgr->destroyAll();
                     NGF::Serialisation::Serialiser::load("SaveFile");
                     break;
-
-                case OIS::KC_Z:
-                    GlbVar.dimMgr->switchDimension();
-                    break;
             }
 
             GlbVar.gui->injectKeyPress(arg);
             return true;
         }
+        static void sendKeyPressMessage(NGF::GameObject *obj)
+        {
+            GlbVar.goMgr->sendMessage(obj, NGF_MESSAGE(MSG_KEYPRESSED, mCurrKey));
+        }
+
         bool keyReleased(const OIS::KeyEvent &arg)
         {
             GlbVar.gui->injectKeyRelease(arg);
@@ -99,6 +108,7 @@ class GameListener :
             return true;
         }
 };
+OIS::KeyCode GameListener::mCurrKey = OIS::KC_UNASSIGNED;
 
 //--------------------------------------------------------------------------------------
 class Game

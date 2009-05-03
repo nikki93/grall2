@@ -17,6 +17,7 @@
 
 //GameObject headers.
 #include "Objects/Main/GraLL2GameObject.h"
+#include "Objects/Main/Player.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -24,7 +25,7 @@
 //Register GameObject types.
 void registerGameObjectTypes()
 {
-    NGF_REGISTER_OBJECT_TYPE(GraLL2GameObject);
+    NGF_REGISTER_OBJECT_TYPE(Player);
 }
 
 //Register worlds.
