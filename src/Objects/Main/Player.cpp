@@ -26,10 +26,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(mass, state, mShape, inertia);
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions, mDimensions);
-
-    //Register our btRigidBody for the NGF collision event.
-    setBulletObject(mBody);
+    initBody();
 
     //Player can't be in a dimension that's not being displayed. :P
     setDimension(GlbVar.dimMgr->getCurrentDimension());
@@ -38,7 +35,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 Player::~Player()
 {
     //We only clear up stuff that we did.
-    GlbVar.phyWorld->removeRigidBody(mBody);
+    destroyBody();
     delete mShape;
 
     mNode->detachObject(mEntity);
@@ -61,6 +58,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
         case MSG_KEYPRESSED:
             switch (msg.getParam<OIS::KeyCode>(0))
             {
+                //Dimension switch!
                 case OIS::KC_Z:
                     GlbVar.dimMgr->switchDimension();
                     setDimension(GlbVar.dimMgr->getCurrentDimension());

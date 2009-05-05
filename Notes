@@ -3,7 +3,6 @@
 +--------------------------+
 
 - Create an intial Tile texture.
-- Add the StaticBrush GameObject.
 - Check that the Blender integration is working.
 - Make a test level with Blender.
 - Work on the Player dynamics.
@@ -39,3 +38,7 @@ Sun May  3 17:31:17 AST 2009
 - Converted GraLL2GameObject into it's truly generic base version.
 - Began work on the Player GameObject.
 - Fixed some problems in GraLL2GameObject now that it has a child to be tested with.
+
+Mon May  4 22:04:36 PDT 2009
+----------------------------
+- Added StaticBrush GameObject (on the laptop! git FTW!).

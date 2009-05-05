@@ -16,8 +16,8 @@
 #include "Globals.h"
 
 //GameObject headers.
-#include "Objects/Main/GraLL2GameObject.h"
 #include "Objects/Main/Player.h"
+#include "Objects/Main/StaticBrush.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -26,6 +26,7 @@
 void registerGameObjectTypes()
 {
     NGF_REGISTER_OBJECT_TYPE(Player);
+    NGF_REGISTER_OBJECT_TYPE(StaticBrush);
 }
 
 //Register worlds.

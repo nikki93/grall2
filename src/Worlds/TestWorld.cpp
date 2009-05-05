@@ -4,8 +4,10 @@ TestWorld.cpp
 =========================================
 */
 
-#include "Worlds/TestWorld.h"
 #include "Objects/Main/Player.h"
+#include "Objects/Main/StaticBrush.h"
+
+#include "Worlds/TestWorld.h"
 
 //-------------------------------------------------------------------------------
 void TestWorld::init()
@@ -15,11 +17,20 @@ void TestWorld::init()
     GlbVar.ogreCamera->setPosition(15,15,15);
     GlbVar.ogreCamera->lookAt(Ogre::Vector3::ZERO);
 
-    //Test objects.
-    GlbVar.goMgr->createObject<Player>(Ogre::Vector3(0.2,10,0), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create("dimension1", "yes").addProperty("dimension2", "no"));
+    //Test Player.
+    GlbVar.goMgr->createObject<Player>(Ogre::Vector3(0.2,10,0), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("dimension1", "yes")
+            ("dimension2", "no"));
 
-    //Test ground plane.
+    //Test StaticBrush. We create a plane mesh for it.
     Ogre::MeshManager::getSingleton().createPlane("Plane.mesh", "General", Ogre::Plane(Ogre::Vector3::UNIT_Y, 0), 100, 100, 10, 10, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
+
+    GlbVar.goMgr->createObject<StaticBrush>(Ogre::Vector3(0.2,5,0), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("brushMeshFile", "Plane.mesh")
+            ("dimension1", "yes")
+            ("dimension2", "no"));
+
+    /*
     Ogre::Entity *plane = GlbVar.ogreSmgr->createEntity("groundEntity", "Plane.mesh");
     plane->setMaterialName("Player/TEXFACE/Player.png");
     GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode("groundNode")->attachObject(plane);
@@ -29,6 +40,7 @@ void TestWorld::init()
     mTestBody = new btRigidBody(0, groundMotionState, mTestShape);
     int groundDims = DimensionManager::DIM_1; //Dimensions the ground is in.
     GlbVar.phyWorld->addRigidBody(mTestBody, groundDims, groundDims);
+    */
 }
 //-------------------------------------------------------------------------------
 void TestWorld::tick(const Ogre::FrameEvent &evt)
@@ -42,9 +54,9 @@ void TestWorld::tick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 void TestWorld::stop()
 {
-    delete mTestBody->getMotionState();
-    delete mTestBody;
-    delete mTestShape;
+    //delete mTestBody->getMotionState();
+    //delete mTestBody;
+    //delete mTestShape;
 
     GlbVar.goMgr->destroyAll();
 }

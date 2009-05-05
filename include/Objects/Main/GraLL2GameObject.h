@@ -70,7 +70,7 @@ class GraLL2GameObject :
         int mDimensions;
 
     public:
-        GraLL2GameObject();
+        GraLL2GameObject(bool dimensional = true);
         virtual ~GraLL2GameObject() = 0;
 
         //--- Events -------------------------------------------------------------------
@@ -80,6 +80,8 @@ class GraLL2GameObject :
         virtual void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact) {}
 
         //--- Non-NGF methods ----------------------------------------------------------
+        void initBody();
+        void destroyBody() { GlbVar.phyWorld->removeRigidBody(mBody); }
         void setDimension(int dimension);
 
         //--- Python interface ---------------------------------------------------------

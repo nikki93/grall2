@@ -52,5 +52,10 @@ class Player :
         NGF_SERIALISE_END
 };
 
+#ifdef __PLAYER_CPP__
+
+//gperf stuff goes here
+
+#endif
 
 #endif

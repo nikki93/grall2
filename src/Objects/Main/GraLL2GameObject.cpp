@@ -9,17 +9,24 @@ GraLL2GameObject.cpp
 #include "Objects/Main/GraLL2GameObject.h"
 
 //--- NGF events ----------------------------------------------------------------
-GraLL2GameObject::GraLL2GameObject() 
+GraLL2GameObject::GraLL2GameObject(bool dimensional) 
     : NGF::GameObject(Ogre::Vector3(), Ogre::Quaternion(), NGF::ID(), NGF::PropertyList(), Ogre::String()),
       mOgreName("id" + Ogre::StringConverter::toString(getID()))
 {
     //Load the Python script. Events are called by children though.
     NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
 
-    //Remember which dimensions we're in.
-    bool dim1 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension1", 0, "1"));
-    bool dim2 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension2", 0, "1"));
-    mDimensions = (dim1 ? DimensionManager::DIM_1 : DimensionManager::DIM_NONE) | (dim2 ? DimensionManager::DIM_2 : DimensionManager::DIM_NONE);
+    if (dimensional)
+    {
+        //Remember which dimensions we're in.
+        bool dim1 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension1", 0, "1"));
+        bool dim2 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension2", 0, "1"));
+        mDimensions = (dim1 ? DimensionManager::DIM_1 : DimensionManager::DIM_NONE) | (dim2 ? DimensionManager::DIM_2 : DimensionManager::DIM_NONE);
+    }
+    else
+    {
+        mDimensions = DimensionManager::DIM_1 | DimensionManager::DIM_2;
+    }
 }
 //-------------------------------------------------------------------------------
 GraLL2GameObject::~GraLL2GameObject()
@@ -39,6 +46,12 @@ void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 
 //--- Utilities -----------------------------------------------------------------
+void GraLL2GameObject::initBody()
+{
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions, mDimensions);
+    setBulletObject(mBody);
+}
+//-------------------------------------------------------------------------------
 void GraLL2GameObject::setDimension(int dimension)
 {
     //Save the new dimension info, and reset the btRigidBody flags.
