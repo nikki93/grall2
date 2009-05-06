@@ -1,0 +1,9 @@
+#Sources to ignore.
+ext
+
+#Files made by running/building.
+Makefile
+GraLL2.make
+obj
+bin/debug/
+bin/release/

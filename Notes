@@ -3,8 +3,13 @@
 +--------------------------+
 
 - Create an intial Tile texture.
+
 - Check that the Blender integration is working.
+
 - Make a test level with Blender.
+
+- Add a CameraHandler that handles the Camera in different ways, also for third-person Player view.
+
 - Work on the Player dynamics.
 
 +---------------------------+

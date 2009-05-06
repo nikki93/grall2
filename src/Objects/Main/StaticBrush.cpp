@@ -1,38 +1,37 @@
 /*
 =========================================
-Player.cpp
+StaticBrush.cpp
 =========================================
 */
 
-#define __PLAYER_CPP__
+#define __STATICBRUSH_CPP__
 
-#include "Objects/Main/Player.h"
+#include "Objects/Main/StaticBrush.h"
 
 //--- NGF events ----------------------------------------------------------------
-Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
+StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name)
 {
     //Create the Ogre stuff.
-    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Player.mesh");
+    Ogre::String mesh = properties.getValue("brushMeshFile", 0, "Player.mesh");
+    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, mesh);
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
+    mEntity->setMaterialName("Player/TEXFACE/Player.png");
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createSphere();
-    btScalar mass = 5;
-    btVector3 inertia;
-    mShape->calculateLocalInertia(mass, inertia);
+    mShape = converter.createTrimesh();
+    //btScalar mass = 5;
+    //btVector3 inertia;
+    //mShape->calculateLocalInertia(mass, inertia);
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
-    mBody = new btRigidBody(mass, state, mShape, inertia);
+    mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody();
-
-    //Player can't be in a dimension that's not being displayed. :P
-    setDimension(GlbVar.dimMgr->getCurrentDimension());
 }
 //-------------------------------------------------------------------------------
-Player::~Player()
+StaticBrush::~StaticBrush()
 {
     //We only clear up stuff that we did.
     destroyBody();
@@ -42,42 +41,28 @@ Player::~Player()
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
-void Player::unpausedTick(const Ogre::FrameEvent &evt)
+void StaticBrush::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 }
 //-------------------------------------------------------------------------------
-void Player::pausedTick(const Ogre::FrameEvent &evt)
+void StaticBrush::pausedTick(const Ogre::FrameEvent &evt)
 {
 }
 //-------------------------------------------------------------------------------
-NGF::MessageReply Player::receiveMessage(NGF::Message msg)
+NGF::MessageReply StaticBrush::receiveMessage(NGF::Message msg)
 {
-    switch (msg.code)
-    {
-        case MSG_KEYPRESSED:
-            switch (msg.getParam<OIS::KeyCode>(0))
-            {
-                //Dimension switch!
-                case OIS::KC_Z:
-                    GlbVar.dimMgr->switchDimension();
-                    setDimension(GlbVar.dimMgr->getCurrentDimension());
-            }
-
-            NGF_NO_REPLY();
-    }
-
     NGF_NO_REPLY();
 }
 //-------------------------------------------------------------------------------
-void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
+void StaticBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
 }
 //-------------------------------------------------------------------------------
 
 //--- Python interface implementation -------------------------------------------
 /*
-NGF_PY_BEGIN_IMPL(Player)
+NGF_PY_BEGIN_IMPL(StaticBrush)
 {
 }
 */
