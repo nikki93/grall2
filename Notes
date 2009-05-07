@@ -47,3 +47,11 @@ Sun May  3 17:31:17 AST 2009
 Mon May  4 22:04:36 PDT 2009
 ----------------------------
 - Added StaticBrush GameObject (on the laptop! git FTW!).
+
+Wed May  6 17:30:01 AST 2009
+----------------------------
+- Added Python event calling to Player, StaticBrush.
+
+Thu May  7 22:40:44 AST 2009
+----------------------------
+- Added Python console window.

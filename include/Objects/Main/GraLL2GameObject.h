@@ -76,7 +76,7 @@ class GraLL2GameObject :
         //--- Events -------------------------------------------------------------------
         virtual void unpausedTick(const Ogre::FrameEvent &evt);
         virtual void pausedTick(const Ogre::FrameEvent &evt) {}
-        virtual NGF::MessageReply receiveMessage(NGF::Message msg) {}
+        virtual NGF::MessageReply receiveMessage(NGF::Message msg);
         virtual void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact) {}
 
         //--- Non-NGF methods ----------------------------------------------------------

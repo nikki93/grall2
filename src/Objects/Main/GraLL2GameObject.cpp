@@ -44,6 +44,11 @@ void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
     mNode->setVisible(mDimensions & GlbVar.dimMgr->getCurrentDimension(), true);
 }
 //-------------------------------------------------------------------------------
+NGF::MessageReply GraLL2GameObject::receiveMessage(NGF::Message msg)
+{
+    NGF_NO_REPLY();
+}
+//-------------------------------------------------------------------------------
 
 //--- Utilities -----------------------------------------------------------------
 void GraLL2GameObject::initBody()

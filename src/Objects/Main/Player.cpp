@@ -12,6 +12,11 @@ Player.cpp
 Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name)
 {
+    addFlag("Player");
+
+    //Python init event.
+    NGF_PY_CALL_EVENT(init);
+
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Player.mesh");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
@@ -26,14 +31,21 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(mass, state, mShape, inertia);
+    mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody();
 
     //Player can't be in a dimension that's not being displayed. :P
     setDimension(GlbVar.dimMgr->getCurrentDimension());
+
+    //Python create event.
+    NGF_PY_CALL_EVENT(create);
 }
 //-------------------------------------------------------------------------------
 Player::~Player()
 {
+    //Python destroy event.
+    NGF_PY_CALL_EVENT(destroy);
+
     //We only clear up stuff that we did.
     destroyBody();
     delete mShape;
@@ -45,10 +57,18 @@ Player::~Player()
 void Player::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
+
+    if (isKeyDown(OIS::KC_F))
+        mBody->applyCentralForce(btVector3(0,100,0));
+    
+    //Python utick event.
+    NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 void Player::pausedTick(const Ogre::FrameEvent &evt)
 {
+    //Python ptick event.
+    NGF_PY_CALL_EVENT(ptick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 NGF::MessageReply Player::receiveMessage(NGF::Message msg)
@@ -56,22 +76,30 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
     switch (msg.code)
     {
         case MSG_KEYPRESSED:
+            if (GlbVar.paused)
+                break;
+
             switch (msg.getParam<OIS::KeyCode>(0))
             {
                 //Dimension switch!
                 case OIS::KC_Z:
                     GlbVar.dimMgr->switchDimension();
                     setDimension(GlbVar.dimMgr->getCurrentDimension());
+                    break;
             }
 
-            NGF_NO_REPLY();
+            break;
     }
 
-    NGF_NO_REPLY();
+    return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------
 void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    //Python collide event.
+    NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
+    if (oth)
+        NGF_PY_CALL_EVENT(collide, oth->getConnector());
 }
 //-------------------------------------------------------------------------------
 

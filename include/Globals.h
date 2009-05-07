@@ -25,6 +25,7 @@
 
 //Forward declarations.
 class DimensionManager;
+class Console;
 
 //The Globals class (actually a struct, but whatever).
 struct Globals : public Ogre::Singleton<Globals>
@@ -54,11 +55,14 @@ struct Globals : public Ogre::Singleton<Globals>
     //DimensionManager.
     DimensionManager *dimMgr;
 
+    //Python console window.
+    Console *console;
+
     //Globally required data.
     bool paused;
 };
 
-//Global functions.
+//'Procedures'.
 void addWorlds();
 void registerGameObjectTypes();
 
@@ -72,5 +76,7 @@ enum
 
 //Includes from the project used everywhere.
 #include "Misc/DimensionManager.h"
+#include "Misc/Console.h"
+#include "Misc/Utils.h"
 
 #endif

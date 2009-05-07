@@ -26,31 +26,33 @@ class GameListener :
     public OIS::MouseListener
 {
     protected:
-        static OIS::KeyCode mCurrKey;
+        static OIS::KeyCode mCurrKey; //Stores keycode to broadcast to GameObjects.
 
     public:
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
             //Temporary camera movement thing.
-            OIS::MouseState ms = GlbVar.mouse->getMouseState();
+            if (!GlbVar.console->isVisible())
+            {
+                OIS::MouseState ms = getMouseState();
 
-            Ogre::Vector3 translate = Ogre::Vector3::ZERO;
-            Ogre::Real speed = 15;
+                Ogre::Vector3 translate = Ogre::Vector3::ZERO;
+                Ogre::Real speed = 15;
 
-            speed *= GlbVar.keyboard->isKeyDown(OIS::KC_LSHIFT) ? 6 : 1; //'Sprint' mode.
+                speed *= isKeyDown(OIS::KC_LSHIFT) ? 6 : 1; //'Sprint' mode.
 
-            translate.z = (GlbVar.keyboard->isKeyDown(OIS::KC_DOWN) || GlbVar.keyboard->isKeyDown(OIS::KC_S)) 
-                - (GlbVar.keyboard->isKeyDown(OIS::KC_UP) || GlbVar.keyboard->isKeyDown(OIS::KC_W));
-            translate.x = (GlbVar.keyboard->isKeyDown(OIS::KC_RIGHT) || GlbVar.keyboard->isKeyDown(OIS::KC_D)) 
-                - (GlbVar.keyboard->isKeyDown(OIS::KC_LEFT) || GlbVar.keyboard->isKeyDown(OIS::KC_A));
-            translate *= speed;
+                translate.z = (isKeyDown(OIS::KC_DOWN) || isKeyDown(OIS::KC_S)) - (isKeyDown(OIS::KC_UP) || isKeyDown(OIS::KC_W));
+                translate.x = (isKeyDown(OIS::KC_RIGHT) || isKeyDown(OIS::KC_D)) - (isKeyDown(OIS::KC_LEFT) || isKeyDown(OIS::KC_A));
+                translate *= speed;
 
-            GlbVar.ogreCamera->yaw(Ogre::Degree(-ms.X.rel * 0.3));
-            GlbVar.ogreCamera->pitch(Ogre::Degree(-ms.Y.rel * 0.3));
-            GlbVar.ogreCamera->moveRelative(translate * evt.timeSinceLastFrame);
+                GlbVar.ogreCamera->yaw(Ogre::Degree(-ms.X.rel * 0.3));
+                GlbVar.ogreCamera->pitch(Ogre::Degree(-ms.Y.rel * 0.3));
+                GlbVar.ogreCamera->moveRelative(translate * evt.timeSinceLastFrame);
+            }
 
             //Physics update.
-            GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
+            if (!GlbVar.paused)
+                GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
             GlbVar.phyWorld->debugDrawWorld();
 
             //NGF update.
@@ -61,11 +63,19 @@ class GameListener :
         //--- Send keypress events go GameObjects, and all events to MyGUI -------------
         bool keyPressed(const OIS::KeyEvent &arg)
         {
-            //Tell all GameObjects.
             mCurrKey = arg.key;
-            GlbVar.goMgr->forEachGameObject(GameListener::sendKeyPressMessage);
 
-            //Some stuff we have to do.
+            //Tell console.
+            GlbVar.console->keyPressed(mCurrKey);
+
+            //Tell MyGUI.
+            GlbVar.gui->injectKeyPress(arg);
+
+            //Tell all GameObjects.
+            if (!GlbVar.console->isVisible())
+                GlbVar.goMgr->forEachGameObject(GameListener::sendKeyPressMessage);
+
+            //Some stuff we have to do. TODO: Shouldn't be needed in final version.
             switch (mCurrKey)
             {
                 case OIS::KC_F7:
@@ -78,7 +88,6 @@ class GameListener :
                     break;
             }
 
-            GlbVar.gui->injectKeyPress(arg);
             return true;
         }
         static void sendKeyPressMessage(NGF::GameObject *obj)
@@ -222,9 +231,10 @@ class Game
             GlbVar.woMgr = new NGF::WorldManager();
             GlbVar.lvlLoader = new NGF::Loading::Loader();
 
-            //Python.
+            //Python, python console.
             Py_Initialize();
-            new NGF::Python::PythonManager();
+            GlbVar.console = new Console();
+            new NGF::Python::PythonManager(fastdelegate::MakeDelegate(GlbVar.console, &Console::print));
 
             return true;
         }
@@ -269,6 +279,9 @@ class Game
         {
             //DimensionManager.
             delete GlbVar.dimMgr;
+
+            //Console.
+            delete GlbVar.console;
 
             //NGF.
             Py_Finalize();

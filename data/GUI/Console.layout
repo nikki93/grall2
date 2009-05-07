@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout">
+    <Widget type="Window" skin="WindowCS" position_real="0.0666667 0.224806 0.614286 0.418605" layer="Back" name="win_console">
+        <Property key="Widget_Caption" value="Console"/>
+        <Property key="Widget_Visible" value="true"/>
+        <Property key="Widget_Enabled" value="true"/>
+        <Widget type="Edit" skin="EditStretch" position_real="0.0117417 0.0227848 0.97456 0.746835" align="Left Top" layer="Back" name="edt_consoleOut">
+            <Property key="Edit_ReadOnly" value="true"/>
+            <Property key="Edit_MultiLine" value="true"/>
+            <Property key="Edit_OverflowToTheLeft" value="true"/>
+            <Property key="Edit_TabPrinting" value="true"/>
+            <Property key="Edit_WordWrap" value="false"/>
+            <Property key="Edit_VisibleVScroll" value="true"/>
+            <Property key="Edit_VisibleHScroll" value="true"/>
+        </Widget>
+        <Widget type="Edit" skin="EditStretch" position_real="0.0117417 0.792405 0.896282 0.182278" align="Left Top" layer="Back" name="edt_consoleIn">
+            <Property key="Edit_MultiLine" value="true"/>
+            <Property key="Edit_OverflowToTheLeft" value="true"/>
+            <Property key="Edit_WordWrap" value="false"/>
+            <Property key="Edit_TabPrinting" value="true"/>
+            <Property key="Edit_VisibleVScroll" value="true"/>
+            <Property key="Edit_VisibleHScroll" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position_real="0.919765 0.792405 0.0704501 0.182278" layer="Back" name="but_consoleRun">
+            <Property key="Widget_Caption" value="Run"/>
+        </Widget>
+    </Widget>
+</MyGUI>

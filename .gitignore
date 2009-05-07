@@ -7,3 +7,7 @@ GraLL2.make
 obj
 bin/debug/
 bin/release/
+
+#Files used by editors etc.
+.vimrc
+tags
