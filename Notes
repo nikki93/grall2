@@ -2,12 +2,6 @@
 |           Todo           |
 +--------------------------+
 
-- Create an intial Tile texture.
-
-- Check that the Blender integration is working.
-
-- Make a test level with Blender.
-
 - Add a CameraHandler that handles the Camera in different ways, also for third-person Player view.
 
 - Work on the Player dynamics.
@@ -59,3 +53,7 @@ Thu May  7 22:40:44 AST 2009
 Fri May  8 15:19:59 AST 2009
 ----------------------------
 - Made Console EditBox autofocus.
+- Added a few level geometry textures (tiles, metal etc.).
+- Made a test level using Blender.
+- Exported the level and loaded it up in the game. It works! :-)
+- Added simple shadowing.

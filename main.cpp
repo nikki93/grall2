@@ -152,8 +152,10 @@ class Game
             //Window.
             GlbVar.ogreWindow = GlbVar.ogreRoot->initialise(true, "GraLL 2");
 
-            //SceneManager.
+            //SceneManager, main lights.
             GlbVar.ogreSmgr = GlbVar.ogreRoot->createSceneManager(Ogre::ST_GENERIC);
+            GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);
+            GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
 
             GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.6,0.6,0.6));
             Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
@@ -175,15 +177,20 @@ class Game
             Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
 
             ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
+
             ogreRmgr.addResourceLocation("../../data/ObjectMeshes", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/ObjectTextures", "FileSystem", "General");
+
             ogreRmgr.addResourceLocation("../../data/BrushMeshes", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/BrushTextures", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
-            //ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Metal", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Special", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
 
-            ogreRmgr.initialiseAllResourceGroups();
+            ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
+
+            ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
 
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList params;
@@ -235,6 +242,9 @@ class Game
             Py_Initialize();
             GlbVar.console = new Console();
             new NGF::Python::PythonManager(fastdelegate::MakeDelegate(GlbVar.console, &Console::print));
+
+            //--- Init resources -------------------------------------------------------
+            ogreRmgr.initialiseAllResourceGroups();
 
             return true;
         }

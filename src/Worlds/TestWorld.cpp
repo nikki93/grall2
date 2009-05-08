@@ -17,7 +17,10 @@ void TestWorld::init()
     GlbVar.ogreCamera->setPosition(15,15,15);
     GlbVar.ogreCamera->lookAt(Ogre::Vector3::ZERO);
 
+    GlbVar.lvlLoader->loadLevel("TestLevel");
+
     //Test Player.
+    /*
     GlbVar.goMgr->createObject<Player>(Ogre::Vector3(0.2,10,0), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
             ("dimension1", "yes")
             ("dimension2", "no"));
@@ -29,6 +32,7 @@ void TestWorld::init()
             ("brushMeshFile", "Plane.mesh")
             ("dimension1", "yes")
             ("dimension2", "no"));
+            */
 
     /*
     Ogre::Entity *plane = GlbVar.ogreSmgr->createEntity("groundEntity", "Plane.mesh");
@@ -45,11 +49,6 @@ void TestWorld::init()
 //-------------------------------------------------------------------------------
 void TestWorld::tick(const Ogre::FrameEvent &evt)
 {
-    //PyRun_SimpleString 
-        //(
-         //"obj = Ngf.getObject(\"main\")\n"
-         //"obj.setLinearVelocity(Ngf.Vector3.ZERO)"
-        //);
 }
 //-------------------------------------------------------------------------------
 void TestWorld::stop()

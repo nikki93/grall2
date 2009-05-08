@@ -22,7 +22,6 @@ StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, mesh);
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
-    mEntity->setMaterialName("Player/TEXFACE/Player.png");
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);

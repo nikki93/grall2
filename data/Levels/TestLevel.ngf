@@ -1,0 +1,31 @@
+ngflevel TestLevel
+{
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 0.569699 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile TestLevel_b0.mesh
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -2.500000 0.788349 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+}
+
