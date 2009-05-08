@@ -31,9 +31,7 @@ class Console
             MyGUI::LayoutManager::getInstance().load("Console.layout");
 
             mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_console");
-
-	    MyGUI::ButtonPtr runButton = GlbVar.gui->findWidget<MyGUI::Button>("but_consoleRun");
-	    runButton->eventMouseButtonClick = MyGUI::newDelegate(this, &Console::_onClickRun);
+            mWindow->setAlpha(0.75);
 
 	    mOutputBox = MyGUI::Gui::getInstancePtr()->findWidget<MyGUI::Edit>("edt_consoleOut");
 	    mOutputBox->setTextAlign(MyGUI::Align::Top | MyGUI::Align::Left);
@@ -42,6 +40,11 @@ class Console
             mInputBox = MyGUI::Gui::getInstancePtr()->findWidget<MyGUI::Edit>("edt_consoleIn");
             mInputBox->setTextAlign(MyGUI::Align::Top | MyGUI::Align::Left);
 	    //mInputBox->setFontName("Mono");
+
+	    MyGUI::ButtonPtr button = GlbVar.gui->findWidget<MyGUI::Button>("but_consoleRun");
+	    button->eventMouseButtonClick = MyGUI::newDelegate(this, &Console::_onClickRun);
+            button = GlbVar.gui->findWidget<MyGUI::Button>("but_consoleClose");
+	    button->eventMouseButtonClick = MyGUI::newDelegate(this, &Console::_onClickClose);
 
             mWindow->setVisible(false);
             mVisible = false;
@@ -68,6 +71,8 @@ class Console
         inline void setVisible(bool visible)
         {
             mWindow->setVisible(visible);
+            if (visible)
+                MyGUI::InputManager::getInstance().setKeyFocusWidget(mInputBox);
         }
 
         inline bool isVisible()
@@ -80,7 +85,7 @@ class Console
             mOutputBox->setCaption(mOutputBox->getCaption() + str);
         }
 
-        //--- Internal stuff ----------------------------------------------------------
+        //--- Button events -----------------------------------------------------------
 
         void _onClickRun(MyGUI::WidgetPtr)
         {
@@ -89,6 +94,10 @@ class Console
             PyRun_SimpleString(inStr.c_str());
         }
 
+        void _onClickClose(MyGUI::WidgetPtr)
+        {
+            setVisible(false);
+        }
 };
 
 #endif
