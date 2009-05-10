@@ -19,6 +19,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Player.mesh");
+    mEntity->setMaterialName("Player");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
@@ -58,8 +59,16 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
-    if (isKeyDown(OIS::KC_F))
-        mBody->applyCentralForce(btVector3(0,100,0));
+    const Ogre::Real force = 100;
+
+    if (isKeyDown(OIS::KC_I))
+        mBody->applyCentralForce(btVector3(-force,0,0));
+    if (isKeyDown(OIS::KC_K))
+        mBody->applyCentralForce(btVector3(force,0,0));
+    if (isKeyDown(OIS::KC_J))
+        mBody->applyCentralForce(btVector3(0,0,force));
+    if (isKeyDown(OIS::KC_L))
+        mBody->applyCentralForce(btVector3(0,0,-force));
     
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

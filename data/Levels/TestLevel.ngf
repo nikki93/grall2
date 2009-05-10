@@ -4,7 +4,7 @@ ngflevel TestLevel
 	{
 		type StaticBrush
 		name noname
-		position -0.500000 0.569699 -0.500000
+		position -2.500000 0.569699 -9.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -16,15 +16,74 @@ ngflevel TestLevel
 	}
 	object
 	{
+		type StaticBrush
+		name noname
+		position -2.500000 0.569699 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile TestLevel_b1.mesh
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -2.500000 0.569699 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile TestLevel_b2.mesh
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 0.569699 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile TestLevel_b3.mesh
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
 		type Player
 		name player1
-		position -2.500000 0.788349 -0.500000
+		position 2.500000 0.788349 1.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimension1 yes
 			dimension2 no
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.applyCentralImpulse(Ngf.Vector3(0,10,0))
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -3.500000 2.179168 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 0.5 0.5 0.5
 		}
 	}
 }

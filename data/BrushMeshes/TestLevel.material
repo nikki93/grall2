@@ -1,79 +1,4 @@
-material TestLevel_b0_m0/TEXFACE/CircuitBoard.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture CircuitBoard.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material TestLevel_b0_m0/TEXFACE/WhiteTile5.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTile5.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material TestLevel_b0_m0/TEXFACE/WhiteTileMulti1.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTileMulti1.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material TestLevel_b0_m0/TEXFACE/WhiteTile4.png
+material TestLevel_b3_m0/TEXFACE/WhiteTile4.png
 {
 	receive_shadows on
 	technique
@@ -98,7 +23,7 @@ material TestLevel_b0_m0/TEXFACE/WhiteTile4.png
 		}
 	}
 }
-material TestLevel_b0_m0/TEXFACE/WhiteTile3.png
+material TestLevel_b3_m0/TEXFACE/WhiteTile5.png
 {
 	receive_shadows on
 	technique
@@ -110,7 +35,7 @@ material TestLevel_b0_m0/TEXFACE/WhiteTile3.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture WhiteTile3.png
+				texture WhiteTile5.png
 				colour_op modulate
 			}
 		}
@@ -123,57 +48,7 @@ material TestLevel_b0_m0/TEXFACE/WhiteTile3.png
 		}
 	}
 }
-material TestLevel_b0_m0/TEXFACE/WhiteTile2.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTile2.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material TestLevel_b0_m0/TEXFACE/WhiteTile1.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTile1.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material TestLevel_b0_m0/TEXFACE/FlatMetal1.png
+material TestLevel_b3_m0/TEXFACE/FlatMetal1.png
 {
 	receive_shadows on
 	technique
@@ -198,7 +73,132 @@ material TestLevel_b0_m0/TEXFACE/FlatMetal1.png
 		}
 	}
 }
-material TestLevel_b0_m0/TEXFACE/TileMetalLong1.png
+material TestLevel_b3_m0/TEXFACE/WhiteTile1.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTile1.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material TestLevel_b3_m0/TEXFACE/WhiteTile2.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTile2.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material TestLevel_b3_m0/TEXFACE/WhiteTile3.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTile3.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material TestLevel_b3_m0/TEXFACE/CircuitBoard.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture CircuitBoard.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material TestLevel_b3_m0/TEXFACE/WhiteTileMulti1.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTileMulti1.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material TestLevel_b3_m0/TEXFACE/TileMetalLong1.png
 {
 	receive_shadows on
 	technique

@@ -18,6 +18,7 @@
 //GameObject headers.
 #include "Objects/Main/Player.h"
 #include "Objects/Main/StaticBrush.h"
+#include "Objects/Misc/Light.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -27,6 +28,7 @@ void registerGameObjectTypes()
 {
     NGF_REGISTER_OBJECT_TYPE(Player);
     NGF_REGISTER_OBJECT_TYPE(StaticBrush);
+    NGF_REGISTER_OBJECT_TYPE(Light);
 }
 
 //Register worlds.

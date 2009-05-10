@@ -6,6 +6,10 @@
 
 - Work on the Player dynamics.
 
+- Work on obstacle ideas.
+
+- Add some shader eye-candy. ;-)
+
 +---------------------------+
 |         ChangeLog         |
 +---------------------------+
@@ -40,11 +44,11 @@ Sun May  3 17:31:17 AST 2009
 
 Mon May  4 22:04:36 PDT 2009
 ----------------------------
-- Added StaticBrush GameObject (on the laptop! git FTW!).
+- Added StaticBrush GameObject (on the laptop, had power problems on desktop! git FTW!).
 
 Wed May  6 17:30:01 AST 2009
 ----------------------------
-- Added Python event calling to Player, StaticBrush.
+- Added Python event calling to Player, StaticBrush (back on desktop).
 
 Thu May  7 22:40:44 AST 2009
 ----------------------------
@@ -57,3 +61,10 @@ Fri May  8 15:19:59 AST 2009
 - Made a test level using Blender.
 - Exported the level and loaded it up in the game. It works! :-)
 - Added simple shadowing.
+
+Sun May 10 22:15:17 AST 2009
+----------------------------
+- Added some walls in different dimensions in the test level just to check it out, it works as expected.
+- Added a 'Light' GameObjects to be able to edit lighting in Blender with the same interface as all other
+  objects. It works, but there are problems in the lighting itself because the level geometry mesh is bad.
+  Will fix soon.

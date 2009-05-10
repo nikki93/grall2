@@ -1,0 +1,18 @@
+material Player
+{
+	receive_shadows off
+	technique
+	{
+		pass
+		{
+			ambient 0.703560 0.703560 0.703560 1.000000
+			diffuse 0.900000 0.900000 0.900000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Player.png
+			}
+		}
+		pass
+	}
+}

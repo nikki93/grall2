@@ -20,6 +20,7 @@ StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     //Create the Ogre stuff.
     Ogre::String mesh = properties.getValue("brushMeshFile", 0, "Player.mesh");
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, mesh);
+    //mEntity->setNormaliseNormals(true);
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
