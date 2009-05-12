@@ -32,4 +32,24 @@ inline OIS::MouseState getMouseState()
     return GlbVar.mouse->getMouseState();
 }
 
+//Fixes the Brush materials, ie., makes the Brush use the materials defined manually in
+//data/Brushes.material.
+//
+//Blender exported materials using TEXFACE end with the texture filename, so this is
+//easy.
+inline void fixBrushMaterials(Ogre::Entity *ent)
+{
+    Ogre::String matName;
+    Ogre::SubEntity *currSub;
+
+    int numSubs = ent->getNumSubEntities();
+    for (int i = 0; i < numSubs; ++i)
+    {
+        currSub = ent->getSubEntity(i);
+        matName = currSub->getMaterialName();
+        matName = "Brushes" + matName.substr(matName.find_last_of('/'));
+        currSub->setMaterialName(matName);
+    }
+}
+
 #endif

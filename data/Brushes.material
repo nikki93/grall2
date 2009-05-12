@@ -1,0 +1,196 @@
+//'Brush' materials, ie., materials used on meshes editable in Blender while editing the level.
+//such as level geometry etc.
+//
+//These were written manually and are not Blender-exported.
+
+import * from Default.program
+
+material Brushes/FlatMetal1.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture FlatMetal1.png
+                        }
+                        texture_unit
+                        {
+                                texture Plain_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/TileMetalLong1.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture TileMetalLong1.png
+                        }
+                        texture_unit
+                        {
+                                texture TileMetalLong1_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/CircuitBoard.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture CircuitBoard.png
+                        }
+                        texture_unit
+                        {
+                                texture CircuitBoard_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/WhiteTile1.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture WhiteTile1.png
+                        }
+                        texture_unit
+                        {
+                                texture WhiteTile_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/WhiteTile2.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture WhiteTile2.png
+                        }
+                        texture_unit
+                        {
+                                texture WhiteTile_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/WhiteTile3.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture WhiteTile3.png
+                        }
+                        texture_unit
+                        {
+                                texture WhiteTile_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/WhiteTile4.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture WhiteTile4.png
+                        }
+                        texture_unit
+                        {
+                                texture WhiteTile_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/WhiteTile5.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture WhiteTile5.png
+                        }
+                        texture_unit
+                        {
+                                texture WhiteTile_NM.png
+                        }
+                }
+        }
+}
+
+material Brushes/WhiteTileMulti1.png : BaseShaded
+{
+        receive_shadows on
+        technique
+        {
+                pass
+                {
+                        ambient 0.7 0.7 0.7 1
+                        diffuse 0.9 0.9 0.9 1
+                        texture_unit
+                        {
+                                texture WhiteTileMulti1.png
+                        }
+                        texture_unit
+                        {
+                                texture WhiteTileMulti1_NM.png
+                        }
+                }
+        }
+}
+

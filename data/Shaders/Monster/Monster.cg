@@ -1,0 +1,525 @@
+//TWEAK HERE
+//
+//	#define PER_VERTEX 1		-> TODO /?/
+//	#define SPOT_LIGHTS 1		-> TODO
+//	#define DETAIL_BUMP_TEXTURE 1	-> TODO (bump means normal map, height in alpha optional)
+//	#define DETAIL_DIFFUSE_TEXTURE 1-> TODO
+//	#define SPECULAR_POWER_TEXTURE 1-> TODO (stored in diffuse texture's alpha)
+//	#define ENVIRONMENT_MAPPING 1	-> TODO
+//	#define AMBIENT_OCCLUSION 1	-> TODO (modulates envir. lighting aka. ambient)
+//	#define OPACITY_TEXTURE 1	-> TODO (offset-mapped decals, for.ex)
+//
+//	Other suggestions?
+
+#define ATTENUATION 1
+
+#define ANY_TEXTURE 1
+#define DIFFUSE_TEXTURE 1
+
+#define AT_LEAST_PERPIXEL 1
+#define AT_LEAST_NORMAL_MAPPING 1
+#define OFFSET_MAPPING 1
+
+#define AMBIENT 1
+#define DIFFUSE 1
+#define SPECULAR 0
+
+#define LIGHT0 1
+#define LIGHT1 1
+#define LIGHT2 1
+
+// Helper: Expand a range-compressed vector
+float3 expand(float3 v)
+{
+    return (v - 0.5) * 2;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+//					VERT COMES
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//quite chaotic form, maybe more logical arrangement possible
+void WonderShader_Lim3_Fast_Vert
+(
+ float4 position	: POSITION,
+ float3 normal		: NORMAL,
+ out float4 oPosition	: POSITION,
+
+#if ANY_TEXTURE
+ float2 uv		: TEXCOORD0,
+ out float2 oUv		: TEXCOORD0,
+ uniform float scale,
+#endif
+
+#if AT_LEAST_NORMAL_MAPPING
+ float3 tangent     	: TEXCOORD1,
+#elif AT_LEAST_PERPIXEL  //just normal perpixel, use texcoord7 to transmit to frag 
+ out float3 oNorm	: TEXCOORD7, //(holds eyedir in offset case)
+#endif
+
+
+ // Still in frag shader!	
+ //	#if AMBIENT
+ //		uniform float4 ambient,
+ //		out float4 oColor	: COLOR,
+ //	#endif
+
+
+#if LIGHT0
+ uniform float4 lightPosition0, // object space
+#if DIFFUSE
+ out float3 oLightDir0  : TEXCOORD1,
+#endif
+#if SPECULAR
+ out float3 oHalfAngle0	: TEXCOORD4,
+#endif
+#endif
+
+#if LIGHT1
+ uniform float4 lightPosition1, // object space
+#if DIFFUSE
+ out float3 oLightDir1  : TEXCOORD2,
+#endif
+#if SPECULAR
+ out float3 oHalfAngle1	: TEXCOORD5,
+#endif
+#endif
+
+#if LIGHT2
+ uniform float4 lightPosition2, // object space
+#if DIFFUSE
+ out float3 oLightDir2	: TEXCOORD3,
+#endif
+#endif
+
+#if ATTENUATION
+ out float4 dist	: TEXCOORD6, // .x, .y, and .z is used for light distances
+#elif SPECULAR
+ out float3 oHalfAngle2	: TEXCOORD6,
+#endif 
+
+#if OFFSET_MAPPING  //needs eye no matter specular
+ uniform float3 eyePosition,   // object space
+ out float3 oEyeDir     : TEXCOORD7,
+#elif SPECULAR	//no need to output eye, even if normal-mapping is on
+ uniform float3 eyePosition,   // object space
+#endif
+
+ uniform float4x4 worldviewproj 
+ )
+{
+    oPosition = mul(worldviewproj , position);
+
+#if ANY_TEXTURE
+    oUv = uv * scale;
+#endif
+
+
+#if AT_LEAST_NORMAL_MAPPING	
+    float3 binormal = cross(tangent, normal);
+    float3x3 rotation = float3x3(tangent, binormal, normal);
+#elif AT_LEAST_PERPIXEL
+    oNorm = normal;
+#endif
+
+
+#if OFFSET_MAPPING	//no matter specular, I need eye for offsetting
+    float3 eyeDir = eyePosition - position.xyz;
+    eyeDir = normalize(mul(rotation, eyeDir));
+    oEyeDir = eyeDir;
+#elif SPECULAR	//I need eye only if specular other than offset, plus no eye output now
+    float3 eyeDir = normalize(eyePosition - position.xyz);
+#if AT_LEAST_NORMAL_MAPPING  //eye needs adjustment if normal-mapping
+    eyeDir = normalize(mul(rotation, eyeDir));
+#endif
+#endif
+
+    //if DIFFUSE is commented out, we only need temp_lightDirX for oHalfAngle
+    //and if both DIFFUSE and SPECULAR is out, we shall not calculate any lighting
+#if LIGHT0
+#if ATTENUATION
+    float3 temp_lightDir0 = lightPosition0.xyz -  (position * lightPosition0.w);
+    dist.x = length(temp_lightDir0);
+    temp_lightDir0 = temp_lightDir0 / dist.x; //normalize it this way
+
+    //	oatten.x = 1/(atten.y + dist0*atten.z + dist0*dist0*atten.w);
+    //some attenuation calc, could be faster with some approximation
+    //I think at least leaving only kl component
+#else
+    float3 temp_lightDir0 = normalize(lightPosition0.xyz -  (position * lightPosition0.w));
+#endif
+#if AT_LEAST_NORMAL_MAPPING
+    temp_lightDir0 = normalize(mul(rotation, temp_lightDir0));
+#if DIFFUSE
+    oLightDir0 = temp_lightDir0;
+#endif
+#elif DIFFUSE //just normal perpixel
+    oLightDir0 = temp_lightDir0;
+#endif
+
+#if SPECULAR
+    oHalfAngle0 = normalize(eyeDir + temp_lightDir0);
+#endif
+
+#endif
+
+#if LIGHT1
+#if ATTENUATION
+    float3 temp_lightDir1 = lightPosition1.xyz -  (position * lightPosition1.w);
+    dist.y = length(temp_lightDir1);
+    temp_lightDir1 = temp_lightDir1 / dist.y; //normalize it this way
+
+    //	oatten.y = 1/(atten.y + dist1*atten.z + dist1*dist1*atten.w);
+    //some attenuation calc, could be faster with some approximation
+    //I think at least leaving only kl component
+#else
+    float3 temp_lightDir1 = normalize(lightPosition1.xyz -  (position * lightPosition1.w));
+#endif
+#if AT_LEAST_NORMAL_MAPPING
+    temp_lightDir1 = normalize(mul(rotation, temp_lightDir1));
+#if DIFFUSE
+    oLightDir1 = temp_lightDir1;
+#endif
+#elif DIFFUSE //just normal perpixel
+    oLightDir1 = temp_lightDir1;
+#endif
+
+#if SPECULAR
+    oHalfAngle1 = normalize(eyeDir + temp_lightDir1);
+#endif
+
+#endif
+
+#if LIGHT2
+#if ATTENUATION
+    float3 temp_lightDir2 = lightPosition2.xyz -  (position * lightPosition2.w);
+    dist.z = length(temp_lightDir2);
+    temp_lightDir2 = temp_lightDir2 / dist.z; //normalize it this way
+
+    //	oatten.z = 1/(atten.y + dist2*atten.z + dist2*dist2*atten.w);
+    //some attenuation calc, could be faster with some approximation
+    //I think at least leaving only kl component
+#else
+    float3 temp_lightDir2 = normalize(lightPosition2.xyz -  (position * lightPosition2.w));
+#if SPECULAR
+    oHalfAngle2 = normalize(eyeDir + temp_lightDir2);
+#endif
+#endif
+#if AT_LEAST_NORMAL_MAPPING
+    temp_lightDir2 = normalize(mul(rotation, temp_lightDir2));
+#if DIFFUSE
+    oLightDir2 = temp_lightDir2;
+#endif
+#elif DIFFUSE //just normal perpixel
+    oLightDir2 = temp_lightDir2;
+#endif
+#endif
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+//					FRAG COMES
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+void WonderShader_Lim3_Fast_Frag(
+
+#if DIFFUSE_TEXTURE
+        uniform sampler2D diffuseMap : register(s0),
+        float2 uv		: TEXCOORD0,
+#elif ANY_TEXTURE
+        float2 uv		: TEXCOORD0,
+#endif
+
+#if LIGHT0
+#if DIFFUSE
+        float3 LightDir0  	: TEXCOORD1,
+        uniform float4 lightDiffuse0,
+#endif
+#if SPECULAR
+        float3 HalfAngle0	: TEXCOORD4,
+        uniform float4 lightSpecular0,
+#endif
+#endif
+
+#if LIGHT1
+#if DIFFUSE
+        float3 LightDir1  	: TEXCOORD2,
+        uniform float4 lightDiffuse1,
+#endif
+#if SPECULAR
+        float3 HalfAngle1	: TEXCOORD5,
+        uniform float4 lightSpecular1,
+#endif
+#endif
+
+#if LIGHT2
+#if DIFFUSE
+        float3 LightDir2	: TEXCOORD3,
+        uniform float4 lightDiffuse2,
+#endif
+#endif
+
+#if OFFSET_MAPPING
+        float3 EyeDir     	: TEXCOORD7,
+        uniform float4 scaleBias,
+        uniform sampler2D   normalHeightMap : register(s1),
+#elif AT_LEAST_NORMAL_MAPPING
+        uniform sampler2D   normalHeightMap : register(s1),
+#elif AT_LEAST_PERPIXEL	//no normal-mapping, use standard normal, in eyedir's place
+        float3 normalvec		: TEXCOORD7,
+#endif
+
+#if SPECULAR
+        uniform float exponent0,
+        //		uniform float exponent1,
+        //		uniform float exponent2,
+#endif
+
+#if AMBIENT
+        uniform float4 ambient,
+#endif
+
+#if ATTENUATION	//if on, supposed to have light0 on as well!
+        float4 dist		: TEXCOORD6,
+        uniform float4 atten0,
+#if LIGHT1
+        uniform float4 atten1,
+#endif
+#if LIGHT2
+        uniform float4 atten2,
+#endif
+#elif SPECULAR
+#if LIGHT2
+        float3 HalfAngle2	: TEXCOORD6,
+        uniform float4 lightSpecular2,
+#endif
+#endif
+
+        out float4 oColor	: COLOR
+        )
+{
+#if OFFSET_MAPPING
+    float height = tex2D(normalHeightMap, uv).a;
+    float scale = scaleBias.x;
+    float bias = scaleBias.y;
+    float displacement = (height * scale) + bias;
+    float3 uv2 = float3(uv, 1); 
+    float2 newTexCoord = ((EyeDir * displacement) + uv2).xy;
+    float3 bumpVec = expand(tex2D(normalHeightMap, newTexCoord ).xyz);
+    float3 N = normalize(bumpVec);
+#if DIFFUSE_TEXTURE
+    float3 diffusetex = tex2D(diffuseMap, newTexCoord).xyz; 
+#endif
+#elif AT_LEAST_NORMAL_MAPPING
+    float3 bumpVec = expand(tex2D(normalHeightMap, uv).xyz);
+    float3 N = normalize(bumpVec);
+#if DIFFUSE_TEXTURE
+    float3 diffusetex = tex2D(diffuseMap, uv).xyz;
+#endif
+#elif AT_LEAST_PERPIXEL
+    float3 N = normalize(normalvec);
+#if DIFFUSE_TEXTURE
+    float3 diffusetex = tex2D(diffuseMap, uv).xyz;
+#endif
+#elif DIFFUSE_TEXTURE
+    float3 diffusetex = tex2D(diffuseMap, uv).xyz;
+#endif	
+
+
+    //If different exponents for different specular-lights, change 3 places here!
+
+#if LIGHT0
+#if DIFFUSE
+    float NdotL0 = dot(normalize(LightDir0), N);
+#if SPECULAR //both
+    float NdotH0 = dot(normalize(HalfAngle0), N);
+    float4 Lit0 = lit(NdotL0,NdotH0,exponent0);
+#else //just diffuse
+    float4 Lit0;
+    Lit0.y = saturate(NdotL0);
+#endif
+#elif SPECULAR //just specular
+    float NdotH0 = dot(normalize(HalfAngle0), N);
+    float4 Lit0;
+    Lit0.z = pow(saturate(NdotH0),exponent0);
+#endif
+#endif
+
+#if LIGHT1
+#if DIFFUSE
+    float NdotL1 = dot(normalize(LightDir1), N);
+#if SPECULAR //both
+    float NdotH1 = dot(normalize(HalfAngle1), N);
+    float4 Lit1 = lit(NdotL1,NdotH1,exponent0);
+#else //just diffuse
+    float4 Lit1;
+    Lit1.y = saturate(NdotL1);
+#endif
+#elif SPECULAR //just specular
+    float NdotH1 = dot(normalize(HalfAngle1), N);
+    float4 Lit1;
+    Lit1.z = pow(saturate(NdotH1),exponent0);
+#endif
+#endif
+
+#if LIGHT2
+#if DIFFUSE
+    float NdotL2 = dot(normalize(LightDir2), N);
+#if SPECULAR //both
+#if !ATTENUATION
+    float NdotH2 = dot(normalize(HalfAngle2), N);
+    float4 Lit2 = lit(NdotL2,NdotH2,exponent0);
+#else
+    float4 Lit2;
+    Lit2.y = saturate(NdotL2);
+#endif
+#else //just diffuse
+    float4 Lit2;
+    Lit2.y = saturate(NdotL2);
+#endif
+#elif SPECULAR //just specular
+#if !ATTENUATION
+    float NdotH2 = dot(normalize(HalfAngle2), N);
+    float4 Lit2;
+    Lit2.z = pow(saturate(NdotH2),exponent0);
+#else
+    float4 Lit2;
+    Lit2 = float4(1,0,0,1);
+#endif
+#endif
+#endif
+
+    oColor = 
+
+#if ATTENUATION //since usage rules specify it, we have at least light0 on with at least either
+        //diffuse or specular also on !
+        // - if you want no lighting, just textures, turn attenuation off!
+        //But yes, you can have diffusetex with just specular :)
+        //Note that you can't have specular of light2 with attenuation on. See docs.
+
+        // Final color formula with atten
+        // oColor = atten0 * (diffusetex * lightDiffuse0 * Lit0.y + lightSpecular0 * Lit0.z)
+        //		    atten1 * (diffusetex * lightDiffuse1 * Lit1.y + lightSpecular1 * Lit1.z)
+        //		    atten2 * (diffusetex * lightDiffuse2 * Lit2.y + lightSpecular2 * Lit2.z)
+        //		    + ambient;
+
+#if !DIFFUSE //we start with the no diffuse just diffusetex case, here only spec is attenuated
+#if DIFFUSE_TEXTURE
+        float4(diffusetex,1) +
+#endif
+#endif
+
+        1/(atten0.y + atten0.z*dist.x + atten0.w*dist.x*dist.x)* (
+                //we always have light0 on here, and spec0 or diffuse0 with it
+#if SPECULAR
+                lightSpecular0 * Lit0.z
+#if DIFFUSE
+                +
+#else //light0 has only spec, light0 done
+                )
+#endif
+#endif
+#if DIFFUSE
+        lightDiffuse0 * Lit0.y	//without + sign, we are good at no specular case as well
+#if DIFFUSE_TEXTURE
+        * float4(diffusetex,1)) //light0 done
+#else
+        ) //light0 done
+#endif
+#endif
+
+#if LIGHT1 //optional, but if we have it, we have either diff1 or spec1, difftex can be 0/1
+        + 1/(atten1.y + atten1.z*dist.y + atten1.w*dist.y*dist.y) * (
+#if SPECULAR
+                lightSpecular1 * Lit1.z
+#if DIFFUSE
+                +
+#else //light1 has only spec, light1 done
+                )
+#endif
+#endif
+
+#if DIFFUSE
+        lightDiffuse1 * Lit1.y //without + sign here, we are good at no specular case as well
+#if DIFFUSE_TEXTURE
+        * float4(diffusetex,1)) //light1 done
+#else
+        ) //light1 done
+#endif
+#endif
+#endif
+
+#if LIGHT2	//ditto goes for diff2, and difftex (no specular here)
+        + 1/(atten2.y + atten2.z*dist.z + atten2.w*dist.z*dist.z) * (
+#if DIFFUSE
+                lightDiffuse2 * Lit2.y //without + sign here, we are good at no specular case as well
+#if DIFFUSE_TEXTURE
+                * float4(diffusetex,1)) //light2 done
+#else
+        ) //light2 done
+#endif
+#endif
+#endif
+
+#else
+
+        // And wo. atten
+        // oColor = diffusetex 
+        //		    * (lightDiffuse0 * Lit0.y + lightDiffuse1 * Lit1.y + lightDiffuse2 * Lit2.y)
+        //		    + lightSpecular0 * Lit0.z + lightSpecular1 * Lit1.z + lightSpecular2 * Lit2.z
+        //		    + ambient;
+
+        float4(0,0,0,0)	//this is needed to simplify preprocessor stuff, no FPS cost :)
+
+#if DIFFUSE_TEXTURE //at least diffuse texture, no lighting yet
+        + float4(diffusetex,1)
+#if DIFFUSE //modulate texture with lighting
+        *(
+#if LIGHT0
+                lightDiffuse0 * Lit0.y
+#endif
+#if LIGHT1
+                + lightDiffuse1 * Lit1.y
+#endif
+#if LIGHT2
+                + lightDiffuse2 * Lit2.y
+#endif
+         )
+#endif
+#elif DIFFUSE //just diffuse lighting, no modulation
+#if LIGHT0
+        + lightDiffuse0 * Lit0.y
+#endif
+#if LIGHT1
+        + lightDiffuse1 * Lit1.y
+#endif
+#if LIGHT2
+        + lightDiffuse2 * Lit2.y
+#endif
+#endif
+
+#if SPECULAR
+#if LIGHT0
+        + lightSpecular0 * Lit0.z
+#endif
+#if LIGHT1
+        + lightSpecular1 * Lit1.z
+#endif
+#if LIGHT2  
+        + lightSpecular2 * Lit2.z
+#endif
+#endif
+#endif
+
+#if AMBIENT
+        + ambient
+#endif
+        ;
+
+
+}
+

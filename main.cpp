@@ -154,15 +154,17 @@ class Game
 
             //SceneManager, main lights.
             GlbVar.ogreSmgr = GlbVar.ogreRoot->createSceneManager(Ogre::ST_GENERIC);
-            GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);
-            GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
+            //GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);
+            //GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
 
-            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.6,0.6,0.6));
+            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.3,0.3,0.3));
+            /*j
             Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
             light->setType(Ogre::Light::LT_DIRECTIONAL);
             light->setDiffuseColour(Ogre::ColourValue(0.20,0.20,0.20));
             light->setSpecularColour(Ogre::ColourValue(0,0,0));
             light->setDirection(Ogre::Vector3(1,-2.5,1)); 
+            */
 
             //Camera, Viewport.
             GlbVar.ogreCamera = GlbVar.ogreSmgr->createCamera("mainCamera");
@@ -191,6 +193,8 @@ class Game
 
             ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Monster", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Default", "FileSystem", "General");
 
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList params;

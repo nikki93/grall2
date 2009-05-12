@@ -68,3 +68,9 @@ Sun May 10 22:15:17 AST 2009
 - Added a 'Light' GameObjects to be able to edit lighting in Blender with the same interface as all other
   objects. It works, but there are problems in the lighting itself because the level geometry mesh is bad.
   Will fix soon.
+
+Mon May 11 19:07:39 AST 2009
+----------------------------
+- Added a shader system. Brushes are automatically assigned a material from a manually written material
+  set that uses shaders. Tested with some shaders, but now a proper shader (Cg or GLSL) is needed to
+  handle per-pixel lighting, and offset mapping.

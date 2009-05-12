@@ -2,6 +2,20 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Light
+		name noname
+		position -13.550045 0.695267 10.550045
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 0.6 0.3 0.3
+			attenuation 5 0 0.5 0
+		}
+	}
+	object
+	{
 		type StaticBrush
 		name noname
 		position -2.500000 0.569699 -9.500000
@@ -83,7 +97,8 @@ ngflevel TestLevel
 		properties
 		{
 			lightType point
-			colour 0.5 0.5 0.5
+			colour 0.6 0.6 0.6
+			attenuation 20 1 0.01 0.01
 		}
 	}
 }

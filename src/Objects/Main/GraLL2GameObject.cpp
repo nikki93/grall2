@@ -57,6 +57,14 @@ void GraLL2GameObject::initBody()
     setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------
+Ogre::Entity *GraLL2GameObject::createBrushEntity()
+{
+    Ogre::String mesh = mProperties.getValue("brushMeshFile", 0, "Player.mesh");
+    Ogre::Entity *ent = GlbVar.ogreSmgr->createEntity(mOgreName, mesh);
+    fixBrushMaterials(ent);
+    return ent;
+}
+//-------------------------------------------------------------------------------
 void GraLL2GameObject::setDimension(int dimension)
 {
     //Save the new dimension info, and reset the btRigidBody flags.

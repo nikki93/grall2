@@ -32,7 +32,13 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mLight->setType((type == "spot") ? Ogre::Light::LT_SPOTLIGHT : Ogre::Light::LT_POINT);
 
     mLight->setDiffuseColour(colour);
-    mLight->setSpecularColour(Ogre::ColourValue(0.7,0.7,0.7));
+    mLight->setSpecularColour(Ogre::ColourValue(0.1,0.1,0.1));
+    mLight->setAttenuation(
+            Ogre::StringConverter::parseReal(mProperties.getValue("attenuation", 0, "10")),
+            Ogre::StringConverter::parseReal(mProperties.getValue("attenuation", 1, "0")),
+            Ogre::StringConverter::parseReal(mProperties.getValue("attenuation", 2, "0")),
+            Ogre::StringConverter::parseReal(mProperties.getValue("attenuation", 3, "0.1"))
+            );
 
     //Attach it to the SceneNode.
     mNode->attachObject(mLight);

@@ -1,0 +1,64 @@
+vertex_program MonsterShader_vp cg
+{
+    source Monster.cg
+
+    default_params
+    {
+        param_named_auto lightPosition0 light_position_object_space 0
+        param_named_auto lightPosition1 light_position_object_space 1
+        param_named_auto lightPosition2 light_position_object_space 2
+        param_named_auto eyePosition camera_position_object_space
+        param_named_auto worldviewproj worldviewproj_matrix
+    }
+
+    entry_point WonderShader_Lim3_Fast_Vert
+    profiles vs_1_1 arbvp1
+}
+
+fragment_program MonsterShader_fp cg
+{
+    source Monster.cg
+
+    default_params
+    {
+        param_named_auto lightDiffuse0 light_diffuse_colour 0
+        param_named_auto lightDiffuse1 light_diffuse_colour 1
+        param_named_auto lightDiffuse2 light_diffuse_colour 2
+
+        param_named_auto lightSpecular0 light_specular_colour 0
+        param_named_auto lightSpecular1 light_specular_colour 1
+        //param_named_auto lightSpecular2 light_specular_colour 2
+
+        param_named_auto atten0 light_attenuation 0
+        param_named_auto atten1 light_attenuation 1
+        param_named_auto atten2 light_attenuation 2
+        
+    }
+
+    entry_point WonderShader_Lim3_Fast_Frag
+    profiles ps_2_0 arbfp1
+}
+
+material BaseShaded
+{
+    technique
+    {
+        pass
+        {
+            // Vertex program reference
+            vertex_program_ref MonsterShader_vp
+            {
+                param_named scale float 1
+            }
+
+            // Fragment program
+            fragment_program_ref MonsterShader_fp
+            {
+                param_named exponent0 float 0
+                param_named scaleBias float4 0.04 -0.02 1 0 
+                param_named ambient float4 0.05 0.05 0.05 1
+            }
+        }
+    }
+}
+

@@ -19,7 +19,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Player.mesh");
-    mEntity->setMaterialName("Player");
+    mEntity->setMaterialName("Objects/Player");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 

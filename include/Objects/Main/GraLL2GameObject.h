@@ -81,6 +81,7 @@ class GraLL2GameObject :
 
         //--- Non-NGF methods ----------------------------------------------------------
         void initBody();
+        Ogre::Entity *createBrushEntity();
         void destroyBody() { GlbVar.phyWorld->removeRigidBody(mBody); }
         void setDimension(int dimension);
 
