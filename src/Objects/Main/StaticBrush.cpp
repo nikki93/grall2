@@ -43,7 +43,7 @@ StaticBrush::~StaticBrush()
     destroyBody();
     delete mShape;
 
-    mNode->detachObject(mEntity);
+    mNode->detachAllObjects();
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------

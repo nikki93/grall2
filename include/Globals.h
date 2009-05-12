@@ -69,9 +69,13 @@ void registerGameObjectTypes();
 //Messages.
 enum
 {
-    MSG_NONE,
-    MSG_DIMENSIONCHANGED,
-    MSG_KEYPRESSED,
+    MSG_NONE,                 //No message.
+    MSG_DIMENSIONCHANGED,     //Dimension changed.
+    MSG_KEYPRESSED,           //Key pressed.
+    MSG_SETTARGET,            //Set CameraHandler target node.
+    MSG_SETOFFSET,            //Set CameraHandler third-person camera offset.
+    MSG_SETSMOOTHINGFACTOR,   //Set CameraHandler camera movement smoothing.
+    MSG_SETCAMERASTATE,       //Set CameraHandler camera handling mode.
 };
 
 //Includes from the project used everywhere.

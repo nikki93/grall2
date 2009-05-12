@@ -23,8 +23,10 @@ class Player :
     public GraLL2GameObject
 {
     protected:
+        Ogre::SceneNode *mControlNode;
         Ogre::Entity *mEntity;
         btCollisionShape *mShape;
+        NGF::GameObject *mCameraHandler;
 
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -47,7 +49,20 @@ class Player :
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Player)
         {
+            Ogre::Quaternion controlRot;
+
+            NGF_SERIALISE_ON_SAVE
+            {
+                controlRot = mControlNode->getOrientation();
+            }
+
             GRALL2_SERIALISE_GAMEOBJECT();
+            NGF_SERIALISE_OGRE(Quaternion, controlRot);
+
+            NGF_SERIALISE_ON_LOAD
+            {
+                mControlNode->setOrientation(controlRot);
+            }
         }
         NGF_SERIALISE_END
 };

@@ -5,7 +5,7 @@
 
 import * from Default.program
 
-material Objects/Player : BaseShaded
+material Objects/Player
 {
 	receive_shadows off
 	technique
@@ -18,10 +18,6 @@ material Objects/Player : BaseShaded
 			{
 				texture Player.png
 			}
-                        texture_unit
-                        {
-                                texture Plain_NM.png
-                        }
 		}
 	}
 }

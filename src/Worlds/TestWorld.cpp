@@ -14,9 +14,6 @@ void TestWorld::init()
 {
     Ogre::LogManager::getSingleton().logMessage("TestWorld init!");
 
-    GlbVar.ogreCamera->setPosition(15,15,15);
-    GlbVar.ogreCamera->lookAt(Ogre::Vector3::ZERO);
-
     GlbVar.lvlLoader->loadLevel("TestLevel");
 
     //Test Player.

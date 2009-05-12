@@ -32,6 +32,7 @@ class GameListener :
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
             //Temporary camera movement thing.
+            /*
             if (!GlbVar.console->isVisible())
             {
                 OIS::MouseState ms = getMouseState();
@@ -49,6 +50,7 @@ class GameListener :
                 GlbVar.ogreCamera->pitch(Ogre::Degree(-ms.Y.rel * 0.3));
                 GlbVar.ogreCamera->moveRelative(translate * evt.timeSinceLastFrame);
             }
+            */
 
             //Physics update.
             if (!GlbVar.paused)

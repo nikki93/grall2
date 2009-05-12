@@ -5,7 +5,7 @@
 
 import * from Default.program
 
-material Brushes/FlatMetal1.png : BaseShaded
+material Brushes/FlatMetal1.png
 {
         receive_shadows on
         technique
@@ -18,15 +18,11 @@ material Brushes/FlatMetal1.png : BaseShaded
                         {
                                 texture FlatMetal1.png
                         }
-                        texture_unit
-                        {
-                                texture Plain_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/TileMetalLong1.png : BaseShaded
+material Brushes/TileMetalLong1.png
 {
         receive_shadows on
         technique
@@ -39,15 +35,11 @@ material Brushes/TileMetalLong1.png : BaseShaded
                         {
                                 texture TileMetalLong1.png
                         }
-                        texture_unit
-                        {
-                                texture TileMetalLong1_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/CircuitBoard.png : BaseShaded
+material Brushes/CircuitBoard.png
 {
         receive_shadows on
         technique
@@ -60,15 +52,11 @@ material Brushes/CircuitBoard.png : BaseShaded
                         {
                                 texture CircuitBoard.png
                         }
-                        texture_unit
-                        {
-                                texture CircuitBoard_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/WhiteTile1.png : BaseShaded
+material Brushes/WhiteTile1.png
 {
         receive_shadows on
         technique
@@ -81,15 +69,11 @@ material Brushes/WhiteTile1.png : BaseShaded
                         {
                                 texture WhiteTile1.png
                         }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/WhiteTile2.png : BaseShaded
+material Brushes/WhiteTile2.png
 {
         receive_shadows on
         technique
@@ -102,15 +86,11 @@ material Brushes/WhiteTile2.png : BaseShaded
                         {
                                 texture WhiteTile2.png
                         }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/WhiteTile3.png : BaseShaded
+material Brushes/WhiteTile3.png
 {
         receive_shadows on
         technique
@@ -123,15 +103,11 @@ material Brushes/WhiteTile3.png : BaseShaded
                         {
                                 texture WhiteTile3.png
                         }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/WhiteTile4.png : BaseShaded
+material Brushes/WhiteTile4.png
 {
         receive_shadows on
         technique
@@ -144,15 +120,11 @@ material Brushes/WhiteTile4.png : BaseShaded
                         {
                                 texture WhiteTile4.png
                         }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/WhiteTile5.png : BaseShaded
+material Brushes/WhiteTile5.png
 {
         receive_shadows on
         technique
@@ -165,15 +137,11 @@ material Brushes/WhiteTile5.png : BaseShaded
                         {
                                 texture WhiteTile5.png
                         }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/WhiteTileMulti1.png : BaseShaded
+material Brushes/WhiteTileMulti1.png
 {
         receive_shadows on
         technique
@@ -185,10 +153,6 @@ material Brushes/WhiteTileMulti1.png : BaseShaded
                         texture_unit
                         {
                                 texture WhiteTileMulti1.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTileMulti1_NM.png
                         }
                 }
         }
