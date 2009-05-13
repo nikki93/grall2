@@ -31,27 +31,6 @@ class GameListener :
     public:
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
-            //Temporary camera movement thing.
-            /*
-            if (!GlbVar.console->isVisible())
-            {
-                OIS::MouseState ms = getMouseState();
-
-                Ogre::Vector3 translate = Ogre::Vector3::ZERO;
-                Ogre::Real speed = 15;
-
-                speed *= isKeyDown(OIS::KC_LSHIFT) ? 6 : 1; //'Sprint' mode.
-
-                translate.z = (isKeyDown(OIS::KC_DOWN) || isKeyDown(OIS::KC_S)) - (isKeyDown(OIS::KC_UP) || isKeyDown(OIS::KC_W));
-                translate.x = (isKeyDown(OIS::KC_RIGHT) || isKeyDown(OIS::KC_D)) - (isKeyDown(OIS::KC_LEFT) || isKeyDown(OIS::KC_A));
-                translate *= speed;
-
-                GlbVar.ogreCamera->yaw(Ogre::Degree(-ms.X.rel * 0.3));
-                GlbVar.ogreCamera->pitch(Ogre::Degree(-ms.Y.rel * 0.3));
-                GlbVar.ogreCamera->moveRelative(translate * evt.timeSinceLastFrame);
-            }
-            */
-
             //Physics update.
             if (!GlbVar.paused)
                 GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
@@ -159,14 +138,16 @@ class Game
             //GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);
             //GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
 
-            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.3,0.3,0.3));
-            /*j
+            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.2,0.2,0.2));
+            
+            /*
             Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
             light->setType(Ogre::Light::LT_DIRECTIONAL);
             light->setDiffuseColour(Ogre::ColourValue(0.20,0.20,0.20));
             light->setSpecularColour(Ogre::ColourValue(0,0,0));
             light->setDirection(Ogre::Vector3(1,-2.5,1)); 
             */
+            
 
             //Camera, Viewport.
             GlbVar.ogreCamera = GlbVar.ogreSmgr->createCamera("mainCamera");
@@ -197,6 +178,7 @@ class Game
             ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders/Monster", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders/Default", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Cg", "FileSystem", "General");
 
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList params;

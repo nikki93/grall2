@@ -1,0 +1,135 @@
+//--- Per-pixel lighting, no parallax -------------------------------------------------
+vertex_program PerPixelMax3_vp cg
+{
+	source Base.cg
+
+	default_params
+	{
+		param_named_auto lightPosition0 light_position_object_space 0
+		param_named_auto lightPosition1 light_position_object_space 1
+		param_named_auto lightPosition2 light_position_object_space 2
+		param_named_auto eyePosition camera_position_object_space
+		param_named_auto worldviewproj worldviewproj_matrix
+	} 
+
+	entry_point PerPixelMax3_vp
+	profiles vs_1_1 arbvp1
+}
+
+fragment_program PerPixelMax3_fp cg
+{
+	source Base.cg 
+
+	default_params
+	{
+                //param_named_auto materialAmbient surface_ambient_colour
+                //param_named_auto materialDiffuse surface_diffuse_colour
+                //param_named_auto materialSpecular surface_specular_colour
+
+		param_named_auto lightDiffuse0 light_diffuse_colour 0
+		param_named_auto lightDiffuse1 light_diffuse_colour 1
+		param_named_auto lightDiffuse2 light_diffuse_colour 2
+
+		param_named_auto lightSpecular0 light_specular_colour 0
+		param_named_auto lightSpecular1 light_specular_colour 1
+		//param_named_auto lightSpecular2 light_specular_colour 2 
+
+		param_named_auto lightAtten0 light_attenuation 0
+		param_named_auto lightAtten1 light_attenuation 1
+		param_named_auto lightAtten2 light_attenuation 2
+
+		param_named exponent0 float 127
+
+		param_named_auto ambient ambient_light_colour
+	} 
+
+	entry_point PerPixelMax3_fp
+	profiles ps_2_0 arbfp1
+} 
+
+material PerPixelMax3
+{ 
+	technique 
+	{ 
+		pass 
+		{
+			vertex_program_ref PerPixelMax3_vp
+			{ 
+			}   
+
+			fragment_program_ref PerPixelMax3_fp
+			{
+			} 
+		}  
+
+	}  
+
+}
+
+//--- Parallax ------------------------------------------------------------------------
+vertex_program PerPixelMax3Parallax_vp cg
+{
+	source Base.cg
+
+	default_params
+	{
+		param_named_auto lightPosition0 light_position_object_space 0
+		param_named_auto lightPosition1 light_position_object_space 1
+		param_named_auto lightPosition2 light_position_object_space 2
+		param_named_auto eyePosition camera_position_object_space
+		param_named_auto worldviewproj worldviewproj_matrix
+	} 
+
+	entry_point PerPixelMax3Parallax_vp
+	profiles vs_1_1 arbvp1
+}
+
+fragment_program PerPixelMax3Parallax_fp cg
+{
+	source Base.cg 
+
+	default_params
+	{
+                //param_named_auto materialAmbient surface_ambient_colour
+                //param_named_auto materialDiffuse surface_diffuse_colour
+                //param_named_auto materialSpecular surface_specular_colour
+
+		param_named_auto lightDiffuse0 light_diffuse_colour 0
+		param_named_auto lightDiffuse1 light_diffuse_colour 1
+		param_named_auto lightDiffuse2 light_diffuse_colour 2
+
+		param_named_auto lightSpecular0 light_specular_colour 0
+		param_named_auto lightSpecular1 light_specular_colour 1
+		//param_named_auto lightSpecular2 light_specular_colour 2 
+
+		param_named_auto lightAtten0 light_attenuation 0
+		param_named_auto lightAtten1 light_attenuation 1
+		param_named_auto lightAtten2 light_attenuation 2
+
+		param_named exponent0 float 127
+
+		param_named_auto ambient ambient_light_colour
+	} 
+
+	entry_point PerPixelMax3Parallax_fp
+	profiles ps_2_0 arbfp1
+} 
+
+material PerPixelMax3Parallax
+{ 
+	technique 
+	{ 
+		pass 
+		{
+			vertex_program_ref PerPixelMax3Parallax_vp
+			{ 
+			}   
+
+			fragment_program_ref PerPixelMax3Parallax_fp
+			{
+			} 
+		}  
+
+	}  
+
+}

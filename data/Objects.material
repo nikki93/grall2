@@ -1,11 +1,11 @@
-//'Object' materials, ie., materials used on meshes not editable in Blender while editing the level,
+//'Object' materials, ie., materials used on meshes not editable in Blender while editing the level, : PerPixelMax3
 //such as the Player, Switches etc.
 //
 //These were written manually and are not Blender-exported.
 
-import * from Default.program
+import * from Base.program
 
-material Objects/Player
+material Objects/Player : PerPixelMax3
 {
 	receive_shadows off
 	technique

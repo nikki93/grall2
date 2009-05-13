@@ -74,3 +74,9 @@ Mon May 11 19:07:39 AST 2009
 - Added a shader system. Brushes are automatically assigned a material from a manually written material
   set that uses shaders. Tested with some shaders, but now a proper shader (Cg or GLSL) is needed to
   handle per-pixel lighting, and offset mapping.
+
+Wed May 13 22:50:57 AST 2009
+----------------------------
+- Finished work on CameraHandler. Now handles third person fully.
+- Player physics and controls mostly done.
+- Per-pixel lighting adde.

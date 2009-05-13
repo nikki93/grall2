@@ -11,7 +11,7 @@ ngflevel TestLevel
 		{
 			lightType point
 			colour 0.6 0.3 0.3
-			attenuation 5 0 0.5 0
+			attenuation 100 0 0.5 0
 		}
 	}
 	object
@@ -98,7 +98,7 @@ ngflevel TestLevel
 		{
 			lightType point
 			colour 0.6 0.6 0.6
-			attenuation 20 1 0.01 0.01
+			attenuation 100 1 0.01 0.01
 		}
 	}
 }

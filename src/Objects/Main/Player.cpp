@@ -28,13 +28,16 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
     mShape = converter.createSphere();
-    btScalar mass = 15;
+    btScalar mass = 3;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
-
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
+
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
-    info.m_friction = 100;
+    info.m_friction = Ogre::Math::POS_INFINITY;
+    info.m_linearDamping = 0.1;
+    info.m_angularDamping = 0.6;
+
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody();
@@ -52,7 +55,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
         //Camera is attached to the control node to prevent nausea.
         GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETTARGET, mControlNode));
-        GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETOFFSET, Ogre::Vector3(0,6,-15)));
+        //GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETOFFSET, Ogre::Vector3(0,4.5,8)));
         GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETSMOOTHINGFACTOR, Ogre::Real(4)));
         GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_THIRDPERSON)));
     }
@@ -81,18 +84,18 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 
     mControlNode->setPosition(mNode->getPosition());
 
-    if (mBody->getLinearVelocity().length2() < 100)
+    if (mBody->getAngularVelocity().length2() < 777)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
-        torque.x = (isKeyDown(OIS::KC_UP) || isKeyDown(OIS::KC_W)) - (isKeyDown(OIS::KC_DOWN) || isKeyDown(OIS::KC_S));
-        torque.z = (isKeyDown(OIS::KC_RIGHT) || isKeyDown(OIS::KC_D)) - (isKeyDown(OIS::KC_LEFT) || isKeyDown(OIS::KC_A));
-        torque *= 50;
+        torque.x =  (isKeyDown(OIS::KC_DOWN) || isKeyDown(OIS::KC_S)) - (isKeyDown(OIS::KC_UP) || isKeyDown(OIS::KC_W));
+        torque.z =  (isKeyDown(OIS::KC_LEFT) || isKeyDown(OIS::KC_A)) - (isKeyDown(OIS::KC_RIGHT) || isKeyDown(OIS::KC_D));
+        torque *= 9;
 
         mBody->applyTorque(BtOgre::Convert::toBullet(mControlNode->getOrientation() * torque));
     }
 
     OIS::MouseState ms = getMouseState();
-    mControlNode->yaw(Ogre::Degree(-ms.X.rel * 0.3));
+    mControlNode->yaw(Ogre::Degree(-ms.X.rel * 0.2));
 
                /*
     const Ogre::Real force = 100;
@@ -128,7 +131,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             switch (msg.getParam<OIS::KeyCode>(0))
             {
                 //Dimension switch!
-                case OIS::KC_Z:
+                case OIS::KC_SPACE:
                     GlbVar.dimMgr->switchDimension();
                     setDimension(GlbVar.dimMgr->getCurrentDimension());
                     break;
@@ -142,6 +145,11 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    //(Much) Less friction if not ground hit.
+    Ogre::Vector3 hitPos = BtOgre::Convert::toOgre(contact.getPositionWorldOnA());
+    if (mNode->getPosition().y - hitPos.y < 0.4)
+       contact.m_combinedFriction = 7;
+    
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
     if (oth)

@@ -14,7 +14,7 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mCamera(GlbVar.ogreCamera),
       mCurrState(CS_NONE),
       mTargetNode(NULL),
-      mOffset(0,5,-10),
+      mOffset(0,4.5,8),
       mSmoothingFactor(0.2)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
@@ -32,7 +32,7 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
         prev->detachObject(mCamera);
 
     mCameraNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(ogreName, pos, rot);
-    mCameraNode->attachObject(mCamera);
+    //mCameraNode->attachObject(mCamera);
 
     //Python create event.
     NGF_PY_CALL_EVENT(create);
@@ -52,15 +52,15 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             if (mTargetNode)
             {
                 Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mOffset);
-                Ogre::Vector3 toMove = (target - mCameraNode->getPosition()) * mSmoothingFactor * evt.timeSinceLastFrame;
-                mCameraNode->translate(toMove);
-                lookAt(mTargetNode->getPosition() + Ogre::Vector3(0,1,0));
+                Ogre::Vector3 toMove = (target - mCamera->getPosition()) * mSmoothingFactor * evt.timeSinceLastFrame;
+                mCamera->move(toMove);
+                //lookAt(mTargetNode->getPosition() + Ogre::Vector3(0,1,0));
             }
             break;
         case CS_LOOKAT:
             if (mTargetNode)
             {
-                lookAt(mTargetNode->getPosition());
+                //lookAt(mTargetNode->getPosition());
             }
             break;
             //TODO: Handle spline.
@@ -81,7 +81,6 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
     {
         case MSG_SETTARGET:
             mTargetNode = msg.getParam<Ogre::SceneNode*>(0);
-            mCameraNode->setOrientation(mTargetNode->getOrientation());
             break;
 
         case MSG_SETOFFSET:
@@ -94,6 +93,20 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
 
         case MSG_SETCAMERASTATE:
             mCurrState = msg.getParam<int>(0);
+
+            switch (mCurrState)
+            {
+                case CS_THIRDPERSON:
+                    mCamera->setAutoTracking(true, mTargetNode, Ogre::Vector3(0,2,0));
+                    break;
+                case CS_LOOKAT:
+                    mCamera->setAutoTracking(true, mTargetNode, mOffset);
+                    break;
+                case CS_NONE:
+                    mCamera->setAutoTracking(false);
+                    mTargetNode = 0;
+                    break;
+            }
             break;
     }
     NGF_NO_REPLY();

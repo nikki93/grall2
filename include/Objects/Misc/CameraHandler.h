@@ -54,26 +54,18 @@ class CameraHandler :
         //--- Non-NGF ------------------------------------------------------------------
         inline void lookAt(Ogre::Vector3 target)
         {
+            //mCameraNode->lookAt(target, Ogre::Node::TS_PARENT);
+            
             Ogre::Vector3 dir = target - mCameraNode->getPosition();
-            dir.y = 0;
+            //dir.y = 0;
             dir.normalise();
 
             Ogre::Vector3 src = mCameraNode->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
-            src.y = 0;
+            //src.y = 0;
             src.normalise();
 
-            //To prevent the 180 problem.
-            if ((1 + src.dotProduct(dir)) < 0.0001)
-            {
-                mCameraNode->yaw(Ogre::Degree(180));
-            }
-            else
-            {
-                Ogre::Quaternion rot = src.getRotationTo(dir);
-                mCameraNode->rotate(rot);
-            }
-
-            //mCameraNode->pitch(Ogre::Degree(-20));
+            Ogre::Quaternion rot = src.getRotationTo(dir, Ogre::Vector3::UNIT_Y);
+            mCameraNode->rotate(rot);
         }
 
         //--- Serialisation ------------------------------------------------------------
