@@ -33,6 +33,7 @@ class StaticBrush :
         virtual ~StaticBrush();
 
         //--- Events -------------------------------------------------------------------
+        void postLoad();
         void unpausedTick(const Ogre::FrameEvent &evt);
         void pausedTick(const Ogre::FrameEvent &evt);
         NGF::MessageReply receiveMessage(NGF::Message msg);

@@ -40,7 +40,7 @@ void PerPixelMax3_vp
     oLightDists.y = length(oLightDir1);
     oLightDists.z = length(oLightDir2);
 
-    //Normalise and rotate directions.
+    //Normalise and directions.
     oLightDir0 /= oLightDists.x;
     oLightDir1 /= oLightDists.y;
     oLightDir2 /= oLightDists.z;
@@ -70,7 +70,6 @@ void PerPixelMax3_fp
          uniform float4 materialSpecular,
 
          sampler2D diffuseTex: register(s0),
-         sampler2D normalMap: register(s1),
 
          //Light properties.
          uniform float4 lightDiffuse0,
@@ -128,6 +127,7 @@ void PerPixelMax3Parallax_vp
          float2 uv : TEXCOORD0,
          float3 normal : NORMAL, 
          float3 tangent : TANGENT,
+         float3 binormal : BINORMAL,
 
          uniform float4 lightPosition0,
          uniform float4 lightPosition1,
@@ -137,7 +137,7 @@ void PerPixelMax3Parallax_vp
 
          out float4 oPos : POSITION,
          out float2 oUv : TEXCOORD0,
-         //out float3 oNorm: TEXCOORD1,
+         //TEXCOORD1 NOT USED
          out float3 oLightDir0: TEXCOORD2,
          out float3 oLightDir1: TEXCOORD3,
          out float3 oLightDir2: TEXCOORD4,
@@ -149,9 +149,8 @@ void PerPixelMax3Parallax_vp
     oPos = mul(worldviewproj, position);
     oUv = uv;
 
-    //Transformation for tangent space.
-    float3 binormal = cross(tangent, normal);
-    float3x3 tangentTrans = float3x3(tangent, binormal, normal);
+    //Tangent-spac transform.
+    float3x3 rotation = float3x3(tangent, binormal, normal);
 
     //Relative light positions.
     oLightDir0 = lightPosition0.xyz -  (position * lightPosition0.w);
@@ -165,26 +164,22 @@ void PerPixelMax3Parallax_vp
 
     //Normalise and rotate directions.
     oLightDir0 /= oLightDists.x;
-    oLightDir0 = mul(tangentTrans, oLightDir0); //<--
+    //oLightDir0 = mul(rotation, oLightDir0);
     oLightDir1 /= oLightDists.y;
-    oLightDir1 = mul(tangentTrans, oLightDir1); //<--
+    //oLightDir1 = mul(rotation, oLightDir1);
     oLightDir2 /= oLightDists.z;
-    oLightDir2 = mul(tangentTrans, oLightDir2); //<--
+    //oLightDir2 = mul(rotation, oLightDir2);
 
     float3 EyeDir = normalize(eyePosition - position.xyz);
-    EyeDir = mul(tangentTrans, EyeDir); //<--
+    //EyeDir = mul(rotation, EyeDir);
 
     oHalfAngle0 = normalize(oLightDir0 + EyeDir);
     oHalfAngle1 = normalize(oLightDir1 + EyeDir);
-
-    //oNorm = mul(tangentTrans, normal);
 }
- 
 
 void PerPixelMax3Parallax_fp
     (
          float2 uv: TEXCOORD0,
-         //float3 normal: TEXCOORD1,
          float3 LightDir0: TEXCOORD2,
          float3 LightDir1: TEXCOORD3,
          float3 LightDir2: TEXCOORD4,
@@ -198,7 +193,7 @@ void PerPixelMax3Parallax_fp
          uniform float4 materialSpecular,
 
          sampler2D diffuseTex: register(s0),
-         sampler2D normalMap: register(s1),
+         sampler2D normalBumpMap: register(s1),
 
          //Light properties.
          uniform float4 lightDiffuse0,
@@ -219,8 +214,7 @@ void PerPixelMax3Parallax_fp
          out float4 oColor : COLOR
     )
 { 
-    //Get normal from normalmap.
-    float3 N = normalize(expand(tex2D(normalMap, uv).xyz));
+    float3 N = normalize(expand(tex2D(normalBumpMap, uv).xyz));
 
     //Calculate lighting.
     //0.
@@ -250,3 +244,136 @@ void PerPixelMax3Parallax_fp
     oColor *= tex2D(diffuseTex, uv);
 }
 
+/*
+//--- Parallax ------------------------------------------------------------------------
+void PerPixelMax3Parallax_vp
+    (
+         float4 position : POSITION,
+         float2 uv : TEXCOORD0,
+         float3 normal : NORMAL, 
+         float3 tangent : TANGENT,
+         float3 binormal : BINORMAL,
+
+         uniform float4 lightPosition0,
+         uniform float4 lightPosition1,
+         uniform float4 lightPosition2,
+         uniform float3 eyePosition,
+         uniform float4x4 worldviewproj,
+
+         out float4 oPos : POSITION,
+         out float2 oUv : TEXCOORD0,
+         //out float3 oEyeDir :TEXCOORD1,
+         out float3 oNormal :TEXCOORD1,
+         out float3 oLightDir0: TEXCOORD2,
+         out float3 oLightDir1: TEXCOORD3,
+         out float3 oLightDir2: TEXCOORD4,
+         out float3 oLightDists: TEXCOORD5,
+         out float3 oHalfAngle0: TEXCOORD6,
+         out float3 oHalfAngle1: TEXCOORD7
+     ) 
+{
+    oPos = mul(worldviewproj, position);
+    oUv = uv;
+
+    //Transformation for tangent space.
+    float3x3 tangentTrans = float3x3(tangent, binormal, normal);
+
+    //Relative light positions.
+    oLightDir0 = lightPosition0.xyz -  (position * lightPosition0.w);
+    oLightDir1 = lightPosition1.xyz -  (position * lightPosition1.w);
+    oLightDir2 = lightPosition2.xyz -  (position * lightPosition2.w);
+
+    //Find lengths (distances).
+    oLightDists.x = length(oLightDir0);
+    oLightDists.y = length(oLightDir1);
+    oLightDists.z = length(oLightDir2);
+
+    //Normalise and rotate directions.
+    oLightDir0 /= oLightDists.x;
+    //oLightDir0 = mul(tangentTrans, oLightDir0); //<--
+    oLightDir1 /= oLightDists.y;
+    //oLightDir1 = mul(tangentTrans, oLightDir1); //<--
+    oLightDir2 /= oLightDists.z;
+    //oLightDir2 = mul(tangentTrans, oLightDir2); //<--
+
+    float3 oEyeDir = normalize(eyePosition - position.xyz);
+    //oEyeDir = mul(tangentTrans, oEyeDir); //<--
+
+    oHalfAngle0 = normalize(oLightDir0 + oEyeDir);
+    oHalfAngle1 = normalize(oLightDir1 + oEyeDir);
+
+    oNormal = normal;
+}
+ 
+
+void PerPixelMax3Parallax_fp
+    (
+         float2 uv: TEXCOORD0,
+         //float3 eyeDir: TEXCOORD1,
+         float3 normal: TEXCOORD1,
+         float3 LightDir0: TEXCOORD2,
+         float3 LightDir1: TEXCOORD3,
+         float3 LightDir2: TEXCOORD4,
+         float3 LightDists: TEXCOORD5,
+         float3 HalfAngle0: TEXCOORD6,
+         float3 HalfAngle1: TEXCOORD7,
+
+         //Material properties.
+         uniform float4 materialAmbient,
+         uniform float4 materialDiffuse,
+         uniform float4 materialSpecular,
+
+         sampler2D diffuseTex: register(s0),
+         sampler2D normalHeightMap: register(s1),
+
+         //Light properties.
+         uniform float4 lightDiffuse0,
+         uniform float4 lightDiffuse1,
+         uniform float4 lightDiffuse2, 
+
+         uniform float4 lightAtten0,
+         uniform float4 lightAtten1,
+         uniform float4 lightAtten2, 
+
+         uniform float4 lightSpecular0,
+         uniform float4 lightSpecular1,
+
+         uniform float exponent0,
+
+         uniform float4 ambient, 
+
+         out float4 oColor : COLOR
+    )
+{ 
+    //Get normal from normalmap.
+    float3 N = normalize(expand(tex2D(normalHeightMap, uv).xyz));
+    //N = normal;
+
+    //Calculate lighting.
+    //0.
+    float NdotL = dot(normalize(LightDir0), N);
+    float NdotH = dot(normalize(HalfAngle0), N);
+
+    float4 Lit = lit(NdotL,NdotH,exponent0);
+    float Atten = 1 / (lightAtten0.y + lightAtten0.z * LightDists.x + lightAtten0.w * LightDists.x * LightDists.x);
+    oColor = 0 * (lightDiffuse0 * Lit.y + lightSpecular0 * Lit.z) * Atten;
+
+    //1.
+    NdotL = dot(normalize(LightDir1), N);
+    NdotH = dot(normalize(HalfAngle1), N);
+
+    Lit = lit(NdotL,NdotH,exponent0);
+    Atten = 1 / (lightAtten1.y + lightAtten1.z * LightDists.y + lightAtten1.w * LightDists.y * LightDists.y);
+    oColor += (lightDiffuse1 * Lit.y + lightSpecular1 * Lit.z) * Atten; 
+
+    //2 + ambient.
+    NdotL = dot(normalize(LightDir2), N);
+
+    Lit = lit(NdotL,0,0);
+    Atten = 1 / (lightAtten2.y + lightAtten2.z * LightDists.z + lightAtten2.w * LightDists.z * LightDists.z);
+    oColor += (lightDiffuse2 * Lit.y) * Atten  + ambient; 
+
+    //Lighting + texture.
+    oColor *= tex2D(diffuseTex, uv);
+}
+*/

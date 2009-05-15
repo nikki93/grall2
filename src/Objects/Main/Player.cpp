@@ -12,7 +12,7 @@ Player.cpp
 //--- NGF events ----------------------------------------------------------------
 Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mCameraHandler(0)
+      mUnderControl(true)
 {
     addFlag("Player");
 
@@ -43,21 +43,18 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     initBody();
 
     //Control node is used for controlling the Player. He rotates in all kinds of crazy ways, but we need to know where we're headed.
-    mControlNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName + "-controlnode", pos, Ogre::Quaternion::IDENTITY);
+    mControlNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName + "-controlnode", pos, rot);
 
     //Player can't be in a dimension that's not being displayed. :P
     setDimension(GlbVar.dimMgr->getCurrentDimension());
-
-    //Camera stuff.
-    if (mProperties.getValue("captureCamera", 0, "yes") != "no")
+}
+//-------------------------------------------------------------------------------
+void Player::postLoad()
+{
+    //Camera stuff. We check that we aren't unserialising, because the CamerHandler is automatically loade up if so.
+    if (!(mProperties.getValue("NGF_SERIALISED", 0, "no") == "yes" || mProperties.getValue("captureCameraHandler", 0, "yes") == "no"))
     {
-        mCameraHandler = GlbVar.goMgr->createObject<CameraHandler>(pos, rot);
-
-        //Camera is attached to the control node to prevent nausea.
-        GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETTARGET, mControlNode));
-        //GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETOFFSET, Ogre::Vector3(0,4.5,8)));
-        GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETSMOOTHINGFACTOR, Ogre::Real(4)));
-        GlbVar.goMgr->sendMessage(mCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_THIRDPERSON)));
+        captureCameraHandler();
     }
 
     //Python create event.
@@ -70,6 +67,7 @@ Player::~Player()
     NGF_PY_CALL_EVENT(destroy);
 
     //We only clear up stuff that we did.
+    loseCameraHandler();
     destroyBody();
     delete mShape;
 
@@ -97,19 +95,6 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     OIS::MouseState ms = getMouseState();
     mControlNode->yaw(Ogre::Degree(-ms.X.rel * 0.2));
 
-               /*
-    const Ogre::Real force = 100;
-
-    if (isKeyDown(OIS::KC_I))
-        mBody->applyCentralForce(btVector3(-force,0,0));
-    if (isKeyDown(OIS::KC_K))
-        mBody->applyCentralForce(btVector3(force,0,0));
-    if (isKeyDown(OIS::KC_J))
-        mBody->applyCentralForce(btVector3(0,0,force));
-    if (isKeyDown(OIS::KC_L))
-        mBody->applyCentralForce(btVector3(0,0,-force));
-        */
-    
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
@@ -157,9 +142,51 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 }
 //-------------------------------------------------------------------------------
 
+//--- Non-NGF -------------------------------------------------------------------
+void Player::captureCameraHandler()
+{
+    //If it isn't already there we create it.
+    if (!GlbVar.currCameraHandler)
+    {
+        GlbVar.currCameraHandler = GlbVar.goMgr->createObject<CameraHandler>(mControlNode->getPosition() + (mControlNode->getOrientation() * Ogre::Vector3(0,9,16)), mControlNode->getOrientation());
+        GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETSMOOTHINGFACTOR, Ogre::Real(4)));
+    }
+
+    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETTARGET, mControlNode));
+    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_THIRDPERSON)));
+}
+//-------------------------------------------------------------------------------
+void Player::loseCameraHandler()
+{
+    if (GlbVar.currCameraHandler)
+    {
+        GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_NONE)));
+    }
+}
+//-------------------------------------------------------------------------------
+
 //--- Python interface implementation -------------------------------------------
-/*
 NGF_PY_BEGIN_IMPL(Player)
 {
+    NGF_PY_METHOD_IMPL(getControlOrientation)
+    {
+        NGF_PY_RETURN(mControlNode->getOrientation());
+    }
+    NGF_PY_METHOD_IMPL(setControl)
+    {
+        mUnderControl = py::extract<bool>(args[0]);
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(loseCameraHandler)
+    {
+        loseCameraHandler();
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(captureCameraHandler)
+    {
+        captureCameraHandler();
+        NGF_PY_RETURN();
+    }
 }
-*/
+NGF_PY_END_IMPL_BASE(GraLL2GameObject)
+//-------------------------------------------------------------------------------

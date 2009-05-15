@@ -2,13 +2,13 @@
 |           Todo           |
 +--------------------------+
 
-- Add a CameraHandler that handles the Camera in different ways, also for third-person Player view.
+- Add left/right/back peeping to CameraHandler. Add ability to change view height.
 
-- Work on the Player dynamics.
-
-- Work on obstacle ideas.
+- Make a good Player and CameraHandler Python interface.
 
 - Add some shader eye-candy. ;-)
+
+- Work on obstacle ideas.
 
 +---------------------------+
 |         ChangeLog         |
@@ -75,8 +75,25 @@ Mon May 11 19:07:39 AST 2009
   set that uses shaders. Tested with some shaders, but now a proper shader (Cg or GLSL) is needed to
   handle per-pixel lighting, and offset mapping.
 
+Tue May 12 21:43:26 AST 2009
+----------------------------
+- Started work on the CameraHandler.
+
 Wed May 13 22:50:57 AST 2009
 ----------------------------
 - Finished work on CameraHandler. Now handles third person fully.
 - Player physics and controls mostly done.
 - Per-pixel lighting adde.
+
+Thu May 14 16:44:20 AST 2009
+----------------------------
+- Fixed the serialisation of CameraHandler. Saving/load works perfectly for all features added till date.
+
+Fri May 15 17:25:33 AST 2009
+----------------------------
+- CameraHandler is now a single global object instead of multiple instances, and so management of the Camera
+  is much simpler now. If a new CameraHandler is created, the previous one is destroyed. Now, for example,
+  getting a third-person view of an object is just a matter of 'MSG_SETTARGET' and 'MSG_SETSTATE' on the 
+  global instance.
+- Added a Player and CameraHandler Python interface.
+- Made a test cutscene using just scripting, it's cool. :-)

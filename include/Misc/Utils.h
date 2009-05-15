@@ -18,6 +18,10 @@
 
 #include "Globals.h"
 
+//Load/clear level. Calls the postLoad etc. events.
+void loadLevel(Ogre::String level);
+void clearLevel();
+
 //Tells you whether a key is down, respecting the console.
 inline bool isKeyDown(OIS::KeyCode kc)
 {
@@ -51,5 +55,25 @@ inline void fixBrushMaterials(Ogre::Entity *ent)
         currSub->setMaterialName(matName);
     }
 }
+
+//Allows 'postLoad', 'preClear' etc. events.
+struct ExtraEventListener
+{
+    //postLoad.
+    virtual void postLoad() {}
+
+    static void callPostLoad() 
+    { GlbVar.goMgr->forEachGameObject(&ExtraEventListener::_callPostLoadOne); }
+    static void _callPostLoadOne(NGF::GameObject *obj) 
+    { ExtraEventListener *o = dynamic_cast<ExtraEventListener*>(obj); if(o) o->postLoad(); }
+
+    //preClear.
+    virtual void preClear() {}
+
+    static void callPreClear() 
+    { GlbVar.goMgr->forEachGameObject(&ExtraEventListener::_callPreClearOne); }
+    static void _callPreClearOne(NGF::GameObject *obj) 
+    { ExtraEventListener *o = dynamic_cast<ExtraEventListener*>(obj); if(o) o->preClear(); }
+};
 
 #endif

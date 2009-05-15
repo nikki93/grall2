@@ -74,8 +74,8 @@ ngflevel TestLevel
 	{
 		type Player
 		name player1
-		position 2.500000 0.788349 1.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
+		position 10.919084 0.490549 1.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
 		{
@@ -84,14 +84,27 @@ ngflevel TestLevel
 			script : import Ngf
 			       : 
 			       : def create(self):
-			       : 	self.applyCentralImpulse(Ngf.Vector3(0,10,0))
+			       : 	self.m_time = 0
+			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-7))
+			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-2,0,0))
+			       : 	self.setControl(False)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	pass
+			       : 	if (self.m_time < 1):
+			       : 		self.m_time += elapsed
+			       : 	else:
+			       : 		self.captureCameraHandler()
+			       : 		self.setControl(True)
+			       : 
+			captureCameraHandler no
 		}
 	}
 	object
 	{
 		type Light
 		name noname
-		position -3.500000 2.179168 1.500000
+		position -2.500000 2.179168 5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -99,6 +112,22 @@ ngflevel TestLevel
 			lightType point
 			colour 0.6 0.6 0.6
 			attenuation 100 1 0.01 0.01
+		}
+	}
+	object
+	{
+		type CameraHandler
+		name cam
+		position 15.990725 4.334376 4.792993
+		rotation 0.862670 -0.143308 0.478482 0.079486
+
+		properties
+		{
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.p_smoothingFactor = 4
+			       : 
 		}
 	}
 }

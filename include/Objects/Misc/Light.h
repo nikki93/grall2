@@ -36,7 +36,7 @@ class Light :
         virtual ~Light();
 
         //--- Events -------------------------------------------------------------------
-        void unpausedTick(const Ogre::FrameEvent &evt) {}
+        void unpausedTick(const Ogre::FrameEvent &evt) { /*mNode->translate(mNode->getOrientation() * Ogre::Vector3(0,0,-2) * evt.timeSinceLastFrame); mNode->yaw(Ogre::Degree(-50) * evt.timeSinceLastFrame);*/}
         void pausedTick(const Ogre::FrameEvent &evt) {}
         NGF::MessageReply receiveMessage(NGF::Message msg) { NGF_NO_REPLY(); }
 

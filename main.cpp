@@ -64,7 +64,7 @@ class GameListener :
                     break;
 
                 case OIS::KC_F8:
-                    GlbVar.goMgr->destroyAll();
+                    clearLevel();
                     NGF::Serialisation::Serialiser::load("SaveFile");
                     break;
             }
@@ -244,6 +244,9 @@ class Game
 
             //Create DimensionManager.
             GlbVar.dimMgr = new DimensionManager();
+
+            //Initialise other Global variables.
+            GlbVar.currCameraHandler = 0;
 
             //Add Worlds, register GameObjects.
             addWorlds();

@@ -29,7 +29,10 @@ StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody();
-
+}
+//-------------------------------------------------------------------------------
+void StaticBrush::postLoad()
+{
     //Python create event.
     NGF_PY_CALL_EVENT(create);
 }
@@ -80,4 +83,5 @@ void StaticBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObje
 NGF_PY_BEGIN_IMPL(StaticBrush)
 {
 }
+NGF_PY_END_IMPL_BASE(GraLL2GameObject)
 */

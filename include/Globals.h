@@ -58,6 +58,9 @@ struct Globals : public Ogre::Singleton<Globals>
     //Python console window.
     Console *console;
 
+    //Current CameraHandler.
+    NGF::GameObject *currCameraHandler;
+
     //Globally required data.
     bool paused;
 };

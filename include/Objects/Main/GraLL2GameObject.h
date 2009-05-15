@@ -57,7 +57,8 @@
 class GraLL2GameObject : 
     public NGF::Bullet::BulletGameObject,
     public NGF::Python::PythonGameObject,
-    public NGF::Serialisation::SerialisableGameObject
+    public NGF::Serialisation::SerialisableGameObject,
+    public ExtraEventListener
 {
     protected:
         Ogre::String mOgreName; //Name for our Ogre SceneNode, Entity etc.

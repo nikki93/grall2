@@ -16,11 +16,21 @@ material Brushes/FlatMetal1.png : PerPixelMax3Parallax
                         diffuse 0.9 0.9 0.9 1
                         texture_unit
                         {
-                                texture FlatMetal1.png
+                                texture WhiteTile5.png
                         }
                         texture_unit
                         {
-                                texture Plain_NM.png
+                                texture WhiteTile_NM.png
+                        }
+                        texture_unit
+                        {
+                                //texture FlatMetal1.png
+                                texture rockwall.tga
+                        }
+                        texture_unit
+                        {
+                                //texture Plain_NM.png
+                                texture rockwall_NM.tga
                         }
                 }
         }

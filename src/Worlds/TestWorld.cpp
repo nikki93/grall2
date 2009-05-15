@@ -14,7 +14,7 @@ void TestWorld::init()
 {
     Ogre::LogManager::getSingleton().logMessage("TestWorld init!");
 
-    GlbVar.lvlLoader->loadLevel("TestLevel");
+    loadLevel("TestLevel");
 
     //Test Player.
     /*
@@ -53,8 +53,7 @@ void TestWorld::stop()
     //delete mTestBody->getMotionState();
     //delete mTestBody;
     //delete mTestShape;
-
-    GlbVar.goMgr->destroyAll();
+    clearLevel();
 }
 //-------------------------------------------------------------------------------
 
