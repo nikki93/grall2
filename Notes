@@ -2,11 +2,13 @@
 |           Todo           |
 +--------------------------+
 
-- Add left/right/back peeping to CameraHandler. Add ability to change view height.
+- Add ability to change view height.
 
-- Make a good Player and CameraHandler Python interface.
+- Make Player check that space in the other dimension is empty before switching dimensions.
 
-- Add some shader eye-candy. ;-)
+- Fix problem with shader (TBN transform).
+
+- Add some (more) shader eye-candy. ;-)
 
 - Work on obstacle ideas.
 
@@ -97,3 +99,8 @@ Fri May 15 17:25:33 AST 2009
   global instance.
 - Added a Player and CameraHandler Python interface.
 - Made a test cutscene using just scripting, it's cool. :-)
+
+Sun May 17 21:24:34 AST 2009
+----------------------------
+- Added left/right peeping to CameraHandler.
+- Started work on Player opposite dimension checking before switch.

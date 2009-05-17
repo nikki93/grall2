@@ -117,9 +117,55 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             {
                 //Dimension switch!
                 case OIS::KC_SPACE:
-                    GlbVar.dimMgr->switchDimension();
-                    setDimension(GlbVar.dimMgr->getCurrentDimension());
-                    break;
+                    {
+                        //If the other dimension isn't free at our place, then abort.
+                        btVector3 pos1 = mBody->getWorldTransform().getOrigin();
+                        btVector3 pos2 = mBody->getWorldTransform().getOrigin() + btVector3(0,0.1,0);
+                        btQuaternion rot = mBody->getWorldTransform().getRotation();
+                        btTransform trans1(rot, pos1);
+                        btTransform trans2(rot, pos2);
+                        btConvexShape *shape = BtOgre::StaticMeshToShapeConverter(mEntity).createConvex();
+                        shape->setLocalScaling(btVector3(1.1,1.1,1.1));
+
+                        struct TempCallback : public btDynamicsWorld::ConvexResultCallback
+                        {
+                            int mDimension;
+                            btCollisionObject* mIgnore;
+                            bool mFree;
+
+                            TempCallback(int dimension, btCollisionObject *ignore)
+                                : mDimension(dimension),
+                                  mIgnore(ignore),
+                                  mFree(true)
+                            {
+                            }
+
+                            btScalar addSingleResult(btDynamicsWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
+                            {
+                                //NGF::GameObject *obj = NGF::Bullet::fromBulletObject(convexResult.m_hitCollisionObject);
+                                //LOG(obj->getFlags());
+                                btCollisionObject *hit = convexResult.m_hitCollisionObject;
+
+                                if (hit == mIgnore)
+                                    return convexResult.m_hitFraction; 
+
+                                if (hit->getCollisionFlags() & mDimension)
+                                    mFree = false;
+
+                                return convexResult.m_hitFraction;
+                            }
+                        } res(mDimensions, mBody);
+
+                        GlbVar.phyWorld->convexSweepTest(shape, trans1, trans2, res);
+
+                        if (!res.mFree)
+                            break;
+
+                        GlbVar.dimMgr->switchDimension();
+                        setDimension(GlbVar.dimMgr->getCurrentDimension());
+
+                        break;
+                    }
             }
 
             break;
@@ -172,11 +218,6 @@ NGF_PY_BEGIN_IMPL(Player)
     {
         NGF_PY_RETURN(mControlNode->getOrientation());
     }
-    NGF_PY_METHOD_IMPL(setControl)
-    {
-        mUnderControl = py::extract<bool>(args[0]);
-        NGF_PY_RETURN();
-    }
     NGF_PY_METHOD_IMPL(loseCameraHandler)
     {
         loseCameraHandler();
@@ -187,6 +228,8 @@ NGF_PY_BEGIN_IMPL(Player)
         captureCameraHandler();
         NGF_PY_RETURN();
     }
+
+    NGF_PY_PROPERTY_IMPL(underControl, mUnderControl, bool)
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
 //-------------------------------------------------------------------------------

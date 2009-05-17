@@ -65,11 +65,11 @@ void PerPixelMax3_fp
          float3 HalfAngle1: TEXCOORD7,
 
          //Material properties.
-         sampler2D diffuseTex: register(s0),
+         uniform float4 materialAmbient,
+         uniform float4 materialDiffuse,
+         uniform float4 materialSpecular,
 
-         //uniform float4 matAmbient,
-         //uniform float4 matDiffuse,
-         //uniform float4 matSpecular,
+         sampler2D diffuseTex: register(s0),
 
          //Light properties.
          uniform float4 lightDiffuse0,
@@ -188,12 +188,12 @@ void PerPixelMax3Parallax_fp
          float3 HalfAngle1: TEXCOORD7,
 
          //Material properties.
+         uniform float4 materialAmbient,
+         uniform float4 materialDiffuse,
+         uniform float4 materialSpecular,
+
          sampler2D diffuseTex: register(s0),
          sampler2D normalBumpMap: register(s1),
-
-         //uniform float4 matAmbient,
-         //uniform float4 matDiffuse,
-         //uniform float4 matSpecular,
 
          //Light properties.
          uniform float4 lightDiffuse0,

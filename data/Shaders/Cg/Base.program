@@ -22,9 +22,9 @@ fragment_program PerPixelMax3_fp cg
 
 	default_params
 	{
-                //param_named_auto materialAmbient surface_ambient_colour
-                //param_named_auto materialDiffuse surface_diffuse_colour
-                //param_named_auto materialSpecular surface_specular_colour
+                //param_named_auto matAmbient surface_ambient_colour
+                //param_named_auto matDiffuse surface_diffuse_colour
+                //param_named_auto matSpecular surface_specular_colour
 
 		param_named_auto lightDiffuse0 light_diffuse_colour 0
 		param_named_auto lightDiffuse1 light_diffuse_colour 1
@@ -90,9 +90,9 @@ fragment_program PerPixelMax3Parallax_fp cg
 
 	default_params
 	{
-                //param_named_auto materialAmbient surface_ambient_colour
-                //param_named_auto materialDiffuse surface_diffuse_colour
-                //param_named_auto materialSpecular surface_specular_colour
+                //param_named_auto matAmbient surface_ambient_colour
+                //param_named_auto matDiffuse surface_diffuse_colour
+                //param_named_auto matSpecular surface_specular_colour
 
 		param_named_auto lightDiffuse0 light_diffuse_colour 0
 		param_named_auto lightDiffuse1 light_diffuse_colour 1

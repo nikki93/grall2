@@ -87,17 +87,16 @@ ngflevel TestLevel
 			       : 	self.m_time = 0
 			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-7))
 			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-2,0,0))
-			       : 	self.setControl(False)
+			       : 	self.p_underControl = False
 			       : 	
 			       : def utick(self, elapsed):
 			       : 	pass
 			       : 	if (self.m_time < 1):
 			       : 		self.m_time += elapsed
 			       : 	else:
-			       : 		self.captureCameraHandler()
-			       : 		self.setControl(True)
+			       : 		self.p_underControl = True
+			       : 		Ngf.getObject("cam").p_currState = 2
 			       : 
-			captureCameraHandler no
 		}
 	}
 	object
@@ -118,14 +117,15 @@ ngflevel TestLevel
 	{
 		type CameraHandler
 		name cam
-		position 15.990725 4.334376 4.792993
-		rotation 0.862670 -0.143308 0.478482 0.079486
+		position 6.848991 5.950529 7.955254
+		rotation 0.942108 -0.247786 -0.218479 -0.057463
 
 		properties
 		{
 			script : import Ngf
 			       : 
 			       : def create(self):
+			       : 	self.p_currState = 1
 			       : 	self.p_smoothingFactor = 4
 			       : 
 		}

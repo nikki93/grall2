@@ -65,12 +65,23 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         mTargetNodeName = "";
     }
 
+    Ogre::Vector3 effOffset = mOffset;
+
+    if (isKeyDown(OIS::KC_Q))
+        effOffset = Ogre::Vector3(5,4.5,0);
+    if (isKeyDown(OIS::KC_E))
+    {
+        effOffset = Ogre::Vector3(-5,4.5,0);
+        if (isKeyDown(OIS::KC_Q))
+            effOffset = Ogre::Vector3(0,4.5,-5);
+    }
+
     //Do the camera-handling based on state.
     switch (mCurrState)
     {
         case CS_THIRDPERSON:
             {
-                Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mOffset);
+                Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * effOffset);
                 Ogre::Vector3 toMove = (target - mCamera->getPosition()) * mSmoothingFactor * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
             }
@@ -136,8 +147,8 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
     }
 
     NGF_PY_PROPERTY_IMPL(currState, mCurrState, int)
-    NGF_PY_PROPERTY_IMPL(smoothingFactor, mSmoothingFactor, Ogre::Real)
-    NGF_PY_PROPERTY_IMPL(offset, mOffset, Ogre::Vector3)
+        NGF_PY_PROPERTY_IMPL(smoothingFactor, mSmoothingFactor, Ogre::Real)
+        NGF_PY_PROPERTY_IMPL(offset, mOffset, Ogre::Vector3)
 }
 NGF_PY_END_IMPL
 //-------------------------------------------------------------------------------
