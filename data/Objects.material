@@ -4,6 +4,7 @@
 //These were written manually and are not Blender-exported.
 
 import * from Base.program
+import * from Dimension2.program
 
 material Objects/Player : PerPixelMax3
 {

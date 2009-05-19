@@ -35,6 +35,7 @@ class DimensionManager
         DimensionManager()
             : mCurrentDimension(DIM_1)
         {
+            Ogre::CompositorManager::getSingleton().addCompositor(GlbVar.ogreCamera->getViewport(), "Compositor/Dimension2");
         }
 
         //Toggle the current dimension. If both dimensions are on, then it switches
@@ -43,6 +44,11 @@ class DimensionManager
         {
             mCurrentDimension ^= DIM_1 ^ DIM_2;
             //GlbVar.goMgr->forEachGameObject(&DimensionManager::_sendMessage);
+        }
+
+        void tick()
+        {
+            Ogre::CompositorManager::getSingleton().setCompositorEnabled(GlbVar.ogreCamera->getViewport(), "Compositor/Dimension2", mCurrentDimension & DIM_2);
         }
 
         //Enable the given dimension(s).

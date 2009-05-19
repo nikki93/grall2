@@ -1,0 +1,69 @@
+/*
+float4 Dimension2_fp
+    (
+        float2 uv : TEXCOORD0,
+        uniform sampler2D RT : register(s0)
+    ) : COLOR
+{
+    float4 input = tex2D(RT, uv);
+    float4 output;
+
+    float mean = (input.x + input.y + input.z) / 2;
+    output.x = lerp(input.x, mean, 0.5);
+    output.y = lerp(input.y, mean, 0.5);
+    output.z = lerp(input.z, mean, 0.5);
+    output.w = 1;
+    output = 1 - output;
+    output *= 0.7;
+
+    return output;
+}
+*/
+uniform sampler2D tex: register(s0);
+
+static const float samples[10] =
+{
+    -0.08,
+    -0.05,
+    -0.03,
+    -0.02,
+    -0.01,
+    0.01,
+    0.02,
+    0.03,
+    0.05,
+    0.08
+};
+
+float4 Dimension2_fp
+    (
+         float4 position : POSITION,
+         float2 texCoord: TEXCOORD0
+    ) : COLOR
+{
+    //Direction, distance and normalise direction.
+    float2 dir = 0.5 - texCoord;
+    float dist = sqrt( dir.x*dir.x + dir.y*dir.y );
+    dir = normalize(dir);
+
+    //Main colour.
+    float4 color = tex2D(tex, texCoord);
+
+    //Find average along direction.
+    float4 avg = color;
+    for (int i = 0; i < 10; i++)
+    {
+        //Take as much of each colour as given in the sample-list.
+        float4 res = tex2D(tex, texCoord + dir * samples[i] * 0.5);
+        avg += res;
+    }
+    //11 samples (including main).
+    avg /= 11;
+
+    //Amount of blur to mix.
+    float amount = dist * 2.2;
+    amount = saturate(amount);
+
+    //Blend the original color with the averaged pixels, invert and darken.
+    return (1 - lerp(color, avg, amount)) * 0.8;
+}

@@ -130,5 +130,19 @@ ngflevel TestLevel
 			       : 
 		}
 	}
+	object
+	{
+		type Light
+		name noname
+		position 12.500000 2.753613 -12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 0.2 0.2 0.5
+			attenuation 200 0 0.5 0
+		}
+	}
 }
 

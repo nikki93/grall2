@@ -85,6 +85,7 @@ class GraLL2GameObject :
         Ogre::Entity *createBrushEntity();
         void destroyBody() { GlbVar.phyWorld->removeRigidBody(mBody); }
         void setDimension(int dimension);
+        int getDimensions() { return mDimensions; }
 
         //--- Python interface ---------------------------------------------------------
         virtual NGF_PY_BEGIN_DECL(GraLL2GameObject)

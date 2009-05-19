@@ -69,7 +69,9 @@ class Player :
             }
 
             GRALL2_SERIALISE_GAMEOBJECT();
+
             NGF_SERIALISE_OGRE(Quaternion, controlRot);
+            NGF_SERIALISE_OGRE(Bool, mUnderControl);
 
             NGF_SERIALISE_ON_LOAD
             {

@@ -162,6 +162,8 @@ class Game
             Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
 
             ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
 
             ogreRmgr.addResourceLocation("../../data/ObjectMeshes", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/ObjectTextures", "FileSystem", "General");
@@ -172,13 +174,11 @@ class Game
             ogreRmgr.addResourceLocation("../../data/BrushTextures/Special", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
 
-            ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Monster", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Default", "FileSystem", "General");
+            //ogreRmgr.addResourceLocation("../../data/Shaders/Monster", "FileSystem", "General");
+            //ogreRmgr.addResourceLocation("../../data/Shaders/Default", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders/Cg", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
 
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList params;
@@ -266,6 +266,9 @@ class Game
                 //Update input.
                 GlbVar.keyboard->capture();
                 GlbVar.mouse->capture();
+
+                //Update DimensionManager.
+                GlbVar.dimMgr->tick();
 
                 //Exit if F12 pressed.
                 if (GlbVar.keyboard->isKeyDown(OIS::KC_F12))

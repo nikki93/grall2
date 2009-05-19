@@ -129,36 +129,42 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 
                         struct TempCallback : public btDynamicsWorld::ConvexResultCallback
                         {
-                            int mDimension;
+                            int mOtherDimension;
                             btCollisionObject* mIgnore;
                             bool mFree;
 
                             TempCallback(int dimension, btCollisionObject *ignore)
-                                : mDimension(dimension),
-                                  mIgnore(ignore),
-                                  mFree(true)
+                                : mOtherDimension(dimension),
+                                mIgnore(ignore),
+                                mFree(true)
                             {
+                                mOtherDimension ^= DimensionManager::DIM_1 ^ DimensionManager::DIM_2;
                             }
 
                             btScalar addSingleResult(btDynamicsWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
                             {
-                                //NGF::GameObject *obj = NGF::Bullet::fromBulletObject(convexResult.m_hitCollisionObject);
-                                //LOG(obj->getFlags());
                                 btCollisionObject *hit = convexResult.m_hitCollisionObject;
 
-                                if (hit == mIgnore)
-                                    return convexResult.m_hitFraction; 
-
-                                if (hit->getCollisionFlags() & mDimension)
-                                    mFree = false;
-
-                                return convexResult.m_hitFraction;
+                                if (hit != mIgnore)
+                                {
+                                    NGF::GameObject *obj = NGF::Bullet::fromBulletObject(hit);
+                                    if (obj)
+                                    {
+                                        GraLL2GameObject *gobj = dynamic_cast<GraLL2GameObject*>(obj);
+                                        if (gobj)
+                                        {
+                                            int hitDims = gobj->getDimensions();
+                                            mFree = mFree && (!(hitDims & mOtherDimension)); //If he has the other dimension it isn't free.
+                                        }
+                                    }
+                                    return convexResult.m_hitFraction;
+                                }
                             }
                         } res(mDimensions, mBody);
 
                         GlbVar.phyWorld->convexSweepTest(shape, trans1, trans2, res);
 
-                        if (!res.mFree)
+                        if (!(res.mFree))
                             break;
 
                         GlbVar.dimMgr->switchDimension();

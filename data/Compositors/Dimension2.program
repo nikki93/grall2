@@ -1,0 +1,32 @@
+fragment_program Dimension2_fp cg
+{
+	source Dimension2.cg
+	entry_point Dimension2_fp
+	profiles ps_2_0 arbfp1
+}
+
+material CompositorMat/Dimension2
+{
+	technique
+	{
+
+		pass
+		{
+			cull_hardware none
+			cull_software none
+			depth_func always_pass
+
+                        fragment_program_ref Dimension2_fp
+                        {
+                        }
+
+                        texture_unit RT
+                        {
+                                tex_coord_set 0
+                                tex_address_mode clamp
+                                filtering trilinear
+                        }
+
+                }
+        }
+}

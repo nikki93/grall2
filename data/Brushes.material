@@ -1,11 +1,11 @@
-//'Brush' materials, ie., materials used on meshes editable in Blender while editing the level. : PerPixelMax3Parallax
+//'Brush' materials, ie., materials used on meshes editable in Blender while editing the level.
 //such as level geometry etc.
 //
 //These were written manually and are not Blender-exported.
 
 import * from Base.program
 
-material Brushes/FlatMetal1.png : PerPixelMax3Parallax
+material Brushes/FlatMetal1.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -36,7 +36,7 @@ material Brushes/FlatMetal1.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/TileMetalLong1.png : PerPixelMax3Parallax
+material Brushes/TileMetalLong1.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -57,7 +57,7 @@ material Brushes/TileMetalLong1.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/CircuitBoard.png : PerPixelMax3Parallax
+material Brushes/CircuitBoard.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -78,7 +78,7 @@ material Brushes/CircuitBoard.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/WhiteTile1.png : PerPixelMax3Parallax
+material Brushes/WhiteTile1.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -99,7 +99,7 @@ material Brushes/WhiteTile1.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/WhiteTile2.png : PerPixelMax3Parallax
+material Brushes/WhiteTile2.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -120,7 +120,7 @@ material Brushes/WhiteTile2.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/WhiteTile3.png : PerPixelMax3Parallax
+material Brushes/WhiteTile3.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -141,7 +141,7 @@ material Brushes/WhiteTile3.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/WhiteTile4.png : PerPixelMax3Parallax
+material Brushes/WhiteTile4.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -162,7 +162,7 @@ material Brushes/WhiteTile4.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/WhiteTile5.png : PerPixelMax3Parallax
+material Brushes/WhiteTile5.png : PerPixelMax3
 {
         receive_shadows on
         technique
@@ -183,7 +183,7 @@ material Brushes/WhiteTile5.png : PerPixelMax3Parallax
         }
 }
 
-material Brushes/WhiteTileMulti1.png : PerPixelMax3Parallax
+material Brushes/WhiteTileMulti1.png : PerPixelMax3
 {
         receive_shadows on
         technique

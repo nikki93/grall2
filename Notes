@@ -85,7 +85,7 @@ Wed May 13 22:50:57 AST 2009
 ----------------------------
 - Finished work on CameraHandler. Now handles third person fully.
 - Player physics and controls mostly done.
-- Per-pixel lighting adde.
+- Per-pixel lighting added.
 
 Thu May 14 16:44:20 AST 2009
 ----------------------------
@@ -104,3 +104,8 @@ Sun May 17 21:24:34 AST 2009
 ----------------------------
 - Added left/right peeping to CameraHandler.
 - Started work on Player opposite dimension checking before switch.
+
+Tue May 19 22:45:35 AST 2009
+----------------------------
+- Added dimension 2 compositor effect.
+- Fixed Player serialisation error that left out one of the members.
