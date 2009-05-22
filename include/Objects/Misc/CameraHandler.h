@@ -23,6 +23,7 @@
 class CameraHandler :
     public NGF::Python::PythonGameObject,
     public NGF::Serialisation::SerialisableGameObject,
+    public NGF::Extras::TaskManagingGameObject,
     public ExtraEventListener
 {
     public:
@@ -41,7 +42,8 @@ class CameraHandler :
         Ogre::SceneNode *mTargetNode;
         Ogre::String mTargetNodeName;
         Ogre::Vector3 mOffset;
-        Ogre::Real mSmoothingFactor; //The fraction of the required displacement that the camera moves by.
+        Ogre::Real mMovementFactor; //The fraction of the required displacement that the camera moves by (lerp).
+        Ogre::Real mRotationFactor; //The fraction of the required rotation that the camera rotates by (lerp).
 
         int mCurrState;
 
@@ -56,18 +58,35 @@ class CameraHandler :
         NGF::MessageReply receiveMessage(NGF::Message msg); 
 
         //--- Non-NGF ------------------------------------------------------------------
-        inline void lookAt(Ogre::Vector3 target)
+        inline void lookAt(Ogre::Vector3 target, Ogre::Real elapsed)
         {
-            mCamera->lookAt(target);
+            Ogre::Vector3 dirA = mCamera->getDirection();
+            Ogre::Vector3 dirB = target - mCamera->getPosition();
+            Ogre::Vector3 res;
+
+            if (mRotationFactor)
+            {
+                dirB.normalise();
+                res = dirA + ((dirB - dirA) * elapsed * mRotationFactor);
+            }
+            else
+            {
+                res = dirB;
+            }
+
+            mCamera->setDirection(res);
         }
 
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(CameraHandler)
         {
+            NGF_PY_METHOD_DECL(addTask)
             NGF_PY_METHOD_DECL(setTarget)
+            NGF_PY_METHOD_DECL(targetPlayer)
             
             NGF_PY_PROPERTY_DECL(currState)
-            NGF_PY_PROPERTY_DECL(smoothingFactor)
+            NGF_PY_PROPERTY_DECL(movementFactor)
+            NGF_PY_PROPERTY_DECL(rotationFactor)
             NGF_PY_PROPERTY_DECL(offset)
         }
         NGF_PY_END_DECL
@@ -86,11 +105,13 @@ class CameraHandler :
             //The actual read/write.
             NGF_SERIALISE_POSITION(mCamera->getPosition());
             NGF_SERIALISE_ROTATION(mCamera->getOrientation());
+            NGF_SERIALISE_PYTHON_LOCALS();
 
             NGF_SERIALISE_STRING(targetName);
             NGF_SERIALISE_OGRE(Int, mCurrState);
             NGF_SERIALISE_OGRE(Vector3, mOffset);
-            NGF_SERIALISE_OGRE(Real, mSmoothingFactor);
+            NGF_SERIALISE_OGRE(Real, mMovementFactor);
+            NGF_SERIALISE_OGRE(Real, mRotationFactor);
 
             NGF_SERIALISE_ON_LOAD
             {
@@ -104,7 +125,7 @@ class CameraHandler :
 
 /* C++ code produced by gperf version 3.0.3 *//*{{{*/
 /* Command-line: gperf  */
-/* Computed positions: -k'1' */
+/* Computed positions: -k'1,5' */
 
 #if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35) \
       && ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40) \
@@ -142,7 +163,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 16, duplicates = 0 */
+/* maximum key range = 27, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(CameraHandler)
 {
@@ -157,34 +178,34 @@ NGF_PY_CLASS_GPERF(CameraHandler)::MakeHash (register const char *str, register 
 {
   static const unsigned char asso_values[] =
     {
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25,  5, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25,  0, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
-      25, 25, 25, 25, 25, 25
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34,  0, 34,  4,
+      34,  0, 34,  5, 34, 34, 34, 34, 34, 10,
+      34,  0, 34, 34,  0,  0,  0, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
+      34, 34, 34, 34, 34, 34
     };
-  return len + asso_values[(unsigned char)str[0]];
+  return len + asso_values[(unsigned char)str[4]] + asso_values[(unsigned char)str[0]];
 }
 
 const struct PythonMethod *
@@ -192,22 +213,26 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
 {
   enum
     {
-      TOTAL_KEYWORDS = 7,
-      MIN_WORD_LENGTH = 9,
-      MAX_WORD_LENGTH = 19,
-      MIN_HASH_VALUE = 9,
-      MAX_HASH_VALUE = 24
+      TOTAL_KEYWORDS = 11,
+      MIN_WORD_LENGTH = 7,
+      MAX_WORD_LENGTH = 18,
+      MIN_HASH_VALUE = 7,
+      MAX_HASH_VALUE = 33
     };
 
   static const struct PythonMethod wordlist[] =
     {
+      {"addTask", NGF_PY_METHOD_GPERF(CameraHandler, addTask)},
       {"setTarget", NGF_PY_METHOD_GPERF(CameraHandler, setTarget)},
       {"set_offset", NGF_PY_SET_GPERF(CameraHandler, offset)},
-      {"set_currState", NGF_PY_SET_GPERF(CameraHandler, currState)},
+      {"targetPlayer", NGF_PY_METHOD_GPERF(CameraHandler, targetPlayer)},
       {"get_offset", NGF_PY_GET_GPERF(CameraHandler, offset)},
+      {"set_currState", NGF_PY_SET_GPERF(CameraHandler, currState)},
+      {"set_rotationFactor", NGF_PY_SET_GPERF(CameraHandler, rotationFactor)},
       {"get_currState", NGF_PY_GET_GPERF(CameraHandler, currState)},
-      {"set_smoothingFactor", NGF_PY_SET_GPERF(CameraHandler, smoothingFactor)},
-      {"get_smoothingFactor", NGF_PY_GET_GPERF(CameraHandler, smoothingFactor)}
+      {"get_rotationFactor", NGF_PY_GET_GPERF(CameraHandler, rotationFactor)},
+      {"set_movementFactor", NGF_PY_SET_GPERF(CameraHandler, movementFactor)},
+      {"get_movementFactor", NGF_PY_GET_GPERF(CameraHandler, movementFactor)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -218,28 +243,40 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 9)
+          switch (key - 7)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 1:
+              case 2:
                 resword = &wordlist[1];
                 goto compare;
-              case 4:
+              case 3:
                 resword = &wordlist[2];
                 goto compare;
-              case 6:
+              case 5:
                 resword = &wordlist[3];
                 goto compare;
-              case 9:
+              case 8:
                 resword = &wordlist[4];
                 goto compare;
               case 10:
                 resword = &wordlist[5];
                 goto compare;
-              case 15:
+              case 11:
                 resword = &wordlist[6];
+                goto compare;
+              case 15:
+                resword = &wordlist[7];
+                goto compare;
+              case 16:
+                resword = &wordlist[8];
+                goto compare;
+              case 21:
+                resword = &wordlist[9];
+                goto compare;
+              case 26:
+                resword = &wordlist[10];
                 goto compare;
             }
           return 0;

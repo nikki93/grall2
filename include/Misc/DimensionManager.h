@@ -26,6 +26,7 @@ class DimensionManager
             DIM_NONE = 0,
             DIM_1 = 1,
             DIM_2 = 2,
+            DIM_SWITCH = 3,
         };
 
     protected:
@@ -42,8 +43,8 @@ class DimensionManager
         //to no dimension.
         void switchDimension()
         {
-            mCurrentDimension ^= DIM_1 ^ DIM_2;
-            //GlbVar.goMgr->forEachGameObject(&DimensionManager::_sendMessage);
+            mCurrentDimension ^= DIM_SWITCH;
+            GlbVar.goMgr->forEachGameObject(&DimensionManager::_sendMessage);
         }
 
         void tick()
@@ -55,7 +56,7 @@ class DimensionManager
         void setDimension(int dimension)
         {
             mCurrentDimension = dimension;
-            //GlbVar.goMgr->forEachGameObject(&DimensionManager::_sendMessage);
+            GlbVar.goMgr->forEachGameObject(&DimensionManager::_sendMessage);
         }
 
         int getCurrentDimension() const

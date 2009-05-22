@@ -16,7 +16,8 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mTargetNode(NULL),
       mTargetNodeName(""),
       mOffset(0,4.5,8),
-      mSmoothingFactor(1)
+      mMovementFactor(1),
+      mRotationFactor(0)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
@@ -82,13 +83,13 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         case CS_THIRDPERSON:
             {
                 Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * effOffset);
-                Ogre::Vector3 toMove = (target - mCamera->getPosition()) * mSmoothingFactor * evt.timeSinceLastFrame;
+                Ogre::Vector3 toMove = (target - mCamera->getPosition()) * mMovementFactor * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
             }
-            lookAt(mTargetNode->getPosition() + Ogre::Vector3(0,1,0));
+            lookAt(mTargetNode->getPosition() + Ogre::Vector3(0,1,0), evt.timeSinceLastFrame);
             break;
         case CS_LOOKAT:
-            lookAt(mTargetNode->getPosition());
+            lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
             break;
         case CS_NONE:
             mTargetNode = 0;
@@ -97,6 +98,9 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
+
+    //Tasks.
+    updateTasks(evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 void CameraHandler::pausedTick(const Ogre::FrameEvent &evt)
@@ -118,7 +122,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
             break;
 
         case MSG_SETSMOOTHINGFACTOR:
-            mSmoothingFactor = msg.getParam<Ogre::Real>(0);
+            mMovementFactor = msg.getParam<Ogre::Real>(0);
             break;
 
         case MSG_SETCAMERASTATE:
@@ -144,11 +148,24 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
         NGF::Python::PythonObjectConnectorPtr obj = py::extract<NGF::Python::PythonObjectConnectorPtr>(args[0]);
         NGF::ID id = obj->getID();
         mTargetNode = GlbVar.ogreSmgr->getSceneNode("id" + Ogre::StringConverter::toString(id));
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(targetPlayer)
+    { 
+        NGF::Python::PythonObjectConnectorPtr obj = py::extract<NGF::Python::PythonObjectConnectorPtr>(args[0]);
+        NGF::ID id = obj->getID();
+        mTargetNode = GlbVar.ogreSmgr->getSceneNode("id" + Ogre::StringConverter::toString(id) + "-controlnode");
+
+        NGF_PY_RETURN();
     }
 
+    NGF_EXTRAS_PYTHON_METHOD_ADD_TASK(addTask);
+
     NGF_PY_PROPERTY_IMPL(currState, mCurrState, int)
-        NGF_PY_PROPERTY_IMPL(smoothingFactor, mSmoothingFactor, Ogre::Real)
-        NGF_PY_PROPERTY_IMPL(offset, mOffset, Ogre::Vector3)
+    NGF_PY_PROPERTY_IMPL(movementFactor, mMovementFactor, Ogre::Real)
+    NGF_PY_PROPERTY_IMPL(rotationFactor, mRotationFactor, Ogre::Real)
+    NGF_PY_PROPERTY_IMPL(offset, mOffset, Ogre::Vector3)
 }
 NGF_PY_END_IMPL
 //-------------------------------------------------------------------------------

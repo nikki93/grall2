@@ -77,12 +77,14 @@ class Console
 
         inline bool isVisible()
         {
-            return mWindow->isVisible();
+            //return mWindow->isVisible();
+            return false;
         }
 
         void print(Ogre::String str)
         {
             mOutputBox->setCaption(mOutputBox->getCaption() + str);
+            LOG(str);
         }
 
         //--- Button events -----------------------------------------------------------

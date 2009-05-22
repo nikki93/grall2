@@ -76,4 +76,16 @@ struct ExtraEventListener
     { ExtraEventListener *o = dynamic_cast<ExtraEventListener*>(obj); if(o) o->preClear(); }
 };
 
+//Makes getting a set of results from convexSweepTest easier.
+struct BulletConvexResultCollector : public btDynamicsWorld::ConvexResultCallback
+{
+    std::set<btCollisionObject*> mHits;
+
+    btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
+    {
+        mHits.insert(convexResult.m_hitCollisionObject);
+        return convexResult.m_hitFraction;
+    }
+};
+
 #endif

@@ -11,3 +11,7 @@ bin/release/
 #Files used by editors etc.
 .vimrc
 tags
+
+#Unneeded data files.
+*.log
+*.mesh.xml

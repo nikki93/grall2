@@ -42,6 +42,9 @@ void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
 {
     //We can't be seen in dimensions we're not in.
     mNode->setVisible(mDimensions & GlbVar.dimMgr->getCurrentDimension(), true);
+
+    //Tasks.
+    updateTasks(evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 NGF::MessageReply GraLL2GameObject::receiveMessage(NGF::Message msg)
@@ -190,6 +193,9 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
     {
         NGF_PY_RETURN(mBody->getAngularVelocity());
     }
+
+    //addTask
+    NGF_EXTRAS_PYTHON_METHOD_ADD_TASK(addTask);
 }
 NGF_PY_END_IMPL
 //-------------------------------------------------------------------------------

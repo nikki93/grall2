@@ -25,7 +25,7 @@ class Player :
     protected:
         Ogre::SceneNode *mControlNode;
         Ogre::Entity *mEntity;
-        btCollisionShape *mShape;
+        btSphereShape *mShape;
         NGF::GameObject *mCameraHandler;
 
         bool mUnderControl; //Are we under control?

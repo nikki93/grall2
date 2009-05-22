@@ -2,15 +2,18 @@
 |           Todo           |
 +--------------------------+
 
+Next
+----
 - Add ability to change view height.
 
-- Make Player check that space in the other dimension is empty before switching dimensions.
-
-- Fix problem with shader (TBN transform).
-
-- Add some (more) shader eye-candy. ;-)
+- Add 'Point' object in Blender, which can be used to specify locations visually.
 
 - Work on obstacle ideas.
+
+Waiting
+-------
+- Make Player check that space in the other dimension is empty before switching dimensions.
+- Work on shaders.
 
 +---------------------------+
 |         ChangeLog         |
@@ -109,3 +112,8 @@ Tue May 19 22:45:35 AST 2009
 ----------------------------
 - Added dimension 2 compositor effect.
 - Fixed Player serialisation error that left out one of the members.
+
+Thu May 21 17:20:58 AST 2009
+----------------------------
+- Added linear interpolating (scriptable) rotation to CameraHandler.
+- Modified cutscene to try the lerp rotations.

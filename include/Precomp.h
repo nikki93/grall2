@@ -24,3 +24,4 @@
 #include "ngfplugins/NgfBullet.h"
 #include "ngfplugins/NgfPython.h"
 #include "ngfplugins/NgfSerialisation.h"
+#include "ngfplugins/NgfExtras.h"

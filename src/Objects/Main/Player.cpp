@@ -119,56 +119,44 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 case OIS::KC_SPACE:
                     {
                         //If the other dimension isn't free at our place, then abort.
+                        btConvexShape *shape = new btSphereShape(*mShape);
+                        shape->setLocalScaling(btVector3(0.85,0.85,0.85));
+                        bool toSwitch = true;
+                        
                         btVector3 pos1 = mBody->getWorldTransform().getOrigin();
-                        btVector3 pos2 = mBody->getWorldTransform().getOrigin() + btVector3(0,0.1,0);
+                        btVector3 pos2 = mBody->getWorldTransform().getOrigin() + btVector3(0,20,0);
                         btQuaternion rot = mBody->getWorldTransform().getRotation();
                         btTransform trans1(rot, pos1);
                         btTransform trans2(rot, pos2);
-                        btConvexShape *shape = BtOgre::StaticMeshToShapeConverter(mEntity).createConvex();
-                        shape->setLocalScaling(btVector3(1.1,1.1,1.1));
 
-                        struct TempCallback : public btDynamicsWorld::ConvexResultCallback
-                        {
-                            int mOtherDimension;
-                            btCollisionObject* mIgnore;
-                            bool mFree;
-
-                            TempCallback(int dimension, btCollisionObject *ignore)
-                                : mOtherDimension(dimension),
-                                mIgnore(ignore),
-                                mFree(true)
-                            {
-                                mOtherDimension ^= DimensionManager::DIM_1 ^ DimensionManager::DIM_2;
-                            }
-
-                            btScalar addSingleResult(btDynamicsWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
-                            {
-                                btCollisionObject *hit = convexResult.m_hitCollisionObject;
-
-                                if (hit != mIgnore)
-                                {
-                                    NGF::GameObject *obj = NGF::Bullet::fromBulletObject(hit);
-                                    if (obj)
-                                    {
-                                        GraLL2GameObject *gobj = dynamic_cast<GraLL2GameObject*>(obj);
-                                        if (gobj)
-                                        {
-                                            int hitDims = gobj->getDimensions();
-                                            mFree = mFree && (!(hitDims & mOtherDimension)); //If he has the other dimension it isn't free.
-                                        }
-                                    }
-                                    return convexResult.m_hitFraction;
-                                }
-                            }
-                        } res(mDimensions, mBody);
-
+                        BulletConvexResultCollector res;
                         GlbVar.phyWorld->convexSweepTest(shape, trans1, trans2, res);
 
-                        if (!(res.mFree))
-                            break;
+                        for (std::set<btCollisionObject*>::iterator iter = res.mHits.begin(); iter != res.mHits.end(); ++iter)
+                        {
+                            if (*iter == mBody)
+                                continue;
 
-                        GlbVar.dimMgr->switchDimension();
-                        setDimension(GlbVar.dimMgr->getCurrentDimension());
+                            NGF::GameObject *obj = NGF::Bullet::fromBulletObject(*iter);
+                            GraLL2GameObject *gobj = obj ? dynamic_cast<GraLL2GameObject*>(obj) : NULL;
+                            if (gobj)
+                            {
+                                GlbVar.console->print(obj->getFlags() + ", " + Ogre::StringConverter::toString(gobj->getDimensions()) + "\n");
+                                if (gobj->getDimensions() & (mDimensions ^ DimensionManager::DIM_SWITCH))
+                                {
+                                    toSwitch = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (toSwitch)
+                        {
+                            GlbVar.dimMgr->switchDimension();
+                            setDimension(GlbVar.dimMgr->getCurrentDimension());
+                        }
+
+                        delete shape;
 
                         break;
                     }
@@ -185,7 +173,7 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
     //(Much) Less friction if not ground hit.
     Ogre::Vector3 hitPos = BtOgre::Convert::toOgre(contact.getPositionWorldOnA());
     if (mNode->getPosition().y - hitPos.y < 0.4)
-       contact.m_combinedFriction = 7;
+       contact.m_combinedFriction = 1;
     
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
