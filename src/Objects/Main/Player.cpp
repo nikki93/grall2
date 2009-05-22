@@ -203,7 +203,7 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
     //(Much) Less friction if not ground hit.
     Ogre::Vector3 hitPos = BtOgre::Convert::toOgre(contact.getPositionWorldOnA());
     if (mNode->getPosition().y - hitPos.y < 0.4)
-       contact.m_combinedFriction = 1;
+       contact.m_combinedFriction = 0;
     
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

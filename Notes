@@ -4,9 +4,7 @@
 
 Next
 ----
-- Add ability to change view height.
-
-- Add 'Point' object in Blender, which can be used to specify locations visually.
+- Add 'Point' GameObject, which can be used to specify locations visually.
 
 - Work on obstacle ideas.
 
@@ -121,3 +119,4 @@ Thu May 21 17:20:58 AST 2009
 Fri May 22 21:28:02 AST 2009
 ----------------------------
 - Nearly fixed Player dimension-checking. Now only 'inside-trimesh' checking left.
+- Added ability to change view height.

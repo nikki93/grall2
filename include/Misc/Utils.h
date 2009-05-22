@@ -36,6 +36,14 @@ inline OIS::MouseState getMouseState()
     return GlbVar.mouse->getMouseState();
 }
 
+//Clamps a comparable value.
+template<class Type>
+static Type clamp(Type number, Type rangeMin, Type rangeMax)
+{
+    Type big = (number < rangeMax) ? number : rangeMax;
+    return (rangeMin > big) ? rangeMin : big;
+}
+
 //Fixes the Brush materials, ie., makes the Brush use the materials defined manually in
 //data/Brushes.material.
 //

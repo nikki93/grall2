@@ -15,9 +15,9 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mCurrState(CS_NONE),
       mTargetNode(NULL),
       mTargetNodeName(""),
-      mOffset(0,4.5,8),
       mMovementFactor(1),
-      mRotationFactor(0)
+      mRotationFactor(0),
+      mCameraHeight(4.5)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
@@ -66,23 +66,37 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         mTargetNodeName = "";
     }
 
-    Ogre::Vector3 effOffset = mOffset;
+    //Third-person view offset handling.
 
+    //Change height.
+    if (mCurrState == CS_THIRDPERSON)
+    {
+        mCameraHeight += isKeyDown(OIS::KC_R) * 6 * evt.timeSinceLastFrame;
+        mCameraHeight -= isKeyDown(OIS::KC_F) * 6 * evt.timeSinceLastFrame;
+        mCameraHeight = clamp<Ogre::Real>(mCameraHeight, 4.5, 12);
+    }
+
+    Ogre::Vector3 mOffset = Ogre::Vector3(0, mCameraHeight, (mCameraHeight > 10) ? 6 : 8);
+
+    //Peeping.
     if (isKeyDown(OIS::KC_Q))
-        effOffset = Ogre::Vector3(5,4.5,0);
+        mOffset = Ogre::Vector3(5,4.5,0);
     if (isKeyDown(OIS::KC_E))
     {
-        effOffset = Ogre::Vector3(-5,4.5,0);
+        mOffset = Ogre::Vector3(-5,4.5,0);
         if (isKeyDown(OIS::KC_Q))
-            effOffset = Ogre::Vector3(0,4.5,-5);
+            mOffset = Ogre::Vector3(0,4.5,-5);
     }
+
+    //Python utick event (do it before camera handling to allow offset-modifications).
+    NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 
     //Do the camera-handling based on state.
     switch (mCurrState)
     {
         case CS_THIRDPERSON:
             {
-                Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * effOffset);
+                Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mOffset);
                 Ogre::Vector3 toMove = (target - mCamera->getPosition()) * mMovementFactor * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
             }
@@ -95,9 +109,6 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             mTargetNode = 0;
             break;
     }
-
-    //Python utick event.
-    NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 
     //Tasks.
     updateTasks(evt.timeSinceLastFrame);
@@ -115,10 +126,6 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
     {
         case MSG_SETTARGET:
             mTargetNode = msg.getParam<Ogre::SceneNode*>(0);
-            break;
-
-        case MSG_SETOFFSET:
-            mOffset = msg.getParam<Ogre::Vector3>(0);
             break;
 
         case MSG_SETSMOOTHINGFACTOR:

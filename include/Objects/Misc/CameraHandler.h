@@ -41,7 +41,9 @@ class CameraHandler :
 
         Ogre::SceneNode *mTargetNode;
         Ogre::String mTargetNodeName;
+
         Ogre::Vector3 mOffset;
+        Ogre::Real mCameraHeight;
         Ogre::Real mMovementFactor; //The fraction of the required displacement that the camera moves by (lerp).
         Ogre::Real mRotationFactor; //The fraction of the required rotation that the camera rotates by (lerp).
 
@@ -112,6 +114,7 @@ class CameraHandler :
             NGF_SERIALISE_OGRE(Vector3, mOffset);
             NGF_SERIALISE_OGRE(Real, mMovementFactor);
             NGF_SERIALISE_OGRE(Real, mRotationFactor);
+            NGF_SERIALISE_OGRE(Real, mCameraHeight);
 
             NGF_SERIALISE_ON_LOAD
             {
