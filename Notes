@@ -117,3 +117,7 @@ Thu May 21 17:20:58 AST 2009
 ----------------------------
 - Added linear interpolating (scriptable) rotation to CameraHandler.
 - Modified cutscene to try the lerp rotations.
+
+Fri May 22 21:28:02 AST 2009
+----------------------------
+- Nearly fixed Player dimension-checking. Now only 'inside-trimesh' checking left.

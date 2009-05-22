@@ -8,6 +8,7 @@ Player.cpp
 
 #include "Objects/Main/Player.h"
 #include "Objects/Misc/CameraHandler.h"
+#include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
 
 //--- NGF events ----------------------------------------------------------------
 Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -119,44 +120,73 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 case OIS::KC_SPACE:
                     {
                         //If the other dimension isn't free at our place, then abort.
-                        btConvexShape *shape = new btSphereShape(*mShape);
-                        shape->setLocalScaling(btVector3(0.85,0.85,0.85));
-                        bool toSwitch = true;
-                        
+
+                        //Collects only the results that matter.
+                        struct PlayerDimensionCheckResult : public btDynamicsWorld::ConvexResultCallback
+                        {
+                            btCollisionObject *mIgnore;
+                            int mOppDimension;
+                            std::set<btCollisionObject*> mHits;
+                            btVector3 mFrom, mTo;
+                            bool mHit;
+
+                            PlayerDimensionCheckResult(btCollisionObject *ignore, int oppDimension, btVector3 from, btVector3 to)
+                                : mIgnore(ignore),
+                                  mOppDimension(oppDimension),
+                                  mFrom(from),
+                                  mTo(to)
+                            {
+                            }
+
+                            btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
+                            {
+                                btCollisionObject *obj = convexResult.m_hitCollisionObject;
+                                btCollisionShape *shape = obj->getCollisionShape();
+
+                                //If triangle mesh, check if 'inside'.
+                                if (shape->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE)
+                                {
+                                    //(do inside-check here)
+                                    mHit = true;
+                                    mHits.insert(obj);
+                                }
+                                else
+                                {
+                                    mHit = true;
+                                    mHits.insert(obj);
+                                }
+
+                                return convexResult.m_hitFraction;
+                            }
+
+                            bool needsCollision(btBroadphaseProxy* proxy0) const
+                            {
+                                //If it's the Player, or isn't in the other dimension, we don't care.
+                                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) && (proxy0->m_collisionFilterGroup & mOppDimension);
+                            }
+                        };
+
+                        //Copy shape for cast. Maybe we should do it in the beginning and keep a copy?
+                        btSphereShape shape(*mShape);
+                        shape.setLocalScaling(btVector3(0.85,0.85,0.85));
+
+                        //Where to cast from, where to cast to, etc.
                         btVector3 pos1 = mBody->getWorldTransform().getOrigin();
-                        btVector3 pos2 = mBody->getWorldTransform().getOrigin() + btVector3(0,20,0);
+                        btVector3 pos2 = btVector3(pos1.x(),9999,pos1.z());
                         btQuaternion rot = mBody->getWorldTransform().getRotation();
                         btTransform trans1(rot, pos1);
                         btTransform trans2(rot, pos2);
 
-                        BulletConvexResultCollector res;
-                        GlbVar.phyWorld->convexSweepTest(shape, trans1, trans2, res);
+                        //Do the cast.
+                        PlayerDimensionCheckResult res(mBody, mDimensions ^ DimensionManager::DIM_SWITCH, pos1, pos2);
+                        GlbVar.phyWorld->convexSweepTest(&shape, trans1, trans2, res);
 
-                        for (std::set<btCollisionObject*>::iterator iter = res.mHits.begin(); iter != res.mHits.end(); ++iter)
-                        {
-                            if (*iter == mBody)
-                                continue;
-
-                            NGF::GameObject *obj = NGF::Bullet::fromBulletObject(*iter);
-                            GraLL2GameObject *gobj = obj ? dynamic_cast<GraLL2GameObject*>(obj) : NULL;
-                            if (gobj)
-                            {
-                                GlbVar.console->print(obj->getFlags() + ", " + Ogre::StringConverter::toString(gobj->getDimensions()) + "\n");
-                                if (gobj->getDimensions() & (mDimensions ^ DimensionManager::DIM_SWITCH))
-                                {
-                                    toSwitch = false;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (toSwitch)
+                        //If no hits, then switch.
+                        if (!res.mHit)
                         {
                             GlbVar.dimMgr->switchDimension();
                             setDimension(GlbVar.dimMgr->getCurrentDimension());
                         }
-
-                        delete shape;
 
                         break;
                     }

@@ -18,6 +18,8 @@
 #ifndef __DIMENSIONMANAGER_H__
 #define __DIMENSIONMANAGER_H__
 
+#define BIT(x) (1<<(x))
+
 class DimensionManager
 {
     public:
