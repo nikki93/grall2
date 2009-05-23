@@ -87,19 +87,12 @@ ngflevel TestLevel
 			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
 			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
 			       : 	self.p_underControl = False
-			       : #	self.m_time = 0
 			       : 	
-			       : 	def lamb():
-			       : 		self.p_underControl = True
-			       : 	self.addTask(5.5, lamb)
-			       : 	
-			       : def utick(self, elapsed):
-			       : 	pass
-			       : #	if (self.m_time < 5.5):
-			       : #		self.m_time += elapsed
-			       : #	else:
-			       : #		self.p_underControl = True
+			       : 	self.setAlarm(5, 0)
 			       : 
+			       : def alarm(self, a):
+			       : 	if (a == 0):
+			       : 		self.p_underControl = True
 		}
 	}
 	object
@@ -131,39 +124,22 @@ ngflevel TestLevel
 			       : 	self.p_currState = 1
 			       : 	self.p_movementFactor = 4
 			       : 	self.p_rotationFactor = 0
-			       : 
-			       : #	self.m_time = 0
 			       : 	
-			       : 	def lamb():
+			       : 	self.setAlarm(1, 0)
+			       : 	self.setAlarm(3, 1)
+			       : 	self.setAlarm(5, 3)
+			       : 
+			       : def alarm(self, a):
+			       : 	if (a == 0):
 			       : 		self.setTarget(Ngf.getObject("thirdWall"))
 			       : 		self.p_rotationFactor = 1.5
-			       : 	self.addTask(1, lamb)
-			       : 	
 			       : 		
-			       : 	def lamb2():
+			       : 	elif (a == 1):
 			       : 		self.targetPlayer(Ngf.getObject("player1"))
-			       : 	self.addTask(3, lamb2)
 			       : 		
-			       : 	def lamb3():
+			       : 	elif (a == 3):
 			       : 		self.p_currState = 2
 			       : 		self.p_rotationFactor = 0
-			       : 	self.addTask(5, lamb3)
-			       : 
-			       : def utick(self, elapsed):
-			       : 	pass
-			       : #	self.m_time += elapsed
-			       : 	
-			       : #	if (self.m_time > 1 and self.m_time < 2):
-			       : #		self.setTarget(Ngf.getObject("thirdWall"))
-			       : #		self.p_rotationFactor = 1.5
-			       : 		
-			       : #	if (self.m_time > 3 and self.m_time < 4):
-			       : #		self.targetPlayer(Ngf.getObject("player1"))
-			       : 		
-			       : #	if (self.m_time > 5 and self.m_time < 6):
-			       : #		self.p_currState = 2
-			       : #		self.p_rotationFactor = 0
-			       : 
 		}
 	}
 	object

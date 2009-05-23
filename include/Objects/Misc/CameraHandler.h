@@ -23,7 +23,7 @@
 class CameraHandler :
     public NGF::Python::PythonGameObject,
     public NGF::Serialisation::SerialisableGameObject,
-    public NGF::Extras::TaskManagingGameObject,
+    public AlarmGameObject,
     public ExtraEventListener
 {
     public:
@@ -58,6 +58,7 @@ class CameraHandler :
         void unpausedTick(const Ogre::FrameEvent &evt);
         void pausedTick(const Ogre::FrameEvent &evt);
         NGF::MessageReply receiveMessage(NGF::Message msg); 
+        void alarm(Alarm a) { NGF_PY_CALL_EVENT(alarm, a); }
 
         //--- Non-NGF ------------------------------------------------------------------
         inline void lookAt(Ogre::Vector3 target, Ogre::Real elapsed)
@@ -82,7 +83,7 @@ class CameraHandler :
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(CameraHandler)
         {
-            NGF_PY_METHOD_DECL(addTask)
+            NGF_PY_METHOD_DECL(setAlarm)
             NGF_PY_METHOD_DECL(setTarget)
             NGF_PY_METHOD_DECL(targetPlayer)
             
@@ -108,6 +109,7 @@ class CameraHandler :
             NGF_SERIALISE_POSITION(mCamera->getPosition());
             NGF_SERIALISE_ROTATION(mCamera->getOrientation());
             NGF_SERIALISE_PYTHON_LOCALS();
+            GRALL2_SERIALISE_ALARMS();
 
             NGF_SERIALISE_STRING(targetName);
             NGF_SERIALISE_OGRE(Int, mCurrState);
@@ -166,7 +168,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 27, duplicates = 0 */
+/* maximum key range = 26, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(CameraHandler)
 {
@@ -191,7 +193,7 @@ NGF_PY_CLASS_GPERF(CameraHandler)::MakeHash (register const char *str, register 
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34,  0, 34,  4,
-      34,  0, 34,  5, 34, 34, 34, 34, 34, 10,
+      34,  0, 34,  5, 34, 34, 34, 34,  0, 10,
       34,  0, 34, 34,  0,  0,  0, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
@@ -217,15 +219,15 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
   enum
     {
       TOTAL_KEYWORDS = 11,
-      MIN_WORD_LENGTH = 7,
+      MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 18,
-      MIN_HASH_VALUE = 7,
+      MIN_HASH_VALUE = 8,
       MAX_HASH_VALUE = 33
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {"addTask", NGF_PY_METHOD_GPERF(CameraHandler, addTask)},
+      {"setAlarm", NGF_PY_METHOD_GPERF(CameraHandler, setAlarm)},
       {"setTarget", NGF_PY_METHOD_GPERF(CameraHandler, setTarget)},
       {"set_offset", NGF_PY_SET_GPERF(CameraHandler, offset)},
       {"targetPlayer", NGF_PY_METHOD_GPERF(CameraHandler, targetPlayer)},
@@ -246,39 +248,39 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 7)
+          switch (key - 8)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 2:
+              case 1:
                 resword = &wordlist[1];
                 goto compare;
-              case 3:
+              case 2:
                 resword = &wordlist[2];
                 goto compare;
-              case 5:
+              case 4:
                 resword = &wordlist[3];
                 goto compare;
-              case 8:
+              case 7:
                 resword = &wordlist[4];
                 goto compare;
-              case 10:
+              case 9:
                 resword = &wordlist[5];
                 goto compare;
-              case 11:
+              case 10:
                 resword = &wordlist[6];
                 goto compare;
-              case 15:
+              case 14:
                 resword = &wordlist[7];
                 goto compare;
-              case 16:
+              case 15:
                 resword = &wordlist[8];
                 goto compare;
-              case 21:
+              case 20:
                 resword = &wordlist[9];
                 goto compare;
-              case 26:
+              case 25:
                 resword = &wordlist[10];
                 goto compare;
             }

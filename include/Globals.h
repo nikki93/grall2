@@ -85,5 +85,6 @@ enum
 #include "Misc/DimensionManager.h"
 #include "Misc/Console.h"
 #include "Misc/Utils.h"
+#include "Misc/AlarmGameObject.h"
 
 #endif

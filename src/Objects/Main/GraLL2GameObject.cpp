@@ -15,6 +15,7 @@ GraLL2GameObject::GraLL2GameObject(bool dimensional)
 {
     //Load the Python script. Events are called by children though.
     NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    NGF_PY_SAVE_EVENT(alarm);
 
     if (dimensional)
     {
@@ -44,7 +45,7 @@ void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
     mNode->setVisible(mDimensions & GlbVar.dimMgr->getCurrentDimension(), true);
 
     //Tasks.
-    updateTasks(evt.timeSinceLastFrame);
+    updateAlarms(evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 NGF::MessageReply GraLL2GameObject::receiveMessage(NGF::Message msg)
@@ -194,8 +195,8 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
         NGF_PY_RETURN(mBody->getAngularVelocity());
     }
 
-    //addTask
-    NGF_EXTRAS_PYTHON_METHOD_ADD_TASK(addTask);
+    //setAlarm
+    GRALL2_PY_ALARM_METHOD(setAlarm);
 }
 NGF_PY_END_IMPL
 //-------------------------------------------------------------------------------

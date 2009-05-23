@@ -40,6 +40,7 @@
             /* Complex members. */                                                             \
             NGF_SERIALISE_BULLET_BODY(mBody);                                                  \
             NGF_SERIALISE_PYTHON_LOCALS();                                                     \
+            GRALL2_SERIALISE_ALARMS();                                                         \
                                                                                                \
             /* Simple members. */                                                              \
             NGF_SERIALISE_OGRE(Int, mDimensions);                                              \
@@ -58,7 +59,7 @@ class GraLL2GameObject :
     public NGF::Bullet::BulletGameObject,
     public NGF::Python::PythonGameObject,
     public NGF::Serialisation::SerialisableGameObject,
-    public NGF::Extras::TaskManagingGameObject,
+    public AlarmGameObject,
     public ExtraEventListener
 {
     protected:
@@ -79,6 +80,7 @@ class GraLL2GameObject :
         virtual void unpausedTick(const Ogre::FrameEvent &evt);
         virtual void pausedTick(const Ogre::FrameEvent &evt) {}
         virtual NGF::MessageReply receiveMessage(NGF::Message msg);
+        void alarm(Alarm a) { NGF_PY_CALL_EVENT(alarm, a); }
         virtual void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact) {}
 
         //--- Non-NGF methods ----------------------------------------------------------
@@ -91,8 +93,8 @@ class GraLL2GameObject :
         //--- Python interface ---------------------------------------------------------
         virtual NGF_PY_BEGIN_DECL(GraLL2GameObject)
         {
-            //addTask(time, func)
-            NGF_PY_METHOD_DECL(addTask)
+            //setAlarm(time, alarmnum)
+            NGF_PY_METHOD_DECL(setAlarm)
             //getPosition()
             NGF_PY_METHOD_DECL(getPosition)
             //setPosition(pos)
@@ -184,7 +186,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 27, duplicates = 0 */
+/* maximum key range = 30, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(GraLL2GameObject)
 {
@@ -199,32 +201,32 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::MakeHash (register const char *str, regist
 {
   static const unsigned char asso_values[] =
     {
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34,  5, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34,  5, 34, 34, 10,
-       5, 34, 34, 34,  0, 34, 10, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34,  0, 34, 34,
-      34, 34, 34,  0, 34, 34, 34, 34,  0, 34,
-       0, 34, 34, 34, 34,  5,  0, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39,  5, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39,  5, 39, 39, 10,
+       5, 39, 39, 39, 15, 39, 10, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39,  0, 39, 39,
+      39, 39, 39,  5, 39, 39, 39, 39,  0, 39,
+       0, 39, 39, 39, 39,  0,  0, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
+      39, 39, 39, 39, 39, 39
     };
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[0]];
 }
@@ -235,32 +237,32 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
   enum
     {
       TOTAL_KEYWORDS = 19,
-      MIN_WORD_LENGTH = 7,
+      MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 23,
-      MIN_HASH_VALUE = 7,
-      MAX_HASH_VALUE = 33
+      MIN_HASH_VALUE = 9,
+      MAX_HASH_VALUE = 38
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {"addTask", NGF_PY_METHOD_GPERF(GraLL2GameObject, addTask)},
       {"translate", NGF_PY_METHOD_GPERF(GraLL2GameObject, translate)},
       {"applyForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyForce)},
       {"applyTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorque)},
       {"applyImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyImpulse)},
-      {"getTotalForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalForce)},
-      {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)},
-      {"getPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, getPosition)},
+      {"setAlarm", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAlarm)},
+      {"setPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, setPosition)},
       {"applyCentralForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralForce)},
       {"applyTorqueImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorqueImpulse)},
       {"applyCentralImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralImpulse)},
-      {"setPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, setPosition)},
-      {"getLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getLinearVelocity)},
-      {"getAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getAngularVelocity)},
-      {"getOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, getOrientation)},
+      {"getPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, getPosition)},
       {"setLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setLinearVelocity)},
       {"setAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAngularVelocity)},
       {"setOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, setOrientation)},
+      {"getLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getLinearVelocity)},
+      {"getAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getAngularVelocity)},
+      {"getOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, getOrientation)},
+      {"getTotalForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalForce)},
+      {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)},
       {"getVelocityInLocalPoint", NGF_PY_METHOD_GPERF(GraLL2GameObject, getVelocityInLocalPoint)}
     };
 
@@ -272,27 +274,27 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 7)
+          switch (key - 9)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 2:
+              case 1:
                 resword = &wordlist[1];
                 goto compare;
-              case 3:
+              case 2:
                 resword = &wordlist[2];
                 goto compare;
-              case 4:
+              case 3:
                 resword = &wordlist[3];
                 goto compare;
-              case 5:
+              case 4:
                 resword = &wordlist[4];
                 goto compare;
-              case 6:
+              case 7:
                 resword = &wordlist[5];
                 goto compare;
-              case 7:
+              case 8:
                 resword = &wordlist[6];
                 goto compare;
               case 9:
@@ -301,10 +303,10 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
               case 10:
                 resword = &wordlist[8];
                 goto compare;
-              case 11:
+              case 12:
                 resword = &wordlist[9];
                 goto compare;
-              case 12:
+              case 13:
                 resword = &wordlist[10];
                 goto compare;
               case 14:
@@ -313,22 +315,22 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
               case 15:
                 resword = &wordlist[12];
                 goto compare;
-              case 16:
+              case 18:
                 resword = &wordlist[13];
                 goto compare;
-              case 17:
+              case 19:
                 resword = &wordlist[14];
                 goto compare;
               case 20:
                 resword = &wordlist[15];
                 goto compare;
-              case 21:
+              case 24:
                 resword = &wordlist[16];
                 goto compare;
-              case 22:
+              case 25:
                 resword = &wordlist[17];
                 goto compare;
-              case 26:
+              case 29:
                 resword = &wordlist[18];
                 goto compare;
             }

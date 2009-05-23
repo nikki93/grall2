@@ -24,9 +24,12 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
 
     //Load the Python script.
     NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    NGF_PY_SAVE_EVENT(alarm);
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
+
+    setAlarm(2, 0);
 
     //Tell the old guy to get out.
     if (GlbVar.currCameraHandler)
@@ -110,8 +113,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             break;
     }
 
-    //Tasks.
-    updateTasks(evt.timeSinceLastFrame);
+    //Alarms.
+    updateAlarms(evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 void CameraHandler::pausedTick(const Ogre::FrameEvent &evt)
@@ -167,7 +170,7 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
         NGF_PY_RETURN();
     }
 
-    NGF_EXTRAS_PYTHON_METHOD_ADD_TASK(addTask);
+    GRALL2_PY_ALARM_METHOD(setAlarm)
 
     NGF_PY_PROPERTY_IMPL(currState, mCurrState, int)
     NGF_PY_PROPERTY_IMPL(movementFactor, mMovementFactor, Ogre::Real)
