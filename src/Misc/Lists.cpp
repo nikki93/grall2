@@ -20,6 +20,7 @@
 #include "Objects/Main/StaticBrush.h"
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/CameraHandler.h"
+#include "Objects/Misc/Point.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -31,6 +32,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(StaticBrush);
     NGF_REGISTER_OBJECT_TYPE(Light);
     NGF_REGISTER_OBJECT_TYPE(CameraHandler);
+    NGF_REGISTER_OBJECT_TYPE(Point);
 }
 
 //Register worlds.

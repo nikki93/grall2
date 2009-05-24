@@ -4,7 +4,7 @@
 
 Next
 ----
-- Add 'Point' GameObject, which can be used to specify locations visually.
+- Add serialisation for the splien in CameraHandler.
 
 - Add 'Trigger' GameObject, which runs script on collision. Actual physical collision and raycasts must be avoided.
 
@@ -12,8 +12,8 @@ Next
 
 Waiting
 -------
-- Make Player check that space in the other dimension is empty before switching dimensions.
-- Work on shaders.
+- Finalise Player dimension check.
+- Fix/improve shaders (parallax/offset mapping).
 
 +---------------------------+
 |         ChangeLog         |
@@ -126,3 +126,8 @@ Fri May 22 21:28:02 AST 2009
 Sat May 23 22:51:59 AST 2009
 ----------------------------
 - Python-scriptable 'Alarm' system added, serialiseable too. Good for a Saturday (have test on Sundays). :-)
+
+Sun May 24 22:40:58 AST 2009
+----------------------------
+- 'Point' GameObject added for visual location-specification in Blender. Also can be moved using script etc.
+- Spline camera tracking added to CameraHandler.

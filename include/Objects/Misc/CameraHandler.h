@@ -37,7 +37,6 @@ class CameraHandler :
 
     protected:
         Ogre::Camera *mCamera;
-        Ogre::SceneNode *mCameraNode;
 
         Ogre::SceneNode *mTargetNode;
         Ogre::String mTargetNodeName;
@@ -46,6 +45,11 @@ class CameraHandler :
         Ogre::Real mCameraHeight;
         Ogre::Real mMovementFactor; //The fraction of the required displacement that the camera moves by (lerp).
         Ogre::Real mRotationFactor; //The fraction of the required rotation that the camera rotates by (lerp).
+
+        Ogre::SceneNode *mSplineNode;
+        Ogre::Animation *mSplineAnim;
+        Ogre::AnimationState *mSplineAnimState;
+        Ogre::NodeAnimationTrack *mSplineTrack;
 
         int mCurrState;
 
@@ -84,8 +88,14 @@ class CameraHandler :
         NGF_PY_BEGIN_DECL(CameraHandler)
         {
             NGF_PY_METHOD_DECL(setAlarm)
+            NGF_PY_METHOD_DECL(getPosition)
             NGF_PY_METHOD_DECL(setTarget)
             NGF_PY_METHOD_DECL(targetPlayer)
+            //(totaltime)
+            NGF_PY_METHOD_DECL(beginSpline)
+            //(time, pointvec)
+            NGF_PY_METHOD_DECL(addSplinePoint)
+            NGF_PY_METHOD_DECL(endSpline)
             
             NGF_PY_PROPERTY_DECL(currState)
             NGF_PY_PROPERTY_DECL(movementFactor)
@@ -98,11 +108,13 @@ class CameraHandler :
         NGF_SERIALISE_BEGIN(CameraHandler)
         {
             Ogre::String targetName;
+            Ogre::Vector3 splineNodePos;
 
             //While saving, store stuff.
             NGF_SERIALISE_ON_SAVE
             {
                 targetName = mTargetNode ? mTargetNode->getName() : "NULL";
+                splineNodePos = mSplineNode->getPosition();
             }
 
             //The actual read/write.
@@ -121,6 +133,7 @@ class CameraHandler :
             NGF_SERIALISE_ON_LOAD
             {
                 mTargetNodeName = targetName;
+                mSplineNode->setPosition(splineNodePos);
             }
         }
         NGF_SERIALISE_END
@@ -192,9 +205,9 @@ NGF_PY_CLASS_GPERF(CameraHandler)::MakeHash (register const char *str, register 
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34,  0, 34,  4,
-      34,  0, 34,  5, 34, 34, 34, 34,  0, 10,
-      34,  0, 34, 34,  0,  0,  0, 34, 34, 34,
+      34, 34, 34, 34, 34, 34, 34,  0,  0,  4,
+      34, 10, 34,  5, 34, 34, 34, 34,  0, 10,
+       0,  0,  0, 34,  0,  0,  5, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
       34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
@@ -218,7 +231,7 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
 {
   enum
     {
-      TOTAL_KEYWORDS = 11,
+      TOTAL_KEYWORDS = 15,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 18,
       MIN_HASH_VALUE = 8,
@@ -230,12 +243,16 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
       {"setAlarm", NGF_PY_METHOD_GPERF(CameraHandler, setAlarm)},
       {"setTarget", NGF_PY_METHOD_GPERF(CameraHandler, setTarget)},
       {"set_offset", NGF_PY_SET_GPERF(CameraHandler, offset)},
-      {"targetPlayer", NGF_PY_METHOD_GPERF(CameraHandler, targetPlayer)},
+      {"beginSpline", NGF_PY_METHOD_GPERF(CameraHandler, beginSpline)},
+      {"addSplinePoint", NGF_PY_METHOD_GPERF(CameraHandler, addSplinePoint)},
       {"get_offset", NGF_PY_GET_GPERF(CameraHandler, offset)},
+      {"getPosition", NGF_PY_METHOD_GPERF(CameraHandler, getPosition)},
       {"set_currState", NGF_PY_SET_GPERF(CameraHandler, currState)},
       {"set_rotationFactor", NGF_PY_SET_GPERF(CameraHandler, rotationFactor)},
+      {"endSpline", NGF_PY_METHOD_GPERF(CameraHandler, endSpline)},
       {"get_currState", NGF_PY_GET_GPERF(CameraHandler, currState)},
       {"get_rotationFactor", NGF_PY_GET_GPERF(CameraHandler, rotationFactor)},
+      {"targetPlayer", NGF_PY_METHOD_GPERF(CameraHandler, targetPlayer)},
       {"set_movementFactor", NGF_PY_SET_GPERF(CameraHandler, movementFactor)},
       {"get_movementFactor", NGF_PY_GET_GPERF(CameraHandler, movementFactor)}
     };
@@ -259,29 +276,41 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
               case 2:
                 resword = &wordlist[2];
                 goto compare;
-              case 4:
+              case 3:
                 resword = &wordlist[3];
                 goto compare;
-              case 7:
+              case 6:
                 resword = &wordlist[4];
                 goto compare;
-              case 9:
+              case 7:
                 resword = &wordlist[5];
                 goto compare;
-              case 10:
+              case 8:
                 resword = &wordlist[6];
                 goto compare;
-              case 14:
+              case 9:
                 resword = &wordlist[7];
                 goto compare;
-              case 15:
+              case 10:
                 resword = &wordlist[8];
                 goto compare;
-              case 20:
+              case 11:
                 resword = &wordlist[9];
                 goto compare;
-              case 25:
+              case 14:
                 resword = &wordlist[10];
+                goto compare;
+              case 15:
+                resword = &wordlist[11];
+                goto compare;
+              case 19:
+                resword = &wordlist[12];
+                goto compare;
+              case 20:
+                resword = &wordlist[13];
+                goto compare;
+              case 25:
+                resword = &wordlist[14];
                 goto compare;
             }
           return 0;

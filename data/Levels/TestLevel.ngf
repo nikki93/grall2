@@ -2,6 +2,34 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Point
+		name camTarget5
+		position 1.422799 7.582916 -1.543882
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camTarget4
+		position 0.329979 7.678076 -1.292562
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camTarget3
+		position -0.767940 7.582978 -0.417068
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camTarget2
+		position -1.299690 7.250000 1.414153
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
 		type Light
 		name noname
 		position -13.550045 0.695267 10.550045
@@ -87,12 +115,6 @@ ngflevel TestLevel
 			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
 			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
 			       : 	self.p_underControl = False
-			       : 	
-			       : 	self.setAlarm(5, 0)
-			       : 
-			       : def alarm(self, a):
-			       : 	if (a == 0):
-			       : 		self.p_underControl = True
 		}
 	}
 	object
@@ -121,25 +143,33 @@ ngflevel TestLevel
 			script : import Ngf
 			       : 
 			       : def create(self):
-			       : 	self.p_currState = 1
-			       : 	self.p_movementFactor = 4
-			       : 	self.p_rotationFactor = 0
+			       : 	splineTime = 3.8
 			       : 	
-			       : 	self.setAlarm(1, 0)
-			       : 	self.setAlarm(3, 1)
-			       : 	self.setAlarm(5, 3)
+			       : 	self.beginSpline(splineTime)
+			       : 	self.addSplinePoint(0, self.getPosition())	
+			       : 	self.addSplinePoint(0.75, Ngf.getObject("camTarget1").getPosition())
+			       : 	self.addSplinePoint(1.5, Ngf.getObject("camTarget2").getPosition())
+			       : 	self.addSplinePoint(2, Ngf.getObject("camTarget3").getPosition())
+			       : 	self.addSplinePoint(2.8, Ngf.getObject("camTarget4").getPosition())	
+			       : 	self.addSplinePoint(3.8, Ngf.getObject("camTarget5").getPosition())	
+			       : 	self.endSpline()
+			       : 	
+			       : 	self.p_currState = 3
+			       : 	
+			       : 	self.setAlarm(splineTime, 0)
+			       : 	self.setAlarm(splineTime + 2.5, 1)
 			       : 
-			       : def alarm(self, a):
-			       : 	if (a == 0):
-			       : 		self.setTarget(Ngf.getObject("thirdWall"))
-			       : 		self.p_rotationFactor = 1.5
-			       : 		
-			       : 	elif (a == 1):
-			       : 		self.targetPlayer(Ngf.getObject("player1"))
-			       : 		
-			       : 	elif (a == 3):
+			       : def alarm(self, alm):
+			       : 	#Go to third-person smoothly
+			       : 	if (alm == 0):
 			       : 		self.p_currState = 2
+			       : 		self.p_rotationFactor = 4.5
+			       : 		self.p_movementFactor = 2.5
+			       : 	#Now back to game
+			       : 	elif (alm == 1):
+			       : 		self.p_movementFactor = 4
 			       : 		self.p_rotationFactor = 0
+			       : 		Ngf.getObject("player1").p_underControl = True
 		}
 	}
 	object
@@ -155,6 +185,13 @@ ngflevel TestLevel
 			colour 0.2 0.2 0.5
 			attenuation 200 0 0.5 0
 		}
+	}
+	object
+	{
+		type Point
+		name camTarget1
+		position 1.096206 6.500000 5.261518
+		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 }
 

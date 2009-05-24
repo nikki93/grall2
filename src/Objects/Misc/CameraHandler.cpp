@@ -15,9 +15,12 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mCurrState(CS_NONE),
       mTargetNode(NULL),
       mTargetNodeName(""),
-      mMovementFactor(1),
+      mMovementFactor(4),
       mRotationFactor(0),
-      mCameraHeight(4.5)
+      mCameraHeight(4.5),
+      mSplineAnim(NULL),
+      mSplineAnimState(NULL),
+      mSplineTrack(NULL)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
@@ -28,8 +31,6 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
-
-    setAlarm(2, 0);
 
     //Tell the old guy to get out.
     if (GlbVar.currCameraHandler)
@@ -44,7 +45,8 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
     mCamera->setPosition(pos);
     mCamera->setOrientation(rot);
 
-    mCameraNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(ogreName, pos, rot);
+    //Create the spline node.
+    mSplineNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(ogreName, pos);
 }
 //-------------------------------------------------------------------------------
 void CameraHandler::postLoad()
@@ -56,7 +58,7 @@ void CameraHandler::postLoad()
 CameraHandler::~CameraHandler()
 {
     mTargetNode = 0;
-    GlbVar.ogreSmgr->destroySceneNode(mCameraNode);
+    GlbVar.ogreSmgr->destroySceneNode(mSplineNode);
     GlbVar.currCameraHandler = 0;
 }
 //-------------------------------------------------------------------------------
@@ -111,6 +113,16 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         case CS_NONE:
             mTargetNode = 0;
             break;
+        case CS_SPLINE:
+            if (mTargetNode)
+                lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
+            if (mSplineAnim)
+            {
+                mSplineAnimState->addTime(evt.timeSinceLastFrame);
+                mCamera->setPosition(mSplineNode->getPosition());
+            }
+
+            break;
     }
 
     //Alarms.
@@ -153,6 +165,18 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
 //--- Python interface implementation -------------------------------------------
 NGF_PY_BEGIN_IMPL(CameraHandler)
 {
+    NGF_PY_METHOD_IMPL(setAlarm)                                                                  
+    {                                                                                          
+        setAlarm(py::extract<float>(args[0]), py::extract<Alarm>(args[1]));                    
+        float  f = py::extract<float>(args[0]);
+                                                                                               
+        return py::object();                                                                   
+    }
+
+    NGF_PY_METHOD_IMPL(getPosition)
+    { 
+        NGF_PY_RETURN(mCamera->getPosition());
+    }
     NGF_PY_METHOD_IMPL(setTarget)
     { 
         NGF::Python::PythonObjectConnectorPtr obj = py::extract<NGF::Python::PythonObjectConnectorPtr>(args[0]);
@@ -169,8 +193,37 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
 
         NGF_PY_RETURN();
     }
+    NGF_PY_METHOD_IMPL(beginSpline)
+    {
+        if (mSplineAnim)
+            GlbVar.ogreSmgr->destroyAnimation(mSplineAnim->getName());
+        if (mSplineAnimState)
+            GlbVar.ogreSmgr->destroyAnimationState(mSplineAnimState->getAnimationName());
+        if (mSplineTrack)
+            mSplineAnim->destroyNodeTrack(0);
 
-    GRALL2_PY_ALARM_METHOD(setAlarm)
+        mSplineAnim = GlbVar.ogreSmgr->createAnimation("cameraSpline", py::extract<Ogre::Real>(args[0]));
+        mSplineAnim->setInterpolationMode(Ogre::Animation::IM_SPLINE);
+
+        mSplineTrack = mSplineAnim->createNodeTrack(0, mSplineNode);
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(addSplinePoint)
+    {
+        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(py::extract<Ogre::Real>(args[0]));
+        key->setTranslate(py::extract<Ogre::Vector3>(args[1]));
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(endSpline)
+    {
+        mSplineAnimState = GlbVar.ogreSmgr->createAnimationState("cameraSpline");
+        mSplineAnimState->setEnabled(true);
+        mSplineAnimState->setLoop(false);
+
+        NGF_PY_RETURN();
+    }
 
     NGF_PY_PROPERTY_IMPL(currState, mCurrState, int)
     NGF_PY_PROPERTY_IMPL(movementFactor, mMovementFactor, Ogre::Real)

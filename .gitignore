@@ -11,6 +11,7 @@ bin/release/
 #Files used by editors etc.
 .vimrc
 tags
+*.blend1
 
 #Unneeded data files.
 *.log

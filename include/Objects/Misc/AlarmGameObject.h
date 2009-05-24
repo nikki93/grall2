@@ -66,7 +66,7 @@ class AlarmGameObject
     {                                                                                          \
         setAlarm(py::extract<float>(args[0]), py::extract<Alarm>(args[1]));                    \
                                                                                                \
-	return py::object();                                                                   \
+        return py::object();                                                                   \
     }
 
 #define GRALL2_SERIALISE_ALARMS()                                                              \
