@@ -4,7 +4,7 @@
 
 Next
 ----
-- Add 'Trigger' GameObject, which runs script on collision. Actual physical collision and raycasts must be avoided.
+- Add serialisation of 'Radian' and 'Degree' Python types using pickle (NGF thing really).
 
 - Work on obstacle ideas.
 
