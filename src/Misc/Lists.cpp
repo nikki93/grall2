@@ -21,6 +21,7 @@
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/CameraHandler.h"
 #include "Objects/Misc/Point.h"
+#include "Objects/Misc/Trigger.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -33,6 +34,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Light);
     NGF_REGISTER_OBJECT_TYPE(CameraHandler);
     NGF_REGISTER_OBJECT_TYPE(Point);
+    NGF_REGISTER_OBJECT_TYPE(Trigger);
 }
 
 //Register worlds.

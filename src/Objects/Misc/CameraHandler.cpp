@@ -57,6 +57,12 @@ void CameraHandler::postLoad()
 //-------------------------------------------------------------------------------
 CameraHandler::~CameraHandler()
 {
+    if (mSplineAnim)
+        GlbVar.ogreSmgr->destroyAnimation(mSplineAnim->getName());
+    if (mSplineAnimState)
+        GlbVar.ogreSmgr->destroyAnimationState(mSplineAnimState->getAnimationName());
+    if (mSplineTrack)
+        mSplineAnim->destroyNodeTrack(0);
     mTargetNode = 0;
     GlbVar.ogreSmgr->destroySceneNode(mSplineNode);
     GlbVar.currCameraHandler = 0;

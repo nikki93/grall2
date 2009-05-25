@@ -48,31 +48,6 @@ material TestLevel_b3_m0/TEXFACE/WhiteTile5.png
 		}
 	}
 }
-material TestLevel_b3_m0/TEXFACE/FlatMetal1.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture FlatMetal1.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
 material TestLevel_b3_m0/TEXFACE/WhiteTile1.png
 {
 	receive_shadows on
@@ -98,7 +73,7 @@ material TestLevel_b3_m0/TEXFACE/WhiteTile1.png
 		}
 	}
 }
-material TestLevel_b3_m0/TEXFACE/WhiteTile2.png
+material TestLevel_b3_m0/TEXFACE/FlatMetal1.png
 {
 	receive_shadows on
 	technique
@@ -110,7 +85,7 @@ material TestLevel_b3_m0/TEXFACE/WhiteTile2.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture WhiteTile2.png
+				texture FlatMetal1.png
 				colour_op modulate
 			}
 		}
@@ -173,7 +148,7 @@ material TestLevel_b3_m0/TEXFACE/CircuitBoard.png
 		}
 	}
 }
-material TestLevel_b3_m0/TEXFACE/WhiteTileMulti1.png
+material TestLevel_b3_m0/TEXFACE/WhiteTile2.png
 {
 	receive_shadows on
 	technique
@@ -185,7 +160,7 @@ material TestLevel_b3_m0/TEXFACE/WhiteTileMulti1.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture WhiteTileMulti1.png
+				texture WhiteTile2.png
 				colour_op modulate
 			}
 		}
@@ -211,6 +186,45 @@ material TestLevel_b3_m0/TEXFACE/TileMetalLong1.png
 			texture_unit
 			{
 				texture TileMetalLong1.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material TestLevel_b4_m0
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material TestLevel_b3_m0/TEXFACE/WhiteTileMulti1.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTileMulti1.png
 				colour_op modulate
 			}
 		}

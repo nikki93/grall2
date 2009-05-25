@@ -20,6 +20,11 @@
 
 #include "Globals.h"
 
+#include <sstream>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/serialization/map.hpp>
+
 class CameraHandler :
     public NGF::Python::PythonGameObject,
     public NGF::Serialisation::SerialisableGameObject,
@@ -110,11 +115,44 @@ class CameraHandler :
             Ogre::String targetName;
             Ogre::Vector3 splineNodePos;
 
+            Ogre::String splineStr;
+            std::map<Ogre::Real, Ogre::String> splineStrMap;
+            std::stringstream splineStream(std::stringstream::in | std::stringstream::out);
+            Ogre::Real splineState;
+            Ogre::Real splineLength;
+
             //While saving, store stuff.
             NGF_SERIALISE_ON_SAVE
             {
                 targetName = mTargetNode ? mTargetNode->getName() : "NULL";
                 splineNodePos = mSplineNode->getPosition();
+
+                //Save spline points (if any).
+                if (mSplineAnim && mSplineAnimState && mSplineTrack)
+                {
+                    //Write to map.
+                    unsigned short num = mSplineTrack->getNumKeyFrames();
+                    for (unsigned short i = 0; i < num; ++i)
+                    {
+                        Ogre::TransformKeyFrame *key = static_cast<Ogre::TransformKeyFrame*>(mSplineTrack->getKeyFrame(i));
+                        Ogre::Real time = key->getTime();
+                        Ogre::String pos = Ogre::StringConverter::toString(key->getTranslate());
+                        splineStrMap[time] = pos;
+                    }
+
+                    //Serialise map.
+                    boost::archive::text_oarchive oa(splineStream);
+                    oa << splineStrMap;
+                    splineStr = splineStream.str();
+
+                    //Save time.
+                    splineState = mSplineAnimState->getTimePosition();
+                    splineLength = mSplineAnim->getLength();
+                }
+                else
+                {
+                    splineStr = "NULL";
+                }
             }
 
             //The actual read/write.
@@ -129,11 +167,52 @@ class CameraHandler :
             NGF_SERIALISE_OGRE(Real, mMovementFactor);
             NGF_SERIALISE_OGRE(Real, mRotationFactor);
             NGF_SERIALISE_OGRE(Real, mCameraHeight);
+            NGF_SERIALISE_STRING(splineStr);
+            NGF_SERIALISE_OGRE(Real, splineState);
+            NGF_SERIALISE_OGRE(Real, splineLength);
 
             NGF_SERIALISE_ON_LOAD
             {
                 mTargetNodeName = targetName;
                 mSplineNode->setPosition(splineNodePos);
+
+                if (splineStr != "NULL")
+                {
+                    //Clear/initialise stuff.
+                    if (mSplineAnim)
+                        GlbVar.ogreSmgr->destroyAnimation(mSplineAnim->getName());
+                    if (mSplineAnimState)
+                        GlbVar.ogreSmgr->destroyAnimationState(mSplineAnimState->getAnimationName());
+                    if (mSplineTrack)
+                        mSplineAnim->destroyNodeTrack(0);
+
+                    mSplineAnim = GlbVar.ogreSmgr->createAnimation("cameraSpline", splineLength);
+                    mSplineAnim->setInterpolationMode(Ogre::Animation::IM_SPLINE);
+
+                    mSplineTrack = mSplineAnim->createNodeTrack(0, mSplineNode);
+
+                    mSplineAnimState = GlbVar.ogreSmgr->createAnimationState("cameraSpline");
+                    mSplineAnimState->setEnabled(true);
+                    mSplineAnimState->setLoop(false);
+
+                    //Deserialise map.
+                    splineStream << splineStr;
+                    boost::archive::text_iarchive ia(splineStream);
+                    ia >> splineStrMap;
+
+                    //Get keyframes from map.
+                    for (std::map<Ogre::Real, Ogre::String>::iterator iter = splineStrMap.begin(); iter != splineStrMap.end(); ++iter)
+                    {
+                        Ogre::Real time = iter->first;
+                        Ogre::Vector3 pos = Ogre::StringConverter::parseVector3(iter->second);
+
+                        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(time);
+                        key->setTranslate(pos);
+                    }
+
+                    //Jump back to saved time.
+                    mSplineAnimState->setTimePosition(splineState);
+                }
             }
         }
         NGF_SERIALISE_END

@@ -4,8 +4,6 @@
 
 Next
 ----
-- Add serialisation for the splien in CameraHandler.
-
 - Add 'Trigger' GameObject, which runs script on collision. Actual physical collision and raycasts must be avoided.
 
 - Work on obstacle ideas.
@@ -131,3 +129,9 @@ Sun May 24 22:40:58 AST 2009
 ----------------------------
 - 'Point' GameObject added for visual location-specification in Blender. Also can be moved using script etc.
 - Spline camera tracking added to CameraHandler.
+
+Mon May 25 18:23:48 AST 2009
+----------------------------
+- Added serialisation of spline in CameraHandler.
+- Added 'Trigger' GameObject that can be used for scripted events. Actual physical simulation of collision 
+  and dimension check avoided.

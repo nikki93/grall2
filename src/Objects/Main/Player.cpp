@@ -111,7 +111,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
     switch (msg.code)
     {
         case MSG_KEYPRESSED:
-            if (GlbVar.paused)
+            if (GlbVar.paused || GlbVar.console->isVisible() || !mUnderControl)
                 break;
 
             switch (msg.getParam<OIS::KeyCode>(0))
@@ -161,8 +161,10 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 
                             bool needsCollision(btBroadphaseProxy* proxy0) const
                             {
-                                //If it's the Player, or isn't in the other dimension, we don't care.
-                                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) && (proxy0->m_collisionFilterGroup & mOppDimension);
+                                //If it's the Player, doesn't want dimension checking or isn't in the other dimension, we don't care.
+                                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
+                                    && (!(proxy0->m_collisionFilterGroup & DimensionManager::NO_DIM_CHECK))
+                                    && (proxy0->m_collisionFilterGroup & mOppDimension);
                             }
                         };
 

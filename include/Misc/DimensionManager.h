@@ -29,6 +29,7 @@ class DimensionManager
             DIM_1 = 1,
             DIM_2 = 2,
             DIM_SWITCH = 3,
+            NO_DIM_CHECK = 4,
         };
 
     protected:

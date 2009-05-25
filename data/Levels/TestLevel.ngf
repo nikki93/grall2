@@ -4,35 +4,35 @@ ngflevel TestLevel
 	{
 		type Point
 		name camTarget5
-		position 1.422799 7.582916 -1.543882
+		position 1.422799 7.512916 -1.543882
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camTarget4
-		position 0.329979 7.678076 -1.292562
+		position 0.329979 7.608076 -1.292562
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camTarget3
-		position -0.767940 7.582978 -0.417068
+		position -0.767940 7.512978 -0.417068
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camTarget2
-		position -1.299690 7.250000 1.414153
+		position -1.299690 7.111808 1.414153
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Light
 		name noname
-		position -13.550045 0.695267 10.550045
+		position -13.550045 0.625267 10.550045
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -46,7 +46,7 @@ ngflevel TestLevel
 	{
 		type StaticBrush
 		name thirdWall
-		position -2.500000 0.569699 -9.500000
+		position -2.500000 0.499699 -9.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -60,7 +60,7 @@ ngflevel TestLevel
 	{
 		type StaticBrush
 		name noname
-		position -2.500000 0.569699 -5.500000
+		position -2.500000 0.499699 -5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -74,7 +74,7 @@ ngflevel TestLevel
 	{
 		type StaticBrush
 		name firstWall
-		position -2.500000 0.569699 -1.500000
+		position -2.500000 0.499699 -1.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -88,7 +88,7 @@ ngflevel TestLevel
 	{
 		type StaticBrush
 		name noname
-		position -0.500000 0.569699 -0.500000
+		position -0.500000 0.499699 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -102,7 +102,7 @@ ngflevel TestLevel
 	{
 		type Player
 		name player1
-		position 10.919084 0.490549 1.500000
+		position 10.919084 0.420549 1.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -121,7 +121,7 @@ ngflevel TestLevel
 	{
 		type Light
 		name noname
-		position -2.500000 2.179168 5.500000
+		position -2.500000 2.109168 5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -135,7 +135,7 @@ ngflevel TestLevel
 	{
 		type CameraHandler
 		name cam
-		position 6.848991 5.950529 7.955254
+		position 6.848991 5.036720 7.955254
 		rotation 0.942108 -0.247786 -0.218479 -0.057463
 
 		properties
@@ -176,7 +176,7 @@ ngflevel TestLevel
 	{
 		type Light
 		name noname
-		position 12.500000 2.753613 -12.500000
+		position 12.500000 2.683613 -12.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -190,8 +190,28 @@ ngflevel TestLevel
 	{
 		type Point
 		name camTarget1
-		position 1.096206 6.500000 5.261518
+		position 1.096206 6.430000 5.261518
 		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -5.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			brushMeshFile TestLevel_b4.mesh
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.hasFlag("Player")):
+			       : 		other.applyCentralImpulse(Ngf.Vector3(0,50,0))
+			       : 		Ngf.destroyObject(self)
+		}
 	}
 }
 
