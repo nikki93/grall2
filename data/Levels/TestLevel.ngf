@@ -207,10 +207,13 @@ ngflevel TestLevel
 			brushMeshFile TestLevel_b4.mesh
 			script : import Ngf
 			       : 
+			       : def create(self):
+			       : 	self.m_impulsedPlayer = False
+			       : 
 			       : def collide(self, other):
-			       : 	if (other.hasFlag("Player")):
-			       : 		other.applyCentralImpulse(Ngf.Vector3(0,50,0))
-			       : 		Ngf.destroyObject(self)
+			       : 	if ((not self.m_impulsedPlayer) and other.hasFlag("Player")):
+			       : 		other.applyCentralImpulse(Ngf.Vector3(0,20,0))
+			       : 		self.m_impulsedPlayer = True
 		}
 	}
 }

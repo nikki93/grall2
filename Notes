@@ -4,8 +4,6 @@
 
 Next
 ----
-- Add serialisation of 'Radian' and 'Degree' Python types using pickle (NGF thing really).
-
 - Work on obstacle ideas.
 
 Waiting
@@ -135,3 +133,7 @@ Mon May 25 18:23:48 AST 2009
 - Added serialisation of spline in CameraHandler.
 - Added 'Trigger' GameObject that can be used for scripted events. Actual physical simulation of collision 
   and dimension check avoided.
+
+Tue May 26 22:17:15 AST 2009
+----------------------------
+- Radian/Degree Python types serialisation added (to NGF).
