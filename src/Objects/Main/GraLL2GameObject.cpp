@@ -22,7 +22,7 @@ GraLL2GameObject::GraLL2GameObject(bool dimensional)
         //Remember which dimensions we're in.
         bool dim1 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension1", 0, "1"));
         bool dim2 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension2", 0, "1"));
-        mDimensions = (dim1 ? DimensionManager::DIM_1 : DimensionManager::DIM_NONE) | (dim2 ? DimensionManager::DIM_2 : DimensionManager::DIM_NONE);
+        mDimensions = (dim1 ? DimensionManager::DIM_1 : DimensionManager::NONE) | (dim2 ? DimensionManager::DIM_2 : DimensionManager::NONE);
     }
     else
     {

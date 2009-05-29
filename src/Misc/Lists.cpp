@@ -22,6 +22,8 @@
 #include "Objects/Misc/CameraHandler.h"
 #include "Objects/Misc/Point.h"
 #include "Objects/Misc/Trigger.h"
+#include "Objects/Misc/RigidBody.h"
+#include "Objects/Obstacles/MovingBrush.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -35,6 +37,8 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(CameraHandler);
     NGF_REGISTER_OBJECT_TYPE(Point);
     NGF_REGISTER_OBJECT_TYPE(Trigger);
+    NGF_REGISTER_OBJECT_TYPE(RigidBody);
+    NGF_REGISTER_OBJECT_TYPE(MovingBrush);
 }
 
 //Register worlds.

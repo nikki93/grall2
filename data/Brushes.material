@@ -5,7 +5,7 @@
 
 import * from Base.program
 
-material Brushes/FlatMetal1.png : PerPixelMax3
+material Brushes/FlatMetal1.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -16,27 +16,17 @@ material Brushes/FlatMetal1.png : PerPixelMax3
                         diffuse 0.9 0.9 0.9 1
                         texture_unit
                         {
-                                texture WhiteTile5.png
+                                texture FlatMetal1.png
                         }
                         texture_unit
                         {
-                                texture WhiteTile_NM.png
-                        }
-                        texture_unit
-                        {
-                                //texture FlatMetal1.png
-                                texture rockwall.tga
-                        }
-                        texture_unit
-                        {
-                                //texture Plain_NM.png
-                                texture rockwall_NM.tga
+                                texture Plain_NM.png
                         }
                 }
         }
 }
 
-material Brushes/TileMetalLong1.png : PerPixelMax3
+material Brushes/TileMetalLong1.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -57,7 +47,7 @@ material Brushes/TileMetalLong1.png : PerPixelMax3
         }
 }
 
-material Brushes/CircuitBoard.png : PerPixelMax3
+material Brushes/CircuitBoard.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -78,7 +68,7 @@ material Brushes/CircuitBoard.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile1.png : PerPixelMax3
+material Brushes/WhiteTile1.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -99,7 +89,7 @@ material Brushes/WhiteTile1.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile2.png : PerPixelMax3
+material Brushes/WhiteTile2.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -120,7 +110,7 @@ material Brushes/WhiteTile2.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile3.png : PerPixelMax3
+material Brushes/WhiteTile3.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -141,7 +131,7 @@ material Brushes/WhiteTile3.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile4.png : PerPixelMax3
+material Brushes/WhiteTile4.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -162,7 +152,7 @@ material Brushes/WhiteTile4.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile5.png : PerPixelMax3
+material Brushes/WhiteTile5.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique
@@ -183,7 +173,7 @@ material Brushes/WhiteTile5.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTileMulti1.png : PerPixelMax3
+material Brushes/WhiteTileMulti1.png : PerPixelMax3Parallax
 {
         receive_shadows on
         technique

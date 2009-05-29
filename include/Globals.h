@@ -43,6 +43,7 @@ struct Globals : public Ogre::Singleton<Globals>
 
     //Bullet.
     btDiscreteDynamicsWorld *phyWorld;
+    BtOgre::DebugDrawer *phyDebug;
 
     //MyGUI.
     MyGUI::Gui *gui;

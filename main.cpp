@@ -36,6 +36,10 @@ class GameListener :
                 GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
             GlbVar.phyWorld->debugDrawWorld();
 
+	    //Shows debug if F3 key down.
+	    GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F3));
+	    GlbVar.phyDebug->step();
+
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
             return GlbVar.woMgr->tick(evt);
@@ -214,6 +218,10 @@ class Game
 
             GlbVar.phyWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfig);
 
+            ogreRmgr.createResourceGroup("BtOgre");
+	    GlbVar.phyDebug = new BtOgre::DebugDrawer(GlbVar.ogreSmgr->getRootSceneNode(), GlbVar.phyWorld);
+	    GlbVar.phyWorld->setDebugDrawer(GlbVar.phyDebug);
+
             //--- MyGUI (GUI) ----------------------------------------------------------
             GlbVar.gui = new MyGUI::Gui();
             GlbVar.gui->initialise(GlbVar.ogreWindow);
@@ -295,6 +303,7 @@ class Game
             delete GlbVar.goMgr;
 
             //Physics.
+            delete GlbVar.phyDebug;
             delete GlbVar.phyWorld;
             delete mSolver;
             delete mDispatcher;

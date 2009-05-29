@@ -4,7 +4,15 @@
 
 Next
 ----
-- Work on obstacle ideas.
+- Add 'Director' to direct MovingBrush.
+
+- Make shaders read material properties.
+
+- Add 'Crate' object.
+
+- Work on more obstacle ideas.
+
+- Add shadows.
 
 Waiting
 -------
@@ -137,3 +145,12 @@ Mon May 25 18:23:48 AST 2009
 Tue May 26 22:17:15 AST 2009
 ----------------------------
 - Radian/Degree Python types serialisation added (to NGF).
+
+Thu May 28 20:32:26 AST 2009
+----------------------------
+- Added generic 'RigidBody' object for prop RigidBodies.
+
+Fri May 29 22:11:04 AST 2009
+----------------------------
+- Added 'MovingBrush' for moving brushes, such as lifts, moving platforms etc. Highly scriptable, as seen 
+  in demo.

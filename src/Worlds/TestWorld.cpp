@@ -4,8 +4,7 @@ TestWorld.cpp
 =========================================
 */
 
-#include "Objects/Main/Player.h"
-#include "Objects/Main/StaticBrush.h"
+#include "Objects/Misc/RigidBody.h"
 
 #include "Worlds/TestWorld.h"
 

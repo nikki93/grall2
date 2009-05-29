@@ -29,7 +29,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
     mShape = converter.createSphere();
-    btScalar mass = 3;
+    btScalar mass = 2;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
@@ -41,7 +41,8 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    initBody();
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::PLAYER, mDimensions);
+    setBulletObject(mBody);
 
     //Control node is used for controlling the Player. He rotates in all kinds of crazy ways, but we need to know where we're headed.
     mControlNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName + "-controlnode", pos, rot);
@@ -83,12 +84,12 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 
     mControlNode->setPosition(mNode->getPosition());
 
-    if (mBody->getAngularVelocity().length2() < 777)
+    if (mBody->getAngularVelocity().length2() < 600)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
         torque.x =  (isKeyDown(OIS::KC_DOWN) || isKeyDown(OIS::KC_S)) - (isKeyDown(OIS::KC_UP) || isKeyDown(OIS::KC_W));
         torque.z =  (isKeyDown(OIS::KC_LEFT) || isKeyDown(OIS::KC_A)) - (isKeyDown(OIS::KC_RIGHT) || isKeyDown(OIS::KC_D));
-        torque *= 9;
+        torque *= 6;
 
         mBody->applyTorque(BtOgre::Convert::toBullet(mControlNode->getOrientation() * torque));
     }
@@ -173,7 +174,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                         shape.setLocalScaling(btVector3(0.85,0.85,0.85));
 
                         //Where to cast from, where to cast to, etc.
-                        btVector3 pos1 = mBody->getWorldTransform().getOrigin();
+                        btVector3 pos1 = mBody->getWorldTransform().getOrigin() - btVector3(0,0.15,0);
                         btVector3 pos2 = btVector3(pos1.x(),9999,pos1.z());
                         btQuaternion rot = mBody->getWorldTransform().getRotation();
                         btTransform trans1(rot, pos1);

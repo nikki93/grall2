@@ -3,6 +3,48 @@ ngflevel TestLevel
 	object
 	{
 		type Point
+		name platformPoint5
+		position 9.500000 -0.300000 -9.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name platformPoint4
+		position 9.500000 -0.300000 -7.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name platformPoint3
+		position 5.500000 -0.300000 -7.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name platformPoint2
+		position 5.500000 -0.300000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Trigger
+		name platformTurner
+		position 9.500000 -0.300000 -8.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			brushMeshFile TestLevel_b0.mesh
+		}
+	}
+	object
+	{
+		type Point
 		name camTarget5
 		position 1.422799 7.512916 -1.543882
 		rotation 1.000000 0.000000 0.000000 -0.000000
@@ -51,7 +93,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b0.mesh
+			brushMeshFile TestLevel_b1.mesh
 			dimension1 yes
 			dimension2 no
 		}
@@ -65,7 +107,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b1.mesh
+			brushMeshFile TestLevel_b2.mesh
 			dimension1 no
 			dimension2 yes
 		}
@@ -79,7 +121,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b2.mesh
+			brushMeshFile TestLevel_b3.mesh
 			dimension1 yes
 			dimension2 no
 		}
@@ -93,7 +135,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b3.mesh
+			brushMeshFile TestLevel_b4.mesh
 			dimension1 yes
 			dimension2 yes
 		}
@@ -112,9 +154,11 @@ ngflevel TestLevel
 			script : import Ngf
 			       : 
 			       : def create(self):
-			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
-			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
-			       : 	self.p_underControl = False
+			       : 	#For the cutscene
+			       : 	#self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
+			       : 	#self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
+			       : 	#self.p_underControl = False
+			       : 	pass
 		}
 	}
 	object
@@ -143,8 +187,8 @@ ngflevel TestLevel
 			script : import Ngf
 			       : 
 			       : def create(self):
+			       : 	#Spline for cutscene
 			       : 	splineTime = 3.8
-			       : 	
 			       : 	self.beginSpline(splineTime)
 			       : 	self.addSplinePoint(0, self.getPosition())	
 			       : 	self.addSplinePoint(0.75, Ngf.getObject("camTarget1").getPosition())
@@ -153,11 +197,11 @@ ngflevel TestLevel
 			       : 	self.addSplinePoint(2.8, Ngf.getObject("camTarget4").getPosition())	
 			       : 	self.addSplinePoint(3.8, Ngf.getObject("camTarget5").getPosition())	
 			       : 	self.endSpline()
+			       : 	#self.setAlarm(splineTime, 0)
+			       : 	#self.setAlarm(splineTime + 2.5, 1)
 			       : 	
-			       : 	self.p_currState = 3
-			       : 	
-			       : 	self.setAlarm(splineTime, 0)
-			       : 	self.setAlarm(splineTime + 2.5, 1)
+			       : 	#self.p_currState = 3
+			       : 	self.p_currState = 2
 			       : 
 			       : def alarm(self, alm):
 			       : 	#Go to third-person smoothly
@@ -204,7 +248,7 @@ ngflevel TestLevel
 		{
 			dimension1 yes
 			dimension2 yes
-			brushMeshFile TestLevel_b4.mesh
+			brushMeshFile TestLevel_b5.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -215,6 +259,72 @@ ngflevel TestLevel
 			       : 		other.applyCentralImpulse(Ngf.Vector3(0,20,0))
 			       : 		self.m_impulsedPlayer = True
 		}
+	}
+	object
+	{
+		type RigidBody
+		name noname
+		position 6.977388 1.734903 5.437679
+		rotation 0.585844 -0.004380 0.696135 0.414927
+
+		properties
+		{
+			mass 5
+			friction 0.5
+			restitution 0
+			linearDamping 0
+			angularDamping 0
+			brushMeshFile TestLevel_b6.mesh
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.applyCentralImpulse(Ngf.Vector3(0,40,0))
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name platform1
+		position 9.500000 -0.300000 -2.992967
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			enabled no
+			brushMeshFile TestLevel_b7.mesh
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.m_turned = False
+			       : 	self.addPoint(Ngf.getObject("platformPoint1").getPosition())
+			       : 	self.addPoint(Ngf.getObject("platformPoint2").getPosition())
+			       : 	self.addPoint(Ngf.getObject("platformPoint3").getPosition())	
+			       : 	self.addPoint(Ngf.getObject("platformPoint4").getPosition())
+			       : 	self.addPoint(Ngf.getObject("platformPoint5").getPosition())	
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.hasFlag("Player")):
+			       : 		self.setAlarm(0.2, 0)
+			       : 		
+			       : 	if ((not self.m_turned) and other.getName() == "platformTurner"):
+			       : 		if ((self.getPosition() - other.getPosition()).squaredLength() < 0.01):
+			       : 			self.setPosition(other.getPosition())
+			       : 			self.p_velocity = Ngf.Vector3(0,1,0)
+			       : 			self.m_turned = True
+			       : 			
+			       : def alarm(self, alm):
+			       : 	if (alm == 0):
+			       : 		self.p_enabled = True
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Point
+		name platformPoint1
+		position 9.500000 -0.300000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 }
 
