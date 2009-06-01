@@ -10,7 +10,9 @@ MovingBrush.cpp
 
 //--- NGF events ----------------------------------------------------------------
 MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
-    : NGF::GameObject(pos, rot, id , properties, name)
+    : NGF::GameObject(pos, rot, id , properties, name),
+      mTimer(-1),
+      mLastFrameTime(0.1)
 {
     addFlag("MovingBrush");
 
@@ -68,6 +70,12 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
     if (mEnabled)
     {
+        //Timer.
+        if (mTimer >= 0)
+        {
+            mTimer -= evt.timeSinceLastFrame;
+        }
+
         //Get old place (current place actually).
         btTransform oldTrans;
         mBody->getMotionState()->getWorldTransform(oldTrans);
@@ -80,8 +88,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         {
             Ogre::Vector3 currPoint = mPoints.front();
             Ogre::Real sqDist = (currPoint - BtOgre::Convert::toOgre(prevPos)).squaredLength();
-            Ogre::Real sqSpeed = (mVelocity * evt.timeSinceLastFrame).squaredLength() * 2;
-            if (sqDist < sqSpeed)
+            if (sqDist < 0.0001)
             {
                 mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(currPoint)));
                 mPoints.pop_front();
@@ -152,6 +159,9 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         mNode->translate(mVelocity * evt.timeSinceLastFrame);
     }
 
+    //Save frame time.
+    mLastFrameTime = evt.timeSinceLastFrame;
+
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
@@ -167,8 +177,23 @@ NGF::MessageReply MovingBrush::receiveMessage(NGF::Message msg)
     return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------
-void MovingBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
+void MovingBrush::collide(NGF::GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    //If Director, get directed.
+    if ((mTimer < 0) && other->hasFlag("Director"))
+    {
+        Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
+        Ogre::Real sqDist = (otherPos - BtOgre::Convert::toOgre(mBody->getWorldTransform().getOrigin())).squaredLength();
+        if (sqDist < 0.0001)
+        {
+            mBody->getMotionState()->setWorldTransform(btTransform(mBody->getWorldTransform().getRotation(), BtOgre::Convert::toBullet(otherPos)));
+            mVelocity = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETVELOCITY));
+
+            //Wait for next time, to avoid sticking to this one.
+            mTimer = 1/(mVelocity.length());
+        }
+    }
+
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
     if (oth)

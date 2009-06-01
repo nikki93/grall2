@@ -2,6 +2,66 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Director
+		name noname
+		position 14.500000 -0.300000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 9.500000 -0.300000 -6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 14.500000 -0.300000 -6.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 12.500000 -0.300000 -3.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 12.500000 -0.300000 -5.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
 		type Point
 		name platformPoint5
 		position 9.500000 -0.300000 -9.000000
@@ -25,7 +85,7 @@ ngflevel TestLevel
 	{
 		type Point
 		name platformPoint2
-		position 5.500000 -0.300000 -5.500000
+		position 3.500000 -0.300000 -6.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
@@ -155,10 +215,9 @@ ngflevel TestLevel
 			       : 
 			       : def create(self):
 			       : 	#For the cutscene
-			       : 	#self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
-			       : 	#self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
-			       : 	#self.p_underControl = False
-			       : 	pass
+			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
+			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
+			       : 	self.p_underControl = False
 		}
 	}
 	object
@@ -197,11 +256,11 @@ ngflevel TestLevel
 			       : 	self.addSplinePoint(2.8, Ngf.getObject("camTarget4").getPosition())	
 			       : 	self.addSplinePoint(3.8, Ngf.getObject("camTarget5").getPosition())	
 			       : 	self.endSpline()
-			       : 	#self.setAlarm(splineTime, 0)
-			       : 	#self.setAlarm(splineTime + 2.5, 1)
+			       : 	self.setAlarm(splineTime, 0)
+			       : 	self.setAlarm(splineTime + 2.5, 1)
 			       : 	
-			       : 	#self.p_currState = 3
-			       : 	self.p_currState = 2
+			       : 	self.p_currState = 3
+			       : 	#self.p_currState = 2
 			       : 
 			       : def alarm(self, alm):
 			       : 	#Go to third-person smoothly
@@ -323,8 +382,20 @@ ngflevel TestLevel
 	{
 		type Point
 		name platformPoint1
-		position 9.500000 -0.300000 -5.500000
+		position 7.500000 -0.300000 -6.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Director
+		name noname
+		position 9.500000 -0.300000 -5.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
 	}
 }
 

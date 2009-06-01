@@ -74,11 +74,11 @@ class CameraHandler :
         {
             Ogre::Vector3 dirA = mCamera->getDirection();
             Ogre::Vector3 dirB = target - mCamera->getPosition();
+            dirB.normalise();
             Ogre::Vector3 res;
 
             if (mRotationFactor)
             {
-                dirB.normalise();
                 res = dirA + ((dirB - dirA) * elapsed * mRotationFactor);
             }
             else
@@ -151,7 +151,7 @@ class CameraHandler :
                 }
                 else
                 {
-                    splineStr = "NULL";
+                    splineStr = "n";
                 }
             }
 
@@ -176,7 +176,7 @@ class CameraHandler :
                 mTargetNodeName = targetName;
                 mSplineNode->setPosition(splineNodePos);
 
-                if (splineStr != "NULL")
+                if (splineStr != "n")
                 {
                     //Clear/initialise stuff.
                     if (mSplineAnim)

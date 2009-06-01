@@ -24,6 +24,7 @@
 #include "Objects/Misc/Trigger.h"
 #include "Objects/Misc/RigidBody.h"
 #include "Objects/Obstacles/MovingBrush.h"
+#include "Objects/Misc/Director.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -39,6 +40,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Trigger);
     NGF_REGISTER_OBJECT_TYPE(RigidBody);
     NGF_REGISTER_OBJECT_TYPE(MovingBrush);
+    NGF_REGISTER_OBJECT_TYPE(Director);
 }
 
 //Register worlds.

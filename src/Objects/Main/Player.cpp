@@ -68,6 +68,9 @@ Player::~Player()
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
 
+    //Fix FOV.
+    GlbVar.ogreCamera->setFOVy(Ogre::Degree(45));
+
     //We only clear up stuff that we did.
     loseCameraHandler();
     destroyBody();
@@ -82,8 +85,10 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
+    //Allow the controlnode to catch up.
     mControlNode->setPosition(mNode->getPosition());
 
+    //Movement, look.
     if (mBody->getAngularVelocity().length2() < 600)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
@@ -96,6 +101,15 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 
     OIS::MouseState ms = getMouseState();
     mControlNode->yaw(Ogre::Degree(-ms.X.rel * 0.2));
+
+    //FOV effect.
+    /*
+    btVector3 vel = mBody->getLinearVelocity();
+    vel.setY(0);
+    Ogre::Real sqSpeed = vel.length2();
+    GlbVar.console->print(Ogre::StringConverter::toString(sqSpeed) + "\n");
+    GlbVar.ogreCamera->setFOVy(Ogre::Degree(45 + clamp<Ogre::Real>(sqSpeed / 5, 0, 10)));
+    */
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

@@ -19,6 +19,10 @@
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
 
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/serialization/vector.hpp>
+
 #include <stack>
 
 class MovingBrush :
@@ -30,8 +34,9 @@ class MovingBrush :
         Ogre::Entity *mEntity;
 
         bool mEnabled;
-
         Ogre::Vector3 mVelocity;
+        Ogre::Real mTimer;
+        Ogre::Real mLastFrameTime;
 
         std::deque<Ogre::Vector3> mPoints;
 
@@ -61,9 +66,51 @@ class MovingBrush :
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(MovingBrush)
         {
+            std::vector<Ogre::String> pointsStrVec;
+            Ogre::String pointsStr;
+            std::stringstream pointsStream(std::stringstream::in | std::stringstream::out);
+
+            NGF_SERIALISE_ON_SAVE
+            {
+                if (!mPoints.empty())
+                {
+                    //Write each point.
+                    for (std::deque<Ogre::Vector3>::iterator iter = mPoints.begin(); iter != mPoints.end(); ++iter)
+                        pointsStrVec.push_back(Ogre::StringConverter::toString(*iter));
+
+                    //Serialise all.
+                    boost::archive::text_oarchive oa(pointsStream);
+                    oa << pointsStrVec;
+                    pointsStr = pointsStream.str();
+                }
+                else
+                {
+                    pointsStr = "n";
+                }
+            }
+
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_OGRE(Vector3, mVelocity);
+            NGF_SERIALISE_STRING(pointsStr);
+
+            NGF_SERIALISE_ON_LOAD
+            {
+                if (pointsStr != "n")
+                {
+                    //Clear what we already have (actually supposed to be nothing, but we do this anyway).
+                    mPoints.clear();
+
+                    //Deserialise.
+                    pointsStream << pointsStr;
+                    boost::archive::text_iarchive ia(pointsStream);
+                    ia >> pointsStrVec;
+
+                    //Read it all back.
+                    for (std::vector<Ogre::String>::iterator iter = pointsStrVec.begin(); iter != pointsStrVec.end(); ++iter)
+                        mPoints.push_back(Ogre::StringConverter::parseVector3(*iter));
+                }
+            }
         }
         NGF_SERIALISE_END
 };

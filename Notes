@@ -4,8 +4,6 @@
 
 Next
 ----
-- Add 'Director' to direct MovingBrush.
-
 - Make shaders read material properties.
 
 - Add 'Crate' object.
@@ -154,3 +152,11 @@ Fri May 29 22:11:04 AST 2009
 ----------------------------
 - Added 'MovingBrush' for moving brushes, such as lifts, moving platforms etc. Highly scriptable, as seen 
   in demo.
+
+Sun May 31 18:17:56 AST 2009
+----------------------------
+- Added serialisation for MovingBrush path points.
+
+Mon Jun  1 22:57:21 AST 2009
+----------------------------
+- 'Director' GameObject added for moving object guidance.
