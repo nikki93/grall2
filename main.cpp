@@ -142,7 +142,7 @@ class Game
             //GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);
             //GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
 
-            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.2,0.2,0.2));
+            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.4,0.4,0.4));
             
             /*
             Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
@@ -151,7 +151,6 @@ class Game
             light->setSpecularColour(Ogre::ColourValue(0,0,0));
             light->setDirection(Ogre::Vector3(1,-2.5,1)); 
             */
-            
 
             //Camera, Viewport.
             GlbVar.ogreCamera = GlbVar.ogreSmgr->createCamera("mainCamera");

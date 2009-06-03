@@ -86,9 +86,15 @@ void Director::collide(GameObject *other, btCollisionObject *otherPhysicsObject,
 //-------------------------------------------------------------------------------
 
 //--- Python interface implementation -------------------------------------------
-/*
 NGF_PY_BEGIN_IMPL(Director)
 {
+    NGF_PY_METHOD_IMPL(setOrientation)
+    {
+        mDirection = py::extract<Ogre::Quaternion>(args[0]);
+        NGF_PY_RETURN();
+    }
+
+    NGF_PY_PROPERTY_IMPL(direction, mDirection, Ogre::Quaternion);
+    NGF_PY_PROPERTY_IMPL(velocity, mVelocity, Ogre::Vector3);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
-*/

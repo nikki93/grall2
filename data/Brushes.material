@@ -5,7 +5,7 @@
 
 import * from Base.program
 
-material Brushes/FlatMetal1.png : PerPixelMax3
+material Brushes/FlatMetal1.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -14,6 +14,7 @@ material Brushes/FlatMetal1.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture WhiteTile3.png
@@ -26,7 +27,7 @@ material Brushes/FlatMetal1.png : PerPixelMax3
         }
 }
 
-material Brushes/TileMetalLong1.png : PerPixelMax3
+material Brushes/TileMetalLong1.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -35,6 +36,7 @@ material Brushes/TileMetalLong1.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture TileMetalLong1.png
@@ -47,7 +49,7 @@ material Brushes/TileMetalLong1.png : PerPixelMax3
         }
 }
 
-material Brushes/CircuitBoard.png : PerPixelMax3
+material Brushes/CircuitBoard.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -68,7 +70,7 @@ material Brushes/CircuitBoard.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile1.png : PerPixelMax3
+material Brushes/WhiteTile1.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -77,6 +79,7 @@ material Brushes/WhiteTile1.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture WhiteTile1.png
@@ -89,7 +92,7 @@ material Brushes/WhiteTile1.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile2.png : PerPixelMax3
+material Brushes/WhiteTile2.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -98,6 +101,7 @@ material Brushes/WhiteTile2.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture WhiteTile2.png
@@ -110,7 +114,7 @@ material Brushes/WhiteTile2.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile3.png : PerPixelMax3
+material Brushes/WhiteTile3.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -119,6 +123,7 @@ material Brushes/WhiteTile3.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture WhiteTile3.png
@@ -131,7 +136,7 @@ material Brushes/WhiteTile3.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile4.png : PerPixelMax3
+material Brushes/WhiteTile4.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -140,6 +145,7 @@ material Brushes/WhiteTile4.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture WhiteTile4.png
@@ -152,7 +158,7 @@ material Brushes/WhiteTile4.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTile5.png : PerPixelMax3
+material Brushes/WhiteTile5.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -161,6 +167,7 @@ material Brushes/WhiteTile5.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture WhiteTile5.png
@@ -173,7 +180,7 @@ material Brushes/WhiteTile5.png : PerPixelMax3
         }
 }
 
-material Brushes/WhiteTileMulti1.png : PerPixelMax3
+material Brushes/WhiteTileMulti1.png : BaseNormalMap
 {
         receive_shadows on
         technique
@@ -182,6 +189,7 @@ material Brushes/WhiteTileMulti1.png : PerPixelMax3
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
+                        specular 0.8 0.8 0.8 1
                         texture_unit
                         {
                                 texture WhiteTileMulti1.png

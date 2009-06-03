@@ -160,3 +160,11 @@ Sun May 31 18:17:56 AST 2009
 Mon Jun  1 22:57:21 AST 2009
 ----------------------------
 - 'Director' GameObject added for moving object guidance.
+
+Tue Jun  2 20:09:10 AST 2009
+----------------------------
+- Made Director direction scriptable.
+
+Wed Jun  3 20:38:49 AST 2009
+----------------------------
+- Normal mapping fixed. Looking beautiful. Yay! :-)
