@@ -2,7 +2,6 @@
 vertex_program Base_vp cg
 {
 	source Base.cg
-        compile_arguments -DNORMAL_MAPPING=0
 
 	default_params
 	{
@@ -19,7 +18,6 @@ vertex_program Base_vp cg
 fragment_program Base_fp cg
 {
 	source Base.cg 
-        compile_arguments -DNORMAL_MAPPING=0
 
 	default_params
 	{
@@ -69,7 +67,7 @@ material Base
 vertex_program BaseNormalMap_vp cg
 {
 	source Base.cg
-        compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
+        compile_arguments -DNORMAL_MAPPING=1
 
 	default_params
 	{
@@ -86,7 +84,7 @@ vertex_program BaseNormalMap_vp cg
 fragment_program BaseNormalMap_fp cg
 {
 	source Base.cg 
-        compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
+        compile_arguments -DNORMAL_MAPPING=1
 
 	default_params
 	{
@@ -124,6 +122,73 @@ material BaseNormalMap
 			}   
 
 			fragment_program_ref BaseNormalMap_fp
+			{
+			} 
+		}  
+
+	}  
+
+}
+
+//--- BaseNormalMapParallax -------------------------------------------------------------------
+vertex_program BaseNormalMapParallax_vp cg
+{
+	source Base.cg
+        compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
+
+	default_params
+	{
+		param_named_auto lightPosition0 light_position_object_space 0
+		param_named_auto lightPosition1 light_position_object_space 1
+		param_named_auto lightPosition2 light_position_object_space 2
+		param_named_auto eyePosition camera_position_object_space
+		param_named_auto worldviewproj worldviewproj_matrix
+	} 
+
+	entry_point Base_vp
+	profiles vs_1_1 arbvp1
+}
+fragment_program BaseNormalMapParallax_fp cg
+{
+	source Base.cg 
+        compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
+
+	default_params
+	{
+                param_named_auto matAmbient surface_ambient_colour
+                param_named_auto matDiffuse surface_diffuse_colour
+                param_named_auto matSpecular surface_specular_colour
+
+		param_named_auto lightDiffuse0 light_diffuse_colour 0
+		param_named_auto lightDiffuse1 light_diffuse_colour 1
+		param_named_auto lightDiffuse2 light_diffuse_colour 2
+
+		param_named_auto lightSpecular0 light_specular_colour 0
+		param_named_auto lightSpecular1 light_specular_colour 1
+
+		param_named_auto lightAtten0 light_attenuation 0
+		param_named_auto lightAtten1 light_attenuation 1
+		param_named_auto lightAtten2 light_attenuation 2
+
+		param_named exponent0 float 127
+
+		param_named_auto ambient ambient_light_colour
+	} 
+
+	entry_point Base_fp
+	profiles ps_2_0 arbfp1
+} 
+material BaseNormalMapParallax
+{ 
+	technique 
+	{ 
+		pass 
+		{
+			vertex_program_ref BaseNormalMapParallax_vp
+			{ 
+			}   
+
+			fragment_program_ref BaseNormalMapParallax_fp
 			{
 			} 
 		}  

@@ -101,5 +101,9 @@ struct BulletConvexResultCollector : public btDynamicsWorld::ConvexResultCallbac
     }
 };
 
+//For high-res screenshots.
+void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera, 
+        const int& pGridSize, const Ogre::String& pFileName, const Ogre::String& pFileExtention, 
+        const bool& pStitchGridImages);
 
 #endif

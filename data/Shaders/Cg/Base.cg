@@ -115,14 +115,14 @@ void Base_fp
     )
 { 
 #if NORMAL_MAPPING
-    //Get normal from normalmap.
-    float3 N = normalize(expand(tex2D(normalBumpMap, uv).xyz));
 #if PARALLAX_MAPPING
     float height = tex2D(normalBumpMap, uv).a;
     float displacement = (height * 0.04) - 0.02;
     float3 uv2 = float3(uv, 1); 
     uv = ((eyeDir * displacement) + uv2).xy;
 #endif
+    //Get normal from normalmap.
+    float3 N = normalize(expand(tex2D(normalBumpMap, uv).xyz));
 #else
     //Use passed normal.
     float3 N = normal;

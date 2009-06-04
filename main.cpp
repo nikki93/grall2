@@ -71,6 +71,10 @@ class GameListener :
                     clearLevel();
                     NGF::Serialisation::Serialiser::load("SaveFile");
                     break;
+
+                case OIS::KC_F9:
+                    highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".jpg", true);
+                    break;
             }
 
             return true;
@@ -164,6 +168,7 @@ class Game
             //Resources.
             Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
 
+            ogreRmgr.addResourceLocation(".", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");

@@ -169,3 +169,4 @@ Wed Jun  3 20:38:49 AST 2009
 Thu Jun  4 20:37:25 AST 2009
 ----------------------------
 - Parallax mapping added, and heightmap textures added for existing textures.
+- Added high-res screenshot taker.
