@@ -30,13 +30,14 @@ class Light :
     protected:
         Ogre::SceneNode *mNode;
         Ogre::Light *mLight;
+        Ogre::Real mTime;
 
     public:
         Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Light();
 
         //--- Events -------------------------------------------------------------------
-        void unpausedTick(const Ogre::FrameEvent &evt) {}
+        void unpausedTick(const Ogre::FrameEvent &evt) { mNode->translate(Ogre::Vector3(Ogre::Math::Sin(mTime),0,Ogre::Math::Cos(mTime)) * evt.timeSinceLastFrame); mTime += evt.timeSinceLastFrame; }
         void pausedTick(const Ogre::FrameEvent &evt) {}
         NGF::MessageReply receiveMessage(NGF::Message msg) { NGF_NO_REPLY(); }
 

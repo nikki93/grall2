@@ -10,7 +10,8 @@ Light.cpp
 
 //--- NGF events ----------------------------------------------------------------
 Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
-    : NGF::GameObject(pos, rot, id , properties, name)
+    : NGF::GameObject(pos, rot, id , properties, name),
+      mTime(0)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("Light");

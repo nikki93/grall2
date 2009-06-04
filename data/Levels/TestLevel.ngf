@@ -148,7 +148,7 @@ ngflevel TestLevel
 	{
 		type Light
 		name noname
-		position -9.863637 0.625267 8.776528
+		position -1.863637 0.625267 2.776528
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties

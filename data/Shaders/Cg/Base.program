@@ -69,7 +69,7 @@ material Base
 vertex_program BaseNormalMap_vp cg
 {
 	source Base.cg
-        compile_arguments -DNORMAL_MAPPING=1
+        compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
 
 	default_params
 	{
@@ -86,7 +86,7 @@ vertex_program BaseNormalMap_vp cg
 fragment_program BaseNormalMap_fp cg
 {
 	source Base.cg 
-        compile_arguments -DNORMAL_MAPPING=1
+        compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
 
 	default_params
 	{
