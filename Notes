@@ -4,7 +4,7 @@
 
 Next
 ----
-- Add 'Crate' object.
+- Work on Crate dynamics.
 
 - Work on more obstacle ideas.
 
@@ -170,3 +170,9 @@ Thu Jun  4 20:37:25 AST 2009
 ----------------------------
 - Parallax mapping added, and heightmap textures added for existing textures.
 - Added high-res screenshot taker.
+
+Fri Jun  5 23:12:22 AST 2009
+----------------------------
+- Tried SSAO. Worked, but not a good effect, ditched.
+- Learnt about shadow mapping.
+- Addded 'Crate' GameObject.

@@ -16,7 +16,7 @@ void Base_vp
          uniform float4 lightPosition1,
          uniform float4 lightPosition2,
          uniform float3 eyePosition,
-         uniform float4x4 worldviewproj,
+         uniform float4x4 worldViewProj,
 
          out float4 oPos : POSITION,
          out float2 oUv : TEXCOORD0,
@@ -33,7 +33,7 @@ void Base_vp
          out float3 oHalfAngle1: TEXCOORD7
      ) 
 {
-    oPos = mul(worldviewproj, position);
+    oPos = mul(worldViewProj, position);
     oUv = uv;
 
     //Relative light positions.
@@ -54,7 +54,7 @@ void Base_vp
     float3 EyeDir = normalize(eyePosition - position.xyz);
 
 #if NORMAL_MAPPING
-    //Tangent-space transform.
+    //If normal mapping is on, we move everything to tangent-space.
     float3 binormal = cross(tangent, normal);
     float3x3 rotation = float3x3(tangent, binormal, normal);
 
@@ -62,14 +62,18 @@ void Base_vp
     oLightDir0 = mul(rotation, oLightDir0);
     oLightDir2 = mul(rotation, oLightDir2);
     EyeDir = mul(rotation, EyeDir);
+#endif
 
+    oHalfAngle0 = normalize(oLightDir0 + EyeDir);
+    oHalfAngle1 = normalize(oLightDir1 + EyeDir);
+
+#if NORMAL_MAPPING
     oEyeDir = EyeDir;
 #else
     oNorm = normal;
 #endif
 
-    oHalfAngle0 = normalize(oLightDir0 + EyeDir);
-    oHalfAngle1 = normalize(oLightDir1 + EyeDir);
+    //Shadow UV.
 }
 
 void Base_fp
@@ -95,6 +99,11 @@ void Base_fp
          uniform float4 matDiffuse,
          uniform float4 matSpecular,
 
+
+#if PARALLAX_MAPPING
+         uniform float4 scaleBias,
+#endif
+
          //Light properties.
          uniform float4 lightDiffuse0,
          uniform float4 lightDiffuse1,
@@ -117,7 +126,7 @@ void Base_fp
 #if NORMAL_MAPPING
 #if PARALLAX_MAPPING
     float height = tex2D(normalBumpMap, uv).a;
-    float displacement = (height * 0.04) - 0.02;
+    float displacement = (height * scaleBias.x) - scaleBias.y;
     float3 uv2 = float3(uv, 1); 
     uv = ((eyeDir * displacement) + uv2).xy;
 #endif
@@ -155,6 +164,7 @@ void Base_fp
     //Ambient.
     oColor += matAmbient * ambient;
 
-    //Lighting + texture.
+    //Diffuse texture.
     oColor *= tex2D(diffuseMap, uv);
 }
+

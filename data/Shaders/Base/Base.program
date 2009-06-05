@@ -9,7 +9,7 @@ vertex_program Base_vp cg
 		param_named_auto lightPosition1 light_position_object_space 1
 		param_named_auto lightPosition2 light_position_object_space 2
 		param_named_auto eyePosition camera_position_object_space
-		param_named_auto worldviewproj worldviewproj_matrix
+		param_named_auto worldViewProj worldviewproj_matrix
 	} 
 
 	entry_point Base_vp
@@ -36,6 +36,8 @@ fragment_program Base_fp cg
 		param_named_auto lightAtten1 light_attenuation 1
 		param_named_auto lightAtten2 light_attenuation 2
 
+                param_named_auto shadowProj texture_viewproj_matrix 
+
 		param_named exponent0 float 127
 
 		param_named_auto ambient ambient_light_colour
@@ -57,10 +59,14 @@ material Base
 			fragment_program_ref Base_fp
 			{
 			} 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture Player.png
+                        }
 		}  
 
 	}  
-
 }
 
 //--- BaseNormalMap -------------------------------------------------------------------
@@ -75,7 +81,7 @@ vertex_program BaseNormalMap_vp cg
 		param_named_auto lightPosition1 light_position_object_space 1
 		param_named_auto lightPosition2 light_position_object_space 2
 		param_named_auto eyePosition camera_position_object_space
-		param_named_auto worldviewproj worldviewproj_matrix
+		param_named_auto worldViewProj worldviewproj_matrix
 	} 
 
 	entry_point Base_vp
@@ -103,6 +109,8 @@ fragment_program BaseNormalMap_fp cg
 		param_named_auto lightAtten1 light_attenuation 1
 		param_named_auto lightAtten2 light_attenuation 2
 
+                param_named_auto shadowProj texture_viewproj_matrix 
+
 		param_named exponent0 float 127
 
 		param_named_auto ambient ambient_light_colour
@@ -124,10 +132,18 @@ material BaseNormalMap
 			fragment_program_ref BaseNormalMap_fp
 			{
 			} 
+
+                        texture_unit DiffuseMap
+                        {
+                                texture Player.png
+                        }
+                        texture_unit NormalMap
+                        {
+                                texture Plain_NM.png
+                        }
 		}  
 
 	}  
-
 }
 
 //--- BaseNormalMapParallax -------------------------------------------------------------------
@@ -142,7 +158,7 @@ vertex_program BaseNormalMapParallax_vp cg
 		param_named_auto lightPosition1 light_position_object_space 1
 		param_named_auto lightPosition2 light_position_object_space 2
 		param_named_auto eyePosition camera_position_object_space
-		param_named_auto worldviewproj worldviewproj_matrix
+		param_named_auto worldViewProj worldviewproj_matrix
 	} 
 
 	entry_point Base_vp
@@ -170,7 +186,11 @@ fragment_program BaseNormalMapParallax_fp cg
 		param_named_auto lightAtten1 light_attenuation 1
 		param_named_auto lightAtten2 light_attenuation 2
 
+                param_named_auto shadowProj texture_viewproj_matrix 
+
 		param_named exponent0 float 127
+
+		param_named scaleBias float4 0.4 0.2
 
 		param_named_auto ambient ambient_light_colour
 	} 
@@ -180,6 +200,7 @@ fragment_program BaseNormalMapParallax_fp cg
 } 
 material BaseNormalMapParallax
 { 
+        set $scaleBias "0.04 0.02"
 	technique 
 	{ 
 		pass 
@@ -190,9 +211,17 @@ material BaseNormalMapParallax
 
 			fragment_program_ref BaseNormalMapParallax_fp
 			{
+                                param_named scaleBias float4 $scaleBias 1 0
 			} 
+
+                        texture_unit DiffuseMap
+                        {
+                                texture Player.png
+                        }
+                        texture_unit NormalBumpMap
+                        {
+                                texture Plain_NM.png
+                        }
 		}  
-
 	}  
-
 }

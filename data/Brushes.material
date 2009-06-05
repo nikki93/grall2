@@ -5,24 +5,18 @@
 
 import * from Base.program
 
-material Brushes/FlatMetal1.png : BaseNormalMapParallax
+material Brushes/FlatMetal1.png : Base //NormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap FlatMetal1.png
+        //set_texture_alias NormalBumpMap Crate1_NM.png
         technique
         {
                 pass
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
-                        specular 1 1 1 1
-                        texture_unit
-                        {
-                                texture WhiteTile3.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
+                        specular 0.9 0.9 0.9 1
                 }
         }
 }
@@ -30,6 +24,8 @@ material Brushes/FlatMetal1.png : BaseNormalMapParallax
 material Brushes/TileMetalLong1.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap TileMetalLong1.png
+        set_texture_alias NormalBumpMap TileMetalLong1_NM.png
         technique
         {
                 pass
@@ -37,35 +33,21 @@ material Brushes/TileMetalLong1.png : BaseNormalMapParallax
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
                         specular 0.8 0.8 0.8 1
-                        texture_unit
-                        {
-                                texture TileMetalLong1.png
-                        }
-                        texture_unit
-                        {
-                                texture TileMetalLong1_NM.png
-                        }
                 }
         }
 }
 
-material Brushes/CircuitBoard.png : BaseNormalMap
+material Brushes/CircuitBoard.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap CircuitBoard.png
+        set_texture_alias NormalBumpMap CircuitBoard_NM.png
         technique
         {
                 pass
                 {
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
-                        texture_unit
-                        {
-                                texture CircuitBoard.png
-                        }
-                        texture_unit
-                        {
-                                texture CircuitBoard_NM.png
-                        }
                 }
         }
 }
@@ -73,6 +55,8 @@ material Brushes/CircuitBoard.png : BaseNormalMap
 material Brushes/WhiteTile1.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap WhiteTile1.png
+        set_texture_alias NormalBumpMap WhiteTile_NM.png
         technique
         {
                 pass
@@ -80,14 +64,6 @@ material Brushes/WhiteTile1.png : BaseNormalMapParallax
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
                         specular 0.8 0.8 0.8 1
-                        texture_unit
-                        {
-                                texture WhiteTile1.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
@@ -95,6 +71,8 @@ material Brushes/WhiteTile1.png : BaseNormalMapParallax
 material Brushes/WhiteTile2.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap WhiteTile2.png
+        set_texture_alias NormalBumpMap WhiteTile_NM.png
         technique
         {
                 pass
@@ -102,14 +80,6 @@ material Brushes/WhiteTile2.png : BaseNormalMapParallax
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
                         specular 0.8 0.8 0.8 1
-                        texture_unit
-                        {
-                                texture WhiteTile2.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
@@ -117,6 +87,8 @@ material Brushes/WhiteTile2.png : BaseNormalMapParallax
 material Brushes/WhiteTile3.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap WhiteTile3.png
+        set_texture_alias NormalBumpMap WhiteTile_NM.png
         technique
         {
                 pass
@@ -124,14 +96,6 @@ material Brushes/WhiteTile3.png : BaseNormalMapParallax
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
                         specular 0.8 0.8 0.8 1
-                        texture_unit
-                        {
-                                texture WhiteTile3.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
@@ -139,6 +103,8 @@ material Brushes/WhiteTile3.png : BaseNormalMapParallax
 material Brushes/WhiteTile4.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap WhiteTile4.png
+        set_texture_alias NormalBumpMap WhiteTile_NM.png
         technique
         {
                 pass
@@ -146,14 +112,6 @@ material Brushes/WhiteTile4.png : BaseNormalMapParallax
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
                         specular 0.8 0.8 0.8 1
-                        texture_unit
-                        {
-                                texture WhiteTile4.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
@@ -161,6 +119,8 @@ material Brushes/WhiteTile4.png : BaseNormalMapParallax
 material Brushes/WhiteTile5.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap WhiteTile5.png
+        set_texture_alias NormalBumpMap WhiteTile_NM.png
         technique
         {
                 pass
@@ -168,14 +128,6 @@ material Brushes/WhiteTile5.png : BaseNormalMapParallax
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
                         specular 0.8 0.8 0.8 1
-                        texture_unit
-                        {
-                                texture WhiteTile5.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTile_NM.png
-                        }
                 }
         }
 }
@@ -183,6 +135,8 @@ material Brushes/WhiteTile5.png : BaseNormalMapParallax
 material Brushes/WhiteTileMulti1.png : BaseNormalMapParallax
 {
         receive_shadows on
+        set_texture_alias DiffuseMap WhiteTileMulti1.png
+        set_texture_alias NormalBumpMap WhiteTileMulti1_NM.png
         technique
         {
                 pass
@@ -190,14 +144,6 @@ material Brushes/WhiteTileMulti1.png : BaseNormalMapParallax
                         ambient 0.7 0.7 0.7 1
                         diffuse 0.9 0.9 0.9 1
                         specular 0.8 0.8 0.8 1
-                        texture_unit
-                        {
-                                texture WhiteTileMulti1.png
-                        }
-                        texture_unit
-                        {
-                                texture WhiteTileMulti1_NM.png
-                        }
                 }
         }
 }

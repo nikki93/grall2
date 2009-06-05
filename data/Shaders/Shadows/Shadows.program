@@ -1,0 +1,46 @@
+vertex_program ShadowCaster_vp cg
+{
+        source DepthShadowmap.cg
+        entry_point casterVP
+        profiles arbvp1 vs_2_0
+
+        compile_arguments -DLINEAR_RANGE=0
+
+        default_params
+        {
+                param_named_auto worldViewProj worldviewproj_matrix
+                param_named_auto texelOffsets texel_offsets
+                //param_named_auto depthRange scene_depth_range
+        }
+}
+
+
+fragment_program ShadowCaster_fp cg
+{
+        source DepthShadowmap.cg
+        entry_point casterFP
+        profiles arbfp1 ps_2_0 fp20
+
+        compile_arguments -DLINEAR_RANGE=0
+
+        default_params
+        {
+        }
+}
+
+material ShadowCaster
+{
+        technique
+        {
+                pass 
+                {
+                        vertex_program_ref ShadowCaster_vp
+                        {
+                        }
+                        fragment_program_ref ShadowCaster_fp
+                        {
+                        }
+                }
+        }
+}
+

@@ -36,9 +36,9 @@ class GameListener :
                 GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
             GlbVar.phyWorld->debugDrawWorld();
 
-	    //Shows debug if F3 key down.
-	    GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F3));
-	    GlbVar.phyDebug->step();
+            //Shows debug if F3 key down.
+            GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F3));
+            GlbVar.phyDebug->step();
 
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
@@ -143,10 +143,12 @@ class Game
 
             //SceneManager, main lights.
             GlbVar.ogreSmgr = GlbVar.ogreRoot->createSceneManager(Ogre::ST_GENERIC);
-            //GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);
-            //GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
-
             GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.4,0.4,0.4));
+
+            /*
+            GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+            GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
+            */
             
             /*
             Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
@@ -183,9 +185,8 @@ class Game
             ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
 
             ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
-            //ogreRmgr.addResourceLocation("../../data/Shaders/Monster", "FileSystem", "General");
-            //ogreRmgr.addResourceLocation("../../data/Shaders/Default", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Cg", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Base", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Shadows", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
 
             //--- OIS (Input) ----------------------------------------------------------
@@ -223,8 +224,8 @@ class Game
             GlbVar.phyWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfig);
 
             ogreRmgr.createResourceGroup("BtOgre");
-	    GlbVar.phyDebug = new BtOgre::DebugDrawer(GlbVar.ogreSmgr->getRootSceneNode(), GlbVar.phyWorld);
-	    GlbVar.phyWorld->setDebugDrawer(GlbVar.phyDebug);
+            GlbVar.phyDebug = new BtOgre::DebugDrawer(GlbVar.ogreSmgr->getRootSceneNode(), GlbVar.phyWorld);
+            GlbVar.phyWorld->setDebugDrawer(GlbVar.phyDebug);
 
             //--- MyGUI (GUI) ----------------------------------------------------------
             GlbVar.gui = new MyGUI::Gui();

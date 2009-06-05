@@ -2,16 +2,30 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Crate
+		name noname
+		position 2.500000 0.750000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			heightDeficiency -0.1
+		}
+	}
+	object
+	{
 		type Light
 		name noname
-		position -12.217461 3.549685 2.907095
+		position 12.000477 2.109168 -12.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			lightType point
-			colour 0.05 0.1 0.4
-			attenuation 100 0 0.2 0.01
+			colour 0.3 0.2 0.6
+			attenuation 100 1 0.2 0.0
 		}
 	}
 	object
@@ -76,34 +90,6 @@ ngflevel TestLevel
 	}
 	object
 	{
-		type Point
-		name platformPoint5
-		position 9.500000 -0.300000 -9.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Point
-		name platformPoint4
-		position 9.500000 -0.300000 -7.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Point
-		name platformPoint3
-		position 5.500000 -0.300000 -7.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Point
-		name platformPoint2
-		position 3.500000 -0.300000 -6.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
 		type Trigger
 		name platformTurner
 		position 9.500000 -0.300000 -8.000000
@@ -148,7 +134,7 @@ ngflevel TestLevel
 	{
 		type Light
 		name noname
-		position -1.863637 0.625267 2.776528
+		position -11.417274 3.912710 7.776528
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -238,7 +224,7 @@ ngflevel TestLevel
 	{
 		type Light
 		name noname
-		position -3.999523 2.109168 5.500000
+		position -1.999523 3.347666 3.245434
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -355,11 +341,6 @@ ngflevel TestLevel
 			       : 
 			       : def create(self):
 			       : 	self.m_turned = False
-			       : 	self.addPoint(Ngf.getObject("platformPoint1").getPosition())
-			       : 	self.addPoint(Ngf.getObject("platformPoint2").getPosition())
-			       : 	self.addPoint(Ngf.getObject("platformPoint3").getPosition())	
-			       : 	self.addPoint(Ngf.getObject("platformPoint4").getPosition())
-			       : 	self.addPoint(Ngf.getObject("platformPoint5").getPosition())	
 			       : 
 			       : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
@@ -380,13 +361,6 @@ ngflevel TestLevel
 	}
 	object
 	{
-		type Point
-		name platformPoint1
-		position 7.500000 -0.300000 -6.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
 		type Director
 		name noname
 		position 9.500000 -0.300000 -5.500000
@@ -399,6 +373,20 @@ ngflevel TestLevel
 			       : 
 			       : def create(self):
 			       : 	self.p_velocity = Ngf.Vector3(0,0.5,0)
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 1.500000 0.750000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			heightDeficiency 0
 		}
 	}
 }
