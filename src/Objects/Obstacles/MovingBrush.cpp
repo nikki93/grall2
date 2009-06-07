@@ -117,9 +117,10 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
             btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
             {
-                btCollisionObject *obj = convexResult.m_hitCollisionObject;
+                //btCollisionObject *obj = convexResult.m_hitCollisionObject;
                 //Don't record non-physics objects (Trigger etc.).
-                mHit = !(obj->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                //mHit = !(obj->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                mHit = true;
 
                 return convexResult.m_hitFraction;
             }
@@ -128,7 +129,8 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 //If it's us, is the Player, or isn't in our dimension, we don't care.
                 return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
-                    && (proxy0->m_collisionFilterGroup & mDimension);
+                    && (proxy0->m_collisionFilterGroup & mDimension)
+                    && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
             }
         };
 

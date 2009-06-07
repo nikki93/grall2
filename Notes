@@ -4,8 +4,6 @@
 
 Next
 ----
-- Work on Crate dynamics.
-
 - Work on more obstacle ideas.
 
 - Add shadows.
@@ -176,3 +174,7 @@ Fri Jun  5 23:12:22 AST 2009
 - Tried SSAO. Worked, but not a good effect, ditched.
 - Learnt about shadow mapping.
 - Addded 'Crate' GameObject.
+
+Sun Jun  7 21:48:12 AST 2009
+----------------------------
+- Added Crate kinematic dynamics (Sokoban-style push). Puzzles not possible otherwise.

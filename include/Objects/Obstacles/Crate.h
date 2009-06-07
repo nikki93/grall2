@@ -23,8 +23,14 @@ class Crate :
     public GraLL2GameObject
 {
     protected:
-        btCollisionShape *mShape;
+        btBoxShape *mShape;
         Ogre::Entity *mEntity;
+        btBoxShape *mCastShape;
+
+        bool mMoving;
+        Ogre::Vector3 mNextDirection;
+        Ogre::Real mDistanceMoved;
+        Ogre::Real mSize;
 
     public:
         Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -41,11 +47,6 @@ class Crate :
         /*
         NGF_PY_BEGIN_DECL(Crate)
         {
-            NGF_PY_PROPERTY_DECL(mass)
-            NGF_PY_PROPERTY_DECL(friction)
-            NGF_PY_PROPERTY_DECL(restitution)
-            NGF_PY_PROPERTY_DECL(linearDamping)
-            NGF_PY_PROPERTY_DECL(angularDamping)
         }
         NGF_PY_END_DECL
         */
@@ -54,6 +55,11 @@ class Crate :
         NGF_SERIALISE_BEGIN(Crate)
         {
             GRALL2_SERIALISE_GAMEOBJECT();
+
+            NGF_SERIALISE_OGRE(Bool, mMoving);
+            NGF_SERIALISE_OGRE(Vector3, mNextDirection);
+            NGF_SERIALISE_OGRE(Real, mDistanceMoved);
+            NGF_SERIALISE_OGRE(Real, mSize);
         }
         NGF_SERIALISE_END
 };

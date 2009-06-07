@@ -210,6 +210,9 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             }
 
             break;
+
+        case MSG_GETPOSITION:
+            NGF_SEND_REPLY(BtOgre::Convert::toOgre(mBody->getWorldTransform().getOrigin()));
     }
 
     return GraLL2GameObject::receiveMessage(msg);
