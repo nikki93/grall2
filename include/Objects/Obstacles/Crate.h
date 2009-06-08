@@ -23,9 +23,12 @@ class Crate :
     public GraLL2GameObject
 {
     protected:
-        btBoxShape *mShape;
         Ogre::Entity *mEntity;
-        btBoxShape *mCastShape;
+
+        btBoxShape *mShape;
+        btBoxShape *mShape2;
+        btRigidBody *mFixedBody;
+        btSliderConstraint *mConstraint;
 
         bool mMoving;
         Ogre::Vector3 mNextDirection;

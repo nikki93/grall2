@@ -9,7 +9,7 @@ Crate.cpp
 #include "Objects/Obstacles/Crate.h"
 
 #define MAX_CRATE_MATERIALS 1
-#define CRATE_MOVE_SPEED 4
+#define CRATE_MOVE_SPEED 2
 
 //--- NGF events ----------------------------------------------------------------
 Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -35,13 +35,34 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff.
-    mShape = new btBoxShape(btVector3(0.5,0.75,0.5));
-    BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
+    mShape = new btBoxShape(btVector3(0.475,0.75,0.475));
+    btScalar mass = 2;
+    btVector3 inertia;
+    mShape->calculateLocalInertia(mass, inertia);
 
-    mBody = new btRigidBody(0, state, mShape);
-    mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
-    mBody->setActivationState(DISABLE_DEACTIVATION);
+    BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
+    mBody = new btRigidBody(mass, state, mShape, inertia);
+    //mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+    //mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody();
+
+    //To allow Gravity, but still constraint on XZ plane, we use slider.
+    mShape2 = new btBoxShape(*mShape);
+    mShape2->setLocalScaling(btVector3(0.85,0.85,0.85));
+
+    btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,20,0))));
+    mFixedBody = new btRigidBody(0, fixedState, mShape2);
+    mFixedBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    mFixedBody->setActivationState(DISABLE_DEACTIVATION);
+    GlbVar.phyWorld->addRigidBody(mFixedBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
+
+    mConstraint = new btSliderConstraint(*mBody, *mFixedBody, btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), false);
+    mConstraint->setLowerLinLimit(-100); //Free linear.
+    mConstraint->setUpperLinLimit(100);
+    mConstraint->setLowerAngLimit(0); //Locked angular.
+    mConstraint->setUpperAngLimit(0);
+
+    GlbVar.phyWorld->addConstraint(mConstraint, true);
 
     //Height deficiency, for some variety in Crates.
     mSize = 1.5 - heightDef;
@@ -55,10 +76,6 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     //Crate materials, again for variety.
     int n = Ogre::Math::Floor(Ogre::Math::RangeRandom(1, MAX_CRATE_MATERIALS + 0.99));
     mEntity->setMaterialName("Objects/Crate" + Ogre::StringConverter::toString(n));
-
-    //For convex casts.
-    mCastShape = new btBoxShape(*mShape);
-    mCastShape->setLocalScaling(btVector3(0.85,0.85,0.85));
 }
 //-------------------------------------------------------------------------------
 void Crate::postLoad()
@@ -73,6 +90,10 @@ Crate::~Crate()
     NGF_PY_CALL_EVENT(destroy);
 
     //We only clear up stuff that we did.
+    GlbVar.phyWorld->removeConstraint(mConstraint);
+    delete mConstraint;
+    GlbVar.phyWorld->removeRigidBody(mFixedBody);
+    delete mFixedBody;
     destroyBody();
     delete mShape;
 
@@ -85,15 +106,25 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
     GraLL2GameObject::unpausedTick(evt);
 
     //If gotta move, move.
-    
+
     btTransform oldTrans;
-    mBody->getMotionState()->getWorldTransform(oldTrans);
+    mFixedBody->getMotionState()->getWorldTransform(oldTrans);
 
     if (mMoving)
     {
-        Ogre::Real speed = CRATE_MOVE_SPEED * evt.timeSinceLastFrame;
-        btVector3 vel;
+        //Zero out vertical jump.
+        btVector3 currVel = mBody->getLinearVelocity();
+        currVel.setY(0);
+        mBody->setLinearVelocity(currVel);
 
+        //Damping.
+        Ogre::Real speed = CRATE_MOVE_SPEED * evt.timeSinceLastFrame;
+        if (mDistanceMoved > 0.8)
+        {
+            speed *= ((1.01 - mDistanceMoved) / 0.2);
+        }
+
+        btVector3 vel;
         if ((mDistanceMoved + speed) > 1)
         {
             //If next move'll take us overboard, just jump to the target.
@@ -111,7 +142,7 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
         }
 
         //Apply velocity.
-        mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), oldTrans.getOrigin() + vel));
+        mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), oldTrans.getOrigin() + vel));
     }
     
     //Python utick event.
@@ -194,7 +225,7 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
 
         //Do the cast.
         CrateCheckResult res(mBody, mDimensions);
-        GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
+        GlbVar.phyWorld->convexSweepTest(mShape2, trans1, trans2, res);
 
         //If not hit, move!
         mMoving = !res.mHit;

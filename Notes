@@ -178,3 +178,7 @@ Fri Jun  5 23:12:22 AST 2009
 Sun Jun  7 21:48:12 AST 2009
 ----------------------------
 - Added Crate kinematic dynamics (Sokoban-style push). Puzzles not possible otherwise.
+
+Mon Jun  8 22:19:10 AST 2009
+----------------------------
+- Completed Crate dynamics. Now affected by gravity, but still kinematic.
