@@ -5,146 +5,102 @@
 
 import * from Base.program
 
-material Brushes/FlatMetal1.png : Base //NormalMapParallax
+material Brushes/FlatMetal1.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap FlatMetal1.png
-        //set_texture_alias NormalBumpMap Crate1_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.9 0.9 0.9 1
-                }
-        }
+        set $diffuse_tex "WhiteTile1.png"
+        set $normal_tex "WhiteTile_NM.png"
+        //set $diffuse_tex "FlatMetal1.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.9 0.9 0.9 1"
 }
 
 material Brushes/TileMetalLong1.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap TileMetalLong1.png
-        set_texture_alias NormalBumpMap TileMetalLong1_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.8 0.8 0.8 1
-                }
-        }
+        set $diffuse_tex "TileMetalLong1.png"
+        set $normal_tex "TileMetalLong1_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
 }
 
 material Brushes/CircuitBoard.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap CircuitBoard.png
-        set_texture_alias NormalBumpMap CircuitBoard_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                }
-        }
+        set $diffuse_tex "CircuitBoard.png"
+        set $normal_tex "CircuitBoard_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
 }
 
 material Brushes/WhiteTile1.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap WhiteTile1.png
-        set_texture_alias NormalBumpMap WhiteTile_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.8 0.8 0.8 1
-                }
-        }
+        set $diffuse_tex "WhiteTile1.png"
+        set $normal_tex "WhiteTile_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
 }
 
 material Brushes/WhiteTile2.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap WhiteTile2.png
-        set_texture_alias NormalBumpMap WhiteTile_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.8 0.8 0.8 1
-                }
-        }
+        set $diffuse_tex "WhiteTile2.png"
+        set $normal_tex "WhiteTile_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
 }
 
 material Brushes/WhiteTile3.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap WhiteTile3.png
-        set_texture_alias NormalBumpMap WhiteTile_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.8 0.8 0.8 1
-                }
-        }
+        set $diffuse_tex "WhiteTile3.png"
+        set $normal_tex "WhiteTile_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
 }
 
 material Brushes/WhiteTile4.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap WhiteTile4.png
-        set_texture_alias NormalBumpMap WhiteTile_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.8 0.8 0.8 1
-                }
-        }
+        set $diffuse_tex "WhiteTile4.png"
+        set $normal_tex "WhiteTile_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
 }
 
 material Brushes/WhiteTile5.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap WhiteTile5.png
-        set_texture_alias NormalBumpMap WhiteTile_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.8 0.8 0.8 1
-                }
-        }
+        set $diffuse_tex "WhiteTile5.png"
+        set $normal_tex "WhiteTile_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
 }
 
 material Brushes/WhiteTileMulti1.png : BaseNormalMapParallax
 {
         receive_shadows on
-        set_texture_alias DiffuseMap WhiteTileMulti1.png
-        set_texture_alias NormalBumpMap WhiteTileMulti1_NM.png
-        technique
-        {
-                pass
-                {
-                        ambient 0.7 0.7 0.7 1
-                        diffuse 0.9 0.9 0.9 1
-                        specular 0.8 0.8 0.8 1
-                }
-        }
+        set $diffuse_tex "WhiteTileMulti1.png"
+        set $normal_tex "WhiteTileMulti1_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
 }
 

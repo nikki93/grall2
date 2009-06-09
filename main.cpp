@@ -143,7 +143,7 @@ class Game
 
             //SceneManager, main lights.
             GlbVar.ogreSmgr = GlbVar.ogreRoot->createSceneManager(Ogre::ST_GENERIC);
-            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.4,0.4,0.4));
+            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.49,0.49,0.49));
 
             /*
             GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
@@ -153,7 +153,7 @@ class Game
             /*
             Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
             light->setType(Ogre::Light::LT_DIRECTIONAL);
-            light->setDiffuseColour(Ogre::ColourValue(0.20,0.20,0.20));
+            light->setDiffuseColour(Ogre::ColourValue(0.15,0.15,0.15));
             light->setSpecularColour(Ogre::ColourValue(0,0,0));
             light->setDirection(Ogre::Vector3(1,-2.5,1)); 
             */
@@ -185,7 +185,7 @@ class Game
             ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
 
             ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Base", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Base2", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders/Shadows", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
 
@@ -244,8 +244,9 @@ class Game
             GlbVar.console = new Console();
             new NGF::Python::PythonManager(fastdelegate::MakeDelegate(GlbVar.console, &Console::print));
 
-            //--- Init resources -------------------------------------------------------
+            //--- Init resources and other stuff ---------------------------------------
             ogreRmgr.initialiseAllResourceGroups();
+            initShadows();
 
             return true;
         }

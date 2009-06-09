@@ -4,7 +4,41 @@ float3 expand(float3 v)
     return v * 2.0 - 1.0;
 }
 
-//--- The real thing ------------------------------------------------------------------
+float2 blurTex2D(sampler2D map, float2 uv, float radius, float2 offset) 
+{
+    //Simple 3x3 filter.
+    float2 o = offset;
+    float2 c = tex2D(map, uv.xy).rg; //Center.
+    c += tex2D(map, uv.xy - o.xy).rg; //Top left.
+    c += tex2D(map, uv.xy + o.xy).rg; //Bottom right.
+    c += tex2D(map, float2(uv.x - o.x, uv.y)).rg; //Left.
+    c += tex2D(map, float2(uv.x + o.x, uv.y)).rg; //Right.
+    c += tex2D(map, float2(uv.x, uv.y + o.y)).rg; //Bottom.
+    c += tex2D(map, float2(uv.x, uv.y - o.y)).rg; //Top.
+    c += tex2D(map, float2(uv.x - o.x, uv.y + o.y)).rg; //Bottom left.
+    c += tex2D(map, float2(uv.x + o.x, uv.y - o.y)).rg; //Top right.
+    return c / 9;
+}
+
+float shadow(sampler2D shadowMap, float4 shadowMapPos, float ourDepth, float radius, float2 offset) 
+{
+    float2 suv = shadowMapPos.xy / shadowMapPos.w;
+
+    float2 moments = blurTex2D(shadowMap, suv, radius, offset);
+    float litFactor = (ourDepth <= moments.x ? 1 : 0);
+
+    //Standard variance shadow mapping code.
+    float E_x2 = moments.y;
+    float Ex_2 = moments.x * moments.x;
+    float vsmEpsilon = 0.0001;
+    float variance = min(max(E_x2 - Ex_2, 0.0) + vsmEpsilon, 1.0);
+    float m_d = moments.x - ourDepth;
+    float p = variance / (variance + m_d * m_d);
+
+    return smoothstep(0.4, 1, max(litFactor, p));
+}
+
+//--- The shader ----------------------------------------------------------------------
 void Base_vp
     (
          float4 position : POSITION,

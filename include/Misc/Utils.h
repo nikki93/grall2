@@ -106,4 +106,7 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
         const int& pGridSize, const Ogre::String& pFileName, const Ogre::String& pFileExtention, 
         const bool& pStitchGridImages);
 
+//Initialises shadows.
+void initShadows();
+
 #endif

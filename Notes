@@ -182,3 +182,9 @@ Sun Jun  7 21:48:12 AST 2009
 Mon Jun  8 22:19:10 AST 2009
 ----------------------------
 - Completed Crate dynamics. Now affected by gravity, but still kinematic.
+
+Tue Jun  9 16:58:45 AST 2009
+----------------------------
+- Reworked lighting shaders. Now works multipass to allow more lights and shadowing.
+- Added spotlight.
+- Began integrating nullsquared's soft shadow code.

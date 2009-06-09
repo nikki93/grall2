@@ -2,6 +2,94 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Light
+		name noname
+		position -7.500000 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 1 0.8 0
+			attenuation 70 0.6 0.2 0.4
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -7.500000 0.500000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 1 0.8 0
+			attenuation 70 0.6 0.2 0.4
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -13.500000 0.500000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 1 0.8 0
+			attenuation 70 0.6 0.2 0.4
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -13.500000 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 1 0.8 0
+			attenuation 70 0.6 0.2 0.4
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -10.500000 4.567312 5.500000
+		rotation 0.266245 0.260838 0.662850 -0.649389
+
+		properties
+		{
+			lightType spot
+			colour 0 0.2 1
+			attenuation 70 1 0.05 0.007
+			innerAngle 0
+			outerAngle 100
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 14.500000 5.500000 -14.500000
+		rotation 0.115134 0.354496 0.286640 -0.882561
+
+		properties
+		{
+			lightType spot
+			colour 0.5 0.5 0.5
+			attenuation 70 1 0.01 0.001
+			innerAngle 10
+			outerAngle 100
+		}
+	}
+	object
+	{
 		type Crate
 		name noname
 		position 2.500000 0.750000 3.500000
@@ -12,20 +100,6 @@ ngflevel TestLevel
 			dimension1 yes
 			dimension2 no
 			heightDeficiency -0.1
-		}
-	}
-	object
-	{
-		type Light
-		name noname
-		position 12.000477 2.109168 -12.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			lightType point
-			colour 0.3 0.2 0.6
-			attenuation 100 1 0.2 0.0
 		}
 	}
 	object
@@ -132,20 +206,6 @@ ngflevel TestLevel
 	}
 	object
 	{
-		type Light
-		name noname
-		position -11.417274 3.912710 7.776528
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			lightType point
-			colour 0.6 0.3 0.3
-			attenuation 100 0 0.5 0
-		}
-	}
-	object
-	{
 		type StaticBrush
 		name thirdWall
 		position -2.500000 0.499699 -9.500000
@@ -218,20 +278,6 @@ ngflevel TestLevel
 			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
 			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
 			       : 	self.p_underControl = False
-		}
-	}
-	object
-	{
-		type Light
-		name noname
-		position -1.999523 3.347666 3.245434
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			lightType point
-			colour 0.6 0.6 0.6
-			attenuation 100 1 0.01 0.01
 		}
 	}
 	object
@@ -314,8 +360,8 @@ ngflevel TestLevel
 
 		properties
 		{
-			mass 5
-			friction 0.5
+			mass 3
+			friction 0.1
 			restitution 0
 			linearDamping 0
 			angularDamping 0
@@ -387,6 +433,22 @@ ngflevel TestLevel
 			dimension1 yes
 			dimension2 yes
 			heightDeficiency 0
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -14.500000 5.500000 11.500000
+		rotation 0.286640 0.882561 -0.115134 0.354496
+
+		properties
+		{
+			lightType spot
+			colour 0.5 0.5 0.5
+			attenuation 70 1 0.01 0.001
+			innerAngle 10
+			outerAngle 100
 		}
 	}
 }

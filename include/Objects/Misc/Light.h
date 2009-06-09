@@ -37,7 +37,7 @@ class Light :
         virtual ~Light();
 
         //--- Events -------------------------------------------------------------------
-        void unpausedTick(const Ogre::FrameEvent &evt) { mNode->translate(Ogre::Vector3(Ogre::Math::Sin(mTime),0,Ogre::Math::Cos(mTime)) * evt.timeSinceLastFrame); mTime += evt.timeSinceLastFrame; }
+        void unpausedTick(const Ogre::FrameEvent &evt) {} //{ mNode->translate(Ogre::Vector3(Ogre::Math::Sin(mTime),0,Ogre::Math::Cos(mTime)) * evt.timeSinceLastFrame); mTime += evt.timeSinceLastFrame; }
         void pausedTick(const Ogre::FrameEvent &evt) {}
         NGF::MessageReply receiveMessage(NGF::Message msg) { NGF_NO_REPLY(); }
 
@@ -45,7 +45,7 @@ class Light :
         NGF_SERIALISE_BEGIN(Light)
         {
             NGF_SERIALISE_POSITION(mNode->getPosition());
-            NGF_SERIALISE_ROTATION(mNode->getPosition());
+            NGF_SERIALISE_ROTATION(mNode->getOrientation());
         }
         NGF_SERIALISE_END
 };

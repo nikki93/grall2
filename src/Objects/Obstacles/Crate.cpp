@@ -57,8 +57,8 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     GlbVar.phyWorld->addRigidBody(mFixedBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
 
     mConstraint = new btSliderConstraint(*mBody, *mFixedBody, btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), false);
-    mConstraint->setLowerLinLimit(-100); //Free linear.
-    mConstraint->setUpperLinLimit(100);
+    mConstraint->setLowerLinLimit(1); //Free linear.
+    mConstraint->setUpperLinLimit(0);
     mConstraint->setLowerAngLimit(0); //Locked angular.
     mConstraint->setUpperAngLimit(0);
 
@@ -144,6 +144,10 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
         //Apply velocity.
         mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), oldTrans.getOrigin() + vel));
     }
+
+    //If fell off, die.
+    if (mBody->getWorldTransform().getOrigin().y() < -20)
+        GlbVar.goMgr->requestDestroy(getID());
     
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

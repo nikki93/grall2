@@ -34,6 +34,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mShape->calculateLocalInertia(mass, inertia);
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
 
+
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
     info.m_friction = Ogre::Math::POS_INFINITY;
     info.m_linearDamping = 0.1;
