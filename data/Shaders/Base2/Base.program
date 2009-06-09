@@ -1,144 +1,144 @@
 //--- Ambient -------------------------------------------------------------------------
 vertex_program BaseAmbient_vp cg
 {
-	source Base.cg
+        source Base.cg
 
-	default_params
-	{
-		param_named_auto worldViewProj worldviewproj_matrix
-	} 
+        default_params
+        {
+                param_named_auto worldViewProj worldviewproj_matrix
+        } 
 
-	entry_point BaseAmbient_vp
-	profiles vs_1_1 arbvp1
+        entry_point BaseAmbient_vp
+        profiles vs_1_1 arbvp1
 }
 fragment_program BaseAmbient_fp cg
 {
-	source Base.cg 
+        source Base.cg 
 
-	default_params
-	{
+        default_params
+        {
                 param_named_auto matAmbient surface_ambient_colour
-		param_named_auto lightAmbient ambient_light_colour
-	} 
+                param_named_auto lightAmbient ambient_light_colour
+        } 
 
-	entry_point BaseAmbient_fp
-	profiles ps_2_0 arbfp1
+        entry_point BaseAmbient_fp
+        profiles ps_2_0 arbfp1
 } 
 vertex_program BaseAmbientNormalMapParallax_vp cg
 {
-	source Base.cg
+        source Base.cg
         compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
 
-	default_params
-	{
-		param_named_auto eyePosition camera_position_object_space
-		param_named_auto worldViewProj worldviewproj_matrix
-	} 
+        default_params
+        {
+                param_named_auto eyePosition camera_position_object_space
+                param_named_auto worldViewProj worldviewproj_matrix
+        } 
 
-	entry_point BaseAmbient_vp
-	profiles vs_1_1 arbvp1
+        entry_point BaseAmbient_vp
+        profiles vs_1_1 arbvp1
 }
 fragment_program BaseAmbientNormalMapParallax_fp cg
 {
-	source Base.cg 
+        source Base.cg 
         compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
 
-	default_params
-	{
+        default_params
+        {
                 param_named_auto matAmbient surface_ambient_colour
-		param_named_auto lightAmbient ambient_light_colour
-		param_named scaleBias float4 0.04 0.02
-	} 
+                param_named_auto lightAmbient ambient_light_colour
+                param_named scaleBias float4 0.04 0.02
+        } 
 
-	entry_point BaseAmbient_fp
-	profiles ps_2_0 arbfp1
+        entry_point BaseAmbient_fp
+        profiles ps_2_0 arbfp1
 } 
 
 //--- Per-light -----------------------------------------------------------------------
 vertex_program BasePerLight_vp cg
 {
-	source Base.cg
+        source Base.cg
 
-	default_params
-	{
-		param_named_auto eyePosition camera_position_object_space
-		param_named_auto worldViewProj worldviewproj_matrix
-		param_named_auto world world_matrix
+        default_params
+        {
+                param_named_auto eyePosition camera_position_object_space
+                param_named_auto worldViewProj worldviewproj_matrix
+                param_named_auto world world_matrix
                 param_named_auto tvp texture_viewproj_matrix 0
 
-		param_named_auto lightPosition light_position_object_space 0
-		param_named_auto spotlightDir light_direction_object_space 0
-	} 
+                param_named_auto lightPosition light_position_object_space 0
+                param_named_auto spotlightDir light_direction_object_space 0
+        } 
 
-	entry_point BasePerLight_vp
-	profiles vs_1_1 arbvp1
+        entry_point BasePerLight_vp
+        profiles vs_1_1 arbvp1
 }
 fragment_program BasePerLight_fp cg
 {
-	source Base.cg 
+        source Base.cg 
 
-	default_params
-	{
+        default_params
+        {
                 param_named_auto matDiffuse surface_diffuse_colour
                 param_named_auto matSpecular surface_specular_colour
 
-		param_named_auto lightDiffuse light_diffuse_colour 0
-		param_named_auto lightSpecular light_specular_colour 0
-		param_named_auto lightAtten light_attenuation 0
+                param_named_auto lightDiffuse light_diffuse_colour 0
+                param_named_auto lightSpecular light_specular_colour 0
+                param_named_auto lightAtten light_attenuation 0
                 param_named_auto spotlightParams spotlight_params 0
 
                 param_named_auto invSMSize inverse_texture_size 2
                 param_named_auto depthRange shadow_scene_depth_range 0
 
-		param_named exponent float 127
-	} 
+                param_named exponent float 127
+        } 
 
-	entry_point BasePerLight_fp
-	profiles ps_2_0 arbfp1
+        entry_point BasePerLight_fp
+        profiles ps_2_0 arbfp1
 } 
 vertex_program BasePerLightNormalMapParallax_vp cg
 {
-	source Base.cg
+        source Base.cg
         compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
 
-	default_params
-	{
-		param_named_auto eyePosition camera_position_object_space
-		param_named_auto worldViewProj worldviewproj_matrix
-		param_named_auto world world_matrix
+        default_params
+        {
+                param_named_auto eyePosition camera_position_object_space
+                param_named_auto worldViewProj worldviewproj_matrix
+                param_named_auto world world_matrix
                 param_named_auto tvp texture_viewproj_matrix 0
 
-		param_named_auto lightPosition light_position_object_space 0
-		param_named_auto spotlightDir light_direction_object_space 0
-	} 
+                param_named_auto lightPosition light_position_object_space 0
+                param_named_auto spotlightDir light_direction_object_space 0
+        } 
 
-	entry_point BasePerLight_vp
-	profiles vs_1_1 arbvp1
+        entry_point BasePerLight_vp
+        profiles vs_1_1 arbvp1
 }
 fragment_program BasePerLightNormalMapParallax_fp cg
 {
-	source Base.cg 
+        source Base.cg 
         compile_arguments -DNORMAL_MAPPING=1 -DPARALLAX_MAPPING=1
 
-	default_params
-	{
+        default_params
+        {
                 param_named_auto matAmbient surface_ambient_colour
                 param_named_auto matDiffuse surface_diffuse_colour
                 param_named_auto matSpecular surface_specular_colour
 
-		param_named_auto lightDiffuse light_diffuse_colour 0
-		param_named_auto lightSpecular light_specular_colour 0
-		param_named_auto lightAtten light_attenuation 0
+                param_named_auto lightDiffuse light_diffuse_colour 0
+                param_named_auto lightSpecular light_specular_colour 0
+                param_named_auto lightAtten light_attenuation 0
                 param_named_auto spotlightParams spotlight_params 0
 
                 param_named_auto invSMSize inverse_texture_size 2
                 param_named_auto depthRange shadow_scene_depth_range 0
 
-		param_named exponent float 127
-	} 
+                param_named exponent float 127
+        } 
 
-	entry_point BasePerLight_fp
-	profiles ps_2_0 arbfp1
+        entry_point BasePerLight_fp
+        profiles ps_2_0 arbfp1
 } 
 
 //--- Material bases ------------------------------------------------------------------
@@ -151,27 +151,27 @@ material Base
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
 
-	technique 
-	{ 
+        technique 
+        { 
                 pass
                 {
                         ambient $ambient
                         
-			vertex_program_ref BaseAmbient_vp
-			{ 
-			}   
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
 
-			fragment_program_ref BaseAmbient_fp
-			{
-			} 
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
                         
                         texture_unit DiffuseMap
                         {
                                 texture $diffuse_tex
                         }
                 }
-		pass 
-		{
+                pass 
+                {
                         max_lights 8
                         scene_blend add
                         iteration once_per_light
@@ -179,13 +179,13 @@ material Base
                         diffuse $diffuse
                         specular $specular
 
-			vertex_program_ref BasePerLight_vp
-			{ 
-			}   
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
 
-			fragment_program_ref BasePerLight_fp
-			{
-			} 
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
                         
                         texture_unit DiffuseMap
                         {
@@ -204,9 +204,9 @@ material Base
                                 tex_address_mode border
                                 tex_border_colour 1 1 1
                         }
-		}  
+                }  
 
-	}  
+        }  
 }
 material BaseNormalMapParallax
 {
@@ -219,20 +219,20 @@ material BaseNormalMapParallax
 
         set $scaleBias "0.04 0.02"
 
-	technique 
-	{ 
+        technique 
+        { 
                 pass
                 {
                         ambient $ambient
                         
-			vertex_program_ref BaseAmbientNormalMapParallax_vp
-			{ 
-			}   
+                        vertex_program_ref BaseAmbientNormalMapParallax_vp
+                        { 
+                        }   
 
-			fragment_program_ref BaseAmbientNormalMapParallax_fp
-			{
+                        fragment_program_ref BaseAmbientNormalMapParallax_fp
+                        {
                                 param_named scaleBias float4 $scaleBias 0 1
-			} 
+                        } 
                         
                         texture_unit DiffuseMap
                         {
@@ -244,8 +244,8 @@ material BaseNormalMapParallax
                                 texture $normal_tex
                         }
                 }
-		pass 
-		{
+                pass 
+                {
                         max_lights 8
                         scene_blend add
                         iteration once_per_light
@@ -253,14 +253,14 @@ material BaseNormalMapParallax
                         diffuse $diffuse
                         specular $specular
 
-			vertex_program_ref BasePerLightNormalMapParallax_vp
-			{ 
-			}   
+                        vertex_program_ref BasePerLightNormalMapParallax_vp
+                        { 
+                        }   
 
-			fragment_program_ref BasePerLightNormalMapParallax_fp
-			{
+                        fragment_program_ref BasePerLightNormalMapParallax_fp
+                        {
                                 param_named scaleBias float4 $scaleBias 0 1
-			} 
+                        } 
                         
                         texture_unit DiffuseMap
                         {
@@ -280,7 +280,7 @@ material BaseNormalMapParallax
                                 tex_address_mode border
                                 tex_border_colour 1 1 1
                         }
-		}  
+                }  
 
-	}  
+        }  
 }
