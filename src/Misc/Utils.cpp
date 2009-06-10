@@ -134,7 +134,7 @@ void initShadows()
     for (unsigned i = 0; i < numShadowRTTs; ++i) {
         Ogre::TexturePtr tex = GlbVar.ogreSmgr->getShadowTexture(i);
         Ogre::Viewport *vp = tex->getBuffer()->getRenderTarget()->getViewport(0);
-        vp->setBackgroundColour(Ogre::ColourValue(1, 1, 1, 1));
+        vp->setBackgroundColour(Ogre::ColourValue(0.2, 0.2, 0.2, 0.2));
         vp->setClearEveryFrame(true);
     }
 

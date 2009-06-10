@@ -46,13 +46,15 @@ class Crate :
         NGF::MessageReply receiveMessage(NGF::Message msg);
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
+        //--- Non-NGF ------------------------------------------------------------------
+        void makeMove(const Ogre::Vector3 &dir);
+
         //--- Python interface ---------------------------------------------------------
-        /*
         NGF_PY_BEGIN_DECL(Crate)
         {
+            NGF_PY_METHOD_DECL(move)
         }
         NGF_PY_END_DECL
-        */
 
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Crate)
@@ -69,7 +71,75 @@ class Crate :
 
 #ifdef __CRATE_CPP__
 
-//gperf stuff goes here
+/* C++ code produced by gperf version 3.0.3 *//*{{{*/
+/* Command-line: gperf  */
+/* Computed positions: -k'' */
+
+
+#ifndef __PYTHON_METHOD_STRUCT__
+#define __PYTHON_METHOD_STRUCT__
+struct PythonMethod
+{
+const char *name;
+int code;
+};
+#endif //;
+/* maximum key range = 1, duplicates = 0 */
+
+class NGF_PY_CLASS_GPERF(Crate)
+{
+private:
+  static inline unsigned int MakeHash (const char *str, unsigned int len);
+public:
+  static const struct PythonMethod *Lookup (const char *str, unsigned int len);
+};
+
+inline /*ARGSUSED*/
+unsigned int
+NGF_PY_CLASS_GPERF(Crate)::MakeHash (register const char *str, register unsigned int len)
+{
+  return len;
+}
+
+const struct PythonMethod *
+NGF_PY_CLASS_GPERF(Crate)::Lookup (register const char *str, register unsigned int len)
+{
+  enum
+    {
+      TOTAL_KEYWORDS = 1,
+      MIN_WORD_LENGTH = 4,
+      MAX_WORD_LENGTH = 4,
+      MIN_HASH_VALUE = 4,
+      MAX_HASH_VALUE = 4
+    };
+
+  static const struct PythonMethod wordlist[] =
+    {
+      {"move", NGF_PY_METHOD_GPERF(Crate, move)}
+    };
+
+  if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
+    {
+      register int key = MakeHash (str, len);
+
+      if (key <= MAX_HASH_VALUE && key >= MIN_HASH_VALUE)
+        {
+          register const struct PythonMethod *resword;
+
+          resword = &wordlist[0];
+          goto compare;
+          return 0;
+        compare:
+          {
+            register const char *s = resword->name;
+
+            if (*str == *s && !strcmp (str + 1, s + 1))
+              return resword;
+          }
+        }
+    }
+  return 0;
+}/*}}}*/
 
 #endif
 

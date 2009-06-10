@@ -59,6 +59,9 @@ class Director :
         NGF_SERIALISE_BEGIN(Director)
         {
             GRALL2_SERIALISE_GAMEOBJECT();
+
+            NGF_SERIALISE_OGRE(Vector3, mVelocity);
+            NGF_SERIALISE_OGRE(Quaternion, mDirection);
         }
         NGF_SERIALISE_END
 };

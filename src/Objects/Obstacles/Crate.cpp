@@ -177,62 +177,7 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
 
         //Check that we got hit on side and not up or (lol?) below. :-)
         if (push.y < (mSize / 2.0))
-        {
-            //If x push greater, move on x, else on z.
-            if (Ogre::Math::Abs(push.x) > Ogre::Math::Abs(push.z))
-                mNextDirection = Ogre::Vector3(Ogre::Math::Sign(push.x), 0, 0);
-            else
-                mNextDirection = Ogre::Vector3(0, 0, Ogre::Math::Sign(push.z));
-        }
-
-        //Now, check that the next place is free.
-
-        //The cast result callback.
-        struct CrateCheckResult : public btDynamicsWorld::ConvexResultCallback
-        {
-            btCollisionObject *mIgnore;
-            int mDimension;
-            bool mHit;
-
-            CrateCheckResult(btCollisionObject *ignore, int dimension)
-                : mIgnore(ignore),
-                mDimension(dimension),
-                mHit(false)
-            {
-            }
-
-            btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
-            {
-                //btCollisionObject *obj = convexResult.m_hitCollisionObject;
-                //Don't record non-physics objects (Trigger etc.).
-                //mHit = !(obj->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                mHit = true;
-
-                return convexResult.m_hitFraction;
-            }
-
-            bool needsCollision(btBroadphaseProxy* proxy0) const
-            {
-                //If it's us, is the Player, or isn't in our dimension, we don't care.
-                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
-                    && (proxy0->m_collisionFilterGroup & mDimension)
-                    && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
-            }
-        };
-
-        //Where to cast from, where to cast to, etc.
-        btVector3 pos1 = myTrans.getOrigin();
-        btVector3 pos2 = myTrans.getOrigin() + BtOgre::Convert::toBullet(mNextDirection);
-        btQuaternion rot = mBody->getWorldTransform().getRotation();
-        btTransform trans1(rot, pos1);
-        btTransform trans2(rot, pos2);
-
-        //Do the cast.
-        CrateCheckResult res(mBody, mDimensions);
-        GlbVar.phyWorld->convexSweepTest(mShape2, trans1, trans2, res);
-
-        //If not hit, move!
-        mMoving = !res.mHit;
+            makeMove(push);
     }
 
     //Python collide event.
@@ -242,10 +187,84 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
 }
 //-------------------------------------------------------------------------------
 
+//--- Non-NGF -------------------------------------------------------------------
+void Crate::makeMove(const Ogre::Vector3 &dir)
+{
+    //If we're already moving, we continue.
+    if (mMoving)
+        return;
+
+    //If x dir greater, move on x, else on z.
+    Ogre::Vector3 newDir;
+    if (Ogre::Math::Abs(dir.x) > Ogre::Math::Abs(dir.z))
+        newDir = Ogre::Vector3(Ogre::Math::Sign(dir.x), 0, 0);
+    else
+        newDir = Ogre::Vector3(0, 0, Ogre::Math::Sign(dir.z));
+
+    //The cast result callback.
+    struct CrateCheckResult : public btDynamicsWorld::ConvexResultCallback
+    {
+        btCollisionObject *mIgnore;
+        int mDimension;
+        bool mHit;
+
+        CrateCheckResult(btCollisionObject *ignore, int dimension)
+            : mIgnore(ignore),
+            mDimension(dimension),
+            mHit(false)
+        {
+        }
+
+        btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
+        {
+            mHit = true;
+            return convexResult.m_hitFraction;
+        }
+
+        bool needsCollision(btBroadphaseProxy* proxy0) const
+        {
+            //If it's us, is the Player, or isn't in our dimension, we don't care.
+            return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
+                && (proxy0->m_collisionFilterGroup & mDimension)
+                && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+        }
+    };
+
+    //Where to cast from, where to cast to, etc.
+    btTransform myTrans;
+    mBody->getMotionState()->getWorldTransform(myTrans);
+    btVector3 pos1 = myTrans.getOrigin();
+    btVector3 pos2 = myTrans.getOrigin() + BtOgre::Convert::toBullet(newDir);
+    btQuaternion rot = myTrans.getRotation();
+    btTransform trans1(rot, pos1);
+    btTransform trans2(rot, pos2);
+
+    //Do the cast.
+    CrateCheckResult res(mBody, mDimensions);
+    GlbVar.phyWorld->convexSweepTest(mShape2, trans1, trans2, res);
+
+    //If not hit, move!
+    if (!res.mHit)
+    {
+        mBody->activate();
+        mMoving = true;
+        mNextDirection = newDir;
+    }
+}
+//-------------------------------------------------------------------------------
+
 //--- Python interface implementation -------------------------------------------
-/*
 NGF_PY_BEGIN_IMPL(Crate)
 {
+    NGF_PY_METHOD_IMPL(move)
+    {
+        if (!mMoving)
+        {
+            Ogre::Vector3 push = py::extract<Ogre::Vector3>(args[0]);
+            makeMove(push);
+        }
+
+        NGF_PY_RETURN();
+    }
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
-*/

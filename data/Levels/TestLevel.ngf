@@ -100,6 +100,14 @@ ngflevel TestLevel
 			dimension1 yes
 			dimension2 no
 			heightDeficiency -0.1
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.setAlarm(10, 0)
+			       : 	
+			       : def alarm(self, alm):
+			       : 	if (alm == 0):
+			       : 		self.move(Ngf.Vector3(1,0,0))
 		}
 	}
 	object

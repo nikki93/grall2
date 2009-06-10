@@ -185,8 +185,9 @@ void MovingBrush::collide(NGF::GameObject *other, btCollisionObject *otherPhysic
     if ((mTimer < 0) && other->hasFlag("Director"))
     {
         Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
-        Ogre::Real sqDist = (otherPos - BtOgre::Convert::toOgre(mBody->getWorldTransform().getOrigin())).squaredLength();
-        if (sqDist < 0.0001)
+        Ogre::Real sqSpeed = mVelocity.length() * mLastFrameTime * 1.7;
+        Ogre::Real sqDist = otherPos.squaredDistance(BtOgre::Convert::toOgre(mBody->getWorldTransform().getOrigin()));
+        if (sqDist < sqSpeed)
         {
             mBody->getMotionState()->setWorldTransform(btTransform(mBody->getWorldTransform().getRotation(), BtOgre::Convert::toBullet(otherPos)));
             mVelocity = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETVELOCITY));

@@ -29,6 +29,8 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
 
     mLight->setSpecularColour(Ogre::ColourValue(0.2,0.2,0.2));
 
+    mLight->setCastShadows(true);
+
     //Set light properties.
     mLight->setDiffuseColour(Ogre::ColourValue(
             Ogre::StringConverter::parseReal(mProperties.getValue("colour", 0, "1")),

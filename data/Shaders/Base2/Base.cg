@@ -108,7 +108,8 @@ void BasePerLight_vp
 #endif
 
     //Shadowing stuff.
-    oShadowMapPos = mul(tvp, oPos);
+    float4 worldPos = mul(world, position);
+    oShadowMapPos = mul(tvp, worldPos);
 }
 
 void BasePerLight_fp

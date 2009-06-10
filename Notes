@@ -188,3 +188,7 @@ Tue Jun  9 16:58:45 AST 2009
 - Reworked lighting shaders. Now works multipass to allow more lights and shadowing.
 - Added spotlight.
 - Began integrating nullsquared's soft shadow code.
+
+Wed Jun 10 20:50:52 AST 2009
+----------------------------
+- Crate now Python-friendly.

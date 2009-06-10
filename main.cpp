@@ -247,6 +247,9 @@ class Game
             //--- Init resources and other stuff ---------------------------------------
             ogreRmgr.initialiseAllResourceGroups();
             initShadows();
+            //MyGUI::StaticImagePtr img = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", 100,100,200,200, MyGUI::Align::Default, "Main");
+            //img->setImageTexture(GlbVar.ogreSmgr->getShadowTexture(0)->getName());
+            //img->setVisible(true);
 
             return true;
         }
