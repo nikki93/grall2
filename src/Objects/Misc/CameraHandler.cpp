@@ -113,12 +113,15 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             }
             lookAt(mTargetNode->getPosition() + Ogre::Vector3(0,1,0), evt.timeSinceLastFrame);
             break;
+
         case CS_LOOKAT:
             lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
             break;
+
         case CS_NONE:
             mTargetNode = 0;
             break;
+
         case CS_SPLINE:
             if (mTargetNode)
                 lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
@@ -127,7 +130,19 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 mSplineAnimState->addTime(evt.timeSinceLastFrame);
                 mCamera->setPosition(mSplineNode->getPosition());
             }
+            break;
 
+        case CS_DEATH:
+            {
+                //Move it up, rotate it.
+                mDeathOffset.y += 4 * evt.timeSinceLastFrame;
+                mDeathOffset = Ogre::Quaternion(Ogre::Degree(20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mDeathOffset;
+
+                //Put the Camera there, make him look at the point.
+                Ogre::Vector3 toMove = ((mDeathLastPos + mDeathOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
+                mCamera->move(toMove);
+                lookAt(mDeathLastPos + Ogre::Vector3(0,1,0), evt.timeSinceLastFrame);
+            }
             break;
     }
 
@@ -161,7 +176,16 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                 case CS_NONE:
                     mTargetNode = 0;
                     break;
+                case CS_DEATH:
+                    mDeathLastPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
+                    mTargetNode = 0;
+                    mDeathOffset = Ogre::Vector3(0, mCameraHeight + 1, 3);
+                    break;
             }
+            break;
+
+        case MSG_GETTARGET:
+            NGF_SEND_REPLY(mTargetNode);
             break;
     }
     NGF_NO_REPLY();

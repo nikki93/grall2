@@ -239,10 +239,11 @@ class Game
             GlbVar.woMgr = new NGF::WorldManager();
             GlbVar.lvlLoader = new NGF::Loading::Loader();
 
-            //Python, python console.
+            //Python, GraLL2 python bindings, python console.
             Py_Initialize();
             GlbVar.console = new Console();
             new NGF::Python::PythonManager(fastdelegate::MakeDelegate(GlbVar.console, &Console::print));
+            initPythonBinds();
 
             //--- Init resources and other stuff ---------------------------------------
             ogreRmgr.initialiseAllResourceGroups();

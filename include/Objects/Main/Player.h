@@ -44,6 +44,9 @@ class Player :
         //--- Non-NGF ------------------------------------------------------------------
         void captureCameraHandler();
         void loseCameraHandler();
+        void switchDimensions();
+        void die(bool explode);
+
         inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && ::isKeyDown(kc)); }
         inline OIS::MouseState getMouseState() { if (mUnderControl) return ::getMouseState(); else return OIS::MouseState(); }
 

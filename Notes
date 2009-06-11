@@ -2,14 +2,30 @@
 |           Todo           |
 +--------------------------+
 
+Remember: Try to keep things as scriptable as possible. /Everything/ must be scriptable!
+
 Next
 ----
-- Work on more obstacle ideas.
+- Add Message system, which shows message in white text at the bottom of the screen, on a transperent slightly
+  dark rectangle.
 
-- Add shadows.
+- Add 'SlidingBrush', which 'slides on some path', and then 'returns to it's position' (good for doors, kinds of
+  lifts, etc.). Must be highly scriptable.
+
+- Add 'ParticleEffect' GameObject.
+
+- Add 'Bomb' (use common 'Explosive' flag for explosive dangers, and 'Dangerous' flag for non-explosive dangers).
+
+- Add Electricity stuff.
+
+- Add 'Ice' GameObject.
 
 Waiting
 -------
+- Come up with new ideas.
+
+- Fix shadows.
+
 - Finalise Player dimension check.
 
 +---------------------------+
@@ -192,3 +208,9 @@ Tue Jun  9 16:58:45 AST 2009
 Wed Jun 10 20:50:52 AST 2009
 ----------------------------
 - Crate now Python-friendly.
+- MovingBrush now can be freed from being directed through script, and scripts can listen for 'director-touched' events.
+
+Thu Jun 11 23:32:16 AST 2009
+----------------------------
+- Made way for GraLL2 Python library.
+- Added Player death.

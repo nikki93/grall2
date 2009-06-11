@@ -34,6 +34,7 @@ class MovingBrush :
         Ogre::Entity *mEntity;
 
         bool mEnabled;
+        bool mFollowDirectors;
         Ogre::Vector3 mVelocity;
         Ogre::Real mTimer;
         Ogre::Real mLastFrameTime;
@@ -59,6 +60,7 @@ class MovingBrush :
             NGF_PY_METHOD_DECL(addPoint)
 
             NGF_PY_PROPERTY_DECL(enabled)
+            NGF_PY_PROPERTY_DECL(followDirectors)
             NGF_PY_PROPERTY_DECL(velocity)
         }
         NGF_PY_END_DECL
@@ -92,6 +94,11 @@ class MovingBrush :
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_OGRE(Vector3, mVelocity);
+            NGF_SERIALISE_OGRE(Bool, mEnabled);
+            NGF_SERIALISE_OGRE(Bool, mFollowDirectors);
+            NGF_SERIALISE_OGRE(Real, mTimer);
+            NGF_SERIALISE_OGRE(Real, mLastFrameTime);
+
             NGF_SERIALISE_STRING(pointsStr);
 
             NGF_SERIALISE_ON_LOAD
@@ -157,7 +164,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 15, duplicates = 0 */
+/* maximum key range = 22, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(MovingBrush)
 {
@@ -172,32 +179,32 @@ NGF_PY_CLASS_GPERF(MovingBrush)::MakeHash (register const char *str, register un
 {
   static const unsigned char asso_values[] =
     {
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23,  0,
-       0, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23,  5, 23,  0, 23, 23,
-      23, 23, 23,  5, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23,  0, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-      23, 23, 23, 23, 23, 23
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30,  0,
+       0, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30,  5, 30,  0, 30, 30,
+      30, 30, 30,  5, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30,  0, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
+      30, 30, 30, 30, 30, 30
     };
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[0]];
 }
@@ -207,11 +214,11 @@ NGF_PY_CLASS_GPERF(MovingBrush)::Lookup (register const char *str, register unsi
 {
   enum
     {
-      TOTAL_KEYWORDS = 7,
+      TOTAL_KEYWORDS = 9,
       MIN_WORD_LENGTH = 8,
-      MAX_WORD_LENGTH = 14,
+      MAX_WORD_LENGTH = 19,
       MIN_HASH_VALUE = 8,
-      MAX_HASH_VALUE = 22
+      MAX_HASH_VALUE = 29
     };
 
   static const struct PythonMethod wordlist[] =
@@ -222,7 +229,9 @@ NGF_PY_CLASS_GPERF(MovingBrush)::Lookup (register const char *str, register unsi
       {"set_enabled", NGF_PY_SET_GPERF(MovingBrush, enabled)},
       {"set_velocity", NGF_PY_SET_GPERF(MovingBrush, velocity)},
       {"get_enabled", NGF_PY_GET_GPERF(MovingBrush, enabled)},
-      {"get_velocity", NGF_PY_GET_GPERF(MovingBrush, velocity)}
+      {"get_velocity", NGF_PY_GET_GPERF(MovingBrush, velocity)},
+      {"set_followDirectors", NGF_PY_SET_GPERF(MovingBrush, followDirectors)},
+      {"get_followDirectors", NGF_PY_GET_GPERF(MovingBrush, followDirectors)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -255,6 +264,12 @@ NGF_PY_CLASS_GPERF(MovingBrush)::Lookup (register const char *str, register unsi
                 goto compare;
               case 14:
                 resword = &wordlist[6];
+                goto compare;
+              case 16:
+                resword = &wordlist[7];
+                goto compare;
+              case 21:
+                resword = &wordlist[8];
                 goto compare;
             }
           return 0;

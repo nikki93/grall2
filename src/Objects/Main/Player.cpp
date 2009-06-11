@@ -134,80 +134,11 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             {
                 //Dimension switch!
                 case OIS::KC_SPACE:
-                    {
-                        //If the other dimension isn't free at our place, then abort.
-
-                        //Collects only the results that matter.
-                        struct PlayerDimensionCheckResult : public btDynamicsWorld::ConvexResultCallback
-                        {
-                            btCollisionObject *mIgnore;
-                            int mOppDimension;
-                            std::set<btCollisionObject*> mHits;
-                            btVector3 mFrom, mTo;
-                            bool mHit;
-
-                            PlayerDimensionCheckResult(btCollisionObject *ignore, int oppDimension, btVector3 from, btVector3 to)
-                                : mIgnore(ignore),
-                                  mOppDimension(oppDimension),
-                                  mFrom(from),
-                                  mTo(to)
-                            {
-                            }
-
-                            btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
-                            {
-                                btCollisionObject *obj = convexResult.m_hitCollisionObject;
-                                btCollisionShape *shape = obj->getCollisionShape();
-
-                                //If triangle mesh, check if 'inside'.
-                                if (shape->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE)
-                                {
-                                    //(do inside-check here)
-                                    mHit = true;
-                                    mHits.insert(obj);
-                                }
-                                else
-                                {
-                                    mHit = true;
-                                    mHits.insert(obj);
-                                }
-
-                                return convexResult.m_hitFraction;
-                            }
-
-                            bool needsCollision(btBroadphaseProxy* proxy0) const
-                            {
-                                //If it's the Player, doesn't want dimension checking or isn't in the other dimension, we don't care.
-                                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
-                                    && (!(proxy0->m_collisionFilterGroup & DimensionManager::NO_DIM_CHECK))
-                                    && (proxy0->m_collisionFilterGroup & mOppDimension);
-                            }
-                        };
-
-                        //Copy shape for cast. Maybe we should do it in the beginning and keep a copy?
-                        btSphereShape shape(*mShape);
-                        shape.setLocalScaling(btVector3(0.85,0.85,0.85));
-
-                        //Where to cast from, where to cast to, etc.
-                        btVector3 pos1 = mBody->getWorldTransform().getOrigin() - btVector3(0,0.15,0);
-                        btVector3 pos2 = btVector3(pos1.x(),9999,pos1.z());
-                        btQuaternion rot = mBody->getWorldTransform().getRotation();
-                        btTransform trans1(rot, pos1);
-                        btTransform trans2(rot, pos2);
-
-                        //Do the cast.
-                        PlayerDimensionCheckResult res(mBody, mDimensions ^ DimensionManager::DIM_SWITCH, pos1, pos2);
-                        GlbVar.phyWorld->convexSweepTest(&shape, trans1, trans2, res);
-
-                        //If no hits, then switch.
-                        if (!res.mHit)
-                        {
-                            GlbVar.dimMgr->switchDimension();
-                            setDimension(GlbVar.dimMgr->getCurrentDimension());
-                        }
-
-                        break;
-                    }
+                    switchDimensions();
+                    break;
+                case OIS::KC_U:
+                    die(false);
+                    break;
             }
 
             break;
@@ -249,10 +180,98 @@ void Player::captureCameraHandler()
 //-------------------------------------------------------------------------------
 void Player::loseCameraHandler()
 {
-    if (GlbVar.currCameraHandler)
-    {
+    //If camera lookin' at us, tell him not to.
+    if (GlbVar.currCameraHandler && (GlbVar.goMgr->sendMessageWithReply<Ogre::SceneNode*>(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_GETTARGET)) == mNode))
         GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_NONE)));
+}
+//-------------------------------------------------------------------------------
+void Player::switchDimensions()
+{
+    //If the other dimension isn't free at our place, then abort.
+
+    //Collects only the results that matter.
+    struct PlayerDimensionCheckResult : public btDynamicsWorld::ConvexResultCallback
+    {
+        btCollisionObject *mIgnore;
+        int mOppDimension;
+        std::set<btCollisionObject*> mHits;
+        btVector3 mFrom, mTo;
+        bool mHit;
+
+        PlayerDimensionCheckResult(btCollisionObject *ignore, int oppDimension, btVector3 from, btVector3 to)
+            : mIgnore(ignore),
+            mOppDimension(oppDimension),
+            mFrom(from),
+            mTo(to)
+        {
+        }
+
+        btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
+        {
+            btCollisionObject *obj = convexResult.m_hitCollisionObject;
+            btCollisionShape *shape = obj->getCollisionShape();
+
+            //If triangle mesh, check if 'inside'.
+            if (shape->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE)
+            {
+                //(do inside-check here)
+                mHit = true;
+                mHits.insert(obj);
+            }
+            else
+            {
+                mHit = true;
+                mHits.insert(obj);
+            }
+
+            return convexResult.m_hitFraction;
+        }
+
+        bool needsCollision(btBroadphaseProxy* proxy0) const
+        {
+            //If it's the Player, doesn't want dimension checking or isn't in the other dimension, we don't care.
+            return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
+                && (!(proxy0->m_collisionFilterGroup & DimensionManager::NO_DIM_CHECK))
+                && (proxy0->m_collisionFilterGroup & mOppDimension);
+        }
+    };
+
+    //Copy shape for cast. Maybe we should do it in the beginning and keep a copy?
+    btSphereShape shape(*mShape);
+    shape.setLocalScaling(btVector3(0.85,0.85,0.85));
+
+    //Where to cast from, where to cast to, etc.
+    btVector3 pos1 = mBody->getWorldTransform().getOrigin() - btVector3(0,0.15,0);
+    btVector3 pos2 = btVector3(pos1.x(),9999,pos1.z());
+    btQuaternion rot = mBody->getWorldTransform().getRotation();
+    btTransform trans1(rot, pos1);
+    btTransform trans2(rot, pos2);
+
+    //Do the cast.
+    PlayerDimensionCheckResult res(mBody, mDimensions ^ DimensionManager::DIM_SWITCH, pos1, pos2);
+    GlbVar.phyWorld->convexSweepTest(&shape, trans1, trans2, res);
+
+    //If no hits, then switch.
+    if (!res.mHit)
+    {
+        GlbVar.dimMgr->switchDimension();
+        setDimension(GlbVar.dimMgr->getCurrentDimension());
     }
+}
+//-------------------------------------------------------------------------------
+void Player::die(bool explode)
+{
+    //Deathcam! :-)
+    if (!GlbVar.currCameraHandler)
+    {
+        GlbVar.currCameraHandler = GlbVar.goMgr->createObject<CameraHandler>(mControlNode->getPosition() + (mControlNode->getOrientation() * Ogre::Vector3(0,9,16)), mControlNode->getOrientation());
+        GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETSMOOTHINGFACTOR, Ogre::Real(4)));
+    }
+    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETTARGET, mControlNode));
+    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_DEATH)));
+
+    //And of course, we don't exist anymore. :-(
+    GlbVar.goMgr->requestDestroy(getID());
 }
 //-------------------------------------------------------------------------------
 

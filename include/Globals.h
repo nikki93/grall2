@@ -69,6 +69,7 @@ struct Globals : public Ogre::Singleton<Globals>
 //'Procedures'.
 void addWorlds();
 void registerGameObjectTypes();
+void initPythonBinds();
 
 //Messages.
 enum
@@ -81,7 +82,8 @@ enum
     MSG_SETSMOOTHINGFACTOR,   //Set CameraHandler camera movement smoothing.
     MSG_SETCAMERASTATE,       //Set CameraHandler camera handling mode.
     MSG_GETPOSITION,          //Get position.
-    MSG_GETVELOCITY,          //Get velocity (for Director get stored speed in direction).
+    MSG_GETVELOCITY,          //Get velocity (for Director, get stored speed in direction).
+    MSG_GETTARGET,            //Get target (for CameraHandler)
 };
 
 //Includes from the project used everywhere.

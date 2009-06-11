@@ -108,6 +108,7 @@ ngflevel TestLevel
 			       : def alarm(self, alm):
 			       : 	if (alm == 0):
 			       : 		self.move(Ngf.Vector3(1,0,0))
+			       : 
 		}
 	}
 	object
@@ -409,6 +410,11 @@ ngflevel TestLevel
 			       : def alarm(self, alm):
 			       : 	if (alm == 0):
 			       : 		self.p_enabled = True
+			       : 		
+			       : def director(self, other):
+			       : 	if (other.getName() == "firstDirector"):
+			       : 		print "Hit the first one!"
+			       : 		self.p_followDirectors = False
 			dimension1 yes
 			dimension2 no
 		}
@@ -416,17 +422,13 @@ ngflevel TestLevel
 	object
 	{
 		type Director
-		name noname
+		name firstDirector
 		position 9.500000 -0.300000 -5.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
 		{
 			speed 2
-			script : import Ngf
-			       : 
-			       : def create(self):
-			       : 	self.p_velocity = Ngf.Vector3(0,0.5,0)
 		}
 	}
 	object
