@@ -46,6 +46,8 @@ class MessageBox :
         NGF_SERIALISE_BEGIN(MessageBox)
         {
             NGF_SERIALISE_OGRE(Real, mTimeLeft);
+            NGF_SERIALISE_STRING(mMessageStr);
+            NGF_SERIALISE_OGRE(Bool, mTimed);
         }
         NGF_SERIALISE_END
 };

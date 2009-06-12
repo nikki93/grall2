@@ -350,14 +350,16 @@ ngflevel TestLevel
 			dimension2 yes
 			brushMeshFile TestLevel_b5.mesh
 			script : import Ngf
+			       : import GraLL2
 			       : 
 			       : def create(self):
-			       : 	self.m_impulsedPlayer = False
+			       : 	self.m_messaged = False
 			       : 
 			       : def collide(self, other):
-			       : 	if ((not self.m_impulsedPlayer) and other.hasFlag("Player")):
-			       : 		other.applyCentralImpulse(Ngf.Vector3(0,20,0))
-			       : 		self.m_impulsedPlayer = True
+			       : 	if ((not self.m_messaged) and other.hasFlag("Player")):
+			       : 		GraLL2.showMessage("""Check out the lights here! Also, if you're having trouble getting around the walls,
+			       : remember that you can press SPACE to switch dimensions. Pretty cool, eh?""", 7)
+			       : 		self.m_messaged = True
 		}
 	}
 	object

@@ -26,6 +26,7 @@
 #include "Objects/Obstacles/MovingBrush.h"
 #include "Objects/Misc/Director.h"
 #include "Objects/Obstacles/Crate.h"
+#include "Objects/Misc/MessageBox.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -43,6 +44,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(MovingBrush);
     NGF_REGISTER_OBJECT_TYPE(Director);
     NGF_REGISTER_OBJECT_TYPE(Crate);
+    NGF_REGISTER_OBJECT_TYPE(MessageBox);
 }
 
 //Register worlds.

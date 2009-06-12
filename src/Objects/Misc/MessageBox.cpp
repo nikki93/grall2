@@ -10,6 +10,7 @@ MessageBox.cpp
 
 #define FONT_HEIGHT 17.5
 #define FONT_WIDTH 8
+#define MAX_ALPHA 0.8
 
 //--- NGF events ----------------------------------------------------------------
 MessageBox::MessageBox(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -68,7 +69,7 @@ MessageBox::MessageBox(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mMessage->setEditMultiLine(true);
 
     mMessage->setCaption("\n" + mMessageStr);
-    mMessage->setAlpha(0.8);
+    mMessage->setAlpha(0); //For fade in.
 }
 //-------------------------------------------------------------------------------
 MessageBox::~MessageBox()
@@ -85,6 +86,16 @@ void MessageBox::unpausedTick(const Ogre::FrameEvent &evt)
         mTimeLeft -= evt.timeSinceLastFrame;
         if (mTimeLeft <= 0)
             GlbVar.goMgr->requestDestroy(getID());
+
+        //Fade out.
+        if (mTimeLeft <= MAX_ALPHA)
+            mMessage->setAlpha(mTimeLeft);
+        else
+            mMessage->setAlpha(clamp<Ogre::Real>(mMessage->getAlpha() + evt.timeSinceLastFrame, 0, MAX_ALPHA));
+    }
+    else
+    {
+        mMessage->setAlpha(clamp<Ogre::Real>(mMessage->getAlpha() + evt.timeSinceLastFrame, 0, MAX_ALPHA));
     }
 }
 //-------------------------------------------------------------------------------
