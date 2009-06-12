@@ -15,6 +15,21 @@ void TestWorld::init()
 
     loadLevel("TestLevel");
 
+    Ogre::String msg =
+        "Welcome to GraLL2!\n\n"
+
+        "This game is the sequel to the original GraLL, with a lot of new stuff, including, but not limited to:-\n\n"
+
+        " - Python scripting\n"
+        " - Dimension system\n"
+        " - Better Physics\n"
+        " - Proper save/load\n"
+        " - And much, much more :-)\n\n"
+
+        "We hope you have fun, thanks for playing!";
+
+    showMessage(msg, 10);
+
     //Test Player.
     /*
     GlbVar.goMgr->createObject<Player>(Ogre::Vector3(0.2,10,0), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create

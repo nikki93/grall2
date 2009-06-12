@@ -6,6 +6,16 @@ Utils.cpp
 
 #include "Misc/Utils.h"
 
+#include "Objects/Misc/MessageBox.h"
+
+NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time)
+{
+    return GlbVar.goMgr->createObject<MessageBox>(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("message", message, "")
+            ("time", Ogre::StringConverter::toString(time))
+            );
+}
+
 void loadLevel(Ogre::String level)
 {
     GlbVar.lvlLoader->loadLevel(level);
@@ -140,3 +150,4 @@ void initShadows()
 
     GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
 }
+

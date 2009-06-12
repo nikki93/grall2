@@ -17,17 +17,18 @@
 
 //--- Wrapper functions ---------------------------------------------------------
 
-//Just a test function.
-void testFunc()
+NGF::Python::PythonObjectConnectorPtr py_showMessage(Ogre::String message, Ogre::Real time)
 {
-    GlbVar.console->print("TEST\n");
+    NGF::GameObject *msg = showMessage(message, time);
+    NGF::Python::PythonGameObject *pyMsg = dynamic_cast<NGF::Python::PythonGameObject*>(msg);
+    return pyMsg->getConnector();
 }
 
 //--- The module ----------------------------------------------------------------
 
 BOOST_PYTHON_MODULE(GraLL2)
 {
-    py::def("testFunc", testFunc);
+    py::def("showMessage", py_showMessage);
 }
 
 //--- The function that gets called from Game::init() ---------------------------

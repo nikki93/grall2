@@ -18,6 +18,9 @@
 
 #include "Globals.h"
 
+//Shows a message. Returns pointer to the MessageBox GameObject.
+NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time);
+
 //Load/clear level. Calls the postLoad etc. events.
 void loadLevel(Ogre::String level);
 void clearLevel();

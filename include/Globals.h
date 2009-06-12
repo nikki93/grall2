@@ -30,7 +30,8 @@ class Console;
 //The Globals class (actually a struct, but whatever).
 struct Globals : public Ogre::Singleton<Globals>
 {
-    //Managers etc.
+    //--- Managers ---------------------------------------------------------------------
+    
     //Ogre.
     Ogre::Root *ogreRoot;
     Ogre::SceneManager *ogreSmgr;
@@ -59,9 +60,16 @@ struct Globals : public Ogre::Singleton<Globals>
     //Python console window.
     Console *console;
 
+    //--- Global 'objects' -------------------------------------------------------------
+    
     //Current CameraHandler.
     NGF::GameObject *currCameraHandler;
 
+    //Currently shown MessageBox.
+    NGF::GameObject *currMessageBox;
+
+    //--- Global 'data' ----------------------------------------------------------------
+    
     //Globally required data.
     bool paused;
 };

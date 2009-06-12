@@ -6,9 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add Message system, which shows message in white text at the bottom of the screen, on a transperent slightly
-  dark rectangle.
-
 - Add 'SlidingBrush', which 'slides on some path', and then 'returns to it's position' (good for doors, kinds of
   lifts, etc.). Must be highly scriptable.
 
@@ -214,3 +211,9 @@ Thu Jun 11 23:32:16 AST 2009
 ----------------------------
 - Made way for GraLL2 Python library.
 - Added Player death.
+
+Fri Jun 12 16:06:44 AST 2009
+----------------------------
+- Added 'MessageBox' GameObject, which shows message in white text at the bottom of the screen, on a transperent
+  slightly dark rectangle. Also can be controlled from Python.
+

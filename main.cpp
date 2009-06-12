@@ -265,6 +265,7 @@ class Game
 
             //Initialise other Global variables.
             GlbVar.currCameraHandler = 0;
+            GlbVar.currMessageBox = 0;
 
             //Add Worlds, register GameObjects.
             addWorlds();

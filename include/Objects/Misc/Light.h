@@ -30,7 +30,7 @@ class Light :
     protected:
         Ogre::SceneNode *mNode;
         Ogre::Light *mLight;
-        Ogre::Real mTime;
+        //Ogre::Real mTime;
 
     public:
         Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);

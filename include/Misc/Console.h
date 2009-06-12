@@ -77,8 +77,7 @@ class Console
 
         inline bool isVisible()
         {
-            //return mWindow->isVisible();
-            return false;
+            return mWindow->isVisible();
         }
 
         void print(Ogre::String str)
