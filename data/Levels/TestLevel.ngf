@@ -2,6 +2,32 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Bomb
+		name noname
+		position -9.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -10.500000 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
 		type Light
 		name noname
 		position -7.500000 0.500000 0.500000
@@ -461,6 +487,19 @@ ngflevel TestLevel
 			attenuation 70 1 0.01 0.001
 			innerAngle 10
 			outerAngle 100
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.500000 0.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 }

@@ -217,3 +217,9 @@ Fri Jun 12 16:06:44 AST 2009
 - Added 'MessageBox' GameObject, which shows message in white text at the bottom of the screen, on a transperent
   slightly dark rectangle. Also can be controlled from Python.
 - Tested MessageBox with Trigger (useful for help messages, for example).
+
+Sun Jun 14 21:37:54 AST 2009
+----------------------------
+- Completed Bomb textures.
+- Added 'Bomb' GameObject. Dangerous, don't touch. :P
+- Made more Crate materials. Each Crate is assigned a random material out of these.

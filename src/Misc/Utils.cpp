@@ -92,9 +92,9 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
                     stitchedImageData = new Ogre::uchar[(sourceImage.getWidth() * pGridSize) * (sourceImage.getHeight() * pGridSize) * 3]; // 3 colors per pixel
 
                 // Copy each pixel within the grid screenshot to the proper position within the stitched image
-                for(int rawY = 0; rawY < sourceHeight; rawY++)
+                for(int rawY = 0; rawY < sourceHeight; ++rawY)
                 {
-                    for(int rawX = 0; rawX < sourceWidth; rawX++)
+                    for(int rawX = 0; rawX < sourceWidth; ++rawX)
                     {
                         colourValue = sourceImage.getColourAt(rawX, rawY, 0);
                         stitchedX = x * sourceWidth + rawX;

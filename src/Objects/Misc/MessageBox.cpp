@@ -69,7 +69,9 @@ MessageBox::MessageBox(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mMessage->setEditMultiLine(true);
 
     mMessage->setCaption("\n" + mMessageStr);
-    mMessage->setAlpha(0); //For fade in.
+
+    if(!(mProperties.getValue("NGF_SERIALISED", 0, "no") == "yes"))
+        mMessage->setAlpha(0); //For fade in (only if not deserialising).
 }
 //-------------------------------------------------------------------------------
 MessageBox::~MessageBox()

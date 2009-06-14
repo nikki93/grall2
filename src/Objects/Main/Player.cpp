@@ -34,7 +34,6 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mShape->calculateLocalInertia(mass, inertia);
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
 
-
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
     info.m_friction = Ogre::Math::POS_INFINITY;
     info.m_linearDamping = 0.1;
@@ -103,15 +102,6 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     OIS::MouseState ms = getMouseState();
     mControlNode->yaw(Ogre::Degree(-ms.X.rel * 0.2));
 
-    //FOV effect.
-    /*
-    btVector3 vel = mBody->getLinearVelocity();
-    vel.setY(0);
-    Ogre::Real sqSpeed = vel.length2();
-    GlbVar.console->print(Ogre::StringConverter::toString(sqSpeed) + "\n");
-    GlbVar.ogreCamera->setFOVy(Ogre::Degree(45 + clamp<Ogre::Real>(sqSpeed / 5, 0, 10)));
-    */
-
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
@@ -154,8 +144,19 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 {
     //(Much) Less friction if not ground hit.
     Ogre::Vector3 hitPos = BtOgre::Convert::toOgre(contact.getPositionWorldOnA());
-    if (mNode->getPosition().y - hitPos.y < 0.4)
+    if (mNode->getPosition().y - hitPos.y < (mShape->getRadius() - 0.1))
        contact.m_combinedFriction = 0;
+
+    //Do the GameObject type checks.
+    if (other->hasFlag("Explosive"))
+    {
+        die(true);
+        GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_EXPLODE));
+    }
+    else if (other->hasFlag("Dangerous"))
+    {
+        die(false);
+    }
     
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

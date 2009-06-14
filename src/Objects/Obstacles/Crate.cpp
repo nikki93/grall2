@@ -8,7 +8,7 @@ Crate.cpp
 
 #include "Objects/Obstacles/Crate.h"
 
-#define MAX_CRATE_MATERIALS 1
+#define MAX_CRATE_MATERIALS 3
 #define CRATE_MOVE_SPEED 2
 
 //--- NGF events ----------------------------------------------------------------

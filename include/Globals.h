@@ -92,6 +92,7 @@ enum
     MSG_GETPOSITION,          //Get position.
     MSG_GETVELOCITY,          //Get velocity (for Director, get stored speed in direction).
     MSG_GETTARGET,            //Get target (for CameraHandler)
+    MSG_EXPLODE,              //Explode (for explosive objects)
 };
 
 //Includes from the project used everywhere.
