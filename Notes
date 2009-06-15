@@ -9,10 +9,6 @@ Next
 - Add 'SlidingBrush', which 'slides on some path', and then 'returns to it's position' (good for doors, kinds of
   lifts, etc.). Must be highly scriptable.
 
-- Add 'ParticleEffect' GameObject.
-
-- Add 'Bomb' (use common 'Explosive' flag for explosive dangers, and 'Dangerous' flag for non-explosive dangers).
-
 - Add Electricity stuff.
 
 - Add 'Ice' GameObject.
@@ -223,3 +219,9 @@ Sun Jun 14 21:37:54 AST 2009
 - Completed Bomb textures.
 - Added 'Bomb' GameObject. Dangerous, don't touch. :P
 - Made more Crate materials. Each Crate is assigned a random material out of these.
+
+Mon Jun 15 22:56:57 AST 2009
+----------------------------
+- Fixed NGF bug that made duplicate ID numbers when new GameObjects were created after deserialising previous ones.
+- Added 'ParticleEffect' GameObject for... Well... Particle effects. :-)
+- Added explosion for when Player touches Bomb. Has lights too.

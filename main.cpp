@@ -188,6 +188,7 @@ class Game
             ogreRmgr.addResourceLocation("../../data/Shaders/Base2", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders/Shadows", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/ParticleFX", "FileSystem", "General");
 
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList params;

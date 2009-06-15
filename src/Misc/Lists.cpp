@@ -28,6 +28,7 @@
 #include "Objects/Obstacles/Crate.h"
 #include "Objects/Misc/MessageBox.h"
 #include "Objects/Obstacles/Bomb.h"
+#include "Objects/Misc/ParticleEffect.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -47,6 +48,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Crate);
     NGF_REGISTER_OBJECT_TYPE(MessageBox);
     NGF_REGISTER_OBJECT_TYPE(Bomb);
+    NGF_REGISTER_OBJECT_TYPE(ParticleEffect);
 }
 
 //Register worlds.

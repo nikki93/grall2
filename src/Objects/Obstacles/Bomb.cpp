@@ -8,10 +8,12 @@ Bomb.cpp
 #define __BOMB_CPP__
 
 #include "Objects/Obstacles/Bomb.h"
+#include "Objects/Misc/Light.h"
 
 //--- NGF events ----------------------------------------------------------------
 Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
-    : NGF::GameObject(pos, rot, id , properties, name)
+    : NGF::GameObject(pos, rot, id , properties, name),
+      mExploded(false)
 {
     addFlag("Bomb");
     addFlag("Explosive");
@@ -33,7 +35,6 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
     setBulletObject(mBody);
-    mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 //-------------------------------------------------------------------------------
 void Bomb::postLoad()
@@ -91,8 +92,22 @@ void Bomb::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btM
 //--- Non-NGF -------------------------------------------------------------------
 void Bomb::explode()
 {
+    if (mExploded)
+        return;
+
     //TODO: Add particle effect for explosion.
+    GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("lightType", "point")
+            ("colour", "1 0.6 0")
+            ("specular", "0.1 0.1 0.1")
+            ("attenuation", "10 0.6 0.2 0.4")
+            ("time", "0.75")
+            ("fadeOutTime", "0.5")
+            );
+
     GlbVar.goMgr->requestDestroy(getID());
+
+    mExploded = true;
 }
 //-------------------------------------------------------------------------------
 

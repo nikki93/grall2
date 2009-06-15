@@ -7,13 +7,18 @@ Player.cpp
 #define __PLAYER_CPP__
 
 #include "Objects/Main/Player.h"
-#include "Objects/Misc/CameraHandler.h"
+
 #include "BulletCollision/NarrowPhaseCollision/btRaycastCallback.h"
+
+#include "Objects/Misc/CameraHandler.h"
+#include "Objects/Misc/Light.h"
+#include "Objects/Misc/ParticleEffect.h"
 
 //--- NGF events ----------------------------------------------------------------
 Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mUnderControl(true)
+      mUnderControl(true),
+      mDead(false)
 {
     addFlag("Player");
 
@@ -262,6 +267,10 @@ void Player::switchDimensions()
 //-------------------------------------------------------------------------------
 void Player::die(bool explode)
 {
+    //We're not going through this twice!
+    if (mDead)
+        return;
+
     //Deathcam! :-)
     if (!GlbVar.currCameraHandler)
     {
@@ -271,8 +280,27 @@ void Player::die(bool explode)
     GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETTARGET, mControlNode));
     GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_DEATH)));
 
+    //Explosions!
+    if (explode)
+    {
+        GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+                ("lightType", "point")
+                ("colour", "1 0.6 0")
+                ("specular", "0.1 0.1 0.1")
+                ("attenuation", "10 0.6 0.2 0.1")
+                ("time", "0.75")
+                ("fadeOutTime", "0.5")
+                );
+
+        GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+                ("template", "ParticleFX/Explosion")
+                ("time", "0.75")
+                );
+    }
+
     //And of course, we don't exist anymore. :-(
     GlbVar.goMgr->requestDestroy(getID());
+    mDead = true;
 }
 //-------------------------------------------------------------------------------
 

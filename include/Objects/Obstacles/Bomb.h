@@ -32,6 +32,8 @@ class Bomb :
         
         Ogre::Vector3 mVelocity;
         Ogre::Quaternion mDirection;
+        
+        bool mExploded;
 
     public:
         Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -59,6 +61,8 @@ class Bomb :
         NGF_SERIALISE_BEGIN(Bomb)
         {
             GRALL2_SERIALISE_GAMEOBJECT();
+
+            NGF_SERIALISE_OGRE(Bool, mExploded);
         }
         NGF_SERIALISE_END
 };

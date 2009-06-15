@@ -36,14 +36,12 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
 
     //Create the Physics stuff.
     mShape = new btBoxShape(btVector3(0.475,0.75,0.475));
-    btScalar mass = 2;
+    btScalar mass = 10;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(mass, state, mShape, inertia);
-    //mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
-    //mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody();
 
     //To allow Gravity, but still constraint on XZ plane, we use slider.
@@ -61,6 +59,9 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mConstraint->setUpperLinLimit(0);
     mConstraint->setLowerAngLimit(0); //Locked angular.
     mConstraint->setUpperAngLimit(0);
+    mConstraint->setDampingDirLin(0.5);
+    mConstraint->setDampingLimLin(1);
+    mConstraint->setRestitutionOrthoLin(0);
 
     GlbVar.phyWorld->addConstraint(mConstraint, true);
 
@@ -112,17 +113,22 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
 
     if (mMoving)
     {
+        Ogre::Real speed = CRATE_MOVE_SPEED * evt.timeSinceLastFrame;
+
         //Zero out vertical jump.
+        /*
         btVector3 currVel = mBody->getLinearVelocity();
         currVel.setY(0);
         mBody->setLinearVelocity(currVel);
+        */
 
         //Damping.
-        Ogre::Real speed = CRATE_MOVE_SPEED * evt.timeSinceLastFrame;
+        /*
         if (mDistanceMoved > 0.8)
         {
             speed *= ((1.01 - mDistanceMoved) / 0.2);
         }
+        */
 
         btVector3 vel;
         if ((mDistanceMoved + speed) > 1)
@@ -177,7 +183,12 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
 
         //Check that we got hit on side and not up or (lol?) below. :-)
         if (push.y < (mSize / 2.0))
+        {
             makeMove(push);
+            btVector3 currVel = mBody->getLinearVelocity();
+            currVel.setY(0);
+            mBody->setLinearVelocity(currVel);
+        }
     }
 
     //Python collide event.

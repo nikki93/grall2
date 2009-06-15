@@ -2,6 +2,21 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Light
+		name noname
+		position 9.500000 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 0.1 0.1 0.6
+			attenuation 70 0.6 0.2 0.4
+			time 5
+		}
+	}
+	object
+	{
 		type Bomb
 		name noname
 		position -9.500000 0.500000 2.500000

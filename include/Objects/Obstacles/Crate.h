@@ -59,12 +59,25 @@ class Crate :
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Crate)
         {
+            Ogre::String crateMat;
+
+            NGF_SERIALISE_ON_SAVE
+            {
+                crateMat = mEntity->getSubEntity(0)->getMaterialName();
+            }
+
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_OGRE(Bool, mMoving);
             NGF_SERIALISE_OGRE(Vector3, mNextDirection);
             NGF_SERIALISE_OGRE(Real, mDistanceMoved);
             NGF_SERIALISE_OGRE(Real, mSize);
+            NGF_SERIALISE_STRING(crateMat);
+
+            NGF_SERIALISE_ON_LOAD
+            {
+                mEntity->setMaterialName(crateMat);
+            }
         }
         NGF_SERIALISE_END
 };
