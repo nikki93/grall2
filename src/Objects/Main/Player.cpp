@@ -162,6 +162,10 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
     {
         die(false);
     }
+    else if (other->hasFlag("Ice"))
+    {
+       contact.m_combinedFriction = GlbVar.goMgr->sendMessageWithReply<Ogre::Real>(other, NGF_MESSAGE(MSG_GETFRICTIONCOEFF));
+    }
     
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
@@ -287,14 +291,14 @@ void Player::die(bool explode)
                 ("lightType", "point")
                 ("colour", "1 0.6 0")
                 ("specular", "0.1 0.1 0.1")
-                ("attenuation", "10 0.6 0.2 0.1")
-                ("time", "0.75")
-                ("fadeOutTime", "0.5")
+                ("attenuation", "10 0.6 0.1 0.05")
+                ("time", "1.6")
+                ("fadeOutTime", "0.75")
                 );
 
         GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
                 ("template", "ParticleFX/Explosion")
-                ("time", "0.75")
+                ("time", "2")
                 );
     }
 

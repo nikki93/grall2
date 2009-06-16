@@ -178,8 +178,8 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     break;
                 case CS_DEATH:
                     mDeathLastPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
+                    mDeathOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mCameraHeight + 1, 3);
                     mTargetNode = 0;
-                    mDeathOffset = Ogre::Vector3(0, mCameraHeight + 1, 3);
                     break;
             }
             break;
@@ -198,8 +198,7 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
     NGF_PY_METHOD_IMPL(setAlarm)                                                                  
     {                                                                                          
         setAlarm(py::extract<float>(args[0]), py::extract<Alarm>(args[1]));                    
-        float  f = py::extract<float>(args[0]);
-                                                                                               
+
         return py::object();                                                                   
     }
 

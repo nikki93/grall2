@@ -5,6 +5,7 @@
 
 import * from Base.program
 
+//--- Player --------------------------------------------------------------------------
 material Objects/Player : Base
 {
         receive_shadows off
@@ -17,10 +18,9 @@ material Objects/Player : Base
         set $specular "0.3 0.3 0.3 1"
 }
 
+//--- Bomb ----------------------------------------------------------------------------
 material Objects/Bomb : BaseNormalMapParallax
 {
-        receive_shadows off
-
         set $diffuse_tex "Bomb.png"
         set $normal_tex "Bomb_NM.png"
 
@@ -29,10 +29,20 @@ material Objects/Bomb : BaseNormalMapParallax
         set $specular "1 1 1 1"
 }
 
+//--- Ice -----------------------------------------------------------------------------
+material Objects/Ice : BaseNormalMap
+{
+        set $diffuse_tex "Ice.png"
+        set $normal_tex "Ice_NM.png"
+
+        set $ambient "0.9 0.9 0.9 1"
+        set $diffuse "1 1 1 1"
+        set $specular "1 1 1 1"
+}
+
+//--- Crate ---------------------------------------------------------------------------
 material Objects/Crate1 : BaseNormalMapParallax
 {
-        receive_shadows on
-
         set $diffuse_tex "Crate1.png"
         set $normal_tex "Crate1_NM.png"
 
@@ -42,29 +52,13 @@ material Objects/Crate1 : BaseNormalMapParallax
 
         set $scaleBias "0.02 0.01"
 }
-material Objects/Crate2 : BaseNormalMapParallax
+material Objects/Crate2 : Objects/Crate1
 {
-        receive_shadows on
-
         set $diffuse_tex "Crate2.png"
         set $normal_tex "Crate1_NM.png"
-
-        set $ambient "0.8 0.8 0.8 1"
-        set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.2 0.2 0.2 1"
-
-        set $scaleBias "0.02 0.01"
 }
-material Objects/Crate3 : BaseNormalMapParallax
+material Objects/Crate3 : Objects/Crate1
 {
-        receive_shadows on
-
         set $diffuse_tex "Crate3.png"
         set $normal_tex "Crate1_NM.png"
-
-        set $ambient "0.8 0.8 0.8 1"
-        set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.2 0.2 0.2 1"
-
-        set $scaleBias "0.02 0.01"
 }

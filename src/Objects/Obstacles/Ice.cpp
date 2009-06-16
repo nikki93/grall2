@@ -1,50 +1,47 @@
 /*
 =========================================
-Bomb.cpp
+Ice.cpp
 =========================================
 */
 
-#define __BOMB_CPP__
+#define __Ice_CPP__
 
-#include "Objects/Obstacles/Bomb.h"
-
-#include "Objects/Misc/Light.h"
-#include "Objects/Misc/ParticleEffect.h"
+#include "Objects/Obstacles/Ice.h"
 
 //--- NGF events ----------------------------------------------------------------
-Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
-    : NGF::GameObject(pos, rot, id , properties, name),
-      mExploded(false)
+Ice::Ice(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
+    : NGF::GameObject(pos, rot, id , properties, name)
 {
-    addFlag("Bomb");
-    addFlag("Explosive");
+    addFlag("Ice");
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
+    //Store the Friction coefficient.
+    mFrictionCoeff = Ogre::StringConverter::parseReal(mProperties.getValue("friction", 0, "0"));
+
     //Create the Ogre stuff.
-    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Bomb.mesh");
-    mEntity->setMaterialName("Objects/Bomb");
+    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Template_Pad.mesh");
+    mEntity->setMaterialName("Objects/Ice");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createSphere();
+    mShape = converter.createBox();
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
-    setBulletObject(mBody);
+    initBody();
 }
 //-------------------------------------------------------------------------------
-void Bomb::postLoad()
+void Ice::postLoad()
 {
     //Python create event.
     NGF_PY_CALL_EVENT(create);
 }
 //-------------------------------------------------------------------------------
-Bomb::~Bomb()
+Ice::~Ice()
 {
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
@@ -57,7 +54,7 @@ Bomb::~Bomb()
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
-void Bomb::unpausedTick(const Ogre::FrameEvent &evt)
+void Ice::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
@@ -65,25 +62,24 @@ void Bomb::unpausedTick(const Ogre::FrameEvent &evt)
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
-void Bomb::pausedTick(const Ogre::FrameEvent &evt)
+void Ice::pausedTick(const Ogre::FrameEvent &evt)
 {
     //Python ptick event.
     NGF_PY_CALL_EVENT(ptick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
-NGF::MessageReply Bomb::receiveMessage(NGF::Message msg)
+NGF::MessageReply Ice::receiveMessage(NGF::Message msg)
 {
     switch (msg.code)
     {
-        case MSG_EXPLODE:
-            explode();
-            NGF_NO_REPLY();
+        case MSG_GETFRICTIONCOEFF:
+            NGF_SEND_REPLY(mFrictionCoeff);
     }
     
     return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------
-void Bomb::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
+void Ice::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
@@ -92,36 +88,9 @@ void Bomb::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btM
 }
 //-------------------------------------------------------------------------------
 
-//--- Non-NGF -------------------------------------------------------------------
-void Bomb::explode()
-{
-    if (mExploded)
-        return;
-
-    //FX!
-    GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-            ("lightType", "point")
-            ("colour", "1 0.6 0")
-            ("specular", "0.1 0.1 0.1")
-            ("attenuation", "10 0.6 0.2 0.1")
-            ("time", "1.6")
-            ("fadeOutTime", "0.75")
-            );
-
-    GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-            ("template", "ParticleFX/Explosion")
-            ("time", "2")
-            );
-
-    //Us no more. :-(
-    GlbVar.goMgr->requestDestroy(getID());
-    mExploded = true;
-}
-//-------------------------------------------------------------------------------
-
 //--- Python interface implementation -------------------------------------------
 /*
-NGF_PY_BEGIN_IMPL(Bomb)
+NGF_PY_BEGIN_IMPL(Ice)
 {
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)

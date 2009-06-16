@@ -93,6 +93,7 @@ enum
     MSG_GETVELOCITY,          //Get velocity (for Director, get stored speed in direction).
     MSG_GETTARGET,            //Get target (for CameraHandler)
     MSG_EXPLODE,              //Explode (for explosive objects)
+    MSG_GETFRICTIONCOEFF,     //Get friction coefficient (for Ice)
 };
 
 //Includes from the project used everywhere.

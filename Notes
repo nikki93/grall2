@@ -11,8 +11,6 @@ Next
 
 - Add Electricity stuff.
 
-- Add 'Ice' GameObject.
-
 Waiting
 -------
 - Come up with new ideas.
@@ -225,3 +223,8 @@ Mon Jun 15 22:56:57 AST 2009
 - Fixed NGF bug that made duplicate ID numbers when new GameObjects were created after deserialising previous ones.
 - Added 'ParticleEffect' GameObject for... Well... Particle effects. :-)
 - Added explosion for when Player touches Bomb. Has lights too.
+
+Tue Jun 16 22:39:11 AST 2009
+----------------------------
+- Cleaned up materials a bit.
+- Added Ice.

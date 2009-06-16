@@ -13,8 +13,8 @@ particle_system ParticleFX/Explosion
         {
                 angle 90
                 emission_rate 600
-                time_to_live_min 0.2
-                time_to_live_max 1.5
+                time_to_live_min 0.77
+                time_to_live_max 2
                 direction 0 -1 0
                 velocity_min 0.4
                 velocity_max 2
@@ -28,9 +28,9 @@ particle_system ParticleFX/Explosion
 
         affector ColourFader
         {
-                red -0.8
-                green -2
-                blue -2
+                red -1
+                green -2.2
+                blue -2.2
         }
 
         affector Scaler

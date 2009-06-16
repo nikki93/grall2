@@ -2,17 +2,156 @@ ngflevel TestLevel
 {
 	object
 	{
-		type Light
+		type Ice
 		name noname
-		position 9.500000 0.500000 0.500000
+		position 2.500000 -0.250000 10.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
-			lightType point
-			colour 0.1 0.1 0.6
-			attenuation 70 0.6 0.2 0.4
-			time 5
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 2.500000 -0.250000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 1.500000 -0.250000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 1.500000 -0.250000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -0.500000 -0.250000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -0.500000 -0.250000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 0.500000 -0.250000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 0.500000 -0.250000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -1.500000 -0.250000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -1.500000 -0.250000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -2.500000 -0.250000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -24,7 +163,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			dimension1 yes
+			dimension1 no
 			dimension2 yes
 		}
 	}
@@ -38,14 +177,14 @@ ngflevel TestLevel
 		properties
 		{
 			dimension1 yes
-			dimension2 yes
+			dimension2 no
 		}
 	}
 	object
 	{
 		type Light
 		name noname
-		position -7.500000 0.500000 0.500000
+		position 13.500000 0.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -73,7 +212,7 @@ ngflevel TestLevel
 	{
 		type Light
 		name noname
-		position -13.500000 0.500000 10.500000
+		position -4.500000 0.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -513,6 +652,20 @@ ngflevel TestLevel
 
 		properties
 		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -2.500000 -0.250000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 0
 			dimension1 yes
 			dimension2 yes
 		}

@@ -1,11 +1,11 @@
 /*
  * =====================================================================================
  *
- *       Filename:  Bomb.h
+ *       Filename:  Ice.h
  *
- *    Description:  A stationary Bomb. Don't touch! :P
+ *    Description:  Ice. Slippery stuff! :-)
  *
- *        Created:  06/14/2009 04:02:56 PM
+ *        Created:  06/16/2009 08:41:27 PM
  *       Compiler:  gcc
  *
  *         Author:  Nikhilesh (nikki)
@@ -13,28 +13,28 @@
  * =====================================================================================
  */
 
-#ifndef __BOMB_H__
-#define __BOMB_H__
+#ifndef __ICE_H__
+#define __ICE_H__
 
-#ifdef __BOMB_CPP__
+#ifdef __ICE_CPP__
 
 #endif
 
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
 
-class Bomb :
+class Ice :
     public GraLL2GameObject
 {
     protected:
         btCollisionShape *mShape;
         Ogre::Entity *mEntity;
-        
-        bool mExploded;
+
+        Ogre::Real mFrictionCoeff;
 
     public:
-        Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
-        virtual ~Bomb();
+        Ice(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
+        virtual ~Ice();
 
         //--- Events -------------------------------------------------------------------
         void postLoad();
@@ -43,28 +43,23 @@ class Bomb :
         NGF::MessageReply receiveMessage(NGF::Message msg);
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
-        //--- Non-NGF ------------------------------------------------------------------
-        void explode();
-
         //--- Python interface ---------------------------------------------------------
         /*
-        NGF_PY_BEGIN_DECL(Bomb)
+        NGF_PY_BEGIN_DECL(Ice)
         {
         }
         NGF_PY_END_DECL
         */
 
         //--- Serialisation ------------------------------------------------------------
-        NGF_SERIALISE_BEGIN(Bomb)
+        NGF_SERIALISE_BEGIN(Ice)
         {
             GRALL2_SERIALISE_GAMEOBJECT();
-
-            NGF_SERIALISE_OGRE(Bool, mExploded);
         }
         NGF_SERIALISE_END
 };
 
-#ifdef __BOMB_CPP__
+#ifdef __Ice_CPP__
 
 //gperf stuff goes here.
 
