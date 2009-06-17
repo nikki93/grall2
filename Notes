@@ -6,6 +6,8 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Fix Crate dynamics.
+
 - Add 'SlidingBrush', which 'slides on some path', and then 'returns to it's position' (good for doors, kinds of
   lifts, etc.). Must be highly scriptable.
 
@@ -228,3 +230,7 @@ Tue Jun 16 22:39:11 AST 2009
 ----------------------------
 - Cleaned up materials a bit.
 - Added Ice.
+
+Wed Jun 17 22:18:21 AST 2009
+----------------------------
+- Made Ice look kinda semitransparent.

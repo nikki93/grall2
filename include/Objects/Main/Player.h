@@ -31,6 +31,8 @@ class Player :
         bool mUnderControl; //Are we under control?
         bool mDead;
 
+        Ogre::Real mMinHeight;
+
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Player();

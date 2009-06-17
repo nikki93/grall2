@@ -27,8 +27,7 @@ Ice::Ice(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList 
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff.
-    BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createBox();
+    mShape = new btBoxShape(btVector3(0.6,0.25,0.6)); //Overlap a bit for smoothness.
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));

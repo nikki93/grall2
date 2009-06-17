@@ -55,6 +55,8 @@ class Ice :
         NGF_SERIALISE_BEGIN(Ice)
         {
             GRALL2_SERIALISE_GAMEOBJECT();
+
+            NGF_SERIALISE_OGRE(Real, mFrictionCoeff);
         }
         NGF_SERIALISE_END
 };

@@ -14,6 +14,10 @@ Player.cpp
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/ParticleEffect.h"
 
+#define MAT_AMBIENT 0.9
+#define MAT_DIFFUSE 0.9
+#define MAT_SPECULAR 0.3
+
 //--- NGF events ----------------------------------------------------------------
 Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
@@ -30,6 +34,9 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mEntity->setMaterialName("Objects/Player");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
+
+    //Read in properties.
+    mMinHeight = Ogre::StringConverter::parseReal(mProperties.getValue("minHeight", 0, "-4"));
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
@@ -93,7 +100,7 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     //Allow the controlnode to catch up.
     mControlNode->setPosition(mNode->getPosition());
 
-    //Movement, look.
+    //Controls.
     if (mBody->getAngularVelocity().length2() < 600)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
@@ -106,6 +113,39 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 
     OIS::MouseState ms = getMouseState();
     mControlNode->yaw(Ogre::Degree(-ms.X.rel * 0.2));
+
+    //Fallage.
+    Ogre::Real currHeight = mBody->getWorldTransform().getOrigin().getY();
+    const Ogre::Real fadeHeight = 2.5;
+    if (currHeight < (mMinHeight + fadeHeight))
+    {
+        Ogre::MaterialPtr mat = mEntity->getSubEntity(0)->getMaterial();
+        Ogre::Pass *passAmb = mat->getTechnique(0)->getPass(0);
+        Ogre::Pass *passIter = mat->getTechnique(0)->getPass(1);
+
+        if (currHeight < mMinHeight)
+        {
+            //We fell off! Aaaaah! D: Fix materials, and then die.
+            passAmb->setAmbient(Ogre::ColourValue(MAT_AMBIENT,MAT_AMBIENT,MAT_AMBIENT));
+            passIter->setDiffuse(Ogre::ColourValue(MAT_DIFFUSE,MAT_DIFFUSE,MAT_DIFFUSE));
+            passIter->setSpecular(Ogre::ColourValue(MAT_SPECULAR,MAT_SPECULAR,MAT_SPECULAR));
+
+            die(false);
+        }
+        else
+        {
+            //Fade out. We're (supposed to be) the only ones using our material. If you use the Player texture for a Brush
+            //and see weird 'world-darkenings' when the Player falls of, we hope you've learnt your lesson.
+            Ogre::Real factor = (currHeight - mMinHeight) / fadeHeight;
+            Ogre::Real amb =  factor * MAT_AMBIENT;
+            Ogre::Real diff = factor * MAT_DIFFUSE;
+            Ogre::Real spec = factor * MAT_SPECULAR;
+
+            passAmb->setAmbient(Ogre::ColourValue(amb,amb,amb));
+            passIter->setDiffuse(Ogre::ColourValue(diff,diff,diff));
+            passIter->setSpecular(Ogre::ColourValue(spec,spec,spec));
+        }
+    }
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

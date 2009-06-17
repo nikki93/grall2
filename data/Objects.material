@@ -29,15 +29,88 @@ material Objects/Bomb : BaseNormalMapParallax
         set $specular "1 1 1 1"
 }
 
-//--- Ice -----------------------------------------------------------------------------
-material Objects/Ice : BaseNormalMap
-{
+//--- Ice (Semitransparent) -----------------------------------------------------------
+//material Objects/Ice : Base
+//{
+        //set $diffuse_tex "Ice.png"
+        //set $normal_tex "Ice_NM.png"
+//
+        //set $ambient "0.9 0.9 0.9 1"
+        //set $diffuse "1 1 1 1"
+        //set $specular "1 1 1 1"
+//}
+
+material Objects/Ice
+{ 
+        receive_shadows on
+
         set $diffuse_tex "Ice.png"
         set $normal_tex "Ice_NM.png"
 
-        set $ambient "0.9 0.9 0.9 1"
-        set $diffuse "1 1 1 1"
-        set $specular "1 1 1 1"
+        set $ambient "0.95 0.95 0.95 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
+
+        technique 
+        { 
+                pass
+                {
+                        ambient $ambient
+                        scene_blend alpha_blend
+                        depth_write off
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+                pass 
+                {
+                        scene_blend add
+                        depth_write off
+
+                        max_lights 12
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                        
+                        texture_unit NormalMap
+                        {
+                        }
+
+                        texture_unit ShadowMap
+                        {
+                                content_type shadow
+                                filtering anisotropic
+                                max_anisotropy 16
+                                tex_address_mode border
+                                tex_border_colour 1 1 1
+                        }
+                }  
+
+        }  
 }
 
 //--- Crate ---------------------------------------------------------------------------

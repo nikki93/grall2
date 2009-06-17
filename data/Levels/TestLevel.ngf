@@ -4,6 +4,90 @@ ngflevel TestLevel
 	{
 		type Ice
 		name noname
+		position -12.500000 -0.250000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 7
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -11.500000 -0.250000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 7
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -11.500000 -0.250000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 7
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -12.500000 -0.250000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 7
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -12.500000 -0.250000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 7
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -11.500000 -0.250000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			friction 7
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
 		position 2.500000 -0.250000 10.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
