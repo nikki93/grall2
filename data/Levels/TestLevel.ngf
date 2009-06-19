@@ -2,6 +2,69 @@ ngflevel TestLevel
 {
 	object
 	{
+		type Point
+		name doorPoint3
+		position 9.500000 0.800000 -1.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name doorPoint2
+		position 9.500000 2.500000 -1.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name doorPoint1
+		position 5.500000 2.500000 -1.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name sliderPoint2
+		position 5.500000 4.850000 -7.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type SlidingBrush
+		name sliderPath
+		position 5.500000 -1.150000 -3.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			enabled no
+			speed 1.5
+			ignoreCollisions yes
+			brushMeshFile TestLevel_b0.mesh
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.addPoint(Ngf.getObject("sliderPoint1").getPosition())
+			       : 	self.addPoint(Ngf.getObject("sliderPoint2").getPosition())
+			       : 	
+			       : def point(self, num):
+			       : 	if (num == 2):
+			       : 		self.p_forward = False
+			       : 	if (num == 0):
+			       : 		self.p_forward = True
+			       : 		self.p_enabled = False
+			       : 		
+			       : def collide(self, other):
+			       : 	if (other.hasFlag("Player")):
+			       : 		self.setAlarm(0.2, 0)
+			       : 
+			       : def alarm(self, alm):
+			       : 	if (alm == 0):
+			       : 		self.p_enabled = True
+		}
+	}
+	object
+	{
 		type Ice
 		name noname
 		position -12.500000 -0.250000 4.500000
@@ -446,7 +509,7 @@ ngflevel TestLevel
 		{
 			dimension1 yes
 			dimension2 yes
-			brushMeshFile TestLevel_b0.mesh
+			brushMeshFile TestLevel_b1.mesh
 		}
 	}
 	object
@@ -486,7 +549,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b1.mesh
+			brushMeshFile TestLevel_b2.mesh
 			dimension1 yes
 			dimension2 no
 		}
@@ -500,7 +563,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b2.mesh
+			brushMeshFile TestLevel_b3.mesh
 			dimension1 no
 			dimension2 yes
 		}
@@ -514,7 +577,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b3.mesh
+			brushMeshFile TestLevel_b4.mesh
 			dimension1 yes
 			dimension2 no
 		}
@@ -528,7 +591,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b4.mesh
+			brushMeshFile TestLevel_b5.mesh
 			dimension1 yes
 			dimension2 yes
 		}
@@ -548,9 +611,10 @@ ngflevel TestLevel
 			       : 
 			       : def create(self):
 			       : 	#For the cutscene
-			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
-			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
-			       : 	self.p_underControl = False
+			       : 	#self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
+			       : 	#self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
+			       : 	#self.p_underControl = False
+			       : 	pass
 		}
 	}
 	object
@@ -575,11 +639,14 @@ ngflevel TestLevel
 			       : 	self.addSplinePoint(2.8, Ngf.getObject("camTarget4").getPosition())	
 			       : 	self.addSplinePoint(3.8, Ngf.getObject("camTarget5").getPosition())	
 			       : 	self.endSpline()
-			       : 	self.setAlarm(splineTime, 0)
-			       : 	self.setAlarm(splineTime + 2.5, 1)
 			       : 	
-			       : 	self.p_currState = 3
-			       : 	#self.p_currState = 2
+			       : 	#Cutscene
+			       : 	#self.setAlarm(splineTime, 0)
+			       : 	#self.setAlarm(splineTime + 2.5, 1)
+			       : 	#self.p_currState = 3
+			       : 	
+			       : 	#No cutscene
+			       : 	self.p_currState = 2
 			       : 
 			       : def alarm(self, alm):
 			       : 	#Go to third-person smoothly
@@ -612,7 +679,7 @@ ngflevel TestLevel
 		{
 			dimension1 yes
 			dimension2 yes
-			brushMeshFile TestLevel_b5.mesh
+			brushMeshFile TestLevel_b6.mesh
 			script : import Ngf
 			       : import GraLL2
 			       : 
@@ -640,7 +707,7 @@ ngflevel TestLevel
 			restitution 0
 			linearDamping 0
 			angularDamping 0
-			brushMeshFile TestLevel_b6.mesh
+			brushMeshFile TestLevel_b7.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -657,7 +724,7 @@ ngflevel TestLevel
 		properties
 		{
 			enabled no
-			brushMeshFile TestLevel_b7.mesh
+			brushMeshFile TestLevel_b8.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -680,7 +747,8 @@ ngflevel TestLevel
 			       : def director(self, other):
 			       : 	if (other.getName() == "firstDirector"):
 			       : 		print "Hit the first one!"
-			       : 		self.p_followDirectors = False
+			       : 		#self.p_followDirectors = False
+			       : 
 			dimension1 yes
 			dimension2 no
 		}
@@ -753,6 +821,50 @@ ngflevel TestLevel
 			dimension1 yes
 			dimension2 yes
 		}
+	}
+	object
+	{
+		type SlidingBrush
+		name sliderSimple
+		position 5.500000 0.800000 -1.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			enabled yes
+			speed 2
+			ignoreCollisions yes
+			brushMeshFile TestLevel_b9.mesh
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.addPoint(Ngf.getObject("doorPoint1").getPosition())
+			       : 	self.addPoint(Ngf.getObject("doorPoint2").getPosition())
+			       : 	self.addPoint(Ngf.getObject("doorPoint3").getPosition())
+			       : 	
+			       : def point(self, num):
+			       : 	if (num == 3):
+			       : 		self.p_forward = False
+			       : 		self.p_enabled = False
+			       : 	if (num == 0):
+			       : 		self.p_forward = True
+			       : 		self.p_enabled = False
+			       : 		
+			       : def collide(self, other):
+			       : 	if (other.hasFlag("Player")):
+			       : 		self.setAlarm(0.2, 0)
+			       : 
+			       : def alarm(self, alm):
+			       : 	if (alm == 0):
+			       : 		self.p_enabled = True
+		}
+	}
+	object
+	{
+		type Point
+		name sliderPoint1
+		position 5.500000 -1.150000 -7.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 }
 

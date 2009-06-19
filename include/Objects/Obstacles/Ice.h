@@ -16,10 +16,6 @@
 #ifndef __ICE_H__
 #define __ICE_H__
 
-#ifdef __ICE_CPP__
-
-#endif
-
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
 
@@ -61,7 +57,7 @@ class Ice :
         NGF_SERIALISE_END
 };
 
-#ifdef __Ice_CPP__
+#ifdef __ICE_CPP__
 
 //gperf stuff goes here.
 

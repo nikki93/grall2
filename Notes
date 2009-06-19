@@ -234,3 +234,9 @@ Tue Jun 16 22:39:11 AST 2009
 Wed Jun 17 22:18:21 AST 2009
 ----------------------------
 - Made Ice look kinda semitransparent.
+
+Fri Jun 19 17:54:32 AST 2009
+----------------------------
+- Added 'SlidingBrush' GameObject, which moves on a path when in 'forward' mode, and moves back along the path, from
+  wherever it's at, in 'backward' mode. Highly scriptable. Coupled with MovingBrush and scripting allows for versatile
+  obstacles and puzzles.

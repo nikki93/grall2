@@ -1,11 +1,13 @@
 /*
  * =====================================================================================
  *
- *       Filename:  MovingBrush.h
+ *       Filename:  SlidingBrush.h
  *
- *    Description:  Generic moving ('kinematic') brush. Highly scriptable.
+ *    Description:  A brush that moves from it's original position on some path,
+ *                  forward, when 'enabled', and moves back to it's original position
+ *                  on the same path when 'disabled'.
  *
- *        Created:  05/29/2009 10:07:45 AM
+ *        Created:  06/19/2009 12:30:51 PM
  *       Compiler:  gcc
  *
  *         Author:  Nikhilesh (nikki)
@@ -13,8 +15,8 @@
  * =====================================================================================
  */
 
-#ifndef __MOVINGBRUSH_H__
-#define __MOVINGBRUSH_H__
+#ifndef __SLIDINGBRUSH_H__
+#define __SLIDINGBRUSH_H__
 
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
@@ -25,7 +27,7 @@
 
 #include <stack>
 
-class MovingBrush :
+class SlidingBrush :
     public GraLL2GameObject
 {
     protected:
@@ -33,17 +35,17 @@ class MovingBrush :
         btConvexHullShape *mCastShape;
         Ogre::Entity *mEntity;
 
-        Ogre::Vector3 mVelocity;
-        bool mEnabled;
-        bool mFollowDirectors;
-        Ogre::Real mTimer;
-        Ogre::Real mLastFrameTime;
+        Ogre::Real mSpeed;
+        bool mForward;
+        std::vector<Ogre::Vector3> mPoints;
+        Ogre::Real mCurrentPlace;
 
-        std::deque<Ogre::Vector3> mPoints;
+        bool mIgnoreCollisions;
+        bool mEnabled;
 
     public:
-        MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
-        virtual ~MovingBrush();
+        SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
+        virtual ~SlidingBrush();
 
         //--- Events -------------------------------------------------------------------
         void postLoad();
@@ -53,20 +55,20 @@ class MovingBrush :
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
         //--- Python interface ---------------------------------------------------------
-        NGF_PY_BEGIN_DECL(MovingBrush)
+        NGF_PY_BEGIN_DECL(SlidingBrush)
         {
             NGF_PY_METHOD_DECL(setPosition)
             NGF_PY_METHOD_DECL(setOrientation)
             NGF_PY_METHOD_DECL(addPoint)
 
             NGF_PY_PROPERTY_DECL(enabled)
-            NGF_PY_PROPERTY_DECL(followDirectors)
-            NGF_PY_PROPERTY_DECL(velocity)
+            NGF_PY_PROPERTY_DECL(forward)
+            NGF_PY_PROPERTY_DECL(speed)
         }
         NGF_PY_END_DECL
 
         //--- Serialisation ------------------------------------------------------------
-        NGF_SERIALISE_BEGIN(MovingBrush)
+        NGF_SERIALISE_BEGIN(SlidingBrush)
         {
             std::vector<Ogre::String> pointsStrVec;
             Ogre::String pointsStr;
@@ -77,7 +79,7 @@ class MovingBrush :
                 if (!mPoints.empty())
                 {
                     //Write each point.
-                    for (std::deque<Ogre::Vector3>::iterator iter = mPoints.begin(); iter != mPoints.end(); ++iter)
+                    for (std::vector<Ogre::Vector3>::iterator iter = mPoints.begin(); iter != mPoints.end(); ++iter)
                         pointsStrVec.push_back(Ogre::StringConverter::toString(*iter));
 
                     //Serialise all.
@@ -93,11 +95,11 @@ class MovingBrush :
 
             GRALL2_SERIALISE_GAMEOBJECT();
 
-            NGF_SERIALISE_OGRE(Vector3, mVelocity);
             NGF_SERIALISE_OGRE(Bool, mEnabled);
-            NGF_SERIALISE_OGRE(Bool, mFollowDirectors);
-            NGF_SERIALISE_OGRE(Real, mTimer);
-            NGF_SERIALISE_OGRE(Real, mLastFrameTime);
+            NGF_SERIALISE_OGRE(Bool, mForward);
+            NGF_SERIALISE_OGRE(Real, mSpeed);
+            NGF_SERIALISE_OGRE(Real, mCurrentPlace);
+            NGF_SERIALISE_OGRE(Bool, mIgnoreCollisions);
 
             NGF_SERIALISE_STRING(pointsStr);
 
@@ -122,11 +124,11 @@ class MovingBrush :
         NGF_SERIALISE_END
 };
 
-#ifdef __MOVINGBRUSH_CPP__
+#ifdef __SLIDINGBRUSH_CPP__
 
 /* C++ code produced by gperf version 3.0.3 *//*{{{*/
 /* Command-line: gperf  */
-/* Computed positions: -k'1,4' */
+/* Computed positions: -k'1,5' */
 
 #if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35) \
       && ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40) \
@@ -164,9 +166,9 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 22, duplicates = 0 */
+/* maximum key range = 18, duplicates = 0 */
 
-class NGF_PY_CLASS_GPERF(MovingBrush)
+class NGF_PY_CLASS_GPERF(SlidingBrush)
 {
 private:
   static inline unsigned int MakeHash (const char *str, unsigned int len);
@@ -175,63 +177,63 @@ public:
 };
 
 inline unsigned int
-NGF_PY_CLASS_GPERF(MovingBrush)::MakeHash (register const char *str, register unsigned int len)
+NGF_PY_CLASS_GPERF(SlidingBrush)::MakeHash (register const char *str, register unsigned int len)
 {
   static const unsigned char asso_values[] =
     {
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30,  0,
-       0, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30,  5, 30,  0, 30, 30,
-      30, 30, 30,  5, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30,  0, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27,  0, 27, 27,
+      27, 10,  0,  5, 27, 27, 27, 27, 27, 27,
+      27,  4, 27, 27,  5,  0, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
+      27, 27, 27, 27, 27, 27
     };
-  return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[0]];
+  return len + asso_values[(unsigned char)str[4]] + asso_values[(unsigned char)str[0]];
 }
 
 const struct PythonMethod *
-NGF_PY_CLASS_GPERF(MovingBrush)::Lookup (register const char *str, register unsigned int len)
+NGF_PY_CLASS_GPERF(SlidingBrush)::Lookup (register const char *str, register unsigned int len)
 {
   enum
     {
       TOTAL_KEYWORDS = 9,
       MIN_WORD_LENGTH = 8,
-      MAX_WORD_LENGTH = 19,
-      MIN_HASH_VALUE = 8,
-      MAX_HASH_VALUE = 29
+      MAX_WORD_LENGTH = 14,
+      MIN_HASH_VALUE = 9,
+      MAX_HASH_VALUE = 26
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {"addPoint", NGF_PY_METHOD_GPERF(MovingBrush, addPoint)},
-      {"setPosition", NGF_PY_METHOD_GPERF(MovingBrush, setPosition)},
-      {"setOrientation", NGF_PY_METHOD_GPERF(MovingBrush, setOrientation)},
-      {"set_enabled", NGF_PY_SET_GPERF(MovingBrush, enabled)},
-      {"set_velocity", NGF_PY_SET_GPERF(MovingBrush, velocity)},
-      {"get_enabled", NGF_PY_GET_GPERF(MovingBrush, enabled)},
-      {"get_velocity", NGF_PY_GET_GPERF(MovingBrush, velocity)},
-      {"set_followDirectors", NGF_PY_SET_GPERF(MovingBrush, followDirectors)},
-      {"get_followDirectors", NGF_PY_GET_GPERF(MovingBrush, followDirectors)}
+      {"set_speed", NGF_PY_SET_GPERF(SlidingBrush, speed)},
+      {"set_forward", NGF_PY_SET_GPERF(SlidingBrush, forward)},
+      {"addPoint", NGF_PY_METHOD_GPERF(SlidingBrush, addPoint)},
+      {"get_speed", NGF_PY_GET_GPERF(SlidingBrush, speed)},
+      {"setPosition", NGF_PY_METHOD_GPERF(SlidingBrush, setPosition)},
+      {"get_forward", NGF_PY_GET_GPERF(SlidingBrush, forward)},
+      {"setOrientation", NGF_PY_METHOD_GPERF(SlidingBrush, setOrientation)},
+      {"set_enabled", NGF_PY_SET_GPERF(SlidingBrush, enabled)},
+      {"get_enabled", NGF_PY_GET_GPERF(SlidingBrush, enabled)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -242,33 +244,33 @@ NGF_PY_CLASS_GPERF(MovingBrush)::Lookup (register const char *str, register unsi
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 8)
+          switch (key - 9)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 3:
+              case 2:
                 resword = &wordlist[1];
                 goto compare;
-              case 6:
+              case 3:
                 resword = &wordlist[2];
                 goto compare;
-              case 8:
+              case 5:
                 resword = &wordlist[3];
                 goto compare;
-              case 9:
+              case 6:
                 resword = &wordlist[4];
                 goto compare;
-              case 13:
+              case 7:
                 resword = &wordlist[5];
                 goto compare;
-              case 14:
+              case 10:
                 resword = &wordlist[6];
                 goto compare;
-              case 16:
+              case 12:
                 resword = &wordlist[7];
                 goto compare;
-              case 21:
+              case 17:
                 resword = &wordlist[8];
                 goto compare;
             }

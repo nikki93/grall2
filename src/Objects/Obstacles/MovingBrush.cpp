@@ -91,7 +91,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         if (!mPoints.empty())
         {
             Ogre::Vector3 currPoint = mPoints.front();
-            Ogre::Real sqSpeed = mVelocity.length() * mLastFrameTime * 1.7;
+            Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame * evt.timeSinceLastFrame;
             Ogre::Real sqDist = (currPoint - BtOgre::Convert::toOgre(prevPos)).squaredLength();
             if (sqDist < sqSpeed)
             {
@@ -122,17 +122,13 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
             btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
             {
-                //btCollisionObject *obj = convexResult.m_hitCollisionObject;
-                //Don't record non-physics objects (Trigger etc.).
-                //mHit = !(obj->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
                 mHit = true;
-
                 return convexResult.m_hitFraction;
             }
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
             {
-                //If it's us, is the Player, or isn't in our dimension, we don't care.
+                //If it's us, or isn't in our dimension, we don't care.
                 return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
                     && (proxy0->m_collisionFilterGroup & mDimension)
                     && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
