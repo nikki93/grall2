@@ -8,9 +8,6 @@ Next
 ----
 - Fix Crate dynamics.
 
-- Add 'SlidingBrush', which 'slides on some path', and then 'returns to it's position' (good for doors, kinds of
-  lifts, etc.). Must be highly scriptable.
-
 - Add Electricity stuff.
 
 Waiting
@@ -240,3 +237,7 @@ Fri Jun 19 17:54:32 AST 2009
 - Added 'SlidingBrush' GameObject, which moves on a path when in 'forward' mode, and moves back along the path, from
   wherever it's at, in 'backward' mode. Highly scriptable. Coupled with MovingBrush and scripting allows for versatile
   obstacles and puzzles.
+
+Sun Jun 21 23:04:15 AST 2009
+----------------------------
+- Made MovingPlatform do Director-check in unpausedTick event instead of collide. Makes smoother movement.

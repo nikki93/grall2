@@ -30,13 +30,13 @@ class DimensionManager
 
             DIM_1 = BIT(0),
             DIM_2 = BIT(1),
-            
             NO_DIM_CHECK = BIT(2),
 
-            PLAYER = BIT(3),
+            DIM_SWITCH = BIT(0) ^ BIT(1), //XOR with this to switch dimension bits.
 
-            //XOR with this to switch dimension bits.
-            DIM_SWITCH = BIT(0) ^ BIT(1),
+            //Flags for other types.
+            PLAYER = BIT(3),
+            DIRECTOR = BIT(4)
         };
 
     protected:

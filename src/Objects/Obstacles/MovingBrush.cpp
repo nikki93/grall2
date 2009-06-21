@@ -71,19 +71,17 @@ MovingBrush::~MovingBrush()
 void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
+    bool jumped = false;
 
     if (mEnabled)
     {
-        //Timer.
-        if (mTimer >= 0)
-        {
-            mTimer -= evt.timeSinceLastFrame;
-        }
-
         //Get old place (current place actually).
         btTransform oldTrans;
         mBody->getMotionState()->getWorldTransform(oldTrans);
         btVector3 prevPos = oldTrans.getOrigin();
+
+        //Squared speed.
+        Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame;
 
         //If we're near the next point on our list then we take it off our list and start moving to the next one (if it exists).
         //This way, you don't _need_ a point-list. You could do it using Directors, or even bouncing between walls, but when they're
@@ -91,11 +89,11 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         if (!mPoints.empty())
         {
             Ogre::Vector3 currPoint = mPoints.front();
-            Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame * evt.timeSinceLastFrame;
             Ogre::Real sqDist = (currPoint - BtOgre::Convert::toOgre(prevPos)).squaredLength();
             if (sqDist < sqSpeed)
             {
                 mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(currPoint)));
+                jumped = true;
                 mPoints.pop_front();
                 if (!mPoints.empty())
                     mVelocity = (mPoints.front() - currPoint).normalisedCopy() * mVelocity.length();
@@ -106,12 +104,13 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btVector3 currVel = BtOgre::Convert::toBullet(mVelocity) * evt.timeSinceLastFrame;
         btVector3 newPos = prevPos + currVel;
 
-        //The cast result callback.
+        //The cast result callback. Also checks for Director hits.
         struct MovingBrushCheckResult : public btDynamicsWorld::ConvexResultCallback
         {
             btCollisionObject *mIgnore;
             int mDimension;
             bool mHit;
+            std::set<NGF::GameObject*> mDirectorsHit;
 
             MovingBrushCheckResult(btCollisionObject *ignore, int dimension)
                 : mIgnore(ignore),
@@ -122,16 +121,23 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
             btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
             {
-                mHit = true;
+                //If it's a Director, we save it and pass, otherwise we're hit.
+                btCollisionObject *obj = convexResult.m_hitCollisionObject;
+                if (obj->getBroadphaseHandle()->m_collisionFilterGroup & DimensionManager::DIRECTOR)
+                    mDirectorsHit.insert(NGF::Bullet::fromBulletObject(obj));
+                else
+                    mHit = true;
+
                 return convexResult.m_hitFraction;
             }
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
             {
-                //If it's us, or isn't in our dimension, we don't care.
+                //If it's us, or isn't in our dimension, we don't care. 
                 return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
                     && (proxy0->m_collisionFilterGroup & mDimension)
-                    && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                    && ((proxy0->m_collisionFilterGroup & DimensionManager::DIRECTOR) 
+                            || !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE));
             }
         };
 
@@ -148,6 +154,35 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         MovingBrushCheckResult res(mBody, mDimensions);
         GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
+        //If hit Director, get directed. Use timer to avoid getting stuck to Director.
+        if (mTimer < 0)
+        {
+            for (std::set<GameObject*>::iterator iter = res.mDirectorsHit.begin(); iter != res.mDirectorsHit.end(); ++iter)
+            {
+                NGF::GameObject *other = *iter;
+                Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
+                Ogre::Real sqDist = (otherPos - BtOgre::Convert::toOgre(prevPos)).squaredLength();
+
+                if (sqDist < sqSpeed)
+                {
+                    mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(otherPos)));
+                    jumped = true;
+                    mVelocity = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETVELOCITY));
+
+                    //Call the Python director event (seperate from collision event so that we can be notifed exactly when 'directed').
+                    NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
+                    NGF_PY_CALL_EVENT(director, oth->getConnector());
+
+                    //Wait for next time, to avoid sticking to this one.
+                    mTimer = 1/(mVelocity.length());
+                }
+            }
+        }
+        else
+        {
+            mTimer -= evt.timeSinceLastFrame;
+        }
+
         //If free, continue, otherwise turn.
         if (res.mHit)
         {
@@ -157,9 +192,12 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         }
 
         //Do the actual movement.
-        oldTrans.setOrigin(newPos);
-        mBody->getMotionState()->setWorldTransform(oldTrans);
-        mNode->translate(mVelocity * evt.timeSinceLastFrame);
+        if (!jumped)
+        {
+            oldTrans.setOrigin(newPos);
+            mBody->getMotionState()->setWorldTransform(oldTrans);
+            mNode->translate(mVelocity * evt.timeSinceLastFrame);
+        }
     }
 
     //Save frame time.
@@ -186,6 +224,7 @@ void MovingBrush::collide(NGF::GameObject *other, btCollisionObject *otherPhysic
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
 
     //If Director, get directed.
+    /*
     if (mFollowDirectors && (mTimer < 0) && other->hasFlag("Director"))
     {
         Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
@@ -203,6 +242,7 @@ void MovingBrush::collide(NGF::GameObject *other, btCollisionObject *otherPhysic
             mTimer = 1/(mVelocity.length());
         }
     }
+    */
 
     //Python collision event.
     if (oth)
