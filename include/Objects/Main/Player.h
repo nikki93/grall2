@@ -47,7 +47,7 @@ class Player :
         //--- Non-NGF ------------------------------------------------------------------
         void captureCameraHandler();
         void loseCameraHandler();
-        void switchDimensions();
+        void switchDimension();
         void die(bool explode);
 
         inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && ::isKeyDown(kc)); }
@@ -59,6 +59,7 @@ class Player :
             NGF_PY_METHOD_DECL(getControlOrientation)
             NGF_PY_METHOD_DECL(loseCameraHandler)
             NGF_PY_METHOD_DECL(captureCameraHandler)
+            NGF_PY_METHOD_DECL(switchDimension)
 
             NGF_PY_PROPERTY_DECL(underControl)
         }
@@ -130,7 +131,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 11, duplicates = 0 */
+/* maximum key range = 12, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Player)
 {
@@ -180,15 +181,16 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 5,
-      MIN_WORD_LENGTH = 16,
+      TOTAL_KEYWORDS = 6,
+      MIN_WORD_LENGTH = 15,
       MAX_WORD_LENGTH = 21,
-      MIN_HASH_VALUE = 16,
+      MIN_HASH_VALUE = 15,
       MAX_HASH_VALUE = 26
     };
 
   static const struct PythonMethod wordlist[] =
     {
+      {"switchDimension", NGF_PY_METHOD_GPERF(Player, switchDimension)},
       {"set_underControl", NGF_PY_SET_GPERF(Player, underControl)},
       {"loseCameraHandler", NGF_PY_METHOD_GPERF(Player, loseCameraHandler)},
       {"captureCameraHandler", NGF_PY_METHOD_GPERF(Player, captureCameraHandler)},
@@ -204,7 +206,7 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 16)
+          switch (key - 15)
             {
               case 0:
                 resword = &wordlist[0];
@@ -212,14 +214,17 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
               case 1:
                 resword = &wordlist[1];
                 goto compare;
-              case 4:
+              case 2:
                 resword = &wordlist[2];
                 goto compare;
               case 5:
                 resword = &wordlist[3];
                 goto compare;
-              case 10:
+              case 6:
                 resword = &wordlist[4];
+                goto compare;
+              case 11:
+                resword = &wordlist[5];
                 goto compare;
             }
           return 0;

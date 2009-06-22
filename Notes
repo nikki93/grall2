@@ -241,3 +241,10 @@ Fri Jun 19 17:54:32 AST 2009
 Sun Jun 21 23:04:15 AST 2009
 ----------------------------
 - Made MovingPlatform do Director-check in unpausedTick event instead of collide. Makes smoother movement.
+
+Mon Jun 22 22:38:47 AST 2009
+----------------------------
+- Exposed more stuff to Python (Dimension switching, World switching)
+- Added 'Fader', which handles screen 'fade-in's and 'fade-out's
+- Player death now makes World restart.
+- Restart after Player death involves fade-in and fade-out of screen.

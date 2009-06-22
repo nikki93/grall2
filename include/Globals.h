@@ -26,6 +26,7 @@
 //Forward declarations.
 class DimensionManager;
 class Console;
+class Fader;
 
 //The Globals class (actually a struct, but whatever).
 struct Globals : public Ogre::Singleton<Globals>
@@ -54,11 +55,10 @@ struct Globals : public Ogre::Singleton<Globals>
     NGF::WorldManager *woMgr;
     NGF::Loading::Loader *lvlLoader;
 
-    //DimensionManager.
+    //Globally available helpers.
     DimensionManager *dimMgr;
-
-    //Python console window.
     Console *console;
+    Fader *fader;
 
     //--- Global 'objects' -------------------------------------------------------------
     
@@ -72,6 +72,10 @@ struct Globals : public Ogre::Singleton<Globals>
     
     //Globally required data.
     bool paused;
+
+    //World to switch too. Required for delay in World-switching because GameObjects
+    //can't destroy themselves.
+    int worldSwitch;
 };
 
 //'Procedures'.
@@ -100,6 +104,7 @@ enum
 #include "Misc/DimensionManager.h"
 #include "Misc/Console.h"
 #include "Misc/Utils.h"
+#include "Misc/Fader.h"
 #include "Objects/Misc/AlarmGameObject.h"
 
 #endif

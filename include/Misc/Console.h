@@ -52,6 +52,7 @@ class Console
 
         ~Console()
         {
+            GlbVar.gui->destroyWidget(mWindow);
         }
 
         void keyPressed(OIS::KeyCode kc)

@@ -20,7 +20,9 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mCameraHeight(4.5),
       mSplineAnim(NULL),
       mSplineAnimState(NULL),
-      mSplineTrack(NULL)
+      mSplineTrack(NULL),
+      mRestartTime(-1),
+      mDeathTime(-1)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
@@ -142,8 +144,28 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 Ogre::Vector3 toMove = ((mDeathLastPos + mDeathOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
                 lookAt(mDeathLastPos + Ogre::Vector3(0,1,0), evt.timeSinceLastFrame);
+
+                mDeathTime -= evt.timeSinceLastFrame;
+
+                //If it's time, restart world.
+                if (mDeathTime <= 0)
+                {
+                    GlbVar.fader->fadeInOut(0.7,0.4,0.5);
+                    mRestartTime = 1.1;
+
+                    mDeathTime = 777; //Stupid hack.
+                }
             }
             break;
+    }
+
+    //Restarting.
+    if (mRestartTime > 0)
+    {
+        mRestartTime -= evt.timeSinceLastFrame;
+
+        if (mRestartTime <= 0)
+            GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex();
     }
 
     //Alarms.
@@ -180,6 +202,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     mDeathLastPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
                     mDeathOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mCameraHeight + 1, 3);
                     mTargetNode = 0;
+                    mDeathTime = 2;
                     break;
             }
             break;

@@ -169,7 +169,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             {
                 //Dimension switch!
                 case OIS::KC_SPACE:
-                    switchDimensions();
+                    switchDimension();
                     break;
                 case OIS::KC_U:
                     die(false);
@@ -235,7 +235,7 @@ void Player::loseCameraHandler()
         GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_NONE)));
 }
 //-------------------------------------------------------------------------------
-void Player::switchDimensions()
+void Player::switchDimension()
 {
     //If the other dimension isn't free at our place, then abort.
 
@@ -363,6 +363,11 @@ NGF_PY_BEGIN_IMPL(Player)
     NGF_PY_METHOD_IMPL(captureCameraHandler)
     {
         captureCameraHandler();
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(switchDimension)
+    {
+        switchDimension();
         NGF_PY_RETURN();
     }
 

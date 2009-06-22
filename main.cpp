@@ -40,12 +40,15 @@ class GameListener :
             GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F3));
             GlbVar.phyDebug->step();
 
+            //Update the Fader.
+            GlbVar.fader->tick(evt);
+
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
             return GlbVar.woMgr->tick(evt);
         }
 
-        //--- Send keypress events go GameObjects, and all events to MyGUI -------------
+        //--- Send keypress events to GameObjects, and all events to MyGUI -------------
         bool keyPressed(const OIS::KeyEvent &arg)
         {
             mCurrKey = arg.key;
@@ -264,9 +267,13 @@ class Game
             //Create DimensionManager.
             GlbVar.dimMgr = new DimensionManager();
 
+            //Fader.
+            GlbVar.fader = new Fader();
+
             //Initialise other Global variables.
             GlbVar.currCameraHandler = 0;
             GlbVar.currMessageBox = 0;
+            GlbVar.worldSwitch = -1;
 
             //Add Worlds, register GameObjects.
             addWorlds();
@@ -290,10 +297,18 @@ class Game
                 //Update DimensionManager.
                 GlbVar.dimMgr->tick();
 
+                //If we need to switch Worlds, do so, but not again.
+                if (GlbVar.worldSwitch != -1)
+                {
+                    GlbVar.woMgr->gotoWorld(GlbVar.worldSwitch);
+                    GlbVar.worldSwitch = -1;
+                }
+
                 //Exit if F12 pressed.
                 if (GlbVar.keyboard->isKeyDown(OIS::KC_F12))
                     GlbVar.woMgr->shutdown();
 
+                //Update Ogre.
                 if(!GlbVar.ogreRoot->renderOneFrame())
                     break;
             }
