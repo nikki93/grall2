@@ -44,7 +44,7 @@ class Fader
             int winWidth = GlbVar.ogreWindow->getWidth();
             mImage = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Fade");
 
-            mImage->setImageTexture("white.png");
+            mImage->setImageTexture("fade.png");
             mImage->setAlpha(0);
 
             mState = FM_NONE;

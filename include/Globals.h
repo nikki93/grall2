@@ -22,6 +22,7 @@
 //Defines.
 #define GlbVar Globals::getSingleton()
 #define LOG(msg) Ogre::LogManager::getSingleton().logMessage(msg);
+#define USER_PREFIX Ogre::String("../../usr/")
 
 //Forward declarations.
 class DimensionManager;
@@ -72,6 +73,8 @@ struct Globals : public Ogre::Singleton<Globals>
     
     //Globally required data.
     bool paused;
+    bool loadGame;
+    Ogre::String levelName;
 
     //World to switch too. Required for delay in World-switching because GameObjects
     //can't destroy themselves.

@@ -67,12 +67,12 @@ class GameListener :
             switch (mCurrKey)
             {
                 case OIS::KC_F7:
-                    NGF::Serialisation::Serialiser::save("SaveFile");
+                    NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/TestSave.sav");
                     break;
 
                 case OIS::KC_F8:
                     clearLevel();
-                    NGF::Serialisation::Serialiser::load("SaveFile");
+                    NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/TestSave.sav");
                     break;
 
                 case OIS::KC_F9:
@@ -274,6 +274,8 @@ class Game
             GlbVar.currCameraHandler = 0;
             GlbVar.currMessageBox = 0;
             GlbVar.worldSwitch = -1;
+            GlbVar.loadGame = true;
+            GlbVar.levelName = "";
 
             //Add Worlds, register GameObjects.
             addWorlds();

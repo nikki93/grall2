@@ -6,6 +6,8 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Add 'Checkpoint' GameObject, for mid-game saving.
+
 - Fix Crate dynamics.
 
 - Add Electricity stuff.
@@ -248,3 +250,8 @@ Mon Jun 22 22:38:47 AST 2009
 - Added 'Fader', which handles screen 'fade-in's and 'fade-out's
 - Player death now makes World restart.
 - Restart after Player death involves fade-in and fade-out of screen.
+
+Tue Jun 23 23:26:57 AST 2009
+----------------------------
+- Added 'Level' system, which automatically loads game if saved.
+- Added ability to automatically detect levels and load them.

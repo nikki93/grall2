@@ -1,4 +1,4 @@
-ngflevel TestLevel
+ngflevel Level1
 {
 	object
 	{
@@ -40,7 +40,7 @@ ngflevel TestLevel
 			enabled no
 			speed 1.5
 			ignoreCollisions yes
-			brushMeshFile TestLevel_b0.mesh
+			brushMeshFile Level1_b0.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -509,7 +509,7 @@ ngflevel TestLevel
 		{
 			dimension1 yes
 			dimension2 yes
-			brushMeshFile TestLevel_b1.mesh
+			brushMeshFile Level1_b1.mesh
 		}
 	}
 	object
@@ -549,7 +549,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b2.mesh
+			brushMeshFile Level1_b2.mesh
 			dimension1 yes
 			dimension2 no
 		}
@@ -563,7 +563,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b3.mesh
+			brushMeshFile Level1_b3.mesh
 			dimension1 no
 			dimension2 yes
 		}
@@ -577,7 +577,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b4.mesh
+			brushMeshFile Level1_b4.mesh
 			dimension1 yes
 			dimension2 no
 		}
@@ -591,7 +591,7 @@ ngflevel TestLevel
 
 		properties
 		{
-			brushMeshFile TestLevel_b5.mesh
+			brushMeshFile Level1_b5.mesh
 			dimension1 yes
 			dimension2 yes
 		}
@@ -679,7 +679,7 @@ ngflevel TestLevel
 		{
 			dimension1 yes
 			dimension2 yes
-			brushMeshFile TestLevel_b6.mesh
+			brushMeshFile Level1_b6.mesh
 			script : import Ngf
 			       : import GraLL2
 			       : 
@@ -707,7 +707,7 @@ ngflevel TestLevel
 			restitution 0
 			linearDamping 0
 			angularDamping 0
-			brushMeshFile TestLevel_b7.mesh
+			brushMeshFile Level1_b7.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -724,7 +724,7 @@ ngflevel TestLevel
 		properties
 		{
 			enabled no
-			brushMeshFile TestLevel_b8.mesh
+			brushMeshFile Level1_b8.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -834,7 +834,7 @@ ngflevel TestLevel
 			enabled yes
 			speed 2
 			ignoreCollisions yes
-			brushMeshFile TestLevel_b9.mesh
+			brushMeshFile Level1_b9.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -862,6 +862,113 @@ ngflevel TestLevel
 		name sliderPoint1
 		position 5.500000 -1.150000 -7.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+}
+
+ngflevel Level2
+{
+	object
+	{
+		type Light
+		name noname
+		position 12.500000 3.500000 -10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 0.3 0.3 0.6
+			attenuation 10 0.6 0.1 0.05
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 3.100747 10.441255 -18.131882
+		rotation 0.897252 0.441519 0.000000 -0.000000
+
+		properties
+		{
+			lightType spot
+			colour 0.6 0.6 0.6
+			attenuation 70 1 0.01 0.001
+			innerAngle 40
+			outerAngle 100
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -9.899253 8.982134 14.481525
+		rotation 0.195682 0.796681 -0.337947 0.461303
+
+		properties
+		{
+			lightType spot
+			colour 0.7 0.7 0.7
+			attenuation 70 1 0.01 0.001
+			innerAngle 40
+			outerAngle 100
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 0.000000 0.000000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level2_b0.mesh
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position 23.500217 0.389544 2.500729
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 29.980267 7.606877 15.503136
+		rotation 0.377333 0.889529 -0.100597 -0.237148
+
+		properties
+		{
+			lightType spot
+			colour 0.5 0.5 0.5
+			attenuation 70 1 0.01 0.001
+			innerAngle 40
+			outerAngle 120
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 4.000000 5.500000 -4.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 1 0.8 0
+			attenuation 10 0.6 0.1 0.05
+		}
 	}
 }
 

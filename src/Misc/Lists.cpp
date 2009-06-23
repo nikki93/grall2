@@ -34,6 +34,7 @@
 
 //World headers.
 #include "Worlds/TestWorld.h"
+#include "Worlds/Level.h"
 
 //Register GameObject types.
 void registerGameObjectTypes()
@@ -58,5 +59,19 @@ void registerGameObjectTypes()
 //Register worlds.
 void addWorlds()
 {
-    GlbVar.woMgr->addWorld(new TestWorld());
+    std::vector<Ogre::String> lvlStrs = GlbVar.lvlLoader->getLevels();
+
+    for (int i = 1; ; ++i)
+    {
+        if (lvlStrs.empty())
+            break;
+
+        Ogre::String currName = "Level" + Ogre::StringConverter::toString(i);
+        std::vector<Ogre::String>::iterator iter = std::find(lvlStrs.begin(), lvlStrs.end(), currName);
+        if (iter != lvlStrs.end())
+        {
+            GlbVar.woMgr->addWorld(new Level(currName));
+            lvlStrs.erase(iter);
+        }
+    }
 }
