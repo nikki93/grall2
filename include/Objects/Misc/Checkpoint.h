@@ -1,11 +1,11 @@
 /*
  * =====================================================================================
  *
- *       Filename:  Bomb.h
+ *       Filename:  Checkpoint.h
  *
- *    Description:  A stationary Bomb. Don't touch! :P
+ *    Description:  Mid-level save point.
  *
- *        Created:  06/14/2009 04:02:56 PM
+ *        Created:  06/24/2009 09:39:13 PM
  *       Compiler:  gcc
  *
  *         Author:  Nikhilesh (nikki)
@@ -13,24 +13,24 @@
  * =====================================================================================
  */
 
-#ifndef __BOMB_H__
-#define __BOMB_H__
+#ifndef __CHECKPOINT_H__
+#define __CHECKPOINT_H__
 
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
 
-class Bomb :
+class Checkpoint :
     public GraLL2GameObject
 {
     protected:
         btCollisionShape *mShape;
         Ogre::Entity *mEntity;
         
-        bool mExploded;
+        bool mEnabled;
 
     public:
-        Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
-        virtual ~Bomb();
+        Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
+        virtual ~Checkpoint();
 
         //--- Events -------------------------------------------------------------------
         void postLoad();
@@ -39,28 +39,31 @@ class Bomb :
         NGF::MessageReply receiveMessage(NGF::Message msg);
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
-        //--- Non-NGF ------------------------------------------------------------------
-        void explode();
-
         //--- Python interface ---------------------------------------------------------
         /*
-        NGF_PY_BEGIN_DECL(Bomb)
+        NGF_PY_BEGIN_DECL(Checkpoint)
         {
         }
         NGF_PY_END_DECL
         */
 
         //--- Serialisation ------------------------------------------------------------
-        NGF_SERIALISE_BEGIN(Bomb)
+        NGF_SERIALISE_BEGIN(Checkpoint)
         {
             GRALL2_SERIALISE_GAMEOBJECT();
 
-            NGF_SERIALISE_OGRE(Bool, mExploded);
+            NGF_SERIALISE_OGRE(Bool, mEnabled);
+
+            NGF_SERIALISE_ON_LOAD
+            {
+                if (!mEnabled)
+                    mEntity->setMaterialName("Objects/Player");
+            }
         }
         NGF_SERIALISE_END
 };
 
-#ifdef __BOMB_CPP__
+#ifdef __CHECKPOINT_CPP__
 
 //gperf stuff goes here.
 

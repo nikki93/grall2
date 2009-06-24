@@ -31,6 +31,7 @@
 #include "Objects/Misc/ParticleEffect.h"
 #include "Objects/Obstacles/Ice.h"
 #include "Objects/Obstacles/SlidingBrush.h"
+#include "Objects/Misc/Checkpoint.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -54,6 +55,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(ParticleEffect);
     NGF_REGISTER_OBJECT_TYPE(Ice);
     NGF_REGISTER_OBJECT_TYPE(SlidingBrush);
+    NGF_REGISTER_OBJECT_TYPE(Checkpoint);
 }
 
 //Register worlds.

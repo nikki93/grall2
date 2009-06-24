@@ -26,19 +26,49 @@ NGF::Python::PythonObjectConnectorPtr py_showMessage(Ogre::String message, Ogre:
 }
 
 //World switching.
-void py_nextWorld() { GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex() + 1; }
-void py_previousWorld() { GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex() - 1; }
-void py_gotoWorld(int index) { GlbVar.worldSwitch = index; }
+void py_nextWorld() 
+{ 
+    GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex() + 1; 
+}
+void py_previousWorld() 
+{ 
+    GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex() - 1; 
+}
+void py_gotoWorld(int index) 
+{ 
+    GlbVar.worldSwitch = index; 
+}
 
 //Dimension stuff (if you want to switch dimensions, best you do it through the 
 //Player object).
-void py_switchDimension() { GlbVar.dimMgr->switchDimension(); }
-void py_setDimension(int dimension) { GlbVar.dimMgr->setDimension(dimension); }
+void py_switchDimension() 
+{ 
+    GlbVar.dimMgr->switchDimension(); 
+}
+void py_setDimension(int dimension) 
+{ 
+    GlbVar.dimMgr->setDimension(dimension); 
+}
 
 //Fades.
-void py_fadeIn(Ogre::Real time) { GlbVar.fader->fadeIn(time); }
-void py_fadeOut(Ogre::Real time) { GlbVar.fader->fadeOut(time); }
-void py_fadeInOut(Ogre::Real in, Ogre::Real pause, Ogre::Real out) { GlbVar.fader->fadeInOut(in, pause, out); }
+void py_fadeIn(Ogre::Real time) 
+{ 
+    GlbVar.fader->fadeIn(time); 
+}
+void py_fadeOut(Ogre::Real time) 
+{ 
+    GlbVar.fader->fadeOut(time); 
+}
+void py_fadeInOut(Ogre::Real in, Ogre::Real pause, Ogre::Real out) 
+{ 
+    GlbVar.fader->fadeInOut(in, pause, out); 
+}
+
+//Saved-game stuff.
+void py_deleteSave()
+{
+    remove((USER_PREFIX + "Saves/" + GlbVar.levelName).c_str());
+}
 
 //--- The module ----------------------------------------------------------------
 
@@ -61,6 +91,9 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("fadeIn", py_fadeIn);
     py::def("fadeOut", py_fadeOut);
     py::def("fadeInOut", py_fadeInOut);
+
+    //Saved-game stuff.
+    py::def("deleteSave", py_deleteSave);
 }
 
 //--- The function that gets called from Game::init() ---------------------------

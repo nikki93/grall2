@@ -6,7 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add 'Checkpoint' GameObject, for mid-game saving.
+- Work on Checkpoint texture.
 
 - Fix Crate dynamics.
 
@@ -255,3 +255,7 @@ Tue Jun 23 23:26:57 AST 2009
 ----------------------------
 - Added 'Level' system, which automatically loads game if saved.
 - Added ability to automatically detect levels and load them.
+
+Wed Jun 24 22:44:10 AST 2009
+----------------------------
+- Added 'Checkpoint' GameObject for saving games mid-level.

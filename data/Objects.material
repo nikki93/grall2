@@ -30,16 +30,6 @@ material Objects/Bomb : BaseNormalMapParallax
 }
 
 //--- Ice (Semitransparent) -----------------------------------------------------------
-//material Objects/Ice : Base
-//{
-        //set $diffuse_tex "Ice.png"
-        //set $normal_tex "Ice_NM.png"
-//
-        //set $ambient "0.9 0.9 0.9 1"
-        //set $diffuse "1 1 1 1"
-        //set $specular "1 1 1 1"
-//}
-
 material Objects/Ice
 { 
         receive_shadows on
@@ -135,3 +125,15 @@ material Objects/Crate3 : Objects/Crate1
         set $diffuse_tex "Crate3.png"
         set $normal_tex "Crate1_NM.png"
 }
+
+//--- Checkpoint ----------------------------------------------------------------------
+material Objects/Checkpoint : Base
+{
+        set $diffuse_tex "Checkpoint.png"
+        set $normal_tex "Checkpoint_NM.png"
+
+        set $ambient "0.8 0.8 0.8 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
+}
+
