@@ -259,3 +259,8 @@ Tue Jun 23 23:26:57 AST 2009
 Wed Jun 24 22:44:10 AST 2009
 ----------------------------
 - Added 'Checkpoint' GameObject for saving games mid-level.
+
+Fri Jun 26 01:10:43 AST 2009
+----------------------------
+- Third person camera now fully mouse-controlled. Can look up, down etc.
+- 'Settings' added to globals to make setting and retreiving settings easier.

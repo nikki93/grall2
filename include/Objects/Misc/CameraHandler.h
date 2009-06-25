@@ -47,8 +47,9 @@ class CameraHandler :
         Ogre::SceneNode *mTargetNode;
         Ogre::String mTargetNodeName;
 
-        Ogre::Vector3 mOffset;
-        Ogre::Real mCameraHeight;
+        Ogre::Vector3 mViewOffset;
+        Ogre::Vector3 mLookAtOffset;
+        Ogre::Degree mViewAngle;
         Ogre::Real mMovementFactor; //The fraction of the required displacement that the camera moves by (lerp).
         Ogre::Real mRotationFactor; //The fraction of the required rotation that the camera rotates by (lerp).
 
@@ -126,6 +127,7 @@ class CameraHandler :
             std::stringstream splineStream(std::stringstream::in | std::stringstream::out);
             Ogre::Real splineState;
             Ogre::Real splineLength;
+            Ogre::Real viewAngle;
 
             //While saving, store stuff.
             NGF_SERIALISE_ON_SAVE
@@ -159,6 +161,8 @@ class CameraHandler :
                 {
                     splineStr = "n";
                 }
+
+                viewAngle = mViewAngle.valueDegrees();
             }
 
             //The actual read/write.
@@ -169,10 +173,11 @@ class CameraHandler :
 
             NGF_SERIALISE_STRING(targetName);
             NGF_SERIALISE_OGRE(Int, mCurrState);
-            NGF_SERIALISE_OGRE(Vector3, mOffset);
+            NGF_SERIALISE_OGRE(Vector3, mViewOffset);
+            NGF_SERIALISE_OGRE(Vector3, mLookAtOffset);
+            NGF_SERIALISE_OGRE(Real, viewAngle);
             NGF_SERIALISE_OGRE(Real, mMovementFactor);
             NGF_SERIALISE_OGRE(Real, mRotationFactor);
-            NGF_SERIALISE_OGRE(Real, mCameraHeight);
             NGF_SERIALISE_STRING(splineStr);
             NGF_SERIALISE_OGRE(Real, splineState);
             NGF_SERIALISE_OGRE(Real, splineLength);
@@ -223,6 +228,8 @@ class CameraHandler :
                     //Jump back to saved time.
                     mSplineAnimState->setTimePosition(splineState);
                 }
+
+                mViewAngle = viewAngle;
             }
         }
         NGF_SERIALISE_END

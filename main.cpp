@@ -277,6 +277,18 @@ class Game
             GlbVar.loadGame = true;
             GlbVar.levelName = "";
 
+            //TODO: Load settings.
+            GlbVar.settings.controls.turningSensitivity = 0.2;
+            GlbVar.settings.controls.upDownSensitivity = 1;
+
+            GlbVar.settings.controls.forward = OIS::KC_W;
+            GlbVar.settings.controls.backward = OIS::KC_S;
+            GlbVar.settings.controls.left = OIS::KC_A;
+            GlbVar.settings.controls.right = OIS::KC_D;
+
+            GlbVar.settings.controls.dimensionSwitch = OIS::KC_SPACE;
+            GlbVar.settings.controls.selfDestruct = OIS::KC_F10;
+
             //Add Worlds, register GameObjects.
             addWorlds();
             registerGameObjectTypes();

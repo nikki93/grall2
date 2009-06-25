@@ -76,6 +76,24 @@ struct Globals : public Ogre::Singleton<Globals>
     bool loadGame;
     Ogre::String levelName;
 
+    //Settings.
+    struct Settings
+    {
+        struct ControlSettings
+        {
+            Ogre::Real turningSensitivity;
+            Ogre::Real upDownSensitivity;
+
+            OIS::KeyCode forward;
+            OIS::KeyCode backward;
+            OIS::KeyCode left;
+            OIS::KeyCode right;
+
+            OIS::KeyCode dimensionSwitch;
+            OIS::KeyCode selfDestruct;
+        } controls;
+    } settings;
+
     //World to switch too. Required for delay in World-switching because GameObjects
     //can't destroy themselves.
     int worldSwitch;

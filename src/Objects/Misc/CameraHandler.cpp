@@ -17,7 +17,7 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mTargetNodeName(""),
       mMovementFactor(4),
       mRotationFactor(0),
-      mCameraHeight(4.5),
+      mViewAngle(30),
       mSplineAnim(NULL),
       mSplineAnimState(NULL),
       mSplineTrack(NULL),
@@ -80,25 +80,36 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     }
 
     //Third-person view offset handling.
-
-    //Change height.
-    if (mCurrState == CS_THIRDPERSON)
+    OIS::MouseState ms = getMouseState();
+    if (ms.buttonDown(OIS::MB_Right) && mCurrState == CS_THIRDPERSON)
     {
-        mCameraHeight += isKeyDown(OIS::KC_R) * 6 * evt.timeSinceLastFrame;
-        mCameraHeight -= isKeyDown(OIS::KC_F) * 6 * evt.timeSinceLastFrame;
-        mCameraHeight = clamp<Ogre::Real>(mCameraHeight, 4.5, 12);
+        Ogre::Real yRel = -ms.Y.rel * 0.1;
+        mViewAngle += Ogre::Degree(yRel) * GlbVar.settings.controls.upDownSensitivity;
+        mViewAngle = clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 70);
     }
 
-    Ogre::Vector3 mOffset = Ogre::Vector3(0, mCameraHeight, (mCameraHeight > 10) ? 6 : 8);
+    mViewOffset = Ogre::Vector3(0, Ogre::Math::Sin(mViewAngle), Ogre::Math::Cos(mViewAngle)) * 10;
+    mLookAtOffset = Ogre::Vector3(0,2,0);
 
-    //Peeping.
-    if (isKeyDown(OIS::KC_Q))
-        mOffset = Ogre::Vector3(5,4.5,0);
-    if (isKeyDown(OIS::KC_E))
+    if (mViewAngle > Ogre::Degree(50))
     {
-        mOffset = Ogre::Vector3(-5,4.5,0);
-        if (isKeyDown(OIS::KC_Q))
-            mOffset = Ogre::Vector3(0,4.5,-5);
+        mViewOffset.y *= ((mViewOffset.y - 7.66) * 0.2) + 1;
+    }
+    else if (mViewAngle < Ogre::Degree(27))
+    {
+        Ogre::Real diff = 27 - mViewAngle.valueDegrees();
+        Ogre::Real fact = 0;
+        Ogre::Real max = 17, min = 0;
+        if (diff < min)
+            fact = 0;
+        else if (diff >= max)
+            fact = 1;
+        else 
+            fact = (3 * ((diff - min) / (max - min)) * ((diff - min) / (max - min))) - (2 * ((diff - min) / (max - min)) * ((diff - min) / (max - min)) * ((diff - min) / (max - min)));
+
+        mViewOffset.z -= fact;
+        mLookAtOffset.y += 3 * fact;
+        mViewOffset.y = 3.42 - ((3.42 - mViewOffset.y) * 1.2);
     }
 
     //Python utick event (do it before camera handling to allow offset-modifications).
@@ -109,11 +120,11 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     {
         case CS_THIRDPERSON:
             {
-                Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mOffset);
+                Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mViewOffset);
                 Ogre::Vector3 toMove = (target - mCamera->getPosition()) * mMovementFactor * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
             }
-            lookAt(mTargetNode->getPosition() + Ogre::Vector3(0,1,0), evt.timeSinceLastFrame);
+            lookAt(mTargetNode->getPosition() + mLookAtOffset, evt.timeSinceLastFrame);
             break;
 
         case CS_LOOKAT:
@@ -143,7 +154,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 //Put the Camera there, make him look at the point.
                 Ogre::Vector3 toMove = ((mDeathLastPos + mDeathOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
-                lookAt(mDeathLastPos + Ogre::Vector3(0,1,0), evt.timeSinceLastFrame);
+                lookAt(mDeathLastPos + mLookAtOffset, evt.timeSinceLastFrame);
 
                 mDeathTime -= evt.timeSinceLastFrame;
 
@@ -200,7 +211,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     break;
                 case CS_DEATH:
                     mDeathLastPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
-                    mDeathOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mCameraHeight + 1, 3);
+                    mDeathOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3);
                     mTargetNode = 0;
                     mDeathTime = 2;
                     break;
@@ -280,7 +291,6 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
     NGF_PY_PROPERTY_IMPL(currState, mCurrState, int)
     NGF_PY_PROPERTY_IMPL(movementFactor, mMovementFactor, Ogre::Real)
     NGF_PY_PROPERTY_IMPL(rotationFactor, mRotationFactor, Ogre::Real)
-    NGF_PY_PROPERTY_IMPL(offset, mOffset, Ogre::Vector3)
 }
 NGF_PY_END_IMPL
 //-------------------------------------------------------------------------------

@@ -104,15 +104,15 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     if (mBody->getAngularVelocity().length2() < 600)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
-        torque.x =  (isKeyDown(OIS::KC_DOWN) || isKeyDown(OIS::KC_S)) - (isKeyDown(OIS::KC_UP) || isKeyDown(OIS::KC_W));
-        torque.z =  (isKeyDown(OIS::KC_LEFT) || isKeyDown(OIS::KC_A)) - (isKeyDown(OIS::KC_RIGHT) || isKeyDown(OIS::KC_D));
+        torque.x =  isKeyDown(GlbVar.settings.controls.backward) - isKeyDown(GlbVar.settings.controls.forward);
+        torque.z =  isKeyDown(GlbVar.settings.controls.left) - isKeyDown(GlbVar.settings.controls.right);
         torque *= 6;
 
         mBody->applyTorque(BtOgre::Convert::toBullet(mControlNode->getOrientation() * torque));
     }
 
     OIS::MouseState ms = getMouseState();
-    mControlNode->yaw(Ogre::Degree(-ms.X.rel * 0.2));
+    mControlNode->yaw(Ogre::Degree(-ms.X.rel * GlbVar.settings.controls.turningSensitivity));
 
     //Fallage.
     Ogre::Real currHeight = mBody->getWorldTransform().getOrigin().getY();
@@ -165,15 +165,13 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             if (GlbVar.paused || GlbVar.console->isVisible() || !mUnderControl)
                 break;
 
-            switch (msg.getParam<OIS::KeyCode>(0))
             {
-                //Dimension switch!
-                case OIS::KC_SPACE:
+                OIS::KeyCode key = msg.getParam<OIS::KeyCode>(0);
+
+                if (key == GlbVar.settings.controls.dimensionSwitch)
                     switchDimension();
-                    break;
-                case OIS::KC_U:
-                    die(false);
-                    break;
+                else if (key == GlbVar.settings.controls.selfDestruct)
+                    die(true);
             }
 
             break;
