@@ -118,22 +118,24 @@ material Objects/Crate1 : BaseNormalMapParallax
 material Objects/Crate2 : Objects/Crate1
 {
         set $diffuse_tex "Crate2.png"
-        set $normal_tex "Crate1_NM.png"
 }
 material Objects/Crate3 : Objects/Crate1
 {
         set $diffuse_tex "Crate3.png"
-        set $normal_tex "Crate1_NM.png"
 }
 
 //--- Checkpoint ----------------------------------------------------------------------
-material Objects/Checkpoint : Base
+material Objects/Checkpoint : BaseNormalMap
 {
         set $diffuse_tex "Checkpoint.png"
         set $normal_tex "Checkpoint_NM.png"
 
         set $ambient "0.8 0.8 0.8 1"
         set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.8 0.8 0.8 1"
+        set $specular "1 1 1 1"
+}
+material Objects/Checkpoint_R : Objects/Checkpoint
+{
+        set $diffuse_tex "Checkpoint_R.png"
 }
 

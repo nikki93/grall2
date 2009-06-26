@@ -83,6 +83,7 @@ struct Globals : public Ogre::Singleton<Globals>
         {
             Ogre::Real turningSensitivity;
             Ogre::Real upDownSensitivity;
+            bool invertMouse;
 
             OIS::KeyCode forward;
             OIS::KeyCode backward;
@@ -91,6 +92,9 @@ struct Globals : public Ogre::Singleton<Globals>
 
             OIS::KeyCode dimensionSwitch;
             OIS::KeyCode selfDestruct;
+
+            OIS::KeyCode peepLeft;
+            OIS::KeyCode peepRight;
         } controls;
     } settings;
 
@@ -103,6 +107,9 @@ struct Globals : public Ogre::Singleton<Globals>
 void addWorlds();
 void registerGameObjectTypes();
 void initPythonBinds();
+void initShadows();
+void loadSettings();
+void saveSettings();
 
 //Messages.
 enum

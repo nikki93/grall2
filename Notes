@@ -8,6 +8,8 @@ Next
 ----
 - Work on Checkpoint texture.
 
+- Expose graphics settings.
+
 - Fix Crate dynamics.
 
 - Add Electricity stuff.
@@ -260,7 +262,14 @@ Wed Jun 24 22:44:10 AST 2009
 ----------------------------
 - Added 'Checkpoint' GameObject for saving games mid-level.
 
-Fri Jun 26 01:10:43 AST 2009
+Fri Jun 25 23:49:43 AST 2009
 ----------------------------
 - Third person camera now fully mouse-controlled. Can look up, down etc.
 - 'Settings' added to globals to make setting and retreiving settings easier.
+
+Fri Jun 25 23:49:43 AST 2009
+----------------------------
+- Created Checkpoint textures.
+- Exposed few more properties as settings.
+- Reintroduced camera peeping in third person.
+- Settings saved and loaded from text file.

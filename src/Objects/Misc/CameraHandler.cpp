@@ -84,7 +84,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     if (ms.buttonDown(OIS::MB_Right) && mCurrState == CS_THIRDPERSON)
     {
         Ogre::Real yRel = -ms.Y.rel * 0.1;
-        mViewAngle += Ogre::Degree(yRel) * GlbVar.settings.controls.upDownSensitivity;
+        int invert = GlbVar.settings.controls.invertMouse ? -1 : 1;
+        mViewAngle -= Ogre::Degree(yRel) * GlbVar.settings.controls.upDownSensitivity * invert;
         mViewAngle = clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 70);
     }
 
@@ -99,6 +100,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     {
         Ogre::Real diff = 27 - mViewAngle.valueDegrees();
         Ogre::Real fact = 0;
+
+        //Smoothstep. :-)
         Ogre::Real max = 17, min = 0;
         if (diff < min)
             fact = 0;
@@ -110,6 +113,16 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         mViewOffset.z -= fact;
         mLookAtOffset.y += 3 * fact;
         mViewOffset.y = 3.42 - ((3.42 - mViewOffset.y) * 1.2);
+    }
+
+    //Peeping.
+    if (isKeyDown(GlbVar.settings.controls.peepLeft))
+        mViewOffset = Ogre::Vector3(5,4.5,0);
+    if (isKeyDown(GlbVar.settings.controls.peepRight))
+    {
+        mViewOffset = Ogre::Vector3(-5,4.5,0);
+        if (isKeyDown(GlbVar.settings.controls.peepLeft))
+            mViewOffset = Ogre::Vector3(0,4.5,-5);
     }
 
     //Python utick event (do it before camera handling to allow offset-modifications).
