@@ -79,6 +79,22 @@ struct Globals : public Ogre::Singleton<Globals>
     //Settings.
     struct Settings
     {
+        struct OgreSettings
+        {
+            Ogre::String pluginDirectory;
+            Ogre::StringVector plugins;
+
+            enum Renderer
+            {
+                OPENGL,
+                DIRECT3D,
+            } renderer;
+
+            int winWidth, winHeight;
+            bool winFullscreen;
+            Ogre::String FSAA, vsync;
+        } ogre;
+
         struct ControlSettings
         {
             Ogre::Real turningSensitivity;

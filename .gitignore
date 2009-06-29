@@ -16,3 +16,4 @@ tags
 #Unneeded data files.
 *.log
 *.mesh.xml
+etc/local/*

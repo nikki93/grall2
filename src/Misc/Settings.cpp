@@ -27,6 +27,26 @@ void loadSettings()
     Ogre::ConfigFile cfg;
     cfg.loadDirect(SETTINGS_FILE);
 
+    //--- Ogre -------------------------------------------------------------------------
+    
+    GlbVar.settings.ogre.pluginDirectory = cfg.getSetting("pluginDirectory", "ogre", ".");
+    GlbVar.settings.ogre.plugins = Ogre::StringConverter::parseStringVector(
+            cfg.getSetting("plugins", "ogre", "Plugin_CgProgramManager.so Plugin_ParticleFX.so Plugin_OctreeSceneManager.so")
+            );
+
+    GlbVar.settings.ogre.renderer = cfg.getSetting("renderer", "ogre", "OpenGL") == "Direct3D"
+        ? Globals::Settings::OgreSettings::DIRECT3D
+        : Globals::Settings::OgreSettings::OPENGL;
+
+    GlbVar.settings.ogre.winWidth = Ogre::StringConverter::parseReal(cfg.getSetting("width", "ogre", "1024"));
+    GlbVar.settings.ogre.winHeight = Ogre::StringConverter::parseReal(cfg.getSetting("height", "ogre", "768"));
+    GlbVar.settings.ogre.winFullscreen = Ogre::StringConverter::parseBool(cfg.getSetting("fullscreen", "ogre", "no"));
+    GlbVar.settings.ogre.FSAA = cfg.getSetting("FSAA", "ogre", "0");
+    GlbVar.settings.ogre.vsync = cfg.getSetting("vsync", "ogre", "no");
+
+
+    //----------------------------------------------------------------------------------
+
     //--- Controls ---------------------------------------------------------------------
 
     GlbVar.settings.controls.turningSensitivity = Ogre::StringConverter::parseReal(cfg.getSetting("turningSensitivity", "controls", "0.2"));
@@ -50,6 +70,29 @@ void loadSettings()
 void saveSettings()
 {
     std::ofstream cfg(SETTINGS_FILE.c_str());
+
+    //--- Ogre -------------------------------------------------------------------------
+    
+    cfg << "[ogre]" << std::endl;
+
+    cfg << "pluginDirectory = " << GlbVar.settings.ogre.pluginDirectory << std::endl;
+    cfg << "plugins = ";
+    for (Ogre::StringVector::iterator iter = GlbVar.settings.ogre.plugins.begin();
+            iter != GlbVar.settings.ogre.plugins.end(); ++iter)
+        cfg << (*iter) << " ";
+    cfg << std::endl;
+    cfg << "renderer = " << ((GlbVar.settings.ogre.renderer == Globals::Settings::OgreSettings::OPENGL) ? "OpenGL" : "Direct3D") 
+        << std::endl;
+    cfg << std::endl;
+
+    cfg << "width = " << GlbVar.settings.ogre.winWidth << std::endl;
+    cfg << "height = " << GlbVar.settings.ogre.winHeight << std::endl;
+    cfg << "fullscreen = " << GlbVar.settings.ogre.winFullscreen << std::endl;
+    cfg << "FSAA = " << GlbVar.settings.ogre.FSAA << std::endl;
+    cfg << "vsync = " << GlbVar.settings.ogre.vsync << std::endl;
+    cfg << std::endl;
+
+    //----------------------------------------------------------------------------------
 
     //--- Controls ---------------------------------------------------------------------
 

@@ -898,6 +898,20 @@ ngflevel Level2
 	{
 		type Light
 		name noname
+		position -5.500000 2.500000 -6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 0.3 0.3 0.6
+			attenuation 10 0.6 0.1 0.05
+		}
+	}
+	object
+	{
+		type Light
+		name noname
 		position 3.100747 10.441255 -18.131882
 		rotation 0.897252 0.441519 0.000000 -0.000000
 

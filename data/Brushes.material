@@ -80,3 +80,56 @@ material Brushes/WhiteTileMulti1.png : BaseNormalMapParallax
         set $specular "0.8 0.8 0.8 1"
 }
 
+//--- Dirt ----------------------------------------------------------------------------
+material Brushes/Dirt.png : BaseNormalMap
+{
+        set $diffuse_tex "Dirt.png"
+        set $normal_tex "Dirt_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.3 0.3 0.3 1"
+}
+
+//--- Checkered -----------------------------------------------------------------------
+material Brushes/Checkered.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "Checkered.png"
+        set $normal_tex "Checkered_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
+}
+
+//--- TileMetal -----------------------------------------------------------------------
+material Brushes/TileMetal.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "TileMetal.png"
+        set $normal_tex "TileMetal_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.9 0.9 0.9 1"
+}
+
+//--- TileMetalHex --------------------------------------------------------------------
+material Brushes/TileMetalHex.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "TileMetalHex.png"
+        set $normal_tex "TileMetalHex_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.9 0.9 0.9 1"
+}
+
+//--- Concrete ------------------------------------------------------------------------
+material Brushes/Concrete.png : Base
+{
+        set $diffuse_tex "Concrete.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.4 0.4 0.4 1"
+}

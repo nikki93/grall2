@@ -69,10 +69,16 @@ class GameListener :
                 case OIS::KC_F7:
                     NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/TestSave.sav");
                     break;
-
                 case OIS::KC_F8:
                     clearLevel();
                     NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/TestSave.sav");
+                    break;
+
+                case OIS::KC_N:
+                    GlbVar.woMgr->nextWorld();
+                    break;
+                case OIS::KC_P:
+                    GlbVar.woMgr->previousWorld();
                     break;
 
                 case OIS::KC_F9:
@@ -127,12 +133,15 @@ class Game
     public:
         bool init()
         {
-            //--- Globals --------------------------------------------------------------
+            //--- Globals, settings ----------------------------------------------------
             new Globals();
+            loadSettings();
 
             //--- Ogre (Graphics) ------------------------------------------------------
             //Root.
-            GlbVar.ogreRoot = new Ogre::Root("plugins.cfg", "config.cfg", "GraLL2.log");
+            GlbVar.ogreRoot = new Ogre::Root("", "", "GraLL2.log");
+
+            /*
             if (!GlbVar.ogreRoot->restoreConfig())
                 if (!GlbVar.ogreRoot->showConfigDialog())
                 {
@@ -140,9 +149,47 @@ class Game
                     delete GlbVar.ogreRoot;
                     return false;
                 }
+            */
+
+            //Plugins.
+            switch (GlbVar.settings.ogre.renderer)
+            {
+                case Globals::Settings::OgreSettings::DIRECT3D:
+                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "RenderSystem_Direct3D9");
+                    break;
+
+                case Globals::Settings::OgreSettings::OPENGL:
+                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "RenderSystem_GL");
+                    break;
+            }
+
+            for (Ogre::StringVector::iterator iter = GlbVar.settings.ogre.plugins.begin();
+                    iter != GlbVar.settings.ogre.plugins.end(); ++iter)
+            {
+                GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + (*iter));
+            }
+
+            //Renderer.
+            const Ogre::RenderSystemList &renderers = GlbVar.ogreRoot->getAvailableRenderers();
+            Ogre::RenderSystem *renderer = *(renderers.begin());
+            GlbVar.ogreRoot->setRenderSystem(renderer);
 
             //Window.
-            GlbVar.ogreWindow = GlbVar.ogreRoot->initialise(true, "GraLL 2");
+            GlbVar.ogreRoot->initialise(false);
+
+            Ogre::NameValuePairList winParams;
+            winParams["FSAA"] = GlbVar.settings.ogre.FSAA;
+            winParams["vsync"] = GlbVar.settings.ogre.vsync;
+
+            GlbVar.ogreWindow = GlbVar.ogreRoot->createRenderWindow(
+                    "GraLL 2",
+                    GlbVar.settings.ogre.winWidth, 
+                    GlbVar.settings.ogre.winHeight,
+                    GlbVar.settings.ogre.winFullscreen,
+                    &winParams
+                    );
+            GlbVar.ogreWindow->setActive(true);
+            GlbVar.ogreWindow->setAutoUpdated(true);
 
             //SceneManager, main lights.
             GlbVar.ogreSmgr = GlbVar.ogreRoot->createSceneManager(Ogre::ST_GENERIC);
@@ -183,26 +230,28 @@ class Game
 
             ogreRmgr.addResourceLocation("../../data/BrushMeshes", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/BrushTextures", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Concrete", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/BrushTextures/Metal", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Other", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/BrushTextures/Special", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
 
             ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Base2", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Base", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Shaders/Shadows", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/ParticleFX", "FileSystem", "General");
 
             //--- OIS (Input) ----------------------------------------------------------
-            OIS::ParamList params;
+            OIS::ParamList inputParams;
             size_t windowHnd = 0;
 
             GlbVar.ogreWindow->getCustomAttribute("WINDOW", &windowHnd);
-            params.insert(std::make_pair(Ogre::String("WINDOW"), Ogre::StringConverter::toString(windowHnd)));
-            //params.insert(std::make_pair(Ogre::String("x11_mouse_grab"), Ogre::String("false")));
-            params.insert(std::make_pair(Ogre::String("x11_keyboard_grab"), Ogre::String("false")));
+            inputParams.insert(std::make_pair(Ogre::String("WINDOW"), Ogre::StringConverter::toString(windowHnd)));
+            //inputParams.insert(std::make_pair(Ogre::String("x11_mouse_grab"), Ogre::String("false")));
+            inputParams.insert(std::make_pair(Ogre::String("x11_keyboard_grab"), Ogre::String("false")));
 
-            mInputManager = OIS::InputManager::createInputSystem(params);
+            mInputManager = OIS::InputManager::createInputSystem(inputParams);
             GlbVar.keyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject(OIS::OISKeyboard, true));
             GlbVar.mouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject(OIS::OISMouse, true));
 
@@ -278,6 +327,7 @@ class Game
             GlbVar.levelName = "";
 
             //Load settings. Set to defualt first, then load.
+            /*
             GlbVar.settings.controls.turningSensitivity = 0.2;
             GlbVar.settings.controls.upDownSensitivity = 1;
             GlbVar.settings.controls.invertMouse = true;
@@ -292,8 +342,7 @@ class Game
 
             GlbVar.settings.controls.peepLeft = OIS::KC_Q;
             GlbVar.settings.controls.peepRight = OIS::KC_E;
-
-            loadSettings();
+            */
 
             //Add Worlds, register GameObjects.
             addWorlds();

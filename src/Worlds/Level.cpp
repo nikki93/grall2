@@ -29,7 +29,7 @@ void Level::init()
     else
     {
         loadLevel(mLevelName);
-        NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/" + mLevelName);
+        //NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/" + mLevelName);
     }
 }
 //-------------------------------------------------------------------------------

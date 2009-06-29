@@ -1,0 +1,55 @@
+ngflevel Level3
+{
+	object
+	{
+		type StaticBrush
+		name noname
+		position -1.000000 1.000000 4.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level3_b0.mesh
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 0.000000 0.000000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level3_b1.mesh
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -5.499782 0.389544 6.500729
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -1.300000 2.800000 5.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 1 0.8 0
+			attenuation 70 1 0.03 0.02
+		}
+	}
+}
+
