@@ -133,3 +133,88 @@ material Brushes/Concrete.png : Base
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.4 0.4 0.4 1"
 }
+
+//--- BlueBrownMulti ------------------------------------------------------------------
+material Brushes/BlueBrownMulti.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "BlueBrownMulti.png"
+        set $normal_tex "BlueBrownMulti_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.7 0.7 0.7 1"
+}
+
+//--- CreamMulti ----------------------------------------------------------------------
+material Brushes/CreamMulti.png : Brushes/BlueBrownMulti.png
+{
+        set $diffuse_tex "CreamMulti.png"
+}
+
+//--- BlueMulti -----------------------------------------------------------------------
+material Brushes/BlueMulti.png : Brushes/BlueBrownMulti.png
+{
+        set $diffuse_tex "BlueMulti.png"
+}
+
+//--- BrownMulti ----------------------------------------------------------------------
+material Brushes/BrownMulti.png : Brushes/BlueBrownMulti.png
+{
+        set $diffuse_tex "BrownMulti.png"
+}
+
+//--- ConcreteTileWall ----------------------------------------------------------------
+material Brushes/ConcreteTileWall.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "ConcreteTileWall.png"
+        set $normal_tex "ConcreteTileWall_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.5 0.5 0.5 1"
+}
+
+//--- ConcreteTileDetailed -----------------------------------------------------------
+material Brushes/ConcreteTileDetailed.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "ConcreteTileDetailed.png"
+        set $normal_tex "ConcreteTileDetailed_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.4 0.4 0.4 1"
+        set $scaleBias "0.02 0.01"
+}
+
+//--- Concrete2 -----------------------------------------------------------------------
+material Brushes/Concrete2.png : BaseNormalMap
+{
+        set $diffuse_tex "Concrete2.png"
+        set $normal_tex "Concrete2_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.3 0.3 0.3 1"
+}
+
+//--- Concrete3 -----------------------------------------------------------------------
+material Brushes/Concrete3.png : Brushes/Concrete2.png
+{
+        set $diffuse_tex "Concrete3.png"
+        set $normal_tex "Concrete3_NM.png"
+}
+
+//--- Concrete4 -----------------------------------------------------------------------
+material Brushes/Concrete4.png : Brushes/Concrete2.png
+{
+        set $diffuse_tex "Concrete4.png"
+        set $normal_tex "Concrete4_NM.png"
+}
+
+//--- Concrete5 -----------------------------------------------------------------------
+material Brushes/Concrete5.png : Brushes/Concrete2.png
+{
+        set $diffuse_tex "Concrete5.png"
+        set $normal_tex "Concrete5_NM.png"
+}
+
