@@ -58,16 +58,6 @@ material Brushes/WhiteTile3.png : Brushes/WhiteTile1.png
         set $diffuse_tex "WhiteTile3.png"
         set $normal_tex "WhiteTile_NM.png"
 }
-material Brushes/WhiteTile4.png : Brushes/WhiteTile1.png
-{
-        set $diffuse_tex "WhiteTile4.png"
-        set $normal_tex "WhiteTile_NM.png"
-}
-material Brushes/WhiteTile5.png : Brushes/WhiteTile1.png
-{
-        set $diffuse_tex "WhiteTile5.png"
-        set $normal_tex "WhiteTile_NM.png"
-}
 
 //--- WhiteTileMulti ------------------------------------------------------------------
 material Brushes/WhiteTileMulti1.png : BaseNormalMapParallax
@@ -157,6 +147,12 @@ material Brushes/BlueMulti.png : Brushes/BlueBrownMulti.png
         set $diffuse_tex "BlueMulti.png"
 }
 
+//--- BlueGreenMulti ------------------------------------------------------------------
+material Brushes/BlueGreenMulti.png : Brushes/BlueBrownMulti.png
+{
+        set $diffuse_tex "BlueGreenMulti.png"
+}
+
 //--- BrownMulti ----------------------------------------------------------------------
 material Brushes/BrownMulti.png : Brushes/BlueBrownMulti.png
 {
@@ -216,5 +212,56 @@ material Brushes/Concrete5.png : Brushes/Concrete2.png
 {
         set $diffuse_tex "Concrete5.png"
         set $normal_tex "Concrete5_NM.png"
+}
+
+//--- GripMetal -----------------------------------------------------------------------
+material Brushes/GripMetal.png : BaseNormalMap
+{
+        set $diffuse_tex "GripMetal.png"
+        set $normal_tex "GripMetal_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.6 0.6 0.6 1"
+}
+
+//--- GripMetal2 ----------------------------------------------------------------------
+material Brushes/GripMetal2.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "GripMetal2.png"
+        set $normal_tex "GripMetal2_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.5 0.5 0.5 1"
+}
+
+//--- ConcreteOrangePatch -------------------------------------------------------------
+material Brushes/ConcreteOrangePatch.png : BaseNormalMap
+{
+        set $diffuse_tex "ConcreteOrangePatch.png"
+        set $normal_tex "ConcreteOrangePatch_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.3 0.3 0.3 1"
+}
+
+//--- MetalPlates ----------------------------------------------------------------------
+material Brushes/MetalPlates.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "MetalPlates.png"
+        set $normal_tex "MetalPlates_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.5 0.5 0.5 1"
+}
+
+//--- MetalPlates2----------------------------------------------------------------------
+material Brushes/MetalPlates2.png : Brushes/MetalPlates.png
+{
+        set $diffuse_tex "MetalPlates2.png"
+        set $normal_tex "MetalPlates2_NM.png"
 }
 

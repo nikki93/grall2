@@ -8,6 +8,10 @@ Next
 ----
 - Add sound subsystem.
 
+- Add MovingBomb.
+
+- Add 'Decal' GameObject.
+
 - Fix Crate dynamics.
 
 - Add Electricity stuff.
@@ -287,3 +291,7 @@ Mon Jun 29 20:19:29 AST 2009
 Tue Jun 30 22:39:22 AST 2009
 ----------------------------
 - Added lots more textures.
+
+Wed Jul  1 22:12:55 AST 2009
+----------------------------
+- Added even more textures.
