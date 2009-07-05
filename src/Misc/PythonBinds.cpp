@@ -51,15 +51,15 @@ void py_setDimension(int dimension)
 }
 
 //Fades.
-void py_fadeIn(Ogre::Real time) 
+void py_fadeInScreen(Ogre::Real time) 
 { 
     GlbVar.fader->fadeIn(time); 
 }
-void py_fadeOut(Ogre::Real time) 
+void py_fadeOutScreen(Ogre::Real time) 
 { 
     GlbVar.fader->fadeOut(time); 
 }
-void py_fadeInOut(Ogre::Real in, Ogre::Real pause, Ogre::Real out) 
+void py_fadeInOutScreen(Ogre::Real in, Ogre::Real pause, Ogre::Real out) 
 { 
     GlbVar.fader->fadeInOut(in, pause, out); 
 }
@@ -68,6 +68,24 @@ void py_fadeInOut(Ogre::Real in, Ogre::Real pause, Ogre::Real out)
 void py_deleteSave()
 {
     remove((USER_PREFIX + "Saves/" + GlbVar.levelName).c_str());
+}
+
+//Music stuff.
+void py_playMusic(Ogre::String music)
+{
+    GlbVar.musicMgr->playMusic(music);
+}
+void py_crossFadeMusic(Ogre::String music, Ogre::Real time)
+{
+    GlbVar.musicMgr->crossFade(music, time);
+}
+void py_setMusicGain(Ogre::Real gain)
+{
+    GlbVar.musicMgr->setGain(gain);
+}
+Ogre::Real py_getMusicGain()
+{
+    return GlbVar.musicMgr->getGain();
 }
 
 //--- The module ----------------------------------------------------------------
@@ -88,12 +106,18 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("setDimension", py_setDimension);
 
     //Fades.
-    py::def("fadeIn", py_fadeIn);
-    py::def("fadeOut", py_fadeOut);
-    py::def("fadeInOut", py_fadeInOut);
+    py::def("fadeInScreen", py_fadeInScreen);
+    py::def("fadeOutScreen", py_fadeOutScreen);
+    py::def("fadeInOutScreen", py_fadeInOutScreen);
 
     //Saved-game stuff.
     py::def("deleteSave", py_deleteSave);
+
+    //Music stuff.
+    py::def("playMusic", py_playMusic);
+    py::def("crossFadeMusic", py_crossFadeMusic);
+    py::def("setMusicGain", py_setMusicGain);
+    py::def("getMusicGain", py_getMusicGain);
 }
 
 //--- The function that gets called from Game::init() ---------------------------

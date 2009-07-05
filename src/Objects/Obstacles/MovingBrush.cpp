@@ -6,7 +6,11 @@ MovingBrush.cpp
 
 #define __MOVINGBRUSH_CPP__
 
+#include <LinearMath/btGeometryUtil.h>
+
 #include "Objects/Obstacles/MovingBrush.h"
+
+#define CAST_SHAPE_SHRINK 0.1
 
 //--- NGF events ----------------------------------------------------------------
 MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -44,8 +48,25 @@ MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     initBody();
 
     //Make smaller shape for cast.
-    mCastShape = new btConvexHullShape(*mShape);
-    mCastShape->setLocalScaling(btVector3(0.85,0.85,0.85));
+    //Get vertices.
+    btAlignedObjectArray<btVector3> offsetVerts;
+    btVector3 *iter = mShape->getUnscaledPoints(); 
+    for (int i = 0; i < mShape->getNumPoints(); ++i, ++iter)
+        offsetVerts.push_back(*iter);
+
+    //Push 'em in by 0.1;
+    btAlignedObjectArray<btVector3> offsetPlanes;
+    btGeometryUtil::getPlaneEquationsFromVertices(offsetVerts, offsetPlanes);
+    int sz = offsetPlanes.size();
+    for (int i=0 ; i<sz ; ++i) 
+        offsetPlanes[i][3] += CAST_SHAPE_SHRINK;
+    offsetVerts.clear();
+    btGeometryUtil::getVerticesFromPlaneEquations(offsetPlanes, offsetVerts);
+
+    //Fill the shape with the new points.
+    mCastShape = new btConvexHullShape();
+    for (int i = 0; i < offsetVerts.size() ; ++i) 
+        mCastShape->addPoint(offsetVerts[i]);
 }
 //-------------------------------------------------------------------------------
 void MovingBrush::postLoad()
@@ -142,8 +163,9 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         };
 
         //Where to cast from, where to cast to, etc.
+        btVector3 normVel = currVel.normalized();
         btVector3 pos1 = prevPos;
-        btVector3 castDisp = currVel + (currVel.normalized() * 0.15);
+        btVector3 castDisp = currVel + (normVel * CAST_SHAPE_SHRINK);
         castDisp.setY(0);
         btVector3 pos2 = prevPos + castDisp;
         btQuaternion rot = mBody->getWorldTransform().getRotation();

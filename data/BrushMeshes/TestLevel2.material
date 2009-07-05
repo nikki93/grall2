@@ -123,7 +123,7 @@ material Level2_b0_m0/TEXFACE/TileMetal.png
 		}
 	}
 }
-material Level2_b0_m0/TEXFACE/Concrete.png
+material Level2_b1_m0/TEXFACE/ConcreteOrangePatch.png
 {
 	receive_shadows on
 	technique
@@ -135,7 +135,57 @@ material Level2_b0_m0/TEXFACE/Concrete.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture Concrete.png
+				texture ConcreteOrangePatch.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level2_b3_m0/TEXFACE/ConcreteTileDetailed.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture ConcreteTileDetailed.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level2_b0_m0/TEXFACE/Concrete3.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Concrete3.png
 				colour_op modulate
 			}
 		}
@@ -286,6 +336,31 @@ material Level2_b0_m0/TEXFACE/GripMetal.png
 			texture_unit
 			{
 				texture GripMetal.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level2_b3_m0/TEXFACE/Concrete5.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Concrete5.png
 				colour_op modulate
 			}
 		}
@@ -523,6 +598,31 @@ material Level2_b0_m0/TEXFACE/GripMetal2.png
 		}
 	}
 }
+material Level2_b0_m0/TEXFACE/GripMetal3.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture GripMetal3.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
 material Level2_b0_m0/TEXFACE/Dirt.png
 {
 	receive_shadows on
@@ -573,7 +673,7 @@ material Level2_b0_m0/TEXFACE/Concrete4.png
 		}
 	}
 }
-material Level2_b0_m0/TEXFACE/Concrete3.png
+material Level2_b0_m0/TEXFACE/Concrete.png
 {
 	receive_shadows on
 	technique
@@ -585,7 +685,7 @@ material Level2_b0_m0/TEXFACE/Concrete3.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture Concrete3.png
+				texture Concrete.png
 				colour_op modulate
 			}
 		}
@@ -661,6 +761,31 @@ material Level2_b0_m0/TEXFACE/MetalPlates.png
 			texture_unit
 			{
 				texture MetalPlates.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level2_b2_m0/TEXFACE/ConcreteTileWall.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture ConcreteTileWall.png
 				colour_op modulate
 			}
 		}

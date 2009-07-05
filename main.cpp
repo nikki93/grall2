@@ -43,6 +43,12 @@ class GameListener :
             //Update the Fader.
             GlbVar.fader->tick(evt);
 
+            //Update the MusicManager.
+            GlbVar.musicMgr->tick(evt);
+
+            //Update DimensionManager.
+            GlbVar.dimMgr->tick();
+
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
             return GlbVar.woMgr->tick(evt);
@@ -224,6 +230,7 @@ class Game
             ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Sounds", "FileSystem", "General");
 
             ogreRmgr.addResourceLocation("../../data/ObjectMeshes", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/ObjectTextures", "FileSystem", "General");
@@ -284,7 +291,8 @@ class Game
             GlbVar.gui = new MyGUI::Gui();
             GlbVar.gui->initialise(GlbVar.ogreWindow);
 
-            //--- ~ (Sound) ------------------------------------------------------------
+            //--- OgreAL (Sound) -------------------------------------------------------
+            GlbVar.soundMgr = new OgreAL::SoundManager();
 
             //--- NGF (Game architecture framework) ------------------------------------
             //Usual stuff.
@@ -319,6 +327,9 @@ class Game
             //Fader.
             GlbVar.fader = new Fader();
 
+            //MusicManager.
+            GlbVar.musicMgr = new MusicManager();
+
             //Initialise other Global variables.
             GlbVar.currCameraHandler = 0;
             GlbVar.currMessageBox = 0;
@@ -326,23 +337,8 @@ class Game
             GlbVar.loadGame = true;
             GlbVar.levelName = "";
 
-            //Load settings. Set to defualt first, then load.
-            /*
-            GlbVar.settings.controls.turningSensitivity = 0.2;
-            GlbVar.settings.controls.upDownSensitivity = 1;
-            GlbVar.settings.controls.invertMouse = true;
-
-            GlbVar.settings.controls.forward = OIS::KC_W;
-            GlbVar.settings.controls.backward = OIS::KC_S;
-            GlbVar.settings.controls.left = OIS::KC_A;
-            GlbVar.settings.controls.right = OIS::KC_D;
-
-            GlbVar.settings.controls.dimensionSwitch = OIS::KC_SPACE;
-            GlbVar.settings.controls.selfDestruct = OIS::KC_F10;
-
-            GlbVar.settings.controls.peepLeft = OIS::KC_Q;
-            GlbVar.settings.controls.peepRight = OIS::KC_E;
-            */
+            //Some music.
+            GlbVar.musicMgr->playMusic("Track1");
 
             //Add Worlds, register GameObjects.
             addWorlds();
@@ -362,9 +358,6 @@ class Game
                 //Update input.
                 GlbVar.keyboard->capture();
                 GlbVar.mouse->capture();
-
-                //Update DimensionManager.
-                GlbVar.dimMgr->tick();
 
                 //If we need to switch Worlds, do so, but not again.
                 if (GlbVar.worldSwitch != -1)
@@ -400,6 +393,9 @@ class Game
             delete GlbVar.lvlLoader;
             delete GlbVar.woMgr;
             delete GlbVar.goMgr;
+
+            //Sound.
+            delete GlbVar.soundMgr;
 
             //Physics.
             delete GlbVar.phyDebug;

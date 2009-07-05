@@ -236,6 +236,14 @@ material Brushes/GripMetal2.png : BaseNormalMapParallax
         set $specular "0.5 0.5 0.5 1"
 }
 
+//--- GripMetal3 ----------------------------------------------------------------------
+material Brushes/GripMetal3.png : Brushes/GripMetal2.png
+{
+        set $diffuse_tex "GripMetal3.png"
+        set $normal_tex "GripMetal3_NM.png"
+}
+
+
 //--- ConcreteOrangePatch -------------------------------------------------------------
 material Brushes/ConcreteOrangePatch.png : BaseNormalMap
 {

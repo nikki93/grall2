@@ -608,13 +608,14 @@ ngflevel Level1
 			dimension1 yes
 			dimension2 no
 			script : import Ngf
+			       : import GraLL2
 			       : 
 			       : def create(self):
 			       : 	#For the cutscene
 			       : 	#self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
 			       : 	#self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
 			       : 	#self.p_underControl = False
-			       : 	pass
+			       : 	GraLL2.playMusic("Track1")
 		}
 	}
 	object
@@ -691,6 +692,7 @@ ngflevel Level1
 			       : 		GraLL2.showMessage("""Check out the lights here! Also, if you're having trouble getting around the walls,
 			       : remember that you can press SPACE to switch dimensions. Pretty cool, eh?""", 7)
 			       : 		self.m_messaged = True
+			       : 		GraLL2.crossFadeMusic("Track2", 5)
 		}
 	}
 	object
@@ -891,7 +893,7 @@ ngflevel Level2
 		{
 			lightType point
 			colour 0.5 0.4 0.3
-			attenuation 10 0.6 0.1 0.05
+			attenuation 70 0.6 0.1 0.05
 		}
 	}
 	object
@@ -905,7 +907,7 @@ ngflevel Level2
 		{
 			lightType point
 			colour 0.5 0.4 0.3
-			attenuation 10 0.6 0.1 0.05
+			attenuation 70 0.6 0.1 0.05
 		}
 	}
 	object
@@ -919,7 +921,7 @@ ngflevel Level2
 		{
 			lightType point
 			colour 0.3 0.3 0.6
-			attenuation 10 0.6 0.1 0.05
+			attenuation 70 0.6 0.1 0.05
 		}
 	}
 	object
@@ -933,7 +935,7 @@ ngflevel Level2
 		{
 			lightType point
 			colour 0.5 0.4 0.3
-			attenuation 10 0.6 0.1 0.05
+			attenuation 70 0.6 0.1 0.05
 		}
 	}
 	object
@@ -1022,7 +1024,61 @@ ngflevel Level2
 		{
 			lightType point
 			colour 1 0.8 0
-			attenuation 10 0.6 0.1 0.05
+			attenuation 70 0.6 0.1 0.05
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name noname
+		position -6.000000 1.400000 -1.000000
+		rotation 0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			enabled no
+			brushMeshFile Level2_b1.mesh
+			speed 1
+			dimension2 no
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.hasFlag("Player")):
+			       : 		self.p_enabled = True
+		}
+	}
+	object
+	{
+		type RigidBody
+		name noname
+		position -7.022062 1.808290 -2.998165
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			mass 5
+			friction 0.5
+			restitution 0
+			linearDamping 0
+			angularDamping 0
+			brushMeshFile Level2_b2.mesh
+		}
+	}
+	object
+	{
+		type RigidBody
+		name noname
+		position -4.500000 2.222615 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			mass 5
+			friction 0.5
+			restitution 0
+			linearDamping 0
+			angularDamping 0
+			brushMeshFile Level2_b3.mesh
 		}
 	}
 }

@@ -56,13 +56,15 @@ if (linux) then
     package.buildoptions = {
 	"`pkg-config OGRE --cflags`" ..
 	"`pkg-config OIS --cflags`" ..
-	"`pkg-config MyGUI --cflags`"
+	"`pkg-config MyGUI --cflags`" ..
+	"`pkg-config OgreAL --cflags`"
     }
 
     package.linkoptions = {
 	"`pkg-config OGRE --libs`" ..
 	"`pkg-config OIS --libs`" ..
-	"`pkg-config MyGUI --libs`"
+	"`pkg-config MyGUI --libs`" ..
+	"`pkg-config OgreAL --libs`"
     }
 end
 

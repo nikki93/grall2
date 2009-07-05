@@ -6,7 +6,11 @@ SlidingBrush.cpp
 
 #define __SLIDINGBRUSH_CPP__
 
+#include <LinearMath/btGeometryUtil.h>
+
 #include "Objects/Obstacles/SlidingBrush.h"
+
+#define CAST_SHAPE_SHRINK 0.1
 
 //--- NGF events ----------------------------------------------------------------
 SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -57,8 +61,25 @@ SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, 
     mIgnoreCollisions = Ogre::StringConverter::parseBool(mProperties.getValue("ignoreCollisions", 0, "no"));
 
     //Make smaller shape for cast.
-    mCastShape = new btConvexHullShape(*mShape);
-    mCastShape->setLocalScaling(btVector3(0.99, 0.99, 0.99));
+    //Get vertices.
+    btAlignedObjectArray<btVector3> offsetVerts;
+    btVector3 *iter = mShape->getUnscaledPoints(); 
+    for (int i = 0; i < mShape->getNumPoints(); ++i, ++iter)
+        offsetVerts.push_back(*iter);
+
+    //Push 'em in by 0.1;
+    btAlignedObjectArray<btVector3> offsetPlanes;
+    btGeometryUtil::getPlaneEquationsFromVertices(offsetVerts, offsetPlanes);
+    int sz = offsetPlanes.size();
+    for (int i=0 ; i<sz ; ++i) 
+        offsetPlanes[i][3] += CAST_SHAPE_SHRINK;
+    offsetVerts.clear();
+    btGeometryUtil::getVerticesFromPlaneEquations(offsetPlanes, offsetVerts);
+
+    //Fill the shape with the new points.
+    mCastShape = new btConvexHullShape();
+    for (int i = 0; i < offsetVerts.size() ; ++i) 
+        mCastShape->addPoint(offsetVerts[i]);
 }
 //-------------------------------------------------------------------------------
 void SlidingBrush::postLoad()
@@ -159,8 +180,9 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 };
 
                 //Where to cast from, where to cast to, etc.
+                btVector3 normVel = currVel.normalized();
                 btVector3 pos1 = prevPos;
-                btVector3 pos2 = prevPos + currVel + (currVel.normalized() * 0.01);
+                btVector3 pos2 = prevPos + currVel + (normVel * CAST_SHAPE_SHRINK);
                 btQuaternion rot = mBody->getWorldTransform().getRotation();
                 btTransform trans1(rot, pos1);
                 btTransform trans2(rot, pos2);

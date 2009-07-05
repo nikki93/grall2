@@ -20,6 +20,7 @@
 #include "BtOgreGP.h"
 #include "BtOgrePG.h"
 #include "MyGUI.h"
+#include "OgreAL.h"
 #include "Ngf.h"
 #include "ngfplugins/NgfBullet.h"
 #include "ngfplugins/NgfPython.h"
