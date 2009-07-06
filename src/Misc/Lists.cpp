@@ -32,6 +32,7 @@
 #include "Objects/Obstacles/Ice.h"
 #include "Objects/Obstacles/SlidingBrush.h"
 #include "Objects/Misc/Checkpoint.h"
+#include "Objects/Obstacles/MovingBomb.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -56,6 +57,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Ice);
     NGF_REGISTER_OBJECT_TYPE(SlidingBrush);
     NGF_REGISTER_OBJECT_TYPE(Checkpoint);
+    NGF_REGISTER_OBJECT_TYPE(MovingBomb);
 }
 
 //Register worlds.

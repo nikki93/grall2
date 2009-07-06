@@ -56,6 +56,9 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::PLAYER, mDimensions);
     setBulletObject(mBody);
 
+    //Smaller shape for casting.
+    mCastShape = new btSphereShape(converter.getRadius() - 0.02);
+
     //Control node is used for controlling the Player. He rotates in all kinds of crazy ways, but we need to know where we're headed.
     mControlNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName + "-controlnode", pos, rot);
 
@@ -284,10 +287,6 @@ void Player::switchDimension()
         }
     };
 
-    //Copy shape for cast. Maybe we should do it in the beginning and keep a copy?
-    btSphereShape shape(*mShape);
-    shape.setLocalScaling(btVector3(0.85,0.85,0.85));
-
     //Where to cast from, where to cast to, etc.
     btVector3 pos1 = mBody->getWorldTransform().getOrigin() - btVector3(0,0.15,0);
     btVector3 pos2 = btVector3(pos1.x(),9999,pos1.z());
@@ -297,7 +296,7 @@ void Player::switchDimension()
 
     //Do the cast.
     PlayerDimensionCheckResult res(mBody, mDimensions ^ DimensionManager::DIM_SWITCH, pos1, pos2);
-    GlbVar.phyWorld->convexSweepTest(&shape, trans1, trans2, res);
+    GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
     //If no hits, then switch.
     if (!res.mHit)

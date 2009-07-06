@@ -1,25 +1,30 @@
 /*
 =========================================
-MovingBrush.cpp
+MovingBomb.cpp
 =========================================
 */
 
-#define __MOVINGBRUSH_CPP__
+#define __MOVINGBOMB_CPP__
 
 #include <LinearMath/btGeometryUtil.h>
 
-#include "Objects/Obstacles/MovingBrush.h"
+#include "Objects/Obstacles/MovingBomb.h"
+
+#include "Objects/Misc/Light.h"
+#include "Objects/Misc/ParticleEffect.h"
 
 #define CAST_SHAPE_SHRINK 0.1
 
 //--- NGF events ----------------------------------------------------------------
-MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
+MovingBomb::MovingBomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mTimer(-1),
       mLastFrameTime(0.1),
-      mFollowDirectors(true)
+      mFollowDirectors(true),
+      mExploded(false)
 {
-    addFlag("MovingBrush");
+    addFlag("MovingBomb");
+    addFlag("Explosive");
 
     //Save the director event.
     NGF_PY_SAVE_EVENT(director);
@@ -32,50 +37,33 @@ MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     mVelocity = rot * Ogre::Vector3(0,0,-Ogre::StringConverter::parseReal(properties.getValue("speed", 0, "2")));
 
     //Create the Ogre stuff.
-    mEntity = createBrushEntity();
+    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "MovingBomb.mesh");
+    mEntity->setMaterialName("Objects/MovingBomb");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createConvex();
-    mShape->setMargin(0); //Bad, but we gotta.
+    mShape = new btSphereShape(0.45);
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    initBody();
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
+    setBulletObject(mBody);
 
     //Make smaller shape for cast.
-    //Get vertices.
-    btAlignedObjectArray<btVector3> offsetVerts;
-    btVector3 *iter = mShape->getUnscaledPoints(); 
-    for (int i = 0; i < mShape->getNumPoints(); ++i, ++iter)
-        offsetVerts.push_back(*iter);
-
-    //Push 'em in by 0.1;
-    btAlignedObjectArray<btVector3> offsetPlanes;
-    btGeometryUtil::getPlaneEquationsFromVertices(offsetVerts, offsetPlanes);
-    int sz = offsetPlanes.size();
-    for (int i=0 ; i<sz ; ++i) 
-        offsetPlanes[i][3] += CAST_SHAPE_SHRINK;
-    offsetVerts.clear();
-    btGeometryUtil::getVerticesFromPlaneEquations(offsetPlanes, offsetVerts);
-
-    //Fill the shape with the new points.
-    mCastShape = new btConvexHullShape();
-    for (int i = 0; i < offsetVerts.size() ; ++i) 
-        mCastShape->addPoint(offsetVerts[i]);
+    mCastShape = new btSphereShape(converter.getRadius() - CAST_SHAPE_SHRINK);
 }
 //-------------------------------------------------------------------------------
-void MovingBrush::postLoad()
+void MovingBomb::postLoad()
 {
     //Python create event.
     NGF_PY_CALL_EVENT(create);
 }
 //-------------------------------------------------------------------------------
-MovingBrush::~MovingBrush()
+MovingBomb::~MovingBomb()
 {
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
@@ -89,7 +77,7 @@ MovingBrush::~MovingBrush()
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
-void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
+void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
     bool jumped = false;
@@ -126,14 +114,14 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btVector3 newPos = prevPos + currVel;
 
         //The cast result callback. Also checks for Director hits.
-        struct MovingBrushCheckResult : public btDynamicsWorld::ConvexResultCallback
+        struct MovingBombCheckResult : public btDynamicsWorld::ConvexResultCallback
         {
             btCollisionObject *mIgnore;
             int mDimension;
             bool mHit;
             std::set<NGF::GameObject*> mDirectorsHit;
 
-            MovingBrushCheckResult(btCollisionObject *ignore, int dimension)
+            MovingBombCheckResult(btCollisionObject *ignore, int dimension)
                 : mIgnore(ignore),
                   mDimension(dimension),
                   mHit(false)
@@ -162,7 +150,6 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 //If it's us, or isn't in our dimension, we don't care. 
                 return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
                     && (proxy0->m_collisionFilterGroup & mDimension)
-                    && (!(proxy0->m_collisionFilterGroup & DimensionManager::PLAYER))
                     && ((proxy0->m_collisionFilterGroup & DimensionManager::DIRECTOR) 
                             || !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE));
             }
@@ -171,7 +158,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         //Where to cast from, where to cast to, etc.
         btVector3 normVel = currVel.normalized();
         btVector3 pos1 = prevPos;
-        btVector3 castDisp = currVel + (normVel * CAST_SHAPE_SHRINK);
+        btVector3 castDisp = currVel + (normVel * (CAST_SHAPE_SHRINK + 0.05));
         castDisp.setY(0);
         btVector3 pos2 = prevPos + castDisp;
         btQuaternion rot = mBody->getWorldTransform().getRotation();
@@ -179,7 +166,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btTransform trans2(rot, pos2);
 
         //Do the cast.
-        MovingBrushCheckResult res(mBody, mDimensions);
+        MovingBombCheckResult res(mBody, mDimensions);
         GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
         //If hit Director, get directed. Use timer to avoid getting stuck to Director.
@@ -235,18 +222,25 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
-void MovingBrush::pausedTick(const Ogre::FrameEvent &evt)
+void MovingBomb::pausedTick(const Ogre::FrameEvent &evt)
 {
     //Python ptick event.
     NGF_PY_CALL_EVENT(ptick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
-NGF::MessageReply MovingBrush::receiveMessage(NGF::Message msg)
+NGF::MessageReply MovingBomb::receiveMessage(NGF::Message msg)
 {
+    switch (msg.code)
+    {
+        case MSG_EXPLODE:
+            explode();
+            NGF_NO_REPLY();
+    }
+    
     return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------
-void MovingBrush::collide(NGF::GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
+void MovingBomb::collide(NGF::GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
     //The PythonGameObject.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
@@ -278,8 +272,35 @@ void MovingBrush::collide(NGF::GameObject *other, btCollisionObject *otherPhysic
 }
 //-------------------------------------------------------------------------------
 
+//--- Non-NGF -------------------------------------------------------------------
+void MovingBomb::explode()
+{
+    if (mExploded)
+        return;
+
+    //FX!
+    GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("lightType", "point")
+            ("colour", "1 0.6 0")
+            ("specular", "0.1 0.1 0.1")
+            ("attenuation", "10 0.6 0.2 0.1")
+            ("time", "1.6")
+            ("fadeOutTime", "0.75")
+            );
+
+    GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("template", "ParticleFX/Explosion")
+            ("time", "2")
+            );
+
+    //Us no more. :-(
+    GlbVar.goMgr->requestDestroy(getID());
+    mExploded = true;
+}
+//-------------------------------------------------------------------------------
+
 //--- Python interface implementation -------------------------------------------
-NGF_PY_BEGIN_IMPL(MovingBrush)
+NGF_PY_BEGIN_IMPL(MovingBomb)
 {
     //setPosition
     NGF_PY_METHOD_IMPL(setPosition)

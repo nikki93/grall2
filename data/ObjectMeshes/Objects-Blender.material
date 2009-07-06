@@ -1,4 +1,4 @@
-material Checkpoint/TEXFACE/Checkpoint.png
+material Bomb/TEXFACE/Bomb.png
 {
 	receive_shadows on
 	technique
@@ -10,7 +10,7 @@ material Checkpoint/TEXFACE/Checkpoint.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture Checkpoint.png
+				texture Bomb.png
 				colour_op modulate
 			}
 		}
@@ -62,7 +62,7 @@ material Player/TEXFACE/Player.png
 		}
 	}
 }
-material Bomb/TEXFACE/Bomb.png
+material Checkpoint/TEXFACE/Checkpoint.png
 {
 	receive_shadows on
 	technique
@@ -74,7 +74,7 @@ material Bomb/TEXFACE/Bomb.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture Bomb.png
+				texture Checkpoint.png
 				colour_op modulate
 			}
 		}

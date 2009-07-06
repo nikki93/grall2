@@ -878,6 +878,20 @@ ngflevel Level1
 			dimension2 yes
 		}
 	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.500000 0.500000 3.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			speed 2
+		}
+	}
 }
 
 ngflevel Level2
