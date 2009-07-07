@@ -147,12 +147,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 if (obj->getBroadphaseHandle()->m_collisionFilterGroup & DimensionManager::DIRECTOR)
                     mDirectorsHit.insert(NGF::Bullet::fromBulletObject(obj));
                 else
-                {
-                    NGF::GameObject *gobj = NGF::Bullet::fromBulletObject(obj);
-
-                    if (!(gobj->hasFlag("Player")))
-                        mHit = true;
-                }
+                    mHit = true;
 
                 return convexResult.m_hitFraction;
             }

@@ -6,9 +6,16 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Consider building LevelGeometry only out of convex brushes.
+- Add generic 'Switch' system, and easy special Switches such as electricity switch, or SlidingBrush switch. Has an
+  'enabled' and 'disabled' event in Python, and a 'p_enabled' field, to allow scriptability. An electricity
+  switch can be created by specifying 'electric -> yes' property, and SlidingBrush switch by specifying
+  'slidingBrush -> name' property. SlidingBrush switches tell their SlidingBrushes to go forward or backward if
+  the switch is enabled or disabled respectively. Generally works good for Doors.
 
-- Add Electricity stuff.
+- Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
+  mesh, and moves exactly one unit.
+
+- Think of a good Electricity system.
 
 Side
 ----
@@ -311,3 +318,7 @@ Mon Jul  6 18:59:18 AST 2009
 ----------------------------
 - Added MovingBomb.
 - Random bug fixes.
+
+Tue Jul  7 23:09:59 AST 2009
+----------------------------
+- Added ability to specify physical shape for 'RigidBody' as a property.

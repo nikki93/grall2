@@ -23,6 +23,7 @@ RigidBody::RigidBody(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::P
     mp_Restitution = Ogre::StringConverter::parseReal(properties.getValue("restitution", 0, "0"));
     mp_LinearDamping = Ogre::StringConverter::parseReal(properties.getValue("linearDamping", 0, "0"));
     mp_AngularDamping = Ogre::StringConverter::parseReal(properties.getValue("angularDamping", 0, "0"));
+    Ogre::String shape = properties.getValue("shape", 0, "convex");
 
     //Create the Ogre stuff.
     mEntity = createBrushEntity();
@@ -31,7 +32,22 @@ RigidBody::RigidBody(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::P
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createConvex();
+
+    if (shape == "convex")
+        mShape = converter.createConvex();
+    else if (shape == "sphere")
+        mShape = converter.createSphere();
+    else if (shape == "cylinderY")
+        mShape = new btCylinderShape(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+    else if (shape == "cylinderZ")
+        mShape = new btCylinderShapeZ(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+    else if (shape == "cylinderX")
+        mShape = new btCylinderShapeX(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+    else if (shape == "box")
+        mShape = converter.createBox();
+    else
+        mShape = converter.createConvex();
+    
     btScalar mass = mp_Mass;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);

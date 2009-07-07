@@ -345,14 +345,14 @@ ngflevel Level1
 	{
 		type Light
 		name noname
-		position -7.500000 0.500000 10.500000
+		position -7.500000 1.500000 10.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			lightType point
 			colour 1 0.8 0
-			attenuation 70 0.6 0.2 0.4
+			attenuation 70 0.6 0.1 0.2
 		}
 	}
 	object
@@ -612,9 +612,9 @@ ngflevel Level1
 			       : 
 			       : def create(self):
 			       : 	#For the cutscene
-			       : 	#self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
-			       : 	#self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
-			       : 	#self.p_underControl = False
+			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
+			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
+			       : 	self.p_underControl = False
 			       : 	GraLL2.playMusic("Track1")
 		}
 	}
@@ -642,12 +642,12 @@ ngflevel Level1
 			       : 	self.endSpline()
 			       : 	
 			       : 	#Cutscene
-			       : 	#self.setAlarm(splineTime, 0)
-			       : 	#self.setAlarm(splineTime + 2.5, 1)
-			       : 	#self.p_currState = 3
+			       : 	self.setAlarm(splineTime, 0)
+			       : 	self.setAlarm(splineTime + 2.5, 1)
+			       : 	self.p_currState = 3
 			       : 	
 			       : 	#No cutscene
-			       : 	self.p_currState = 2
+			       : 	#self.p_currState = 2
 			       : 
 			       : def alarm(self, alm):
 			       : 	#Go to third-person smoothly
@@ -1093,6 +1093,8 @@ ngflevel Level2
 			linearDamping 0
 			angularDamping 0
 			brushMeshFile Level2_b3.mesh
+			dimension1 no
+			shape cylinderY
 		}
 	}
 }
