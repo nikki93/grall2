@@ -15,8 +15,8 @@ SlidingBrush.cpp
 //--- NGF events ----------------------------------------------------------------
 SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mCurrentPlace(-0.5),
-      mForward(true)
+      mCurrentPlace(0.5),
+      mForward(false)
 {
     addFlag("SlidingBrush");
 
@@ -219,6 +219,16 @@ void SlidingBrush::pausedTick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 NGF::MessageReply SlidingBrush::receiveMessage(NGF::Message msg)
 {
+    switch (msg.code)
+    {
+        case MSG_SETFORWARD:
+            mForward = msg.getParam<bool>(0);
+            NGF_NO_REPLY();
+
+        case MSG_SETENABLED:
+            mEnabled = msg.getParam<bool>(0);
+            NGF_NO_REPLY();
+    }
     return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------

@@ -144,9 +144,11 @@ enum
     MSG_SETCAMERASTATE,       //Set CameraHandler camera handling mode.
     MSG_GETPOSITION,          //Get position.
     MSG_GETVELOCITY,          //Get velocity (for Director, get stored speed in direction).
-    MSG_GETTARGET,            //Get target (for CameraHandler)
-    MSG_EXPLODE,              //Explode (for explosive objects)
-    MSG_GETFRICTIONCOEFF,     //Get friction coefficient (for Ice)
+    MSG_GETTARGET,            //Get target (for CameraHandler).
+    MSG_EXPLODE,              //Explode (for explosive objects).
+    MSG_GETFRICTIONCOEFF,     //Get friction coefficient (for Ice).
+    MSG_SETENABLED,           //Sets whether enabled (for SlidingBrush).
+    MSG_SETFORWARD,           //Sets whether in 'forward' mode (for SlidingBrush).
 };
 
 //Includes from the project used everywhere.

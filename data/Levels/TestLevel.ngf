@@ -892,6 +892,40 @@ ngflevel Level1
 			speed 2
 		}
 	}
+	object
+	{
+		type Switch
+		name noname
+		position -11.500000 -0.250000 8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			script : import Ngf
+			       : 
+			       : def utick(self, elapsed):
+			       :     pass
+			slidingBrush testSlider
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name testSlider
+		position -13.500000 0.500000 6.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			enabled yes
+			speed 2
+			distance 4
+			ignoreCollisions no
+			brushMeshFile Level1_b10.mesh
+		}
+	}
 }
 
 ngflevel Level2

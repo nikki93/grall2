@@ -33,6 +33,7 @@
 #include "Objects/Obstacles/SlidingBrush.h"
 #include "Objects/Misc/Checkpoint.h"
 #include "Objects/Obstacles/MovingBomb.h"
+#include "Objects/Obstacles/Switch.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -58,6 +59,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(SlidingBrush);
     NGF_REGISTER_OBJECT_TYPE(Checkpoint);
     NGF_REGISTER_OBJECT_TYPE(MovingBomb);
+    NGF_REGISTER_OBJECT_TYPE(Switch);
 }
 
 //Register worlds.

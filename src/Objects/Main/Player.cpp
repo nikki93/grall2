@@ -25,6 +25,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
       mDead(false)
 {
     addFlag("Player");
+    addFlag("Switcher");
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
