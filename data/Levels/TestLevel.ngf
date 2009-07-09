@@ -2,6 +2,24 @@ ngflevel Level1
 {
 	object
 	{
+		type Switch
+		name noname
+		position -9.500000 -0.250000 8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			script : import Ngf
+			       : 
+			       : def on(self):
+			       : 	Ngf.getObject("door1").p_forward = True
+			once yes
+		}
+	}
+	object
+	{
 		type Point
 		name doorPoint3
 		position 9.500000 0.800000 -1.000000
@@ -903,10 +921,6 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
-			script : import Ngf
-			       : 
-			       : def utick(self, elapsed):
-			       :     pass
 			slidingBrush testSlider
 		}
 	}
@@ -924,6 +938,22 @@ ngflevel Level1
 			distance 4
 			ignoreCollisions no
 			brushMeshFile Level1_b10.mesh
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door1
+		position -9.500000 0.500000 11.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			enabled yes
+			speed 2
+			distance 1.9
+			ignoreCollisions no
+			brushMeshFile Level1_b11.mesh
 		}
 	}
 }

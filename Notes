@@ -6,14 +6,10 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add generic 'Switch' system, and easy special Switches such as electricity switch, or SlidingBrush switch. Has an
-  'enabled' and 'disabled' event in Python, and a 'p_enabled' field, to allow scriptability. An electricity
-  switch can be created by specifying 'electric -> yes' property, and SlidingBrush switch by specifying
-  'slidingBrush -> name' property. SlidingBrush switches tell their SlidingBrushes to go forward or backward if
-  the switch is enabled or disabled respectively. Generally works good for Doors.
-
 - Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
   mesh, and moves exactly one unit.
+
+- Make music serialisation-friendly too.
 
 - Think of a good Electricity system.
 
@@ -322,3 +318,18 @@ Mon Jul  6 18:59:18 AST 2009
 Tue Jul  7 23:09:59 AST 2009
 ----------------------------
 - Added ability to specify physical shape for 'RigidBody' as a property.
+
+Wed Jul  8 23:53:28 AST 2009
+----------------------------
+- Added generic 'Switch' GameObject. It's on when Player's on it, off when not. It has a 'p_enabled' Python property, 
+  and calls 'on' and 'off' Python events, allowing great scriptability. Also has a 'built-in' SlidingBrush informer, 
+  so it can tell a SlidingBrush whether to move forward or back.
+
+Thu Jul 10 22:57:23 AST 2009
+----------------------------
+- Fixed a few bugs in GameObject serialisation.
+- Added 'once' Switches.
+- Made Switch save name of SlidingBrush targetted instead of pointer because there's a chance that the SlidingBrush
+  comes after the Switch in the deserialisation list.
+- Added 'VideoRecorder' for video recording.
+- Recorded and uploaded a new preview video to Vimeo.

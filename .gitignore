@@ -17,3 +17,7 @@ tags
 *.log
 *.mesh.xml
 etc/local/*
+
+#User files. However, let settings stay.
+usr/*
+!usr/Settings.ini

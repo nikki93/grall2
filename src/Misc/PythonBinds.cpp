@@ -88,6 +88,16 @@ Ogre::Real py_getMusicGain()
     return GlbVar.musicMgr->getGain();
 }
 
+//Video recording stuff.
+void py_startRecordingVideo(Ogre::Real period)
+{
+    GlbVar.videoRec->startRecording(period);
+}
+void py_stopRecordingVideo()
+{
+    GlbVar.videoRec->stopRecording();
+}
+
 //--- The module ----------------------------------------------------------------
 
 BOOST_PYTHON_MODULE(GraLL2)
@@ -106,9 +116,9 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("setDimension", py_setDimension);
 
     //Fades.
-    py::def("fadeInScreen", py_fadeInScreen);
-    py::def("fadeOutScreen", py_fadeOutScreen);
-    py::def("fadeInOutScreen", py_fadeInOutScreen);
+    py::def("fadeInColour", py_fadeInScreen);
+    py::def("fadeOutColour", py_fadeOutScreen);
+    py::def("fadeInOutColour", py_fadeInOutScreen);
 
     //Saved-game stuff.
     py::def("deleteSave", py_deleteSave);
@@ -118,6 +128,10 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("crossFadeMusic", py_crossFadeMusic);
     py::def("setMusicGain", py_setMusicGain);
     py::def("getMusicGain", py_getMusicGain);
+
+    //Video recording stuff.
+    py::def("startRecordingVideo", py_startRecordingVideo);
+    py::def("stopRecordingVideo", py_stopRecordingVideo);
 }
 
 //--- The function that gets called from Game::init() ---------------------------

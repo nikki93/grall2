@@ -26,6 +26,7 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Get properties.
     mDelay = Ogre::StringConverter::parseReal(mProperties.getValue("delay", 0, "0.1"));
+    mOnce =  Ogre::StringConverter::parseBool(mProperties.getValue("once", 0, "no"));
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Template_Pad.mesh");
@@ -44,8 +45,7 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 void Switch::postLoad()
 {
     //Get the SlidingBrush (if there's one).
-    Ogre::String slidingBrushName = mProperties.getValue("slidingBrush", 0, "none");
-    mSlidingBrush = GlbVar.goMgr->getByName(slidingBrushName);
+    mSlidingBrushName = mProperties.getValue("slidingBrush", 0, "none");
 
     //Python create event.
     NGF_PY_CALL_EVENT(create);
@@ -74,7 +74,7 @@ void Switch::unpausedTick(const Ogre::FrameEvent &evt)
         mTime -= evt.timeSinceLastFrame;
         mOn = true;
     }
-    else
+    else if (!mOnce)
         mOn = false;
 
     //Event calling.
@@ -120,16 +120,18 @@ void Switch::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 //--- Non-NGF -------------------------------------------------------------------
 void Switch::on()
 {
-    if (mSlidingBrush)
-        GlbVar.goMgr->sendMessage(mSlidingBrush, NGF_MESSAGE(MSG_SETFORWARD, (bool) true));
+    NGF::GameObject *slider = GlbVar.goMgr->getByName(mSlidingBrushName);
+    if (slider)
+        GlbVar.goMgr->sendMessage(slider, NGF_MESSAGE(MSG_SETFORWARD, (bool) true));
 
     NGF_PY_CALL_EVENT(on);
 }
 //-------------------------------------------------------------------------------
 void Switch::off()
 {
-    if (mSlidingBrush)
-        GlbVar.goMgr->sendMessage(mSlidingBrush, NGF_MESSAGE(MSG_SETFORWARD, (bool) false));
+    NGF::GameObject *slider = GlbVar.goMgr->getByName(mSlidingBrushName);
+    if (slider)
+        GlbVar.goMgr->sendMessage(slider, NGF_MESSAGE(MSG_SETFORWARD, (bool) false));
 
     NGF_PY_CALL_EVENT(off);
 }
@@ -139,5 +141,6 @@ void Switch::off()
 NGF_PY_BEGIN_IMPL(Switch)
 {
     NGF_PY_PROPERTY_IMPL(on, mOn, bool);
+    NGF_PY_PROPERTY_IMPL(once, mOnce, bool);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)

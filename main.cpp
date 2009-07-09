@@ -40,14 +40,11 @@ class GameListener :
             GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F3));
             GlbVar.phyDebug->step();
 
-            //Update the Fader.
-            GlbVar.fader->tick(evt);
-
-            //Update the MusicManager.
-            GlbVar.musicMgr->tick(evt);
-
-            //Update DimensionManager.
+            //Update helpers.
             GlbVar.dimMgr->tick();
+            GlbVar.fader->tick(evt);
+            GlbVar.musicMgr->tick(evt);
+            GlbVar.videoRec->tick(evt);
 
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
@@ -89,6 +86,13 @@ class GameListener :
 
                 case OIS::KC_F9:
                     highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".jpg", true);
+                    break;
+
+                case OIS::KC_F1:
+                    GlbVar.videoRec->startRecording(0.1);
+                    break;
+                case OIS::KC_F2:
+                    GlbVar.videoRec->stopRecording();
                     break;
             }
 
@@ -321,14 +325,11 @@ class Game
             //Not paused in the beginning.
             GlbVar.paused = false;
 
-            //Create DimensionManager.
+            //Create helpers.
             GlbVar.dimMgr = new DimensionManager();
-
-            //Fader.
             GlbVar.fader = new Fader();
-
-            //MusicManager.
             GlbVar.musicMgr = new MusicManager();
+            GlbVar.videoRec = new VideoRecorder();
 
             //Initialise other Global variables.
             GlbVar.currCameraHandler = 0;
@@ -336,9 +337,6 @@ class Game
             GlbVar.worldSwitch = -1;
             GlbVar.loadGame = true;
             GlbVar.levelName = "";
-
-            //Some music.
-            GlbVar.musicMgr->playMusic("Track1");
 
             //Add Worlds, register GameObjects.
             addWorlds();
@@ -381,10 +379,11 @@ class Game
             //Save settings.
             saveSettings();
 
-            //DimensionManager.
+            //Helpers.
+            delete GlbVar.videoRec;
+            delete GlbVar.musicMgr;
+            delete GlbVar.fader;
             delete GlbVar.dimMgr;
-
-            //Console.
             delete GlbVar.console;
 
             //NGF.

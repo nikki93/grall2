@@ -302,8 +302,8 @@ void Player::switchDimension()
     //If no hits, then switch.
     if (!res.mHit)
     {
-        GlbVar.dimMgr->switchDimension();
-        setDimension(GlbVar.dimMgr->getCurrentDimension());
+        //GlbVar.dimMgr->switchDimension();
+        setDimension(mDimensions ^ DimensionManager::DIM_SWITCH);
     }
 }
 //-------------------------------------------------------------------------------

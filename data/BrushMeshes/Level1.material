@@ -1,3 +1,28 @@
+material Level1_b10_m0/TEXFACE/TileMetalHex.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture TileMetalHex.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
 material Level1_b7_m0/TEXFACE/FlatMetal1.png
 {
 	receive_shadows on
@@ -98,7 +123,7 @@ material Level1_b5_m0/TEXFACE/WhiteTileMulti1.png
 		}
 	}
 }
-material Level1_b5_m0/TEXFACE/WhiteTile4.png
+material Level1_b11_m0/TEXFACE/Door.png
 {
 	receive_shadows on
 	technique
@@ -110,32 +135,7 @@ material Level1_b5_m0/TEXFACE/WhiteTile4.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture WhiteTile4.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b5_m0/TEXFACE/WhiteTile5.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTile5.png
+				texture Door.png
 				colour_op modulate
 			}
 		}
@@ -261,6 +261,31 @@ material Level1_b9_m0/TEXFACE/TileMetalLong1.png
 			texture_unit
 			{
 				texture TileMetalLong1.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b10_m0/TEXFACE/Concrete3.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Concrete3.png
 				colour_op modulate
 			}
 		}

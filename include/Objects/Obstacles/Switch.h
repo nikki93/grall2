@@ -29,10 +29,11 @@ class Switch :
 
         bool mOn;
         bool mOnPrev;
+        bool mOnce;
         Ogre::Real mTime;
         Ogre::Real mDelay;
 
-        NGF::GameObject *mSlidingBrush;
+        Ogre::String mSlidingBrushName;
 
     public:
         Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -53,6 +54,7 @@ class Switch :
         NGF_PY_BEGIN_DECL(Switch)
         {
             NGF_PY_PROPERTY_DECL(on)
+            NGF_PY_PROPERTY_DECL(once)
         }
         NGF_PY_END_DECL
 
@@ -63,8 +65,10 @@ class Switch :
 
             NGF_SERIALISE_OGRE(Bool, mOn);
             NGF_SERIALISE_OGRE(Bool, mOnPrev);
+            NGF_SERIALISE_OGRE(Bool, mOnce);
             NGF_SERIALISE_OGRE(Real, mTime);
-            NGF_SERIALISE_GAMEOBJECTPTR(mSlidingBrush);
+
+            NGF_SERIALISE_STRING(mSlidingBrushName);
         }
         NGF_SERIALISE_END
 };
@@ -111,7 +115,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 2, duplicates = 0 */
+/* maximum key range = 8, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Switch)
 {
@@ -121,40 +125,39 @@ public:
   static const struct PythonMethod *Lookup (const char *str, unsigned int len);
 };
 
-inline /*ARGSUSED*/
-unsigned int
+inline unsigned int
 NGF_PY_CLASS_GPERF(Switch)::MakeHash (register const char *str, register unsigned int len)
 {
   static const unsigned char asso_values[] =
     {
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 1, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 0, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-      2, 2, 2, 2, 2, 2
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14,  5, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14,  0, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+      14, 14, 14, 14, 14, 14
     };
-  return asso_values[(unsigned char)str[0]];
+  return len + asso_values[(unsigned char)str[0]];
 }
 
 const struct PythonMethod *
@@ -162,17 +165,19 @@ NGF_PY_CLASS_GPERF(Switch)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 2,
+      TOTAL_KEYWORDS = 4,
       MIN_WORD_LENGTH = 6,
-      MAX_WORD_LENGTH = 6,
-      MIN_HASH_VALUE = 0,
-      MAX_HASH_VALUE = 1
+      MAX_WORD_LENGTH = 8,
+      MIN_HASH_VALUE = 6,
+      MAX_HASH_VALUE = 13
     };
 
   static const struct PythonMethod wordlist[] =
     {
       {"set_on", NGF_PY_SET_GPERF(Switch, on)},
-      {"get_on", NGF_PY_GET_GPERF(Switch, on)}
+      {"set_once", NGF_PY_SET_GPERF(Switch, once)},
+      {"get_on", NGF_PY_GET_GPERF(Switch, on)},
+      {"get_once", NGF_PY_GET_GPERF(Switch, once)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -183,13 +188,19 @@ NGF_PY_CLASS_GPERF(Switch)::Lookup (register const char *str, register unsigned 
         {
           register const struct PythonMethod *resword;
 
-          switch (key)
+          switch (key - 6)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 1:
+              case 2:
                 resword = &wordlist[1];
+                goto compare;
+              case 5:
+                resword = &wordlist[2];
+                goto compare;
+              case 7:
+                resword = &wordlist[3];
                 goto compare;
             }
           return 0;

@@ -25,7 +25,7 @@ SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, 
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
-
+    
     //Get properties.
     mEnabled = Ogre::StringConverter::parseBool(mProperties.getValue("enabled", 0, "yes"));
     mSpeed = Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "2"));
@@ -58,7 +58,8 @@ SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, 
         mPoints.push_back(pos + (rot * Ogre::Vector3(0,0,-distance)));
     }
     
-    mIgnoreCollisions = Ogre::StringConverter::parseBool(mProperties.getValue("ignoreCollisions", 0, "no"));
+    //mIgnoreCollisions = Ogre::StringConverter::parseBool(mProperties.getValue("ignoreCollisions", 0, "no"));
+    mIgnoreCollisions = true;
 
     //Make smaller shape for cast.
     //Get vertices.

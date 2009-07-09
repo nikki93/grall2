@@ -29,6 +29,7 @@ class DimensionManager;
 class Console;
 class Fader;
 class MusicManager;
+class VideoRecorder;
 
 //The Globals class (actually a struct, but whatever).
 struct Globals : public Ogre::Singleton<Globals>
@@ -65,6 +66,7 @@ struct Globals : public Ogre::Singleton<Globals>
     Console *console;
     Fader *fader;
     MusicManager *musicMgr;
+    VideoRecorder *videoRec;
 
     //--- Global 'objects' -------------------------------------------------------------
     
@@ -157,6 +159,7 @@ enum
 #include "Misc/Utils.h"
 #include "Misc/Fader.h"
 #include "Misc/MusicManager.h"
+#include "Misc/VideoRecorder.h"
 #include "Objects/Misc/AlarmGameObject.h"
 
 #endif
