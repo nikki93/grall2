@@ -9,6 +9,8 @@ Next
 - Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
   mesh, and moves exactly one unit.
 
+- Add 'Teleporter' system.
+
 - Make music serialisation-friendly too.
 
 - Think of a good Electricity system.

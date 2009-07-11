@@ -33,7 +33,7 @@ class VideoRecorder
 
     public:
         VideoRecorder()
-            : mCount(4443),
+            : mCount(0),
               mTimeLeft(0),
               mPeriod(0),
               mRecording(false)
