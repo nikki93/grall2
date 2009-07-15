@@ -151,6 +151,7 @@ enum
     MSG_GETFRICTIONCOEFF,     //Get friction coefficient (for Ice).
     MSG_SETENABLED,           //Sets whether enabled (for SlidingBrush).
     MSG_SETFORWARD,           //Sets whether in 'forward' mode (for SlidingBrush).
+    MSG_SETDIFFUSECOLOUR,     //Sets colour (for lights).
 };
 
 //Includes from the project used everywhere.

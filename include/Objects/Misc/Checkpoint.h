@@ -28,6 +28,8 @@ class Checkpoint :
         
         bool mEnabled;
 
+        Ogre::String mLightName;
+
     public:
         Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Checkpoint();
@@ -38,6 +40,9 @@ class Checkpoint :
         void pausedTick(const Ogre::FrameEvent &evt);
         NGF::MessageReply receiveMessage(NGF::Message msg);
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
+
+        //--- Non-NGF ------------------------------------------------------------------
+        void setLightColour(bool blue);
 
         //--- Python interface ---------------------------------------------------------
         /*
@@ -53,6 +58,7 @@ class Checkpoint :
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_OGRE(Bool, mEnabled);
+            NGF_SERIALISE_STRING(mLightName);
 
             NGF_SERIALISE_ON_LOAD
             {

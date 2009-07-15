@@ -23,7 +23,6 @@ void Level::init()
     //If we're loading games, and savefile exists, load it.
     if (GlbVar.loadGame && std::ifstream((USER_PREFIX + "Saves/" + mLevelName).c_str()))
     {
-        LOG("LOADING");
         NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/" + mLevelName);
     }
     else

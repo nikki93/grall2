@@ -46,17 +46,34 @@ class Light :
         void unpausedTick(const Ogre::FrameEvent &evt); //{ mNode->translate(Ogre::Vector3(Ogre::Math::Sin(mTime),0,Ogre::Math::Cos(mTime)) * evt.timeSinceLastFrame); mTime += evt.timeSinceLastFrame; }
 
         void pausedTick(const Ogre::FrameEvent &evt) {}
-        NGF::MessageReply receiveMessage(NGF::Message msg) { NGF_NO_REPLY(); }
+        NGF::MessageReply receiveMessage(NGF::Message msg);
 
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Light)
         {
+            Ogre::String diffuse, specular;
+
+            NGF_SERIALISE_ON_SAVE
+            {
+                diffuse = Ogre::StringConverter::toString(mLight->getDiffuseColour());
+                specular = Ogre::StringConverter::toString(mLight->getSpecularColour());
+            }
+
             NGF_SERIALISE_POSITION(mNode->getPosition());
             NGF_SERIALISE_ROTATION(mNode->getOrientation());
-
+            
             NGF_SERIALISE_OGRE(Bool, mTimed);
             NGF_SERIALISE_OGRE(Real, mTimeLeft);
             NGF_SERIALISE_OGRE(Real, mFadeOutTime);
+
+            NGF_SERIALISE_STRING(diffuse);
+            NGF_SERIALISE_STRING(specular);
+
+            NGF_SERIALISE_ON_LOAD
+            {
+                mLight->setDiffuseColour(Ogre::StringConverter::parseColourValue(diffuse));
+                mLight->setSpecularColour(Ogre::StringConverter::parseColourValue(specular));
+            }
         }
         NGF_SERIALISE_END
 };

@@ -8,10 +8,16 @@ Checkpoint.cpp
 
 #include "Objects/Misc/Checkpoint.h"
 
+#include "Objects/Misc/Light.h"
+
+#define BLUE_LIGHT 0, 0.2, 1
+#define RED_LIGHT 1, 0.2, 0
+
 //--- NGF events ----------------------------------------------------------------
 Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mEnabled(true)
+      mEnabled(true),
+      mLightName("n")
 {
     addFlag("Checkpoint");
 
@@ -35,6 +41,20 @@ Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 //-------------------------------------------------------------------------------
 void Checkpoint::postLoad()
 {
+    //Create the light.
+    if (mProperties.getValue("NGF_SERIALISED", 0, "no") != "yes")
+    {
+        Ogre::Vector3 offset = Ogre::Vector3(0,0.99,0);
+        mLightName = getName() + "-light";
+        NGF::GameObject *light = GlbVar.goMgr->createObject<Light>(mNode->getPosition() + offset, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+                ("lightType", "point")
+                ("colour", "0 0.8 1")
+                ("specular", "0.5 0.5 0.5")
+                ("attenuation", "14 0.6 0.2 0.4"),
+                mLightName
+                );
+    }
+
     //Python create event.
     NGF_PY_CALL_EVENT(create);
 }
@@ -43,6 +63,11 @@ Checkpoint::~Checkpoint()
 {
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
+
+    //Destroy the light.
+    NGF::GameObject *light = GlbVar.goMgr->getByName(mLightName);
+    if (light)
+        GlbVar.goMgr->destroyObject(light->getID());
 
     //We only clear up stuff that we did.
     destroyBody();
@@ -86,6 +111,9 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
         bool enabledPrev = mEnabled;
         mEnabled = false;
 
+        //Change light colour.
+        setLightColour(false);
+
         if (enabledPrev)
         {
             NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/" + GlbVar.levelName);
@@ -97,6 +125,19 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
     if (oth)
         NGF_PY_CALL_EVENT(collide, oth->getConnector());
+}
+//-------------------------------------------------------------------------------
+
+//--- Non-NGF -------------------------------------------------------------------
+void Checkpoint::setLightColour(bool blue)
+{
+    NGF::GameObject *light = GlbVar.goMgr->getByName(mLightName);
+
+    if (light)
+    {
+        Ogre::ColourValue colour = blue ? Ogre::ColourValue(BLUE_LIGHT) : Ogre::ColourValue(RED_LIGHT);
+        GlbVar.goMgr->sendMessage(light, NGF_MESSAGE(MSG_SETDIFFUSECOLOUR, colour));
+    }
 }
 //-------------------------------------------------------------------------------
 

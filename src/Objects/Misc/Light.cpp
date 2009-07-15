@@ -96,3 +96,15 @@ void Light::unpausedTick(const Ogre::FrameEvent &evt)
     }
 }
 //-------------------------------------------------------------------------------
+NGF::MessageReply Light::receiveMessage(NGF::Message msg)
+{
+    switch (msg.code)
+    {
+        case MSG_SETDIFFUSECOLOUR:
+            mLight->setDiffuseColour(msg.getParam<Ogre::ColourValue>(0));
+            NGF_NO_REPLY();
+    }
+
+    NGF_NO_REPLY();
+}
+//-------------------------------------------------------------------------------

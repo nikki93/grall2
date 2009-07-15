@@ -69,7 +69,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 //-------------------------------------------------------------------------------
 void Player::postLoad()
 {
-    //Camera stuff. We check that we aren't unserialising, because the CamerHandler is automatically loade up if so.
+    //Camera stuff. We check that we aren't unserialising, because the CamerHandler is automatically loaded up if so.
     if (!(mProperties.getValue("NGF_SERIALISED", 0, "no") == "yes" || mProperties.getValue("captureCameraHandler", 0, "yes") == "no"))
     {
         captureCameraHandler();
