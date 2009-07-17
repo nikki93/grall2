@@ -121,8 +121,10 @@ struct Globals : public Ogre::Singleton<Globals>
         } controls;
     } settings;
 
-    //World to switch too. Required for delay in World-switching because GameObjects
+    //World to switch to. Required for delay in World-switching because GameObjects
     //can't destroy themselves.
+#define PREV_WORLD -3
+#define NEXT_WORLD -2
     int worldSwitch;
 };
 

@@ -16,6 +16,7 @@ NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time)
             );
 }
 
+/*
 void loadLevel(Ogre::String level)
 {
     GlbVar.lvlLoader->loadLevel(level);
@@ -27,6 +28,7 @@ void clearLevel()
     ExtraEventListener::callPreClear();
     GlbVar.goMgr->destroyAll();
 }
+*/
 
 void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera, const int& pGridSize, const Ogre::String& pFileName, const Ogre::String& pFileExtention, const bool& pStitchGridImages)
 {

@@ -189,7 +189,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         mRestartTime -= evt.timeSinceLastFrame;
 
         if (mRestartTime <= 0)
-            GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex();
+            gotoWorld(GlbVar.woMgr->getCurrentWorldIndex());
     }
 
     //Alarms.

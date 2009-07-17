@@ -28,15 +28,15 @@ NGF::Python::PythonObjectConnectorPtr py_showMessage(Ogre::String message, Ogre:
 //World switching.
 void py_nextWorld() 
 { 
-    GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex() + 1; 
+    nextWorld();
 }
 void py_previousWorld() 
 { 
-    GlbVar.worldSwitch = GlbVar.woMgr->getCurrentWorldIndex() - 1; 
+    previousWorld(); 
 }
 void py_gotoWorld(int index) 
 { 
-    GlbVar.worldSwitch = index; 
+    gotoWorld(index); 
 }
 
 //Dimension stuff (if you want to switch dimensions, best you do it through the 

@@ -21,9 +21,19 @@
 //Shows a message. Returns pointer to the MessageBox GameObject.
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time);
 
-//Load/clear level. Calls the postLoad etc. events.
-void loadLevel(Ogre::String level);
-void clearLevel();
+//Go to next, previous, or nth world.
+inline void nextWorld()
+{
+    GlbVar.worldSwitch = NEXT_WORLD;
+}
+inline void previousWorld()
+{
+    GlbVar.worldSwitch = PREV_WORLD;
+}
+inline void gotoWorld(int n)
+{
+    GlbVar.worldSwitch = n;
+}
 
 //Tells you whether a key is down, respecting the console.
 inline bool isKeyDown(OIS::KeyCode kc)
@@ -86,6 +96,18 @@ struct ExtraEventListener
     static void _callPreClearOne(NGF::GameObject *obj) 
     { ExtraEventListener *o = dynamic_cast<ExtraEventListener*>(obj); if(o) o->preClear(); }
 };
+
+//Load/clear level. Calls the postLoad etc. events.
+inline void loadLevel(Ogre::String level)
+{
+    GlbVar.lvlLoader->loadLevel(level);
+    ExtraEventListener::callPostLoad();
+}
+inline void clearLevel()
+{
+    ExtraEventListener::callPreClear();
+    GlbVar.goMgr->destroyAll();
+}
 
 //Makes getting a set of results from convexSweepTest easier.
 struct BulletConvexResultCollector : public btDynamicsWorld::ConvexResultCallback

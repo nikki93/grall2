@@ -341,3 +341,8 @@ Thu Jul 10 22:57:23 AST 2009
 Thu Jul 16 01:57:04 AST 2009
 ----------------------------
 - Added lights to Checkpoint.
+
+Fri Jul 17 21:55:08 AST 2009
+----------------------------
+- Delayed-world-switch (to prevent GameObject-suicide) now has a function interface, with 'previousWorld', 'nextWorld'
+  etc.

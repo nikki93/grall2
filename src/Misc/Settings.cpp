@@ -44,9 +44,6 @@ void loadSettings()
     GlbVar.settings.ogre.FSAA = cfg.getSetting("FSAA", "ogre", "0");
     GlbVar.settings.ogre.vsync = cfg.getSetting("vsync", "ogre", "no");
 
-
-    //----------------------------------------------------------------------------------
-
     //--- Controls ---------------------------------------------------------------------
 
     GlbVar.settings.controls.turningSensitivity = Ogre::StringConverter::parseReal(cfg.getSetting("turningSensitivity", "controls", "0.2"));
@@ -91,8 +88,6 @@ void saveSettings()
     cfg << "FSAA = " << GlbVar.settings.ogre.FSAA << std::endl;
     cfg << "vsync = " << GlbVar.settings.ogre.vsync << std::endl;
     cfg << std::endl;
-
-    //----------------------------------------------------------------------------------
 
     //--- Controls ---------------------------------------------------------------------
 

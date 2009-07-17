@@ -360,7 +360,14 @@ class Game
                 //If we need to switch Worlds, do so, but not again.
                 if (GlbVar.worldSwitch != -1)
                 {
-                    GlbVar.woMgr->gotoWorld(GlbVar.worldSwitch);
+                    //If 'special' index, go forward or backward, else just jump.
+                    if (GlbVar.worldSwitch < 0)
+                        if (GlbVar.worldSwitch == PREV_WORLD)
+                            GlbVar.woMgr->previousWorld();
+                        else
+                            GlbVar.woMgr->nextWorld();
+                    else
+                        GlbVar.woMgr->gotoWorld(GlbVar.worldSwitch);
                     GlbVar.worldSwitch = -1;
                 }
 
