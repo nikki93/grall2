@@ -129,6 +129,9 @@ void BasePerLight_fp
          //Material properties.
          sampler2D diffuseMap: register(s0),
          sampler2D normalBumpMap : register(s1),
+#if PARALLAX_MAPPING
+         sampler2D glowMap : register(s3),
+#endif
 
          uniform float4 matDiffuse,
          uniform float4 matSpecular,
@@ -188,6 +191,10 @@ void BasePerLight_fp
 
     //Diffuse texture.
     oColor *= tex2D(diffuseMap, uv);
+
+#if PARALLAX_MAPPING
+    oColor += tex2D(glowMap, uv);
+#endif
 }
 
 //--- The ambient one-time shader -----------------------------------------------------

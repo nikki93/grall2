@@ -24,6 +24,7 @@ fragment_program BaseAmbient_fp cg
         entry_point BaseAmbient_fp
         profiles ps_2_0 arbfp1
 } 
+
 vertex_program BaseAmbientNormalMapParallax_vp cg
 {
         source Base.cg
@@ -96,6 +97,7 @@ fragment_program BasePerLight_fp cg
         entry_point BasePerLight_fp
         profiles ps_2_0 arbfp1
 } 
+
 vertex_program BasePerLightNormalMap_vp cg
 {
         source Base.cg
@@ -122,7 +124,6 @@ fragment_program BasePerLightNormalMap_fp cg
 
         default_params
         {
-                param_named_auto matAmbient surface_ambient_colour
                 param_named_auto matDiffuse surface_diffuse_colour
                 param_named_auto matSpecular surface_specular_colour
 
@@ -140,6 +141,7 @@ fragment_program BasePerLightNormalMap_fp cg
         entry_point BasePerLight_fp
         profiles ps_2_0 arbfp1
 } 
+
 vertex_program BasePerLightNormalMapParallax_vp cg
 {
         source Base.cg
@@ -166,7 +168,6 @@ fragment_program BasePerLightNormalMapParallax_fp cg
 
         default_params
         {
-                param_named_auto matAmbient surface_ambient_colour
                 param_named_auto matDiffuse surface_diffuse_colour
                 param_named_auto matSpecular surface_specular_colour
 
@@ -253,6 +254,16 @@ material Base
                 }  
 
         }  
+        technique 
+        { 
+                scheme Scheme/Glow
+                pass
+                {
+                        ambient 0 0 0 0
+                        diffuse 0 0 0 0
+                        specular 0 0 0 0
+                }
+        }  
 }
 material BaseNormalMap
 {
@@ -328,6 +339,16 @@ material BaseNormalMap
                         }
                 }  
 
+        }  
+        technique 
+        { 
+                scheme Scheme/Glow
+                pass
+                {
+                        ambient 0 0 0 0
+                        diffuse 0 0 0 0
+                        specular 0 0 0 0
+                }
         }  
 }
 material BaseNormalMapParallax
@@ -405,6 +426,115 @@ material BaseNormalMapParallax
                                 tex_border_colour 1 1 1
                         }
                 }  
+        }  
+        technique 
+        { 
+                scheme Scheme/Glow
+                pass
+                {
+                        ambient 0 0 0 0
+                        diffuse 0 0 0 0
+                        specular 0 0 0 0
+                }
+        }  
+}
+material BaseNormalMapParallaxGlow
+{
+        receive_shadows on
 
+        set $diffuse_tex "Player.png"
+        set $normal_tex "Plain_NM.png"
+        set $glow_tex "Black.png"
+
+        set $ambient "0.8 0.8 0.8 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.9 0.9 0.9 1"
+
+        set $scaleBias "0.04 0.02"
+
+        technique 
+        { 
+                pass
+                {
+                        ambient $ambient
+                        
+                        vertex_program_ref BaseAmbientNormalMapParallax_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbientNormalMapParallax_fp
+                        {
+                                param_named scaleBias float4 $scaleBias 0 1
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+
+                        texture_unit NormalMap
+                        {
+                                texture $normal_tex
+                        }
+                }
+                pass 
+                {
+                        max_lights 12
+                        scene_blend add
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLightNormalMapParallax_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLightNormalMapParallax_fp
+                        {
+                                param_named scaleBias float4 $scaleBias 0 1
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+
+                        texture_unit NormalMap
+                        {
+                                texture $normal_tex
+                        }
+
+                        texture_unit ShadowMap
+                        {
+                                content_type shadow
+                                filtering anisotropic
+                                max_anisotropy 16
+                                tex_address_mode border
+                                tex_border_colour 1 1 1
+                        }
+                }  
+        }  
+        technique 
+        { 
+                scheme Scheme/Glow
+                pass
+                {
+                        ambient 1 1 1 1
+                        
+                        vertex_program_ref BaseAmbientNormalMapParallax_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbientNormalMapParallax_fp
+                        {
+                                param_named scaleBias float4 $scaleBias 0 1
+                        } 
+                        
+                        texture_unit GlowMap
+                        {
+                                texture $glow_tex
+                        }
+                }
         }  
 }

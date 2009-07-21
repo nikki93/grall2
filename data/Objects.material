@@ -19,10 +19,11 @@ material Objects/Player : Base
 }
 
 //--- Bomb ----------------------------------------------------------------------------
-material Objects/Bomb : BaseNormalMapParallax
+material Objects/Bomb : BaseNormalMapParallaxGlow
 {
         set $diffuse_tex "Bomb.png"
         set $normal_tex "Bomb_NM.png"
+        set $glow_tex "Bomb_GW.png"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
@@ -41,7 +42,7 @@ material Objects/MovingBomb : BaseNormalMapParallax
 }
 
 //--- Ice (Semitransparent) -----------------------------------------------------------
-material Objects/Ice
+material Objects/Ice : Base
 { 
         receive_shadows on
 
@@ -73,44 +74,6 @@ material Objects/Ice
                                 texture $diffuse_tex
                         }
                 }
-                pass 
-                {
-                        scene_blend add
-                        depth_write off
-
-                        max_lights 12
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap
-                        {
-                                content_type shadow
-                                filtering anisotropic
-                                max_anisotropy 16
-                                tex_address_mode border
-                                tex_border_colour 1 1 1
-                        }
-                }  
-
         }  
 }
 

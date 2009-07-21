@@ -19,7 +19,8 @@ float4 Dimension2_fp
     return output;
 }
 */
-uniform sampler2D tex: register(s0);
+
+uniform sampler2D scene: register(s0);
 
 static const float samples[10] =
 {
@@ -37,33 +38,31 @@ static const float samples[10] =
 
 float4 Dimension2_fp
     (
-         float4 position : POSITION,
          float2 texCoord: TEXCOORD0
     ) : COLOR
 {
-    //Direction, distance and normalise direction.
+    //Direction (from center), distance and normalise direction.
     float2 dir = 0.5 - texCoord;
-    float dist = sqrt( dir.x*dir.x + dir.y*dir.y );
+    float dist = length(dir.xy);
     dir = normalize(dir);
 
     //Main colour.
-    float4 color = tex2D(tex, texCoord);
+    float4 colour = tex2D(scene, texCoord);
 
-    //Find average along direction.
-    float4 avg = color;
+    //Find average along direction. We start with main colour, then add all.
+    float4 avg = colour;
     for (int i = 0; i < 10; i++)
     {
-        //Take as much of each colour as given in the sample-list.
-        float4 res = tex2D(tex, texCoord + dir * samples[i] * 0.5);
+        //Take colour at each point along line, referring to the sample list.
+        float4 res = tex2D(scene, texCoord + dir * samples[i] * 0.5);
         avg += res;
     }
     //11 samples (including main).
     avg /= 11;
 
     //Amount of blur to mix.
-    float amount = dist * 2.2;
-    amount = saturate(amount);
+    float amount = saturate(dist * 2.2);
 
     //Blend the original color with the averaged pixels, invert and darken.
-    return (1 - lerp(color, avg, amount)) * 0.8;
+    return (1 - lerp(colour, avg, amount)) * 0.8;
 }
