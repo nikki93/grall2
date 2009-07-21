@@ -26,7 +26,7 @@ Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Checkpoint.mesh");
-    mEntity->setMaterialName("Objects/Checkpoint");
+    mEntity->setMaterialName("Objects/Checkpoint_B");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
@@ -45,7 +45,7 @@ void Checkpoint::postLoad()
     if (mProperties.getValue("NGF_SERIALISED", 0, "no") != "yes")
     {
         Ogre::Vector3 offset = Ogre::Vector3(0,0.99,0);
-        mLightName = getName() + "-light";
+        mLightName = Ogre::StringConverter::toString(getID()) + "-light";
         NGF::GameObject *light = GlbVar.goMgr->createObject<Light>(mNode->getPosition() + offset, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
                 ("lightType", "point")
                 ("colour", "0 0.8 1")

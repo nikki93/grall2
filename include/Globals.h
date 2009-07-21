@@ -154,6 +154,7 @@ enum
     MSG_SETENABLED,           //Sets whether enabled (for SlidingBrush).
     MSG_SETFORWARD,           //Sets whether in 'forward' mode (for SlidingBrush).
     MSG_SETDIFFUSECOLOUR,     //Sets colour (for lights).
+    MSG_SETPOSITION,          //Sets position.
 };
 
 //Includes from the project used everywhere.

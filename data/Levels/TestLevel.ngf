@@ -323,7 +323,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -9.500000 0.500000 2.500000
+		position -8.500000 0.500000 0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -618,7 +618,7 @@ ngflevel Level1
 	{
 		type Player
 		name player1
-		position 10.919084 0.420549 1.500000
+		position -9.080916 0.420549 5.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -900,7 +900,7 @@ ngflevel Level1
 	{
 		type MovingBomb
 		name noname
-		position -0.500000 0.500000 3.500000
+		position -7.500000 0.500000 2.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -954,6 +954,19 @@ ngflevel Level1
 			distance 1.9
 			ignoreCollisions no
 			brushMeshFile Level1_b11.mesh
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position -12.500000 1.159853 7.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 }

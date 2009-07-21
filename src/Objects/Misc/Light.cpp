@@ -103,6 +103,9 @@ NGF::MessageReply Light::receiveMessage(NGF::Message msg)
         case MSG_SETDIFFUSECOLOUR:
             mLight->setDiffuseColour(msg.getParam<Ogre::ColourValue>(0));
             NGF_NO_REPLY();
+        case MSG_SETPOSITION:
+            mNode->setPosition(msg.getParam<Ogre::Vector3>(0));
+            NGF_NO_REPLY();
     }
 
     NGF_NO_REPLY();

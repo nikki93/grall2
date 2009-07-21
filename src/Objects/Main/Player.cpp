@@ -22,7 +22,8 @@ Player.cpp
 Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mUnderControl(true),
-      mDead(false)
+      mDead(false),
+      mLightName("")
 {
     addFlag("Player");
     addFlag("Switcher");
@@ -69,10 +70,18 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 //-------------------------------------------------------------------------------
 void Player::postLoad()
 {
-    //Camera stuff. We check that we aren't unserialising, because the CamerHandler is automatically loaded up if so.
+    //Do stuff we have to do when not deserialising.
     if (!(mProperties.getValue("NGF_SERIALISED", 0, "no") == "yes" || mProperties.getValue("captureCameraHandler", 0, "yes") == "no"))
     {
         captureCameraHandler();
+        mLightName = Ogre::StringConverter::toString(getID()) + "-light";
+        NGF::GameObject *light = GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+                ("lightType", "point")
+                ("colour", "0 0.3 0.75")
+                ("specular", "0.2 0.2 0.2")
+                ("attenuation", "10 0.6 0.4 0.6"),
+                mLightName
+                );
     }
 
     //Python create event.
@@ -86,6 +95,11 @@ Player::~Player()
 
     //Fix FOV.
     GlbVar.ogreCamera->setFOVy(Ogre::Degree(45));
+
+    //Destroy the light.
+    NGF::GameObject *light = GlbVar.goMgr->getByName(mLightName);
+    if (light)
+        GlbVar.goMgr->destroyObject(light->getID());
 
     //We only clear up stuff that we did.
     loseCameraHandler();
@@ -150,6 +164,9 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
             passIter->setSpecular(Ogre::ColourValue(spec,spec,spec));
         }
     }
+
+    //Move light.
+    GlbVar.goMgr->sendMessage(GlbVar.goMgr->getByName(mLightName), NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

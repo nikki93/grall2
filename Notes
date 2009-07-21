@@ -346,3 +346,8 @@ Fri Jul 17 21:55:08 AST 2009
 ----------------------------
 - Delayed-world-switch (to prevent GameObject-suicide) now has a function interface, with 'previousWorld', 'nextWorld'
   etc.
+
+Tue Jul 21 20:09:35 AST 2009
+----------------------------
+- Added 'glow' effects. Works by blurring a 'glow buffer' and then adding it to the original scene render. Objects
+  can have 'glow-maps' to specify region, colour, brightness, size etc. of the glow.

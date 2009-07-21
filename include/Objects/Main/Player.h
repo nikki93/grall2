@@ -34,6 +34,8 @@ class Player :
 
         Ogre::Real mMinHeight;
 
+        Ogre::String mLightName;
+
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Player();
@@ -81,6 +83,7 @@ class Player :
             NGF_SERIALISE_OGRE(Quaternion, controlRot);
             NGF_SERIALISE_OGRE(Bool, mUnderControl);
             NGF_SERIALISE_OGRE(Bool, mDead);
+            NGF_SERIALISE_STRING(mLightName);
 
             NGF_SERIALISE_ON_LOAD
             {

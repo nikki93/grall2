@@ -6,12 +6,12 @@
 import * from Base.program
 
 //--- Player --------------------------------------------------------------------------
-material Objects/Player : Base
+material Objects/Player : BaseGlow
 {
         receive_shadows off
 
         set $diffuse_tex "Player.png"
-        set $normal_tex "Player_NM.png"
+        set $glow_tex "Player_GW.png"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.9 0.9 0.9 1"
@@ -31,10 +31,11 @@ material Objects/Bomb : BaseNormalMapParallaxGlow
 }
 
 //--- MovingBomb ----------------------------------------------------------------------
-material Objects/MovingBomb : BaseNormalMapParallax
+material Objects/MovingBomb : BaseNormalMapParallaxGlow
 {
         set $diffuse_tex "MovingBomb.png"
         set $normal_tex "Bomb_NM.png"
+        set $glow_tex "MovingBomb_GW.png"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
@@ -99,18 +100,20 @@ material Objects/Crate3 : Objects/Crate1
 }
 
 //--- Checkpoint ----------------------------------------------------------------------
-material Objects/Checkpoint : BaseNormalMap
+material Objects/Checkpoint_B : BaseGlow
 {
-        set $diffuse_tex "Checkpoint.png"
+        set $diffuse_tex "Checkpoint_B.png"
         set $normal_tex "Checkpoint_NM.png"
+        set $glow_tex "Checkpoint_B_GW.png"
 
         set $ambient "0.8 0.8 0.8 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "1 1 1 1"
 }
-material Objects/Checkpoint_R : Objects/Checkpoint
+material Objects/Checkpoint_R : Objects/Checkpoint_B
 {
         set $diffuse_tex "Checkpoint_R.png"
+        set $glow_tex "Checkpoint_R_GW.png"
 }
 
 //--- Switch --------------------------------------------------------------------------

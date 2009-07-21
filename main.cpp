@@ -85,7 +85,8 @@ class GameListener :
                     break;
 
                 case OIS::KC_F9:
-                    highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".jpg", true);
+                    //highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".jpg", true);
+                    GlbVar.ogreWindow->writeContentsToFile("Screenshot.png");
                     break;
 
                 case OIS::KC_F1:
