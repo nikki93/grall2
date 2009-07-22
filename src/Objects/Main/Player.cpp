@@ -23,7 +23,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     : NGF::GameObject(pos, rot, id , properties, name),
       mUnderControl(true),
       mDead(false),
-      mLightName("")
+      mLight(0)
 {
     addFlag("Player");
     addFlag("Switcher");
@@ -74,14 +74,13 @@ void Player::postLoad()
     if (!(mProperties.getValue("NGF_SERIALISED", 0, "no") == "yes" || mProperties.getValue("captureCameraHandler", 0, "yes") == "no"))
     {
         captureCameraHandler();
-        mLightName = Ogre::StringConverter::toString(getID()) + "-light";
-        NGF::GameObject *light = GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+        mLight = GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
                 ("lightType", "point")
                 ("colour", "0 0.3 0.75")
-                ("specular", "0.2 0.2 0.2")
-                ("attenuation", "10 0.6 0.4 0.6"),
-                mLightName
+                ("specular", "0.1 0.1 0.1")
+                ("attenuation", "10 0.6 0.4 0.6")
                 );
+        mLight->setPersistent(true); //We'll manage his destruction.
     }
 
     //Python create event.
@@ -97,9 +96,8 @@ Player::~Player()
     GlbVar.ogreCamera->setFOVy(Ogre::Degree(45));
 
     //Destroy the light.
-    NGF::GameObject *light = GlbVar.goMgr->getByName(mLightName);
-    if (light)
-        GlbVar.goMgr->destroyObject(light->getID());
+    if (mLight)
+        GlbVar.goMgr->destroyObject(mLight->getID());
 
     //We only clear up stuff that we did.
     loseCameraHandler();
@@ -166,7 +164,7 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     }
 
     //Move light.
-    GlbVar.goMgr->sendMessage(GlbVar.goMgr->getByName(mLightName), NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
+    GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

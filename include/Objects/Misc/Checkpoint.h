@@ -28,7 +28,7 @@ class Checkpoint :
         
         bool mEnabled;
 
-        Ogre::String mLightName;
+        NGF::GameObject *mLight;
 
     public:
         Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -58,7 +58,7 @@ class Checkpoint :
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_OGRE(Bool, mEnabled);
-            NGF_SERIALISE_STRING(mLightName);
+            NGF_SERIALISE_GAMEOBJECTPTR(mLight)
 
             NGF_SERIALISE_ON_LOAD
             {

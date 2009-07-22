@@ -17,7 +17,7 @@ Checkpoint.cpp
 Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mEnabled(true),
-      mLightName("n")
+      mLight(0)
 {
     addFlag("Checkpoint");
 
@@ -45,14 +45,13 @@ void Checkpoint::postLoad()
     if (mProperties.getValue("NGF_SERIALISED", 0, "no") != "yes")
     {
         Ogre::Vector3 offset = Ogre::Vector3(0,0.99,0);
-        mLightName = Ogre::StringConverter::toString(getID()) + "-light";
-        NGF::GameObject *light = GlbVar.goMgr->createObject<Light>(mNode->getPosition() + offset, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+        mLight = GlbVar.goMgr->createObject<Light>(mNode->getPosition() + offset, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
                 ("lightType", "point")
                 ("colour", "0 0.8 1")
                 ("specular", "0.5 0.5 0.5")
-                ("attenuation", "14 0.6 0.2 0.4"),
-                mLightName
+                ("attenuation", "14 0.6 0.2 0.4")
                 );
+        mLight->setPersistent(true);
     }
 
     //Python create event.
@@ -65,9 +64,8 @@ Checkpoint::~Checkpoint()
     NGF_PY_CALL_EVENT(destroy);
 
     //Destroy the light.
-    NGF::GameObject *light = GlbVar.goMgr->getByName(mLightName);
-    if (light)
-        GlbVar.goMgr->destroyObject(light->getID());
+    if (mLight)
+        GlbVar.goMgr->destroyObject(mLight->getID());
 
     //We only clear up stuff that we did.
     destroyBody();
@@ -131,12 +129,10 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
 //--- Non-NGF -------------------------------------------------------------------
 void Checkpoint::setLightColour(bool blue)
 {
-    NGF::GameObject *light = GlbVar.goMgr->getByName(mLightName);
-
-    if (light)
+    if (mLight)
     {
         Ogre::ColourValue colour = blue ? Ogre::ColourValue(BLUE_LIGHT) : Ogre::ColourValue(RED_LIGHT);
-        GlbVar.goMgr->sendMessage(light, NGF_MESSAGE(MSG_SETDIFFUSECOLOUR, colour));
+        GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETDIFFUSECOLOUR, colour));
     }
 }
 //-------------------------------------------------------------------------------

@@ -284,3 +284,14 @@ material Brushes/Door.png : BaseNormalMapParallax
         set $specular "1 1 1 1"
 }
 
+//--- WhiteLight -----------------------------------------------------------------------
+material Brushes/WhiteLight.png : BaseNormalMapParallaxGlow
+{
+        set $diffuse_tex "WhiteLight.png"
+        set $normal_tex "WhiteLight_NM.png"
+        set $glow_tex "WhiteLight_GW.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "1 1 1 1"
+}
