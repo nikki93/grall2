@@ -364,3 +364,4 @@ Thu Jul 23 13:48:33 AST 2009
 - Added 'Controller' GameObject.
 - Dimension now saved through Controller - way cleaner method than before.
 - Saving game now saves music too.
+- Added new Switch texture.

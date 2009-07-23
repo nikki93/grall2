@@ -25,7 +25,7 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     NGF_PY_CALL_EVENT(init);
 
     //Get properties.
-    mDelay = Ogre::StringConverter::parseReal(mProperties.getValue("delay", 0, "0.1"));
+    mDelay = Ogre::StringConverter::parseReal(mProperties.getValue("delay", 0, "0.2"));
     mOnce =  Ogre::StringConverter::parseBool(mProperties.getValue("once", 0, "no"));
 
     //Create the Ogre stuff.

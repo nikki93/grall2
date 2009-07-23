@@ -34,6 +34,10 @@ inline bool saveExists(Ogre::String name)
 {
     return std::ifstream((USER_PREFIX + "Saves/" + name + ".sav").c_str());
 }
+inline void deleteSave(Ogre::String name)
+{
+    remove((USER_PREFIX + "Saves/" + name + ".sav").c_str());
+}
 
 //Go to next, previous, or nth world.
 inline void nextWorld()

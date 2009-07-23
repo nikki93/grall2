@@ -970,6 +970,19 @@ ngflevel Level1
 			attenuation 20 1 0.04 0.03
 		}
 	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position -12.500000 1.159853 8.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
 }
 
 ngflevel Level2
