@@ -21,9 +21,9 @@ void Level::init()
     LOG("Loading level: " + mLevelName);
 
     //If we're loading games, and savefile exists, load it.
-    if (GlbVar.loadGame && std::ifstream((USER_PREFIX + "Saves/" + mLevelName).c_str()))
+    if (GlbVar.loadGame && saveExists(mLevelName))
     {
-        NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/" + mLevelName);
+        deserialise(mLevelName);
     }
     else
     {
@@ -33,8 +33,6 @@ void Level::init()
 //-------------------------------------------------------------------------------
 void Level::tick(const Ogre::FrameEvent &evt)
 {
-    if (isKeyDown(OIS::KC_N))
-        NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/" + mLevelName);
 }
 //-------------------------------------------------------------------------------
 void Level::stop()

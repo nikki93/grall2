@@ -15,6 +15,8 @@
 
 #include "Globals.h"
 
+#include "Objects/Main/Controller.h"
+
 #include "boost/format.hpp"
 
 template<> Globals* Ogre::Singleton<Globals>::ms_Singleton = 0;
@@ -70,11 +72,11 @@ class GameListener :
             switch (mCurrKey)
             {
                 case OIS::KC_F7:
-                    NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/TestSave.sav");
+                    serialise("TestSave");
                     break;
                 case OIS::KC_F8:
                     clearLevel();
-                    NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/TestSave.sav");
+                    deserialise("TestSave");
                     break;
 
                 case OIS::KC_N:
@@ -337,6 +339,9 @@ class Game
             GlbVar.musicMgr = new MusicManager();
             GlbVar.videoRec = new VideoRecorder();
 
+            //The persistent Controller GameObject.
+            GlbVar.controller = GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
+
             //Initialise other Global variables.
             GlbVar.currCameraHandler = 0;
             GlbVar.currMessageBox = 0;
@@ -389,6 +394,10 @@ class Game
 
         void shutdown()
         {
+            //Controller can't truly live forever. :P
+            if (GlbVar.controller)
+                GlbVar.goMgr->destroyObject(GlbVar.controller->getID());
+
             //Save settings.
             saveSettings();
 

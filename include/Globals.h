@@ -69,6 +69,9 @@ struct Globals : public Ogre::Singleton<Globals>
     VideoRecorder *videoRec;
 
     //--- Global 'objects' -------------------------------------------------------------
+
+    //Controller.
+    NGF::GameObject *controller;
     
     //Current CameraHandler.
     NGF::GameObject *currCameraHandler;

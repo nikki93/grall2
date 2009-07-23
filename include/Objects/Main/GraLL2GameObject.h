@@ -25,14 +25,6 @@
 #include "Globals.h"
 
 #define GRALL2_SERIALISE_GAMEOBJECT()                                                          \
-            int dimension;                                                                     \
-                                                                                               \
-            /* If saving, get global dimension. */                                             \
-            NGF_SERIALISE_ON_SAVE                                                              \
-            {                                                                                  \
-                dimension = GlbVar.dimMgr->getCurrentDimension();                              \
-            }                                                                                  \
-                                                                                               \
             /* Position, rotation. */                                                          \
             NGF_SERIALISE_POSITION(mNode->getPosition());                                      \
             NGF_SERIALISE_ROTATION(mNode->getOrientation());                                   \
@@ -43,16 +35,7 @@
             GRALL2_SERIALISE_ALARMS();                                                         \
                                                                                                \
             /* Simple members. */                                                              \
-            NGF_SERIALISE_OGRE(Int, mDimensions);                                              \
-                                                                                               \
-            /* Global dimension. */                                                            \
-            NGF_SERIALISE_OGRE(Int, dimension);                                                \
-                                                                                               \
-            /* If loading, set global dimension. */                                            \
-            NGF_SERIALISE_ON_LOAD                                                              \
-            {                                                                                  \
-                GlbVar.dimMgr->setDimension(dimension);                                        \
-            }
+            NGF_SERIALISE_OGRE(Int, mDimensions);
 
 
 class GraLL2GameObject : 

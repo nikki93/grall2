@@ -56,6 +56,16 @@ class MusicManager
             mCurrentSound->play();
             mCurrentSound->setGain(mActualGain);
         }
+        
+        Ogre::String getCurrentMusic()
+        {
+            return mCurrentSound->getName();
+        }
+
+        void stopMusic()
+        {
+            mCurrentSound->stop();
+        }
 
         void crossFade(Ogre::String music, Ogre::Real time)
         {

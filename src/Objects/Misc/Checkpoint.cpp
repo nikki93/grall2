@@ -114,7 +114,7 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
 
         if (enabledPrev)
         {
-            NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/" + GlbVar.levelName);
+            ::serialise(GlbVar.levelName);
             mEntity->setMaterialName("Objects/Checkpoint_R");
         }
     }

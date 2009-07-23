@@ -21,6 +21,20 @@
 //Shows a message. Returns pointer to the MessageBox GameObject.
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time);
 
+//Serialse/deserialise.
+inline void serialise(Ogre::String name)
+{
+    NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/" + name + ".sav");
+}
+inline void deserialise(Ogre::String name)
+{
+    NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/" + name + ".sav");
+}
+inline bool saveExists(Ogre::String name)
+{
+    return std::ifstream((USER_PREFIX + "Saves/" + name + ".sav").c_str());
+}
+
 //Go to next, previous, or nth world.
 inline void nextWorld()
 {
