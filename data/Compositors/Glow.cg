@@ -8,7 +8,7 @@ float4 GlowA_fp
          //uniform float time
     ) : COLOR
 #define RENDER_SCENE 1
-#define BLUR_RADIUS 2.5
+#define BLUR_RADIUS 2
 {
     float4 colour = float4(0);
     float blurSize = BLUR_RADIUS * invTexSize.x;

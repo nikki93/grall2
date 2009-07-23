@@ -357,3 +357,7 @@ Wed Jul 22 23:25:11 AST 2009
 - Fixed GmaeObject pointer serialisation in NGF and reverted all 'name' based approaches to pointer.
 - Allowed 'persistent' GameObjects in NGF for ownership flexibility.
 - Added 'floor light' texture with glow.
+
+Thu Jul 23 13:48:33 AST 2009
+----------------------------
+- Added fallback materials for old hardware.

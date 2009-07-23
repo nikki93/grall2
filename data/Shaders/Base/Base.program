@@ -254,7 +254,21 @@ material Base
                 }  
 
         }  
-        technique 
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
         { 
                 scheme Scheme/Glow
                 pass
@@ -340,7 +354,21 @@ material BaseNormalMap
                 }  
 
         }  
-        technique 
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
         { 
                 scheme Scheme/Glow
                 pass
@@ -427,7 +455,21 @@ material BaseNormalMapParallax
                         }
                 }  
         }  
-        technique 
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
         { 
                 scheme Scheme/Glow
                 pass
@@ -506,7 +548,21 @@ material BaseGlow
                 }  
 
         }  
-        technique 
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
         { 
                 scheme Scheme/Glow
                 pass
@@ -604,7 +660,21 @@ material BaseNormalMapGlow
                 }  
 
         }  
-        technique 
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
         { 
                 scheme Scheme/Glow
                 pass
@@ -703,7 +773,21 @@ material BaseNormalMapParallaxGlow
                         }
                 }  
         }  
-        technique 
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
         { 
                 scheme Scheme/Glow
                 pass
