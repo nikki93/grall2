@@ -268,16 +268,6 @@ material Base
                         }
                 }
         }  
-        technique Glow
-        { 
-                scheme Scheme/Glow
-                pass
-                {
-                        ambient 0 0 0 0
-                        diffuse 0 0 0 0
-                        specular 0 0 0 0
-                }
-        }  
 }
 material BaseNormalMap
 {
@@ -366,16 +356,6 @@ material BaseNormalMap
                         {
                                 texture $diffuse_tex
                         }
-                }
-        }  
-        technique Glow
-        { 
-                scheme Scheme/Glow
-                pass
-                {
-                        ambient 0 0 0 0
-                        diffuse 0 0 0 0
-                        specular 0 0 0 0
                 }
         }  
 }
@@ -467,16 +447,6 @@ material BaseNormalMapParallax
                         {
                                 texture $diffuse_tex
                         }
-                }
-        }  
-        technique Glow
-        { 
-                scheme Scheme/Glow
-                pass
-                {
-                        ambient 0 0 0 0
-                        diffuse 0 0 0 0
-                        specular 0 0 0 0
                 }
         }  
 }

@@ -365,3 +365,7 @@ Thu Jul 23 13:48:33 AST 2009
 - Dimension now saved through Controller - way cleaner method than before.
 - Saving game now saves music too.
 - Added new Switch texture.
+
+Sat Jul 25 00:55:21 AST 2009
+----------------------------
+- MaterialManager::Listener for 'non-glowing' objects.

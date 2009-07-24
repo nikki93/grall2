@@ -22,6 +22,29 @@
 template<> Globals* Ogre::Singleton<Globals>::ms_Singleton = 0;
 
 //--------------------------------------------------------------------------------------
+class MaterialListener : 
+    public Ogre::MaterialManager::Listener
+{
+    protected:
+        Ogre::MaterialPtr mBlackMat;
+    public:
+        MaterialListener()
+        {
+            mBlackMat = Ogre::MaterialManager::getSingleton().create("mBlack", "Internal");
+            mBlackMat->getTechnique(0)->getPass(0)->setDiffuse(0,0,0,0);
+            mBlackMat->getTechnique(0)->getPass(0)->setSpecular(0,0,0,0);
+            mBlackMat->getTechnique(0)->getPass(0)->setAmbient(0,0,0);
+            mBlackMat->getTechnique(0)->getPass(0)->setSelfIllumination(0,0,0);
+        }
+
+        Ogre::Technique *handleSchemeNotFound(unsigned short, const Ogre::String& schemeName, 
+                Ogre::Material*, unsigned short, const Ogre::Renderable*)
+        {
+            return mBlackMat->getTechnique(0);
+        }
+}; 
+
+//--------------------------------------------------------------------------------------
 class GameListener :
     public Ogre::FrameListener,
     public OIS::KeyListener,
@@ -137,6 +160,7 @@ class Game
         OIS::InputManager *mInputManager;
 
         GameListener *mGameListener;
+        MaterialListener *mMaterialListener;
 
         btAxisSweep3 *mBroadphase;
         btDefaultCollisionConfiguration *mCollisionConfig;
@@ -275,12 +299,14 @@ class Game
             ms.width = width;
             ms.height = height;
 
-            //--- GameListener ---------------------------------------------------------
+            //--- Listeners ------------------------------------------------------------
             mGameListener = new GameListener();
-
             GlbVar.ogreRoot->addFrameListener(mGameListener);
             GlbVar.keyboard->setEventCallback(mGameListener);
             GlbVar.mouse->setEventCallback(mGameListener);
+
+            mMaterialListener = new MaterialListener();
+            Ogre::MaterialManager::getSingleton().addListener(mMaterialListener);
 
             //--- Bullet (Physics) -----------------------------------------------------
             mBroadphase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
@@ -314,12 +340,15 @@ class Game
             initPythonBinds();
 
             //--- Init resources and other stuff ---------------------------------------
+            //Initialise the ResourceGroups.
             ogreRmgr.initialiseAllResourceGroups();
+
+            //Shadows.
             initShadows();
             
+            //Compositor chain.
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Glow");
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Dimension2");
-
             Ogre::CompositorManager::getSingleton().setCompositorEnabled(viewport, "Compositor/Glow", true);
             //MyGUI::StaticImagePtr img = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", 100,100,200,200, MyGUI::Align::Default, "Main");
             //img->setImageTexture(GlbVar.ogreSmgr->getShadowTexture(0)->getName());
@@ -426,7 +455,8 @@ class Game
             delete mCollisionConfig;
             delete mBroadphase;
 
-            //GameListener.
+            //Listeners.
+            delete mMaterialListener;
             delete mGameListener;
 
             //Input.
