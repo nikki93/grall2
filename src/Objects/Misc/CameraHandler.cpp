@@ -234,6 +234,17 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
         case MSG_GETTARGET:
             NGF_SEND_REPLY(mTargetNode);
             break;
+
+        case MSG_TELEPORT:
+            //Get current offset, and then move to the teleported position with same offset.
+            Ogre::Vector3 currOffset;
+            if (mTargetNode)
+                currOffset = mCamera->getPosition() - mTargetNode->getPosition();
+            else
+                currOffset = 0;
+            Ogre::Vector3 newPos = msg.getParam<Ogre::Vector3>(0) + currOffset;
+            mCamera->setPosition(newPos);
+            break;
     }
     NGF_NO_REPLY();
 }

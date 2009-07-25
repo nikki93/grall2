@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  TestWorld.h
+ *       Filename:  Lists.cpp
  *
  *    Description:  Has the World and GameObject 'lists', for registration.
  *
@@ -35,6 +35,7 @@
 #include "Objects/Obstacles/MovingBomb.h"
 #include "Objects/Obstacles/Switch.h"
 #include "Objects/Main/Controller.h"
+#include "Objects/Obstacles/Teleporter.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -62,6 +63,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(MovingBomb);
     NGF_REGISTER_OBJECT_TYPE(Switch);
     NGF_REGISTER_OBJECT_TYPE(Controller);
+    NGF_REGISTER_OBJECT_TYPE(Teleporter);
 }
 
 //Register worlds.

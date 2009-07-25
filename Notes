@@ -9,8 +9,6 @@ Next
 - Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
   mesh, and moves exactly one unit.
 
-- Add 'Teleporter' system.
-
 - Think of a good Electricity system.
 
 Side
@@ -366,6 +364,11 @@ Thu Jul 23 13:48:33 AST 2009
 - Saving game now saves music too.
 - Added new Switch texture.
 
-Sat Jul 25 00:55:21 AST 2009
+Fri Jul 25 11:55:21 AST 2009
 ----------------------------
 - MaterialManager::Listener for 'non-glowing' objects.
+
+Sat Jul 25 16:22:08 AST 2009
+----------------------------
+- Allowed Switches to have different 'types', 'Toggle', 'Press', 'Once'.
+- Added 'Teleporter' GameObject.

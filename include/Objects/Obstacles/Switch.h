@@ -29,11 +29,21 @@ class Switch :
 
         bool mOn;
         bool mOnPrev;
-        bool mOnce;
+
+        enum
+        {
+            ST_PRESS,
+            ST_TOGGLE,
+            ST_ONCE
+        };
+
+        int mType;
+
         Ogre::Real mTime;
+        Ogre::Real mTimePrev;
         Ogre::Real mDelay;
 
-        Ogre::String mSlidingBrushName;
+        NGF::GameObject *mSlidingBrush;
 
     public:
         Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -54,7 +64,7 @@ class Switch :
         NGF_PY_BEGIN_DECL(Switch)
         {
             NGF_PY_PROPERTY_DECL(on)
-            NGF_PY_PROPERTY_DECL(once)
+            NGF_PY_PROPERTY_DECL(type)
         }
         NGF_PY_END_DECL
 
@@ -65,10 +75,9 @@ class Switch :
 
             NGF_SERIALISE_OGRE(Bool, mOn);
             NGF_SERIALISE_OGRE(Bool, mOnPrev);
-            NGF_SERIALISE_OGRE(Bool, mOnce);
+            NGF_SERIALISE_OGRE(Int, mType);
             NGF_SERIALISE_OGRE(Real, mTime);
-
-            NGF_SERIALISE_STRING(mSlidingBrushName);
+            NGF_SERIALISE_GAMEOBJECTPTR(mSlidingBrush);
         }
         NGF_SERIALISE_END
 };
@@ -175,9 +184,9 @@ NGF_PY_CLASS_GPERF(Switch)::Lookup (register const char *str, register unsigned 
   static const struct PythonMethod wordlist[] =
     {
       {"set_on", NGF_PY_SET_GPERF(Switch, on)},
-      {"set_once", NGF_PY_SET_GPERF(Switch, once)},
+      {"set_type", NGF_PY_SET_GPERF(Switch, type)},
       {"get_on", NGF_PY_GET_GPERF(Switch, on)},
-      {"get_once", NGF_PY_GET_GPERF(Switch, once)}
+      {"get_type", NGF_PY_GET_GPERF(Switch, type)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)

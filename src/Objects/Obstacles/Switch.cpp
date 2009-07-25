@@ -12,8 +12,10 @@ Switch.cpp
 Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mTime(-1),
+      mTimePrev(-1),
       mOn(false),
-      mOnPrev(false)
+      mOnPrev(false),
+      mType(ST_TOGGLE)
 {
     addFlag("Switch");
 
@@ -26,7 +28,12 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Get properties.
     mDelay = Ogre::StringConverter::parseReal(mProperties.getValue("delay", 0, "0.2"));
-    mOnce =  Ogre::StringConverter::parseBool(mProperties.getValue("once", 0, "no"));
+
+    Ogre::String typeStr = mProperties.getValue("switchType", 0, "toggle");
+    if (typeStr == "once")
+        mType = ST_ONCE;
+    else if (typeStr == "press")
+        mType = ST_PRESS;
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Template_Pad.mesh");
@@ -35,7 +42,7 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff.
-    mShape = new btBoxShape(btVector3(0.5,0.25,0.5)); //Overlap a bit for smoothness.
+    mShape = new btBoxShape(btVector3(0.5,0.25,0.5));
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
@@ -45,7 +52,7 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 void Switch::postLoad()
 {
     //Get the SlidingBrush (if there's one).
-    mSlidingBrushName = mProperties.getValue("slidingBrush", 0, "none");
+    mSlidingBrush= GlbVar.goMgr->getByName(mProperties.getValue("slidingBrush", 0, "none"));
 
     //Python create event.
     NGF_PY_CALL_EVENT(create);
@@ -70,12 +77,32 @@ void Switch::unpausedTick(const Ogre::FrameEvent &evt)
 
     //Handle on/off.
     if (mTime > 0)
-    {
         mTime -= evt.timeSinceLastFrame;
-        mOn = true;
+
+    switch (mType)
+    {
+        case ST_ONCE:
+            //Once we're on, we're on.
+            if (mTime > 0)
+                mOn = true;
+            break;
+
+        case ST_PRESS:
+            //When on, on, when off, off.
+            if (mTime > 0)
+                mOn = true;
+            else
+                mOn = false;
+            break;
+
+        case ST_TOGGLE:
+            //When 'just' on, toggle.
+            if (mTime > 0 && mTimePrev <= 0)
+                mOn = !mOn;
+            break;
     }
-    else if (!mOnce)
-        mOn = false;
+
+    mTimePrev = mTime;
 
     //Event calling.
     if (mOn != mOnPrev)
@@ -120,18 +147,16 @@ void Switch::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 //--- Non-NGF -------------------------------------------------------------------
 void Switch::on()
 {
-    NGF::GameObject *slider = GlbVar.goMgr->getByName(mSlidingBrushName);
-    if (slider)
-        GlbVar.goMgr->sendMessage(slider, NGF_MESSAGE(MSG_SETFORWARD, (bool) true));
+    if (mSlidingBrush)
+        GlbVar.goMgr->sendMessage(mSlidingBrush, NGF_MESSAGE(MSG_SETFORWARD, (bool) true));
 
     NGF_PY_CALL_EVENT(on);
 }
 //-------------------------------------------------------------------------------
 void Switch::off()
 {
-    NGF::GameObject *slider = GlbVar.goMgr->getByName(mSlidingBrushName);
-    if (slider)
-        GlbVar.goMgr->sendMessage(slider, NGF_MESSAGE(MSG_SETFORWARD, (bool) false));
+    if (mSlidingBrush)
+        GlbVar.goMgr->sendMessage(mSlidingBrush, NGF_MESSAGE(MSG_SETFORWARD, (bool) false));
 
     NGF_PY_CALL_EVENT(off);
 }
@@ -141,6 +166,6 @@ void Switch::off()
 NGF_PY_BEGIN_IMPL(Switch)
 {
     NGF_PY_PROPERTY_IMPL(on, mOn, bool);
-    NGF_PY_PROPERTY_IMPL(once, mOnce, bool);
+    NGF_PY_PROPERTY_IMPL(type, mType, int);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)

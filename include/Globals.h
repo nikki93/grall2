@@ -158,6 +158,7 @@ enum
     MSG_SETFORWARD,           //Sets whether in 'forward' mode (for SlidingBrush).
     MSG_SETDIFFUSECOLOUR,     //Sets colour (for lights).
     MSG_SETPOSITION,          //Sets position.
+    MSG_TELEPORT,             //Teleport (for Player).
 };
 
 //Includes from the project used everywhere.

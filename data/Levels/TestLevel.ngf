@@ -15,7 +15,7 @@ ngflevel Level1
 			       : 
 			       : def on(self):
 			       : 	Ngf.getObject("door1").p_forward = True
-			once yes
+			switchType once
 		}
 	}
 	object
@@ -922,6 +922,7 @@ ngflevel Level1
 			dimension1 yes
 			dimension2 yes
 			slidingBrush testSlider
+			switchType press
 		}
 	}
 	object
@@ -981,6 +982,20 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+		}
+	}
+	object
+	{
+		type Teleporter
+		name noname
+		position -3.500000 -0.250000 9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			target -2 0.5 3
 		}
 	}
 }
