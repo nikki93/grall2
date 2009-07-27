@@ -50,6 +50,11 @@ void Point::pausedTick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 NGF::MessageReply Point::receiveMessage(NGF::Message msg)
 {
+    switch (msg.code)
+    {
+        case MSG_GETPOSITION:
+            NGF_SEND_REPLY(mNode->getPosition());
+    }
     NGF_NO_REPLY();
 }
 //-------------------------------------------------------------------------------

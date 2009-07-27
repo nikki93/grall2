@@ -372,3 +372,7 @@ Sat Jul 25 16:22:08 AST 2009
 ----------------------------
 - Allowed Switches to have different 'types', 'Toggle', 'Press', 'Once'.
 - Added 'Teleporter' GameObject.
+
+Mon Jul 27 23:44:47 AST 2009
+----------------------------
+- Changed Teleporter offsetting.

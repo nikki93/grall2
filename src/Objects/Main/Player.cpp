@@ -202,7 +202,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             NGF_SEND_REPLY(BtOgre::Convert::toOgre(mBody->getWorldTransform().getOrigin()));
 
         case MSG_TELEPORT:
-            Ogre::Vector3 target = msg.getParam<Ogre::Vector3>(0) - Ogre::Vector3(0,0.07,0);
+            Ogre::Vector3 target = msg.getParam<Ogre::Vector3>(0);
             GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_TELEPORT, target));
             btTransform oldTrans = mBody->getWorldTransform();
             mBody->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(target)));

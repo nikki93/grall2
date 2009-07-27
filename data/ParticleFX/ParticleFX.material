@@ -14,4 +14,8 @@ material ParticleFX/Flare
 			}
 		}
 	}
+        technique
+        {
+                scheme Scheme/Glow
+        }
 }

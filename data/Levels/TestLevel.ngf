@@ -2,6 +2,34 @@ ngflevel Level1
 {
 	object
 	{
+		type Point
+		name teleporterTarget2
+		position 1.500000 0.500000 -12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Teleporter
+		name noname
+		position 5.500000 -0.250000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			targetPoint teleporterTarget2
+		}
+	}
+	object
+	{
+		type Point
+		name teleporterTarget
+		position -2.000000 0.500000 3.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
 		type Switch
 		name noname
 		position -9.500000 -0.250000 8.500000
@@ -995,8 +1023,15 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
-			target -2 0.5 3
+			targetPoint teleporterTarget
 		}
+	}
+	object
+	{
+		type Point
+		name noname
+		position 1.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 }
 
