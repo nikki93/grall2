@@ -206,6 +206,32 @@ class Game
                 GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + (*iter));
             }
 
+            //Resources.
+            Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
+
+            ogreRmgr.addResourceLocation(".", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Sounds", "FileSystem", "General");
+
+            ogreRmgr.addResourceLocation("../../data/ObjectMeshes", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/ObjectTextures", "FileSystem", "General");
+
+            ogreRmgr.addResourceLocation("../../data/BrushMeshes", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Concrete", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Metal", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Other", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Special", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
+
+            ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Base", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Shaders/Shadows", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/ParticleFX", "FileSystem", "General");
+
             //Renderer.
             const Ogre::RenderSystemList &renderers = GlbVar.ogreRoot->getAvailableRenderers();
             Ogre::RenderSystem *renderer = *(renderers.begin());
@@ -254,32 +280,6 @@ class Game
             GlbVar.ogreCamera->setFarClipDistance(1000.0);
             GlbVar.ogreCamera->setNearClipDistance(0.5);
 
-            //Resources.
-            Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
-
-            ogreRmgr.addResourceLocation(".", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Sounds", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation("../../data/ObjectMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/ObjectTextures", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation("../../data/BrushMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Concrete", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Metal", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Other", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Special", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Base", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Shadows", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/ParticleFX", "FileSystem", "General");
-
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList inputParams;
             size_t windowHnd = 0;
@@ -316,7 +316,6 @@ class Game
 
             GlbVar.phyWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfig);
 
-            ogreRmgr.createResourceGroup("BtOgre");
             GlbVar.phyDebug = new BtOgre::DebugDrawer(GlbVar.ogreSmgr->getRootSceneNode(), GlbVar.phyWorld);
             GlbVar.phyWorld->setDebugDrawer(GlbVar.phyDebug);
 

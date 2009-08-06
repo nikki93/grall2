@@ -380,3 +380,9 @@ Sat Jul 25 16:22:08 AST 2009
 Mon Jul 27 23:44:47 AST 2009
 ----------------------------
 - Changed Teleporter offsetting.
+
+Thu Aug  6 23:28:43 IST 2009
+----------------------------
+- Fixed persistent object destroyAll bug.
+- Fixed a few serialisation bugs involving MusicManager assuming there's always some music playing (and so
+  using null-pointers).

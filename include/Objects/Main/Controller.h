@@ -59,7 +59,11 @@ class Controller :
             NGF_SERIALISE_ON_LOAD
             {
                 GlbVar.dimMgr->setDimension(dimension);
-                GlbVar.musicMgr->playMusic(musicName);
+
+                if (musicName != "<none>")
+                    GlbVar.musicMgr->playMusic(musicName);
+                else
+                    GlbVar.musicMgr->stopMusic();
             }
         }
         NGF_SERIALISE_END

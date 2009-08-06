@@ -661,7 +661,6 @@ ngflevel Level1
 			       : 	self.setLinearVelocity(self.getOrientation() * Ngf.Vector3(0,0,-5))
 			       : 	self.setAngularVelocity(self.getOrientation() * Ngf.Vector3(-1,0,0))
 			       : 	self.p_underControl = False
-			       : 	GraLL2.playMusic("Track1")
 		}
 	}
 	object
@@ -738,7 +737,6 @@ ngflevel Level1
 			       : 		GraLL2.showMessage("""Check out the lights here! Also, if you're having trouble getting around the walls,
 			       : remember that you can press SPACE to switch dimensions. Pretty cool, eh?""", 7)
 			       : 		self.m_messaged = True
-			       : 		GraLL2.crossFadeMusic("Track2", 5)
 		}
 	}
 	object

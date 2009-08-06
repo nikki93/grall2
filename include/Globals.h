@@ -19,6 +19,9 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
 
+//Some compile-time settings.
+#define NO_LIGHTS //No level-lights (hard-coded lights will stay).
+
 //Defines.
 #define GlbVar Globals::getSingleton()
 #define LOG(msg) Ogre::LogManager::getSingleton().logMessage(msg);
