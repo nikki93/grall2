@@ -29,6 +29,7 @@ class DimensionManager
             //Special flags.
             NONE = 0,
             DIM_SWITCH = BIT(0) ^ BIT(1), //XOR with this to switch dimension bits.
+            DIM_BOTH = BIT(0) | BIT(1),
 
             //Dimension bits.
             DIM_1 = BIT(0),

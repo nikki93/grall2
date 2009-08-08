@@ -106,6 +106,9 @@ NGF::MessageReply Teleporter::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void Teleporter::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     if (mTime == 0 && other->hasFlag("Player"))
     {
         mTime = TELEPORT_DELAY;

@@ -17,6 +17,9 @@ StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
+    //Get properties.
+    bool convex = Ogre::StringConverter::parseBool(mProperties.getValue("convex", 0, "no"));
+
     //Create the Ogre stuff.
     mEntity = createBrushEntity();
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
@@ -24,7 +27,14 @@ StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createTrimesh();
+
+    if (convex)
+    {
+        mShape = converter.createConvex();
+        mShape->setMargin(0);
+    }
+    else
+        mShape = converter.createTrimesh();
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
@@ -71,6 +81,9 @@ NGF::MessageReply StaticBrush::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void StaticBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
     if (oth)

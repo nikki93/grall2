@@ -235,6 +235,9 @@ NGF::MessageReply SlidingBrush::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void SlidingBrush::collide(NGF::GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     //The PythonGameObject.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
 

@@ -96,6 +96,9 @@ NGF::MessageReply Checkpoint::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     //Check he's within some limits, we're a 'gate-like' object.
     Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
     Ogre::Vector3 playerDisp = playerPos - mNode->getPosition();

@@ -134,6 +134,9 @@ NGF::MessageReply Switch::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void Switch::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     if (other->hasFlag("Switcher"))
         mTime = mDelay;
 

@@ -19,6 +19,8 @@
 
 #include "boost/format.hpp"
 
+#include "BulletCollision/CollisionDispatch/btGhostObject.h"
+
 template<> Globals* Ogre::Singleton<Globals>::ms_Singleton = 0;
 
 //--------------------------------------------------------------------------------------
@@ -310,6 +312,7 @@ class Game
 
             //--- Bullet (Physics) -----------------------------------------------------
             mBroadphase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
+            mBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
             mCollisionConfig = new btDefaultCollisionConfiguration();
             mDispatcher = new btCollisionDispatcher(mCollisionConfig);
             mSolver = new btSequentialImpulseConstraintSolver();

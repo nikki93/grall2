@@ -381,8 +381,16 @@ Mon Jul 27 23:44:47 AST 2009
 ----------------------------
 - Changed Teleporter offsetting.
 
+(left for India on vacation, will return on September 4th, till then, working on it in India (slowly) )
+
 Thu Aug  6 23:28:43 IST 2009
 ----------------------------
 - Fixed persistent object destroyAll bug.
 - Fixed a few serialisation bugs involving MusicManager assuming there's always some music playing (and so
   using null-pointers).
+
+Sat Aug  8 14:11:49 IST 2009
+----------------------------
+- Player dimension-check now uses Bullet 'ghost objects' instead. Hopefully soon it'll be completely fixed.
+- Added 'lighting' option in Settings to enable or disable lighting (laptop isn't very powerful, and will work
+  with lighting disabled).

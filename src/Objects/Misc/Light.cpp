@@ -21,9 +21,6 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(ogreName, pos, rot);
     mLight = GlbVar.ogreSmgr->createLight(ogreName);
     mNode->attachObject(mLight);
-#ifdef NO_LIGHTS
-    mLight->setVisible(false);
-#endif
 
     //Set light properties.
     Ogre::String type = mProperties.getValue("lightType", 0, "point");
@@ -83,6 +80,8 @@ Light::~Light()
 //-------------------------------------------------------------------------------
 void Light::unpausedTick(const Ogre::FrameEvent &evt)
 {
+    mLight->setVisible(GlbVar.settings.graphics.lighting);
+
     if (mTimed)
     {
         mTimeLeft -= evt.timeSinceLastFrame;

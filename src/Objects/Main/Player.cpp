@@ -18,6 +18,34 @@ Player.cpp
 #define MAT_DIFFUSE 0.9
 #define MAT_SPECULAR 0.3
 
+//Makes sure the ghost object stays with us.
+class PlayerMotionState : public BtOgre::RigidBodyState
+{
+    protected:
+        btPairCachingGhostObject *mGhostObject;
+
+    public:
+        PlayerMotionState(Ogre::SceneNode *node, const btTransform &transform, const btTransform &offset, btPairCachingGhostObject *ghost)
+            : BtOgre::RigidBodyState(node, transform, offset),
+              mGhostObject(ghost)
+        {
+            mGhostObject->setWorldTransform(transform);
+        }
+
+        PlayerMotionState(Ogre::SceneNode *node, btPairCachingGhostObject *ghost)
+            : BtOgre::RigidBodyState(node),
+              mGhostObject(ghost)
+        {
+            mGhostObject->setWorldTransform(mTransform);
+        }
+
+        virtual void setWorldTransform(const btTransform &in) 
+        {
+            mGhostObject->setWorldTransform(in);
+            BtOgre::RigidBodyState::setWorldTransform(in); //Let base do it's stuff.
+        }
+};
+
 //--- NGF events ----------------------------------------------------------------
 Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
@@ -40,13 +68,17 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     //Read in properties.
     mMinHeight = Ogre::StringConverter::parseReal(mProperties.getValue("minHeight", 0, "-4"));
 
+    //Create the ghost object for dimension tests (we do it before the actual body so that
+    //we can pass it to the PlayerMotionState).
+    mGhostObject = new btPairCachingGhostObject();
+
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
     mShape = converter.createSphere();
     btScalar mass = 2;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
-    BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
+    PlayerMotionState *state = new PlayerMotionState(mNode, mGhostObject);
 
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
     info.m_friction = Ogre::Math::POS_INFINITY;
@@ -58,8 +90,11 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::PLAYER, mDimensions);
     setBulletObject(mBody);
 
-    //Smaller shape for casting.
-    mCastShape = new btSphereShape(converter.getRadius() - 0.02);
+    //Configure the GhostObject.
+    mGhostShape = new btSphereShape(converter.getRadius() - 0.01);
+    mGhostObject->setCollisionShape(mGhostShape);
+    mGhostObject->setCollisionFlags(mGhostObject->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+    GlbVar.phyWorld->addCollisionObject(mGhostObject, DimensionManager::DIM_BOTH, DimensionManager::DIM_BOTH);
 
     //Control node is used for controlling the Player. He rotates in all kinds of crazy ways, but we need to know where we're headed.
     mControlNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName + "-controlnode", pos, rot);
@@ -100,6 +135,9 @@ Player::~Player()
         GlbVar.goMgr->destroyObject(mLight->getID());
 
     //We only clear up stuff that we did.
+    GlbVar.phyWorld->removeCollisionObject(mGhostObject);
+    delete mGhostObject;
+    delete mGhostShape;
     loseCameraHandler();
     destroyBody();
     delete mShape;
@@ -113,7 +151,7 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
-    //Allow the controlnode to catch up.
+    //Allow stuff to catch up.
     mControlNode->setPosition(mNode->getPosition());
 
     //Controls.
@@ -214,6 +252,9 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     //(Much) Less friction if not ground hit.
     Ogre::Vector3 hitPos = BtOgre::Convert::toOgre(contact.getPositionWorldOnA());
     if (mNode->getPosition().y - hitPos.y < (mShape->getRadius() - 0.1))
@@ -266,6 +307,7 @@ void Player::switchDimension()
 {
     //If the other dimension isn't free at our place, then abort.
 
+    /* v1: Do a cast.
     //Collects only the results that matter.
     struct PlayerDimensionCheckResult : public btDynamicsWorld::ConvexResultCallback
     {
@@ -314,7 +356,7 @@ void Player::switchDimension()
     };
 
     //Where to cast from, where to cast to, etc.
-    btVector3 pos1 = mBody->getWorldTransform().getOrigin() - btVector3(0,0.15,0);
+    btVector3 pos1 = mBody->getWorldTransform().getOrigin() - btVector3(0,0.01,0);
     btVector3 pos2 = btVector3(pos1.x(),9999,pos1.z());
     btQuaternion rot = mBody->getWorldTransform().getRotation();
     btTransform trans1(rot, pos1);
@@ -322,7 +364,7 @@ void Player::switchDimension()
 
     //Do the cast.
     PlayerDimensionCheckResult res(mBody, mDimensions ^ DimensionManager::DIM_SWITCH, pos1, pos2);
-    GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
+    GlbVar.phyWorld->convexSweepTest(mGhostShape, trans1, trans2, res);
 
     //If no hits, then switch.
     if (!res.mHit)
@@ -330,6 +372,80 @@ void Player::switchDimension()
         GlbVar.dimMgr->switchDimension();
         setDimension(mDimensions ^ DimensionManager::DIM_SWITCH);
     }
+    */
+
+    /* v2: Broadphase ghost test.
+    GlbVar.phyWorld->getDispatcher()->dispatchAllCollisionPairs(mGhostObject->getOverlappingPairCache(), GlbVar.phyWorld->getDispatchInfo(), GlbVar.phyWorld->getDispatcher());
+
+    for (int i = 0; i < mGhostObject->getNumOverlappingObjects(); ++i)
+    {
+        btCollisionObject *obj = mGhostObject->getOverlappingObject(i);
+
+        if (obj == mBody) //It's us!
+            continue;
+
+        short int flags = obj->getBroadphaseHandle()->m_collisionFilterGroup;
+
+        if (flags & DimensionManager::NO_DIM_CHECK)
+            continue;
+        if (flags & (mDimensions ^ DimensionManager::DIM_SWITCH))
+            return;
+    }
+    */
+
+    //First, do ghost test. Works for convex, and for trimesh-intersection.
+    /* v3: Broadphase+narrowphase ghost check */
+    btManifoldArray manifoldArray;
+    btBroadphasePairArray& pairArray = mGhostObject->getOverlappingPairCache()->getOverlappingPairArray();
+    int numPairs = pairArray.size();
+
+    for (int i = 0; i < numPairs; i++)
+    {
+        manifoldArray.clear();
+
+        const btBroadphasePair& pair = pairArray[i];
+
+        btBroadphasePair* collisionPair = GlbVar.phyWorld->getPairCache()->findPair(pair.m_pProxy0,pair.m_pProxy1);
+        if (!collisionPair)
+            continue;
+
+        if (collisionPair->m_algorithm)
+            collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
+
+        for (int j = 0; j < manifoldArray.size(); j++)
+        {
+            btPersistentManifold* manifold = manifoldArray[j];
+            btCollisionObject *obj = (btCollisionObject*) ((manifold->getBody0() == mGhostObject) ? manifold->getBody1() : manifold->getBody0());
+
+            if (obj == mBody) //It's us!
+                goto skip;
+
+            short int flags = obj->getBroadphaseHandle()->m_collisionFilterGroup;
+            if (flags & DimensionManager::NO_DIM_CHECK) //It doesn't want dimension test!
+                goto skip;
+
+            for (int p = 0; p < manifold->getNumContacts(); p++)
+            {
+                const btManifoldPoint&pt = manifold->getContactPoint(p);
+
+                if (pt.getDistance() < 0.f)
+                {
+                    if (flags & (mDimensions ^ DimensionManager::DIM_SWITCH)) //It's in the opposite dimension, abort!
+                        return;
+                }
+            }
+        }
+
+    skip:
+        continue;
+    }
+
+    //Now, do trimesh volume check. Use raycast, and then even-odd test.
+    //http://en.wikipedia.org/wiki/Point_in_polygon
+
+    //All clear, switch!
+    GlbVar.dimMgr->switchDimension();
+    setDimension(mDimensions ^ DimensionManager::DIM_SWITCH);
 }
 //-------------------------------------------------------------------------------
 void Player::die(bool explode)

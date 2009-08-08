@@ -103,6 +103,9 @@ NGF::MessageReply RigidBody::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void RigidBody::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
     if (oth)

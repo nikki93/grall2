@@ -108,6 +108,11 @@ struct Globals : public Ogre::Singleton<Globals>
             Ogre::String FSAA, vsync;
         } ogre;
 
+        struct GraphicsSettings
+        {
+            bool lighting;
+        } graphics;
+
         struct ControlSettings
         {
             Ogre::Real turningSensitivity;

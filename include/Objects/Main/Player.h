@@ -19,6 +19,8 @@
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
 
+#include "BulletCollision/CollisionDispatch/btGhostObject.h"
+
 class Player :
     public GraLL2GameObject
 {
@@ -26,7 +28,6 @@ class Player :
         Ogre::SceneNode *mControlNode;
         Ogre::Entity *mEntity;
         btSphereShape *mShape;
-        btSphereShape *mCastShape;
         NGF::GameObject *mCameraHandler;
 
         bool mUnderControl; //Are we under control?
@@ -35,6 +36,9 @@ class Player :
         Ogre::Real mMinHeight;
 
         NGF::GameObject *mLight;
+
+        btSphereShape *mGhostShape;
+        btPairCachingGhostObject *mGhostObject;
 
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);

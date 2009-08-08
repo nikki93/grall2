@@ -172,6 +172,9 @@ NGF::MessageReply Crate::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     if (!mMoving && other->hasFlag("Player"))
     {
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));

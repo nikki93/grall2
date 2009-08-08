@@ -242,6 +242,9 @@ NGF::MessageReply MovingBomb::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 void MovingBomb::collide(NGF::GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
+    if (!other)
+        return;
+
     //The PythonGameObject.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
 
