@@ -132,11 +132,13 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
             int mDimension;
             bool mHit;
             std::set<NGF::GameObject*> mDirectorsHit;
+            bool mYCast;
 
-            MovingBrushCheckResult(btCollisionObject *ignore, int dimension)
+            MovingBrushCheckResult(btCollisionObject *ignore, int dimension, bool yCast)
                 : mIgnore(ignore),
                   mDimension(dimension),
-                  mHit(false)
+                  mHit(false),
+                  mYCast(yCast)
             {
             }
 
@@ -154,12 +156,15 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
             {
+                if ((btCollisionObject*) proxy0->m_clientObject == mIgnore)
+                    return false;
+
                 //If it's us, or isn't in our dimension, we don't care. 
-                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
-                    && (proxy0->m_collisionFilterGroup & mDimension)
-                    && (!(proxy0->m_collisionFilterGroup & DimensionManager::PLAYER))
+                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) //Not us.
+                    && (proxy0->m_collisionFilterGroup & mDimension) //It's in the other dimension.
+                    && !(mYCast && (proxy0->m_collisionFilterGroup & DimensionManager::PLAYER)) //If moving on Y, forget the Player (lift).
                     && ((proxy0->m_collisionFilterGroup & DimensionManager::DIRECTOR) 
-                            || !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE));
+                            || !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE)); //Director is ok, but other no-contact-response ignored.
             }
         };
 
@@ -167,14 +172,13 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btVector3 normVel = currVel.normalized();
         btVector3 pos1 = prevPos;
         btVector3 castDisp = currVel + (normVel * CAST_SHAPE_SHRINK);
-        castDisp.setY(0);
         btVector3 pos2 = prevPos + castDisp;
         btQuaternion rot = mBody->getWorldTransform().getRotation();
         btTransform trans1(rot, pos1);
         btTransform trans2(rot, pos2);
 
         //Do the cast.
-        MovingBrushCheckResult res(mBody, mDimensions);
+        MovingBrushCheckResult res(mBody, mDimensions, castDisp.y() > 0);
         GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
         //If hit Director, get directed. Use timer to avoid getting stuck to Director.
@@ -190,7 +194,18 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 {
                     mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(otherPos)));
                     jumped = true;
-                    mVelocity = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETVELOCITY));
+
+                    //-1 means keep speed, only change direction.
+                    Ogre::Quaternion dir = GlbVar.goMgr->sendMessageWithReply<Ogre::Quaternion>(other, NGF_MESSAGE(MSG_GETDIRECTION));
+                    Ogre::Real speed = GlbVar.goMgr->sendMessageWithReply<Ogre::Real>(other, NGF_MESSAGE(MSG_GETSPEED));
+
+                    if (speed == -1)
+                        mVelocity = mVelocity.getRotationTo(dir * Ogre::Vector3::NEGATIVE_UNIT_Z) * mVelocity;
+                    else
+                    {
+                        //Rotate it by the amount required to rotate it to face a velocity in that direction.
+                        mVelocity = dir * Ogre::Vector3(0,0,-speed);
+                    }
 
                     //Call the Python director event (seperate from collision event so that we can be notifed exactly when 'directed').
                     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

@@ -182,7 +182,15 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
                 {
                     mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(otherPos)));
                     jumped = true;
-                    mVelocity = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETVELOCITY));
+
+                    //-1 means keep speed, only change direction.
+                    Ogre::Quaternion dir = GlbVar.goMgr->sendMessageWithReply<Ogre::Quaternion>(other, NGF_MESSAGE(MSG_GETDIRECTION));
+                    Ogre::Real speed = GlbVar.goMgr->sendMessageWithReply<Ogre::Real>(other, NGF_MESSAGE(MSG_GETSPEED));
+
+                    if (speed == -1)
+                        mVelocity = dir * mVelocity;
+                    else
+                        mVelocity = dir * Ogre::Vector3(0,0,-speed);
 
                     //Call the Python director event (seperate from collision event so that we can be notifed exactly when 'directed').
                     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

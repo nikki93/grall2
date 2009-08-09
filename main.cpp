@@ -93,9 +93,24 @@ class GameListener :
             if (!GlbVar.console->isVisible())
                 GlbVar.goMgr->forEachGameObject(GameListener::sendKeyPressMessage);
 
-            //Some stuff we have to do. TODO: Shouldn't be needed in final version.
+            //Some debug keys. TODO: Remove these in final version.
+            //|F1, F2: Level switch | F3, F4: Console | F5, F6: Video | F7, F8: Test save/load | F9: Screenshot |
             switch (mCurrKey)
             {
+                case OIS::KC_F1:
+                    GlbVar.woMgr->previousWorld();
+                    break;
+                case OIS::KC_F2:
+                    GlbVar.woMgr->nextWorld();
+                    break;
+
+                case OIS::KC_F5:
+                    GlbVar.videoRec->startRecording(0.1);
+                    break;
+                case OIS::KC_F6:
+                    GlbVar.videoRec->stopRecording();
+                    break;
+
                 case OIS::KC_F7:
                     serialise("TestSave");
                     break;
@@ -104,23 +119,9 @@ class GameListener :
                     deserialise("TestSave");
                     break;
 
-                case OIS::KC_N:
-                    GlbVar.woMgr->nextWorld();
-                    break;
-                case OIS::KC_P:
-                    GlbVar.woMgr->previousWorld();
-                    break;
-
                 case OIS::KC_F9:
                     //highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".jpg", true);
                     GlbVar.ogreWindow->writeContentsToFile("Screenshot.png");
-                    break;
-
-                case OIS::KC_F1:
-                    GlbVar.videoRec->startRecording(0.1);
-                    break;
-                case OIS::KC_F2:
-                    GlbVar.videoRec->stopRecording();
                     break;
             }
 
@@ -194,18 +195,18 @@ class Game
             switch (GlbVar.settings.ogre.renderer)
             {
                 case Globals::Settings::OgreSettings::DIRECT3D:
-                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "RenderSystem_Direct3D9");
+                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/RenderSystem_Direct3D9");
                     break;
 
                 case Globals::Settings::OgreSettings::OPENGL:
-                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "RenderSystem_GL");
+                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/RenderSystem_GL");
                     break;
             }
 
             for (Ogre::StringVector::iterator iter = GlbVar.settings.ogre.plugins.begin();
                     iter != GlbVar.settings.ogre.plugins.end(); ++iter)
             {
-                GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + (*iter));
+                GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/" + (*iter));
             }
 
             //Resources.

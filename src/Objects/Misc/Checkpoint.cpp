@@ -99,26 +99,29 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
     if (!other)
         return;
 
-    //Check he's within some limits, we're a 'gate-like' object.
-    Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
-    Ogre::Vector3 playerDisp = playerPos - mNode->getPosition();
-
-    Ogre::Quaternion invRot = Ogre::Vector3::UNIT_X.getRotationTo(mNode->getOrientation() * Ogre::Vector3::UNIT_X);
-    playerDisp = invRot * playerDisp;
-
-    if (Ogre::Math::Abs(playerDisp.x) < 0.5 && Ogre::Math::Abs(playerDisp.z) <= 0.2)
+    if (other->hasFlag("Player"))
     {
-        //Save the game. Disable before saving though, so we're loaded disabled.
-        bool enabledPrev = mEnabled;
-        mEnabled = false;
+        //Check he's within some limits, we're a 'gate-like' object.
+        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
+        Ogre::Vector3 playerDisp = playerPos - mNode->getPosition();
 
-        //Change light colour.
-        setLightColour(false);
+        Ogre::Quaternion invRot = Ogre::Vector3::UNIT_X.getRotationTo(mNode->getOrientation() * Ogre::Vector3::UNIT_X);
+        playerDisp = invRot * playerDisp;
 
-        if (enabledPrev)
+        if (Ogre::Math::Abs(playerDisp.x) < 0.5 && Ogre::Math::Abs(playerDisp.z) <= 0.2)
         {
-            ::serialise(GlbVar.levelName);
-            mEntity->setMaterialName("Objects/Checkpoint_R");
+            //Save the game. Disable before saving though, so we're loaded disabled.
+            bool enabledPrev = mEnabled;
+            mEnabled = false;
+
+            //Change light colour.
+            setLightColour(false);
+
+            if (enabledPrev)
+            {
+                ::serialise(GlbVar.levelName);
+                mEntity->setMaterialName("Objects/Checkpoint_R");
+            }
         }
     }
 

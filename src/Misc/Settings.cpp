@@ -25,7 +25,19 @@ static OIS::KeyCode stringToKey(Ogre::String key, OIS::KeyCode defaultKey = OIS:
 void loadSettings()
 {
     Ogre::ConfigFile cfg;
-    cfg.loadDirect(SETTINGS_FILE);
+
+    try
+    {
+        cfg.loadDirect(SETTINGS_FILE);
+    }
+    catch (Ogre::FileNotFoundException &e)
+    {
+        std::ofstream out(SETTINGS_FILE.c_str());
+        out << std::endl;
+        out.close();
+
+        cfg.loadDirect(SETTINGS_FILE);
+    }
 
     //--- Ogre -------------------------------------------------------------------------
     

@@ -158,7 +158,6 @@ enum
     MSG_SETSMOOTHINGFACTOR,   //Set CameraHandler camera movement smoothing.
     MSG_SETCAMERASTATE,       //Set CameraHandler camera handling mode.
     MSG_GETPOSITION,          //Get position.
-    MSG_GETVELOCITY,          //Get velocity (for Director, get stored speed in direction).
     MSG_GETTARGET,            //Get target (for CameraHandler).
     MSG_EXPLODE,              //Explode (for explosive objects).
     MSG_GETFRICTIONCOEFF,     //Get friction coefficient (for Ice).
@@ -167,6 +166,8 @@ enum
     MSG_SETDIFFUSECOLOUR,     //Sets colour (for lights).
     MSG_SETPOSITION,          //Sets position.
     MSG_TELEPORT,             //Teleport (for Player).
+    MSG_GETDIRECTION,         //Get direction (for Director).
+    MSG_GETSPEED,             //Get speed (for Director).
 };
 
 //Includes from the project used everywhere.

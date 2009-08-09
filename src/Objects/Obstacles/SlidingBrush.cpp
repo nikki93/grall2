@@ -58,8 +58,8 @@ SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, 
         mPoints.push_back(pos + (rot * Ogre::Vector3(0,0,-distance)));
     }
     
-    //mIgnoreCollisions = Ogre::StringConverter::parseBool(mProperties.getValue("ignoreCollisions", 0, "no"));
-    mIgnoreCollisions = true;
+    mIgnoreCollisions = Ogre::StringConverter::parseBool(mProperties.getValue("ignoreCollisions", 0, "no"));
+    //mIgnoreCollisions = true;
 
     //Make smaller shape for cast.
     //Get vertices.
@@ -154,12 +154,14 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                     int mDimension;
                     bool mHit;
                     Ogre::Real mHitFraction;
+                    bool mYCast;
 
-                    SlidingBrushCheckResult(btCollisionObject *ignore, int dimension)
+                    SlidingBrushCheckResult(btCollisionObject *ignore, int dimension, bool yCast)
                         : mIgnore(ignore),
                         mDimension(dimension),
                         mHit(false),
-                        mHitFraction(1)
+                        mHitFraction(1),
+                        mYCast(yCast)
                     {
                     }
 
@@ -172,11 +174,11 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
                     bool needsCollision(btBroadphaseProxy* proxy0) const
                     {
-                        //If it's us, is the Player, or isn't in our dimension, we don't care.
-                        return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
-                            && (proxy0->m_collisionFilterGroup & mDimension)
-                            && (!(proxy0->m_collisionFilterGroup & DimensionManager::PLAYER))
-                            && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                        return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) //Shouldn't be us.
+                            && (proxy0->m_collisionFilterGroup & mDimension) //Should be in our dimension.
+                            && (!(proxy0->m_collisionFilterGroup & DimensionManager::STATIC)) //No need to check with static.
+                            && !(mYCast && (proxy0->m_collisionFilterGroup & DimensionManager::PLAYER)) //If moving on Y, forget the Player (lift).
+                            && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE); //If no contact response, ignore.
                     }
                 };
 
@@ -189,13 +191,13 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 btTransform trans2(rot, pos2);
 
                 //Do the cast.
-                SlidingBrushCheckResult res(mBody, mDimensions);
+                SlidingBrushCheckResult res(mBody, mDimensions, pos1.y() < pos2.y());
                 GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
                 //If hit, don't move.
                 if (res.mHit)
                 {
-                    newPos -= currVel * (1 - res.mHitFraction);
+                    goto skip;
                 }
             }
 
@@ -208,6 +210,7 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         }
     }
 
+    skip:
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }

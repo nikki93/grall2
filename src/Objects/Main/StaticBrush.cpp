@@ -38,7 +38,8 @@ StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    initBody();
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::STATIC, mDimensions);
+    setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------
 void StaticBrush::postLoad()

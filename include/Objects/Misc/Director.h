@@ -18,10 +18,6 @@
 #ifndef __DIRECTOR_H__
 #define __DIRECTOR_H__
 
-#ifdef __DIRECTOR_CPP__
-
-#endif
-
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
 
@@ -31,7 +27,7 @@ class Director :
     protected:
         btCollisionShape *mShape;
         
-        Ogre::Vector3 mVelocity;
+        Ogre::Real mSpeed;
         Ogre::Quaternion mDirection;
 
     public:
@@ -49,7 +45,7 @@ class Director :
         NGF_PY_BEGIN_DECL(Director)
         {
             NGF_PY_PROPERTY_DECL(direction)
-            NGF_PY_PROPERTY_DECL(velocity)
+            NGF_PY_PROPERTY_DECL(speed)
 
             NGF_PY_METHOD_DECL(setOrientation)
         }
@@ -60,13 +56,13 @@ class Director :
         {
             GRALL2_SERIALISE_GAMEOBJECT();
 
-            NGF_SERIALISE_OGRE(Vector3, mVelocity);
+            NGF_SERIALISE_OGRE(Real, mSpeed);
             NGF_SERIALISE_OGRE(Quaternion, mDirection);
         }
         NGF_SERIALISE_END
 };
 
-#ifdef __Director_CPP__
+#ifdef __DIRECTOR_CPP__
 
 /* C++ code produced by gperf version 3.0.3 *//*{{{*/
 /* Command-line: gperf  */
@@ -108,7 +104,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 7, duplicates = 0 */
+/* maximum key range = 11, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Director)
 {
@@ -123,32 +119,32 @@ NGF_PY_CLASS_GPERF(Director)::MakeHash (register const char *str, register unsig
 {
   static const unsigned char asso_values[] =
     {
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19,  5, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19,  0, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
-      19, 19, 19, 19, 19, 19
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20,  0, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20,  5, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+      20, 20, 20, 20, 20, 20
     };
   return len + asso_values[(unsigned char)str[0]];
 }
@@ -159,19 +155,19 @@ NGF_PY_CLASS_GPERF(Director)::Lookup (register const char *str, register unsigne
   enum
     {
       TOTAL_KEYWORDS = 5,
-      MIN_WORD_LENGTH = 12,
+      MIN_WORD_LENGTH = 9,
       MAX_WORD_LENGTH = 14,
-      MIN_HASH_VALUE = 12,
-      MAX_HASH_VALUE = 18
+      MIN_HASH_VALUE = 9,
+      MAX_HASH_VALUE = 19
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {"set_velocity", NGF_PY_SET_GPERF(Director, velocity)},
+      {"get_speed", NGF_PY_GET_GPERF(Director, speed)},
+      {"get_direction", NGF_PY_GET_GPERF(Director, direction)},
+      {"set_speed", NGF_PY_SET_GPERF(Director, speed)},
       {"set_direction", NGF_PY_SET_GPERF(Director, direction)},
-      {"setOrientation", NGF_PY_METHOD_GPERF(Director, setOrientation)},
-      {"get_velocity", NGF_PY_GET_GPERF(Director, velocity)},
-      {"get_direction", NGF_PY_GET_GPERF(Director, direction)}
+      {"setOrientation", NGF_PY_METHOD_GPERF(Director, setOrientation)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -182,21 +178,21 @@ NGF_PY_CLASS_GPERF(Director)::Lookup (register const char *str, register unsigne
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 12)
+          switch (key - 9)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 1:
+              case 4:
                 resword = &wordlist[1];
                 goto compare;
-              case 2:
+              case 5:
                 resword = &wordlist[2];
                 goto compare;
-              case 5:
+              case 9:
                 resword = &wordlist[3];
                 goto compare;
-              case 6:
+              case 10:
                 resword = &wordlist[4];
                 goto compare;
             }

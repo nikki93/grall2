@@ -73,8 +73,10 @@ void GraLL2GameObject::setDimension(int dimension)
 {
     //Save the new dimension info, and reset the btRigidBody flags.
     mDimensions = dimension;
+    short int oldFlags = mBody->getBroadphaseHandle()->m_collisionFilterGroup;
+    oldFlags = ((oldFlags >> 2) << 2); //Set rightmist 2 bits to 0 (the dimension bits) so we can start 'from scratch'.
     GlbVar.phyWorld->removeRigidBody(mBody);
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions, mDimensions);
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | oldFlags, mDimensions);
 }
 //-------------------------------------------------------------------------------
 

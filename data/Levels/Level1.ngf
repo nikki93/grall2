@@ -1,0 +1,788 @@
+ngflevel Level1
+{
+	object
+	{
+		type Director
+		name noname
+		position -2.000000 3.500000 1.500000
+		rotation 0.707107 -0.707107 -0.000000 0.000000
+
+		properties
+		{
+			speed -1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 4.500000 45.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b0.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 4.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 4.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 4.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 4.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 4.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 4.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 4.500000 27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 4.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 4.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 4.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 4.500000 25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 4.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 3.500000 43.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b1.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 4.500000 39.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 4.500000 37.000000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 4.500000 34.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -4.500000 4.500000 39.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -4.500000 4.500000 37.000000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.500000 4.500000 39.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			speed 2
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.500000 4.500000 37.000000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			speed 2
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 4.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 4.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 4.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 4.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 4.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 4.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 4.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 4.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 4.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 4.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 4.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 4.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 4.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 4.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 4.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 4.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 4.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 4.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 4.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 3.500000 6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b2.mesh
+			dimension1 no
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -1.500000 0.500000 -9.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b3.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 4.500000 0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b4.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b5.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 -0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b6.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -2.499782 1.389544 1.500729
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Switch
+		name noname
+		position -1.500000 -0.230000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			switchType once
+			script : import Ngf
+			       : 
+			       : def on(self):
+			       : 	Ngf.getObject("mover1").p_enabled = True
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name noname
+		position -2.000000 3.500000 11.000000
+		rotation 0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			enabled no
+			brushMeshFile Level1_b7.mesh
+			speed 1
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.hasFlag("Player")):
+			       : 		self.p_enabled = True
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 4.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.500000 4.500000 34.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			speed 2
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -4.500000 4.500000 34.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			speed 2
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position -2.000000 5.159853 42.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -4.500000 4.500000 45.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b8.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -2.000000 4.900000 45.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			enabled yes
+			speed 2
+			distance 1.9
+			ignoreCollisions no
+			brushMeshFile Level1_b9.mesh
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.m_playerTouched = False
+			       : 
+			       : def collide(self, other):
+			       : 	if ((not self.m_playerTouched) and other.hasFlag("Player")):
+			       : 		self.p_forward = True
+			       : 		self.m_playerTouched = True
+			       : 		
+			       : def point(self, n):
+			       : 	if (n == 1):
+			       : 		self.setAlarm(1,0)
+			       : 		
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		self.p_forward = False
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name mover1
+		position -2.000000 -0.500000 1.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			enabled no
+			brushMeshFile Level1_b10.mesh
+			speed 0.5
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -2.000000 -0.500000 1.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			speed -1
+		}
+	}
+}
+

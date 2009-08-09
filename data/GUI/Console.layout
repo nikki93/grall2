@@ -22,10 +22,10 @@
             <Property key="Edit_VisibleHScroll" value="true"/>
         </Widget>
         <Widget type="Button" skin="Button" position_real="0.952237 0.709677 0.0435308 0.139785" layer="Back" name="but_consoleRun">
-            <Property key="Widget_Caption" value="Run\n(F5)"/>
+            <Property key="Widget_Caption" value="Run\n(F4)"/>
         </Widget>
         <Widget type="Button" skin="Button" position_real="0.952842 0.860215 0.0435308 0.134409" layer="Back" name="but_consoleClose">
-            <Property key="Widget_Caption" value="Close\n(F4)"/>
+            <Property key="Widget_Caption" value="Close\n(F3)"/>
         </Widget>
     </Widget>
 </MyGUI>

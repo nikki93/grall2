@@ -25,6 +25,8 @@ Side
 
 Bugs
 ----
+- Make MovingPlatform, SlidingBrush ignore Player collisions on Y axis, but check all others.
+
 - Fix Crate dynamics.
 
 - Fix Player dimension check.
@@ -394,3 +396,9 @@ Sat Aug  8 14:11:49 IST 2009
 - Player dimension-check now uses Bullet 'ghost objects' instead. Hopefully soon it'll be completely fixed.
 - Added 'lighting' option in Settings to enable or disable lighting (laptop isn't very powerful, and will work
   with lighting disabled).
+
+Sun Aug  9 21:57:16 IST 2009
+----------------------------
+- Numerous bugfixes relating to MovingBrush and StaticBrush collision checks.
+- Dimension setting in GraLL2GameObject now makes sure that other flags aren't disturbed.
+- Added change-direction-but-not-velocity Directors.

@@ -59,10 +59,10 @@ class Console
         {
             switch (kc)
             {
-                case OIS::KC_F4:
+                case OIS::KC_F3:
                     setVisible(!isVisible());
                     break;
-                case OIS::KC_F5:
+                case OIS::KC_F4:
                     if (isVisible())
                         _onClickRun(NULL);
                     break;

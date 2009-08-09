@@ -4,7 +4,7 @@ Director.cpp
 =========================================
 */
 
-#define __Director_CPP__
+#define __DIRECTOR_CPP__
 
 #include "Objects/Misc/Director.h"
 
@@ -21,7 +21,8 @@ Director::Director(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Pro
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
 
     //Save properties.
-    mVelocity = Ogre::Vector3(0,0,-(Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "2"))));
+    //mVelocity = Ogre::Vector3(0,0,-(Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "2"))));
+    mSpeed = Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "2"));
     mDirection = rot;
 
     //Create the Physics stuff.
@@ -67,8 +68,11 @@ NGF::MessageReply Director::receiveMessage(NGF::Message msg)
 {
     switch (msg.code)
     {
-        case MSG_GETVELOCITY:
-            NGF_SEND_REPLY(mDirection * mVelocity);
+        case MSG_GETDIRECTION:
+            NGF_SEND_REPLY(mDirection);
+
+        case MSG_GETSPEED:
+            NGF_SEND_REPLY(mSpeed);
 
         case MSG_GETPOSITION:
             NGF_SEND_REPLY(mNode->getPosition());
@@ -98,6 +102,6 @@ NGF_PY_BEGIN_IMPL(Director)
     }
 
     NGF_PY_PROPERTY_IMPL(direction, mDirection, Ogre::Quaternion);
-    NGF_PY_PROPERTY_IMPL(velocity, mVelocity, Ogre::Vector3);
+    NGF_PY_PROPERTY_IMPL(speed, mSpeed, Ogre::Real);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
