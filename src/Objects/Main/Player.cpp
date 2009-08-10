@@ -418,11 +418,11 @@ void Player::switchDimension()
             btCollisionObject *obj = (btCollisionObject*) ((manifold->getBody0() == mGhostObject) ? manifold->getBody1() : manifold->getBody0());
 
             if (obj == mBody) //It's us!
-                goto skip;
+                break;
 
             short int flags = obj->getBroadphaseHandle()->m_collisionFilterGroup;
             if (flags & DimensionManager::NO_DIM_CHECK) //It doesn't want dimension test!
-                goto skip;
+                break;
 
             for (int p = 0; p < manifold->getNumContacts(); p++)
             {
@@ -435,13 +435,45 @@ void Player::switchDimension()
                 }
             }
         }
-
-    skip:
-        continue;
     }
 
     //Now, do trimesh volume check. Use raycast, and then even-odd test.
     //http://en.wikipedia.org/wiki/Point_in_polygon
+    struct PlayerTrimeshFind : public btDynamicsWorld::RayResultCallback
+    {
+        std::map<btCollisionObject*, bool> mHitMap;
+        int mOppDimension;
+
+        PlayerTrimeshFind(int oppDimension)
+            : mOppDimension(oppDimension)
+        {
+        }
+
+        btScalar addSingleResult(btDynamicsWorld::LocalRayResult &rayResult, bool)
+        {
+            btCollisionObject *obj = rayResult.m_collisionObject;
+            mHitMap[obj] = !mHitMap[obj]; //Odd number of nots on 'false' (default bool constructor) is true, opposite for even.
+
+            return 1;
+        }
+
+        bool needsCollision(btBroadphaseProxy* proxy0) const
+        {
+            //No non-dimension-check, only opposite dimension, only trimeshes (no need to ignore self, we're not trimesh anyway
+            //so that test does that automatically).
+            return (!(proxy0->m_collisionFilterGroup & DimensionManager::NO_DIM_CHECK))
+                && (proxy0->m_collisionFilterGroup & mOppDimension) //Not really needed (we don't intersect with things in this dimension), but anyway.
+                && ((btCollisionObject*)(proxy0->m_clientObject))->getCollisionShape()->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE;
+        }
+    } res(mDimensions ^ DimensionManager::DIM_SWITCH);
+
+    btVector3 pos1 = mBody->getWorldTransform().getOrigin();
+    btVector3 pos2 = pos1 + btVector3(0,100,0); //100 is big enough I guess. :P
+    GlbVar.phyWorld->rayTest(pos1, pos2, res);
+
+    for (std::map<btCollisionObject*, bool>::iterator iter = res.mHitMap.begin(); iter != res.mHitMap.end(); ++iter)
+        if (iter->second) //The final bool for each trimesh is whether hits are odd (read previous comment).
+            return;
 
     //All clear, switch!
     GlbVar.dimMgr->switchDimension();

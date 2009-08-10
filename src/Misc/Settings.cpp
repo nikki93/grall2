@@ -72,7 +72,7 @@ void loadSettings()
     GlbVar.settings.controls.right = stringToKey(cfg.getSetting("right", "controls", "D"), OIS::KC_W);
 
     GlbVar.settings.controls.dimensionSwitch = stringToKey(cfg.getSetting("dimensionSwitch", "controls", "SPACE"), OIS::KC_W);
-    GlbVar.settings.controls.selfDestruct = stringToKey(cfg.getSetting("selfDestruct", "controls", "F10"), OIS::KC_W);
+    GlbVar.settings.controls.selfDestruct = stringToKey(cfg.getSetting("selfDestruct", "controls", "Z"), OIS::KC_W);
 
     GlbVar.settings.controls.peepLeft = stringToKey(cfg.getSetting("peepLeft", "controls", "Q"), OIS::KC_W);
     GlbVar.settings.controls.peepRight = stringToKey(cfg.getSetting("peepRight", "controls", "E"), OIS::KC_W);

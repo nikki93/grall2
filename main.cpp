@@ -63,8 +63,8 @@ class GameListener :
                 GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
             GlbVar.phyWorld->debugDrawWorld();
 
-            //Shows debug if F3 key down.
-            GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F3));
+            //Shows debug if F10 key down.
+            GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F10));
             GlbVar.phyDebug->step();
 
             //Update helpers.

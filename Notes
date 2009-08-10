@@ -25,11 +25,7 @@ Side
 
 Bugs
 ----
-- Make MovingPlatform, SlidingBrush ignore Player collisions on Y axis, but check all others.
-
 - Fix Crate dynamics.
-
-- Fix Player dimension check.
 
 - Fix shadows.
 
@@ -402,3 +398,9 @@ Sun Aug  9 21:57:16 IST 2009
 - Numerous bugfixes relating to MovingBrush and StaticBrush collision checks.
 - Dimension setting in GraLL2GameObject now makes sure that other flags aren't disturbed.
 - Added change-direction-but-not-velocity Directors.
+
+Mon Aug 10 21:29:22 IST 2009
+----------------------------
+- Fixed Player dimension test, for all objects, convex as well as trimesh. :-) It's been tested well, but
+  will probably still need more testing. For now it's labelled as 'done', but if in future there's a problem,
+  it'll have to be fixed.
