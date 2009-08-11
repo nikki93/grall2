@@ -6,14 +6,16 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add Switch textures.
-
-- Add Teleporter texture.
+- Add CameraHandler feature that prevents third person camera obstruction.
 
 - Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
   mesh, and moves exactly one unit.
 
 - Think of a good Electricity system.
+
+- Add Switch textures.
+
+- Add Teleporter texture.
 
 Side
 ----
@@ -404,3 +406,7 @@ Mon Aug 10 21:29:22 IST 2009
 - Fixed Player dimension test, for all objects, convex as well as trimesh. :-) It's been tested well, but
   will probably still need more testing. For now it's labelled as 'done', but if in future there's a problem,
   it'll have to be fixed.
+
+Wed Aug 11 23:54:10 IST 2009
+----------------------------
+- CameraHandler now places Camera in front of any obstructions for a better view in third-person mode.

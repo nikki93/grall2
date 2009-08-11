@@ -14,9 +14,7 @@ Crate.cpp
 //--- NGF events ----------------------------------------------------------------
 Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mMoving(false),
-      mDistanceMoved(0),
-      mNextDirection(Ogre::Vector3::ZERO)
+      mMoving(false)
 {
     addFlag("Crate");
 
@@ -45,11 +43,10 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     initBody();
 
     //To allow Gravity, but still constraint on XZ plane, we use slider.
-    mShape2 = new btBoxShape(*mShape);
-    mShape2->setLocalScaling(btVector3(0.85,0.85,0.85));
+    mCastShape = new btBoxShape(btVector3(0.475,0.70,0.475));
 
-    btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,20,0))));
-    mFixedBody = new btRigidBody(0, fixedState, mShape2);
+    btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,0.1,0))));
+    mFixedBody = new btRigidBody(0, fixedState, mCastShape);
     mFixedBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
     mFixedBody->setActivationState(DISABLE_DEACTIVATION);
     GlbVar.phyWorld->addRigidBody(mFixedBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
@@ -59,17 +56,15 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mConstraint->setUpperLinLimit(0);
     mConstraint->setLowerAngLimit(0); //Locked angular.
     mConstraint->setUpperAngLimit(0);
-    mConstraint->setDampingDirLin(0.5);
-    mConstraint->setDampingLimLin(1);
-    mConstraint->setRestitutionOrthoLin(0);
+    mConstraint->setRestitutionOrthoLin(3);
 
     GlbVar.phyWorld->addConstraint(mConstraint, true);
 
     //Height deficiency, for some variety in Crates.
-    mSize = 1.5 - heightDef;
+    mHeight = 1.5 - heightDef;
     if (heightDef != 0)
     {
-        Ogre::Real scale = mSize / 1.5;
+        Ogre::Real scale = mHeight / 1.5;
         mNode->setScale(Ogre::Vector3(1,scale,1));
         mShape->setLocalScaling(btVector3(1,scale,1));
     }
@@ -107,48 +102,26 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
     GraLL2GameObject::unpausedTick(evt);
 
     //If gotta move, move.
-
     btTransform oldTrans;
     mFixedBody->getMotionState()->getWorldTransform(oldTrans);
 
     if (mMoving)
     {
         Ogre::Real speed = CRATE_MOVE_SPEED * evt.timeSinceLastFrame;
+        Ogre::Vector3 currPos = BtOgre::Convert::toOgre(oldTrans.getOrigin());
 
-        //Zero out vertical jump.
-        /*
-        btVector3 currVel = mBody->getLinearVelocity();
-        currVel.setY(0);
-        mBody->setLinearVelocity(currVel);
-        */
-
-        //Damping.
-        /*
-        if (mDistanceMoved > 0.8)
-        {
-            speed *= ((1.01 - mDistanceMoved) / 0.2);
-        }
-        */
-
-        btVector3 vel;
-        if ((mDistanceMoved + speed) > 1)
+        if (currPos.squaredDistance(mTarget) < speed*speed)
         {
             //If next move'll take us overboard, just jump to the target.
-            vel = BtOgre::Convert::toBullet(mNextDirection) * (1 - mDistanceMoved); //Whatever's left in that direction is what we have to go by.
-
+            mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(mTarget)));
             mMoving = false;
-            mDistanceMoved = 0;
-            mNextDirection = 0;
         }
         else
         {
             //Else move toward target.
-            vel = BtOgre::Convert::toBullet(mNextDirection) * speed;
-            mDistanceMoved += speed;
+            btVector3 vel = BtOgre::Convert::toBullet(Ogre::Vector3(speed,0,0).getRotationTo(mTarget - currPos) * Ogre::Vector3(speed,0,0));
+            mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), oldTrans.getOrigin() + vel));
         }
-
-        //Apply velocity.
-        mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), oldTrans.getOrigin() + vel));
     }
 
     //If fell off, die.
@@ -185,7 +158,7 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
         Ogre::Vector3 push = myPos - playerPos;
 
         //Check that we got hit on side and not up or (lol?) below. :-)
-        if (push.y < (mSize / 2.0))
+        if (push.y < (mHeight / 2.0))
         {
             makeMove(push);
             btVector3 currVel = mBody->getLinearVelocity();
@@ -255,14 +228,14 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
 
     //Do the cast.
     CrateCheckResult res(mBody, mDimensions);
-    GlbVar.phyWorld->convexSweepTest(mShape2, trans1, trans2, res);
+    GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
     //If not hit, move!
     if (!res.mHit)
     {
         mBody->activate();
         mMoving = true;
-        mNextDirection = newDir;
+        mTarget = BtOgre::Convert::toOgre(myTrans.getOrigin()) + newDir;
     }
 }
 //-------------------------------------------------------------------------------

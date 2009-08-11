@@ -56,7 +56,7 @@ void loadSettings()
     GlbVar.settings.ogre.FSAA = cfg.getSetting("FSAA", "ogre", "0");
     GlbVar.settings.ogre.vsync = cfg.getSetting("vsync", "ogre", "no");
 
-    //--- Ogre -------------------------------------------------------------------------
+    //--- Graphics ---------------------------------------------------------------------
 
     GlbVar.settings.graphics.lighting = Ogre::StringConverter::parseBool(cfg.getSetting("lighting", "graphics", "yes"));
 
@@ -76,6 +76,10 @@ void loadSettings()
 
     GlbVar.settings.controls.peepLeft = stringToKey(cfg.getSetting("peepLeft", "controls", "Q"), OIS::KC_W);
     GlbVar.settings.controls.peepRight = stringToKey(cfg.getSetting("peepRight", "controls", "E"), OIS::KC_W);
+
+    //--- Misc. ------------------------------------------------------------------------
+
+    GlbVar.settings.misc.fixCameraObstruction = Ogre::StringConverter::parseBool(cfg.getSetting("fixCameraObstruction", "misc", "yes"));
 
     //----------------------------------------------------------------------------------
 }
@@ -131,6 +135,13 @@ void saveSettings()
     cfg << "peepRight = " << keyToString(GlbVar.settings.controls.peepRight) << std::endl;
     cfg << std::endl;
 
+    //--- Misc. ------------------------------------------------------------------------
+
+    cfg << "[misc]" << std::endl;
+
+    cfg << "fixCameraObstruction = " << GlbVar.settings.misc.fixCameraObstruction << std::endl;
+    cfg << std::endl;
+    
     //----------------------------------------------------------------------------------
 
     cfg.close();

@@ -130,6 +130,11 @@ struct Globals : public Ogre::Singleton<Globals>
             OIS::KeyCode peepLeft;
             OIS::KeyCode peepRight;
         } controls;
+
+        struct MiscSettings
+        {
+            bool fixCameraObstruction;
+        } misc;
     } settings;
 
     //World to switch to. Required for delay in World-switching because GameObjects

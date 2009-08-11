@@ -393,8 +393,8 @@ void Player::switchDimension()
     }
     */
 
+    /* v3: Broadphase, narrowphase ghost check + ray even/odd test for trimeshes */
     //First, do ghost test. Works for convex, and for trimesh-intersection.
-    /* v3: Broadphase+narrowphase ghost check */
     btManifoldArray manifoldArray;
     btBroadphasePairArray& pairArray = mGhostObject->getOverlappingPairCache()->getOverlappingPairArray();
     int numPairs = pairArray.size();
@@ -437,7 +437,7 @@ void Player::switchDimension()
         }
     }
 
-    //Now, do trimesh volume check. Use raycast, and then even-odd test.
+    //Now, do trimesh-volume check. Use raycast, and then even-odd test.
     //http://en.wikipedia.org/wiki/Point_in_polygon
     struct PlayerTrimeshFind : public btDynamicsWorld::RayResultCallback
     {

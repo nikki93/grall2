@@ -133,11 +133,52 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     {
         case CS_THIRDPERSON:
             {
+                //Weird stuff here.
+
                 Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mViewOffset);
-                Ogre::Vector3 toMove = (target - mCamera->getPosition()) * mMovementFactor * evt.timeSinceLastFrame;
+                Ogre::Real factor = mMovementFactor;
+                Ogre::Vector3 lookAtOffset = mLookAtOffset;
+
+                //Raycast from target to us, then if hit, go to hit point, but 0.5 units closer.
+                if (GlbVar.settings.misc.fixCameraObstruction)
+                {
+                    Ogre::Vector3 dir = mTargetNode->getPosition() - target;
+
+                    btVector3 from = BtOgre::Convert::toBullet(mTargetNode->getPosition() + 
+                            (Ogre::Vector3(4,0,0).getRotationTo(-dir) * Ogre::Vector3(4,0,0)));
+                    btVector3 to = BtOgre::Convert::toBullet(target);
+
+                    struct CameraTest : public btCollisionWorld::ClosestRayResultCallback
+                    {
+                        CameraTest(const btVector3 &from, const btVector3 &to)
+                            : btCollisionWorld::ClosestRayResultCallback(from, to)
+                        {
+                        }
+
+                        bool needsCollision(btBroadphaseProxy *proxy0) const
+                        {
+                            return proxy0->m_collisionFilterGroup & GlbVar.dimMgr->getCurrentDimension() //Viewed dimension only.
+                                && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE); //If no contact response, ignore.
+                        }
+                    } res(from, to);
+
+                    GlbVar.phyWorld->rayTest(from, to, res);
+                    if (res.m_collisionObject)
+                    {
+                        Ogre::Vector3 hitPoint = BtOgre::Convert::toOgre(res.m_hitPointWorld);
+                        target = hitPoint + (Ogre::Vector3(0.5,0,0).getRotationTo(dir) * Ogre::Vector3(0.5,0,0));
+                        factor = 2.8; //<-- Dunno, makes things better. O_o
+                        lookAtOffset *= 0.7;
+                    }
+                }
+
+                //Smoothly move to target.
+                Ogre::Vector3 toMove = (target - mCamera->getPosition()) * factor * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
+
+                //Gotta look at the guy. :P
+                lookAt(mTargetNode->getPosition() + lookAtOffset, evt.timeSinceLastFrame);
             }
-            lookAt(mTargetNode->getPosition() + mLookAtOffset, evt.timeSinceLastFrame);
             break;
 
         case CS_LOOKAT:

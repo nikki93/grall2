@@ -26,14 +26,13 @@ class Crate :
         Ogre::Entity *mEntity;
 
         btBoxShape *mShape;
-        btBoxShape *mShape2;
+        Ogre::Real mHeight;
+        btBoxShape *mCastShape;
         btRigidBody *mFixedBody;
         btSliderConstraint *mConstraint;
 
         bool mMoving;
-        Ogre::Vector3 mNextDirection;
-        Ogre::Real mDistanceMoved;
-        Ogre::Real mSize;
+        Ogre::Vector3 mTarget;
 
     public:
         Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -69,9 +68,8 @@ class Crate :
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_OGRE(Bool, mMoving);
-            NGF_SERIALISE_OGRE(Vector3, mNextDirection);
-            NGF_SERIALISE_OGRE(Real, mDistanceMoved);
-            NGF_SERIALISE_OGRE(Real, mSize);
+            NGF_SERIALISE_OGRE(Vector3, mTarget);
+            NGF_SERIALISE_OGRE(Real, mHeight);
             NGF_SERIALISE_STRING(crateMat);
 
             NGF_SERIALISE_ON_LOAD
