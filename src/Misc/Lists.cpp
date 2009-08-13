@@ -83,7 +83,7 @@ void addWorlds()
 
     for (int i = 1; ; ++i)
     {
-        Ogre::String attrStr = cfg.getSetting("lvl" + Ogre::StringConverter::toString(i));
+        Ogre::String attrStr = cfg.getSetting("Level" + Ogre::StringConverter::toString(i));
 
         if (attrStr == "")
             break;

@@ -16,9 +16,6 @@ Level::Level(unsigned int worldNum, Ogre::String ngfName, Ogre::String caption)
 //-------------------------------------------------------------------------------
 void Level::init()
 {
-    //Assign some globals.
-    GlbVar.levelName = mNgfName;
-
     //If higher than highest level, then highest level is this (user went to new level).
     unsigned int worldInd = GlbVar.woMgr->getCurrentWorldIndex();
     if (worldInd > GlbVar.records.highestLevelIndex)
@@ -30,7 +27,7 @@ void Level::init()
     //If we're loading games, and savefile exists, load it.
     if (GlbVar.loadGame && saveExists(mNgfName))
     {
-        deserialise(mNgfName);
+        deserialise(saveName(mWorldNum));
     }
     else
     {

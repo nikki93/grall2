@@ -87,7 +87,6 @@ struct Globals : public Ogre::Singleton<Globals>
     //Globally required data.
     bool paused;
     bool loadGame;
-    Ogre::String levelName;
     unsigned int firstLevel; //World number of first level.
 
     //Settings.

@@ -26,6 +26,6 @@
         <Widget type="Button" skin="Button" position="544 345 128 32" layer="Back" name="but_ls_cancel">
             <Property key="Widget_Caption" value="Cancel"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="340 65 120 15" layer="Back" name="but_ls_checkpoint"/>
+        <Widget type="StaticText" skin="StaticText" position="340 65 120 15" layer="Back" name="txt_ls_checkpoint"/>
     </Widget>
 </MyGUI>

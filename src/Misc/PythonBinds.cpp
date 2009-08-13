@@ -67,7 +67,7 @@ void py_fadeInOutScreen(Ogre::Real in, Ogre::Real pause, Ogre::Real out)
 //Saved-game stuff.
 void py_deleteSave()
 {
-    deleteSave(GlbVar.levelName);
+    deleteSave(saveName(GlbVar.woMgr->getCurrentWorldIndex()));
 }
 
 //Music stuff.

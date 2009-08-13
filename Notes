@@ -416,3 +416,4 @@ Thu Aug 13 23:55:48 IST 2009
 - LevelSelect dialog added.
 - Made various changes to the save and level system.
 - Added 'user record' system to save scores, highest level reached, etc.
+- LevelSelect dialog now can be used to select level, display score etc., remove checkpoints, play selected level.

@@ -119,7 +119,7 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
 
             if (enabledPrev)
             {
-                ::serialise(GlbVar.levelName);
+                ::serialise(saveName(GlbVar.woMgr->getCurrentWorldIndex()));
                 mEntity->setMaterialName("Objects/Checkpoint_R");
             }
         }

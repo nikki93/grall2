@@ -383,7 +383,6 @@ class Game
             GlbVar.currMessageBox = 0;
             GlbVar.worldSwitch = -1;
             GlbVar.loadGame = true;
-            GlbVar.levelName = "";
 
             //Add Worlds, register GameObjects.
             addWorlds();

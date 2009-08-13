@@ -1,0 +1,37 @@
+ngflevel Level2
+{
+	object
+	{
+		type StaticBrush
+		name noname
+		position 0.000000 -0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			brushMeshFile Level2_b0.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position 0.000218 0.389544 0.000729
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	GraLL2.showMessage("Welcome to the level of doom! :P", 3)
+		}
+	}
+}
+

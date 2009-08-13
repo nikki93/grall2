@@ -38,6 +38,11 @@ inline void deleteSave(Ogre::String name)
 {
     remove((USER_PREFIX + "Saves/" + name + ".sav").c_str());
 }
+inline Ogre::String saveName(unsigned int worldNum)
+{
+    //Makes savefile name from world number of Level.
+    return "Level" + Ogre::StringConverter::toString(worldNum - GlbVar.firstLevel + 1);
+}
 
 //Go to next, previous, or nth world.
 inline void nextWorld()

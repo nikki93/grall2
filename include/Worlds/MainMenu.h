@@ -52,12 +52,11 @@ class LevelSelect
         unsigned int mCurrentLevelIndex;
 
         void populateLevelList();
+        void updateLevelInfo();
 
     public:
         LevelSelect();
         ~LevelSelect();
-
-        void tick();
 
         void hide();
         void show();
@@ -65,6 +64,9 @@ class LevelSelect
         //--- Events -------------------------------------------------------------------
         void onClickCancel(MyGUI::WidgetPtr);
         void onSelectLevel(MyGUI::ListPtr sender, size_t index);
+        void onClickRemoveCheckpoint(MyGUI::WidgetPtr);
+        void onConfirmRemoveCheckpoint(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result);
+        void onClickPlay(MyGUI::WidgetPtr);
 };
 
 #endif
