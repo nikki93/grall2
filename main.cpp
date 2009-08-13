@@ -58,6 +58,9 @@ class GameListener :
     public:
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
+            //GUI update.
+            GlbVar.gui->injectFrameEntered(evt.timeSinceLastFrame);
+
             //Physics update.
             if (!GlbVar.paused)
                 GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
@@ -215,6 +218,7 @@ class Game
             ogreRmgr.addResourceLocation(".", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
+            ogreRmgr.addResourceLocation("../../data/GUI/Layouts", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/Sounds", "FileSystem", "General");
 
@@ -347,7 +351,7 @@ class Game
             ogreRmgr.initialiseAllResourceGroups();
 
             //Shadows.
-            initShadows();
+            //initShadows();
             
             //Compositor chain.
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Glow");
@@ -384,6 +388,9 @@ class Game
             //Add Worlds, register GameObjects.
             addWorlds();
             registerGameObjectTypes();
+
+            //Load user record (highest level, times, scores).
+            loadRecord();
 
             //Start running the Worlds.
             GlbVar.woMgr->start(0);
@@ -430,7 +437,8 @@ class Game
             if (GlbVar.controller)
                 GlbVar.goMgr->destroyObject(GlbVar.controller->getID());
 
-            //Save settings.
+            //Save settings, user record.
+            saveRecord();
             saveSettings();
 
             //Helpers.

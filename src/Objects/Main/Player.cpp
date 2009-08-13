@@ -454,10 +454,10 @@ void Player::switchDimension()
             btCollisionObject *obj = rayResult.m_collisionObject;
             mHitMap[obj] = !mHitMap[obj]; //Odd number of nots on 'false' (default bool constructor) is true, opposite for even.
 
-            return 1;
+            return 1; //Return 1 to get all hits.
         }
 
-        bool needsCollision(btBroadphaseProxy* proxy0) const
+       bool needsCollision(btBroadphaseProxy* proxy0) const
         {
             //No non-dimension-check, only opposite dimension, only trimeshes (no need to ignore self, we're not trimesh anyway
             //so that test does that automatically).

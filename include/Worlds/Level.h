@@ -23,15 +23,20 @@ class Level :
     public NGF::World
 {
     protected:
-        Ogre::String mLevelName;
+        Ogre::String mNgfName;
+        Ogre::String mCaption;
+        unsigned int mWorldNum;
 
     public:
-        Level(Ogre::String levelName);
+        Level(unsigned int worldNum, Ogre::String levelName, Ogre::String caption);
         ~Level() {}
 
         void init();
         void tick(const Ogre::FrameEvent &evt);
         void stop();
+
+        unsigned int getWorldNumber() { return mWorldNum; }
+        Ogre::String getCaption() { return mCaption; }
 };
 
 #endif

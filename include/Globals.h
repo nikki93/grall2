@@ -88,6 +88,7 @@ struct Globals : public Ogre::Singleton<Globals>
     bool paused;
     bool loadGame;
     Ogre::String levelName;
+    unsigned int firstLevel; //World number of first level.
 
     //Settings.
     struct Settings
@@ -137,6 +138,12 @@ struct Globals : public Ogre::Singleton<Globals>
         } misc;
     } settings;
 
+    //Records.
+    struct Records
+    {
+        unsigned int highestLevelIndex; //Index of highest level reached.
+    } records;
+
     //World to switch to. Required for delay in World-switching because GameObjects
     //can't destroy themselves.
 #define PREV_WORLD -3
@@ -151,6 +158,9 @@ void initPythonBinds();
 void initShadows();
 void loadSettings();
 void saveSettings();
+void loadRecord();
+void saveRecord();
+void clearRecord();
 
 //Messages.
 enum

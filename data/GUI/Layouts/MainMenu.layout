@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout">
+    <Widget type="Window" skin="Window" position="512 288 296 280" layer="Back" name="win_mainMenu">
+        <Property key="Widget_Caption" value="Main Menu"/>
+        <Widget type="Button" skin="Button" position="20 17 240 32" layer="Back" name="but_newGame">
+            <Property key="Widget_Caption" value="New Game"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 81 240 32" layer="Back" name="but_levelSelect">
+            <Property key="Widget_Caption" value="Level Select"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 153 240 31" layer="Back" name="but_credits">
+            <Property key="Widget_Caption" value="Credits"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 121 240 32" layer="Back" name="but_options">
+            <Property key="Widget_Caption" value="Options"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 193 240 32" layer="Back" name="but_quit">
+            <Property key="Widget_Caption" value="Quit"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 49 240 32" layer="Back" name="but_continueGame">
+            <Property key="Widget_Caption" value="Continue Game"/>
+        </Widget>
+    </Widget>
+</MyGUI>

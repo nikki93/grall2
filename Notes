@@ -6,16 +6,14 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add CameraHandler feature that prevents third person camera obstruction.
+- Add Switch textures.
+
+- Add Teleporter texture.
 
 - Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
   mesh, and moves exactly one unit.
 
 - Think of a good Electricity system.
-
-- Add Switch textures.
-
-- Add Teleporter texture.
 
 Side
 ----
@@ -407,6 +405,14 @@ Mon Aug 10 21:29:22 IST 2009
   will probably still need more testing. For now it's labelled as 'done', but if in future there's a problem,
   it'll have to be fixed.
 
-Wed Aug 11 23:54:10 IST 2009
+Tue Aug 11 23:54:10 IST 2009
 ----------------------------
 - CameraHandler now places Camera in front of any obstructions for a better view in third-person mode.
+- Whether or not camera obstruction is handled is now exposed as a setting.
+
+Thu Aug 13 23:55:48 IST 2009
+----------------------------
+- MainMenu added.
+- LevelSelect dialog added.
+- Made various changes to the save and level system.
+- Added 'user record' system to save scores, highest level reached, etc.

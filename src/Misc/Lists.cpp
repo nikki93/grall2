@@ -40,6 +40,7 @@
 //World headers.
 #include "Worlds/TestWorld.h"
 #include "Worlds/Level.h"
+#include "Worlds/MainMenu.h"
 
 //Register GameObject types.
 void registerGameObjectTypes()
@@ -69,7 +70,32 @@ void registerGameObjectTypes()
 //Register worlds.
 void addWorlds()
 {
+    //Main menu.
+    GlbVar.woMgr->addWorld(new MainMenu());
+
+    //Levels.
+    GlbVar.firstLevel = GlbVar.woMgr->getNumWorlds(); //Size = index + 1.
+    
+    Ogre::ConfigFile cfg;
+    cfg.loadFromResourceSystem("Levels.ini", "General");
+
+    unsigned int currNum = GlbVar.firstLevel;
+
+    for (int i = 1; ; ++i)
+    {
+        Ogre::String attrStr = cfg.getSetting("lvl" + Ogre::StringConverter::toString(i));
+
+        if (attrStr == "")
+            break;
+
+        Ogre::StringVector attrStrs = Ogre::StringUtil::split(attrStr, "|");
+        GlbVar.woMgr->addWorld(new Level(currNum++, attrStrs[0], attrStrs[1]));
+    }
+
+    /*
     std::vector<Ogre::String> lvlStrs = GlbVar.lvlLoader->getLevels();
+
+    int worldNum = GlbVar.woMgr->getNumWorlds();
 
     for (int i = 1; ; ++i)
     {
@@ -81,7 +107,11 @@ void addWorlds()
         if (iter != lvlStrs.end())
         {
             GlbVar.woMgr->addWorld(new Level(currName));
+            ++worldNum;
+            GlbVar.levelMap[worldNum] = currName;
+
             lvlStrs.erase(iter);
         }
     }
+    */
 }

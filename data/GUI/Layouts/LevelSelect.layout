@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout">
+    <Widget type="Window" skin="WindowC" position="144 32 700 432" layer="Back" name="win_levelSelect">
+        <Property key="Widget_Caption" value="Level Select"/>
+        <Widget type="List" skin="List" position="12 11 204 373" layer="Back" name="lst_ls_levelList">
+            <UserString key="" value=""/>
+        </Widget>
+        <Widget type="Widget" skin="Separator2" position="230 0 2 396" layer="Back"/>
+        <Widget type="StaticText" skin="StaticText" position="252 17 84 15" layer="Back">
+            <Property key="Widget_Caption" value="Caption:"/>
+        </Widget>
+        <Widget type="StaticText" skin="StaticText" position="340 17 240 15" layer="Back" name="txt_ls_caption"/>
+        <Widget type="StaticText" skin="StaticText" position="252 41 84 15" layer="Back">
+            <Property key="Widget_Caption" value="Score:"/>
+        </Widget>
+        <Widget type="StaticText" skin="StaticText" position="340 41 192 16" layer="Back" name="txt_ls_score"/>
+        <Widget type="StaticText" skin="StaticText" position="252 65 88 15" layer="Back">
+            <Property key="Widget_Caption" value="Checkpoint:"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="252 345 128 32" layer="Back" name="but_ls_play">
+            <Property key="Widget_Caption" value="Play Level"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="388 345 148 32" layer="Back" name="but_ls_removeCheckpoint">
+            <Property key="Widget_Caption" value="Remove Checkpoint"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="544 345 128 32" layer="Back" name="but_ls_cancel">
+            <Property key="Widget_Caption" value="Cancel"/>
+        </Widget>
+        <Widget type="StaticText" skin="StaticText" position="340 65 120 15" layer="Back" name="but_ls_checkpoint"/>
+    </Widget>
+</MyGUI>
