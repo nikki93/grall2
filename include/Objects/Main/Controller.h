@@ -44,17 +44,19 @@ class Controller :
         NGF_SERIALISE_BEGIN(Controller)
         {
             //Save dimension, music.
-            int dimension;
+            int dimension, bonusTime;
             Ogre::String musicName;
 
             NGF_SERIALISE_ON_SAVE
             {
                 dimension = GlbVar.dimMgr->getCurrentDimension();
                 musicName = GlbVar.musicMgr->getCurrentMusic();
+                bonusTime = GlbVar.bonusTime;
             }
 
             NGF_SERIALISE_OGRE(Int, dimension);
             NGF_SERIALISE_STRING(musicName);
+            NGF_SERIALISE_OGRE(Int, bonusTime); //Save bonus time left.
 
             NGF_SERIALISE_ON_LOAD
             {
@@ -64,6 +66,8 @@ class Controller :
                     GlbVar.musicMgr->playMusic(musicName);
                 else
                     GlbVar.musicMgr->stopMusic();
+
+                GlbVar.bonusTime = bonusTime;
             }
         }
         NGF_SERIALISE_END

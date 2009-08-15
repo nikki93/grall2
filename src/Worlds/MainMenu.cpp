@@ -31,9 +31,13 @@ void MainMenu::init()
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_continueGame");
     button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickContinueGame);
+    if (GlbVar.records.firstTime)
+        button->setEnabled(false);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_levelSelect");
     button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickLevelSelect);
+    if (GlbVar.records.firstTime)
+        button->setEnabled(false);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_options");
 
@@ -72,12 +76,19 @@ void MainMenu::stop()
 //--- Events --------------------------------------------------------------------
 void MainMenu::onClickNewGame(MyGUI::WidgetPtr)
 {
-    Ogre::String warning = "Are you sure you want to start a new game? This will erase\n"
-                           "your previous progress!";
+    if (GlbVar.records.firstTime)
+    {
+        onConfirmNewGame(0, MyGUI::MessageBoxStyle::Yes); //Directly 'yes' if no earlier game. :P
+    }
+    else
+    {
+        Ogre::String warning = "Are you sure you want to start a new game? This will erase\n"
+            "your previous progress!";
 
-    MyGUI::MessagePtr message = MyGUI::Message::createMessageBox("Message", "Warning!",
-            warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No);
-    message->eventMessageBoxResult = MyGUI::newDelegate(this, &MainMenu::onConfirmNewGame);
+        MyGUI::MessagePtr message = MyGUI::Message::createMessageBox("Message", "Warning!",
+                warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No);
+        message->eventMessageBoxResult = MyGUI::newDelegate(this, &MainMenu::onConfirmNewGame);
+    }
 }
 void MainMenu::onConfirmNewGame(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result)
 {
@@ -85,6 +96,7 @@ void MainMenu::onConfirmNewGame(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result
     {
         //Clear user records.
         clearRecord();
+        GlbVar.records.firstTime = false;
         GlbVar.woMgr->gotoWorld(GlbVar.records.highestLevelIndex); //Highest level is now first.
     }
 }
@@ -165,7 +177,15 @@ void LevelSelect::updateLevelInfo()
 {
     Level *lvl = dynamic_cast<Level*>(GlbVar.woMgr->getWorldAt(mCurrentLevelIndex));
     GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_caption")->setCaption(lvl->getCaption());
-    GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_score")->setCaption("1021993"); //TODO: Change when score system added.
+
+    const Globals::Records::Record &rec = GlbVar.records.recordMap[worldNumToLevelNum(mCurrentLevelIndex)];
+
+    if (rec.completed)
+        GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_score")->setCaption(Ogre::StringConverter::toString(rec.score));
+    else
+        GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_score")->setCaption("n/a");
+
+    GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_losses")->setCaption(Ogre::StringConverter::toString(rec.losses));
 
     if (saveExists(saveName(mCurrentLevelIndex)))
     {

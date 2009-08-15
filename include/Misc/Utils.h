@@ -21,6 +21,16 @@
 //Shows a message. Returns pointer to the MessageBox GameObject.
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time);
 
+//Level num <-> world num.
+inline unsigned int worldNumToLevelNum(unsigned int worldNum)
+{
+    return worldNum - GlbVar.firstLevel + 1;
+}
+inline unsigned int levelNumToWorldNum(unsigned int levelNum)
+{
+    return GlbVar.firstLevel + levelNum - 1;
+}
+
 //Serialse/deserialise.
 inline void serialise(Ogre::String name)
 {

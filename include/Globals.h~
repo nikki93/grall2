@@ -88,7 +88,7 @@ struct Globals : public Ogre::Singleton<Globals>
     bool paused;
     bool loadGame;
     unsigned int firstLevel; //World number of first level.
-    Ogre::Real bonusTime; //Count down.
+    unsigned int bonusTime; //Count down.
 
     //Settings.
     struct Settings
@@ -141,7 +141,6 @@ struct Globals : public Ogre::Singleton<Globals>
     //Records.
     struct Records
     {
-        bool firstTime; //Whether first time (ie. no 'New Game' yet).
         unsigned int highestLevelIndex; //Index of highest level reached.
 
         //Records for each level.
@@ -149,7 +148,6 @@ struct Globals : public Ogre::Singleton<Globals>
         {
             unsigned int score;
             unsigned int losses;
-            bool completed;
 
             friend class boost::serialization::access;
             template<class Archive>
@@ -157,13 +155,11 @@ struct Globals : public Ogre::Singleton<Globals>
             {
                 ar & score;
                 ar & losses;
-                ar & completed;
             }
 
-            Record() //Default record values.
+            Record()
                 : score(0),
-                  losses(0),
-                  completed(false)
+                  losses(0)
             {
             }
         };

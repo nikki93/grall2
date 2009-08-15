@@ -516,6 +516,9 @@ void Player::die(bool explode)
     //And of course, we don't exist anymore. :-(
     GlbVar.goMgr->requestDestroy(getID());
     mDead = true;
+
+    //Also, we lost the level.
+    loseLevel();
 }
 //-------------------------------------------------------------------------------
 

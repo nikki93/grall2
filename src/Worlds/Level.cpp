@@ -16,13 +16,15 @@ Level::Level(unsigned int worldNum, Ogre::String ngfName, Ogre::String caption)
 //-------------------------------------------------------------------------------
 void Level::init()
 {
+    GlbVar.bonusTime = 100;
+
     //If higher than highest level, then highest level is this (user went to new level).
     unsigned int worldInd = GlbVar.woMgr->getCurrentWorldIndex();
     if (worldInd > GlbVar.records.highestLevelIndex)
         GlbVar.records.highestLevelIndex = worldInd;
 
     //Load the level.
-    LOG("On to level: " + Ogre::StringConverter::toString(worldInd - GlbVar.firstLevel + 1) + ", NGF: " + mNgfName + ", Caption: " + mCaption);
+    LOG("On to level: " + Ogre::StringConverter::toString(worldNumToLevelNum(worldInd)) + ", NGF: " + mNgfName + ", Caption: " + mCaption);
 
     //If we're loading games, and savefile exists, load it.
     if (GlbVar.loadGame && saveExists(mNgfName))
@@ -37,6 +39,14 @@ void Level::init()
 //-------------------------------------------------------------------------------
 void Level::tick(const Ogre::FrameEvent &evt)
 {
+    GlbVar.bonusTime = GlbVar.bonusTime > 0 ? GlbVar.bonusTime - evt.timeSinceLastFrame : 0;
+
+    LOG("Bonus: " + Ogre::StringConverter::toString(GlbVar.bonusTime));
+    
+    if (isKeyDown(OIS::KC_N))
+        winLevel();
+    if (isKeyDown(OIS::KC_ESCAPE))
+        gotoWorld(0);
 }
 //-------------------------------------------------------------------------------
 void Level::stop()
