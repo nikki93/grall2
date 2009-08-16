@@ -1,8 +1,17 @@
 /*
-=========================================
-Record.cpp
-=========================================
-*/
+ * =====================================================================================
+ *
+ *       Filename:  Record.cpp
+ *
+ *    Description:  Saving/loading of user record (highest level reached, scores etc.)
+ *
+ *        Created:  Thursday 13 August 2009 02:49:36  IST
+ *       Compiler:  gcc
+ *
+ *         Author:  Nikhilesh (nikki)
+ *
+ * =====================================================================================
+ */
 
 #include "Globals.h"
 

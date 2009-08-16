@@ -42,6 +42,7 @@ void MainMenu::init()
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_options");
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_credits");
+    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCredits);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_quit");
     button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickQuit);
@@ -59,6 +60,26 @@ void MainMenu::init()
 
     //Create child interfaces.
     mLevelSelect = new LevelSelect();
+    MyGUI::LayoutManager::getInstance().load("Credits.layout");
+    mCreditsWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_credits");
+    mCreditsWindow->setVisible(false);
+
+    int winHeight = GlbVar.ogreWindow->getHeight();
+    int winWidth = GlbVar.ogreWindow->getWidth();
+    int height = mCreditsWindow->getHeight();
+    int width = mCreditsWindow->getWidth();
+    mCreditsWindow->setCoord(MyGUI::IntCoord((winWidth - width)*0.5, (winHeight - height)*0.5, width, height));
+
+    button = GlbVar.gui->findWidget<MyGUI::Button>("but_cr_ok");
+    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCloseCredits);
+
+    Ogre::String creditsStr = 
+        "Everything:\n"
+        "  Nikhilesh (nikki)";
+
+    MyGUI::EditPtr credits = GlbVar.gui->findWidget<MyGUI::Edit>("edt_cr_credits");
+    credits->setOnlyText(creditsStr);
+    credits->setTextAlign(MyGUI::Align::Left | MyGUI::Align::Top);
 }
 //-------------------------------------------------------------------------------
 void MainMenu::tick(const Ogre::FrameEvent &evt)
@@ -70,6 +91,7 @@ void MainMenu::stop()
 {
     delete mLevelSelect;
     GlbVar.gui->destroyWidget(mWindow);
+    GlbVar.gui->destroyWidget(mCreditsWindow);
 }
 //-------------------------------------------------------------------------------
 
@@ -115,6 +137,16 @@ void MainMenu::onClickLevelSelect(MyGUI::WidgetPtr)
 void MainMenu::onClickQuit(MyGUI::WidgetPtr)
 {
     GlbVar.woMgr->shutdown();
+}
+//-------------------------------------------------------------------------------
+void MainMenu::onClickCredits(MyGUI::WidgetPtr)
+{
+    mCreditsWindow->setVisibleSmooth(true);
+}
+//-------------------------------------------------------------------------------
+void MainMenu::onClickCloseCredits(MyGUI::WidgetPtr)
+{
+    mCreditsWindow->setVisibleSmooth(false);
 }
 //-------------------------------------------------------------------------------
 

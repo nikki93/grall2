@@ -423,3 +423,7 @@ Sat Aug 15 16:57:07 IST 2009
 - Score system added (no display of bonus time on screen yet though :P ).
 - Losses are counted on a per-level basis.
 - 'record' database, stores level stats on a per-level basis, can be saved/loaded (serialisation).
+
+Sun Aug 16 11:22:13 IST 2009
+----------------------------
+- Added Credits dialog. Click on 'Credits' in the Main Menu to see it.

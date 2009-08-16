@@ -3,7 +3,7 @@
  *
  *       Filename:  MainMenu.h
  *
- *    Description:  The main menu screen!
+ *    Description:  The main menu screen! Very messy, messy code. :-(
  *
  *        Created:  Wednesday 12 August 2009 05:10:55  IST
  *       Compiler:  gcc
@@ -25,6 +25,7 @@ class MainMenu :
 {
     protected:
         MyGUI::WindowPtr mWindow;
+        MyGUI::WindowPtr mCreditsWindow;
         LevelSelect *mLevelSelect;
 
     public:
@@ -41,6 +42,8 @@ class MainMenu :
         void onClickContinueGame(MyGUI::WidgetPtr);
         void onClickLevelSelect(MyGUI::WidgetPtr);
         void onClickQuit(MyGUI::WidgetPtr);
+        void onClickCredits(MyGUI::WidgetPtr);
+        void onClickCloseCredits(MyGUI::WidgetPtr);
 };
 
 class LevelSelect
