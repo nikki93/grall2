@@ -56,6 +56,10 @@ void loadRecord()
         boost::archive::text_iarchive ia(recordMapStream);
         ia >> GlbVar.records.recordMap;
     }
+    else
+    {
+        GlbVar.records.recordMap.clear();
+    }
 }
 
 void saveRecord()

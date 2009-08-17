@@ -6,6 +6,10 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Add a background image for the Main Menu.
+
+- Add 'Options' menu.
+
 - Add Switch textures.
 
 - Add Teleporter texture.
@@ -427,3 +431,8 @@ Sat Aug 15 16:57:07 IST 2009
 Sun Aug 16 11:22:13 IST 2009
 ----------------------------
 - Added Credits dialog. Click on 'Credits' in the Main Menu to see it.
+
+Mon Aug 17 23:24:31 IST 2009
+----------------------------
+- Made logo.
+- Added background to Main Menu.

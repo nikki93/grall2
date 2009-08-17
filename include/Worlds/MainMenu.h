@@ -28,6 +28,9 @@ class MainMenu :
         MyGUI::WindowPtr mCreditsWindow;
         LevelSelect *mLevelSelect;
 
+        MyGUI::StaticImagePtr mBackground;
+        MyGUI::StaticImagePtr mLogo;
+
     public:
         MainMenu();
         ~MainMenu() {}

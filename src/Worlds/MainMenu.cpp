@@ -7,6 +7,9 @@ MainMenu.cpp
 #include "Worlds/MainMenu.h"
 #include "Worlds/Level.h"
 
+#define LOGO_WIDTH 480
+#define LOGO_HEIGHT 151
+
 /*
  * ==============================================================================
  * MainMenu
@@ -20,6 +23,18 @@ MainMenu::MainMenu()
 //-------------------------------------------------------------------------------
 void MainMenu::init()
 {
+    int winHeight = GlbVar.ogreWindow->getHeight();
+    int winWidth = GlbVar.ogreWindow->getWidth();
+
+    //Background, logo.
+    mBackground = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Back");
+    mBackground->setImageTexture("MainMenuBgr.png");
+
+    int logoX = winWidth - (LOGO_WIDTH + 5);
+    int logoY = winHeight - (LOGO_HEIGHT + 5);
+    mLogo = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", MyGUI::IntCoord(logoX, logoY, LOGO_WIDTH, LOGO_HEIGHT), MyGUI::Align::Default, "Back");
+    mLogo->setImageTexture("MainMenuLogo.png");
+
     //Get the Window.
     MyGUI::LayoutManager::getInstance().load("MainMenu.layout");
     mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_mainMenu");
@@ -64,8 +79,6 @@ void MainMenu::init()
     mCreditsWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_credits");
     mCreditsWindow->setVisible(false);
 
-    int winHeight = GlbVar.ogreWindow->getHeight();
-    int winWidth = GlbVar.ogreWindow->getWidth();
     int height = mCreditsWindow->getHeight();
     int width = mCreditsWindow->getWidth();
     mCreditsWindow->setCoord(MyGUI::IntCoord((winWidth - width)*0.5, (winHeight - height)*0.5, width, height));
@@ -92,6 +105,8 @@ void MainMenu::stop()
     delete mLevelSelect;
     GlbVar.gui->destroyWidget(mWindow);
     GlbVar.gui->destroyWidget(mCreditsWindow);
+    GlbVar.gui->destroyWidget(mLogo);
+    GlbVar.gui->destroyWidget(mBackground);
 }
 //-------------------------------------------------------------------------------
 
