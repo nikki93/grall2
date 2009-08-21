@@ -55,6 +55,7 @@ void MainMenu::init()
         button->setEnabled(false);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_options");
+    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickOptions);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_credits");
     button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCredits);
@@ -103,6 +104,7 @@ void MainMenu::tick(const Ogre::FrameEvent &evt)
 void MainMenu::stop()
 {
     delete mLevelSelect;
+    GlbVar.optionsDialog->setVisible(false);
     GlbVar.gui->destroyWidget(mWindow);
     GlbVar.gui->destroyWidget(mCreditsWindow);
     GlbVar.gui->destroyWidget(mLogo);
@@ -162,6 +164,11 @@ void MainMenu::onClickCredits(MyGUI::WidgetPtr)
 void MainMenu::onClickCloseCredits(MyGUI::WidgetPtr)
 {
     mCreditsWindow->setVisibleSmooth(false);
+}
+//-------------------------------------------------------------------------------
+void MainMenu::onClickOptions(MyGUI::WidgetPtr)
+{
+    GlbVar.optionsDialog->setVisible(true);
 }
 //-------------------------------------------------------------------------------
 

@@ -98,6 +98,16 @@ void py_stopRecordingVideo()
     GlbVar.videoRec->stopRecording();
 }
 
+//Control setting.
+void py_setControl(Ogre::String key, Ogre::String value)
+{
+    GlbVar.settings.controls.keys[key] = GlbVar.keyMap->stringToKey(value, OIS::KC_UNASSIGNED);
+}
+Ogre::String py_getControl(Ogre::String key)
+{
+    return GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys[key]);
+}
+
 //--- The module ----------------------------------------------------------------
 
 BOOST_PYTHON_MODULE(GraLL2)
@@ -132,6 +142,10 @@ BOOST_PYTHON_MODULE(GraLL2)
     //Video recording stuff.
     py::def("startRecordingVideo", py_startRecordingVideo);
     py::def("stopRecordingVideo", py_stopRecordingVideo);
+
+    //Control setting.
+    py::def("setControl", py_setControl);
+    py::def("getControl", py_getControl);
 }
 
 //--- The function that gets called from Game::init() ---------------------------

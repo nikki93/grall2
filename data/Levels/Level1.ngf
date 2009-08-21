@@ -4,7 +4,7 @@ ngflevel Level1
 	{
 		type Crate
 		name noname
-		position -9.500000 0.750000 -5.500000
+		position -9.500000 6.750000 -5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -18,7 +18,7 @@ ngflevel Level1
 	{
 		type Crate
 		name noname
-		position -9.500000 0.750000 -4.500000
+		position -9.500000 6.750000 -4.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -32,7 +32,7 @@ ngflevel Level1
 	{
 		type Crate
 		name noname
-		position -11.500000 0.750000 -2.500000
+		position -11.500000 6.750000 -2.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -46,7 +46,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name circleWut
-		position -16.500000 0.500000 -5.500000
+		position -16.500000 6.500000 -5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -61,7 +61,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position -4.500000 4.500000 39.500000
+		position -4.500000 10.500000 39.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -73,7 +73,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position 7.500000 3.500000 43.500000
+		position 7.500000 9.500000 43.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -85,7 +85,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position -2.000000 3.500000 1.500000
+		position -2.000000 9.500000 1.500000
 		rotation 0.707107 -0.707107 -0.000000 0.000000
 
 		properties
@@ -97,7 +97,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -0.500000 4.500000 45.500000
+		position -0.500000 10.500000 45.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -112,7 +112,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position 0.500000 4.500000 28.500000
+		position 0.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -125,7 +125,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -4.500000 4.500000 28.500000
+		position -4.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -138,7 +138,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -3.500000 4.500000 28.500000
+		position -3.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -151,7 +151,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -2.500000 4.500000 28.500000
+		position -2.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -164,7 +164,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -1.500000 4.500000 28.500000
+		position -1.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -177,7 +177,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -0.500000 4.500000 28.500000
+		position -0.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -190,7 +190,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -0.500000 4.500000 27.500000
+		position -0.500000 10.500000 27.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -203,7 +203,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position 0.500000 4.500000 24.500000
+		position 0.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -216,7 +216,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -0.500000 4.500000 24.500000
+		position -0.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -229,7 +229,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -1.500000 4.500000 24.500000
+		position -1.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -242,7 +242,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -2.500000 4.500000 25.500000
+		position -2.500000 10.500000 25.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -255,7 +255,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -2.500000 4.500000 24.500000
+		position -2.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -268,7 +268,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -0.500000 3.500000 43.500000
+		position -0.500000 9.500000 43.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -283,7 +283,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position 0.500000 4.500000 39.500000
+		position 0.500000 10.500000 39.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -295,7 +295,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position 0.500000 4.500000 37.000000
+		position 0.500000 10.500000 37.000000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -307,7 +307,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position 0.500000 4.500000 34.500000
+		position 0.500000 10.500000 34.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -319,7 +319,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position 2.500000 3.500000 43.500000
+		position 2.500000 9.500000 43.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -331,7 +331,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position -4.500000 4.500000 37.000000
+		position -4.500000 10.500000 37.000000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -343,7 +343,7 @@ ngflevel Level1
 	{
 		type MovingBomb
 		name noname
-		position -2.500000 4.500000 39.500000
+		position -2.500000 10.500000 39.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -357,7 +357,7 @@ ngflevel Level1
 	{
 		type MovingBomb
 		name noname
-		position -2.500000 4.500000 37.000000
+		position -2.500000 10.500000 37.000000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -371,7 +371,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -4.500000 4.500000 21.500000
+		position -4.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -384,7 +384,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -1.500000 4.500000 21.500000
+		position -1.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -397,7 +397,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -0.500000 4.500000 21.500000
+		position -0.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -410,7 +410,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position 0.500000 4.500000 21.500000
+		position 0.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -423,7 +423,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -1.500000 4.500000 18.500000
+		position -1.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -436,7 +436,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -2.500000 4.500000 18.500000
+		position -2.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -449,7 +449,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -3.500000 4.500000 18.500000
+		position -3.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -462,7 +462,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -4.500000 4.500000 18.500000
+		position -4.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -475,7 +475,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position 0.500000 4.500000 16.000000
+		position 0.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -488,7 +488,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -0.500000 4.500000 16.000000
+		position -0.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -501,7 +501,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -1.500000 4.500000 16.000000
+		position -1.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -514,7 +514,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -2.500000 4.500000 16.000000
+		position -2.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -527,7 +527,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -3.500000 4.500000 16.000000
+		position -3.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -540,7 +540,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -4.500000 4.500000 16.000000
+		position -4.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -553,7 +553,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position 0.500000 4.500000 13.500000
+		position 0.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -566,7 +566,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -0.500000 4.500000 13.500000
+		position -0.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -579,7 +579,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -1.500000 4.500000 13.500000
+		position -1.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -592,7 +592,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -2.500000 4.500000 13.500000
+		position -2.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -605,7 +605,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -3.500000 4.500000 13.500000
+		position -3.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -618,7 +618,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -0.500000 3.500000 6.500000
+		position -0.500000 9.500000 6.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -633,7 +633,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -1.500000 0.500000 -9.500000
+		position -1.500000 6.500000 -9.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -648,7 +648,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position 4.500000 0.500000 -3.500000
+		position 4.500000 6.500000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -663,7 +663,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -0.500000 0.500000 -3.500000
+		position -0.500000 6.500000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -678,7 +678,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -0.500000 -0.500000 -3.500000
+		position -0.500000 5.500000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -693,7 +693,7 @@ ngflevel Level1
 	{
 		type Player
 		name player1
-		position -2.499782 0.775501 -2.499271
+		position -2.499782 6.775501 -2.499271
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -706,7 +706,7 @@ ngflevel Level1
 	{
 		type Switch
 		name noname
-		position -1.500000 -0.230000 -3.500000
+		position -1.500000 5.770000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -724,7 +724,7 @@ ngflevel Level1
 	{
 		type MovingBrush
 		name noname
-		position -2.000000 3.500000 11.000000
+		position -2.000000 9.500000 11.000000
 		rotation 0.000000 0.000000 1.000000 -0.000000
 
 		properties
@@ -743,7 +743,7 @@ ngflevel Level1
 	{
 		type Bomb
 		name noname
-		position -4.500000 4.500000 13.500000
+		position -4.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -756,7 +756,7 @@ ngflevel Level1
 	{
 		type MovingBomb
 		name noname
-		position -2.500000 4.500000 34.500000
+		position -2.500000 10.500000 34.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -770,7 +770,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position -4.500000 4.500000 34.500000
+		position -4.500000 10.500000 34.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -782,7 +782,7 @@ ngflevel Level1
 	{
 		type Checkpoint
 		name noname
-		position -2.000000 5.159853 42.500000
+		position -2.000000 11.159853 42.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -795,7 +795,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -4.500000 4.500000 45.500000
+		position -4.500000 10.500000 45.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -810,7 +810,7 @@ ngflevel Level1
 	{
 		type SlidingBrush
 		name noname
-		position -2.000000 4.900000 45.500000
+		position -2.000000 10.900000 45.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -843,7 +843,7 @@ ngflevel Level1
 	{
 		type MovingBrush
 		name mover1
-		position -2.000000 -0.500000 1.500000
+		position -2.000000 5.500000 1.500000
 		rotation 0.707107 0.707107 0.000000 -0.000000
 
 		properties
@@ -857,7 +857,7 @@ ngflevel Level1
 	{
 		type Director
 		name noname
-		position -2.000000 -0.500000 1.500000
+		position -2.000000 5.500000 1.500000
 		rotation 0.707107 0.707107 0.000000 -0.000000
 
 		properties
@@ -869,7 +869,7 @@ ngflevel Level1
 	{
 		type MovingBrush
 		name noname
-		position 2.500000 3.500000 43.500000
+		position 2.500000 9.500000 43.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -883,7 +883,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -5.500000 -0.500000 -1.500000
+		position -5.500000 5.500000 -1.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -898,7 +898,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name cross
-		position -11.500000 0.500000 -7.500000
+		position -11.500000 6.500000 -7.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -913,7 +913,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -21.500000 0.500000 -10.500000
+		position -21.500000 6.500000 -10.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -928,7 +928,7 @@ ngflevel Level1
 	{
 		type Crate
 		name noname
-		position -8.500000 0.750000 -3.500000
+		position -8.500000 6.750000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -942,7 +942,7 @@ ngflevel Level1
 	{
 		type StaticBrush
 		name noname
-		position -28.500000 -5.500000 2.500000
+		position -28.000000 0.000000 2.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties

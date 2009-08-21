@@ -75,6 +75,7 @@ class GameListener :
             GlbVar.fader->tick(evt);
             GlbVar.musicMgr->tick(evt);
             GlbVar.videoRec->tick(evt);
+            GlbVar.optionsDialog->tick();
 
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
@@ -86,8 +87,9 @@ class GameListener :
         {
             mCurrKey = arg.key;
 
-            //Tell console.
+            //Tell helpers.
             GlbVar.console->keyPressed(mCurrKey);
+            GlbVar.optionsDialog->keyPressed(mCurrKey);
 
             //Tell MyGUI.
             GlbVar.gui->injectKeyPress(arg);
@@ -178,6 +180,7 @@ class Game
         {
             //--- Globals, settings ----------------------------------------------------
             new Globals();
+            GlbVar.keyMap = new KeyMap();
             loadSettings();
 
             //--- Ogre (Graphics) ------------------------------------------------------
@@ -374,6 +377,7 @@ class Game
             GlbVar.fader = new Fader();
             GlbVar.musicMgr = new MusicManager();
             GlbVar.videoRec = new VideoRecorder();
+            GlbVar.optionsDialog = new OptionsDialog();
 
             //The persistent Controller GameObject.
             GlbVar.controller = GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
@@ -441,11 +445,13 @@ class Game
             saveSettings();
 
             //Helpers.
+            delete GlbVar.optionsDialog;
             delete GlbVar.videoRec;
             delete GlbVar.musicMgr;
             delete GlbVar.fader;
             delete GlbVar.dimMgr;
             delete GlbVar.console;
+            delete GlbVar.keyMap;
 
             //NGF.
             Py_Finalize();

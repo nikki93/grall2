@@ -55,9 +55,9 @@ NGF::MessageReply GraLL2GameObject::receiveMessage(NGF::Message msg)
 //-------------------------------------------------------------------------------
 
 //--- Utilities -----------------------------------------------------------------
-void GraLL2GameObject::initBody()
+void GraLL2GameObject::initBody(int specialFlags)
 {
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions, mDimensions);
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | specialFlags, mDimensions);
     setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------

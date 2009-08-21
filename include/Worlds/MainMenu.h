@@ -47,6 +47,7 @@ class MainMenu :
         void onClickQuit(MyGUI::WidgetPtr);
         void onClickCredits(MyGUI::WidgetPtr);
         void onClickCloseCredits(MyGUI::WidgetPtr);
+        void onClickOptions(MyGUI::WidgetPtr);
 };
 
 class LevelSelect

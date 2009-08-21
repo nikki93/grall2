@@ -6,8 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add a background image for the Main Menu.
-
 - Add 'Options' menu.
 
 - Add Switch textures.
@@ -436,3 +434,10 @@ Mon Aug 17 23:24:31 IST 2009
 ----------------------------
 - Made logo.
 - Added background to Main Menu.
+
+Fri Aug 21 23:30:48 IST 2009
+----------------------------
+- Made new test level.
+- Added 'keys' map to store control keys.
+- Controls can now be changed from Python.
+- Added Options dialog. For now you can change controls through it.

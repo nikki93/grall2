@@ -33,6 +33,8 @@ class Console;
 class Fader;
 class MusicManager;
 class VideoRecorder;
+class KeyMap;
+class OptionsDialog;
 
 //The Globals class (actually a struct, but whatever).
 struct Globals : public Ogre::Singleton<Globals>
@@ -70,6 +72,8 @@ struct Globals : public Ogre::Singleton<Globals>
     Fader *fader;
     MusicManager *musicMgr;
     VideoRecorder *videoRec;
+    KeyMap *keyMap;
+    OptionsDialog *optionsDialog;
 
     //--- Global 'objects' -------------------------------------------------------------
 
@@ -120,6 +124,9 @@ struct Globals : public Ogre::Singleton<Globals>
             Ogre::Real upDownSensitivity;
             bool invertMouse;
 
+            std::map<Ogre::String, OIS::KeyCode> keys;
+
+            /*
             OIS::KeyCode forward;
             OIS::KeyCode backward;
             OIS::KeyCode left;
@@ -130,6 +137,7 @@ struct Globals : public Ogre::Singleton<Globals>
 
             OIS::KeyCode peepLeft;
             OIS::KeyCode peepRight;
+            */
         } controls;
 
         struct MiscSettings
@@ -212,6 +220,8 @@ enum
     MSG_TELEPORT,             //Teleport (for Player).
     MSG_GETDIRECTION,         //Get direction (for Director).
     MSG_GETSPEED,             //Get speed (for Director).
+    MSG_LEVELSTART,           //Level started (for Controller).
+    MSG_LEVELSTOP,            //Level stopped (for Controller).
 };
 
 //Includes from the project used everywhere.
@@ -221,6 +231,8 @@ enum
 #include "Misc/Fader.h"
 #include "Misc/MusicManager.h"
 #include "Misc/VideoRecorder.h"
+#include "Misc/KeyMap.h"
+#include "Misc/OptionsDialog.h"
 #include "Objects/Misc/AlarmGameObject.h"
 
 #endif

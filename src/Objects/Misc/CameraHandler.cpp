@@ -116,12 +116,12 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     }
 
     //Peeping.
-    if (isKeyDown(GlbVar.settings.controls.peepLeft))
+    if (isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
         mViewOffset = Ogre::Vector3(5,4.5,0);
-    if (isKeyDown(GlbVar.settings.controls.peepRight))
+    if (isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
     {
         mViewOffset = Ogre::Vector3(-5,4.5,0);
-        if (isKeyDown(GlbVar.settings.controls.peepLeft))
+        if (isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
             mViewOffset = Ogre::Vector3(0,4.5,-5);
     }
 

@@ -50,7 +50,7 @@ MovingBomb::MovingBomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mBody = new btRigidBody(0, state, mShape);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK | DimensionManager::MOVINGBOMB, mDimensions);
     setBulletObject(mBody);
 
     //Make smaller shape for cast.
@@ -90,7 +90,7 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
         btVector3 prevPos = oldTrans.getOrigin();
 
         //Squared speed.
-        Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame;
+        Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame * 0.2;
 
         //If we're near the next point on our list then we take it off our list and start moving to the next one (if it exists).
         //This way, you don't _need_ a point-list. You could do it using Directors, or even bouncing between walls, but when they're
@@ -142,7 +142,7 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
                         mHit = true;
                 }
 
-                return convexResult.m_hitFraction;
+                return 1;
             }
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
@@ -150,6 +150,8 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
                 //If it's us, or isn't in our dimension, we don't care. 
                 return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
                     && (proxy0->m_collisionFilterGroup & mDimension)
+                    && !(proxy0->m_collisionFilterGroup & DimensionManager::PLAYER)
+                    && !(proxy0->m_collisionFilterGroup & DimensionManager::MOVINGBOMB)
                     && ((proxy0->m_collisionFilterGroup & DimensionManager::DIRECTOR) 
                             || !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE));
             }
@@ -188,9 +190,12 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
                     Ogre::Real speed = GlbVar.goMgr->sendMessageWithReply<Ogre::Real>(other, NGF_MESSAGE(MSG_GETSPEED));
 
                     if (speed == -1)
-                        mVelocity = dir * mVelocity;
+                        mVelocity = mVelocity.getRotationTo(dir * Ogre::Vector3::NEGATIVE_UNIT_Z) * mVelocity;
                     else
+                    {
+                        //Rotate it by the amount required to rotate it to face a velocity in that direction.
                         mVelocity = dir * Ogre::Vector3(0,0,-speed);
+                    }
 
                     //Call the Python director event (seperate from collision event so that we can be notifed exactly when 'directed').
                     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
@@ -206,17 +211,17 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
             mTimer -= evt.timeSinceLastFrame;
         }
 
-        //If free, continue, otherwise turn.
-        if (res.mHit)
-        {
-            mVelocity = -mVelocity;
-            currVel = -currVel;
-            newPos = prevPos + currVel;
-        }
-
         //Do the actual movement.
         if (!jumped)
         {
+            //If free, continue, otherwise turn.
+            if (res.mHit)
+            {
+                mVelocity = -mVelocity;
+                currVel = -currVel;
+                newPos = prevPos + currVel;
+            }
+
             oldTrans.setOrigin(newPos);
             mBody->getMotionState()->setWorldTransform(oldTrans);
             mNode->translate(mVelocity * evt.timeSinceLastFrame);

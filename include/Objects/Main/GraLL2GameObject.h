@@ -67,7 +67,7 @@ class GraLL2GameObject :
         virtual void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact) {}
 
         //--- Non-NGF methods ----------------------------------------------------------
-        void initBody();
+        void initBody(int specialFlags = DimensionManager::NONE);
         Ogre::Entity *createBrushEntity();
         void destroyBody() { GlbVar.phyWorld->removeRigidBody(mBody); }
         void setDimension(int dimension);

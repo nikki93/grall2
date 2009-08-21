@@ -45,7 +45,7 @@ MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     mBody = new btRigidBody(0, state, mShape);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    initBody();
+    initBody(DimensionManager::MOVINGBRUSH);
 
     //Make smaller shape for cast.
     //Get vertices.
@@ -102,7 +102,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btVector3 prevPos = oldTrans.getOrigin();
 
         //Squared speed.
-        Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame;
+        Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame * 0.2;
 
         //If we're near the next point on our list then we take it off our list and start moving to the next one (if it exists).
         //This way, you don't _need_ a point-list. You could do it using Directors, or even bouncing between walls, but when they're
@@ -151,7 +151,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 else
                     mHit = true;
 
-                return convexResult.m_hitFraction;
+                return 1;
             }
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
@@ -163,6 +163,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) //Not us.
                     && (proxy0->m_collisionFilterGroup & mDimension) //It's in the other dimension.
                     && !(mYCast && (proxy0->m_collisionFilterGroup & DimensionManager::PLAYER)) //If moving on Y, forget the Player (lift).
+                    && !(proxy0->m_collisionFilterGroup & DimensionManager::MOVINGBRUSH) 
                     && ((proxy0->m_collisionFilterGroup & DimensionManager::DIRECTOR) 
                             || !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE)); //Director is ok, but other no-contact-response ignored.
             }
@@ -188,7 +189,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 NGF::GameObject *other = *iter;
                 Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
-                Ogre::Real sqDist = (otherPos - BtOgre::Convert::toOgre(prevPos)).squaredLength();
+                Ogre::Real sqDist = (otherPos - BtOgre::Convert::toOgre(prevPos)).squaredLength() - 0.001;
 
                 if (sqDist < sqSpeed)
                 {
@@ -221,17 +222,16 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
             mTimer -= evt.timeSinceLastFrame;
         }
 
-        //If free, continue, otherwise turn.
-        if (res.mHit)
-        {
-            mVelocity = -mVelocity;
-            currVel = -currVel;
-            newPos = prevPos + currVel;
-        }
-
         //Do the actual movement.
         if (!jumped)
         {
+            if (res.mHit)
+            {
+                mVelocity = -mVelocity;
+                currVel = -currVel;
+                newPos = prevPos + currVel;
+            }
+
             oldTrans.setOrigin(newPos);
             mBody->getMotionState()->setWorldTransform(oldTrans);
             mNode->translate(mVelocity * evt.timeSinceLastFrame);

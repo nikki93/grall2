@@ -34,6 +34,7 @@ void Level::init()
     else
     {
         loadLevel(mNgfName);
+        GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTART));
     }
 }
 //-------------------------------------------------------------------------------
@@ -51,6 +52,7 @@ void Level::tick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 void Level::stop()
 {
+    GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTOP));
     clearLevel();
 }
 //-------------------------------------------------------------------------------

@@ -39,7 +39,9 @@ class DimensionManager
             //Flags for types.
             PLAYER = BIT(3),
             DIRECTOR = BIT(4),
-            STATIC = BIT(5)
+            STATIC = BIT(5),
+            MOVINGBOMB = BIT(6),
+            MOVINGBRUSH = BIT(7)
         };
 
     protected:

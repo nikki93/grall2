@@ -21,12 +21,10 @@
 
 #include "Globals.h"
 
-//NOTE: If you're making this Python scriptable, just derive from NGF::PythonGameObject too,
-//      add the 'NGF_PYTHON_DECL' and 'NGF_PYTHON_IMPL', and do the gperf stuff. Check
-//      GraLL2GameObjects for guidance.
-
 class Controller :
-    public NGF::Serialisation::SerialisableGameObject
+    public NGF::Serialisation::SerialisableGameObject,
+    public NGF::Python::PythonGameObject,
+    public ExtraEventListener
 {
     protected:
 
@@ -35,10 +33,10 @@ class Controller :
         ~Controller();
 
         //--- Events -------------------------------------------------------------------
+        void postLoad();
         void unpausedTick(const Ogre::FrameEvent &evt) {}
-
         void pausedTick(const Ogre::FrameEvent &evt) {}
-        NGF::MessageReply receiveMessage(NGF::Message msg) { NGF_NO_REPLY(); }
+        NGF::MessageReply receiveMessage(NGF::Message msg);
 
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Controller)

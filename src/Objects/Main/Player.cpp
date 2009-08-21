@@ -158,8 +158,8 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     if (mBody->getAngularVelocity().length2() < 600)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
-        torque.x =  isKeyDown(GlbVar.settings.controls.backward) - isKeyDown(GlbVar.settings.controls.forward);
-        torque.z =  isKeyDown(GlbVar.settings.controls.left) - isKeyDown(GlbVar.settings.controls.right);
+        torque.x =  isKeyDown(GlbVar.settings.controls.keys["backward"]) - isKeyDown(GlbVar.settings.controls.keys["forward"]);
+        torque.z =  isKeyDown(GlbVar.settings.controls.keys["left"]) - isKeyDown(GlbVar.settings.controls.keys["right"]);
         torque *= 6;
 
         mBody->applyTorque(BtOgre::Convert::toBullet(mControlNode->getOrientation() * torque));
@@ -228,9 +228,9 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             {
                 OIS::KeyCode key = msg.getParam<OIS::KeyCode>(0);
 
-                if (key == GlbVar.settings.controls.dimensionSwitch)
+                if (key == GlbVar.settings.controls.keys["dimensionSwitch"])
                     switchDimension();
-                else if (key == GlbVar.settings.controls.selfDestruct)
+                else if (key == GlbVar.settings.controls.keys["selfDestruct"])
                     die(true);
             }
 
