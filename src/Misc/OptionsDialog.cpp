@@ -16,6 +16,24 @@ OptionsDialog::OptionsDialog()
     mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_options");
     mWindow->setVisible(false);
 
+    //Save some widgets.
+    mPressKeyText = GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_pressKey");
+
+    mTurningScroll = GlbVar.gui->findWidget<MyGUI::HScroll>("o_c_sli_turningSensitivity");
+    mTurningText = GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_turningSensitivity");
+    mUpDownScroll = GlbVar.gui->findWidget<MyGUI::HScroll>("o_c_sli_upDownSensitivity");
+    mUpDownText = GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_upDownSensitivity");
+    mInvertMouseCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_c_chk_invertMouse");
+    mInvertMouseCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickInvertMouse);
+
+    //Configure sliders.
+    mTurningScroll->setScrollRange(1.0 / SLIDER_QUANTUM);
+    mUpDownScroll->setScrollRange(1.0 / SLIDER_QUANTUM);
+    mTurningScroll->setMoveToClick(true);
+    mUpDownScroll->setMoveToClick(true);
+    mTurningScroll->setScrollPosition(GlbVar.settings.controls.turningSensitivity / SLIDER_QUANTUM);
+    mUpDownScroll->setScrollPosition(GlbVar.settings.controls.upDownSensitivity / SLIDER_QUANTUM);
+
     //Center it.
     int winHeight = GlbVar.ogreWindow->getHeight();
     int winWidth = GlbVar.ogreWindow->getWidth();
@@ -61,12 +79,21 @@ void OptionsDialog::tick()
     }
 
     //Tell user to press key if he has to.
-    GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_pressKey")->setVisible(mListeningForKey);
+    mPressKeyText->setVisible(mListeningForKey);
     if (mListeningForKey)
     {
         //Highlight the relevant key.
         GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_" + mCurrKey)->setTextColour(MyGUI::Colour(0.8,0.6,0.1));
     }
+
+    //Get slider values and update settings.
+    GlbVar.settings.controls.turningSensitivity = (mTurningScroll->getScrollPosition() + 1) * SLIDER_QUANTUM;
+    GlbVar.settings.controls.upDownSensitivity = (mUpDownScroll->getScrollPosition() + 1) * SLIDER_QUANTUM;
+
+    //Update slider text and checkbox. We update the sliders themselves only when we become visible.
+    mTurningText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.turningSensitivity, 2));
+    mUpDownText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.upDownSensitivity, 2));
+    mInvertMouseCheckBox->setStateCheck(GlbVar.settings.controls.invertMouse);
 }
 //-------------------------------------------------------------------------------
 void OptionsDialog::keyPressed(OIS::KeyCode kc)
@@ -111,5 +138,14 @@ void OptionsDialog::onClickChangeKey(MyGUI::WidgetPtr button)
 void OptionsDialog::onClickOK(MyGUI::WidgetPtr button)
 {
     setVisible(false);
+}
+//-------------------------------------------------------------------------------
+void OptionsDialog::onClickInvertMouse(MyGUI::WidgetPtr button)
+{
+    GlbVar.settings.controls.invertMouse = !GlbVar.settings.controls.invertMouse;
+}
+//-------------------------------------------------------------------------------
+void OptionsDialog::updateDisplay()
+{
 }
 //-------------------------------------------------------------------------------

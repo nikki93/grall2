@@ -30,6 +30,10 @@ inline unsigned int levelNumToWorldNum(unsigned int levelNum)
 {
     return GlbVar.firstLevel + levelNum - 1;
 }
+inline Globals::Records::Record &getRecordFromLevelNum(unsigned int levelNum)
+{
+    return GlbVar.records.recordMap[levelNum];
+}
 
 //Serialse/deserialise.
 inline void serialise(Ogre::String name)
@@ -39,14 +43,6 @@ inline void serialise(Ogre::String name)
 inline void deserialise(Ogre::String name)
 {
     NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/" + name + ".sav");
-}
-inline bool saveExists(Ogre::String name)
-{
-    return std::ifstream((USER_PREFIX + "Saves/" + name + ".sav").c_str());
-}
-inline void deleteSave(Ogre::String name)
-{
-    remove((USER_PREFIX + "Saves/" + name + ".sav").c_str());
 }
 inline Ogre::String saveName(unsigned int worldNum)
 {

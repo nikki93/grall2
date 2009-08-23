@@ -64,10 +64,18 @@ void py_fadeInOutScreen(Ogre::Real in, Ogre::Real pause, Ogre::Real out)
     GlbVar.fader->fadeInOut(in, pause, out); 
 }
 
-//Saved-game stuff.
-void py_deleteSave()
+//Level stuff.
+bool py_saveExists(unsigned int levelNum)
 {
-    deleteSave(saveName(GlbVar.woMgr->getCurrentWorldIndex()));
+    return getRecordFromLevelNum(levelNum).checkpoint;
+}
+void py_removeSave(unsigned int levelNum)
+{
+    getRecordFromLevelNum(levelNum).checkpoint = false;
+}
+unsigned int py_getCurrentLevelNum()
+{
+    return worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
 }
 
 //Music stuff.
@@ -130,8 +138,10 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("fadeOutColour", py_fadeOutScreen);
     py::def("fadeInOutColour", py_fadeInOutScreen);
 
-    //Saved-game stuff.
-    py::def("deleteSave", py_deleteSave);
+    //Level stuff.
+    py::def("saveExists", py_saveExists);
+    py::def("removeSave", py_removeSave);
+    py::def("getCurrentLevelNum", py_getCurrentLevelNum);
 
     //Music stuff.
     py::def("playMusic", py_playMusic);

@@ -1,19 +1,17 @@
 #!/bin/sh
 
 help=1
-while getopts ":fbh" opt; do
+while getopts ":ge" opt; do
  case "$opt" in
-  f) toHere=1 help=0 ;;
-  b) toThere=1 help=0 ;;
-  h) help=1 ;;
+  g) toHere=1 help=0 ;;
+  e) toThere=1 help=0 ;;
  esac
 done
 
 if [[ $help == 1 ]];then
 	echo "Usage:"
-	echo "-h 	Help (this text)"
-	echo "-f 	Copy layouts from editor directory to data directory"
-	echo "-b	Copy layouts from data directory to editor directory"
+	echo "-g 	Copy layouts from editor directory to game directory"
+	echo "-e	Copy layouts from game directory to editor directory"
 	exit
 fi
 

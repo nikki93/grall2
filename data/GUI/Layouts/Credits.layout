@@ -6,7 +6,7 @@
             <Property key="Edit_MultiLine" value="true"/>
             <Property key="Edit_ReadOnly" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="4 381 416 31" layer="Main" name="but_cr_ok">
+        <Widget type="Button" skin="Button" position="292 381 128 31" layer="Main" name="but_cr_ok">
             <Property key="Widget_Caption" value="OK"/>
         </Widget>
     </Widget>

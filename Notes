@@ -441,3 +441,9 @@ Fri Aug 21 23:30:48 IST 2009
 - Added 'keys' map to store control keys.
 - Controls can now be changed from Python.
 - Added Options dialog. For now you can change controls through it.
+
+Sun Aug 23 18:42:20 IST 2009
+----------------------------
+- Added more options to... Options dialog. :P
+- Made save-check and save-delete rely on level records instead.
+- Now 'New Game' makes removes all checkpoints too (because default record 'checkpoint' field is false).

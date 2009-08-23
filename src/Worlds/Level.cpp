@@ -27,7 +27,7 @@ void Level::init()
     LOG("On to level: " + Ogre::StringConverter::toString(worldNumToLevelNum(worldInd)) + ", NGF: " + mNgfName + ", Caption: " + mCaption);
 
     //If we're loading games, and savefile exists, load it.
-    if (GlbVar.loadGame && saveExists(mNgfName))
+    if (GlbVar.loadGame && getRecordFromLevelNum(worldNumToLevelNum(mWorldNum)).checkpoint)
     {
         deserialise(saveName(mWorldNum));
     }

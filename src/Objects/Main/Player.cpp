@@ -166,7 +166,7 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     }
 
     OIS::MouseState ms = getMouseState();
-    mControlNode->yaw(Ogre::Degree(-ms.X.rel * GlbVar.settings.controls.turningSensitivity));
+    mControlNode->yaw(Ogre::Degree(-ms.X.rel * GlbVar.settings.controls.turningSensitivity * 0.4));
 
     //Fallage.
     Ogre::Real currHeight = mBody->getWorldTransform().getOrigin().getY();

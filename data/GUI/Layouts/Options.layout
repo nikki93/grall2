@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
-    <Widget type="Window" skin="WindowC" position="380 28 616 472" layer="Main" name="win_options">
+    <Widget type="Window" skin="WindowC" position="380 28 572 372" layer="Main" name="win_options">
         <Property key="Widget_Caption" value="Options"/>
-        <Widget type="Tab" skin="Tab" position="8 9 592 379" layer="Main">
-            <Widget type="TabItem" skin="Default" position="4 26 583 347" layer="Main" name="o_tab_controls">
+        <Widget type="Tab" skin="Tab" position="8 9 544 283" layer="Main">
+            <Widget type="TabItem" skin="Default" position="4 26 535 251" layer="Main" name="o_tab_controls">
                 <Property key="Widget_Caption" value="Controls"/>
                 <Property key="Sheet_Select" value="true"/>
                 <Widget type="StaticText" skin="StaticText" position="132 10 80 18" layer="Main" name="o_c_txt_forward">
@@ -107,12 +107,31 @@
                     <Property key="Text_TextAlign" value="Center"/>
                     <Property key="Text_TextColour" value="0.8 0.6 0.1"/>
                 </Widget>
+                <Widget type="StaticText" skin="StaticText" position="308 10 184 18" layer="Back">
+                    <Property key="Widget_Caption" value="Left-right mouse sensitivity:"/>
+                </Widget>
+                <Widget type="HScroll" skin="HSlider" position="308 34 216 16" layer="Back" name="o_c_sli_turningSensitivity"/>
+                <Widget type="StaticText" skin="StaticText" position="692 -10 128 4" layer="Back"/>
+                <Widget type="StaticText" skin="StaticText" position="308 70 184 18" layer="Back">
+                    <Property key="Widget_Caption" value="Up-down mouse sensitivity:"/>
+                </Widget>
+                <Widget type="HScroll" skin="HSlider" position="308 94 216 16" layer="Back" name="o_c_sli_upDownSensitivity"/>
+                <Widget type="StaticText" skin="StaticText" position="308 130 152 18" layer="Back">
+                    <Property key="Widget_Caption" value="Invert mouse vertically"/>
+                </Widget>
+                <Widget type="Button" skin="CheckBox" position="504 130 20 20" layer="Back" name="o_c_chk_invertMouse"/>
+                <Widget type="StaticText" skin="StaticText" position="492 10 32 18" layer="Back" name="o_c_txt_turningSensitivity">
+                    <Property key="Text_TextAlign" value="Right VCenter"/>
+                </Widget>
+                <Widget type="StaticText" skin="StaticText" position="492 70 32 18" layer="Back" name="o_c_txt_upDownSensitivity">
+                    <Property key="Text_TextAlign" value="Right VCenter"/>
+                </Widget>
             </Widget>
-            <Widget type="TabItem" skin="Default" position="4 26 583 347" layer="Main">
+            <Widget type="TabItem" skin="Default" position="4 26 535 251" layer="Main">
                 <Property key="Widget_Caption" value="Graphics"/>
             </Widget>
         </Widget>
-        <Widget type="Button" skin="Button" position="448 397 152 32" layer="Back" name="o_but_ok">
+        <Widget type="Button" skin="Button" position="424 297 128 32" layer="Back" name="o_but_ok">
             <Property key="Widget_Caption" value="OK"/>
         </Widget>
     </Widget>

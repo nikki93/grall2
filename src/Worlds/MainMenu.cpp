@@ -241,7 +241,7 @@ void LevelSelect::updateLevelInfo()
 
     GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_losses")->setCaption(Ogre::StringConverter::toString(rec.losses));
 
-    if (saveExists(saveName(mCurrentLevelIndex)))
+    if (getRecordFromLevelNum(worldNumToLevelNum(mCurrentLevelIndex)).checkpoint)
     {
         GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_checkpoint")->setCaption("Yes");
         GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_checkpoint")->setTextColour(MyGUI::Colour(0.3,0.95,0.3));
@@ -291,8 +291,7 @@ void LevelSelect::onConfirmRemoveCheckpoint(MyGUI::MessagePtr, MyGUI::MessageBox
 {
     if (result == MyGUI::MessageBoxStyle::Yes)
     {
-        if (saveExists(saveName(mCurrentLevelIndex))) //Should exist, button's enabled. :P
-            deleteSave(saveName(mCurrentLevelIndex));
+        getRecordFromLevelNum(worldNumToLevelNum(mCurrentLevelIndex)).checkpoint = false;
         updateLevelInfo();
     }
 }

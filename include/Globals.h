@@ -158,6 +158,7 @@ struct Globals : public Ogre::Singleton<Globals>
             unsigned int score;
             unsigned int losses;
             bool completed;
+            bool checkpoint;
 
             friend class boost::serialization::access;
             template<class Archive>
@@ -166,12 +167,14 @@ struct Globals : public Ogre::Singleton<Globals>
                 ar & score;
                 ar & losses;
                 ar & completed;
+                ar & checkpoint;
             }
 
             Record() //Default record values.
                 : score(0),
                   losses(0),
-                  completed(false)
+                  completed(false),
+                  checkpoint(false)
             {
             }
         };
