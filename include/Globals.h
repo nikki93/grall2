@@ -102,7 +102,7 @@ struct Globals : public Ogre::Singleton<Globals>
             Ogre::String pluginDirectory;
             Ogre::StringVector plugins;
 
-            enum Renderer
+            enum
             {
                 OPENGL,
                 DIRECT3D,

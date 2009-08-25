@@ -242,7 +242,8 @@ class Game
             ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
             ogreRmgr.addResourceLocation("../../data/ParticleFX", "FileSystem", "General");
 
-            //Renderer.
+            //Renderer. Just choose the first available one, we just load only one plugin (either
+            //Direct3D or OpenGL) anyway.
             const Ogre::RenderSystemList &renderers = GlbVar.ogreRoot->getAvailableRenderers();
             Ogre::RenderSystem *renderer = *(renderers.begin());
             GlbVar.ogreRoot->setRenderSystem(renderer);

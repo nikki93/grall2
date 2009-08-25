@@ -31,11 +31,15 @@ class OptionsDialog
 
         MyGUI::StaticTextPtr mPressKeyText;
 
-        MyGUI::HScroll *mTurningScroll;
+        MyGUI::HScrollPtr mTurningScroll;
         MyGUI::StaticTextPtr mTurningText;
-        MyGUI::HScroll *mUpDownScroll;
+        MyGUI::HScrollPtr mUpDownScroll;
         MyGUI::StaticTextPtr mUpDownText;
         MyGUI::ButtonPtr mInvertMouseCheckBox;
+        MyGUI::ComboBoxPtr mResolutionsBox;
+        MyGUI::ButtonPtr mFullscreenCheckBox;
+        MyGUI::ButtonPtr mLightingCheckBox;
+        MyGUI::ComboBoxPtr mRenderersBox;
 
     public:
         OptionsDialog();
@@ -50,18 +54,12 @@ class OptionsDialog
         void onClickChangeKey(MyGUI::WidgetPtr);
         void onClickOK(MyGUI::WidgetPtr);
         void onClickInvertMouse(MyGUI::WidgetPtr);
+        void onSelectResolution(MyGUI::ComboBoxPtr, size_t index);
+        void onClickFullscreen(MyGUI::WidgetPtr);
+        void onClickLighting(MyGUI::WidgetPtr);
 
         //--- Visibility ---------------------------------------------------------------
-        void setVisible(bool visible)
-        {
-            mWindow->setVisibleSmooth(visible);
-
-            if (visible)
-            {
-                mTurningScroll->setScrollPosition((GlbVar.settings.controls.turningSensitivity / SLIDER_QUANTUM) - 1);
-                mUpDownScroll->setScrollPosition((GlbVar.settings.controls.upDownSensitivity / SLIDER_QUANTUM) - 1);
-            }
-        }
+        void setVisible(bool visible);
         bool getVisible()
         {
             return mWindow->isVisible();

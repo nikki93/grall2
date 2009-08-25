@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
-    <Widget type="Window" skin="WindowC" position="380 28 572 372" layer="Main" name="win_options">
+    <Widget type="Window" skin="WindowC" position="345 51 572 372" layer="Main" name="win_options">
         <Property key="Widget_Caption" value="Options"/>
         <Widget type="Tab" skin="Tab" position="8 9 544 283" layer="Main">
             <Widget type="TabItem" skin="Default" position="4 26 535 251" layer="Main" name="o_tab_controls">
-                <Property key="Widget_Caption" value="Controls"/>
                 <Property key="Sheet_Select" value="true"/>
+                <Property key="Widget_Caption" value="Controls"/>
                 <Widget type="StaticText" skin="StaticText" position="132 10 80 18" layer="Main" name="o_c_txt_forward">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="forward"/>
@@ -129,10 +129,44 @@
             </Widget>
             <Widget type="TabItem" skin="Default" position="4 26 535 251" layer="Main">
                 <Property key="Widget_Caption" value="Graphics"/>
+                <Widget type="StaticText" skin="StaticText" position="8 34 96 18" layer="Back">
+                    <Property key="Widget_Caption" value="Resolution:"/>
+                </Widget>
+                <Widget type="ComboBox" skin="ComboBox" position="112 34 128 18" layer="Back" name="o_g_cmb_resolution">
+                    <Property key="ComboBox_AddItem" value ="800x600"/>
+                    <Property key="ComboBox_AddItem" value ="1024x768"/>
+                    <Property key="ComboBox_AddItem" value ="1152x864"/>
+                    <Property key="ComboBox_AddItem" value ="1280x768"/>
+                    <Property key="ComboBox_AddItem" value ="1280x800"/>
+                    <Property key="ComboBox_AddItem" value ="1280x960"/>
+                    <Property key="ComboBox_AddItem" value ="1280x1024"/>
+                    <Property key="ComboBox_AddItem" value ="1366x768"/>
+                    <Property key="ComboBox_AddItem" value ="1440x900"/>
+                    <Property key="ComboBox_AddItem" value ="1600x1200"/>
+                    <Property key="ComboBox_AddItem" value ="1680x1050"/>
+                    <Property key="ComboBox_AddItem" value ="1920x1080"/>
+                    <Property key="ComboBox_AddItem" value ="1920x1200"/>
+                </Widget>
+                <Widget type="StaticText" skin="StaticText" position="8 58 84 20" layer="Back">
+                    <Property key="Widget_Caption" value="Fullscreen:"/>
+                </Widget>
+                <Widget type="Button" skin="CheckBox" position="112 54 28 24" layer="Back" name="o_g_chk_fullscreen"/>
+                <Widget type="StaticText" skin="StaticText" position="8 10 104 18" layer="Back">
+                    <Property key="Widget_Caption" value="Renderer:"/>
+                </Widget>
+                <Widget type="ComboBox" skin="ComboBox" position="112 10 128 20" layer="Back" name="o_g_cmb_renderer">
+                    <Property key="ComboBox_AddItem" value="OpenGL"/>
+                    <Property key="ComboBox_AddItem" value="Direct3D"/>
+                </Widget>
+                <Widget type="StaticText" skin="StaticText" position="307 11 104 18" layer="Back">
+                    <Property key="Widget_Caption" value="Lighting:"/>
+                </Widget>
+                <Widget type="Button" skin="CheckBox" position="415 7 24 24" layer="Back" name="o_g_chk_lighting"/>
             </Widget>
         </Widget>
         <Widget type="Button" skin="Button" position="424 297 128 32" layer="Back" name="o_but_ok">
             <Property key="Widget_Caption" value="OK"/>
         </Widget>
+        <Widget type="StaticText" skin="StaticText" position="299 -107 44 88" layer="Back"/>
     </Widget>
 </MyGUI>
