@@ -16,9 +16,9 @@ if [[ $help == 1 ]];then
 fi
 
 if [[ $toHere == 1 ]];then
- cp ~/Development/Libraries/ogre/mygui-2.2/Shared/linux/*.layout data/GUI/Layouts/
+ cp ~/Development/Libraries/ogre/mygui/Shared/linux/*.layout data/GUI/Layouts/
 fi
 
 if [[ $toThere == 1 ]];then
- cp data/GUI/Layouts/*.layout ~/Development/Libraries/ogre/mygui-2.2/Shared/linux/
+ cp data/GUI/Layouts/*.layout ~/Development/Libraries/ogre/mygui/Shared/linux/
 fi

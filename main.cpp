@@ -128,6 +128,10 @@ class GameListener :
                     //highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".jpg", true);
                     GlbVar.ogreWindow->writeContentsToFile("Screenshot.png");
                     break;
+
+                case OIS::KC_O:
+                    GlbVar.optionsDialog->setVisible(true);
+                    break;
             }
 
             return true;

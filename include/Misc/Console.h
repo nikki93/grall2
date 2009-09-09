@@ -74,6 +74,8 @@ class Console
             mWindow->setVisibleSmooth(visible);
             if (visible)
                 MyGUI::InputManager::getInstance().setKeyFocusWidget(mInputBox);
+            else
+                MyGUI::InputManager::getInstance().setKeyFocusWidget(NULL);
         }
 
         inline bool isVisible()

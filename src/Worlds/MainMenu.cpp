@@ -206,7 +206,7 @@ LevelSelect::LevelSelect()
 
     mList = GlbVar.gui->findWidget<MyGUI::List>("lst_ls_levelList");
     populateLevelList();
-    mList->setIndexSelected(0);
+    mList->setIndexSelected(worldNumToLevelNum(GlbVar.records.highestLevelIndex) - 1);
     mList->eventListMouseItemActivate = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
     mList->eventListSelectAccept = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
     updateLevelInfo();

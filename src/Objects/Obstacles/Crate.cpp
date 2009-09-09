@@ -34,12 +34,15 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
 
     //Create the Physics stuff.
     mShape = new btBoxShape(btVector3(0.475,0.75,0.475));
-    btScalar mass = 10;
+    btScalar mass = 100;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
-    mBody = new btRigidBody(mass, state, mShape, inertia);
+    btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
+    info.m_friction = 0;
+
+    mBody = new btRigidBody(info);
     initBody();
 
     //To allow Gravity, but still constraint on XZ plane, we use slider.
@@ -56,7 +59,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mConstraint->setUpperLinLimit(0);
     mConstraint->setLowerAngLimit(0); //Locked angular.
     mConstraint->setUpperAngLimit(0);
-    mConstraint->setRestitutionOrthoLin(3);
+    //mConstraint->setRestitutionOrthoLin(3);
 
     GlbVar.phyWorld->addConstraint(mConstraint, true);
 
@@ -114,6 +117,8 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
         {
             //If next move'll take us overboard, just jump to the target.
             mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(mTarget)));
+            btTransform trans = mBody->getWorldTransform();
+            mBody->setWorldTransform(btTransform(oldTrans.getRotation(), btVector3(mTarget.x, trans.getOrigin().y(), mTarget.z)));
             mMoving = false;
         }
         else
@@ -235,7 +240,14 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
     {
         mBody->activate();
         mMoving = true;
-        mTarget = BtOgre::Convert::toOgre(myTrans.getOrigin()) + newDir;
+
+        //Calculate new target by adding direction. Use fixed body's X and Z values to add to to maintain grid-stability.
+        btTransform fixedTrans;
+        mFixedBody->getMotionState()->getWorldTransform(fixedTrans);
+        btVector3 fixedPos = fixedTrans.getOrigin();
+        btVector3 myPos = myTrans.getOrigin();
+        mTarget = Ogre::Vector3(fixedPos.x(), myPos.y(), fixedPos.z()) + newDir;
+        //GlbVar.console->print("Current fixed position: " + Ogre::StringConverter::toString(BtOgre::Convert::toOgre(fixedPos)) + ", New target: " + Ogre::StringConverter::toString(mTarget) + "\n");
     }
 }
 //-------------------------------------------------------------------------------

@@ -26,12 +26,13 @@ class Crate :
         Ogre::Entity *mEntity;
 
         btBoxShape *mShape;
-        Ogre::Real mHeight;
         btBoxShape *mCastShape;
+
         btRigidBody *mFixedBody;
         btSliderConstraint *mConstraint;
 
         bool mMoving;
+        Ogre::Real mHeight;
         Ogre::Vector3 mTarget;
 
     public:
@@ -58,7 +59,7 @@ class Crate :
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Crate)
         {
-            Ogre::String crateMat;
+            Ogre::String crateMat; //Save Crate materials across save games.
 
             NGF_SERIALISE_ON_SAVE
             {

@@ -6,16 +6,10 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add 'Options' menu.
-
-- Add Switch textures.
-
-- Add Teleporter texture.
-
 - Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
-  mesh, and moves exactly one unit.
-
-- Think of a good Electricity system.
+  mesh, and moves exactly one unit. It has a 'string' property which is the condition (in Python) to check for 
+  when the Door is opened. So, condition could be, "other.hasKey("Green")". The condition is run in the scope of
+  the 'collide' function.
 
 Side
 ----
@@ -23,12 +17,10 @@ Side
 
 - Make more Brush textures.
 
-- Make more Crate textures.
+- Redo Switch and Teleporter textures.
 
 Bugs
 ----
-- Fix Crate dynamics.
-
 - Fix shadows.
 
 +---------------------------+
@@ -453,3 +445,10 @@ Tue Aug 25 15:54:16 IST 2009
 - Added graphics options to Options dialog.
 - Screen resolution and fullscreen can be set.
 - Added lighting and renderer settings too.
+
+(busy with vacation stuff)
+
+Wed Sep  9 16:15:23 AST 2009
+----------------------------
+- Level select dialog now automatically selects highest level.
+- Fixed Crate dynamics. Crates are new grid-aligned, while also keeping Y axis dynamics.
