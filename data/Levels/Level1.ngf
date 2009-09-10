@@ -2,6 +2,21 @@ ngflevel Level1
 {
 	object
 	{
+		type StaticBrush
+		name noname
+		position -9.500000 6.500000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b0.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
 		type Crate
 		name noname
 		position -9.500000 6.750000 -5.500000
@@ -51,7 +66,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b0.mesh
+			brushMeshFile Level1_b1.mesh
 			dimension1 no
 			dimension2 yes
 			convex no
@@ -102,7 +117,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b1.mesh
+			brushMeshFile Level1_b2.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -273,7 +288,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b2.mesh
+			brushMeshFile Level1_b3.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -623,7 +638,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b3.mesh
+			brushMeshFile Level1_b4.mesh
 			dimension1 no
 			dimension2 yes
 			convex yes
@@ -638,7 +653,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b4.mesh
+			brushMeshFile Level1_b5.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -653,7 +668,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b5.mesh
+			brushMeshFile Level1_b6.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -668,7 +683,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b6.mesh
+			brushMeshFile Level1_b7.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -683,7 +698,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b7.mesh
+			brushMeshFile Level1_b8.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -730,7 +745,7 @@ ngflevel Level1
 		properties
 		{
 			enabled no
-			brushMeshFile Level1_b8.mesh
+			brushMeshFile Level1_b9.mesh
 			speed 1
 			script : import Ngf
 			       : 
@@ -800,7 +815,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b9.mesh
+			brushMeshFile Level1_b10.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -819,7 +834,7 @@ ngflevel Level1
 			speed 2
 			distance 1.9
 			ignoreCollisions no
-			brushMeshFile Level1_b10.mesh
+			brushMeshFile Level1_b11.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -849,7 +864,7 @@ ngflevel Level1
 		properties
 		{
 			enabled no
-			brushMeshFile Level1_b11.mesh
+			brushMeshFile Level1_b12.mesh
 			speed 0.5
 		}
 	}
@@ -875,7 +890,7 @@ ngflevel Level1
 		properties
 		{
 			enabled yes
-			brushMeshFile Level1_b12.mesh
+			brushMeshFile Level1_b13.mesh
 			speed 0.5
 		}
 	}
@@ -888,7 +903,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b13.mesh
+			brushMeshFile Level1_b14.mesh
 			dimension1 yes
 			dimension2 yes
 			convex yes
@@ -903,7 +918,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b14.mesh
+			brushMeshFile Level1_b15.mesh
 			dimension1 yes
 			dimension2 no
 			convex no
@@ -918,7 +933,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b15.mesh
+			brushMeshFile Level1_b16.mesh
 			dimension1 no
 			dimension2 yes
 			convex no
@@ -947,7 +962,7 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b16.mesh
+			brushMeshFile Level1_b17.mesh
 			dimension1 yes
 			dimension2 yes
 			convex no
@@ -965,6 +980,71 @@ ngflevel Level1
 			lightType point
 			colour 0.8 0.5 0.1
 			attenuation 70 1 0.1 0.04
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -9.500000 6.500000 -9.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			brushMeshFile Level1_b18.mesh
+			dimension1 yes
+			dimension2 yes
+			convex yes
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door2
+		position -9.500000 6.500000 -11.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			enabled yes
+			speed 1
+			distance 0.999
+			ignoreCollisions no
+			brushMeshFile Level1_b19.mesh
+			repeat yes
+			condition True
+			autoClose no
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	#Not opened yet!
+			       : 	self.m_opened = False
+			       : 	
+			       : 	#Save some properties.
+			       : 	self.m_repeat = (self.getProperty("repeat", 0, "yes") == "yes")
+			       : 	self.m_autoClose = (self.getProperty("autoClose", 0, "yes") == "yes")
+			       : 	self.m_condition = self.getProperty("condition", 0, "True")
+			       : 	
+			       : def collide(self, other):
+			       : 	#If we're repeating, then do it. If we're not repeating, this
+			       : 	#must be first time. Also, the other object must be a 'Doorer'.
+			       : 	#Lastly, we check for the 'condition' (evaluate Python string)
+			       : 	#and if it's fine, then continue.
+			       : 	if ((self.m_repeat or (not self.m_opened)) and other.hasFlag("Doorer")):
+			       : 		if (eval(self.m_condition)):
+			       : 			self.p_forward = True
+			       : 			self.m_opened = True
+			       : 
+			       : def point(self, n):
+			       : 	#If we're auto-closing, we close after a small delay after
+			       : 	#reaching end point.
+			       : 	if (self.m_autoClose and (n == 1)):
+			       : 		self.setAlarm(1, 0)
+			       : 		
+			       : def alarm(self, n):
+			       : 	#Delay is over, close.
+			       : 	if (n == 0):
+			       : 		self.p_forward = False
 		}
 	}
 }

@@ -452,3 +452,9 @@ Wed Sep  9 16:15:23 AST 2009
 ----------------------------
 - Level select dialog now automatically selects highest level.
 - Fixed Crate dynamics. Crates are new grid-aligned, while also keeping Y axis dynamics.
+
+Thu Sep 10 20:00:39 AST 2009
+----------------------------
+- Added generic 'Door' prefab. The Door has 'repeat' and 'autoClose' options, and a generic condition, which is a string
+  of Python code that evaluates to a True or False value, run in the scope of the 'collide' function. Thus, each Door
+  can have a unique condition ('does hey have the key?', 'is he moving fast?', or even, 'is this music track playing?').

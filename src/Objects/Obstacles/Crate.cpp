@@ -129,6 +129,10 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
         }
     }
 
+    mFixedBody->getMotionState()->getWorldTransform(oldTrans);
+    mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), btVector3(oldTrans.getOrigin().x(), 
+                    mBody->getWorldTransform().getOrigin().y(), oldTrans.getOrigin().z())));
+
     //If fell off, die.
     if (mBody->getWorldTransform().getOrigin().y() < -20)
         GlbVar.goMgr->requestDestroy(getID());
