@@ -6,10 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add 'Door' specialisation of SlidingBrush. A 'Door' is simply a SlidingBrush that has a standard one-tile-wide
-  mesh, and moves exactly one unit. It has a 'string' property which is the condition (in Python) to check for 
-  when the Door is opened. So, condition could be, "other.hasKey("Green")". The condition is run in the scope of
-  the 'collide' function.
 
 Side
 ----
@@ -458,3 +454,4 @@ Thu Sep 10 20:00:39 AST 2009
 - Added generic 'Door' prefab. The Door has 'repeat' and 'autoClose' options, and a generic condition, which is a string
   of Python code that evaluates to a True or False value, run in the scope of the 'collide' function. Thus, each Door
   can have a unique condition ('does hey have the key?', 'is he moving fast?', or even, 'is this music track playing?').
+- Fixed some more Crate bugs.

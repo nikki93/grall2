@@ -48,7 +48,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     //To allow Gravity, but still constraint on XZ plane, we use slider.
     mCastShape = new btBoxShape(btVector3(0.475,0.70,0.475));
 
-    btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,0.1,0))));
+    btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,5,0))));
     mFixedBody = new btRigidBody(0, fixedState, mCastShape);
     mFixedBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
     mFixedBody->setActivationState(DISABLE_DEACTIVATION);
@@ -129,9 +129,11 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
         }
     }
 
+    /*
     mFixedBody->getMotionState()->getWorldTransform(oldTrans);
     mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), btVector3(oldTrans.getOrigin().x(), 
                     mBody->getWorldTransform().getOrigin().y(), oldTrans.getOrigin().z())));
+    */
 
     //If fell off, die.
     if (mBody->getWorldTransform().getOrigin().y() < -20)
@@ -167,7 +169,7 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
         Ogre::Vector3 push = myPos - playerPos;
 
         //Check that we got hit on side and not up or (lol?) below. :-)
-        if (push.y < (mHeight / 2.0))
+        if (Ogre::Math::Abs(push.y) < (mHeight / 2.0))
         {
             makeMove(push);
             btVector3 currVel = mBody->getLinearVelocity();
@@ -250,7 +252,8 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
         mFixedBody->getMotionState()->getWorldTransform(fixedTrans);
         btVector3 fixedPos = fixedTrans.getOrigin();
         btVector3 myPos = myTrans.getOrigin();
-        mTarget = Ogre::Vector3(fixedPos.x(), myPos.y(), fixedPos.z()) + newDir;
+        //mTarget = Ogre::Vector3(fixedPos.x(), fixedPos.y(), fixedPos.z()) + newDir;
+        mTarget = BtOgre::Convert::toOgre(fixedPos) + newDir;
         //GlbVar.console->print("Current fixed position: " + Ogre::StringConverter::toString(BtOgre::Convert::toOgre(fixedPos)) + ", New target: " + Ogre::StringConverter::toString(mTarget) + "\n");
     }
 }
