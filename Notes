@@ -455,3 +455,7 @@ Thu Sep 10 20:00:39 AST 2009
   of Python code that evaluates to a True or False value, run in the scope of the 'collide' function. Thus, each Door
   can have a unique condition ('does hey have the key?', 'is he moving fast?', or even, 'is this music track playing?').
 - Fixed some more Crate bugs.
+
+Fri Sep 11 21:21:20 AST 2009
+----------------------------
+- Added Green Bombs (the Crate-sensitive bombs from the original GraLL). Good for fun Crate puzzles. :-)

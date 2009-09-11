@@ -42,6 +42,18 @@ material Objects/MovingBomb : BaseNormalMapParallaxGlow
         set $specular "1 1 1 1"
 }
 
+//--- GreenBomb -----------------------------------------------------------------------
+material Objects/GreenBomb : BaseNormalMapParallaxGlow
+{
+        set $diffuse_tex "GreenBomb.png"
+        set $normal_tex "GreenBomb_NM.png"
+        set $glow_tex "GreenBomb_GW.png"
+
+        set $ambient "0.9 0.9 0.9 1"
+        set $diffuse "0.6 0.6 0.6 1"
+        set $specular "1 1 1 1"
+}
+
 //--- Ice (Semitransparent) -----------------------------------------------------------
 material Objects/Ice : Base
 { 

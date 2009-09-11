@@ -41,7 +41,8 @@ class DimensionManager
             DIRECTOR = BIT(4),
             STATIC = BIT(5),
             MOVINGBOMB = BIT(6),
-            MOVINGBRUSH = BIT(7)
+            MOVINGBRUSH = BIT(7),
+            GREENBOMB = BIT(8)
         };
 
     protected:

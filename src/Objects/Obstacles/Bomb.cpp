@@ -22,9 +22,12 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
+    //Read properties.
+    mGreen = Ogre::StringConverter::parseBool(mProperties.getValue("green", 0, "no"));
+
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Bomb.mesh");
-    mEntity->setMaterialName("Objects/Bomb");
+    mEntity->setMaterialName(mGreen ? "Objects/GreenBomb" : "Objects/Bomb");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
@@ -34,7 +37,8 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
+    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK | 
+            (mGreen ? DimensionManager::GREENBOMB : DimensionManager::NONE), mDimensions);
     setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------
@@ -88,6 +92,12 @@ void Bomb::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btM
     if (!other)
         return;
 
+    if (mGreen && other->hasFlag("Crate"))
+    {
+        explode();
+    GlbVar.goMgr->requestDestroy(other->getID());
+    }
+
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
     if (oth)
@@ -113,7 +123,7 @@ void Bomb::explode()
 
     GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
             ("template", "ParticleFX/Explosion")
-            ("time", "2")
+            ("time", "4")
             );
 
     //Us no more. :-(

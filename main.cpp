@@ -129,9 +129,11 @@ class GameListener :
                     GlbVar.ogreWindow->writeContentsToFile("Screenshot.png");
                     break;
 
+                    /*
                 case OIS::KC_O:
                     GlbVar.optionsDialog->setVisible(true);
                     break;
+                    */
             }
 
             return true;

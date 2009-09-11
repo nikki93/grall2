@@ -26,6 +26,7 @@ class Bomb :
         btCollisionShape *mShape;
         Ogre::Entity *mEntity;
         
+        bool mGreen; //Green bombs are crate-fearing.
         bool mExploded;
 
     public:

@@ -221,8 +221,9 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
 
         bool needsCollision(btBroadphaseProxy* proxy0) const
         {
-            //If it's us, is the Player, or isn't in our dimension, we don't care.
+            //If it's us, or isn't in our dimension, we don't care.
             return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
+                && !(proxy0->m_collisionFilterGroup & DimensionManager::GREENBOMB) //So we can blast 'em green ones!
                 && (proxy0->m_collisionFilterGroup & mDimension)
                 && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }

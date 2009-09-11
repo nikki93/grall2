@@ -2,6 +2,48 @@ ngflevel Level1
 {
 	object
 	{
+		type Bomb
+		name noname
+		position -12.500000 6.500000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -11.500000 6.500000 -12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green yes
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.500000 6.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green yes
+		}
+	}
+	object
+	{
 		type StaticBrush
 		name noname
 		position -9.500000 6.500000 -12.500000
@@ -972,14 +1014,14 @@ ngflevel Level1
 	{
 		type Light
 		name noname
-		position -1.500000 8.500000 -3.500000
+		position -20.500000 6.938363 -5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			lightType point
-			colour 0.8 0.5 0.1
-			attenuation 70 1 0.1 0.04
+			colour 0.4 0.7 0.9
+			attenuation 70 1 0.08 0.02
 		}
 	}
 	object
@@ -1045,6 +1087,20 @@ ngflevel Level1
 			       : 	#Delay is over, close.
 			       : 	if (n == 0):
 			       : 		self.p_forward = False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.500000 6.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green yes
 		}
 	}
 }

@@ -1,10 +1,10 @@
 particle_system ParticleFX/Explosion
 {
-        quota 500
+        quota 1000
 
         material ParticleFX/Flare
-        particle_width 1
-        particle_height 1
+        particle_width 1.2
+        particle_height 1.2
 
         cull_each false
         billboard_type point
@@ -13,8 +13,8 @@ particle_system ParticleFX/Explosion
         {
                 angle 90
                 emission_rate 600
-                time_to_live_min 0.77
-                time_to_live_max 2
+                time_to_live_min 1
+                time_to_live_max 2.5
                 direction 0 -1 0
                 velocity_min 0.4
                 velocity_max 2
@@ -28,14 +28,14 @@ particle_system ParticleFX/Explosion
 
         affector ColourFader
         {
-                red -1
-                green -2.2
-                blue -2.2
+                red -0.7
+                green -2.1
+                blue -2.1
         }
 
         affector Scaler
         {
-                rate 1.5
+                rate 1.7
         }
 }
 
