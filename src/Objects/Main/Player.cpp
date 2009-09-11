@@ -498,7 +498,7 @@ void Player::die(bool explode)
 
     //Explosions!
     if (explode)
-        createExplosion(mNode->getPosition());
+        Util::createExplosion(mNode->getPosition());
 
     //And of course, we don't exist anymore. :-(
     GlbVar.goMgr->requestDestroy(getID());

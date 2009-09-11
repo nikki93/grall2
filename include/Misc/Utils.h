@@ -18,6 +18,8 @@
 
 #include "Globals.h"
 
+namespace Util {
+
 //Shows a message. Returns pointer to the MessageBox GameObject.
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time);
 
@@ -178,4 +180,7 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
         const int& pGridSize, const Ogre::String& pFileName, const Ogre::String& pFileExtention, 
         const bool& pStitchGridImages);
 
+} //namespace Util
+
 #endif
+

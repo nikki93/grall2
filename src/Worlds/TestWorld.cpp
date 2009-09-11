@@ -13,7 +13,7 @@ void TestWorld::init()
 {
     Ogre::LogManager::getSingleton().logMessage("TestWorld init!");
 
-    loadLevel("TestLevel");
+    Util::loadLevel("TestLevel");
 
     Ogre::String msg =
         "Welcome to GraLL2!\n\n"
@@ -28,7 +28,7 @@ void TestWorld::init()
 
         "We hope you have fun, thanks for playing!";
 
-    showMessage(msg, 10);
+    Util::showMessage(msg, 10);
 
     //Test Player.
     /*
@@ -67,7 +67,7 @@ void TestWorld::stop()
     //delete mTestBody->getMotionState();
     //delete mTestBody;
     //delete mTestShape;
-    clearLevel();
+    Util::clearLevel();
 }
 //-------------------------------------------------------------------------------
 

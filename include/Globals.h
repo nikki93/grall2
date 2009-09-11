@@ -190,8 +190,8 @@ struct Globals : public Ogre::Singleton<Globals>
 };
 
 //'Procedures'.
-void addWorlds();
 void registerGameObjectTypes();
+void addWorlds();
 void initPythonBinds();
 void initShadows();
 void loadSettings();

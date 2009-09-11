@@ -24,7 +24,7 @@
 class Controller :
     public NGF::Serialisation::SerialisableGameObject,
     public NGF::Python::PythonGameObject,
-    public ExtraEventListener
+    public Util::ExtraEventListener
 {
     protected:
 

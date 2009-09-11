@@ -89,7 +89,7 @@ void clearRecord()
 
 void loseLevel()
 {
-    unsigned int levelNum = worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
+    unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
     Globals::Records::Record &rec = GlbVar.records.recordMap[levelNum];
 
     ++rec.losses;
@@ -97,7 +97,7 @@ void loseLevel()
 
 void winLevel()
 {
-    unsigned int levelNum = worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
+    unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
     Globals::Records::Record &rec = GlbVar.records.recordMap[levelNum];
 
     rec.completed = true;

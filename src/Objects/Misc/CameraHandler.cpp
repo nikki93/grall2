@@ -80,13 +80,13 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     }
 
     //Third-person view offset handling.
-    OIS::MouseState ms = getMouseState();
+    OIS::MouseState ms = Util::getMouseState();
     if (ms.buttonDown(OIS::MB_Right) && mCurrState == CS_THIRDPERSON)
     {
         Ogre::Real yRel = -ms.Y.rel * 0.1;
         int invert = GlbVar.settings.controls.invertMouse ? -1 : 1;
         mViewAngle -= Ogre::Degree(yRel) * GlbVar.settings.controls.upDownSensitivity * invert;
-        mViewAngle = clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 70);
+        mViewAngle = Util::clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 70);
     }
 
     mViewOffset = Ogre::Vector3(0, Ogre::Math::Sin(mViewAngle), Ogre::Math::Cos(mViewAngle)) * 10;
@@ -116,12 +116,12 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     }
 
     //Peeping.
-    if (isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
+    if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
         mViewOffset = Ogre::Vector3(5,4.5,0);
-    if (isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
+    if (Util::isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
     {
         mViewOffset = Ogre::Vector3(-5,4.5,0);
-        if (isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
+        if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
             mViewOffset = Ogre::Vector3(0,4.5,-5);
     }
 
@@ -230,7 +230,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         mRestartTime -= evt.timeSinceLastFrame;
 
         if (mRestartTime <= 0)
-            gotoWorld(GlbVar.woMgr->getCurrentWorldIndex());
+            Util::gotoWorld(GlbVar.woMgr->getCurrentWorldIndex());
     }
 
     //Alarms.

@@ -112,7 +112,7 @@ void Bomb::explode()
         return;
 
     //FX!
-    createExplosion(mNode->getPosition());
+    Util::createExplosion(mNode->getPosition());
 
     //Us no more. :-(
     GlbVar.goMgr->requestDestroy(getID());

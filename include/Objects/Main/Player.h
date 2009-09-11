@@ -57,8 +57,8 @@ class Player :
         void switchDimension();
         void die(bool explode);
 
-        inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && ::isKeyDown(kc)); }
-        inline OIS::MouseState getMouseState() { if (mUnderControl) return ::getMouseState(); else return OIS::MouseState(); }
+        inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && Util::isKeyDown(kc)); }
+        inline OIS::MouseState getMouseState() { if (mUnderControl) return Util::getMouseState(); else return OIS::MouseState(); }
 
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Player)

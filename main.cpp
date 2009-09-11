@@ -117,11 +117,11 @@ class GameListener :
                     break;
 
                 case OIS::KC_F7:
-                    serialise("TestSave");
+                    Util::serialise("TestSave");
                     break;
                 case OIS::KC_F8:
-                    clearLevel();
-                    deserialise("TestSave");
+                    Util::clearLevel();
+                    Util::deserialise("TestSave");
                     break;
 
                 case OIS::KC_F9:

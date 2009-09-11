@@ -22,7 +22,7 @@
 class Point :
     public NGF::Python::PythonGameObject,
     public NGF::Serialisation::SerialisableGameObject,
-    public ExtraEventListener
+    public Util::ExtraEventListener
 {
     protected:
         Ogre::SceneNode *mNode;

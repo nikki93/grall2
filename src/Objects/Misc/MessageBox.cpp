@@ -93,11 +93,11 @@ void MessageBox::unpausedTick(const Ogre::FrameEvent &evt)
         if (mTimeLeft <= MAX_ALPHA)
             mMessage->setAlpha(mTimeLeft);
         else
-            mMessage->setAlpha(clamp<Ogre::Real>(mMessage->getAlpha() + evt.timeSinceLastFrame, 0, MAX_ALPHA));
+            mMessage->setAlpha(Util::clamp<Ogre::Real>(mMessage->getAlpha() + evt.timeSinceLastFrame, 0, MAX_ALPHA));
     }
     else
     {
-        mMessage->setAlpha(clamp<Ogre::Real>(mMessage->getAlpha() + evt.timeSinceLastFrame, 0, MAX_ALPHA));
+        mMessage->setAlpha(Util::clamp<Ogre::Real>(mMessage->getAlpha() + evt.timeSinceLastFrame, 0, MAX_ALPHA));
     }
 }
 //-------------------------------------------------------------------------------

@@ -24,16 +24,16 @@ void Level::init()
         GlbVar.records.highestLevelIndex = worldInd;
 
     //Load the level.
-    LOG("On to level: " + Ogre::StringConverter::toString(worldNumToLevelNum(worldInd)) + ", NGF: " + mNgfName + ", Caption: " + mCaption);
+    LOG("On to level: " + Ogre::StringConverter::toString(Util::worldNumToLevelNum(worldInd)) + ", NGF: " + mNgfName + ", Caption: " + mCaption);
 
     //If we're loading games, and savefile exists, load it.
-    if (GlbVar.loadGame && getRecordFromLevelNum(worldNumToLevelNum(mWorldNum)).checkpoint)
+    if (GlbVar.loadGame && Util::getRecordFromLevelNum(Util::worldNumToLevelNum(mWorldNum)).checkpoint)
     {
-        deserialise(saveName(mWorldNum));
+        Util::deserialise(Util::saveName(mWorldNum));
     }
     else
     {
-        loadLevel(mNgfName);
+        Util::loadLevel(mNgfName);
         GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTART));
     }
 }
@@ -44,16 +44,16 @@ void Level::tick(const Ogre::FrameEvent &evt)
 
     //LOG("Bonus: " + Ogre::StringConverter::toString(GlbVar.bonusTime));
     
-    if (isKeyDown(OIS::KC_N))
+    if (Util::isKeyDown(OIS::KC_N))
         winLevel();
-    if (isKeyDown(OIS::KC_ESCAPE))
-        gotoWorld(0);
+    if (Util::isKeyDown(OIS::KC_ESCAPE))
+        Util::gotoWorld(0);
 }
 //-------------------------------------------------------------------------------
 void Level::stop()
 {
     GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTOP));
-    clearLevel();
+    Util::clearLevel();
 }
 //-------------------------------------------------------------------------------
 

@@ -65,7 +65,7 @@ Ogre::Entity *GraLL2GameObject::createBrushEntity()
 {
     Ogre::String mesh = mProperties.getValue("brushMeshFile", 0, "Player.mesh");
     Ogre::Entity *ent = GlbVar.ogreSmgr->createEntity(mOgreName, mesh);
-    fixBrushMaterials(ent);
+    Util::fixBrushMaterials(ent);
     return ent;
 }
 //-------------------------------------------------------------------------------

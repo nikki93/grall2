@@ -206,7 +206,7 @@ LevelSelect::LevelSelect()
 
     mList = GlbVar.gui->findWidget<MyGUI::List>("lst_ls_levelList");
     populateLevelList();
-    mList->setIndexSelected(worldNumToLevelNum(GlbVar.records.highestLevelIndex) - 1); //Select current highest level.
+    mList->setIndexSelected(Util::worldNumToLevelNum(GlbVar.records.highestLevelIndex) - 1); //Select current highest level.
     mList->eventListMouseItemActivate = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
     mList->eventListSelectAccept = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
     updateLevelInfo();
@@ -232,7 +232,7 @@ void LevelSelect::updateLevelInfo()
     Level *lvl = dynamic_cast<Level*>(GlbVar.woMgr->getWorldAt(mCurrentLevelIndex));
     GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_caption")->setCaption(lvl->getCaption());
 
-    const Globals::Records::Record &rec = GlbVar.records.recordMap[worldNumToLevelNum(mCurrentLevelIndex)];
+    const Globals::Records::Record &rec = GlbVar.records.recordMap[Util::worldNumToLevelNum(mCurrentLevelIndex)];
 
     if (rec.completed)
         GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_score")->setCaption(Ogre::StringConverter::toString(rec.score));
@@ -241,7 +241,7 @@ void LevelSelect::updateLevelInfo()
 
     GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_losses")->setCaption(Ogre::StringConverter::toString(rec.losses));
 
-    if (getRecordFromLevelNum(worldNumToLevelNum(mCurrentLevelIndex)).checkpoint)
+    if (Util::getRecordFromLevelNum(Util::worldNumToLevelNum(mCurrentLevelIndex)).checkpoint)
     {
         GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_checkpoint")->setCaption("Yes");
         GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_checkpoint")->setTextColour(MyGUI::Colour(0.3,0.95,0.3));
@@ -291,7 +291,7 @@ void LevelSelect::onConfirmRemoveCheckpoint(MyGUI::MessagePtr, MyGUI::MessageBox
 {
     if (result == MyGUI::MessageBoxStyle::Yes)
     {
-        getRecordFromLevelNum(worldNumToLevelNum(mCurrentLevelIndex)).checkpoint = false;
+        Util::getRecordFromLevelNum(Util::worldNumToLevelNum(mCurrentLevelIndex)).checkpoint = false;
         updateLevelInfo();
     }
 }

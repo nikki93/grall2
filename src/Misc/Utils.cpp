@@ -8,6 +8,8 @@ Utils.cpp
 
 #include "Objects/Misc/MessageBox.h"
 
+namespace Util {
+
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time)
 {
     return GlbVar.goMgr->createObject<MessageBox>(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
@@ -117,3 +119,4 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
     GlbVar.gui->showPointer();
 }
 
+}

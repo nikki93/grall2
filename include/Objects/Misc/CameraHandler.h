@@ -29,7 +29,7 @@ class CameraHandler :
     public NGF::Python::PythonGameObject,
     public NGF::Serialisation::SerialisableGameObject,
     public AlarmGameObject,
-    public ExtraEventListener
+    public Util::ExtraEventListener
 {
     public:
         enum

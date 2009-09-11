@@ -10,7 +10,7 @@ void MusicManager::tick(const Ogre::FrameEvent &evt)
 {
     if (mPreviousSound)
     {
-        mPreviousSound->setGain(clamp(mPreviousSound->getGain() - mFadeRate * evt.timeSinceLastFrame, 0.0f, mActualGain));
+        mPreviousSound->setGain(Util::clamp(mPreviousSound->getGain() - mFadeRate * evt.timeSinceLastFrame, 0.0f, mActualGain));
 
         if (mPreviousSound->getGain() == 0)
         {
@@ -21,5 +21,5 @@ void MusicManager::tick(const Ogre::FrameEvent &evt)
     }
 
     if (mCurrentSound && mCurrentSound->getGain() < mActualGain)
-        mCurrentSound->setGain(clamp(mCurrentSound->getGain() + mFadeRate * evt.timeSinceLastFrame, 0.0f, mActualGain));
+        mCurrentSound->setGain(Util::clamp(mCurrentSound->getGain() + mFadeRate * evt.timeSinceLastFrame, 0.0f, mActualGain));
 }

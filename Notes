@@ -6,7 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Put global functions in namespaces.
 
 Side
 ----
@@ -461,3 +460,4 @@ Fri Sep 11 21:21:20 AST 2009
 ----------------------------
 - Added Green Bombs (the Crate-sensitive bombs from the original GraLL). Good for fun Crate puzzles. :-)
 - Made few changes to Explosion effect.
+- Put 'Utils' in their own namespace to keep the global namespace clearer and avoid conflicts.

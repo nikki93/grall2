@@ -20,7 +20,7 @@
 //Show message box.
 NGF::Python::PythonObjectConnectorPtr py_showMessage(Ogre::String message, Ogre::Real time)
 {
-    NGF::GameObject *msg = showMessage(message, time);
+    NGF::GameObject *msg = Util::showMessage(message, time);
     NGF::Python::PythonGameObject *pyMsg = dynamic_cast<NGF::Python::PythonGameObject*>(msg);
     return pyMsg->getConnector();
 }
@@ -28,15 +28,15 @@ NGF::Python::PythonObjectConnectorPtr py_showMessage(Ogre::String message, Ogre:
 //World switching.
 void py_nextWorld() 
 { 
-    nextWorld();
+    Util::nextWorld();
 }
 void py_previousWorld() 
 { 
-    previousWorld(); 
+    Util::previousWorld(); 
 }
 void py_gotoWorld(int index) 
 { 
-    gotoWorld(index); 
+    Util::gotoWorld(index); 
 }
 
 //Dimension stuff (if you want to switch dimensions, best you do it through the 
@@ -67,15 +67,15 @@ void py_fadeInOutScreen(Ogre::Real in, Ogre::Real pause, Ogre::Real out)
 //Level stuff.
 bool py_saveExists(unsigned int levelNum)
 {
-    return getRecordFromLevelNum(levelNum).checkpoint;
+    return Util::getRecordFromLevelNum(levelNum).checkpoint;
 }
 void py_removeSave(unsigned int levelNum)
 {
-    getRecordFromLevelNum(levelNum).checkpoint = false;
+    Util::getRecordFromLevelNum(levelNum).checkpoint = false;
 }
 unsigned int py_getCurrentLevelNum()
 {
-    return worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
+    return Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
 }
 
 //Music stuff.
@@ -164,3 +164,4 @@ void initPythonBinds()
 {
     initGraLL2();
 }
+

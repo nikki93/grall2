@@ -89,8 +89,8 @@ void Light::unpausedTick(const Ogre::FrameEvent &evt)
         //Fade out.
         if (mTimeLeft < mFadeOutTime)
         {
-            mLight->setDiffuseColour(mDiffuseColour * clamp(mTimeLeft * 2, 0.0f, 1.0f));
-            mLight->setSpecularColour(mSpecularColour * clamp(mTimeLeft * 2, 0.0f, 1.0f));
+            mLight->setDiffuseColour(mDiffuseColour * Util::clamp(mTimeLeft * 2, 0.0f, 1.0f));
+            mLight->setSpecularColour(mSpecularColour * Util::clamp(mTimeLeft * 2, 0.0f, 1.0f));
         }
 
         if (mTimeLeft <= 0)
