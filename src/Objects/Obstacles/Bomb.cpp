@@ -112,19 +112,7 @@ void Bomb::explode()
         return;
 
     //FX!
-    GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-            ("lightType", "point")
-            ("colour", "1 0.6 0")
-            ("specular", "0.1 0.1 0.1")
-            ("attenuation", "10 0.6 0.2 0.1")
-            ("time", "1.6")
-            ("fadeOutTime", "0.75")
-            );
-
-    GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-            ("template", "ParticleFX/Explosion")
-            ("time", "4")
-            );
+    createExplosion(mNode->getPosition());
 
     //Us no more. :-(
     GlbVar.goMgr->requestDestroy(getID());

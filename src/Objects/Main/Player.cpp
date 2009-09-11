@@ -498,21 +498,7 @@ void Player::die(bool explode)
 
     //Explosions!
     if (explode)
-    {
-        GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-                ("lightType", "point")
-                ("colour", "1 0.6 0")
-                ("specular", "0.1 0.1 0.1")
-                ("attenuation", "10 0.6 0.1 0.05")
-                ("time", "1.6")
-                ("fadeOutTime", "0.75")
-                );
-
-        GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-                ("template", "ParticleFX/Explosion")
-                ("time", "2")
-                );
-    }
+        createExplosion(mNode->getPosition());
 
     //And of course, we don't exist anymore. :-(
     GlbVar.goMgr->requestDestroy(getID());

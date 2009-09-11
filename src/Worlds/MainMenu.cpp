@@ -180,7 +180,7 @@ void MainMenu::onClickOptions(MyGUI::WidgetPtr)
 
 //-------------------------------------------------------------------------------
 LevelSelect::LevelSelect()
-    : mCurrentLevelIndex(GlbVar.firstLevel)
+    : mCurrentLevelIndex(GlbVar.records.highestLevelIndex)
 {
     MyGUI::LayoutManager::getInstance().load("LevelSelect.layout");
     mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_levelSelect");
@@ -206,7 +206,7 @@ LevelSelect::LevelSelect()
 
     mList = GlbVar.gui->findWidget<MyGUI::List>("lst_ls_levelList");
     populateLevelList();
-    mList->setIndexSelected(worldNumToLevelNum(GlbVar.records.highestLevelIndex) - 1);
+    mList->setIndexSelected(worldNumToLevelNum(GlbVar.records.highestLevelIndex) - 1); //Select current highest level.
     mList->eventListMouseItemActivate = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
     mList->eventListSelectAccept = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
     updateLevelInfo();

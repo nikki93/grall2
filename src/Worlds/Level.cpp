@@ -42,7 +42,7 @@ void Level::tick(const Ogre::FrameEvent &evt)
 {
     GlbVar.bonusTime = GlbVar.bonusTime > 0 ? GlbVar.bonusTime - evt.timeSinceLastFrame : 0;
 
-    LOG("Bonus: " + Ogre::StringConverter::toString(GlbVar.bonusTime));
+    //LOG("Bonus: " + Ogre::StringConverter::toString(GlbVar.bonusTime));
     
     if (isKeyDown(OIS::KC_N))
         winLevel();

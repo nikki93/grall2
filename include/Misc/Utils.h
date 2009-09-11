@@ -106,6 +106,24 @@ inline void fixBrushMaterials(Ogre::Entity *ent)
     }
 }
 
+//Boom!
+inline void createExplosion(Ogre::Vector3 pos)
+{
+    GlbVar.goMgr->createObject("Light", pos, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("lightType", "point")
+            ("colour", "1 0.6 0")
+            ("specular", "0.1 0.1 0.1")
+            ("attenuation", "10 0.6 0.1 0.05")
+            ("time", "1.2")
+            ("fadeOutTime", "0.5")
+            );
+
+    GlbVar.goMgr->createObject("ParticleEffect", pos, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("template", "ParticleFX/Explosion")
+            ("time", "2")
+            );
+}
+
 //Allows 'postLoad', 'preClear' etc. events.
 struct ExtraEventListener
 {
