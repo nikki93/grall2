@@ -6,6 +6,8 @@
  *    Description:  Provides a 'Globals' class for easy global access of variables.
  *                  Also has some declarations for global functions.
  *
+ *                  NOTE: Dirty code. :-)
+ *
  *        Created:  04/26/2009 07:39:52 PM
  *       Compiler:  gcc
  *
@@ -35,6 +37,7 @@ class MusicManager;
 class VideoRecorder;
 class KeyMap;
 class OptionsDialog;
+class ObjectClicker;
 
 //The Globals class (actually a struct, but whatever).
 struct Globals : public Ogre::Singleton<Globals>
@@ -74,6 +77,7 @@ struct Globals : public Ogre::Singleton<Globals>
     VideoRecorder *videoRec;
     KeyMap *keyMap;
     OptionsDialog *optionsDialog;
+    ObjectClicker *objectClicker;
 
     //--- Global 'objects' -------------------------------------------------------------
 
@@ -125,19 +129,6 @@ struct Globals : public Ogre::Singleton<Globals>
             bool invertMouse;
 
             std::map<Ogre::String, OIS::KeyCode> keys;
-
-            /*
-            OIS::KeyCode forward;
-            OIS::KeyCode backward;
-            OIS::KeyCode left;
-            OIS::KeyCode right;
-
-            OIS::KeyCode dimensionSwitch;
-            OIS::KeyCode selfDestruct;
-
-            OIS::KeyCode peepLeft;
-            OIS::KeyCode peepRight;
-            */
         } controls;
 
         struct MiscSettings
@@ -225,6 +216,7 @@ enum
     MSG_GETSPEED,             //Get speed (for Director).
     MSG_LEVELSTART,           //Level started (for Controller).
     MSG_LEVELSTOP,            //Level stopped (for Controller).
+    MSG_CLICKED,              //Been clicked by ObjectClicker.
 };
 
 //Includes from the project used everywhere.
@@ -236,6 +228,7 @@ enum
 #include "Misc/VideoRecorder.h"
 #include "Misc/KeyMap.h"
 #include "Misc/OptionsDialog.h"
+#include "Misc/ObjectClicker.h"
 #include "Objects/Misc/AlarmGameObject.h"
 
 #endif

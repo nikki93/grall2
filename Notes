@@ -461,3 +461,11 @@ Fri Sep 11 21:21:20 AST 2009
 - Added Green Bombs (the Crate-sensitive bombs from the original GraLL). Good for fun Crate puzzles. :-)
 - Made few changes to Explosion effect.
 - Put 'Utils' in their own namespace to keep the global namespace clearer and avoid conflicts.
+
+Sat Sep 12 17:32:00 AST 2009
+----------------------------
+- Added ability to retrieve object handles in Python console using mousepicking.
+- Added Console 'history' (like that in bash).
+- Made Crate use cuboid with bevelled bottom to allow them to slide onto Switches.
+- Now Crates create an explosion too on GreenBomb encounters.
+- Added Python docstrings to both GraLL2 and NGF modules.

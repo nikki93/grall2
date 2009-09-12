@@ -69,6 +69,12 @@ class Fader
             mRate = 1 / time;
         }
 
+        //Abort the fading, and jump to given alpha.
+        void abortFade(Ogre::Real alpha)
+        {
+            mImage->setAlpha(alpha);
+        }
+
         //'time' is the time for each step (fading in, and fading out).
         //'pause' is the time between each step.
         void fadeInOut(Ogre::Real in, Ogre::Real pause, Ogre::Real out = -1)

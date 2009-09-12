@@ -23,7 +23,7 @@ material Bomb/TEXFACE/Bomb.png
 		}
 	}
 }
-material Material
+material Bomb/TEXFACE/GreenBomb.png
 {
 	receive_shadows on
 	technique
@@ -31,25 +31,11 @@ material Material
 		pass
 		{
 			ambient 0.500000 0.500000 0.500000 1.000000
-			diffuse 0.640000 0.640000 0.640000 1.000000
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			emissive 0.000000 0.000000 0.000000 1.000000
-		}
-	}
-}
-material Player/TEXFACE/Player.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.703560 0.703560 0.703560 1.000000
 			diffuse 0.800000 0.800000 0.800000 1.000000
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture Player.png
+				texture GreenBomb.png
 				colour_op modulate
 			}
 		}
@@ -57,7 +43,7 @@ material Player/TEXFACE/Player.png
 		{
 			ambient 0.0 0.0 0.0
 			diffuse 0.0 0.0 0.0
-			specular 0.441840 0.441840 0.441840 1.000000 12.500000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
 			scene_blend add
 		}
 	}
@@ -83,6 +69,70 @@ material Checkpoint/TEXFACE/Checkpoint.png
 			ambient 0.0 0.0 0.0
 			diffuse 0.0 0.0 0.0
 			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Material
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.640000 0.640000 0.640000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+}
+material Bomb/TEXFACE/MovingBomb.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture MovingBomb.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Player/TEXFACE/Player.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.703560 0.703560 0.703560 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Player.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.441840 0.441840 0.441840 1.000000 12.500000
 			scene_blend add
 		}
 	}

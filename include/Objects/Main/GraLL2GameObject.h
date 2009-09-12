@@ -55,6 +55,8 @@ class GraLL2GameObject :
 
         int mDimensions;
 
+        Ogre::Real mClickedTime; //Time after turning invisible for click feedback.
+
     public:
         GraLL2GameObject(bool dimensional = true);
         virtual ~GraLL2GameObject() = 0;

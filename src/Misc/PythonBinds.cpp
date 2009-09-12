@@ -116,46 +116,152 @@ Ogre::String py_getControl(Ogre::String key)
     return GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys[key]);
 }
 
+//PythonObject clicking.
+void py_clickObject()
+{
+    GlbVar.objectClicker->click();
+}
+NGF::Python::PythonObjectConnectorPtr py_getClickedObject()
+{
+    NGF::GameObject *gobj = GlbVar.objectClicker->getClickedObject();
+    NGF::Python::PythonGameObject *pobj = dynamic_cast<NGF::Python::PythonGameObject*>(gobj);
+
+    return pobj ? (pobj->getConnector()) : NGF::Python::PythonObjectConnectorPtr();
+}
+
+
 //--- The module ----------------------------------------------------------------
 
 BOOST_PYTHON_MODULE(GraLL2)
 {
+    //Docstring settings.
+    py::docstring_options doc_options(true, true, false);
+
     //Show message box.
-    py::def("showMessage", py_showMessage);
+    py::def("showMessage", py_showMessage,
+            "showMessage(message, time)\n"
+            "Shows a message. If time > 0, the message fades after the time (in seconds) elapses."
+            );
 
     //Switch World.
-    py::def("nextWorld", py_nextWorld);
-    py::def("previousWorld", py_previousWorld);
-    py::def("gotoWorld", py_gotoWorld);
+    py::def("nextWorld", py_nextWorld,
+            "nextWorld()\n"
+            "Go to the next NGF World."
+            );
+    py::def("previousWorld", py_previousWorld,
+            "previousWorld()\n"
+            "Go to the previous NGF World."
+            );
+    py::def("gotoWorld", py_gotoWorld,
+            "gotoWorld(n)\n"
+            "Go to the NGF World with the given index (0 = first)."
+            );
 
     //Dimension stuff (if you want to switch dimensions, best you do it
     //through the Player object).
-    py::def("switchDimension", py_switchDimension);
-    py::def("setDimension", py_setDimension);
+    py::def("switchDimension", py_switchDimension,
+            "switchDimension()\n"
+            "Makes GraLL switch dimensions."
+            );
+    py::def("setDimension", py_setDimension,
+            "setDimension(n)\n"
+            "Sets the global dimension to the given one (1 or 2)."
+            );
 
     //Fades.
-    py::def("fadeInColour", py_fadeInScreen);
-    py::def("fadeOutColour", py_fadeOutScreen);
-    py::def("fadeInOutColour", py_fadeInOutScreen);
+    py::def("fadeInColour", py_fadeInScreen,
+            "fadeInColour(time)\n"
+            "Fades in the the fade colour in given time."
+            );
+    py::def("fadeOutColour", py_fadeOutScreen,
+            "fadeOutColour(time)\n"
+            "Fades out the the fade colour in given time."
+            );
+    py::def("fadeInOutColour", py_fadeInOutScreen,
+            "fadeInOutColour(in,pause,out)\n"
+            "Fades in and out the colour in respective times, with a pause in between."
+            );
 
     //Level stuff.
-    py::def("saveExists", py_saveExists);
-    py::def("removeSave", py_removeSave);
-    py::def("getCurrentLevelNum", py_getCurrentLevelNum);
+    py::def("saveExists", py_saveExists,
+            "saveExists(n)\n"
+            "Whether save for level n exists."
+            );
+    py::def("removeSave", py_removeSave,
+            "removeSave(n)\n"
+            "Remove level n's save."
+            );
+    py::def("getCurrentLevelNum", py_getCurrentLevelNum,
+            "getCurrentLevelNum()\n"
+            "Returns the number of the currently running level."
+            );
 
     //Music stuff.
-    py::def("playMusic", py_playMusic);
-    py::def("crossFadeMusic", py_crossFadeMusic);
-    py::def("setMusicGain", py_setMusicGain);
-    py::def("getMusicGain", py_getMusicGain);
+    py::def("playMusic", py_playMusic,
+            "playMusic(track)\n"
+            "Plays music track given."
+            );
+    py::def("crossFadeMusic", py_crossFadeMusic,
+            "crossFadeMusic(track,time)\n"
+            "Crossfades from playing track to given track in given time."
+            );
+    py::def("setMusicGain", py_setMusicGain,
+            "setMusicGain(n)\n"
+            "Sets gain (volume) of currently playing track."
+            );
+    py::def("getMusicGain", py_getMusicGain,
+            "getMusicGain()\n"
+            "Gets gain (volume) of currently playing track."
+            );
 
     //Video recording stuff.
-    py::def("startRecordingVideo", py_startRecordingVideo);
-    py::def("stopRecordingVideo", py_stopRecordingVideo);
+    py::def("startRecordingVideo", py_startRecordingVideo,
+            "startRecordingVideo(p)\n"
+            "Starts recording video with the given time period between each frame."
+            );
+    py::def("stopRecordingVideo", py_stopRecordingVideo,
+            "stopRecordingVideo()\n"
+            "Stops recording the video."
+            );
 
     //Control setting.
-    py::def("setControl", py_setControl);
-    py::def("getControl", py_getControl);
+    py::def("setControl", py_setControl,
+            "setControl(control,key)\n"
+            "Sets the given control to the given key, where 'control' is one of:\n"
+            "   'forward'\n"
+            "   'backward'\n"
+            "   'left'\n"
+            "   'right'\n"
+            "   'dimensionSwitch'\n"
+            "   'selfDestruct'\n"
+            "   'peepLeft'\n"
+            "   'peepRight'\n"
+            "Possible 'key' values are the strings displayed in the 'Options' dialog in the 'Controls' tab for the keyboard controls."
+            );
+    py::def("getControl", py_getControl,
+            "getControl(control)\n"
+            "Gets the key for the given control, where 'control' is one of:\n"
+            "   'forward'\n"
+            "   'backward'\n"
+            "   'left'\n"
+            "   'right'\n"
+            "   'dimensionSwitch'\n"
+            "   'selfDestruct'\n"
+            "   'peepLeft'\n"
+            "   'peepRight'"
+            );
+
+    //PythonObject clicking.
+    py::def("clickObject", py_clickObject,
+            "clickObject()\n"
+            "Goes into 'click' mode. The clicked object can be retieved using 'getClickedObject()'. It is also saved in the global"
+            "'clicked' variable. Use carefully! If the clicked object was destroyed this will cause the game to crash!"
+            );
+    py::def("getClickedObject", py_getClickedObject,
+            "getClickedObject()\n"
+            "Retrieve the clicked object. The object is also saved in the global 'clicked' variable. Use carefully! If the clicked"
+            "object was destroyed, this will cause the game to crash!"
+            );
 }
 
 //--- The function that gets called from Game::init() ---------------------------

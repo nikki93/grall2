@@ -14,9 +14,11 @@ Crate.cpp
 //--- NGF events ----------------------------------------------------------------
 Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mMoving(false)
+      mMoving(false),
+      mExploded(false)
 {
     addFlag("Crate");
+    addFlag("Switcher");
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
@@ -32,8 +34,13 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
-    //Create the Physics stuff.
-    mShape = new btBoxShape(btVector3(0.475,0.75,0.475));
+    //Create the Physics stuff. The mesh is a normal box, except in the bottom it's bevelled.
+    Ogre::Entity *colMesh = GlbVar.ogreSmgr->createEntity(mOgreName + "_collision", "Collision_Crate.mesh");
+    BtOgre::StaticMeshToShapeConverter converter(colMesh);
+    mShape = converter.createConvex();
+    GlbVar.ogreSmgr->destroyEntity(colMesh);
+
+    mShape->setMargin(0);
     btScalar mass = 100;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
@@ -46,7 +53,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     initBody();
 
     //To allow Gravity, but still constraint on XZ plane, we use slider.
-    mCastShape = new btBoxShape(btVector3(0.475,0.70,0.475));
+    mCastShape = new btBoxShape(btVector3(0.475,0.65,0.475));
 
     btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,5,0))));
     mFixedBody = new btRigidBody(0, fixedState, mCastShape);
@@ -70,6 +77,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
         Ogre::Real scale = mHeight / 1.5;
         mNode->setScale(Ogre::Vector3(1,scale,1));
         mShape->setLocalScaling(btVector3(1,scale,1));
+        mCastShape->setLocalScaling(btVector3(1,scale,1));
     }
 
     //Crate materials, again for variety.
@@ -151,6 +159,13 @@ void Crate::pausedTick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 NGF::MessageReply Crate::receiveMessage(NGF::Message msg)
 {
+    switch (msg.code)
+    {
+        case MSG_EXPLODE:
+            explode();
+            NGF_NO_REPLY();
+    }
+    
     return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------
@@ -248,15 +263,26 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
         mBody->activate();
         mMoving = true;
 
-        //Calculate new target by adding direction. Use fixed body's X and Z values to add to to maintain grid-stability.
+        //Calculate new target by adding direction.
         btTransform fixedTrans;
         mFixedBody->getMotionState()->getWorldTransform(fixedTrans);
         btVector3 fixedPos = fixedTrans.getOrigin();
         btVector3 myPos = myTrans.getOrigin();
-        //mTarget = Ogre::Vector3(fixedPos.x(), fixedPos.y(), fixedPos.z()) + newDir;
         mTarget = BtOgre::Convert::toOgre(fixedPos) + newDir;
-        //GlbVar.console->print("Current fixed position: " + Ogre::StringConverter::toString(BtOgre::Convert::toOgre(fixedPos)) + ", New target: " + Ogre::StringConverter::toString(mTarget) + "\n");
     }
+}
+//-------------------------------------------------------------------------------
+void Crate::explode()
+{
+    if (mExploded)
+        return;
+
+    //FX!
+    Util::createExplosion(mNode->getPosition());
+
+    //Us no more. :-(
+    GlbVar.goMgr->requestDestroy(getID());
+    mExploded = true;
 }
 //-------------------------------------------------------------------------------
 

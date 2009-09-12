@@ -92,10 +92,11 @@ void Bomb::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btM
     if (!other)
         return;
 
+    //Oh no, it's a Crate! D:
     if (mGreen && other->hasFlag("Crate"))
     {
         explode();
-    GlbVar.goMgr->requestDestroy(other->getID());
+        GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_EXPLODE));
     }
 
     //Python collide event.

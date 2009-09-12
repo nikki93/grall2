@@ -13,6 +13,20 @@
  * =====================================================================================
  */
 
+/* 
+ * Game shortcut keys
+ *
+ *    F1, F2   - Next world, previous world.
+ *    F3, F4   - Toggle console visibility, run code
+ *    F5, F6   - Start recording video, stop recording video (frames in usr/Video)
+ *    F7, F8   - Dump game state, load game state
+ *    F9       - Screenshot 
+ *    F10      - Show physics collision shapes
+ *    F12      - Exit
+ *    Ctrl+X   - Pick object (stored as 'clicked' in Python)
+ *
+ */
+
 #include "Globals.h"
 
 #include "Objects/Main/Controller.h"
@@ -76,6 +90,7 @@ class GameListener :
             GlbVar.musicMgr->tick(evt);
             GlbVar.videoRec->tick(evt);
             GlbVar.optionsDialog->tick();
+            GlbVar.objectClicker->tick();
 
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
@@ -99,7 +114,6 @@ class GameListener :
                 GlbVar.goMgr->forEachGameObject(GameListener::sendKeyPressMessage);
 
             //Some debug keys. TODO: Remove these in final version.
-            //|F1, F2: Level switch | F3, F4: Console | F5, F6: Video | F7, F8: Test save/load | F9: Screenshot |
             switch (mCurrKey)
             {
                 case OIS::KC_F1:
@@ -129,11 +143,14 @@ class GameListener :
                     GlbVar.ogreWindow->writeContentsToFile("Screenshot.png");
                     break;
 
-                    /*
                 case OIS::KC_O:
-                    GlbVar.optionsDialog->setVisible(true);
+                    GlbVar.optionsDialog->setVisible(!(GlbVar.console->isVisible()));
                     break;
-                    */
+
+                case OIS::KC_X:
+                    if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+                        GlbVar.objectClicker->click();
+                    break;
             }
 
             return true;
@@ -385,6 +402,7 @@ class Game
             GlbVar.musicMgr = new MusicManager();
             GlbVar.videoRec = new VideoRecorder();
             GlbVar.optionsDialog = new OptionsDialog();
+            GlbVar.objectClicker = new ObjectClicker();
 
             //The persistent Controller GameObject.
             GlbVar.controller = GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
@@ -452,6 +470,7 @@ class Game
             saveSettings();
 
             //Helpers.
+            delete GlbVar.objectClicker;
             delete GlbVar.optionsDialog;
             delete GlbVar.videoRec;
             delete GlbVar.musicMgr;

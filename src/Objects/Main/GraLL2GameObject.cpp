@@ -11,7 +11,8 @@ GraLL2GameObject.cpp
 //--- NGF events ----------------------------------------------------------------
 GraLL2GameObject::GraLL2GameObject(bool dimensional) 
     : NGF::GameObject(Ogre::Vector3(), Ogre::Quaternion(), NGF::ID(), NGF::PropertyList(), Ogre::String()),
-      mOgreName("id" + Ogre::StringConverter::toString(getID()))
+      mOgreName("id" + Ogre::StringConverter::toString(getID())),
+      mClickedTime(-1)
 {
     //Load the Python script. Events are called by children though.
     NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
@@ -41,8 +42,16 @@ GraLL2GameObject::~GraLL2GameObject()
 //-------------------------------------------------------------------------------
 void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
 {
-    //We can't be seen in dimensions we're not in.
-    mNode->setVisible(mDimensions & GlbVar.dimMgr->getCurrentDimension(), true);
+    //Click feedback countdown.
+    if (mClickedTime > 0)
+    {
+        mClickedTime -= evt.timeSinceLastFrame;
+    }
+    else
+    {
+        //We can't be seen in dimensions we're not in.
+        mNode->setVisible(mDimensions & GlbVar.dimMgr->getCurrentDimension(), true);
+    }
 
     //Tasks.
     updateAlarms(evt.timeSinceLastFrame);
@@ -50,6 +59,12 @@ void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 NGF::MessageReply GraLL2GameObject::receiveMessage(NGF::Message msg)
 {
+    switch (msg.code)
+    {
+        case MSG_CLICKED:
+            mNode->setVisible(false);
+            mClickedTime = 0.3;
+    }
     NGF_NO_REPLY();
 }
 //-------------------------------------------------------------------------------
@@ -94,7 +109,9 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
         Ogre::Vector3 vec = py::extract<Ogre::Vector3>(args[0]);
 
         btTransform oldTrans = mBody->getWorldTransform();
-        mBody->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(vec)));
+        oldTrans.setOrigin(BtOgre::Convert::toBullet(vec));
+        mBody->setWorldTransform(oldTrans);
+        mBody->getMotionState()->setWorldTransform(oldTrans);
 
         NGF_PY_RETURN();
     }
@@ -115,7 +132,9 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
         Ogre::Quaternion rot = py::extract<Ogre::Quaternion>(args[0]);
 
         btTransform oldTrans = mBody->getWorldTransform();
-        mBody->setWorldTransform(btTransform(BtOgre::Convert::toBullet(rot), oldTrans.getOrigin()));
+        oldTrans.setRotation(BtOgre::Convert::toBullet(rot));
+        mBody->setWorldTransform(oldTrans);
+        mBody->getMotionState()->setWorldTransform(oldTrans);
 
         NGF_PY_RETURN();
     }

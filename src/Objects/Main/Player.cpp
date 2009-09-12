@@ -469,7 +469,7 @@ void Player::switchDimension()
     } res(mDimensions ^ DimensionManager::DIM_SWITCH);
 
     btVector3 pos1 = mBody->getWorldTransform().getOrigin();
-    btVector3 pos2 = pos1 + btVector3(0,100,0); //100 is big enough I guess. :P
+    btVector3 pos2 = pos1 + btVector3(0,100,0); //100 is big enough I guess. :P (cast upward)
     GlbVar.phyWorld->rayTest(pos1, pos2, res);
 
     for (std::map<btCollisionObject*, bool>::iterator iter = res.mHitMap.begin(); iter != res.mHitMap.end(); ++iter)

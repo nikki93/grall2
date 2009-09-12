@@ -25,7 +25,7 @@ class Crate :
     protected:
         Ogre::Entity *mEntity;
 
-        btBoxShape *mShape;
+        btConvexHullShape *mShape;
         btBoxShape *mCastShape;
 
         btRigidBody *mFixedBody;
@@ -34,6 +34,8 @@ class Crate :
         bool mMoving;
         Ogre::Real mHeight;
         Ogre::Vector3 mTarget;
+
+        bool mExploded;
 
     public:
         Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -48,6 +50,7 @@ class Crate :
 
         //--- Non-NGF ------------------------------------------------------------------
         void makeMove(const Ogre::Vector3 &dir);
+        void explode();
 
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Crate)

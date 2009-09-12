@@ -68,7 +68,7 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
-			heightDeficiency 0
+			heightDeficiency 0.2
 		}
 	}
 	object
@@ -96,7 +96,7 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
-			heightDeficiency 0
+			heightDeficiency 0.5
 		}
 	}
 	object
@@ -770,11 +770,14 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
-			switchType once
+			switchType press
 			script : import Ngf
 			       : 
 			       : def on(self):
 			       : 	Ngf.getObject("mover1").p_enabled = True
+			       : 	
+			       : def off(self):
+			       : 	Ngf.getObject("mover1").p_enabled = False
 		}
 	}
 	object
@@ -992,7 +995,7 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
-			heightDeficiency 0
+			heightDeficiency 0.3
 		}
 	}
 	object

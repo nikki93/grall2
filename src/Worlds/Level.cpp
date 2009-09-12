@@ -47,7 +47,11 @@ void Level::tick(const Ogre::FrameEvent &evt)
     if (Util::isKeyDown(OIS::KC_N))
         winLevel();
     if (Util::isKeyDown(OIS::KC_ESCAPE))
+    {
+        //In case some fades have been started, we stop 'em.
+        GlbVar.fader->abortFade(0);
         Util::gotoWorld(0);
+    }
 }
 //-------------------------------------------------------------------------------
 void Level::stop()
