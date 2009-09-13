@@ -2,6 +2,160 @@ ngflevel Level1
 {
 	object
 	{
+		type Pickup
+		name noname
+		position -0.500000 10.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyB
+			meshFile Template_Key.mesh
+			material Objects/KeyB
+			spin 0.2
+			bob 0.2
+			dimension1 yes
+			dimension2 yes
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -12.500000 6.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyB
+			meshFile Template_Key.mesh
+			material Objects/KeyB
+			spin 0.2
+			bob 0.2
+			dimension1 yes
+			dimension2 yes
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -15.500000 6.500000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyR
+			meshFile Template_Key.mesh
+			material Objects/KeyR
+			spin 0.2
+			bob 0.2
+			dimension1 yes
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -18.500000 6.500000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyB
+			meshFile Template_Key.mesh
+			material Objects/KeyB
+			spin 0.2
+			bob 0.2
+			dimension1 yes
+			dimension2 yes
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -15.500000 6.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyG
+			meshFile Template_Key.mesh
+			material Objects/KeyG
+			spin 0.2
+			bob 0.2
+			dimension1 yes
+			dimension2 yes
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -18.500000 6.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyG
+			meshFile Template_Key.mesh
+			material Objects/KeyG
+			spin 0.2
+			bob 0.2
+			dimension1 yes
+			dimension2 yes
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -12.500000 6.500000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyR
+			meshFile Template_Key.mesh
+			material Objects/KeyR
+			spin 0.2
+			bob 0.2
+			dimension1 yes
+			dimension1 yes
+			dimension2 no
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -0.500000 8.238362 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.08 0.02
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
 		type Bomb
 		name noname
 		position -12.500000 6.500000 -11.500000
@@ -9,9 +163,10 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
 			green yes
+			dimension2 yes
+			dimension1 no
+			dimension2 yes
 		}
 	}
 	object
@@ -23,9 +178,10 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
 			green yes
+			dimension1 yes
+			dimension1 yes
+			dimension2 no
 		}
 	}
 	object
@@ -37,9 +193,11 @@ ngflevel Level1
 
 		properties
 		{
+			green yes
 			dimension1 yes
 			dimension2 yes
-			green yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -52,9 +210,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b0.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -66,9 +226,11 @@ ngflevel Level1
 
 		properties
 		{
+			heightDeficiency 0.2
 			dimension1 yes
 			dimension2 yes
-			heightDeficiency 0.2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -80,9 +242,10 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
 			heightDeficiency 0
+			dimension2 yes
+			dimension1 no
+			dimension2 yes
 		}
 	}
 	object
@@ -94,9 +257,11 @@ ngflevel Level1
 
 		properties
 		{
+			heightDeficiency 0.5
 			dimension1 yes
 			dimension2 yes
-			heightDeficiency 0.5
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -109,9 +274,10 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b1.mesh
+			convex no
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
-			convex no
 		}
 	}
 	object
@@ -124,6 +290,8 @@ ngflevel Level1
 		properties
 		{
 			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -136,6 +304,8 @@ ngflevel Level1
 		properties
 		{
 			speed -1
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -148,6 +318,8 @@ ngflevel Level1
 		properties
 		{
 			speed -1
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -160,9 +332,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b2.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -174,6 +348,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
 		}
@@ -189,6 +364,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -200,6 +377,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -215,6 +394,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -226,6 +407,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -241,6 +424,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -252,6 +437,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -267,6 +454,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -278,6 +467,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -293,6 +484,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -304,6 +497,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -319,6 +514,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -331,9 +528,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b3.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -346,6 +545,8 @@ ngflevel Level1
 		properties
 		{
 			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -358,6 +559,8 @@ ngflevel Level1
 		properties
 		{
 			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -370,6 +573,8 @@ ngflevel Level1
 		properties
 		{
 			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -382,6 +587,8 @@ ngflevel Level1
 		properties
 		{
 			speed -1
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -394,6 +601,8 @@ ngflevel Level1
 		properties
 		{
 			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -405,9 +614,11 @@ ngflevel Level1
 
 		properties
 		{
+			speed 2
 			dimension1 yes
 			dimension2 yes
-			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -419,9 +630,11 @@ ngflevel Level1
 
 		properties
 		{
+			speed 2
 			dimension1 yes
 			dimension2 yes
-			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -433,6 +646,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -448,6 +663,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -459,6 +676,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -474,6 +693,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -485,6 +706,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -500,6 +723,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -511,6 +736,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -526,6 +753,8 @@ ngflevel Level1
 		{
 			dimension1 yes
 			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -537,6 +766,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
 			dimension1 yes
 			dimension2 no
 		}
@@ -551,6 +781,7 @@ ngflevel Level1
 		properties
 		{
 			dimension1 yes
+			dimension1 yes
 			dimension2 no
 		}
 	}
@@ -563,6 +794,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
 			dimension1 yes
 			dimension2 no
 		}
@@ -577,6 +809,7 @@ ngflevel Level1
 		properties
 		{
 			dimension1 yes
+			dimension1 yes
 			dimension2 no
 		}
 	}
@@ -589,6 +822,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
 			dimension1 yes
 			dimension2 no
 		}
@@ -603,6 +837,7 @@ ngflevel Level1
 		properties
 		{
 			dimension1 yes
+			dimension1 yes
 			dimension2 no
 		}
 	}
@@ -615,6 +850,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
 		}
@@ -628,6 +864,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
 		}
@@ -641,6 +878,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
 		}
@@ -654,6 +892,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
 		}
@@ -667,6 +906,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
 		}
@@ -681,9 +921,10 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b4.mesh
+			convex yes
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
-			convex yes
 		}
 	}
 	object
@@ -696,9 +937,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b5.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -711,9 +954,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b6.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -726,9 +971,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b7.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -741,9 +988,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b8.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -755,6 +1004,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
 			dimension1 yes
 			dimension2 no
 		}
@@ -768,8 +1018,6 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
 			switchType press
 			script : import Ngf
 			       : 
@@ -778,6 +1026,10 @@ ngflevel Level1
 			       : 	
 			       : def off(self):
 			       : 	Ngf.getObject("mover1").p_enabled = False
+			dimension1 yes
+			dimension2 yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -797,6 +1049,8 @@ ngflevel Level1
 			       : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
 			       : 		self.p_enabled = True
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -808,6 +1062,7 @@ ngflevel Level1
 
 		properties
 		{
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
 		}
@@ -821,9 +1076,11 @@ ngflevel Level1
 
 		properties
 		{
+			speed 2
 			dimension1 yes
 			dimension2 yes
-			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -836,6 +1093,8 @@ ngflevel Level1
 		properties
 		{
 			speed 2
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -847,6 +1106,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			dimension1 yes
 			dimension2 yes
 		}
@@ -861,9 +1122,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b10.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -897,6 +1160,8 @@ ngflevel Level1
 			       : def alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.p_forward = False
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -911,6 +1176,8 @@ ngflevel Level1
 			enabled no
 			brushMeshFile Level1_b12.mesh
 			speed 0.5
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -923,6 +1190,8 @@ ngflevel Level1
 		properties
 		{
 			speed -1
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -937,6 +1206,8 @@ ngflevel Level1
 			enabled yes
 			brushMeshFile Level1_b13.mesh
 			speed 0.5
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -949,9 +1220,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b14.mesh
+			convex yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -964,9 +1237,10 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b15.mesh
+			convex no
+			dimension1 yes
 			dimension1 yes
 			dimension2 no
-			convex no
 		}
 	}
 	object
@@ -979,9 +1253,10 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b16.mesh
+			convex no
+			dimension2 yes
 			dimension1 no
 			dimension2 yes
-			convex no
 		}
 	}
 	object
@@ -993,9 +1268,10 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
 			heightDeficiency 0.3
+			dimension1 yes
+			dimension1 yes
+			dimension2 no
 		}
 	}
 	object
@@ -1008,9 +1284,11 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b17.mesh
+			convex no
 			dimension1 yes
 			dimension2 yes
-			convex no
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -1025,6 +1303,8 @@ ngflevel Level1
 			lightType point
 			colour 0.4 0.7 0.9
 			attenuation 70 1 0.08 0.02
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -1037,9 +1317,10 @@ ngflevel Level1
 		properties
 		{
 			brushMeshFile Level1_b18.mesh
+			convex yes
+			dimension1 yes
 			dimension1 yes
 			dimension2 yes
-			convex yes
 		}
 	}
 	object
@@ -1057,13 +1338,37 @@ ngflevel Level1
 			ignoreCollisions no
 			brushMeshFile Level1_b19.mesh
 			repeat yes
-			condition True
-			autoClose no
-			script : import Ngf
+			condition other.hasDecPickup("KeyR")
+			autoClose yes
+			script : #Door Prefab Script
+			       : #------------------
+			       : 
+			       : #This is a generic door. It is not bound to any particular opening
+			       : #condition, it could open based on anything (does he have a key?
+			       : #is he moving fast? has some time elapsed? is some switch somewhere
+			       : #on? etc.).
+			       : 
+			       : #The non-SlidingBrush properties are as follows:-
+			       : #
+			       : # repeat    - Whether the door can be opened multiple times
+			       : #
+			       : # condition - The Python code condition which is checked. It
+			       : #             must evaluate to a True/False value.
+			       : #
+			       : # autoClose - Whether the door closes automatically after a
+			       : #             a delay after opening.
+			       : 
+			       : #The 'condition' code is run in collide-function scope. An example
+			       : #condition is, "other.hasFlag("Player")".
+			       : 
+			       : import Ngf
 			       : 
 			       : def create(self):
 			       : 	#Not opened yet!
 			       : 	self.m_opened = False
+			       : 	
+			       : 	#We're not moving yet!
+			       : 	self.m_moving = False
 			       : 	
 			       : 	#Save some properties.
 			       : 	self.m_repeat = (self.getProperty("repeat", 0, "yes") == "yes")
@@ -1071,16 +1376,21 @@ ngflevel Level1
 			       : 	self.m_condition = self.getProperty("condition", 0, "True")
 			       : 	
 			       : def collide(self, other):
+			       : 	#If we're already moving, then nothing to check.
 			       : 	#If we're repeating, then do it. If we're not repeating, this
 			       : 	#must be first time. Also, the other object must be a 'Doorer'.
 			       : 	#Lastly, we check for the 'condition' (evaluate Python string)
 			       : 	#and if it's fine, then continue.
-			       : 	if ((self.m_repeat or (not self.m_opened)) and other.hasFlag("Doorer")):
+			       : 	if ((not self.m_moving) and (self.m_repeat or (not self.m_opened)) and other.hasFlag("Doorer")):
 			       : 		if (eval(self.m_condition)):
 			       : 			self.p_forward = True
 			       : 			self.m_opened = True
+			       : 			self.m_moving = True
 			       : 
 			       : def point(self, n):
+			       : 	#We've hit the start point, so we've stopped moving.
+			       : 	if (n == 0):
+			       : 		self.m_moving = False
 			       : 	#If we're auto-closing, we close after a small delay after
 			       : 	#reaching end point.
 			       : 	if (self.m_autoClose and (n == 1)):
@@ -1090,6 +1400,8 @@ ngflevel Level1
 			       : 	#Delay is over, close.
 			       : 	if (n == 0):
 			       : 		self.p_forward = False
+			dimension1 yes
+			dimension2 yes
 		}
 	}
 	object
@@ -1101,9 +1413,30 @@ ngflevel Level1
 
 		properties
 		{
+			green yes
 			dimension1 yes
 			dimension2 yes
-			green yes
+			dimension1 yes
+			dimension2 yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -11.500000 6.500000 -12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			pickupType KeyR
+			meshFile Template_Key.mesh
+			material Objects/KeyR
+			spin 0.2
+			bob 0.2
+			dimension2 yes
+			dimension1 no
+			dimension2 yes
 		}
 	}
 }

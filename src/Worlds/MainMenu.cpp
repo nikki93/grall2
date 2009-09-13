@@ -26,6 +26,9 @@ void MainMenu::init()
     int winHeight = GlbVar.ogreWindow->getHeight();
     int winWidth = GlbVar.ogreWindow->getWidth();
 
+    //Gotta see where we click. :-)
+    GlbVar.gui->showPointer();
+
     //Background, logo.
     mBackground = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Back");
     mBackground->setImageTexture("MainMenuBgr.png");

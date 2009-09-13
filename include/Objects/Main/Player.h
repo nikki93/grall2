@@ -30,7 +30,7 @@ class Player :
         btSphereShape *mShape;
         NGF::GameObject *mCameraHandler;
 
-        bool mUnderControl; //Are we under control?
+        bool mUnderControl; //It's all under control...
         bool mDead;
 
         Ogre::Real mMinHeight;
@@ -39,6 +39,10 @@ class Player :
 
         btSphereShape *mGhostShape;
         btPairCachingGhostObject *mGhostObject;
+
+        //Our inventory. :-)
+        typedef std::map<Ogre::String, unsigned int> PickupMap;
+        PickupMap mPickups;
 
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -58,7 +62,7 @@ class Player :
         void die(bool explode);
 
         inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && Util::isKeyDown(kc)); }
-        inline OIS::MouseState getMouseState() { if (mUnderControl) return Util::getMouseState(); else return OIS::MouseState(); }
+        inline OIS::MouseState getMouseState() { return mUnderControl ? Util::getMouseState() : OIS::MouseState(); }
 
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Player)
@@ -67,6 +71,11 @@ class Player :
             NGF_PY_METHOD_DECL(loseCameraHandler)
             NGF_PY_METHOD_DECL(captureCameraHandler)
             NGF_PY_METHOD_DECL(switchDimension)
+            NGF_PY_METHOD_DECL(numPickup)
+            NGF_PY_METHOD_DECL(hasPickup)
+            NGF_PY_METHOD_DECL(incPickup)
+            NGF_PY_METHOD_DECL(decPickup)
+            NGF_PY_METHOD_DECL(hasDecPickup)
 
             NGF_PY_PROPERTY_DECL(underControl)
         }
@@ -99,7 +108,7 @@ class Player :
 
 #ifdef __PLAYER_CPP__
 
-/* C++ code produced by gperf version 3.0.3 *//*{{{*/
+/* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */
 /* Computed positions: -k'1' */
 
@@ -139,7 +148,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 12, duplicates = 0 */
+/* maximum key range = 18, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Player)
 {
@@ -164,8 +173,8 @@ NGF_PY_CLASS_GPERF(Player)::MakeHash (register const char *str, register unsigne
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27,  0,
-      27, 27, 27,  5, 27, 27, 27, 27,  0, 27,
-      27, 27, 27, 27, 27,  0, 27, 27, 27, 27,
+      15, 27, 27,  5,  0, 10, 27, 27,  0, 27,
+       5, 27, 27, 27, 27,  0, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
@@ -189,20 +198,25 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 6,
-      MIN_WORD_LENGTH = 15,
+      TOTAL_KEYWORDS = 11,
+      MIN_WORD_LENGTH = 9,
       MAX_WORD_LENGTH = 21,
-      MIN_HASH_VALUE = 15,
+      MIN_HASH_VALUE = 9,
       MAX_HASH_VALUE = 26
     };
 
   static const struct PythonMethod wordlist[] =
     {
+      {"hasPickup", NGF_PY_METHOD_GPERF(Player, hasPickup)},
+      {"hasDecPickup", NGF_PY_METHOD_GPERF(Player, hasDecPickup)},
+      {"numPickup", NGF_PY_METHOD_GPERF(Player, numPickup)},
       {"switchDimension", NGF_PY_METHOD_GPERF(Player, switchDimension)},
       {"set_underControl", NGF_PY_SET_GPERF(Player, underControl)},
       {"loseCameraHandler", NGF_PY_METHOD_GPERF(Player, loseCameraHandler)},
+      {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)},
       {"captureCameraHandler", NGF_PY_METHOD_GPERF(Player, captureCameraHandler)},
       {"get_underControl", NGF_PY_GET_GPERF(Player, underControl)},
+      {"decPickup", NGF_PY_METHOD_GPERF(Player, decPickup)},
       {"getControlOrientation", NGF_PY_METHOD_GPERF(Player, getControlOrientation)}
     };
 
@@ -214,25 +228,40 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 15)
+          switch (key - 9)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 1:
+              case 3:
                 resword = &wordlist[1];
                 goto compare;
-              case 2:
+              case 5:
                 resword = &wordlist[2];
                 goto compare;
-              case 5:
+              case 6:
                 resword = &wordlist[3];
                 goto compare;
-              case 6:
+              case 7:
                 resword = &wordlist[4];
                 goto compare;
-              case 11:
+              case 8:
                 resword = &wordlist[5];
+                goto compare;
+              case 10:
+                resword = &wordlist[6];
+                goto compare;
+              case 11:
+                resword = &wordlist[7];
+                goto compare;
+              case 12:
+                resword = &wordlist[8];
+                goto compare;
+              case 15:
+                resword = &wordlist[9];
+                goto compare;
+              case 17:
+                resword = &wordlist[10];
                 goto compare;
             }
           return 0;

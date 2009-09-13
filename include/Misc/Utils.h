@@ -40,11 +40,11 @@ inline Globals::Records::Record &getRecordFromLevelNum(unsigned int levelNum)
 //Serialse/deserialise.
 inline void serialise(Ogre::String name)
 {
-    NGF::Serialisation::Serialiser::save(USER_PREFIX + "Saves/" + name + ".sav");
+    NGF::Serialisation::Serialiser::save(USER_PREFIX "Saves/" + name + ".sav");
 }
 inline void deserialise(Ogre::String name)
 {
-    NGF::Serialisation::Serialiser::load(USER_PREFIX + "Saves/" + name + ".sav");
+    NGF::Serialisation::Serialiser::load(USER_PREFIX "Saves/" + name + ".sav");
 }
 inline Ogre::String saveName(unsigned int worldNum)
 {

@@ -4,8 +4,8 @@
  *       Filename:  ObjectClicker.h
  *
  *    Description:  Couldn't find a better name. :/ Used by the PythonObject
- *                  select-by-click thing. When you call 'click()', after a mouse click,
- *                  the GameObject clicked on can be retreived using 'getClicked()'.
+ *                  select-by-click thing. Call 'click()', click on an object, and
+ *                  retrieve a pointer to it using 'getClickedObject()'.
  *
  *        Created:  09/12/2009 02:32:50 PM
  *       Compiler:  gcc
@@ -71,7 +71,7 @@ class ObjectClicker
                         bool needsCollision(btBroadphaseProxy* proxy0) const
                         {
                             return proxy0->m_collisionFilterGroup & GlbVar.dimMgr->getCurrentDimension() //Viewed dimension only.
-                                && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE); //If no contact response, ignore.
+                                && (!(proxy0->m_collisionFilterGroup & DimensionManager::INVISIBLE)); //This is a visibility-based cast.
                         }
                     };
 

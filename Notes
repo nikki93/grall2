@@ -6,6 +6,13 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Add 'Pickup' GameObject. It should have an 'mPickupType' string, which can be set through
+  properties. The mesh should be set through properties too (not like a Brush though). The
+  Player has a map of counters of each pickup type. The number of pickups of each type
+  etc. can be checked in Python. Thus, this allows for a generic 'pickup' system (keys,
+  special powers, whatever).
+
+- Expose Bomb, MovingBomb and Crate 'explode' to Python.
 
 Side
 ----
@@ -469,3 +476,16 @@ Sat Sep 12 17:32:00 AST 2009
 - Made Crate use cuboid with bevelled bottom to allow them to slide onto Switches.
 - Now Crates create an explosion too on GreenBomb encounters.
 - Added Python docstrings to both GraLL2 and NGF modules.
+
+Sun Sep 13 14:15:02 AST 2009
+----------------------------
+- Added 'data prefix'. Made both 'user prefix' and 'data prefix' use compile-time concatenation.
+- Made visibility checks rely on 'INVISIBLE' flag, instead of assuming that 'NO_CONTACT_RESPONSE' is invisible.
+- Added generic 'Pickup' objects. A Pickup has a string 'type', and the Player has a count of the Pickups he has of each
+  type. The numbers of Pickups of each type can be examined and modified in Python, opening up great possibilities for
+  scripting.
+- Bug in Door prefab fixed to allow condition testing only on open, and not during move (otherwise poor Player loses all
+  his hard-earned keys :-( ).
+- Made GraLL 2 specific version of NGF Blender exporter which saves dimension information based on Blender 'layers'.
+  Makes doing dimension stuff much easier and more convenient in levels.
+- An attempt to call inexistent PythonGameObject methods now show an error message.

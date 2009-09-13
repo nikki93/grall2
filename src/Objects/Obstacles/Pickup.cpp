@@ -1,54 +1,59 @@
 /*
 =========================================
-StaticBrush.cpp
+Pickup.cpp
 =========================================
 */
 
-#define __STATICBRUSH_CPP__
+#define __PICKUP_CPP__
 
-#include "Objects/Main/StaticBrush.h"
+#include "Objects/Obstacles/Pickup.h"
 
 //--- NGF events ----------------------------------------------------------------
-StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
+Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name)
 {
-    addFlag("StaticBrush");
+    addFlag("Pickup");
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
-    //Get properties.
-    bool convex = Ogre::StringConverter::parseBool(mProperties.getValue("convex", 0, "no"));
+    //Store properties.
+    mPickupType = mProperties.getValue("pickupType", 0, "KeyR");
+    mSpin = Ogre::StringConverter::parseReal(mProperties.getValue("spin", 0, "0"));
+    mBob = Ogre::StringConverter::parseReal(mProperties.getValue("bob", 0, "0"));
 
-    //Create the Ogre stuff.
-    mEntity = createBrushEntity();
+    //Create the Ogre stuff. Pickups can be brushes too. :-)
+    if (mProperties.getValue("brushMeshFile", 0, "n") == "n")
+    {
+        Ogre::String meshFile = mProperties.getValue("meshFile", 0, "Template_Key.mesh");
+        Ogre::String material = mProperties.getValue("material", 0, "Objects/KeyR");
+        mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, meshFile);
+        mEntity->setMaterialName(material);
+    }
+    else
+    {
+        mEntity = createBrushEntity();
+    }
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-
-    if (convex)
-    {
-        mShape = converter.createConvex();
-        mShape->setMargin(0);
-    }
-    else
-        mShape = converter.createTrimesh();
+    mShape = converter.createConvex();
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    initBody(DimensionManager::STATIC);
-    setBulletObject(mBody);
+    initBody(DimensionManager::NO_DIM_CHECK);
+    mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 //-------------------------------------------------------------------------------
-void StaticBrush::postLoad()
+void Pickup::postLoad()
 {
     //Python create event.
     NGF_PY_CALL_EVENT(create);
 }
 //-------------------------------------------------------------------------------
-StaticBrush::~StaticBrush()
+Pickup::~Pickup()
 {
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
@@ -61,26 +66,38 @@ StaticBrush::~StaticBrush()
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
-void StaticBrush::unpausedTick(const Ogre::FrameEvent &evt)
+void Pickup::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
-    
+
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
-void StaticBrush::pausedTick(const Ogre::FrameEvent &evt)
+void Pickup::pausedTick(const Ogre::FrameEvent &evt)
 {
     //Python ptick event.
     NGF_PY_CALL_EVENT(ptick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
-NGF::MessageReply StaticBrush::receiveMessage(NGF::Message msg)
+NGF::MessageReply Pickup::receiveMessage(NGF::Message msg)
 {
+    switch (msg.code)
+    {
+        case MSG_GETPICKUPTYPE:
+            NGF_SEND_REPLY(mPickupType);
+        case MSG_PICKEDUP:
+            //We've been picked up! Now we become 'NONE' so that no more pickups are registered,
+            //just in case Bullet sends a few callbacks before destruction.
+            mPickupType = "NONE";
+            GlbVar.goMgr->requestDestroy(getID());
+            NGF_NO_REPLY();
+    }
+    
     return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------
-void StaticBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
+void Pickup::collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact)
 {
     if (!other)
         return;
@@ -94,7 +111,7 @@ void StaticBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObje
 
 //--- Python interface implementation -------------------------------------------
 /*
-NGF_PY_BEGIN_IMPL(StaticBrush)
+NGF_PY_BEGIN_IMPL(Pickup)
 {
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)

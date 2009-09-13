@@ -50,8 +50,7 @@ MovingBomb::MovingBomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mBody = new btRigidBody(0, state, mShape);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK | DimensionManager::MOVINGBOMB, mDimensions);
-    setBulletObject(mBody);
+    initBody(DimensionManager::NO_DIM_CHECK | DimensionManager::MOVINGBOMB);
 
     //Make smaller shape for cast.
     mCastShape = new btSphereShape(converter.getRadius() - CAST_SHAPE_SHRINK);

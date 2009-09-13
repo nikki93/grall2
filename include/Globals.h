@@ -4,7 +4,8 @@
  *       Filename:  Globals.h
  *
  *    Description:  Provides a 'Globals' class for easy global access of variables.
- *                  Also has some declarations for global functions.
+ *                  Also has some declarations for global functions and other global
+ *                  stuff.
  *
  *                  NOTE: Dirty code. :-)
  *
@@ -22,12 +23,13 @@
 #define __GLOBALS_H__
 
 //Some compile-time settings.
-#define NO_LIGHTS //No level-lights (hard-coded lights will stay).
+#define NO_LIGHTS                  //No level-lights (hard-coded lights will stay).
+#define USER_PREFIX "../../usr/"   //The user data (saves, settings etc.) directory (with ending slash!).
+#define DATA_PREFIX "../../data/"  //The game data (meshes, textures etc.) directory (with ending slash!).
 
 //Defines.
 #define GlbVar Globals::getSingleton()
 #define LOG(msg) Ogre::LogManager::getSingleton().logMessage(msg);
-#define USER_PREFIX Ogre::String("../../usr/")
 
 //Forward declarations.
 class DimensionManager;
@@ -217,6 +219,8 @@ enum
     MSG_LEVELSTART,           //Level started (for Controller).
     MSG_LEVELSTOP,            //Level stopped (for Controller).
     MSG_CLICKED,              //Been clicked by ObjectClicker.
+    MSG_GETPICKUPTYPE,        //Get Pickup type (for... Pickups).
+    MSG_PICKEDUP,             //Pickup has been picked up (disables it).
 };
 
 //Includes from the project used everywhere.

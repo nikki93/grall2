@@ -88,7 +88,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::PLAYER, mDimensions);
+    initBody(DimensionManager::PLAYER);
     setBulletObject(mBody);
 
     //Configure the GhostObject.
@@ -273,7 +273,16 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
     }
     else if (other->hasFlag("Ice"))
     {
-       contact.m_combinedFriction = GlbVar.goMgr->sendMessageWithReply<Ogre::Real>(other, NGF_MESSAGE(MSG_GETFRICTIONCOEFF));
+        contact.m_combinedFriction = GlbVar.goMgr->sendMessageWithReply<Ogre::Real>(other, NGF_MESSAGE(MSG_GETFRICTIONCOEFF));
+    }
+    else if (other->hasFlag("Pickup"))
+    {
+        Ogre::String pickupType = GlbVar.goMgr->sendMessageWithReply<Ogre::String>(other, NGF_MESSAGE(MSG_GETPICKUPTYPE));
+        if (pickupType != "NONE")
+        {
+            ++mPickups[pickupType];
+        GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_PICKEDUP));
+        }
     }
     
     //Python collide event.
@@ -530,6 +539,35 @@ NGF_PY_BEGIN_IMPL(Player)
     {
         switchDimension();
         NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(numPickup)
+    {
+        Ogre::String type = py::extract<Ogre::String>(args[0]);
+        NGF_PY_RETURN(mPickups[type]);
+    }
+    NGF_PY_METHOD_IMPL(hasPickup)
+    {
+        Ogre::String type = py::extract<Ogre::String>(args[0]);
+        NGF_PY_RETURN(mPickups[type] > 0);
+    }
+    NGF_PY_METHOD_IMPL(incPickup)
+    {
+        Ogre::String type = py::extract<Ogre::String>(args[0]);
+        ++mPickups[type];
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(decPickup)
+    {
+        Ogre::String type = py::extract<Ogre::String>(args[0]);
+        if (mPickups[type] > 0)
+            --mPickups[type];
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(hasDecPickup)
+    {
+        //Decrease number, and return if we have (doors etc.).
+        Ogre::String type = py::extract<Ogre::String>(args[0]);
+        NGF_PY_RETURN(mPickups[type] > 0 && mPickups[type]--);
     }
 
     NGF_PY_PROPERTY_IMPL(underControl, mUnderControl, bool)

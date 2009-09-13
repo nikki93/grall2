@@ -37,8 +37,7 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK | 
-            (mGreen ? DimensionManager::GREENBOMB : DimensionManager::NONE), mDimensions);
+    initBody(DimensionManager::NO_DIM_CHECK | (mGreen ? DimensionManager::GREENBOMB : DimensionManager::NONE));
     setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------

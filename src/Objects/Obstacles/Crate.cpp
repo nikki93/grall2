@@ -41,7 +41,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     GlbVar.ogreSmgr->destroyEntity(colMesh);
 
     mShape->setMargin(0);
-    btScalar mass = 100;
+    btScalar mass = 7;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
 
@@ -50,6 +50,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     info.m_friction = 0;
 
     mBody = new btRigidBody(info);
+    mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody();
 
     //To allow Gravity, but still constraint on XZ plane, we use slider.
@@ -59,7 +60,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mFixedBody = new btRigidBody(0, fixedState, mCastShape);
     mFixedBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
     mFixedBody->setActivationState(DISABLE_DEACTIVATION);
-    GlbVar.phyWorld->addRigidBody(mFixedBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
+    GlbVar.phyWorld->addRigidBody(mFixedBody, mDimensions | DimensionManager::NO_DIM_CHECK | DimensionManager::INVISIBLE, mDimensions);
 
     mConstraint = new btSliderConstraint(*mBody, *mFixedBody, btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), false);
     mConstraint->setLowerLinLimit(1); //Free linear.

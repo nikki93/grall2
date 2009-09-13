@@ -4,7 +4,7 @@ Ice.cpp
 =========================================
 */
 
-#define __Ice_CPP__
+#define __ICE_CPP__
 
 #include "Objects/Obstacles/Ice.h"
 

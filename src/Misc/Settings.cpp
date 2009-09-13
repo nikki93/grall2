@@ -15,7 +15,7 @@
 
 #include "Globals.h"
 
-#define SETTINGS_FILE (USER_PREFIX + "Settings.ini")
+#define SETTINGS_FILE (USER_PREFIX "Settings.ini")
 
 void loadSettings()
 {
@@ -27,7 +27,7 @@ void loadSettings()
     }
     catch (Ogre::FileNotFoundException &e)
     {
-        std::ofstream out(SETTINGS_FILE.c_str());
+        std::ofstream out(SETTINGS_FILE);
         out << std::endl;
         out.close();
 
@@ -81,7 +81,7 @@ void loadSettings()
 
 void saveSettings()
 {
-    std::ofstream cfg(SETTINGS_FILE.c_str());
+    std::ofstream cfg(SETTINGS_FILE);
 
     //--- Ogre -------------------------------------------------------------------------
     

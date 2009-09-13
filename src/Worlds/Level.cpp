@@ -17,6 +17,7 @@ Level::Level(unsigned int worldNum, Ogre::String ngfName, Ogre::String caption)
 void Level::init()
 {
     GlbVar.bonusTime = 100;
+    GlbVar.gui->hidePointer();
 
     //If higher than highest level, then highest level is this (user went to new level).
     unsigned int worldInd = GlbVar.woMgr->getCurrentWorldIndex();

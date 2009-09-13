@@ -119,6 +119,7 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
     NGF_PY_METHOD_IMPL(translate)
     {
         mBody->translate(BtOgre::Convert::toBullet(py::extract<Ogre::Vector3>(args[0])));
+        mBody->getMotionState()->setWorldTransform(mBody->getWorldTransform());
         NGF_PY_RETURN();
     }
     //getOrientation

@@ -158,7 +158,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                         bool needsCollision(btBroadphaseProxy *proxy0) const
                         {
                             return proxy0->m_collisionFilterGroup & GlbVar.dimMgr->getCurrentDimension() //Viewed dimension only.
-                                && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE); //If no contact response, ignore.
+                                && (!(proxy0->m_collisionFilterGroup & DimensionManager::INVISIBLE)); //This is a visibility-based cast.
                         }
                     } res(from, to);
 

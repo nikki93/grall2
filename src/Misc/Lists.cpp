@@ -36,6 +36,7 @@
 #include "Objects/Obstacles/Switch.h"
 #include "Objects/Main/Controller.h"
 #include "Objects/Obstacles/Teleporter.h"
+#include "Objects/Obstacles/Pickup.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -65,6 +66,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Switch);
     NGF_REGISTER_OBJECT_TYPE(Controller);
     NGF_REGISTER_OBJECT_TYPE(Teleporter);
+    NGF_REGISTER_OBJECT_TYPE(Pickup);
 }
 
 //Register worlds.

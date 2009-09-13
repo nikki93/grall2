@@ -242,28 +242,28 @@ class Game
             Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
 
             ogreRmgr.addResourceLocation(".", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/GUI", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/GUI/Layouts", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Levels", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Sounds", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX, "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "GUI", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "GUI/Layouts", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "Levels", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "Sounds", "FileSystem", "General");
 
-            ogreRmgr.addResourceLocation("../../data/ObjectMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/ObjectTextures", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "ObjectMeshes", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "ObjectTextures", "FileSystem", "General");
 
-            ogreRmgr.addResourceLocation("../../data/BrushMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Concrete", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Metal", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Other", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Special", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/BrushTextures/Tile", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushMeshes", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Concrete", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Metal", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Other", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Special", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Tile", "FileSystem", "General");
 
-            ogreRmgr.addResourceLocation("../../data/Shaders", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Base", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Shaders/Shadows", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/Compositors", "FileSystem", "General");
-            ogreRmgr.addResourceLocation("../../data/ParticleFX", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Base", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Shadows", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "Compositors", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "ParticleFX", "FileSystem", "General");
 
             //Renderer. Just choose the first available one, we just load only one plugin (either
             //Direct3D or OpenGL) anyway.

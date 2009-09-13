@@ -78,11 +78,11 @@ class Console
 
 	    mOutputBox = MyGUI::Gui::getInstancePtr()->findWidget<MyGUI::Edit>("edt_consoleOut");
 	    mOutputBox->setTextAlign(MyGUI::Align::Top | MyGUI::Align::Left);
-	    //mOutputBox->setFontName("Mono");
+	    mOutputBox->setFontName("Mono");
 
             mInputBox = MyGUI::Gui::getInstancePtr()->findWidget<MyGUI::Edit>("edt_consoleIn");
             mInputBox->setTextAlign(MyGUI::Align::Top | MyGUI::Align::Left);
-	    //mInputBox->setFontName("Mono");
+	    mInputBox->setFontName("Mono");
 
 	    MyGUI::ButtonPtr button = GlbVar.gui->findWidget<MyGUI::Button>("but_consoleRun");
 	    button->eventMouseButtonClick = MyGUI::newDelegate(this, &Console::_onClickRun);

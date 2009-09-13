@@ -212,6 +212,9 @@ void OptionsDialog::setVisible(bool visible)
     //Some things to update when becoming visible.
     if (visible)
     {
+        //Gotta see where we click!
+        GlbVar.gui->showPointer();
+
         //Update scrolls.
         mTurningScroll->setScrollPosition((GlbVar.settings.controls.turningSensitivity / SLIDER_QUANTUM) - 1);
         mUpDownScroll->setScrollPosition((GlbVar.settings.controls.upDownSensitivity / SLIDER_QUANTUM) - 1);
@@ -230,5 +233,11 @@ void OptionsDialog::setVisible(bool visible)
         //Update renderer ComboBox.
         mRenderersBox->setIndexSelected(GlbVar.settings.ogre.renderer);
     }
-//-------------------------------------------------------------------------------
+    else
+    {
+        int curInd = GlbVar.woMgr->getCurrentWorldIndex();
+        if (curInd >= GlbVar.firstLevel && curInd <= GlbVar.records.highestLevelIndex)
+            GlbVar.gui->hidePointer();
+    }
 }
+//-------------------------------------------------------------------------------

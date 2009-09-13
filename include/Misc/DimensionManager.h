@@ -5,7 +5,7 @@
  *
  *    Description:  Handles dimension switches etc. Dimensions are just flags, so it's
  *                  possible to have objects existent in both dimensions, or enable both 
- *                  dimensions at the same time. 
+ *                  dimensions at the same time. Also has the Bullet masks enum.
  *
  *        Created:  04/30/2009 11:46:10 AM
  *       Compiler:  gcc
@@ -34,15 +34,16 @@ class DimensionManager
             //Dimension bits.
             DIM_1 = BIT(0),
             DIM_2 = BIT(1),
-            NO_DIM_CHECK = BIT(2),
 
-            //Flags for types.
+            //Flags for physicaltypes.
+            NO_DIM_CHECK = BIT(2), //Ignored by Player during dimension switch non-intersection test.
             PLAYER = BIT(3),
             DIRECTOR = BIT(4),
             STATIC = BIT(5),
             MOVINGBOMB = BIT(6),
             MOVINGBRUSH = BIT(7),
-            GREENBOMB = BIT(8)
+            GREENBOMB = BIT(8),
+            INVISIBLE = BIT(9) //Not a visible object (ignored by mousepick and Camera obstruction test).
         };
 
     protected:

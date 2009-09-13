@@ -57,7 +57,7 @@ class VideoRecorder
             {
                 if (mTimeLeft < 0)
                 {
-                    GlbVar.ogreWindow->writeContentsToFile(USER_PREFIX + "Video/frame" + Ogre::StringConverter::toString(mCount++) + VIDEO_FORMAT);
+                    GlbVar.ogreWindow->writeContentsToFile(USER_PREFIX "Video/frame" + Ogre::StringConverter::toString(mCount++) + VIDEO_FORMAT);
                     mTimeLeft = mPeriod;
                 }
                 mTimeLeft -= evt.timeSinceLastFrame;

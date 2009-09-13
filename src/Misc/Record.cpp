@@ -19,12 +19,11 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/map.hpp>
 
-#define RECORD_FILE (USER_PREFIX + "Record")
+#define RECORD_FILE (USER_PREFIX "Record")
 
 void loadRecord()
 {
     Ogre::ConfigFile cfg;
-    Ogre::String fileName = USER_PREFIX + "Record";
 
     try
     {
@@ -32,7 +31,7 @@ void loadRecord()
     }
     catch (Ogre::FileNotFoundException &e)
     {
-        std::ofstream out(RECORD_FILE.c_str());
+        std::ofstream out(RECORD_FILE);
         out << std::endl;
         out.close();
 
@@ -64,7 +63,7 @@ void loadRecord()
 
 void saveRecord()
 {
-    std::ofstream cfg(RECORD_FILE.c_str());
+    std::ofstream cfg(RECORD_FILE);
 
     cfg << "firstTime = " << GlbVar.records.firstTime << std::endl;
     cfg << "highestLevelIndex = " << GlbVar.records.highestLevelIndex << std::endl;
@@ -83,7 +82,7 @@ void saveRecord()
 
 void clearRecord()
 {
-    remove(RECORD_FILE.c_str());
+    remove(RECORD_FILE);
     loadRecord();
 }
 

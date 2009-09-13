@@ -30,8 +30,7 @@ Trigger::Trigger(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Prope
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | DimensionManager::NO_DIM_CHECK, mDimensions);
-    setBulletObject(mBody);
+    initBody(DimensionManager::NO_DIM_CHECK | DimensionManager::INVISIBLE);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 //-------------------------------------------------------------------------------
