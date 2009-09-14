@@ -29,7 +29,14 @@ Director::Director(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Pro
     mShape = new btBoxShape(btVector3(0.75,0.75,0.75));
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    initBody(DimensionManager::NO_DIM_CHECK | DimensionManager::INVISIBLE | DimensionManager::DIRECTOR | DimensionManager::DIM_1 | DimensionManager::DIM_2); //Directors are in both dimensions.
+
+    //Lots of flags. :-)
+    initBody( DimensionManager::DIRECTOR 
+            | DimensionManager::INVISIBLE 
+            | DimensionManager::NO_DIM_CHECK 
+            | DimensionManager::NO_CRATE_CHECK 
+            | DimensionManager::DIM_BOTH
+            );
     setBulletObject(mBody);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }

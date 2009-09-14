@@ -177,7 +177,7 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                         return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) //Shouldn't be us.
                             && (proxy0->m_collisionFilterGroup & mDimension) //Should be in our dimension.
                             && (!(proxy0->m_collisionFilterGroup & DimensionManager::STATIC)) //No need to check with static.
-                            && !(mYCast && (proxy0->m_collisionFilterGroup & DimensionManager::PLAYER)) //If moving on Y, forget the Player (lift).
+                            && !(mYCast && (proxy0->m_collisionFilterGroup & DimensionManager::LIFTABLE)) //If moving up, forget the liftables.
                             && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE); //If no contact response, ignore.
                     }
                 };

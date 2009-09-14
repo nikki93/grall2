@@ -50,6 +50,9 @@ class ObjectClicker
         {
             if (mIsClicking)
             {
+                //Gotta see where we click!
+                GlbVar.gui->showPointer();
+
                 //We have to be able to do it even when console is visible, so get MouseState directly.
                 OIS::MouseState ms = GlbVar.mouse->getMouseState();
 
@@ -93,11 +96,13 @@ class ObjectClicker
                             GlbVar.goMgr->sendMessage(mClickedObj, NGF_MESSAGE(MSG_CLICKED));
                             mIsClicking = false; //We're done! :D
                             PyRun_SimpleString("import GraLL2\nclicked = GraLL2.getClickedObject()");
+                            GlbVar.gui->hidePointer();
                             return;
                         }
                     }
                     GlbVar.console->print("No object found. Try again.\n");
                     mIsClicking = false; //Unsuccessful, but still done. ;-)
+                    GlbVar.gui->hidePointer();
                 }
             }
         }

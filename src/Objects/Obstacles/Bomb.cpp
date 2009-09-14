@@ -37,7 +37,10 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    initBody(DimensionManager::NO_DIM_CHECK | (mGreen ? DimensionManager::GREENBOMB : DimensionManager::NONE));
+    //Player won't know about bombs in other dimension. >:-)
+    initBody( DimensionManager::NO_DIM_CHECK
+            | (mGreen ? DimensionManager::NO_CRATE_CHECK : DimensionManager::NONE)
+            );
     setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------

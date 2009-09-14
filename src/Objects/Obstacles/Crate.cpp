@@ -51,7 +51,8 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
 
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    initBody();
+    initBody( DimensionManager::LIFTABLE
+            );
 
     //To allow Gravity, but still constraint on XZ plane, we use slider.
     mCastShape = new btBoxShape(btVector3(0.475,0.65,0.475));
@@ -239,9 +240,9 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
         {
             //If it's us, or isn't in our dimension, we don't care.
             return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
-                && !(proxy0->m_collisionFilterGroup & DimensionManager::GREENBOMB) //So we can blast 'em green ones!
-                && (proxy0->m_collisionFilterGroup & mDimension)
-                && !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                && !(proxy0->m_collisionFilterGroup & DimensionManager::NO_CRATE_CHECK)
+                && (proxy0->m_collisionFilterGroup & mDimension);
+                //&& !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }
     };
 

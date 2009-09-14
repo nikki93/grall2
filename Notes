@@ -454,7 +454,7 @@ Tue Aug 25 15:54:16 IST 2009
 Wed Sep  9 16:15:23 AST 2009
 ----------------------------
 - Level select dialog now automatically selects highest level.
-- Fixed Crate dynamics. Crates are new grid-aligned, while also keeping Y axis dynamics.
+- Fixed Crate dynamics. Crates are now grid-aligned, while also keeping Y axis dynamics.
 
 Thu Sep 10 20:00:39 AST 2009
 ----------------------------
@@ -488,4 +488,10 @@ Sun Sep 13 14:15:02 AST 2009
   his hard-earned keys :-( ).
 - Made GraLL 2 specific version of NGF Blender exporter which saves dimension information based on Blender 'layers'.
   Makes doing dimension stuff much easier and more convenient in levels.
-- An attempt to call inexistent PythonGameObject methods now show an error message.
+- An attempt to call inexistent PythonGameObject methods now show an error message (instead of silently ignoring).
+
+Mon Sep 14 19:50:25 AST 2009
+----------------------------
+- Made object clicker show mouse cursor when clicking.
+- Revamped Physics flags system. Now it makes more sense, GameObjects can be parts of 'flag families' (no crate check, no dimension check) etc.
+- Fixed a few bugs in the GraLL 2 modified Blender NGF Exporter.

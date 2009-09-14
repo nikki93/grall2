@@ -156,16 +156,19 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
             {
+                bool y = mYCast;
+                y = mYCast;
                 if ((btCollisionObject*) proxy0->m_clientObject == mIgnore)
                     return false;
 
                 //If it's us, or isn't in our dimension, we don't care. 
                 return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) //Not us.
+                    && !(proxy0->m_collisionFilterGroup & DimensionManager::NO_MOVING_CHECK) //Doesn't want to be tested.
                     && (proxy0->m_collisionFilterGroup & mDimension) //It's in the other dimension.
-                    && !(mYCast && (proxy0->m_collisionFilterGroup & DimensionManager::PLAYER)) //If moving on Y, forget the Player (lift).
-                    && !(proxy0->m_collisionFilterGroup & DimensionManager::MOVINGBRUSH) 
-                    && ((proxy0->m_collisionFilterGroup & DimensionManager::DIRECTOR) 
-                            || !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE)); //Director is ok, but other no-contact-response ignored.
+                    && !(mYCast && (proxy0->m_collisionFilterGroup & DimensionManager::LIFTABLE)) //If moving up, forget liftables.
+                    && !(proxy0->m_collisionFilterGroup & DimensionManager::MOVINGBRUSH);
+                    //&& ((proxy0->m_collisionFilterGroup & DimensionManager::DIRECTOR) //Directors allowed.
+                            //|| !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE));
             }
         };
 

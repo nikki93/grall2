@@ -88,14 +88,23 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    initBody(DimensionManager::PLAYER);
+    initBody( DimensionManager::PLAYER
+            | DimensionManager::LIFTABLE
+            );
     setBulletObject(mBody);
 
     //Configure the GhostObject.
     mGhostShape = new btSphereShape(converter.getRadius() - 0.01);
     mGhostObject->setCollisionShape(mGhostShape);
     mGhostObject->setCollisionFlags(mGhostObject->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
-    GlbVar.phyWorld->addCollisionObject(mGhostObject, DimensionManager::DIM_BOTH, DimensionManager::DIM_BOTH);
+    GlbVar.phyWorld->addCollisionObject(mGhostObject
+            , DimensionManager::NO_DIM_CHECK 
+            | DimensionManager::NO_CRATE_CHECK
+            | DimensionManager::NO_MOVING_CHECK
+            | DimensionManager::INVISIBLE
+            | DimensionManager::DIM_BOTH, 
+            DimensionManager::DIM_BOTH
+            );
 
     //Control node is used for controlling the Player. He rotates in all kinds of crazy ways, but we need to know where we're headed.
     mControlNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName + "-controlnode", pos, rot);

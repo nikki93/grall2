@@ -23,28 +23,8 @@ def write(filename):
         numBrush = 0
 
         for object in scn.getChildren():
-            if ((object.Layers & 1) > 0):
-                    try:
-                            object.addProperty("dimension1", "yes")
-                    except:
-                            object.getProperty("dimension1").setData("yes")
-            else:
-                    try:
-                            object.addProperty("dimension1", "no")
-                    except:
-                            object.getProperty("dimension1").setData("no")
-                            
-            if ((object.Layers & 2) > 0):
-                    try:
-                            object.addProperty("dimension2", "yes")
-                    except:
-                            object.getProperty("dimension2").setData("yes")
-            else:
-                    try:
-                            object.addProperty("dimension2", "no")
-                    except:
-                            object.getProperty("dimension2").setData("no")
-                        
+            object.removeProperty("dimension1")
+            object.removeProperty("dimension2")
                 
             object.select(False)
 
@@ -56,17 +36,25 @@ def write(filename):
             out.write("\tobject\n\t{\n")
             out.write("\t\ttype %s\n" % (objType))
             out.write("\t\tname %s\n" % (objName))
-            #out.write("\t\tposition %f %f %f\n" % (-(objPos[0] * 10), objPos[2] * 10, objPos[1] * 10))
-            #out.write("\t\tposition %f %f %f\n" % (-(objPos[0]), objPos[2], objPos[1]))
             out.write("\t\tposition %f %f %f\n" % (objPos[0], objPos[2], -objPos[1]))
             out.write("\t\trotation %f %f %f %f\n" % (objRot[0], objRot[1], objRot[3], -objRot[2]))
 
             objProps = object.getAllProperties()
             numProps = 0
             propStr = "\n\t\tproperties\n\t\t{\n"
-
+            
+            #Add dimension data.
+            if ((object.Layers & 1) > 0):
+                propStr = propStr + ("\t\t\tdimension1 yes\n")
+            else:
+                propStr = propStr + ("\t\t\tdimension1 no\n")
+            if ((object.Layers & 2) > 0):
+                propStr = propStr + ("\t\t\tdimension2 yes\n")
+            else:
+                propStr = propStr + ("\t\t\tdimension2 no\n")
+                            
             for prop in objProps:
-                if prop.getName() != "type" and prop.getName() != "name":
+                if prop.getName() != "type" and prop.getName() != "name" and prop.getName() != "dimension1" and prop.getName != "dimension2":
                     numProps = numProps + 1
                     key = prop.getName()
                     params = prop.getData()
@@ -108,9 +96,6 @@ def write(filename):
                 out.write(propStr)
 
             out.write("\t}\n")
-        
-            object.removeProperty("dimension1")
-            object.removeProperty("dimension2")
 
         scn.setLayers([1,2])
         Blender.Redraw(-1)

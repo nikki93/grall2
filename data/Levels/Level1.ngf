@@ -9,15 +9,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			pickupType KeyB
 			meshFile Template_Key.mesh
 			material Objects/KeyB
 			spin 0.2
 			bob 0.2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -29,15 +27,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			pickupType KeyB
 			meshFile Template_Key.mesh
 			material Objects/KeyB
 			spin 0.2
 			bob 0.2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -49,14 +45,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			pickupType KeyR
 			meshFile Template_Key.mesh
 			material Objects/KeyR
 			spin 0.2
 			bob 0.2
-			dimension1 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -68,15 +63,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			pickupType KeyB
 			meshFile Template_Key.mesh
 			material Objects/KeyB
 			spin 0.2
 			bob 0.2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -88,15 +81,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			pickupType KeyG
 			meshFile Template_Key.mesh
 			material Objects/KeyG
 			spin 0.2
 			bob 0.2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -108,15 +99,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			pickupType KeyG
 			meshFile Template_Key.mesh
 			material Objects/KeyG
 			spin 0.2
 			bob 0.2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -128,14 +117,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 no
 			pickupType KeyR
 			meshFile Template_Key.mesh
 			material Objects/KeyR
 			spin 0.2
 			bob 0.2
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
 		}
 	}
 	object
@@ -147,11 +135,11 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			lightType point
 			colour 0.8 0.5 0.1
 			attenuation 70 1 0.08 0.02
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -163,10 +151,9 @@ ngflevel Level1
 
 		properties
 		{
-			green yes
-			dimension2 yes
 			dimension1 no
 			dimension2 yes
+			green yes
 		}
 	}
 	object
@@ -178,10 +165,9 @@ ngflevel Level1
 
 		properties
 		{
-			green yes
-			dimension1 yes
 			dimension1 yes
 			dimension2 no
+			green yes
 		}
 	}
 	object
@@ -193,11 +179,9 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			green yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -209,12 +193,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b0.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -226,11 +208,9 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			heightDeficiency 0.2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -242,10 +222,9 @@ ngflevel Level1
 
 		properties
 		{
-			heightDeficiency 0
-			dimension2 yes
 			dimension1 no
 			dimension2 yes
+			heightDeficiency 0
 		}
 	}
 	object
@@ -257,11 +236,9 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			heightDeficiency 0.5
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -273,11 +250,10 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b1.mesh
-			convex no
-			dimension2 yes
 			dimension1 no
 			dimension2 yes
+			brushMeshFile Level1_b1.mesh
+			convex no
 		}
 	}
 	object
@@ -289,9 +265,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed 2
 			dimension1 yes
 			dimension2 yes
+			speed 2
 		}
 	}
 	object
@@ -303,9 +279,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed -1
 			dimension1 yes
 			dimension2 yes
+			speed -1
 		}
 	}
 	object
@@ -317,9 +293,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed -1
 			dimension1 yes
 			dimension2 yes
+			speed -1
 		}
 	}
 	object
@@ -331,12 +307,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b2.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -345,13 +319,6 @@ ngflevel Level1
 		name noname
 		position 0.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -359,14 +326,6 @@ ngflevel Level1
 		name noname
 		position -4.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -374,14 +333,6 @@ ngflevel Level1
 		name noname
 		position -3.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -389,14 +340,6 @@ ngflevel Level1
 		name noname
 		position -2.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -404,14 +347,6 @@ ngflevel Level1
 		name noname
 		position -1.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -419,14 +354,6 @@ ngflevel Level1
 		name noname
 		position -0.500000 10.500000 28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -434,14 +361,6 @@ ngflevel Level1
 		name noname
 		position -0.500000 10.500000 27.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -449,14 +368,6 @@ ngflevel Level1
 		name noname
 		position 0.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -464,14 +375,6 @@ ngflevel Level1
 		name noname
 		position -0.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -479,14 +382,6 @@ ngflevel Level1
 		name noname
 		position -1.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -494,14 +389,6 @@ ngflevel Level1
 		name noname
 		position -2.500000 10.500000 25.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -509,14 +396,6 @@ ngflevel Level1
 		name noname
 		position -2.500000 10.500000 24.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -527,12 +406,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b3.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -544,9 +421,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed 2
 			dimension1 yes
 			dimension2 yes
+			speed 2
 		}
 	}
 	object
@@ -558,9 +435,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed 2
 			dimension1 yes
 			dimension2 yes
+			speed 2
 		}
 	}
 	object
@@ -572,9 +449,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed 2
 			dimension1 yes
 			dimension2 yes
+			speed 2
 		}
 	}
 	object
@@ -586,9 +463,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed -1
 			dimension1 yes
 			dimension2 yes
+			speed -1
 		}
 	}
 	object
@@ -600,9 +477,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed 2
 			dimension1 yes
 			dimension2 yes
+			speed 2
 		}
 	}
 	object
@@ -614,11 +491,9 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			speed 2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -630,11 +505,9 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			speed 2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -643,14 +516,6 @@ ngflevel Level1
 		name noname
 		position -4.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -658,14 +523,6 @@ ngflevel Level1
 		name noname
 		position -1.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -673,14 +530,6 @@ ngflevel Level1
 		name noname
 		position -0.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -688,14 +537,6 @@ ngflevel Level1
 		name noname
 		position 0.500000 10.500000 21.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -703,14 +544,6 @@ ngflevel Level1
 		name noname
 		position -1.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -718,14 +551,6 @@ ngflevel Level1
 		name noname
 		position -2.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -733,14 +558,6 @@ ngflevel Level1
 		name noname
 		position -3.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -748,14 +565,6 @@ ngflevel Level1
 		name noname
 		position -4.500000 10.500000 18.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -763,13 +572,6 @@ ngflevel Level1
 		name noname
 		position 0.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
-		}
 	}
 	object
 	{
@@ -777,13 +579,6 @@ ngflevel Level1
 		name noname
 		position -0.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
-		}
 	}
 	object
 	{
@@ -791,13 +586,6 @@ ngflevel Level1
 		name noname
 		position -1.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
-		}
 	}
 	object
 	{
@@ -805,13 +593,6 @@ ngflevel Level1
 		name noname
 		position -2.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
-		}
 	}
 	object
 	{
@@ -819,13 +600,6 @@ ngflevel Level1
 		name noname
 		position -3.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
-		}
 	}
 	object
 	{
@@ -833,13 +607,6 @@ ngflevel Level1
 		name noname
 		position -4.500000 10.500000 16.000000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
-		}
 	}
 	object
 	{
@@ -847,13 +614,6 @@ ngflevel Level1
 		name noname
 		position 0.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -861,13 +621,6 @@ ngflevel Level1
 		name noname
 		position -0.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -875,13 +628,6 @@ ngflevel Level1
 		name noname
 		position -1.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -889,13 +635,6 @@ ngflevel Level1
 		name noname
 		position -2.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -903,13 +642,6 @@ ngflevel Level1
 		name noname
 		position -3.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -920,11 +652,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b4.mesh
 			convex yes
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
 		}
 	}
 	object
@@ -936,12 +667,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b5.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -953,12 +682,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b6.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -970,12 +697,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b7.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -987,27 +712,18 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b8.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
 	{
 		type Player
 		name player1
-		position -2.499782 6.775501 -2.499271
+		position -2.499782 6.423803 -2.499271
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension1 yes
-			dimension2 no
-		}
 	}
 	object
 	{
@@ -1018,6 +734,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 no
+			dimension2 yes
 			switchType press
 			script : import Ngf
 			       : 
@@ -1026,10 +744,6 @@ ngflevel Level1
 			       : 	
 			       : def off(self):
 			       : 	Ngf.getObject("mover1").p_enabled = False
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1041,6 +755,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			enabled no
 			brushMeshFile Level1_b9.mesh
 			speed 1
@@ -1049,8 +765,6 @@ ngflevel Level1
 			       : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
 			       : 		self.p_enabled = True
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1059,13 +773,6 @@ ngflevel Level1
 		name noname
 		position -4.500000 10.500000 13.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -1076,11 +783,9 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			speed 2
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1092,9 +797,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed 2
 			dimension1 yes
 			dimension2 yes
+			speed 2
 		}
 	}
 	object
@@ -1103,14 +808,6 @@ ngflevel Level1
 		name noname
 		position -2.000000 11.159853 42.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
-		}
 	}
 	object
 	{
@@ -1121,12 +818,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b10.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1138,6 +833,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			enabled yes
 			speed 2
 			distance 1.9
@@ -1160,8 +857,6 @@ ngflevel Level1
 			       : def alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.p_forward = False
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1173,11 +868,11 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 no
+			dimension2 yes
 			enabled no
 			brushMeshFile Level1_b12.mesh
 			speed 0.5
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1189,9 +884,9 @@ ngflevel Level1
 
 		properties
 		{
-			speed -1
 			dimension1 yes
 			dimension2 yes
+			speed -1
 		}
 	}
 	object
@@ -1203,11 +898,11 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			enabled yes
 			brushMeshFile Level1_b13.mesh
 			speed 0.5
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1219,12 +914,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b14.mesh
 			convex yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1236,11 +929,10 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b15.mesh
-			convex no
-			dimension1 yes
 			dimension1 yes
 			dimension2 no
+			brushMeshFile Level1_b15.mesh
+			convex no
 		}
 	}
 	object
@@ -1252,11 +944,10 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b16.mesh
-			convex no
-			dimension2 yes
 			dimension1 no
 			dimension2 yes
+			brushMeshFile Level1_b16.mesh
+			convex no
 		}
 	}
 	object
@@ -1268,10 +959,9 @@ ngflevel Level1
 
 		properties
 		{
-			heightDeficiency 0.3
-			dimension1 yes
 			dimension1 yes
 			dimension2 no
+			heightDeficiency 0.3
 		}
 	}
 	object
@@ -1283,12 +973,10 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			brushMeshFile Level1_b17.mesh
 			convex no
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1300,11 +988,11 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			lightType point
 			colour 0.4 0.7 0.9
 			attenuation 70 1 0.08 0.02
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1316,11 +1004,10 @@ ngflevel Level1
 
 		properties
 		{
-			brushMeshFile Level1_b18.mesh
-			convex yes
-			dimension1 yes
 			dimension1 yes
 			dimension2 yes
+			brushMeshFile Level1_b18.mesh
+			convex yes
 		}
 	}
 	object
@@ -1332,6 +1019,8 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			enabled yes
 			speed 1
 			distance 0.999
@@ -1400,8 +1089,6 @@ ngflevel Level1
 			       : 	#Delay is over, close.
 			       : 	if (n == 0):
 			       : 		self.p_forward = False
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1413,11 +1100,9 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 yes
+			dimension2 yes
 			green yes
-			dimension1 yes
-			dimension2 yes
-			dimension1 yes
-			dimension2 yes
 		}
 	}
 	object
@@ -1429,14 +1114,13 @@ ngflevel Level1
 
 		properties
 		{
+			dimension1 no
+			dimension2 yes
 			pickupType KeyR
 			meshFile Template_Key.mesh
 			material Objects/KeyR
 			spin 0.2
 			bob 0.2
-			dimension2 yes
-			dimension1 no
-			dimension2 yes
 		}
 	}
 }

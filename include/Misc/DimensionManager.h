@@ -38,12 +38,15 @@ class DimensionManager
             //Flags for physicaltypes.
             NO_DIM_CHECK = BIT(2), //Ignored by Player during dimension switch non-intersection test.
             PLAYER = BIT(3),
-            DIRECTOR = BIT(4),
-            STATIC = BIT(5),
-            MOVINGBOMB = BIT(6),
-            MOVINGBRUSH = BIT(7),
-            GREENBOMB = BIT(8),
-            INVISIBLE = BIT(9) //Not a visible object (ignored by mousepick and Camera obstruction test).
+            STATIC = BIT(4),
+            MOVINGBOMB = BIT(5),
+            MOVINGBRUSH = BIT(6),
+            GREENBOMB = BIT(7),
+            INVISIBLE = BIT(8), //Not a visible object (ignored by mousepick and Camera obstruction test).
+            NO_CRATE_CHECK = BIT(9), //Ignored by Crates during 'is spot empty' cast.
+            NO_MOVING_CHECK = BIT(10), //Ignored by MovingBrush, MovingBomb, SlidingBrush etc. when moving.
+            LIFTABLE = BIT(11), //Can be lifted by MovingBrush, SlidingBrush etc.
+            DIRECTOR = BIT(12)
         };
 
     protected:

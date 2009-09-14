@@ -18,6 +18,7 @@ void Level::init()
 {
     GlbVar.bonusTime = 100;
     GlbVar.gui->hidePointer();
+    GlbVar.dimMgr->setDimension(DimensionManager::DIM_1);
 
     //If higher than highest level, then highest level is this (user went to new level).
     unsigned int worldInd = GlbVar.woMgr->getCurrentWorldIndex();
