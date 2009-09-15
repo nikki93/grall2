@@ -311,7 +311,7 @@ class Game
 
             viewport->setDimensions(0,0,1,1);
             GlbVar.ogreCamera->setAspectRatio((float)viewport->getActualWidth() / (float) viewport->getActualHeight());
-            GlbVar.ogreCamera->setFarClipDistance(1000.0);
+            GlbVar.ogreCamera->setFarClipDistance(10000.0);
             GlbVar.ogreCamera->setNearClipDistance(0.5);
 
             //--- OIS (Input) ----------------------------------------------------------
@@ -408,6 +408,7 @@ class Game
             GlbVar.controller = GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
 
             //Initialise other Global variables.
+            GlbVar.player = 0;
             GlbVar.currCameraHandler = 0;
             GlbVar.currMessageBox = 0;
             GlbVar.worldSwitch = -1;

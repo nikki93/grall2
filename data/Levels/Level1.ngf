@@ -2,6 +2,48 @@ ngflevel Level1
 {
 	object
 	{
+		type Crate
+		name noname
+		position -7.500000 6.750000 -10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			heightDeficiency 0.5
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -7.500000 6.750000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			heightDeficiency 0.5
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -7.500000 6.750000 -12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			heightDeficiency 0.5
+		}
+	}
+	object
+	{
 		type Pickup
 		name noname
 		position -0.500000 10.500000 7.500000

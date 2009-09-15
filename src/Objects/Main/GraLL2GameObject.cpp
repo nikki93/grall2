@@ -156,7 +156,7 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
     //getTotalForce
     NGF_PY_METHOD_IMPL(getTotalForce)
     {
-        NGF_PY_RETURN(mBody->getTotalForce());
+        NGF_PY_RETURN(BtOgre::Convert::toOgre(mBody->getTotalForce()));
     }
     //applyTorque
     NGF_PY_METHOD_IMPL(applyTorque)
@@ -173,7 +173,7 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
     //getTotalTorque
     NGF_PY_METHOD_IMPL(getTotalTorque)
     {
-        NGF_PY_RETURN(mBody->getTotalTorque());
+        NGF_PY_RETURN(BtOgre::Convert::toOgre(mBody->getTotalTorque()));
     }
 
     //applyImpulse
@@ -198,12 +198,13 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
     //getLinearVelocity
     NGF_PY_METHOD_IMPL(getLinearVelocity)
     {
-        NGF_PY_RETURN(mBody->getLinearVelocity());
+        NGF_PY_RETURN(BtOgre::Convert::toOgre(mBody->getLinearVelocity()));
     }
     //getVelocityInLocalPoint
     NGF_PY_METHOD_IMPL(getVelocityInLocalPoint)
     {
-        NGF_PY_RETURN(mBody->getVelocityInLocalPoint(BtOgre::Convert::toBullet(py::extract<Ogre::Vector3>(args[0]))));
+        btVector3 point = BtOgre::Convert::toBullet(py::extract<Ogre::Vector3>(args[0]));
+        NGF_PY_RETURN(BtOgre::Convert::toOgre(mBody->getVelocityInLocalPoint(point)));
     }
     //setAngularVelocity
     NGF_PY_METHOD_IMPL(setAngularVelocity)
@@ -214,7 +215,7 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
     //getAngularVelocity
     NGF_PY_METHOD_IMPL(getAngularVelocity)
     {
-        NGF_PY_RETURN(mBody->getAngularVelocity());
+        NGF_PY_RETURN(BtOgre::Convert::toOgre(mBody->getAngularVelocity()));
     }
 
     //setAlarm

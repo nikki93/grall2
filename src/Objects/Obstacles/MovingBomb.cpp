@@ -347,6 +347,11 @@ NGF_PY_BEGIN_IMPL(MovingBomb)
 
         NGF_PY_RETURN();
     }
+    NGF_PY_METHOD_IMPL(explode)
+    {
+        explode();
+        NGF_PY_RETURN();
+    }
 
     NGF_PY_PROPERTY_IMPL(enabled, mEnabled, bool);
     NGF_PY_PROPERTY_IMPL(velocity, mVelocity, Ogre::Vector3);

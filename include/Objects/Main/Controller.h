@@ -27,6 +27,8 @@ class Controller :
     public Util::ExtraEventListener
 {
     protected:
+        Ogre::Real mEndCountDown;
+        bool mWin;
 
     public:
         Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -34,7 +36,7 @@ class Controller :
 
         //--- Events -------------------------------------------------------------------
         void postLoad();
-        void unpausedTick(const Ogre::FrameEvent &evt) {}
+        void unpausedTick(const Ogre::FrameEvent &evt);
         void pausedTick(const Ogre::FrameEvent &evt) {}
         NGF::MessageReply receiveMessage(NGF::Message msg);
 

@@ -6,13 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add 'Pickup' GameObject. It should have an 'mPickupType' string, which can be set through
-  properties. The mesh should be set through properties too (not like a Brush though). The
-  Player has a map of counters of each pickup type. The number of pickups of each type
-  etc. can be checked in Python. Thus, this allows for a generic 'pickup' system (keys,
-  special powers, whatever).
-
-- Expose Bomb, MovingBomb and Crate 'explode' to Python.
+- Add a 'Win' animation.
 
 Side
 ----
@@ -495,3 +489,10 @@ Mon Sep 14 19:50:25 AST 2009
 - Made object clicker show mouse cursor when clicking.
 - Revamped Physics flags system. Now it makes more sense, GameObjects can be parts of 'flag families' (no crate check, no dimension check) etc.
 - Fixed a few bugs in the GraLL 2 modified Blender NGF Exporter.
+
+Tue Sep 15 01:02:00 AST 2009
+----------------------------
+- Fixed GraLL2GameObject Python physics-related 'get' methods to return Ogre-type values for Python compatibility.
+- Exposed 'explode' methods of Bomb, MovingBomb and CameraHandler to Python.
+- Bomb 'setGreen' method exposed to Python.
+- Modified the win/lose animation (although 'win' doesn't have the camera part yet) to make it more decentralised. Now it's better managed.

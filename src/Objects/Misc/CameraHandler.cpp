@@ -20,9 +20,7 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mViewAngle(30),
       mSplineAnim(NULL),
       mSplineAnimState(NULL),
-      mSplineTrack(NULL),
-      mRestartTime(-1),
-      mDeathTime(-1)
+      mSplineTrack(NULL)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
@@ -205,32 +203,12 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 mDeathOffset.y += 4 * evt.timeSinceLastFrame;
                 mDeathOffset = Ogre::Quaternion(Ogre::Degree(20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mDeathOffset;
 
-                //Put the Camera there, make him look at the point.
+                //Move the Camera toward it smoothly, make it look at the point.
                 Ogre::Vector3 toMove = ((mDeathLastPos + mDeathOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
                 lookAt(mDeathLastPos + mLookAtOffset, evt.timeSinceLastFrame);
-
-                mDeathTime -= evt.timeSinceLastFrame;
-
-                //If it's time, restart world.
-                if (mDeathTime <= 0)
-                {
-                    GlbVar.fader->fadeInOut(0.7,0.4,0.5);
-                    mRestartTime = 1.1;
-
-                    mDeathTime = 777; //Stupid hack.
-                }
             }
             break;
-    }
-
-    //Restarting.
-    if (mRestartTime > 0)
-    {
-        mRestartTime -= evt.timeSinceLastFrame;
-
-        if (mRestartTime <= 0)
-            Util::gotoWorld(GlbVar.woMgr->getCurrentWorldIndex());
     }
 
     //Alarms.
@@ -267,7 +245,6 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     mDeathLastPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
                     mDeathOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3);
                     mTargetNode = 0;
-                    mDeathTime = 2;
                     break;
             }
             break;

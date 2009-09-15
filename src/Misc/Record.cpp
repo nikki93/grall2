@@ -19,6 +19,8 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/map.hpp>
 
+#include "Objects/Misc/CameraHandler.h"
+
 #define RECORD_FILE (USER_PREFIX "Record")
 
 void loadRecord()
@@ -88,20 +90,30 @@ void clearRecord()
 
 void loseLevel()
 {
-    unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
-    Globals::Records::Record &rec = GlbVar.records.recordMap[levelNum];
+    //Do the Camera thing.
+    GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_CAPTURECAMERAHANDLER));
+    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_DEATH)));
 
-    ++rec.losses;
+    //Set record stuff.
+    unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
+    Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
+
+    ++rec.losses; //Increment losses.
+
+    //Do the fade and restart.
+    GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LOSELEVEL));
 }
 
 void winLevel()
 {
+    //Record stuff.
     unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
-    Globals::Records::Record &rec = GlbVar.records.recordMap[levelNum];
+    Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
 
-    rec.completed = true;
-
-    //If better score, save.
-    if (rec.score < GlbVar.bonusTime)
+    rec.completed = true; //Completed!
+    if (rec.score < GlbVar.bonusTime) //Save better score.
         rec.score = GlbVar.bonusTime;
+
+    //Do the fade and go to next level.
+    GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_WINLEVEL));
 }

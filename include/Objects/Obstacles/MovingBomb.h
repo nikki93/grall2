@@ -62,6 +62,7 @@ class MovingBomb :
             NGF_PY_METHOD_DECL(setPosition)
             NGF_PY_METHOD_DECL(setOrientation)
             NGF_PY_METHOD_DECL(addPoint)
+            NGF_PY_METHOD_DECL(explode)
 
             NGF_PY_PROPERTY_DECL(enabled)
             NGF_PY_PROPERTY_DECL(followDirectors)
@@ -169,7 +170,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 22, duplicates = 0 */
+/* maximum key range = 18, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(MovingBomb)
 {
@@ -184,32 +185,32 @@ NGF_PY_CLASS_GPERF(MovingBomb)::MakeHash (register const char *str, register uns
 {
   static const unsigned char asso_values[] =
     {
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30,  0,
-       0, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30,  5, 30,  0, 30, 30,
-      30, 30, 30,  5, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30,  0, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30, 30, 30, 30, 30,
-      30, 30, 30, 30, 30, 30
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25,  0,
+      10, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25,  0, 25,  0, 25, 25,
+      25,  0, 25,  5, 25, 25, 25, 25,  0, 25,
+      25, 25, 25, 25, 25,  0, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25, 25, 25, 25, 25,
+      25, 25, 25, 25, 25, 25
     };
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[0]];
 }
@@ -219,23 +220,24 @@ NGF_PY_CLASS_GPERF(MovingBomb)::Lookup (register const char *str, register unsig
 {
   enum
     {
-      TOTAL_KEYWORDS = 9,
-      MIN_WORD_LENGTH = 8,
+      TOTAL_KEYWORDS = 10,
+      MIN_WORD_LENGTH = 7,
       MAX_WORD_LENGTH = 19,
-      MIN_HASH_VALUE = 8,
-      MAX_HASH_VALUE = 29
+      MIN_HASH_VALUE = 7,
+      MAX_HASH_VALUE = 24
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {"addPoint", NGF_PY_METHOD_GPERF(MovingBomb, addPoint)},
-      {"setPosition", NGF_PY_METHOD_GPERF(MovingBomb, setPosition)},
-      {"setOrientation", NGF_PY_METHOD_GPERF(MovingBomb, setOrientation)},
+      {"explode", NGF_PY_METHOD_GPERF(MovingBomb, explode)},
       {"set_enabled", NGF_PY_SET_GPERF(MovingBomb, enabled)},
       {"set_velocity", NGF_PY_SET_GPERF(MovingBomb, velocity)},
+      {"setOrientation", NGF_PY_METHOD_GPERF(MovingBomb, setOrientation)},
       {"get_enabled", NGF_PY_GET_GPERF(MovingBomb, enabled)},
       {"get_velocity", NGF_PY_GET_GPERF(MovingBomb, velocity)},
+      {"addPoint", NGF_PY_METHOD_GPERF(MovingBomb, addPoint)},
       {"set_followDirectors", NGF_PY_SET_GPERF(MovingBomb, followDirectors)},
+      {"setPosition", NGF_PY_METHOD_GPERF(MovingBomb, setPosition)},
       {"get_followDirectors", NGF_PY_GET_GPERF(MovingBomb, followDirectors)}
     };
 
@@ -247,34 +249,37 @@ NGF_PY_CLASS_GPERF(MovingBomb)::Lookup (register const char *str, register unsig
         {
           register const struct PythonMethod *resword;
 
-          switch (key - 8)
+          switch (key - 7)
             {
               case 0:
                 resword = &wordlist[0];
                 goto compare;
-              case 3:
+              case 4:
                 resword = &wordlist[1];
                 goto compare;
-              case 6:
+              case 5:
                 resword = &wordlist[2];
                 goto compare;
-              case 8:
+              case 7:
                 resword = &wordlist[3];
                 goto compare;
               case 9:
                 resword = &wordlist[4];
                 goto compare;
-              case 13:
+              case 10:
                 resword = &wordlist[5];
                 goto compare;
-              case 14:
+              case 11:
                 resword = &wordlist[6];
                 goto compare;
-              case 16:
+              case 12:
                 resword = &wordlist[7];
                 goto compare;
-              case 21:
+              case 14:
                 resword = &wordlist[8];
+                goto compare;
+              case 17:
+                resword = &wordlist[9];
                 goto compare;
             }
           return 0;

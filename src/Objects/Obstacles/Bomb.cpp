@@ -124,9 +124,29 @@ void Bomb::explode()
 //-------------------------------------------------------------------------------
 
 //--- Python interface implementation -------------------------------------------
-/*
 NGF_PY_BEGIN_IMPL(Bomb)
 {
+    NGF_PY_METHOD_IMPL(explode)
+    {
+        explode();
+        NGF_PY_RETURN();
+    }
+
+    NGF_PY_METHOD_IMPL(setGreen)
+    {
+        bool green = py::extract<bool>(args[0]);
+
+        if (mGreen != green)
+        {
+            mGreen = green;
+            mEntity->setMaterialName(mGreen ? "Objects/GreenBomb" : "Objects/Bomb");
+            GlbVar.phyWorld->removeRigidBody(mBody);
+            GlbVar.phyWorld->addRigidBody( mBody, mDimensions
+                    | DimensionManager::NO_DIM_CHECK
+                    | (mGreen ? DimensionManager::NO_CRATE_CHECK : DimensionManager::NONE)
+                    , mDimensions
+                    );
+        }
+    }
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
-*/

@@ -60,6 +60,11 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
+    //Do away with the previous fellow (if any).
+    if (GlbVar.player)
+        GlbVar.goMgr->destroyObject(GlbVar.player->getID());
+    GlbVar.player = this;
+
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Player.mesh");
     mEntity->setMaterialName("Objects/Player");
@@ -116,9 +121,10 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 void Player::postLoad()
 {
     //Do stuff we have to do when not deserialising.
-    if (!(mProperties.getValue("NGF_SERIALISED", 0, "no") == "yes" || mProperties.getValue("captureCameraHandler", 0, "yes") == "no"))
+    if (!(mProperties.getValue("NGF_SERIALISED", 0, "no") == "yes"))
     {
-        captureCameraHandler();
+        if (!(mProperties.getValue("captureCameraHandler", 0, "yes") == "no"))
+            captureCameraHandler();
         mLight = GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
                 ("lightType", "point")
                 ("colour", "0 0.3 0.75")
@@ -134,6 +140,8 @@ void Player::postLoad()
 //-------------------------------------------------------------------------------
 Player::~Player()
 {
+    GlbVar.player = 0;
+
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
 
@@ -243,18 +251,23 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 else if (key == GlbVar.settings.controls.keys["selfDestruct"])
                     die(true);
             }
-
-            break;
+            NGF_NO_REPLY();
 
         case MSG_GETPOSITION:
             NGF_SEND_REPLY(BtOgre::Convert::toOgre(mBody->getWorldTransform().getOrigin()));
 
         case MSG_TELEPORT:
-            Ogre::Vector3 target = msg.getParam<Ogre::Vector3>(0);
-            GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_TELEPORT, target));
-            btTransform oldTrans = mBody->getWorldTransform();
-            mBody->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(target)));
-            break;
+            {
+                Ogre::Vector3 target = msg.getParam<Ogre::Vector3>(0);
+                GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_TELEPORT, target));
+                btTransform oldTrans = mBody->getWorldTransform();
+                mBody->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(target)));
+            }
+            NGF_NO_REPLY();
+
+        case MSG_CAPTURECAMERAHANDLER:
+            captureCameraHandler();
+            NGF_NO_REPLY();
     }
 
     return GraLL2GameObject::receiveMessage(msg);
@@ -501,18 +514,12 @@ void Player::switchDimension()
 //-------------------------------------------------------------------------------
 void Player::die(bool explode)
 {
+    //We lost the level.
+    loseLevel();
+
     //We're not going through this twice!
     if (mDead)
         return;
-
-    //Deathcam! :-)
-    if (!GlbVar.currCameraHandler)
-    {
-        GlbVar.currCameraHandler = GlbVar.goMgr->createObject<CameraHandler>(mControlNode->getPosition() + (mControlNode->getOrientation() * Ogre::Vector3(0,9,16)), mControlNode->getOrientation());
-        GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETSMOOTHINGFACTOR, Ogre::Real(4)));
-    }
-    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETTARGET, mControlNode));
-    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_DEATH)));
 
     //Explosions!
     if (explode)
@@ -521,9 +528,6 @@ void Player::die(bool explode)
     //And of course, we don't exist anymore. :-(
     GlbVar.goMgr->requestDestroy(getID());
     mDead = true;
-
-    //Also, we lost the level.
-    loseLevel();
 }
 //-------------------------------------------------------------------------------
 

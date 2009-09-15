@@ -77,6 +77,14 @@ unsigned int py_getCurrentLevelNum()
 {
     return Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
 }
+void py_winLevel()
+{
+    winLevel();
+}
+void py_loseLevel()
+{
+    loseLevel();
+}
 
 //Music stuff.
 void py_playMusic(Ogre::String music)
@@ -155,6 +163,14 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("gotoWorld", py_gotoWorld,
             "gotoWorld(n)\n"
             "Go to the NGF World with the given index (0 = first)."
+            );
+    py::def("winLevel", py_winLevel,
+            "winLevel()\n"
+            "The current level is 'completed'."
+            );
+    py::def("loseLevel", py_loseLevel,
+            "loseLevel()\n"
+            "The current level has been 'lost'."
             );
 
     //Dimension stuff (if you want to switch dimensions, best you do it

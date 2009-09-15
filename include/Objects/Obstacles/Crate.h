@@ -56,6 +56,7 @@ class Crate :
         NGF_PY_BEGIN_DECL(Crate)
         {
             NGF_PY_METHOD_DECL(move)
+            NGF_PY_METHOD_DECL(explode)
         }
         NGF_PY_END_DECL
 
@@ -86,7 +87,7 @@ class Crate :
 
 #ifdef __CRATE_CPP__
 
-/* C++ code produced by gperf version 3.0.3 *//*{{{*/
+/* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */
 /* Computed positions: -k'' */
 
@@ -99,7 +100,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 1, duplicates = 0 */
+/* maximum key range = 4, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Crate)
 {
@@ -121,16 +122,17 @@ NGF_PY_CLASS_GPERF(Crate)::Lookup (register const char *str, register unsigned i
 {
   enum
     {
-      TOTAL_KEYWORDS = 1,
+      TOTAL_KEYWORDS = 2,
       MIN_WORD_LENGTH = 4,
-      MAX_WORD_LENGTH = 4,
+      MAX_WORD_LENGTH = 7,
       MIN_HASH_VALUE = 4,
-      MAX_HASH_VALUE = 4
+      MAX_HASH_VALUE = 7
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {"move", NGF_PY_METHOD_GPERF(Crate, move)}
+      {"move", NGF_PY_METHOD_GPERF(Crate, move)},
+      {"explode", NGF_PY_METHOD_GPERF(Crate, explode)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -141,8 +143,15 @@ NGF_PY_CLASS_GPERF(Crate)::Lookup (register const char *str, register unsigned i
         {
           register const struct PythonMethod *resword;
 
-          resword = &wordlist[0];
-          goto compare;
+          switch (key - 4)
+            {
+              case 0:
+                resword = &wordlist[0];
+                goto compare;
+              case 3:
+                resword = &wordlist[1];
+                goto compare;
+            }
           return 0;
         compare:
           {

@@ -60,8 +60,6 @@ class CameraHandler :
 
         Ogre::Vector3 mDeathLastPos; //Position we were looking at when death happened.
         Ogre::Vector3 mDeathOffset;
-        Ogre::Real mDeathTime;
-        Ogre::Real mRestartTime;
 
         int mCurrState;
 
@@ -183,8 +181,6 @@ class CameraHandler :
             NGF_SERIALISE_OGRE(Real, splineLength);
             NGF_SERIALISE_OGRE(Vector3, mDeathLastPos);
             NGF_SERIALISE_OGRE(Vector3, mDeathOffset);
-            NGF_SERIALISE_OGRE(Real, mDeathTime);
-            NGF_SERIALISE_OGRE(Real, mRestartTime);
 
             NGF_SERIALISE_ON_LOAD
             {

@@ -301,5 +301,10 @@ NGF_PY_BEGIN_IMPL(Crate)
 
         NGF_PY_RETURN();
     }
+    NGF_PY_METHOD_IMPL(explode)
+    {
+        explode();
+        NGF_PY_RETURN();
+    }
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)

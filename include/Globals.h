@@ -83,6 +83,9 @@ struct Globals : public Ogre::Singleton<Globals>
 
     //--- Global 'objects' -------------------------------------------------------------
 
+    //Player
+    NGF::GameObject *player;
+
     //Controller.
     NGF::GameObject *controller;
     
@@ -218,9 +221,12 @@ enum
     MSG_GETSPEED,             //Get speed (for Director).
     MSG_LEVELSTART,           //Level started (for Controller).
     MSG_LEVELSTOP,            //Level stopped (for Controller).
+    MSG_WINLEVEL,             //Level won (for Controller).
+    MSG_LOSELEVEL,            //Level lost (for Controller).
     MSG_CLICKED,              //Been clicked by ObjectClicker.
     MSG_GETPICKUPTYPE,        //Get Pickup type (for... Pickups).
     MSG_PICKEDUP,             //Pickup has been picked up (disables it).
+    MSG_CAPTURECAMERAHANDLER, //Capture the CameraHandler.
 };
 
 //Includes from the project used everywhere.
