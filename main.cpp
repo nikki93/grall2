@@ -293,7 +293,7 @@ class Game
             GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.49,0.49,0.49));
 
             /*
-            GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+            GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
             GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
             */
             
@@ -378,15 +378,12 @@ class Game
             ogreRmgr.initialiseAllResourceGroups();
 
             //Shadows.
-            //initShadows();
+            initShadows();
             
             //Compositor chain.
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Glow");
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Dimension2");
             Ogre::CompositorManager::getSingleton().setCompositorEnabled(viewport, "Compositor/Glow", true);
-            //MyGUI::StaticImagePtr img = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", 100,100,200,200, MyGUI::Align::Default, "Main");
-            //img->setImageTexture(GlbVar.ogreSmgr->getShadowTexture(0)->getName());
-            //img->setVisible(true);
 
             return true;
         }

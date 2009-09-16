@@ -52,8 +52,8 @@ void BasePerLight_vp
 
          uniform float3 eyePosition,
          uniform float4x4 worldViewProj,
-         uniform float4x4 world,
-         uniform float4x4 tvp,
+         uniform float4x4 world, //world_matrix
+         uniform float4x4 tvp, //texture_view_proj_matrix 0
 
          uniform float4 lightPosition,
          uniform float4 spotlightDir,

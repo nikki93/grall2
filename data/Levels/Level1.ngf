@@ -2,48 +2,6 @@ ngflevel Level1
 {
 	object
 	{
-		type Crate
-		name noname
-		position -7.500000 6.750000 -10.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 no
-			heightDeficiency 0.5
-		}
-	}
-	object
-	{
-		type Crate
-		name noname
-		position -7.500000 6.750000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 no
-			dimension2 yes
-			heightDeficiency 0.5
-		}
-	}
-	object
-	{
-		type Crate
-		name noname
-		position -7.500000 6.750000 -12.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			heightDeficiency 0.5
-		}
-	}
-	object
-	{
 		type Pickup
 		name noname
 		position -0.500000 10.500000 7.500000
@@ -1163,6 +1121,24 @@ ngflevel Level1
 			material Objects/KeyR
 			spin 0.2
 			bob 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -11.500000 12.125701 -0.249054
+		rotation 0.455253 0.890362 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			lightType spot
+			colour 0.5 0.5 0.5
+			attenuation 70 1 0.01 0.001
+			innerAngle 10
+			outerAngle 85
 		}
 	}
 }

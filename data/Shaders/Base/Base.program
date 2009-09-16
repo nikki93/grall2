@@ -198,7 +198,7 @@ material Base
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
 
-        technique 
+        technique Shaders
         { 
                 pass
                 {
@@ -282,7 +282,7 @@ material BaseNormalMap
 
         set $scaleBias "0.04 0.02"
 
-        technique 
+        technique Shaders
         { 
                 pass
                 {
@@ -372,7 +372,7 @@ material BaseNormalMapParallax
 
         set $scaleBias "0.04 0.02"
 
-        technique 
+        technique Shaders
         { 
                 pass
                 {
@@ -462,7 +462,7 @@ material BaseGlow
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
 
-        technique 
+        technique Shaders
         { 
                 pass
                 {
@@ -568,7 +568,7 @@ material BaseNormalMapGlow
 
         set $scaleBias "0.04 0.02"
 
-        technique 
+        technique Shaders
         { 
                 pass
                 {
@@ -680,7 +680,7 @@ material BaseNormalMapParallaxGlow
 
         set $scaleBias "0.04 0.02"
 
-        technique 
+        technique Shaders
         { 
                 pass
                 {

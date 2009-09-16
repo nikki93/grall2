@@ -37,6 +37,7 @@ POut shadow_caster_ps(PIn IN, uniform float4 depthRange) {
     // (this is linear space, not post-projection quadratic space)
     float d = (length(IN.depth.xyz) - depthRange.x) * depthRange.w;
     OUT.color = float4(d, d * d, 1, 1);
+    //OUT.color = float4(1,0,0,0);
 
     return OUT;
 }
