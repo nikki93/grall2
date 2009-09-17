@@ -1,4 +1,54 @@
-material Level1_b13_m0/TEXFACE/ConcreteOrangePatch.png
+material Level1_b11_m0/TEXFACE/Door.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Door.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b1_m0/TEXFACE/WhiteTile3.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTile3.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b12_m0/TEXFACE/ConcreteOrangePatch.png
 {
 	receive_shadows on
 	technique
@@ -73,7 +123,7 @@ material Level1_b8_m0/TEXFACE/ConcreteTileWall.png
 		}
 	}
 }
-material Level1_b17_m0/TEXFACE/ConcreteTileDetailed.png
+material Level1_b18_m0/TEXFACE/TileMetalHex.png
 {
 	receive_shadows on
 	technique
@@ -85,7 +135,7 @@ material Level1_b17_m0/TEXFACE/ConcreteTileDetailed.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture ConcreteTileDetailed.png
+				texture TileMetalHex.png
 				colour_op modulate
 			}
 		}
@@ -123,182 +173,7 @@ material Level1_b19_m0/TEXFACE/Door.png
 		}
 	}
 }
-material Level1_b8_m0/TEXFACE/WhiteTile1.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTile1.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b18_m0/TEXFACE/TileMetalHex.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture TileMetalHex.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b15_m0/TEXFACE/WhiteTile3.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTile3.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b11_m0/TEXFACE/Door.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture Door.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b16_m0/TEXFACE/Concrete3.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture Concrete3.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b1_m0/TEXFACE/WhiteTile3.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture WhiteTile3.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b10_m0/TEXFACE/TileMetalLong1.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture TileMetalLong1.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
-material Level1_b12_m0/TEXFACE/ConcreteOrangePatch.png
+material Level1_b20_m0/TEXFACE/MetalPlates.png
 {
 	receive_shadows on
 	technique
@@ -310,7 +185,7 @@ material Level1_b12_m0/TEXFACE/ConcreteOrangePatch.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture ConcreteOrangePatch.png
+				texture MetalPlates.png
 				colour_op modulate
 			}
 		}
@@ -373,31 +248,6 @@ material Level1_b17_m0/TEXFACE/WhiteTile2.png
 		}
 	}
 }
-material Level1_b17_m0/TEXFACE/TileMetalHex.png
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.747181 0.747181 0.747181 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			emissive 0.000000 0.000000 0.000000 1.000000
-			texture_unit
-			{
-				texture TileMetalHex.png
-				colour_op modulate
-			}
-		}
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.0 0.0 0.0
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			scene_blend add
-		}
-	}
-}
 material Level1_b14_m0/TEXFACE/WhiteTile3.png
 {
 	receive_shadows on
@@ -423,6 +273,56 @@ material Level1_b14_m0/TEXFACE/WhiteTile3.png
 		}
 	}
 }
+material Level1_b16_m0/TEXFACE/Concrete3.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Concrete3.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b8_m0/TEXFACE/WhiteTile1.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTile1.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
 material Level1_b17_m0/TEXFACE/BlueMulti.png
 {
 	receive_shadows on
@@ -436,6 +336,156 @@ material Level1_b17_m0/TEXFACE/BlueMulti.png
 			texture_unit
 			{
 				texture BlueMulti.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b17_m0/TEXFACE/ConcreteTileDetailed.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture ConcreteTileDetailed.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b17_m0/TEXFACE/TileMetalHex.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture TileMetalHex.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b13_m0/TEXFACE/ConcreteOrangePatch.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture ConcreteOrangePatch.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b15_m0/TEXFACE/WhiteTile3.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture WhiteTile3.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b20_m0/TEXFACE/Glass1.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture Glass1.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Level1_b10_m0/TEXFACE/TileMetalLong1.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.747181 0.747181 0.747181 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture TileMetalLong1.png
 				colour_op modulate
 			}
 		}

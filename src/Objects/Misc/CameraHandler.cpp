@@ -77,50 +77,50 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         mTargetNodeName = "";
     }
 
-    //Third-person view offset handling.
-    OIS::MouseState ms = Util::getMouseState();
-    if (ms.buttonDown(OIS::MB_Right) && mCurrState == CS_THIRDPERSON)
-    {
-        Ogre::Real yRel = -ms.Y.rel * 0.1;
-        int invert = GlbVar.settings.controls.invertMouse ? -1 : 1;
-        mViewAngle -= Ogre::Degree(yRel) * GlbVar.settings.controls.upDownSensitivity * invert;
-        mViewAngle = Util::clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 70);
-    }
-
-    mViewOffset = Ogre::Vector3(0, Ogre::Math::Sin(mViewAngle), Ogre::Math::Cos(mViewAngle)) * 10;
-    mLookAtOffset = Ogre::Vector3(0,2,0);
-
-    if (mViewAngle > Ogre::Degree(50))
-    {
-        mViewOffset.y *= ((mViewOffset.y - 7.66) * 0.2) + 1;
-    }
-    else if (mViewAngle < Ogre::Degree(27))
-    {
-        Ogre::Real diff = 27 - mViewAngle.valueDegrees();
-        Ogre::Real fact = 0;
-
-        //Smoothstep. :-)
-        Ogre::Real max = 17, min = 0;
-        if (diff < min)
-            fact = 0;
-        else if (diff >= max)
-            fact = 1;
-        else 
-            fact = (3 * ((diff - min) / (max - min)) * ((diff - min) / (max - min))) - (2 * ((diff - min) / (max - min)) * ((diff - min) / (max - min)) * ((diff - min) / (max - min)));
-
-        mViewOffset.z -= fact;
-        mLookAtOffset.y += 3 * fact;
-        mViewOffset.y = 3.42 - ((3.42 - mViewOffset.y) * 1.2);
-    }
-
     //Peeping.
-    if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
+    if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]) && Util::isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
+        mViewOffset = Ogre::Vector3(0,4.5,-5);
+    else if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
         mViewOffset = Ogre::Vector3(5,4.5,0);
-    if (Util::isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
-    {
+    else if (Util::isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
         mViewOffset = Ogre::Vector3(-5,4.5,0);
-        if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]))
-            mViewOffset = Ogre::Vector3(0,4.5,-5);
+    else
+    {
+        //Third-person view offset handling.
+        OIS::MouseState ms = Util::getMouseState();
+        if (ms.buttonDown(OIS::MB_Right) && mCurrState == CS_THIRDPERSON)
+        {
+            Ogre::Real yRel = -ms.Y.rel * 0.1;
+            int invert = GlbVar.settings.controls.invertMouse ? -1 : 1;
+            mViewAngle -= Ogre::Degree(yRel) * GlbVar.settings.controls.upDownSensitivity * invert;
+            mViewAngle = Util::clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 70);
+        }
+
+        mViewOffset = Ogre::Vector3(0, Ogre::Math::Sin(mViewAngle), Ogre::Math::Cos(mViewAngle)) * 10;
+        mLookAtOffset = Ogre::Vector3(0,2,0);
+
+        if (mViewAngle > Ogre::Degree(50))
+        {
+            mViewOffset.y *= ((mViewOffset.y - 7.66) * 0.2) + 1;
+        }
+        else if (mViewAngle < Ogre::Degree(27))
+        {
+            Ogre::Real diff = 27 - mViewAngle.valueDegrees();
+            Ogre::Real fact = 0;
+
+            //Smoothstep. :-)
+            Ogre::Real max = 17, min = 0;
+            if (diff < min)
+                fact = 0;
+            else if (diff >= max)
+                fact = 1;
+            else 
+                fact = (3 * ((diff - min) / (max - min)) * ((diff - min) / (max - min))) - (2 * ((diff - min) / (max - min)) * ((diff - min) / (max - min)) * ((diff - min) / (max - min)));
+
+            mViewOffset.z -= fact;
+            mLookAtOffset.y += 3 * fact;
+            mViewOffset.y = 3.42 - ((3.42 - mViewOffset.y) * 1.2);
+        }
     }
 
     //Python utick event (do it before camera handling to allow offset-modifications).

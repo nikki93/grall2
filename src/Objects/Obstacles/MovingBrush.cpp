@@ -102,7 +102,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btVector3 prevPos = oldTrans.getOrigin();
 
         //Squared speed.
-        Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame * 0.2;
+        Ogre::Real sqSpeed = (mVelocity.squaredLength() + 0.02) * evt.timeSinceLastFrame * evt.timeSinceLastFrame;
 
         //If we're near the next point on our list then we take it off our list and start moving to the next one (if it exists).
         //This way, you don't _need_ a point-list. You could do it using Directors, or even bouncing between walls, but when they're

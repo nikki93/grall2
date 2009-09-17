@@ -2,6 +2,482 @@ ngflevel Level1
 {
 	object
 	{
+		type Bomb
+		name noname
+		position 0.500000 10.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 10.500000 27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 10.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 10.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 10.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 10.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 10.500000 28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 10.500000 25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 10.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 10.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 10.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 10.500000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 10.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 10.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.600000 10.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 10.500000 21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 10.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 10.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 10.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 10.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 10.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 10.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 10.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 10.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 10.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 10.500000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 no
+			dimension2 yes
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 10.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 10.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 10.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 10.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			green no
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.500000 10.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			green no
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -20.500000 5.750000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			friction 0
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -19.500000 5.750000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			friction 0
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -19.500000 5.750000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			friction 0
+		}
+	}
+	object
+	{
 		type Pickup
 		name noname
 		position -0.500000 10.500000 7.500000
@@ -40,7 +516,7 @@ ngflevel Level1
 	{
 		type Pickup
 		name noname
-		position -15.500000 6.500000 -8.500000
+		position -15.500000 6.500000 -7.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -58,7 +534,7 @@ ngflevel Level1
 	{
 		type Pickup
 		name noname
-		position -18.500000 6.500000 -8.500000
+		position -18.500000 6.500000 -7.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -315,90 +791,6 @@ ngflevel Level1
 	}
 	object
 	{
-		type Bomb
-		name noname
-		position 0.500000 10.500000 28.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -4.500000 10.500000 28.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -3.500000 10.500000 28.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 10.500000 28.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 10.500000 28.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 10.500000 28.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 10.500000 27.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 0.500000 10.500000 24.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 10.500000 24.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 10.500000 24.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 10.500000 25.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 10.500000 24.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
 		type StaticBrush
 		name noname
 		position -0.500000 9.500000 43.500000
@@ -509,139 +901,6 @@ ngflevel Level1
 			dimension2 yes
 			speed 2
 		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -4.500000 10.500000 21.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 10.500000 21.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 10.500000 21.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 0.500000 10.500000 21.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 10.500000 18.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 10.500000 18.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -3.500000 10.500000 18.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -4.500000 10.500000 18.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 0.500000 10.500000 16.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 10.500000 16.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 10.500000 16.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 10.500000 16.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -3.500000 10.500000 16.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -4.500000 10.500000 16.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 0.500000 10.500000 13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 10.500000 13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 10.500000 13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 10.500000 13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -3.500000 10.500000 13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
@@ -766,13 +1025,6 @@ ngflevel Level1
 			       : 	if (other.hasFlag("Player")):
 			       : 		self.p_enabled = True
 		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -4.500000 10.500000 13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
@@ -917,7 +1169,7 @@ ngflevel Level1
 			dimension1 yes
 			dimension2 yes
 			brushMeshFile Level1_b14.mesh
-			convex yes
+			convex no
 		}
 	}
 	object
@@ -1139,6 +1391,72 @@ ngflevel Level1
 			attenuation 70 1 0.01 0.001
 			innerAngle 10
 			outerAngle 85
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	self.setAlarm(3,0)
+			       : 
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		self.showLevelText(2,4,3)
+			       : 
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -20.500000 6.200000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			brushMeshFile Level1_b20.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position -20.500000 5.750000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 yes
+			friction 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 10.500000 16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimension1 yes
+			dimension2 no
+			green no
 		}
 	}
 }

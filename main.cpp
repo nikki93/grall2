@@ -258,6 +258,7 @@ class Game
             ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Other", "FileSystem", "General");
             ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Special", "FileSystem", "General");
             ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Tile", "FileSystem", "General");
+            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Glass", "FileSystem", "General");
 
             ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders", "FileSystem", "General");
             ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Base", "FileSystem", "General");

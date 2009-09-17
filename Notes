@@ -496,3 +496,14 @@ Tue Sep 15 01:02:00 AST 2009
 - Exposed 'explode' methods of Bomb, MovingBomb and CameraHandler to Python.
 - Bomb 'setGreen' method exposed to Python.
 - Modified the win/lose animation (although 'win' doesn't have the camera part yet) to make it more decentralised. Now it's better managed.
+
+Thu Sep 16 16:49:14 AST 2009
+----------------------------
+- Added 'level text', which displays the level number and caption at start of the level (or whenever scripted).
+- Added a glass texture.
+- Fixed transparency issues.
+
+Thu Sep 17 14:27:59 AST 2009
+----------------------------
+- Improved MovingBomb and MovingBrush Director hit detection.
+- Fixed bug that didn't allow glowing objects to glow through glass.

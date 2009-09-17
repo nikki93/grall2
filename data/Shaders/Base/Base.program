@@ -780,3 +780,32 @@ material BaseNormalMapParallaxGlow
                 }
         }  
 }
+material BaseTransparent : Base
+{ 
+        technique Shaders
+        { 
+                pass
+                {
+                        ambient $ambient
+                        scene_blend alpha_blend
+                        depth_write off
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
+        { 
+                scheme Scheme/Glow
+        }  
+}

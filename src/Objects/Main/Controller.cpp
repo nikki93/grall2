@@ -8,11 +8,14 @@ Controller.cpp
 
 #include "Objects/Main/Controller.h"
 
+#include "Worlds/Level.h"
+
 //--- NGF events ----------------------------------------------------------------
 Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mWin(false),
-      mEndCountDown(-1)
+      mEndCountDown(-1),
+      mLevelText(0)
 {
     addFlag("Controller");
 
@@ -22,6 +25,7 @@ Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     NGF_PY_SAVE_EVENT(levelStop);
     NGF_PY_SAVE_EVENT(winLevel);
     NGF_PY_SAVE_EVENT(loseLevel);
+    NGF_PY_SAVE_EVENT(alarm);
 
     //Init.
     NGF_PY_CALL_EVENT(init);
@@ -38,10 +42,15 @@ Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 Controller::~Controller()
 {
     GlbVar.controller = NULL;
+
+    if (mLevelText)
+        GlbVar.gui->destroyWidget(mLevelText);
 }
 //-------------------------------------------------------------------------------
 void Controller::unpausedTick(const Ogre::FrameEvent &evt)
 {
+    updateAlarms(evt.timeSinceLastFrame);
+
     //Stupid hack for two-stage timer (first is until fade, then after fade).
     if (mEndCountDown > 777)
     {
@@ -65,6 +74,31 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
             mEndCountDown = 778.1;
         }
     }
+
+    //The level text stuff.
+    if (mLevelText)
+    {
+        //To safeguard from loading time evt.timeSinceLastFrame spikes.
+        if (mLevelText->getAlpha() == 0)
+        {
+            mLevelText->setAlpha(0.0001);
+        }
+        else
+        {
+            if (mLevelText->getAlpha() < 1)
+                mLevelText->setAlpha(Util::clamp(mLevelText->getAlpha() + mLevelTextRate * evt.timeSinceLastFrame, 0.0f, 1.0f));
+            else if (mLevelTextPause > 0)
+                mLevelTextPause -= evt.timeSinceLastFrame;
+            else
+                mLevelText->setAlpha(Util::clamp(mLevelText->getAlpha() + (mLevelTextRate = -1/mLevelTextOut) * evt.timeSinceLastFrame, 0.0f, 1.0f));
+        }
+
+        if (mLevelText->getAlpha() == 0)
+        {
+            GlbVar.gui->destroyWidget(mLevelText);
+            mLevelText = 0;
+        }
+    }
 }
 //-------------------------------------------------------------------------------
 void Controller::postLoad()
@@ -78,26 +112,57 @@ NGF::MessageReply Controller::receiveMessage(NGF::Message msg)
     switch (msg.code)
     {
         case MSG_LEVELSTART:
-            mPythonEvents["levelStart"](); //No 'self' parameter.
+            NGF_PY_CALL_EVENT(levelStart);
             NGF_NO_REPLY();
 
         case MSG_LEVELSTOP:
-            mPythonEvents["levelStop"]();
+            NGF_PY_CALL_EVENT(levelStop);
             NGF_NO_REPLY();
 
         case MSG_WINLEVEL:
             mWin = true;
             mEndCountDown = 3;
-            mPythonEvents["winLevel"]();
+            NGF_PY_CALL_EVENT(winLevel);
             NGF_NO_REPLY();
 
         case MSG_LOSELEVEL:
             mWin = false;
             mEndCountDown = 2;
-            mPythonEvents["loseLevel"]();
+            NGF_PY_CALL_EVENT(loseLevel);
             NGF_NO_REPLY();
     }
 
     NGF_NO_REPLY();
 }
+//-------------------------------------------------------------------------------
+
+//--- Python interface implementation -------------------------------------------
+NGF_PY_BEGIN_IMPL(Controller)
+{
+    NGF_PY_METHOD_IMPL(showLevelText)
+    {
+        if (mLevelText)
+            NGF_PY_RETURN();
+
+        mLevelTextRate = 1.0/(py::extract<Ogre::Real>(args[0]));
+        mLevelTextPause = py::extract<Ogre::Real>(args[1]);
+        mLevelTextOut = py::extract<Ogre::Real>(args[2]);
+
+        Ogre::String level = Ogre::StringConverter::toString(Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex()));
+        Ogre::String caption = static_cast<Level*>((GlbVar.woMgr->getWorldAt(GlbVar.woMgr->getCurrentWorldIndex())))->getCaption();
+
+        int w = GlbVar.ogreWindow->getWidth();
+        int h = GlbVar.ogreWindow->getHeight();
+        mLevelText = GlbVar.gui->createWidget<MyGUI::StaticText>("StaticText", 0, (int)(0.25 * h - 25), w, 50, MyGUI::Align::Default, "Popup");
+        mLevelText->setTextAlign(MyGUI::Align::HCenter | MyGUI::Align::VCenter);
+        mLevelText->setCaption("Level " + level + " - " + caption);
+        mLevelText->setFontName("BigFont");
+        mLevelText->setAlpha(0);
+        NGF_PY_RETURN();
+    }
+
+    //setAlarm
+    GRALL2_PY_ALARM_METHOD(setAlarm);
+}
+NGF_PY_END_IMPL
 //-------------------------------------------------------------------------------

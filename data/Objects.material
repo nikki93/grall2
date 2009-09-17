@@ -55,39 +55,14 @@ material Objects/GreenBomb : BaseNormalMapParallaxGlow
 }
 
 //--- Ice (Semitransparent) -----------------------------------------------------------
-material Objects/Ice : Base
+material Objects/Ice : BaseTransparent
 { 
-        receive_shadows on
-
         set $diffuse_tex "Ice.png"
         set $normal_tex "Ice_NM.png"
 
         set $ambient "0.95 0.95 0.95 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.8 0.8 0.8 1"
-
-        technique 
-        { 
-                pass
-                {
-                        ambient $ambient
-                        scene_blend alpha_blend
-                        depth_write off
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
 }
 
 //--- Crate ---------------------------------------------------------------------------

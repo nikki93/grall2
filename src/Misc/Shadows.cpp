@@ -34,7 +34,7 @@ struct ShadowListener : public Ogre::SceneManager::Listener
 
 void initShadows()
 {
-    const unsigned int numShadowTex = 4;
+    const unsigned int numShadowTex = 1;
 
     GlbVar.ogreSmgr->setShadowTextureSelfShadow(true);
     GlbVar.ogreSmgr->setShadowTextureCasterMaterial("shadow_caster");
@@ -45,7 +45,7 @@ void initShadows()
     GlbVar.ogreSmgr->setShadowTextureCountPerLightType(Ogre::Light::LT_SPOTLIGHT, numShadowTex);
     GlbVar.ogreSmgr->setShadowCasterRenderBackFaces(false);
 
-    for (unsigned i = 0; i < numShadowTex; ++i) 
+    for (unsigned int i = 0; i < numShadowTex; ++i) 
     {
         Ogre::TexturePtr tex = GlbVar.ogreSmgr->getShadowTexture(i);
         Ogre::Viewport *vp = tex->getBuffer()->getRenderTarget()->getViewport(0);
@@ -55,12 +55,14 @@ void initShadows()
     GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
 
     //Debug overlays.
-    int w = GlbVar.ogreWindow->getWidth();
-    for (unsigned i = 0; i < numShadowTex; ++i)
+    /*
+    unsigned int w = GlbVar.ogreWindow->getWidth();
+    for (unsigned int i = 0; i < numShadowTex; ++i)
     {
         MyGUI::StaticImagePtr img = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", w - 250 , 50 + 210*i, 200, 200, MyGUI::Align::Default, "Main");
         img->setImageTexture(GlbVar.ogreSmgr->getShadowTexture(i)->getName());
         img->setVisible(true);
     }
+    */
 }
 

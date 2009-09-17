@@ -295,3 +295,13 @@ material Brushes/WhiteLight.png : BaseNormalMapParallaxGlow
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "1 1 1 1"
 }
+
+//--- Glass (Semitransparent)-----------------------------------------------------------
+material Brushes/Glass1.png : BaseTransparent
+{ 
+        set $diffuse_tex "Glass1.png"
+
+        set $ambient "0.95 0.95 0.95 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
+}
