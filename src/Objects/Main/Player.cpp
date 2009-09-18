@@ -95,6 +95,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody( DimensionManager::PLAYER
             | DimensionManager::LIFTABLE
+            | DimensionManager::BULLET_SENSITIVE
             );
     setBulletObject(mBody);
 
@@ -106,6 +107,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
             , DimensionManager::NO_DIM_CHECK 
             | DimensionManager::NO_CRATE_CHECK
             | DimensionManager::NO_MOVING_CHECK
+            | DimensionManager::NO_BULLET_HIT
             | DimensionManager::INVISIBLE
             | DimensionManager::DIM_BOTH, 
             DimensionManager::DIM_BOTH
@@ -263,6 +265,10 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 btTransform oldTrans = mBody->getWorldTransform();
                 mBody->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(target)));
             }
+            NGF_NO_REPLY();
+
+        case MSG_BULLETHIT:
+            die(true);
             NGF_NO_REPLY();
 
         case MSG_CAPTURECAMERAHANDLER:

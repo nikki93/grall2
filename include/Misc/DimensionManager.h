@@ -35,18 +35,22 @@ class DimensionManager
             DIM_1 = BIT(0),
             DIM_2 = BIT(1),
 
-            //Flags for physicaltypes.
-            NO_DIM_CHECK = BIT(2), //Ignored by Player during dimension switch non-intersection test.
+            //Type-specific flags.
             PLAYER = BIT(3),
             STATIC = BIT(4),
             MOVINGBOMB = BIT(5),
             MOVINGBRUSH = BIT(6),
             GREENBOMB = BIT(7),
-            INVISIBLE = BIT(8), //Not a visible object (ignored by mousepick and Camera obstruction test).
-            NO_CRATE_CHECK = BIT(9), //Ignored by Crates during 'is spot empty' cast.
-            NO_MOVING_CHECK = BIT(10), //Ignored by MovingBrush, MovingBomb, SlidingBrush etc. when moving.
-            LIFTABLE = BIT(11), //Can be lifted by MovingBrush, SlidingBrush etc.
-            DIRECTOR = BIT(12)
+            DIRECTOR = BIT(12),
+
+            //Collision filter groups.
+            NO_DIM_CHECK = BIT(2),        //Ignored by Player during dimension switch non-intersection test.
+            NO_CRATE_CHECK = BIT(9),      //Ignored by Crates during 'is spot empty' cast.
+            NO_MOVING_CHECK = BIT(10),    //Ignored by MovingBrush, MovingBomb, SlidingBrush etc. when moving.
+            NO_BULLET_HIT = BIT(13),      //Bullets pass through.
+            INVISIBLE = BIT(8),           //Not a visible object (ignored by mousepick and Camera obstruction test).
+            LIFTABLE = BIT(11),           //Can be lifted by MovingBrush, SlidingBrush etc.
+            BULLET_SENSITIVE = BIT(14),   //Must be notified of 'MSG_BULLETHIT' events.
         };
 
     protected:

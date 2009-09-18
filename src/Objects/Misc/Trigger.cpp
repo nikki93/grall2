@@ -33,6 +33,7 @@ Trigger::Trigger(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Prope
     initBody( DimensionManager::NO_DIM_CHECK 
             | DimensionManager::NO_CRATE_CHECK
             | DimensionManager::NO_MOVING_CHECK
+            | DimensionManager::NO_BULLET_HIT
             | DimensionManager::INVISIBLE
             );
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);

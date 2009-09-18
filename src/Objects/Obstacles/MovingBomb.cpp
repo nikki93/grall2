@@ -50,7 +50,10 @@ MovingBomb::MovingBomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mBody = new btRigidBody(0, state, mShape);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
     mBody->setActivationState(DISABLE_DEACTIVATION);
-    initBody(DimensionManager::NO_DIM_CHECK | DimensionManager::MOVINGBOMB);
+    initBody( DimensionManager::NO_DIM_CHECK 
+            | DimensionManager::MOVINGBOMB
+            | DimensionManager::BULLET_SENSITIVE
+            );
 
     //Make smaller shape for cast.
     mCastShape = new btSphereShape(converter.getRadius() - CAST_SHAPE_SHRINK);
@@ -248,6 +251,10 @@ NGF::MessageReply MovingBomb::receiveMessage(NGF::Message msg)
         case MSG_EXPLODE:
             explode();
             NGF_NO_REPLY();
+
+        case MSG_BULLETHIT:
+            explode();
+            NGF_NO_REPLY();
     }
     
     return GraLL2GameObject::receiveMessage(msg);
@@ -295,19 +302,7 @@ void MovingBomb::explode()
         return;
 
     //FX!
-    GlbVar.goMgr->createObject<Light>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-            ("lightType", "point")
-            ("colour", "1 0.6 0")
-            ("specular", "0.1 0.1 0.1")
-            ("attenuation", "10 0.6 0.2 0.1")
-            ("time", "1.6")
-            ("fadeOutTime", "0.75")
-            );
-
-    GlbVar.goMgr->createObject<ParticleEffect>(mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-            ("template", "ParticleFX/Explosion")
-            ("time", "2")
-            );
+    Util::createExplosion(mNode->getPosition());
 
     //Us no more. :-(
     GlbVar.goMgr->requestDestroy(getID());

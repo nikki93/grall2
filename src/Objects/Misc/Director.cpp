@@ -35,6 +35,7 @@ Director::Director(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Pro
             | DimensionManager::INVISIBLE 
             | DimensionManager::NO_DIM_CHECK 
             | DimensionManager::NO_CRATE_CHECK 
+            | DimensionManager::NO_BULLET_HIT 
             | DimensionManager::DIM_BOTH
             );
     setBulletObject(mBody);

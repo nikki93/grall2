@@ -227,6 +227,7 @@ enum
     MSG_GETPICKUPTYPE,        //Get Pickup type (for... Pickups).
     MSG_PICKEDUP,             //Pickup has been picked up (disables it).
     MSG_CAPTURECAMERAHANDLER, //Capture the CameraHandler.
+    MSG_BULLETHIT,            //Bullet hit (for Player).
 };
 
 //Includes from the project used everywhere.

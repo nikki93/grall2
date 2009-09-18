@@ -37,6 +37,8 @@
 #include "Objects/Main/Controller.h"
 #include "Objects/Obstacles/Teleporter.h"
 #include "Objects/Obstacles/Pickup.h"
+#include "Objects/Bots/Bullet.h"
+#include "Objects/Bots/Turret.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -67,6 +69,8 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Controller);
     NGF_REGISTER_OBJECT_TYPE(Teleporter);
     NGF_REGISTER_OBJECT_TYPE(Pickup);
+    NGF_REGISTER_OBJECT_TYPE(Bullet);
+    NGF_REGISTER_OBJECT_TYPE(Turret);
 }
 
 //Register worlds.

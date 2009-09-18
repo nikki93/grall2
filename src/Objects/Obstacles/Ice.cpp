@@ -21,7 +21,7 @@ Ice::Ice(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList 
     mFrictionCoeff = Ogre::StringConverter::parseReal(mProperties.getValue("friction", 0, "0"));
 
     //Create the Ogre stuff.
-    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Template_Pad.mesh");
+    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Mesh_Pad.mesh");
     mEntity->setMaterialName("Objects/Ice");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);

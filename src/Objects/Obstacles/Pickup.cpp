@@ -25,7 +25,7 @@ Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     //Create the Ogre stuff. Pickups can be brushes too. :-)
     if (mProperties.getValue("brushMeshFile", 0, "n") == "n")
     {
-        Ogre::String meshFile = mProperties.getValue("meshFile", 0, "Template_Key.mesh");
+        Ogre::String meshFile = mProperties.getValue("meshFile", 0, "Mesh_Key.mesh");
         Ogre::String material = mProperties.getValue("material", 0, "Objects/KeyR");
         mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, meshFile);
         mEntity->setMaterialName(material);
@@ -43,7 +43,9 @@ Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
-    initBody(DimensionManager::NO_DIM_CHECK);
+    initBody( DimensionManager::NO_DIM_CHECK
+            | DimensionManager::NO_BULLET_HIT
+            );
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 //-------------------------------------------------------------------------------

@@ -33,13 +33,14 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = new btSphereShape(0.45);
+    mShape = converter.createSphere();
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
+
     //Player won't know about bombs in other dimension. >:-)
     initBody( DimensionManager::NO_DIM_CHECK
-            | (mGreen ? DimensionManager::NO_CRATE_CHECK : DimensionManager::NONE)
+            | DimensionManager::BULLET_SENSITIVE
             );
     setBulletObject(mBody);
 }
@@ -82,6 +83,10 @@ NGF::MessageReply Bomb::receiveMessage(NGF::Message msg)
     switch (msg.code)
     {
         case MSG_EXPLODE:
+            explode();
+            NGF_NO_REPLY();
+
+        case MSG_BULLETHIT:
             explode();
             NGF_NO_REPLY();
     }

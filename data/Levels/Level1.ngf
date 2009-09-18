@@ -9,8 +9,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green no
 		}
 	}
@@ -23,8 +22,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -37,8 +35,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -51,8 +48,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -65,8 +61,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -79,8 +74,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -93,8 +87,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -107,8 +100,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -121,8 +113,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -135,8 +126,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -149,8 +139,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -163,8 +152,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -177,8 +165,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -191,8 +178,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -205,8 +191,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -219,8 +204,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -233,8 +217,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -247,8 +230,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -261,8 +243,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -275,8 +256,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green no
 		}
 	}
@@ -289,8 +269,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green no
 		}
 	}
@@ -303,8 +282,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green no
 		}
 	}
@@ -317,8 +295,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green no
 		}
 	}
@@ -331,8 +308,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green no
 		}
 	}
@@ -345,8 +321,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green no
 		}
 	}
@@ -359,8 +334,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green no
 		}
 	}
@@ -373,8 +347,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			green no
 		}
 	}
@@ -387,8 +360,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			green no
 		}
 	}
@@ -401,8 +373,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			green no
 		}
 	}
@@ -415,8 +386,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			green no
 		}
 	}
@@ -429,8 +399,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			green no
 		}
 	}
@@ -443,8 +412,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			friction 0
 		}
 	}
@@ -457,8 +425,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			friction 0
 		}
 	}
@@ -471,135 +438,8 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			friction 0
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -0.500000 10.500000 7.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			pickupType KeyB
-			meshFile Template_Key.mesh
-			material Objects/KeyB
-			spin 0.2
-			bob 0.2
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -12.500000 6.500000 -2.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			pickupType KeyB
-			meshFile Template_Key.mesh
-			material Objects/KeyB
-			spin 0.2
-			bob 0.2
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -15.500000 6.500000 -7.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			pickupType KeyR
-			meshFile Template_Key.mesh
-			material Objects/KeyR
-			spin 0.2
-			bob 0.2
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -18.500000 6.500000 -7.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			pickupType KeyB
-			meshFile Template_Key.mesh
-			material Objects/KeyB
-			spin 0.2
-			bob 0.2
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -15.500000 6.500000 -5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			pickupType KeyG
-			meshFile Template_Key.mesh
-			material Objects/KeyG
-			spin 0.2
-			bob 0.2
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -18.500000 6.500000 -5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 yes
-			pickupType KeyG
-			meshFile Template_Key.mesh
-			material Objects/KeyG
-			spin 0.2
-			bob 0.2
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -12.500000 6.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 yes
-			dimension2 no
-			pickupType KeyR
-			meshFile Template_Key.mesh
-			material Objects/KeyR
-			spin 0.2
-			bob 0.2
 		}
 	}
 	object
@@ -611,8 +451,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			lightType point
 			colour 0.8 0.5 0.1
 			attenuation 70 1 0.08 0.02
@@ -627,8 +466,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			green yes
 		}
 	}
@@ -641,8 +479,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			green yes
 		}
 	}
@@ -655,8 +492,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green yes
 		}
 	}
@@ -669,8 +505,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b0.mesh
 			convex yes
 		}
@@ -684,8 +519,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			heightDeficiency 0.2
 		}
 	}
@@ -698,8 +532,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			heightDeficiency 0
 		}
 	}
@@ -707,13 +540,12 @@ ngflevel Level1
 	{
 		type Crate
 		name noname
-		position -11.500000 6.750000 -2.500000
+		position -11.500000 6.750000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			heightDeficiency 0.5
 		}
 	}
@@ -726,8 +558,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			brushMeshFile Level1_b1.mesh
 			convex no
 		}
@@ -741,8 +572,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -755,8 +585,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed -1
 		}
 	}
@@ -769,8 +598,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed -1
 		}
 	}
@@ -783,8 +611,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b2.mesh
 			convex yes
 		}
@@ -798,8 +625,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b3.mesh
 			convex yes
 		}
@@ -813,8 +639,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -827,8 +652,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -841,8 +665,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -855,8 +678,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed -1
 		}
 	}
@@ -869,8 +691,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -883,8 +704,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -897,8 +717,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -911,8 +730,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b4.mesh
 			convex yes
 		}
@@ -926,8 +744,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b5.mesh
 			convex yes
 		}
@@ -941,8 +758,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b6.mesh
 			convex yes
 		}
@@ -956,8 +772,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b7.mesh
 			convex yes
 		}
@@ -971,8 +786,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b8.mesh
 			convex yes
 		}
@@ -993,8 +807,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			switchType press
 			script : import Ngf
 			       : 
@@ -1014,8 +827,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			enabled no
 			brushMeshFile Level1_b9.mesh
 			speed 1
@@ -1035,8 +847,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -1049,8 +860,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed 2
 		}
 	}
@@ -1070,8 +880,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b10.mesh
 			convex yes
 		}
@@ -1085,8 +894,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			enabled yes
 			speed 2
 			distance 1.9
@@ -1120,8 +928,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			enabled no
 			brushMeshFile Level1_b12.mesh
 			speed 0.5
@@ -1136,8 +943,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			speed -1
 		}
 	}
@@ -1150,8 +956,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			enabled yes
 			brushMeshFile Level1_b13.mesh
 			speed 0.5
@@ -1166,8 +971,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b14.mesh
 			convex no
 		}
@@ -1181,8 +985,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			brushMeshFile Level1_b15.mesh
 			convex no
 		}
@@ -1196,8 +999,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 no
-			dimension2 yes
+			dimensions 2
 			brushMeshFile Level1_b16.mesh
 			convex no
 		}
@@ -1211,8 +1013,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			heightDeficiency 0.3
 		}
 	}
@@ -1225,8 +1026,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b17.mesh
 			convex no
 		}
@@ -1240,8 +1040,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			lightType point
 			colour 0.4 0.7 0.9
 			attenuation 70 1 0.08 0.02
@@ -1256,8 +1055,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b18.mesh
 			convex yes
 		}
@@ -1271,8 +1069,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			enabled yes
 			speed 1
 			distance 0.999
@@ -1352,27 +1149,8 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			green yes
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -11.500000 6.500000 -12.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimension1 no
-			dimension2 yes
-			pickupType KeyR
-			meshFile Template_Key.mesh
-			material Objects/KeyR
-			spin 0.2
-			bob 0.2
 		}
 	}
 	object
@@ -1384,8 +1162,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			lightType spot
 			colour 0.5 0.5 0.5
 			attenuation 70 1 0.01 0.001
@@ -1402,8 +1179,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			script : import Ngf
 			       : import GraLL2
 			       : 
@@ -1425,8 +1201,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			brushMeshFile Level1_b20.mesh
 			convex yes
 		}
@@ -1440,8 +1215,7 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 yes
+			dimensions 3
 			friction 0
 		}
 	}
@@ -1454,10 +1228,16 @@ ngflevel Level1
 
 		properties
 		{
-			dimension1 yes
-			dimension2 no
+			dimensions 1
 			green no
 		}
+	}
+	object
+	{
+		type Turret
+		name noname
+		position -14.500000 6.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 }
 

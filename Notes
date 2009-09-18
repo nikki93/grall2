@@ -6,7 +6,9 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add a 'Win' animation.
+- Add Turret texture.
+
+- Modify Bullet texture to fade out at the ends for a motion-blur effect.
 
 Side
 ----
@@ -507,3 +509,5 @@ Thu Sep 17 14:27:59 AST 2009
 ----------------------------
 - Improved MovingBomb and MovingBrush Director hit detection.
 - Fixed bug that didn't allow glowing objects to glow through glass.
+- Added 'Turret' GameObject. The Turret alternates between periods of rest and shooting. The switching between these periods is animated.
+- Added 'Bullet' GameObject.

@@ -44,14 +44,7 @@ def write(filename):
             propStr = "\n\t\tproperties\n\t\t{\n"
             
             #Add dimension data.
-            if ((object.Layers & 1) > 0):
-                propStr = propStr + ("\t\t\tdimension1 yes\n")
-            else:
-                propStr = propStr + ("\t\t\tdimension1 no\n")
-            if ((object.Layers & 2) > 0):
-                propStr = propStr + ("\t\t\tdimension2 yes\n")
-            else:
-                propStr = propStr + ("\t\t\tdimension2 no\n")
+            propStr = propStr + ("\t\t\tdimensions %d\n" % object.Layers)
                             
             for prop in objProps:
                 if prop.getName() != "type" and prop.getName() != "name" and prop.getName() != "dimension1" and prop.getName != "dimension2":

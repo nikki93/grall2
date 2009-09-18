@@ -20,10 +20,18 @@ GraLL2GameObject::GraLL2GameObject(bool dimensional)
 
     if (dimensional)
     {
-        //Remember which dimensions we're in.
-        bool dim1 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension1", 0, "1"));
-        bool dim2 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension2", 0, "1"));
-        mDimensions = (dim1 ? DimensionManager::DIM_1 : DimensionManager::NONE) | (dim2 ? DimensionManager::DIM_2 : DimensionManager::NONE);
+        Ogre::String dimStr = mProperties.getValue("dimensions", 0, "n");
+
+        if (dimStr != "n")
+        {
+            mDimensions = Ogre::StringConverter::parseInt(dimStr) & DimensionManager::DIM_BOTH; //Filter out any unnecessary bits.
+        }
+        else
+        {
+            bool dim1 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension1", 0, "1"));
+            bool dim2 = Ogre::StringConverter::parseBool(mProperties.getValue("dimension2", 0, "1"));
+            mDimensions = (dim1 ? DimensionManager::DIM_1 : DimensionManager::NONE) | (dim2 ? DimensionManager::DIM_2 : DimensionManager::NONE);
+        }
     }
     else
     {

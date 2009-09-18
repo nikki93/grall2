@@ -8,7 +8,7 @@ Crate.cpp
 
 #include "Objects/Obstacles/Crate.h"
 
-#define MAX_CRATE_MATERIALS 3
+#define MAX_CRATE_MATERIALS 6
 #define CRATE_MOVE_SPEED 2
 
 //--- NGF events ----------------------------------------------------------------
@@ -35,7 +35,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff. The mesh is a normal box, except in the bottom it's bevelled.
-    Ogre::Entity *colMesh = GlbVar.ogreSmgr->createEntity(mOgreName + "_collision", "Collision_Crate.mesh");
+    Ogre::Entity *colMesh = GlbVar.ogreSmgr->createEntity(mOgreName + "_Collision", "Collision_Crate.mesh");
     BtOgre::StaticMeshToShapeConverter converter(colMesh);
     mShape = converter.createConvex();
     GlbVar.ogreSmgr->destroyEntity(colMesh);
@@ -61,7 +61,13 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mFixedBody = new btRigidBody(0, fixedState, mCastShape);
     mFixedBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
     mFixedBody->setActivationState(DISABLE_DEACTIVATION);
-    GlbVar.phyWorld->addRigidBody(mFixedBody, mDimensions | DimensionManager::NO_DIM_CHECK | DimensionManager::INVISIBLE, mDimensions);
+    GlbVar.phyWorld->addRigidBody(mFixedBody, mDimensions 
+            | DimensionManager::NO_DIM_CHECK 
+            | DimensionManager::NO_MOVING_CHECK 
+            | DimensionManager::NO_BULLET_HIT 
+            | DimensionManager::NO_CRATE_CHECK 
+            | DimensionManager::INVISIBLE
+            , mDimensions);
 
     mConstraint = new btSliderConstraint(*mBody, *mFixedBody, btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), btTransform(btQuaternion(btVector3(0,0,1),Ogre::Math::PI/2.0)), false);
     mConstraint->setLowerLinLimit(1); //Free linear.
