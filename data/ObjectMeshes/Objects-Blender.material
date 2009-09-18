@@ -98,20 +98,6 @@ material Dummy/TEXFACE/Icon_CameraHandler.png
 		}
 	}
 }
-material Dummy/TEXFACE
-{
-	receive_shadows on
-	technique
-	{
-		pass
-		{
-			ambient 0.500000 0.500000 0.500000 1.000000
-			diffuse 0.800000 0.800000 0.800000 1.000000
-			specular 0.500000 0.500000 0.500000 1.000000 12.500000
-			emissive 0.000000 0.000000 0.000000 1.000000
-		}
-	}
-}
 material Dummy/TEXFACE/Checkpoint.png
 {
 	receive_shadows on
@@ -162,7 +148,7 @@ material Dummy/TEXFACE/Crate1.png
 		}
 	}
 }
-material Dummy/TEXFACE/Crate3.png
+material Dummy/TEXFACE/TurretBase.png
 {
 	receive_shadows on
 	technique
@@ -174,7 +160,7 @@ material Dummy/TEXFACE/Crate3.png
 			emissive 0.000000 0.000000 0.000000 1.000000
 			texture_unit
 			{
-				texture Crate3.png
+				texture TurretBase.png
 				colour_op modulate
 			}
 		}
@@ -225,6 +211,31 @@ material Dummy/TEXFACE/Bomb.png
 			texture_unit
 			{
 				texture Bomb.png
+				colour_op modulate
+			}
+		}
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.0 0.0 0.0
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			scene_blend add
+		}
+	}
+}
+material Dummy/TEXFACE/TurretTop.png
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.800000 0.800000 0.800000 1.000000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture TurretTop.png
 				colour_op modulate
 			}
 		}

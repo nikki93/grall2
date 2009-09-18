@@ -43,12 +43,15 @@ class Turret :
             TS_REST,
             TS_RESTTOFIRE,
             TS_FIRE,
+            TS_SCAN,
         };
 
         int mState;
 
         Ogre::Real mStateTimer;
         Ogre::Real mBulletTimer;
+
+        bool mAlwaysScan;
 
     public:
         Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -64,9 +67,11 @@ class Turret :
         //--- Non-NGF ------------------------------------------------------------------
         void startFiring();
         void stopFiring();
-        void fire();
-        void rest();
+        void fire(Ogre::Real time);
+        void rest(Ogre::Real time);
+        void scan();
         void fireSingleBullet();
+        bool doSingleScan();
 
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Turret)
@@ -79,6 +84,7 @@ class Turret :
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Turret)
         {
+            //Base's position is always same (0,0,0), no need to save it.
             Ogre::Vector3 topPos;
 
             NGF_SERIALISE_ON_SAVE
@@ -90,11 +96,15 @@ class Turret :
 
             NGF_SERIALISE_OGRE(Real, mFireTime);
             NGF_SERIALISE_OGRE(Real, mRestTime);
+            NGF_SERIALISE_OGRE(Bool, mAlwaysScan);
 
             NGF_SERIALISE_OGRE(Int, mState);
 
             NGF_SERIALISE_OGRE(Real, mStateTimer);
             NGF_SERIALISE_OGRE(Real, mBulletTimer);
+
+            NGF_SERIALISE_OGRE(Vector3, topPos);
+
 
             NGF_SERIALISE_ON_LOAD
             {

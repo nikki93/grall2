@@ -160,8 +160,8 @@ material Objects/KeyB : Objects/KeyR
         set $glow_tex "KeyB.png"
 }
 
-//--- Key -----------------------------------------------------------------------------
-material Objects/BulletR : BaseGlow
+//--- Bullet --------------------------------------------------------------------------
+material Objects/BulletR : BaseTransparent
 {
         set $diffuse_tex "BulletR.png"
         set $glow_tex "BulletR.png"
@@ -169,4 +169,53 @@ material Objects/BulletR : BaseGlow
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
         set $specular "0.8 0.8 0.8 0.8"
+
+        technique Glow
+        { 
+                scheme Scheme/Glow
+                pass
+                {
+                        ambient 1 1 1 1
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit GlowMap
+                        {
+                                texture $glow_tex
+                        }
+                }
+        }  
+}
+material Objects/BulletB : Objects/BulletR
+{
+    set $diffuse_tex "BulletB.png"
+    set $glow_tex "BulletB.png"
+}
+
+//--- Turret --------------------------------------------------------------------------
+material Objects/TurretBase : BaseNormalMapGlow
+{
+        set $diffuse_tex "TurretBase.png"
+        set $normal_tex "TurretBase_NM.png"
+        set $glow_tex "TurretBase_GW.png"
+
+        set $ambient "0.8 0.8 0.8 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "1 1 1 1"
+}
+material Objects/TurretTop : BaseNormalMapGlow
+{
+        set $diffuse_tex "TurretTop.png"
+        set $normal_tex "TurretTop_NM.png"
+        set $glow_tex "TurretTop_GW.png"
+
+        set $ambient "0.8 0.8 0.8 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "1 1 1 1"
 }

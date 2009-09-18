@@ -25,7 +25,7 @@ Bullet::Bullet(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     NGF_PY_CALL_EVENT(init);
 
     //Read properties.
-    mSpeed = Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "77"));
+    mSpeed = Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "49"));
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Bullet.mesh");
@@ -85,61 +85,46 @@ void Bullet::unpausedTick(const Ogre::FrameEvent &evt)
     btVector3 vel = quatRotate(oldRot, btVector3(0,0,-mSpeed * evt.timeSinceLastFrame));
     btVector3 newPos = oldPos + vel;
 
-    //The cast result callback. Also checks for Director hits.
-    struct BulletCheckResult : public btDynamicsWorld::ConvexResultCallback
+    //Do a raycast.
+    struct ClickRayResult : public btDynamicsWorld::ClosestConvexResultCallback
     {
         btCollisionObject *mIgnore;
         int mDimension;
-        bool mHit;
-        bool mHitPlayer;
 
-        BulletCheckResult(btCollisionObject *ignore, int dimension)
-            : mIgnore(ignore),
-              mDimension(dimension),
-              mHit(false),
-              mHitPlayer(false)
+        ClickRayResult(int dimension, btCollisionObject *ignore, const btVector3 &from, const btVector3 &to)
+            : btCollisionWorld::ClosestConvexResultCallback(from, to),
+              mIgnore(ignore),
+              mDimension(dimension)
         {
-        }
-
-        btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
-        {
-            mHit = true;
-
-            //We hit something good!
-            if (convexResult.m_hitCollisionObject->getBroadphaseHandle()->m_collisionFilterGroup & DimensionManager::BULLET_SENSITIVE)
-            {
-                NGF::GameObject *obj = NGF::Bullet::fromBulletObject(convexResult.m_hitCollisionObject);
-                if (obj)
-                    GlbVar.goMgr->sendMessage(obj, NGF_MESSAGE(MSG_BULLETHIT));
-            }
-
-            return 1;
         }
 
         bool needsCollision(btBroadphaseProxy* proxy0) const
         {
-            //If it's us, or isn't in our dimension, we don't care. 
-            return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
+            return ((btCollisionObject*) proxy0->m_clientObject != mIgnore)
                 && !(proxy0->m_collisionFilterGroup & DimensionManager::NO_BULLET_HIT)
                 && (proxy0->m_collisionFilterGroup & mDimension);
         }
     };
 
-    //Where to cast from, where to cast to, etc.
     btVector3 pos1 = oldPos;
     btVector3 pos2 = newPos;
-    btQuaternion rot = mBody->getWorldTransform().getRotation();
-    btTransform trans1(rot, pos1);
-    btTransform trans2(rot, pos2);
+    ClickRayResult res(mDimensions, mBody, pos1, pos2);
 
-    //Do the cast.
-    BulletCheckResult res(mBody, mDimensions);
-    GlbVar.phyWorld->convexSweepTest(mShape, trans1, trans2, res);
+    GlbVar.phyWorld->convexSweepTest(mShape, btTransform(oldRot,oldPos), btTransform(oldRot,newPos), res);
 
-    if (res.mHit)
+    if (res.m_hitCollisionObject)
+    {
+        //If hit, explode, and tell the guy.
         explode();
+        NGF::GameObject *obj = NGF::Bullet::fromBulletObject(res.m_hitCollisionObject);
+        if (obj)
+            GlbVar.goMgr->sendMessage(obj, NGF_MESSAGE(MSG_BULLETHIT));
+    }
     else
+    {
+        //Otherwise keep going.
         mBody->getMotionState()->setWorldTransform(btTransform(oldRot, oldPos + vel));
+    }
 
     //We can't stay forever. D:
     mLifetime += evt.timeSinceLastFrame;
@@ -191,9 +176,9 @@ void Bullet::explode()
             ("lightType", "point")
             ("colour", "1 0.6 0")
             ("specular", "0.1 0.1 0.1")
-            ("attenuation", "10 0.6 0.2 0.10")
-            ("time", "0.7")
-            ("fadeOutTime", "0.5")
+            ("attenuation", "10 0.6 0.4 0.2")
+            ("time", "0.3")
+            ("fadeOutTime", "0.2")
             );
 
     //Us no more. :-(

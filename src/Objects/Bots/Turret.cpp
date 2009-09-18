@@ -10,11 +10,12 @@ Turret.cpp
 
 #include "Objects/Bots/Bullet.h"
 
-#define TOP_MOVE_DISTANCE 0.19f
-#define SHOOT_OFFSET (Ogre::Vector3(0,0.9,0))
+#define TOP_MOVE_DISTANCE 0.16f
+#define SHOOT_OFFSET (Ogre::Vector3(0,0.89,0))
 #define TOP_MOVE_TIME 1.0f
 #define FIRST_BULLET_TIME 1
-#define BULLET_TIME 0.2
+#define BULLET_TIME 0.14
+#define MAX_BULLET_DEVIATION
 
 //--- NGF events ----------------------------------------------------------------
 Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -29,14 +30,18 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     NGF_PY_CALL_EVENT(init);
 
     //Read properties.
+    Ogre::Real initTime = Ogre::StringConverter::parseReal(mProperties.getValue("initTime", 0, "0"));
     mFireTime = Ogre::StringConverter::parseReal(mProperties.getValue("fireTime", 0, "7"));
     mRestTime = Ogre::StringConverter::parseReal(mProperties.getValue("restTime", 0, "5"));
+
+    bool initScan = Ogre::StringConverter::parseBool(mProperties.getValue("initScan", 0, "no"));
+    mAlwaysScan = Ogre::StringConverter::parseBool(mProperties.getValue("alwaysScan", 0, "no"));
 
     //Create the Ogre stuff.
     mBaseEntity = GlbVar.ogreSmgr->createEntity(mOgreName + "_base", "Mesh_TurretBase.mesh");
     mTopEntity = GlbVar.ogreSmgr->createEntity(mOgreName + "_top", "Mesh_TurretTop.mesh");
-    mBaseEntity->setMaterialName("Objects/Crate1");
-    mTopEntity->setMaterialName("Objects/Crate1");
+    mBaseEntity->setMaterialName("Objects/TurretBase");
+    mTopEntity->setMaterialName("Objects/TurretTop");
 
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mBaseNode = mNode->createChildSceneNode(mOgreName + "_base");
@@ -58,8 +63,13 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
             );
     setBulletObject(mBody);
 
-    //Fire!
-    startFiring();
+    //Start!
+    if (initScan)
+        scan();
+    else if (initTime)
+        rest(initTime);
+    else
+        startFiring();
 }
 //-------------------------------------------------------------------------------
 void Turret::postLoad()
@@ -100,7 +110,7 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
                 if (-(mTopNode->getPosition().y) < speed)
                 {
                     mTopNode->setPosition(Ogre::Vector3::ZERO);
-                    fire();
+                    fire(mFireTime);
                     break;
                 }
                 else
@@ -116,7 +126,11 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
                 if (mTopNode->getPosition().y + TOP_MOVE_DISTANCE < speed)
                 {
                     mTopNode->setPosition(Ogre::Vector3(0,-TOP_MOVE_DISTANCE,0));
-                    rest();
+
+                    if (mAlwaysScan)
+                        scan();
+                    else
+                        rest(mRestTime);
                     break;
                 }
                 else
@@ -149,6 +163,13 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
                 mStateTimer -= evt.timeSinceLastFrame;
                 
                 if (mStateTimer < 0)
+                    startFiring();
+            }
+            break;
+
+        case TS_SCAN:
+            {
+                if (doSingleScan())
                     startFiring();
             }
             break;
@@ -194,17 +215,22 @@ void Turret::stopFiring()
         mState = TS_FIRETOREST;
 }
 //-------------------------------------------------------------------------------
-void Turret::fire()
+void Turret::fire(Ogre::Real time)
 {
     mState = TS_FIRE;
-    mStateTimer = mFireTime;
+    mStateTimer = time;
     mBulletTimer = FIRST_BULLET_TIME;
 }
 //-------------------------------------------------------------------------------
-void Turret::rest()
+void Turret::rest(Ogre::Real time)
 {
     mState = TS_REST;
-    mStateTimer = mRestTime;
+    mStateTimer = time;
+}
+//-------------------------------------------------------------------------------
+void Turret::scan()
+{
+    mState = TS_SCAN;
 }
 //-------------------------------------------------------------------------------
 void Turret::fireSingleBullet()
@@ -213,7 +239,7 @@ void Turret::fireSingleBullet()
     {
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
         Ogre::Vector3 shootPos = mNode->getPosition() + SHOOT_OFFSET;
-        Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy().randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * 0.034));
+        Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy().randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * 0.08));
         Ogre::Quaternion shootRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
         Ogre::Vector3 bulletPos = shootPos + (shootRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
 
@@ -226,6 +252,44 @@ void Turret::fireSingleBullet()
         //Our work is done. ;-)
         stopFiring();
     }
+}
+//-------------------------------------------------------------------------------
+bool Turret::doSingleScan()
+{
+    if (GlbVar.player)
+    {
+        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
+
+        struct ScanRayResult : public btDynamicsWorld::ClosestRayResultCallback
+        {
+            int mDimension;
+            btCollisionObject *mIgnore;
+
+            ScanRayResult(int dimension, btCollisionObject *ignore, const btVector3 &from, const btVector3 &to)
+                : btCollisionWorld::ClosestRayResultCallback(from, to),
+                  mDimension(dimension),
+                  mIgnore(ignore)
+            {
+            }
+
+            bool needsCollision(btBroadphaseProxy* proxy0) const
+            {
+                return ((btCollisionObject*) proxy0->m_clientObject != mIgnore)
+                    && !(proxy0->m_collisionFilterGroup & DimensionManager::NO_BULLET_HIT)
+                    && (proxy0->m_collisionFilterGroup & mDimension);
+            }
+        };
+
+        btVector3 pos1 = BtOgre::Convert::toBullet(mNode->getPosition() + SHOOT_OFFSET);
+        btVector3 pos2 = BtOgre::Convert::toBullet(playerPos);
+        ScanRayResult res(GlbVar.dimMgr->getCurrentDimension(), mBody, pos1, pos2);
+
+        GlbVar.phyWorld->rayTest(pos1, pos2, res);
+
+        return res.m_collisionObject->getBroadphaseHandle()->m_collisionFilterGroup & DimensionManager::PLAYER;
+    }
+    
+    return false;
 }
 //-------------------------------------------------------------------------------
 

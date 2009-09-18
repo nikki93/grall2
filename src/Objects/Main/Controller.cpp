@@ -117,6 +117,11 @@ NGF::MessageReply Controller::receiveMessage(NGF::Message msg)
 
         case MSG_LEVELSTOP:
             NGF_PY_CALL_EVENT(levelStop);
+
+            if (mLevelText)
+                GlbVar.gui->destroyWidget(mLevelText);
+            mLevelText = 0;
+
             NGF_NO_REPLY();
 
         case MSG_WINLEVEL:

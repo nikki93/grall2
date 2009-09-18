@@ -40,7 +40,6 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
 
     //Player won't know about bombs in other dimension. >:-)
     initBody( DimensionManager::NO_DIM_CHECK
-            | DimensionManager::BULLET_SENSITIVE
             );
     setBulletObject(mBody);
 }

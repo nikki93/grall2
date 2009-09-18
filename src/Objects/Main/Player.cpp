@@ -95,7 +95,6 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody( DimensionManager::PLAYER
             | DimensionManager::LIFTABLE
-            | DimensionManager::BULLET_SENSITIVE
             );
     setBulletObject(mBody);
 

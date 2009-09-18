@@ -52,7 +52,6 @@ MovingBomb::MovingBomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody( DimensionManager::NO_DIM_CHECK 
             | DimensionManager::MOVINGBOMB
-            | DimensionManager::BULLET_SENSITIVE
             );
 
     //Make smaller shape for cast.

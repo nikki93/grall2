@@ -6,9 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add Turret texture.
-
-- Modify Bullet texture to fade out at the ends for a motion-blur effect.
 
 Side
 ----
@@ -511,3 +508,11 @@ Thu Sep 17 14:27:59 AST 2009
 - Fixed bug that didn't allow glowing objects to glow through glass.
 - Added 'Turret' GameObject. The Turret alternates between periods of rest and shooting. The switching between these periods is animated.
 - Added 'Bullet' GameObject.
+
+Fri Sep 18 19:39:18 AST 2009
+----------------------------
+- Cleaned up Physics flag groups.
+- Fixed many Turret-related bugs.
+- Added more Turret features: 'scan', 'initTime', 'alwaysScan' etc.
+- Made Bullet texture fade out at ends for motion-blur effect.
+- Added Turret texture.
