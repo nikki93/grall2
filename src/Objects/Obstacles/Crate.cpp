@@ -57,7 +57,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     //To allow Gravity, but still constraint on XZ plane, we use slider.
     mCastShape = new btBoxShape(btVector3(0.475,0.65,0.475));
 
-    btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,5,0))));
+    btDefaultMotionState *fixedState = new btDefaultMotionState(btTransform(BtOgre::Convert::toBullet(rot), BtOgre::Convert::toBullet(pos + Ogre::Vector3(0,20,0))));
     mFixedBody = new btRigidBody(0, fixedState, mCastShape);
     mFixedBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE);
     mFixedBody->setActivationState(DISABLE_DEACTIVATION);
@@ -147,8 +147,9 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
 
     /*
     mFixedBody->getMotionState()->getWorldTransform(oldTrans);
-    mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), btVector3(oldTrans.getOrigin().x(), 
-                    mBody->getWorldTransform().getOrigin().y(), oldTrans.getOrigin().z())));
+    btVector3 fixedPos = oldTrans.getOrigin();
+    btTransform bodyTrans = mBody->getWorldTransform();
+    mBody->setWorldTransform(btTransform(btQuaternion::getIdentity(), btVector3(fixedPos.x(), bodyTrans.getOrigin().y(), fixedPos.z())));
     */
 
     //If fell off, die.
@@ -275,7 +276,7 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
         btTransform fixedTrans;
         mFixedBody->getMotionState()->getWorldTransform(fixedTrans);
         btVector3 fixedPos = fixedTrans.getOrigin();
-        btVector3 myPos = myTrans.getOrigin();
+        //btVector3 myPos = myTrans.getOrigin();
         mTarget = BtOgre::Convert::toOgre(fixedPos) + newDir;
     }
 }

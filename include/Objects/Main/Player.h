@@ -32,6 +32,7 @@ class Player :
 
         bool mUnderControl; //It's all under control...
         bool mDead;
+        bool mInvincible;
 
         Ogre::Real mMinHeight;
 
@@ -78,6 +79,7 @@ class Player :
             NGF_PY_METHOD_DECL(hasDecPickup)
 
             NGF_PY_PROPERTY_DECL(underControl)
+            NGF_PY_PROPERTY_DECL(invincible)
         }
         NGF_PY_END_DECL
 
@@ -173,8 +175,8 @@ NGF_PY_CLASS_GPERF(Player)::MakeHash (register const char *str, register unsigne
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27,  0,
-      15, 27, 27,  5,  0, 10, 27, 27,  0, 27,
-       5, 27, 27, 27, 27,  0, 27, 27, 27, 27,
+       9, 27, 27,  5,  0,  4, 27, 27,  0, 27,
+      15, 27, 27, 27, 27,  0, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
       27, 27, 27, 27, 27, 27, 27, 27, 27, 27,
@@ -198,7 +200,7 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 11,
+      TOTAL_KEYWORDS = 13,
       MIN_WORD_LENGTH = 9,
       MAX_WORD_LENGTH = 21,
       MIN_HASH_VALUE = 9,
@@ -207,16 +209,22 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
 
   static const struct PythonMethod wordlist[] =
     {
+      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {"hasPickup", NGF_PY_METHOD_GPERF(Player, hasPickup)},
+      {""}, {""},
       {"hasDecPickup", NGF_PY_METHOD_GPERF(Player, hasDecPickup)},
-      {"numPickup", NGF_PY_METHOD_GPERF(Player, numPickup)},
+      {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)},
+      {"set_invincible", NGF_PY_SET_GPERF(Player, invincible)},
       {"switchDimension", NGF_PY_METHOD_GPERF(Player, switchDimension)},
       {"set_underControl", NGF_PY_SET_GPERF(Player, underControl)},
       {"loseCameraHandler", NGF_PY_METHOD_GPERF(Player, loseCameraHandler)},
-      {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)},
+      {"decPickup", NGF_PY_METHOD_GPERF(Player, decPickup)},
+      {"get_invincible", NGF_PY_GET_GPERF(Player, invincible)},
       {"captureCameraHandler", NGF_PY_METHOD_GPERF(Player, captureCameraHandler)},
       {"get_underControl", NGF_PY_GET_GPERF(Player, underControl)},
-      {"decPickup", NGF_PY_METHOD_GPERF(Player, decPickup)},
+      {""}, {""},
+      {"numPickup", NGF_PY_METHOD_GPERF(Player, numPickup)},
+      {""},
       {"getControlOrientation", NGF_PY_METHOD_GPERF(Player, getControlOrientation)}
     };
 
@@ -224,54 +232,12 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
     {
       register int key = MakeHash (str, len);
 
-      if (key <= MAX_HASH_VALUE && key >= MIN_HASH_VALUE)
+      if (key <= MAX_HASH_VALUE && key >= 0)
         {
-          register const struct PythonMethod *resword;
+          register const char *s = wordlist[key].name;
 
-          switch (key - 9)
-            {
-              case 0:
-                resword = &wordlist[0];
-                goto compare;
-              case 3:
-                resword = &wordlist[1];
-                goto compare;
-              case 5:
-                resword = &wordlist[2];
-                goto compare;
-              case 6:
-                resword = &wordlist[3];
-                goto compare;
-              case 7:
-                resword = &wordlist[4];
-                goto compare;
-              case 8:
-                resword = &wordlist[5];
-                goto compare;
-              case 10:
-                resword = &wordlist[6];
-                goto compare;
-              case 11:
-                resword = &wordlist[7];
-                goto compare;
-              case 12:
-                resword = &wordlist[8];
-                goto compare;
-              case 15:
-                resword = &wordlist[9];
-                goto compare;
-              case 17:
-                resword = &wordlist[10];
-                goto compare;
-            }
-          return 0;
-        compare:
-          {
-            register const char *s = resword->name;
-
-            if (*str == *s && !strcmp (str + 1, s + 1))
-              return resword;
-          }
+          if (*str == *s && !strcmp (str + 1, s + 1))
+            return &wordlist[key];
         }
     }
   return 0;

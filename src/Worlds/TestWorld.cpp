@@ -13,7 +13,7 @@ void TestWorld::init()
 {
     Ogre::LogManager::getSingleton().logMessage("TestWorld init!");
 
-    Util::loadLevel("TestLevel");
+    Util::loadNgf("TestLevel");
 
     Ogre::String msg =
         "Welcome to GraLL2!\n\n"

@@ -5,8 +5,8 @@
  *
  *    Description:  Controller GameObject. He's always around, and watching over things.
  *                  ;-) He takes care of serialisation of stuff that doesn't really
- *                  belong to any object. Can also be used for non-GameObject-specific
- *                  Python scripting.
+ *                  belong to any object. Takes care of 'level' stuff, like bonus time
+ *                  etc. Also handles serialisation of global level properties.
  *
  *        Created:  07/23/2009 02:36:12 PM
  *       Compiler:  gcc

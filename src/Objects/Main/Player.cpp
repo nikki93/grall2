@@ -51,7 +51,8 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     : NGF::GameObject(pos, rot, id , properties, name),
       mUnderControl(true),
       mDead(false),
-      mLight(0)
+      mLight(0),
+      mInvincible(false) //This makes the game harder.
 {
     addFlag("Player");
     addFlag("Switcher");
@@ -519,6 +520,10 @@ void Player::switchDimension()
 //-------------------------------------------------------------------------------
 void Player::die(bool explode)
 {
+    //We're invincible! :P
+    if (mInvincible)
+        return;
+
     //We lost the level.
     loseLevel();
 

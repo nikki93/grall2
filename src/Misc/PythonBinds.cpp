@@ -39,6 +39,26 @@ void py_gotoWorld(int index)
     Util::gotoWorld(index); 
 }
 
+//NGF level load/clear.
+void py_loadNgf(Ogre::String name)
+{
+    Util::loadNgf(name);
+}
+void py_clearLevel()
+{
+    Util::clearLevel();
+}
+
+//Serialise/deserialise.
+void py_serialise(Ogre::String name)
+{
+    Util::serialise(name);
+}
+void py_deserialise(Ogre::String name)
+{
+    Util::deserialise(name);
+}
+
 //Dimension stuff (if you want to switch dimensions, best you do it through the 
 //Player object).
 void py_switchDimension() 
@@ -137,6 +157,25 @@ NGF::Python::PythonObjectConnectorPtr py_getClickedObject()
     return pobj ? (pobj->getConnector()) : NGF::Python::PythonObjectConnectorPtr();
 }
 
+//Screenshots.
+void py_screenshot(bool highRes, Ogre::String filename, Ogre::String extension)
+{
+    if (highRes)
+        Util::highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, filename, extension, true);
+    else
+        Util::screenshot(filename, extension);
+}
+
+//Bonus time.
+void py_setBonusTime(Ogre::Real time)
+{
+    GlbVar.bonusTime = 0;
+}
+Ogre::Real py_getBonusTime()
+{
+    return GlbVar.bonusTime;
+}
+
 
 //--- The module ----------------------------------------------------------------
 
@@ -173,8 +212,28 @@ BOOST_PYTHON_MODULE(GraLL2)
             "The current level has been 'lost'."
             );
 
-    //Dimension stuff (if you want to switch dimensions, best you do it
-    //through the Player object).
+    //NGF level load/clear.
+    py::def("loadNgf", py_loadNgf,
+            "loadNgf(name)\n"
+            "Loads the NGF level with the given name, as specified in the .ngf file. or the 'scene name' in Blender. If you want"
+            "to replace the current scene, remember to clear the level (GraLL2.clearLevel()) first."
+           );
+    py::def("clearLevel", py_clearLevel,
+            "clearLevel()\n"
+            "Clears the level (destroys all objects)."
+           );
+
+    //Serialise/deserialise.
+    py::def("serialise", py_serialise,
+            "serialise(name)\n"
+            "Saves the game state to a file with the given name and extension '.sav' under 'Saves' in the user directory."
+           );
+    py::def("deserialise", py_deserialise,
+            "deserialise(name)\n"
+            "Restores the game state from a file with the given name and extension '.sav' under 'Saves' in the user directory."
+           );
+
+    //Dimension stuff
     py::def("switchDimension", py_switchDimension,
             "switchDimension()\n"
             "Makes GraLL switch dimensions."
@@ -278,6 +337,23 @@ BOOST_PYTHON_MODULE(GraLL2)
             "Retrieve the clicked object. The object is also saved in the global 'clicked' variable. Use carefully! If the clicked"
             "object was destroyed, this will cause the game to crash!"
             );
+
+    //Screenshots.
+    py::def("screenshot", py_screenshot,
+            "screenshot(highres,name,extension)\n"
+            "Takes a screenshot. The file is saved under the 'Screenshots' in the GraLL 2 user directory, with the given name and"
+            "extension ('.jpg', '.png'). If highres is true, a high-resolution screenshot is taken."
+           );
+
+    //Bonus time.
+    py::def("setBonusTime", py_setBonusTime,
+            "setBonusTime(time)\n"
+            "Sets the bonus time to given time."
+           );
+    py::def("getBonusTime", py_getBonusTime,
+            "getBonusTime()\n"
+            "Returns the bonus time."
+           );
 }
 
 //--- The function that gets called from Game::init() ---------------------------

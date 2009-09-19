@@ -36,7 +36,7 @@ Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     GlbVar.controller = this;
 
     //We stick around. :-)
-    setPersistent(true);
+    //setPersistent(true);
 }
 //-------------------------------------------------------------------------------
 Controller::~Controller()
@@ -49,9 +49,10 @@ Controller::~Controller()
 //-------------------------------------------------------------------------------
 void Controller::unpausedTick(const Ogre::FrameEvent &evt)
 {
-    updateAlarms(evt.timeSinceLastFrame);
+    //Time flies! :P
+    GlbVar.bonusTime = GlbVar.bonusTime > 0 ? GlbVar.bonusTime - evt.timeSinceLastFrame : 0;
 
-    //Stupid hack for two-stage timer (first is until fade, then after fade).
+    //The win/lose fade thing.
     if (mEndCountDown > 777)
     {
         mEndCountDown -= evt.timeSinceLastFrame;
@@ -79,11 +80,13 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
     if (mLevelText)
     {
         //To safeguard from loading time evt.timeSinceLastFrame spikes.
+        /*
         if (mLevelText->getAlpha() == 0)
         {
             mLevelText->setAlpha(0.0001);
         }
         else
+        */
         {
             if (mLevelText->getAlpha() < 1)
                 mLevelText->setAlpha(Util::clamp(mLevelText->getAlpha() + mLevelTextRate * evt.timeSinceLastFrame, 0.0f, 1.0f));
@@ -99,6 +102,9 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
             mLevelText = 0;
         }
     }
+
+    //Update alarms (from AlarmGameObject).
+    updateAlarms(evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 void Controller::postLoad()

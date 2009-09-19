@@ -24,10 +24,8 @@ void Level::init()
     //Just for fun. :P
     LOG("On to level: " + Ogre::StringConverter::toString(Util::worldNumToLevelNum(mWorldNum)) + ", NGF: " + mNgfName + ", Caption: " + mCaption + "!");
 
-    //Some random stuff.
-    GlbVar.bonusTime = 100;
+    //No stuff blocking our view.
     GlbVar.gui->hidePointer();
-    GlbVar.dimMgr->setDimension(DimensionManager::DIM_1);
 
     //If higher than highest level, then highest level is this (user went to new level).
     if (mWorldNum > GlbVar.records.highestLevelIndex)
@@ -42,15 +40,18 @@ void Level::init()
     else
     {
         //Otherwise read in the level from the .ngf file.
-        Util::loadLevel(mNgfName);
+        Util::loadNgf(mNgfName);
         GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTART));
     }
+
+    //To save from first frame evt.timeSinceLastFrame spikes.
+    GlbVar.paused = true;
 }
 //-------------------------------------------------------------------------------
 void Level::tick(const Ogre::FrameEvent &evt)
 {
-    //Time flies! :P
-    GlbVar.bonusTime = GlbVar.bonusTime > 0 ? GlbVar.bonusTime - evt.timeSinceLastFrame : 0;
+    //Part of the anti evt.timeSinceLastFrame hack.
+    GlbVar.paused = false;
     
     //Some key stuff.
     if (Util::isKeyDown(OIS::KC_N))

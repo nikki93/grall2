@@ -516,3 +516,10 @@ Fri Sep 18 19:39:18 AST 2009
 - Added more Turret features: 'scan', 'initTime', 'alwaysScan' etc.
 - Made Bullet texture fade out at ends for motion-blur effect.
 - Added Turret texture.
+- Added radius check to Turret.
+
+Sat Sep 19 20:13:48 AST 2009
+----------------------------
+- Made more test levels.
+- Fixed a few Crate bugs.
+- Moved global level logic to Controller, to keep the level independent.

@@ -18,8 +18,24 @@ NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time)
             );
 }
 
-void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera, const int& pGridSize, const Ogre::String& pFileName, const Ogre::String& pFileExtention, const bool& pStitchGridImages)
+void screenshot(Ogre::String filename, const Ogre::String &extension)
 {
+    //Keep a count.
+    static int count = -1;
+    ++count;
+
+    //Write it.
+    filename = (USER_PREFIX "Screenshots/") + filename + Ogre::StringConverter::toString(count) + extension;
+    GlbVar.ogreWindow->writeContentsToFile(filename);
+}
+
+void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera, const int& pGridSize, Ogre::String pFileName, const Ogre::String& pFileExtension, const bool& pStitchGridImages)
+{
+    //Keep a count.
+    static int count = -1;
+    ++count;
+    pFileName = (USER_PREFIX "Screenshots/") + pFileName + Ogre::StringConverter::toString(count);
+
     //Don't want mouse cursor showing up in the shot.
     GlbVar.gui->hidePointer();
 
@@ -29,7 +45,7 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
     {
         // Simple case where the contents of the screen are taken directly
         // Also used when an invalid value is passed within pGridSize (zero or negative grid size)
-        gridFilename = pFileName + pFileExtention;
+        gridFilename = pFileName + pFileExtension;
 
         pRenderWindow->writeContentsToFile(gridFilename);
     }
@@ -62,7 +78,7 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
                     0, 0, 0, 1); 
             pCamera->setCustomProjectionMatrix(true, standard * shearing * scale);
             Ogre::Root::getSingletonPtr()->_updateAllRenderTargets();
-            gridFilename = pFileName + Ogre::StringConverter::toString(nbScreenshots) + pFileExtention;
+            gridFilename = pFileName + Ogre::StringConverter::toString(nbScreenshots) + pFileExtension;
 
 
             // Screenshot of the current grid
@@ -111,7 +127,7 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
                     1, // depth
                     Ogre::PF_R8G8B8,
                     false);
-            targetImage.save(pFileName + pFileExtention);
+            targetImage.save(pFileName + pFileExtension);
             delete[] stitchedImageData;
         }
     }

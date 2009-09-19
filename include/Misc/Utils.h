@@ -66,6 +66,12 @@ inline void gotoWorld(int n)
     GlbVar.worldSwitch = n;
 }
 
+//Screenshots.
+void screenshot(Ogre::String filename, const Ogre::String &extension);
+void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera, 
+        const int& pGridSize, Ogre::String pFileName, const Ogre::String& pFileExtention, 
+        const bool& pStitchGridImages);
+
 //Tells you whether a key is down, respecting the console.
 inline bool isKeyDown(OIS::KeyCode kc)
 {
@@ -147,7 +153,7 @@ struct ExtraEventListener
 };
 
 //Load/clear level. Calls the postLoad etc. events.
-inline void loadLevel(Ogre::String level)
+inline void loadNgf(Ogre::String level)
 {
     GlbVar.lvlLoader->loadLevel(level);
     ExtraEventListener::callPostLoad();
@@ -157,28 +163,6 @@ inline void clearLevel()
     ExtraEventListener::callPreClear();
     GlbVar.goMgr->destroyAll();
 }
-
-//Makes getting a set of results from convexSweepTest easier.
-struct BulletConvexResultCollector : public btDynamicsWorld::ConvexResultCallback
-{
-    std::set<btCollisionObject*> mHits;
-
-    btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
-    {
-        mHits.insert(convexResult.m_hitCollisionObject);
-        return convexResult.m_hitFraction;
-    }
-    
-    bool needsCollision(btBroadphaseProxy* proxy0) const
-    {
-        return true;
-    }
-};
-
-//For high-res screenshots.
-void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera, 
-        const int& pGridSize, const Ogre::String& pFileName, const Ogre::String& pFileExtention, 
-        const bool& pStitchGridImages);
 
 } //namespace Util
 

@@ -15,7 +15,7 @@ Turret.cpp
 #define TOP_MOVE_TIME 1.0f
 #define FIRST_BULLET_TIME 1
 #define BULLET_TIME 0.14
-#define MAX_BULLET_DEVIATION
+#define MAX_BULLET_DEVIATION_ANGLE 0.08
 
 //--- NGF events ----------------------------------------------------------------
 Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -30,6 +30,8 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     NGF_PY_CALL_EVENT(init);
 
     //Read properties.
+    mRadius = Ogre::StringConverter::parseReal(mProperties.getValue("radius", 0, "20"));
+
     Ogre::Real initTime = Ogre::StringConverter::parseReal(mProperties.getValue("initTime", 0, "0"));
     mFireTime = Ogre::StringConverter::parseReal(mProperties.getValue("fireTime", 0, "7"));
     mRestTime = Ogre::StringConverter::parseReal(mProperties.getValue("restTime", 0, "5"));
@@ -144,7 +146,7 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 mStateTimer -= evt.timeSinceLastFrame;
 
-                if (mStateTimer > 0)
+                if (playerIsInRadius() && mStateTimer > 0)
                 {
                     mBulletTimer -= evt.timeSinceLastFrame;
 
@@ -155,7 +157,9 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
                     }
                 }
                 else
+                {
                     stopFiring();
+                }
             }
             break;
         case TS_REST:
@@ -169,7 +173,9 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
 
         case TS_SCAN:
             {
-                if (doSingleScan())
+                //Even though startFiring does the radius check, we do it anyway
+                //to avoid wasting time with the scan raycast.
+                if (playerIsInRadius() && doSingleScan())
                     startFiring();
             }
             break;
@@ -205,7 +211,7 @@ void Turret::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 //--- Non-NGF -------------------------------------------------------------------
 void Turret::startFiring()
 {
-    if (mState != TS_FIRE)
+    if (playerIsInRadius() && mState != TS_FIRE)
         mState = TS_RESTTOFIRE;
 }
 //-------------------------------------------------------------------------------
@@ -239,12 +245,16 @@ void Turret::fireSingleBullet()
     {
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
         Ogre::Vector3 shootPos = mNode->getPosition() + SHOOT_OFFSET;
-        Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy().randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * 0.08));
-        Ogre::Quaternion shootRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
-        Ogre::Vector3 bulletPos = shootPos + (shootRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
 
-        GlbVar.goMgr->createObject<Bullet>(bulletPos, shootRot, NGF::PropertyList::create
-                ("dimensions", Ogre::StringConverter::toString(GlbVar.dimMgr->getCurrentDimension()))
+        Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
+        dir.y = Util::clamp<Ogre::Real>(dir.y, -0.5, 0.5);
+        dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
+
+        Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
+        Ogre::Vector3 bulletPos = shootPos + (bulletRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
+
+        GlbVar.goMgr->createObject<Bullet>(bulletPos, bulletRot, NGF::PropertyList::create
+                ("dimensions", Ogre::StringConverter::toString(mDimensions))
                 );
     }
     else
@@ -282,13 +292,26 @@ bool Turret::doSingleScan()
 
         btVector3 pos1 = BtOgre::Convert::toBullet(mNode->getPosition() + SHOOT_OFFSET);
         btVector3 pos2 = BtOgre::Convert::toBullet(playerPos);
-        ScanRayResult res(GlbVar.dimMgr->getCurrentDimension(), mBody, pos1, pos2);
+        ScanRayResult res(mDimensions, mBody, pos1, pos2);
 
         GlbVar.phyWorld->rayTest(pos1, pos2, res);
 
         return res.m_collisionObject->getBroadphaseHandle()->m_collisionFilterGroup & DimensionManager::PLAYER;
     }
     
+    return false;
+}
+//-------------------------------------------------------------------------------
+bool Turret::playerIsInRadius()
+{
+    if (GlbVar.player)
+    {
+        Ogre::Vector3 ourPos = mNode->getPosition();
+        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
+
+        return ourPos.squaredDistance(playerPos) < mRadius * mRadius;
+    }
+
     return false;
 }
 //-------------------------------------------------------------------------------
@@ -306,5 +329,10 @@ NGF_PY_BEGIN_IMPL(Turret)
         stopFiring();
         NGF_PY_RETURN();
     }
+
+    NGF_PY_PROPERTY_IMPL(radius, mRadius, Ogre::Real);
+    NGF_PY_PROPERTY_IMPL(fireTime, mFireTime, Ogre::Real);
+    NGF_PY_PROPERTY_IMPL(restTime, mRestTime, Ogre::Real);
+    NGF_PY_PROPERTY_IMPL(alwaysScan, mAlwaysScan, bool);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)

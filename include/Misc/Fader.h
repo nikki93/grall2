@@ -73,6 +73,7 @@ class Fader
         void abortFade(Ogre::Real alpha)
         {
             mImage->setAlpha(alpha);
+            mState = FM_NONE;
         }
 
         //'time' is the time for each step (fading in, and fading out).

@@ -25,7 +25,7 @@ Bullet::Bullet(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     NGF_PY_CALL_EVENT(init);
 
     //Read properties.
-    mSpeed = Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "49"));
+    mSpeed = Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "35"));
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Bullet.mesh");
@@ -170,16 +170,6 @@ void Bullet::explode()
 {
     if (mExploded)
         return;
-
-    //FX (just light).
-    GlbVar.goMgr->createObject("Light", mNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
-            ("lightType", "point")
-            ("colour", "1 0.6 0")
-            ("specular", "0.1 0.1 0.1")
-            ("attenuation", "10 0.6 0.4 0.2")
-            ("time", "0.3")
-            ("fadeOutTime", "0.2")
-            );
 
     //Us no more. :-(
     GlbVar.goMgr->requestDestroy(getID());

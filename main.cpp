@@ -139,8 +139,8 @@ class GameListener :
                     break;
 
                 case OIS::KC_F9:
-                    //highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".jpg", true);
-                    GlbVar.ogreWindow->writeContentsToFile("Screenshot.png");
+                    //Util::highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".png", true);
+                    Util::screenshot("Screenshot", ".png");
                     break;
 
                 case OIS::KC_O:
@@ -403,7 +403,7 @@ class Game
             GlbVar.objectClicker = new ObjectClicker();
 
             //The persistent Controller GameObject.
-            GlbVar.controller = GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
+            GlbVar.controller = 0;//GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
 
             //Initialise other Global variables.
             GlbVar.player = 0;

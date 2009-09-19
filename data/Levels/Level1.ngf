@@ -1185,6 +1185,8 @@ ngflevel Level1
 			       : 
 			       : def levelStart(self):
 			       : 	self.setAlarm(3,0)
+			       : 	GraLL2.setDimension(1)
+			       : 	GraLL2.setBonusTime(49)
 			       : 
 			       : def alarm(self, n):
 			       : 	if (n == 0):
@@ -1241,12 +1243,13 @@ ngflevel Level1
 
 		properties
 		{
-			dimensions 1
+			dimensions 3
 			initTime 0
 			initScan yes
 			alwaysScan yes
-			fireTime 7
-			restTime 5
+			fireTime 5
+			restTime 4
+			radius 30
 		}
 	}
 }
