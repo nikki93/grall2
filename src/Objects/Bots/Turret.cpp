@@ -24,12 +24,13 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
       mStateTimer(-1),
       mState(TS_REST)
 {
-    addFlag("Turret");
+    addFlag("Turret");                                      
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
     //Read properties.
+    mEnabled = Ogre::StringConverter::parseBool(mProperties.getValue("enabled", 0, "yes"));
     mRadius = Ogre::StringConverter::parseReal(mProperties.getValue("radius", 0, "20"));
 
     Ogre::Real initTime = Ogre::StringConverter::parseReal(mProperties.getValue("initTime", 0, "0"));
@@ -66,12 +67,15 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     setBulletObject(mBody);
 
     //Start!
-    if (initScan)
-        scan();
-    else if (initTime)
-        rest(initTime);
+    if (mEnabled)
+        if (initScan)
+            scan();
+        else if (initTime)
+            rest(initTime);
+        else
+            startFiring();
     else
-        startFiring();
+        rest(mRestTime);
 }
 //-------------------------------------------------------------------------------
 void Turret::postLoad()
@@ -146,7 +150,7 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 mStateTimer -= evt.timeSinceLastFrame;
 
-                if (playerIsInRadius() && mStateTimer > 0)
+                if (mEnabled && mStateTimer > 0)
                 {
                     mBulletTimer -= evt.timeSinceLastFrame;
 
@@ -166,7 +170,7 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 mStateTimer -= evt.timeSinceLastFrame;
                 
-                if (mStateTimer < 0)
+                if (mEnabled && playerIsInRadius() && mStateTimer < 0)
                     startFiring();
             }
             break;
@@ -175,7 +179,7 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 //Even though startFiring does the radius check, we do it anyway
                 //to avoid wasting time with the scan raycast.
-                if (playerIsInRadius() && doSingleScan())
+                if (mEnabled && playerIsInRadius() && doSingleScan())
                     startFiring();
             }
             break;
@@ -211,7 +215,7 @@ void Turret::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 //--- Non-NGF -------------------------------------------------------------------
 void Turret::startFiring()
 {
-    if (playerIsInRadius() && mState != TS_FIRE)
+    if (mState != TS_FIRE)
         mState = TS_RESTTOFIRE;
 }
 //-------------------------------------------------------------------------------
@@ -326,6 +330,17 @@ NGF_PY_BEGIN_IMPL(Turret)
     }
     NGF_PY_METHOD_IMPL(stopFiring)
     {
+        stopFiring();
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(enable)
+    {
+        mEnabled = true;
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(disable)
+    {
+        mEnabled = false;
         stopFiring();
         NGF_PY_RETURN();
     }

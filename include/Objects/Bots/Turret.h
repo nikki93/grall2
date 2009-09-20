@@ -6,13 +6,10 @@
  *    Description:  The Turret GameObject. Annoys the Player for a while and then goes
  *                  into hibernation. Repeats. :P
  *
- *        Version:  1.0
  *        Created:  09/18/2009 12:31:23 AM
- *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  Dr. Fritz Mehner (mn), mehner@fh-swf.de
- *        Company:  FH Südwestfalen, Iserlohn
+ *         Author:  Nikhilesh (nikki)
  *
  * =====================================================================================
  */
@@ -49,8 +46,9 @@ class Turret :
         };
 
         int mState;
-
+        bool mEnabled;
         Ogre::Real mStateTimer;
+
         Ogre::Real mBulletTimer;
 
         bool mAlwaysScan;
@@ -81,6 +79,8 @@ class Turret :
         {
             NGF_PY_METHOD_DECL(startFiring)
             NGF_PY_METHOD_DECL(stopFiring)
+            NGF_PY_METHOD_DECL(enable)
+            NGF_PY_METHOD_DECL(disable)
 
             NGF_PY_PROPERTY_DECL(radius)
             NGF_PY_PROPERTY_DECL(fireTime)
@@ -164,7 +164,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 18, duplicates = 0 */
+/* maximum key range = 22, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Turret)
 {
@@ -188,8 +188,8 @@ NGF_PY_CLASS_GPERF(Turret)::MakeHash (register const char *str, register unsigne
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       10, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
-      28, 28, 28, 28, 28, 28, 28,  0, 28, 28,
-      28, 28, 10,  5, 28, 28, 28, 28, 28, 28,
+      28, 28, 28, 28, 28, 28, 28,  0,  0, 28,
+       0,  0, 10,  5, 28, 28, 28, 28,  0, 28,
       28, 28, 28, 28,  0,  0,  0, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
@@ -214,24 +214,33 @@ NGF_PY_CLASS_GPERF(Turret)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 10,
-      MIN_WORD_LENGTH = 10,
+      TOTAL_KEYWORDS = 12,
+      MIN_WORD_LENGTH = 6,
       MAX_WORD_LENGTH = 14,
-      MIN_HASH_VALUE = 10,
+      MIN_HASH_VALUE = 6,
       MAX_HASH_VALUE = 27
     };
 
   static const struct PythonMethod wordlist[] =
     {
+      {""}, {""}, {""}, {""}, {""}, {""},
+      {"enable", NGF_PY_METHOD_GPERF(Turret, enable)},
+      {"disable", NGF_PY_METHOD_GPERF(Turret, disable)},
+      {""}, {""},
       {"set_radius", NGF_PY_SET_GPERF(Turret, radius)},
       {"startFiring", NGF_PY_METHOD_GPERF(Turret, startFiring)},
       {"set_restTime", NGF_PY_SET_GPERF(Turret, restTime)},
+      {""},
       {"set_alwaysScan", NGF_PY_SET_GPERF(Turret, alwaysScan)},
       {"get_radius", NGF_PY_GET_GPERF(Turret, radius)},
+      {""},
       {"get_restTime", NGF_PY_GET_GPERF(Turret, restTime)},
+      {""},
       {"get_alwaysScan", NGF_PY_GET_GPERF(Turret, alwaysScan)},
       {"stopFiring", NGF_PY_METHOD_GPERF(Turret, stopFiring)},
+      {""},
       {"set_fireTime", NGF_PY_SET_GPERF(Turret, fireTime)},
+      {""}, {""}, {""}, {""},
       {"get_fireTime", NGF_PY_GET_GPERF(Turret, fireTime)}
     };
 
@@ -239,51 +248,12 @@ NGF_PY_CLASS_GPERF(Turret)::Lookup (register const char *str, register unsigned 
     {
       register int key = MakeHash (str, len);
 
-      if (key <= MAX_HASH_VALUE && key >= MIN_HASH_VALUE)
+      if (key <= MAX_HASH_VALUE && key >= 0)
         {
-          register const struct PythonMethod *resword;
+          register const char *s = wordlist[key].name;
 
-          switch (key - 10)
-            {
-              case 0:
-                resword = &wordlist[0];
-                goto compare;
-              case 1:
-                resword = &wordlist[1];
-                goto compare;
-              case 2:
-                resword = &wordlist[2];
-                goto compare;
-              case 4:
-                resword = &wordlist[3];
-                goto compare;
-              case 5:
-                resword = &wordlist[4];
-                goto compare;
-              case 7:
-                resword = &wordlist[5];
-                goto compare;
-              case 9:
-                resword = &wordlist[6];
-                goto compare;
-              case 10:
-                resword = &wordlist[7];
-                goto compare;
-              case 12:
-                resword = &wordlist[8];
-                goto compare;
-              case 17:
-                resword = &wordlist[9];
-                goto compare;
-            }
-          return 0;
-        compare:
-          {
-            register const char *s = resword->name;
-
-            if (*str == *s && !strcmp (str + 1, s + 1))
-              return resword;
-          }
+          if (*str == *s && !strcmp (str + 1, s + 1))
+            return &wordlist[key];
         }
     }
   return 0;

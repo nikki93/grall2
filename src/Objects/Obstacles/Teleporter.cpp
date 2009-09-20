@@ -26,19 +26,6 @@ Teleporter::Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
-    //Get properties.
-    Ogre::String pointName = mProperties.getValue("targetPoint", 0, "noname");
-    NGF::GameObject *point = GlbVar.goMgr->getByName(pointName);
-
-    if (point)
-        mTarget = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(point, NGF_MESSAGE(MSG_GETPOSITION));
-    else
-        mTarget = Ogre::Vector3(
-                Ogre::StringConverter::parseReal(mProperties.getValue("target", 0, "0")),
-                Ogre::StringConverter::parseReal(mProperties.getValue("target", 1, "5")),
-                Ogre::StringConverter::parseReal(mProperties.getValue("target", 2, "0"))
-                );
-
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Mesh_Pad.mesh");
     mEntity->setMaterialName("Objects/SwitchOn");
@@ -55,6 +42,19 @@ Teleporter::Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 //-------------------------------------------------------------------------------
 void Teleporter::postLoad()
 {
+    //Get properties (we do it here because the Point may have been created after us).
+    Ogre::String pointName = mProperties.getValue("targetPoint", 0, "noname");
+    NGF::GameObject *point = GlbVar.goMgr->getByName(pointName);
+
+    if (point)
+        mTarget = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(point, NGF_MESSAGE(MSG_GETPOSITION));
+    else
+        mTarget = Ogre::Vector3(
+                Ogre::StringConverter::parseReal(mProperties.getValue("target", 0, "0")),
+                Ogre::StringConverter::parseReal(mProperties.getValue("target", 1, "5")),
+                Ogre::StringConverter::parseReal(mProperties.getValue("target", 2, "0"))
+                );
+
     //Python create event.
     NGF_PY_CALL_EVENT(create);
 }
@@ -81,6 +81,7 @@ void Teleporter::unpausedTick(const Ogre::FrameEvent &evt)
         mTime -= evt.timeSinceLastFrame;
     else if (mTime < 0)
     {
+        //We send the Y-difference from 0.5 above surface along to keep the floor-movement smooth.
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(mPlayer, NGF_MESSAGE(MSG_GETPOSITION));
         Ogre::Vector3 offset = playerPos - mNode->getPosition(); //Our origin is 0.25 below surface, we want to find offset from surface.
         Ogre::Real yShift = offset.y - 0.75;
