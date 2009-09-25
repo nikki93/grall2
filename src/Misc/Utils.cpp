@@ -12,7 +12,7 @@ namespace Util {
 
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time)
 {
-    return GlbVar.goMgr->createObject<MessageBox>(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+    return GlbVar.goMgr->createObject("MessageBox", Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
             ("message", message, "")
             ("time", Ogre::StringConverter::toString(time))
             );

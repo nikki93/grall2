@@ -20,6 +20,19 @@ Bugs
 ----
 
 +---------------------------+
+|        Dependencies       |
++---------------------------+
+
+- Ogre
+- OIS
+- MyGUI
+- OgreAL
+- Bullet
+- Boost
+- NGF
+- BtOgre
+
++---------------------------+
 |         ChangeLog         |
 +---------------------------+
 
@@ -530,3 +543,13 @@ Sun Sep 20 01:50:31 AST 2009
 - Fixed Teleporter bug. The Teleporter tried to retreive a pointer to the target point in it's constructor, which would cause problems if
   the point was created after the Teleporter. This has now been moved to the 'postLoad' event instead.
 - Recorded new video, with voice, and made new level as a result.
+
+Mon Sep 21 16:45:12 AST 2009
+----------------------------
+- Allowed glowing materials to have per-material glow 'amount'.
+
+Fri Sep 25 14:54:48 AST 2009
+----------------------------
+- Built and tested dependencies on Windows.
+- Built and tested GraLL 2 on Windows.
+- Added Windows 'premake-windows.lua' file for Windows building.

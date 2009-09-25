@@ -461,6 +461,7 @@ material BaseGlow
         set $ambient "0.8 0.8 0.8 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
+        set $glow_amount "0.7"
 
         technique Shaders
         { 
@@ -537,7 +538,7 @@ material BaseGlow
                 scheme Scheme/Glow
                 pass
                 {
-                        ambient 1 1 1 1
+                        ambient $glow_amount $glow_amount $glow_amount 1
                         
                         vertex_program_ref BaseAmbient_vp
                         { 
@@ -565,6 +566,7 @@ material BaseNormalMapGlow
         set $ambient "0.8 0.8 0.8 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
+        set $glow_amount "0.7"
 
         set $scaleBias "0.04 0.02"
 
@@ -649,7 +651,7 @@ material BaseNormalMapGlow
                 scheme Scheme/Glow
                 pass
                 {
-                        ambient 1 1 1 1
+                        ambient $glow_amount $glow_amount $glow_amount 1
                         
                         vertex_program_ref BaseAmbient_vp
                         { 
@@ -677,6 +679,7 @@ material BaseNormalMapParallaxGlow
         set $ambient "0.8 0.8 0.8 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
+        set $glow_amount "0.7"
 
         set $scaleBias "0.04 0.02"
 
@@ -762,7 +765,7 @@ material BaseNormalMapParallaxGlow
                 scheme Scheme/Glow
                 pass
                 {
-                        ambient 1 1 1 1
+                        ambient $glow_amount $glow_amount $glow_amount 1
                         
                         vertex_program_ref BaseAmbientNormalMapParallax_vp
                         { 

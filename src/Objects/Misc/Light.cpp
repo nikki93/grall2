@@ -23,9 +23,6 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mNode->attachObject(mLight);
 
     //Set light properties.
-    Ogre::String type = mProperties.getValue("lightType", 0, "point");
-    mLight->setType((type == "spot") ? Ogre::Light::LT_SPOTLIGHT : Ogre::Light::LT_POINT);
-
     mLight->setDiffuseColour(mDiffuseColour = Ogre::ColourValue(
             Ogre::StringConverter::parseReal(mProperties.getValue("colour", 0, "1")),
             Ogre::StringConverter::parseReal(mProperties.getValue("colour", 1, "1")),
@@ -45,8 +42,10 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
             Ogre::StringConverter::parseReal(mProperties.getValue("attenuation", 3, "0.1"))
             );
 
-    if (mLight->getType() == Ogre::Light::LT_SPOTLIGHT)
+    Ogre::String type = mProperties.getValue("lightType", 0, "point");
+    if (type == "spot")
     {
+        mLight->setType(Ogre::Light::LT_SPOTLIGHT);
         mLight->setSpotlightRange(
                 Ogre::Degree(Ogre::StringConverter::parseReal(mProperties.getValue("innerAngle", 0, "0"))),
                 Ogre::Degree(Ogre::StringConverter::parseReal(mProperties.getValue("outerAngle", 1, "45")))
@@ -56,6 +55,7 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     }
     else
     {
+        mLight->setType(Ogre::Light::LT_POINT);
         mLight->setCastShadows(false); //Non-spotlights don't cast shadows.
     }
 
