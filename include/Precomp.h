@@ -21,6 +21,11 @@
 #include "BtOgrePG.h"
 #include "MyGUI.h"
 #include "OgreAL.h"
+#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX
+#include "Python.h"
+#else
+#include "python2.6/Python.h"
+#endif
 #include "Ngf.h"
 #include "ngfplugins/NgfBullet.h"
 #include "ngfplugins/NgfPython.h"
