@@ -58,7 +58,6 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(MovingBrush);
     NGF_REGISTER_OBJECT_TYPE(Director);
     NGF_REGISTER_OBJECT_TYPE(Crate);
-    NGF_REGISTER_OBJECT_TYPE(MessageBox);
     NGF::GameObjectFactory::getSingleton().registerObjectType<class MessageBox>("MessageBox"); //Problems on Windows.
     NGF_REGISTER_OBJECT_TYPE(Bomb);
     NGF_REGISTER_OBJECT_TYPE(ParticleEffect);
