@@ -221,26 +221,21 @@ class Game
             */
 
             //Plugins.
-#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX
-            Ogre::String suffix = ".so";
-#elif OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-            Ogre::String suffix = ".dll";
-#endif
             switch (GlbVar.settings.ogre.renderer)
             {
                 case Globals::Settings::OgreSettings::DIRECT3D:
-                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/RenderSystem_Direct3D9" + suffix);
+                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/RenderSystem_Direct3D9");
                     break;
 
                 case Globals::Settings::OgreSettings::OPENGL:
-                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/RenderSystem_GL" + suffix);
+                    GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/RenderSystem_GL");
                     break;
             }
 
             for (Ogre::StringVector::iterator iter = GlbVar.settings.ogre.plugins.begin();
                     iter != GlbVar.settings.ogre.plugins.end(); ++iter)
             {
-                GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/" + (*iter) + suffix);
+                GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/" + (*iter));
             }
 
             //Resources.

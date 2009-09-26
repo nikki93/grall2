@@ -5,6 +5,7 @@ ext
 Makefile
 GraLL2.make
 
+premake.exe
 GraLL2.sln
 GraLL2.suo
 GraLL2.vcproj*
