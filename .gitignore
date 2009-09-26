@@ -24,6 +24,5 @@ tags
 *.mesh.xml
 etc/local/*
 
-#User files. However, let settings stay.
+#User files.
 usr/*
-!usr/Settings.ini
