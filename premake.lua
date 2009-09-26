@@ -30,8 +30,8 @@ package.postbuildcommands = { "rm `find -name '*.d'`" }
 -- Search paths -----------------------------------------------------------------------------
 
 package.includepaths = {
-    "../../Development/Libraries/ogre/btogre/include",                       -- BtOgre
-    "../../Development/Libraries/ogre/ngf/include",                          -- NGF
+    "../../Libraries/ogre/btogre/include",                                   -- BtOgre
+    "../../Libraries/ogre/ngf/include",                                      -- NGF
 
     "./include"                                                              -- GraLL2 files
 }

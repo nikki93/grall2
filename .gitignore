@@ -4,6 +4,12 @@ ext
 #Files made by running/building.
 Makefile
 GraLL2.make
+
+GraLL2.sln
+GraLL2.suo
+GraLL2.vcproj*
+GraLL2.ncb
+
 obj
 bin/debug/
 bin/release/
