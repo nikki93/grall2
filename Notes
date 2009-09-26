@@ -6,6 +6,8 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Try making a 'GraLL 2 Level Design Kit'.
+
 - Make more Brush textures.
 
 - Fix shadows.
@@ -553,3 +555,8 @@ Fri Sep 25 14:54:48 AST 2009
 - Built and tested dependencies on Windows.
 - Built and tested GraLL 2 on Windows.
 - Added Windows 'premake-windows.lua' file for Windows building.
+
+Sat Sep 26 21:18:09 AST 2009
+----------------------------
+- Made generic 'premake.lua' that works for both Windows and Linux.
+- Fixed 'Fallback' technique transparency.

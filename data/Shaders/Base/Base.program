@@ -790,6 +790,8 @@ material BaseTransparent : Base
                 pass
                 {
                         ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
                         scene_blend alpha_blend
                         depth_write off
                         
@@ -810,5 +812,21 @@ material BaseTransparent : Base
         technique Glow
         { 
                 scheme Scheme/Glow
+        }  
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        scene_blend alpha_blend
+                        depth_write off
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
         }  
 }
