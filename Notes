@@ -560,3 +560,7 @@ Sat Sep 26 21:18:09 AST 2009
 ----------------------------
 - Made generic 'premake.lua' that works for both Windows and Linux.
 - Fixed 'Fallback' technique transparency.
+
+Sun Sep 27 14:53:30 AST 2009
+----------------------------
+- Moved to 'streaming' music load.
