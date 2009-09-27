@@ -31,7 +31,7 @@ void loadRecord()
     {
         cfg.loadDirect(RECORD_FILE);
     }
-    catch (Ogre::FileNotFoundException &e)
+    catch (Ogre::FileNotFoundException &)
     {
         std::ofstream out(RECORD_FILE);
         out << std::endl;

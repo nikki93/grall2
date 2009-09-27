@@ -25,7 +25,7 @@ void loadSettings()
     {
         cfg.loadDirect(SETTINGS_FILE);
     }
-    catch (Ogre::FileNotFoundException &e)
+    catch (Ogre::FileNotFoundException &)
     {
         std::ofstream out(SETTINGS_FILE);
         out << std::endl;

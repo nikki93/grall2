@@ -54,20 +54,21 @@ package.links = {
 
 package.buildoptions = {
     "`pkg-config OGRE --cflags`" ..
-        "`pkg-config OIS --cflags`" ..
-        "`pkg-config MyGUI --cflags`" ..
-        "`pkg-config OgreAL --cflags`"
+    "`pkg-config OIS --cflags`" ..
+    "`pkg-config MyGUI --cflags`" ..
+    "`pkg-config OgreAL --cflags`"
 }
 
 package.linkoptions = {
     "`pkg-config OGRE --libs`" ..
-        "`pkg-config OIS --libs`" ..
-        "`pkg-config MyGUI --libs`" ..
-        "`pkg-config OgreAL --libs`"
+    "`pkg-config OIS --libs`" ..
+    "`pkg-config MyGUI --libs`" ..
+    "`pkg-config OgreAL --libs`"
 }
 
 -- Files ------------------------------------------------------------------------------------
 
+-- 'External' files are symlinked.
 package.files = {
     matchrecursive("*.h", "*.cpp"),
 }
@@ -78,8 +79,8 @@ debug.defines = { "DEBUG", "_DEBUG" }
 debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 
-debug.buildoptions = { "-g" --[["-pg"]] }                                    -- '-pg' for gprof
--- debug.linkoptions = { "-pg" }                                             -- '-pg' for gprof
+debug.buildoptions = { "-g" --[["-pg"]] }                                  -- '-pg' for gprof
+-- debug.linkoptions = { "-pg" }                                           -- '-pg' for gprof
 
 -- Release configuration --------------------------------------------------------------------
 
@@ -96,15 +97,37 @@ end
 
 if (windows) then
 
-table.insert(package.defines, "WIN32") -- To fix a problem on Windows.
+table.insert(package.defines, "WIN32")      -- To fix a problem on Windows
+package.buildoptions = { "/MP" }            -- Parallel building (good for multicore systems)
 
 -- Search paths -----------------------------------------------------------------------------
 
 package.includepaths = {
+    "../../Libraries/boost",                                                 -- Boost
+    "../../Libraries/btogre/include",                                        -- BtOgre
+    "../../Libraries/bullet/src",                                            -- Bullet
+    "../../Libraries/mygui/MyGUIEngine/include",                             -- MyGUI
+    "../../Libraries/ngf/include",                                           -- NGF
+    "../../Libraries/ogg/include",                                           -- Ogg
+    "../../Libraries/ogre/Dependencies/include",                             -- OIS
+    "../../Libraries/ogre/OgreMain/include",                                 -- Ogre
+    "../../Libraries/ogreal/include",                                        -- OgreAL
+    "../../Libraries/openal/include",                                        -- OpenAL
+    "../../Libraries/python/include",                                        -- Python
+    "../../Libraries/vorbis/include",                                        -- Vorbis
+
     "./include"                                                              -- GraLL2 files
 }
 
-packagepaths = {
+package.libpaths = {
+    "../../Libraries/boost/lib",                                             -- Boost
+    "../../Libraries/bullet/out/$(ConfigurationName)8/libs",                 -- Bullet
+    "../../Libraries/mygui/MyGUIEngine/lib/$(ConfigurationName)",            -- MyGUI
+    "../../Libraries/ogre/Dependencies/lib/$(ConfigurationName)",            -- OIS
+    "../../Libraries/ogre/build/lib/$(ConfigurationName)",                   -- Ogre
+    "../../Libraries/ogreal/lib/$(ConfigurationName)",                       -- OgreAL
+    "../../Libraries/openal/libs/Win32",                                     -- OpenAL
+    "../../Libraries/python/libs"                                            -- Python
 }
 
 -- Libraries --------------------------------------------------------------------------------
@@ -133,14 +156,15 @@ release.links = {
 
 -- Files ------------------------------------------------------------------------------------
 
+-- 'External' files too, like Ngf.cpp etc.
 package.files = {
     matchrecursive("*.h", "*.cpp"),
 
-    "..\\..\\Libraries\\ogre\\btogre\\BtOgre.cpp",
-    "..\\..\\Libraries\\ogre\\ngf\\Ngf.cpp",
-    "..\\..\\Libraries\\ogre\\ngf\\plugins\\ngfbullet\\NgfBullet.cpp",
-    "..\\..\\Libraries\\ogre\\ngf\\plugins\\ngfpython\\NgfPython.cpp",
-    "..\\..\\Libraries\\ogre\\ngf\\plugins\\ngfserialisation\\NgfSerialisation.cpp"
+    "../../Libraries/btogre/BtOgre.cpp",
+    "../../Libraries/ngf/Ngf.cpp",
+    "../../Libraries/ngf/plugins/ngfbullet/NgfBullet.cpp",
+    "../../Libraries/ngf/plugins/ngfpython/NgfPython.cpp",
+    "../../Libraries/ngf/plugins/ngfserialisation/NgfSerialisation.cpp"
 }
 
 -- Debug configuration ----------------------------------------------------------------------

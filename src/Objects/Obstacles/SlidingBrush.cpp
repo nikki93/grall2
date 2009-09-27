@@ -130,7 +130,7 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
             mNode->setPosition(currPoint);
 
             //If next 'place' exists, get there..
-            int nextPlace  = currPlace + (mForward ? 1 : -1);
+            unsigned int nextPlace  = currPlace + (mForward ? 1 : -1);
             if (nextPlace >= 0 && nextPlace < mPoints.size())
                 mCurrentPlace += mForward ? 1 : -1;
 
