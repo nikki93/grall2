@@ -103,6 +103,9 @@ struct Globals : public Ogre::Singleton<Globals>
     unsigned int firstLevel; //World number of first level.
     Ogre::Real bonusTime; //Count down.
 
+    std::vector<Ogre::String> ngfNames; //The NGF level script names ('official' levels).
+    std::vector<Ogre::String> userNgfNames; //The NGF level script names ('user' levels).
+
     //Settings.
     struct Settings
     {

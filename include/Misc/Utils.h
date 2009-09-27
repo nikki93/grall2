@@ -46,11 +46,7 @@ inline void deserialise(Ogre::String name)
 {
     NGF::Serialisation::Serialiser::load(USER_PREFIX "Saves/" + name + ".sav");
 }
-inline Ogre::String saveName(unsigned int worldNum)
-{
-    //Makes savefile name from world number of Level.
-    return "Level" + Ogre::StringConverter::toString(worldNum - GlbVar.firstLevel + 1);
-}
+Ogre::String saveName(unsigned int worldNum);
 
 //Go to next, previous, or nth world.
 inline void nextWorld()
@@ -92,6 +88,29 @@ static Type clamp(Type number, Type rangeMin, Type rangeMax)
 {
     Type big = (number < rangeMax) ? number : rangeMax;
     return (rangeMin > big) ? rangeMin : big;
+}
+
+//Adds a directory recursively, without path in resource names. Also adds .zip archives.
+inline void addResourceLocationRecursive(Ogre::String path, Ogre::String group)
+{
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(path, "FileSystem", "General");
+
+    Ogre::Archive *arch = Ogre::ArchiveManager::getSingleton().load(path, "FileSystem");
+    Ogre::StringVectorPtr files = arch->find("*", true, true);
+    for (Ogre::StringVector::iterator iter = files->begin(); iter != files->end(); ++iter)
+    {
+        Ogre::String resource = path + "/" + *iter;
+        LOG("Adding resource directory: " + resource);
+        Ogre::ResourceGroupManager::getSingleton().addResourceLocation(resource, "FileSystem", "General");
+    }
+
+    files = arch->find("*.zip", true, false);
+    for (Ogre::StringVector::iterator iter = files->begin(); iter != files->end(); ++iter)
+    {
+        Ogre::String resource = path + "/" + *iter;
+        LOG("Adding .zip archive: " + resource);
+        Ogre::ResourceGroupManager::getSingleton().addResourceLocation(resource, "Zip", "General");
+    }
 }
 
 //Fixes the Brush materials, ie., makes the Brush use the materials defined manually in

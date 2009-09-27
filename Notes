@@ -6,7 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Try making a 'GraLL 2 Level Design Kit'.
+- Add a material viewer/editor world to allow artists to visualise materials.
 
 - Make more Brush textures.
 
@@ -551,3 +551,7 @@ Sat Sep 26 21:18:09 AST 2009
 Sun Sep 27 14:53:30 AST 2009
 ----------------------------
 - Moved to 'streaming' music load.
+- Added loading of resources from 'user' directory to allow user-made content. The 'Content' subdirectory is searched for user-made content,
+  recursively. The user is free to organise his files any way he wants.
+- User can now play 'user levels' (loaded from 'Content' directory). A GUI prompt allows choosing user levels.
+- Added test 'user level'.

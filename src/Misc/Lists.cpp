@@ -78,6 +78,7 @@ void addWorlds()
 {
     //Main menu.
     GlbVar.woMgr->addWorld(new MainMenu());
+    GlbVar.woMgr->addWorld(new Level(1, "NULL", "User-made Level"));
 
     //Levels.
     GlbVar.firstLevel = GlbVar.woMgr->getNumWorlds(); //Size = index + 1.
@@ -96,6 +97,8 @@ void addWorlds()
 
         Ogre::StringVector attrStrs = Ogre::StringUtil::split(attrStr, "|");
         GlbVar.woMgr->addWorld(new Level(currNum++, attrStrs[0], attrStrs[1]));
+
+        GlbVar.ngfNames.push_back(attrStrs[0]);
     }
 
     /*

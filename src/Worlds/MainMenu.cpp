@@ -25,6 +25,7 @@ void MainMenu::init()
 {
     int winHeight = GlbVar.ogreWindow->getHeight();
     int winWidth = GlbVar.ogreWindow->getWidth();
+    GlbVar.fader->abortFade(0);
 
     //Gotta see where we click. :-)
     GlbVar.gui->showPointer();
@@ -224,7 +225,7 @@ void LevelSelect::populateLevelList()
 {
     for (unsigned int i = GlbVar.firstLevel, n = 1; i <= GlbVar.records.highestLevelIndex; ++i, ++n)
     {
-        Ogre::String lvlCaption = dynamic_cast<Level*>(GlbVar.woMgr->getWorldAt(i))->getCaption();
+        Ogre::String lvlCaption = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(i))->getCaption();
         Ogre::String caption = "Level " + Ogre::StringConverter::toString(n) + " - '" + lvlCaption + "'";
         mList->insertItemAt(n - 1, caption);
     }
@@ -232,7 +233,7 @@ void LevelSelect::populateLevelList()
 //-------------------------------------------------------------------------------
 void LevelSelect::updateLevelInfo()
 {
-    Level *lvl = dynamic_cast<Level*>(GlbVar.woMgr->getWorldAt(mCurrentLevelIndex));
+    Level *lvl = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(mCurrentLevelIndex));
     GlbVar.gui->findWidget<MyGUI::StaticText>("txt_ls_caption")->setCaption(lvl->getCaption());
 
     const Globals::Records::Record &rec = GlbVar.records.recordMap[Util::worldNumToLevelNum(mCurrentLevelIndex)];

@@ -35,8 +35,13 @@ class Level :
         void tick(const Ogre::FrameEvent &evt);
         void stop();
 
+        void startLevel();
+
+        void onClickLoadUserLevel(MyGUI::WidgetPtr);
+
         unsigned int getWorldNumber() { return mWorldNum; }
         Ogre::String getCaption() { return mCaption; }
+        Ogre::String getNgfName() { return mNgfName; }
 };
 
 #endif

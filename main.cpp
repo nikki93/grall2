@@ -107,7 +107,7 @@ class GameListener :
             GlbVar.optionsDialog->keyPressed(mCurrKey);
 
             //Tell MyGUI.
-            GlbVar.gui->injectKeyPress(arg);
+            GlbVar.gui->injectKeyPress((MyGUI::KeyCodeObsolete) arg.key);
 
             //Tell all GameObjects.
             if (!GlbVar.console->isVisible())
@@ -239,32 +239,8 @@ class Game
             }
 
             //Resources.
-            Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
-
-            ogreRmgr.addResourceLocation(".", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX, "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "GUI", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "GUI/Layouts", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Levels", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Sounds", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation(DATA_PREFIX "ObjectMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "ObjectTextures", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Concrete", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Metal", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Other", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Special", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Tile", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Glass", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Base", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Shadows", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Compositors", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "ParticleFX", "FileSystem", "General");
+            Util::addResourceLocationRecursive(DATA_PREFIX, "General");
+            Util::addResourceLocationRecursive(USER_PREFIX "Content", "General");
 
             //Renderer. Just choose the first available one, we just load only one plugin (either
             //Direct3D or OpenGL) anyway.
@@ -376,7 +352,7 @@ class Game
 
             //--- Init resources and other stuff ---------------------------------------
             //Initialise the ResourceGroups.
-            ogreRmgr.initialiseAllResourceGroups();
+            Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
             //Shadows.
             initShadows();
@@ -418,6 +394,12 @@ class Game
 
             //Load user record (highest level, times, scores).
             loadRecord();
+
+            //List of user levels.
+            std::vector<Ogre::String> levels = GlbVar.lvlLoader->getLevels();
+            for (std::vector<Ogre::String>::iterator iter = levels.begin(); iter != levels.end(); ++iter)
+                if (std::find(GlbVar.ngfNames.begin(), GlbVar.ngfNames.end(), *iter) == GlbVar.ngfNames.end())
+                    GlbVar.userNgfNames.push_back(*iter);
 
             //Start running the Worlds.
             GlbVar.woMgr->start(0);

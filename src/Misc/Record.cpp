@@ -108,11 +108,15 @@ void winLevel()
 {
     //Record stuff.
     unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
-    Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
 
-    rec.completed = true; //Completed!
-    if (rec.score < GlbVar.bonusTime) //Save better score.
-        rec.score = GlbVar.bonusTime;
+    if (levelNum)
+    {
+        Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
+
+        rec.completed = true; //Completed!
+        if (rec.score < GlbVar.bonusTime) //Save better score.
+            rec.score = GlbVar.bonusTime;
+    }
 
     //Do the fade and go to next level.
     GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_WINLEVEL));
