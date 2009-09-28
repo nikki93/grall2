@@ -559,3 +559,4 @@ Sun Sep 27 14:53:30 AST 2009
 Mon Sep 28 13:11:02 AST 2009
 ----------------------------
 - User level selection dialog has now been moved to Main Menu to make things cleaner.
+- Made .blend file externl data paths relative (textures).
