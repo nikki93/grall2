@@ -26,6 +26,7 @@ class MainMenu :
     protected:
         MyGUI::WindowPtr mWindow;
         MyGUI::WindowPtr mCreditsWindow;
+        MyGUI::WindowPtr mUserLevelWindow;
         LevelSelect *mLevelSelect;
 
         MyGUI::StaticImagePtr mBackground;
@@ -48,6 +49,9 @@ class MainMenu :
         void onClickCredits(MyGUI::WidgetPtr);
         void onClickCloseCredits(MyGUI::WidgetPtr);
         void onClickOptions(MyGUI::WidgetPtr);
+        void onClickUserLevel(MyGUI::WidgetPtr);
+        void onClickCancelUserLevel(MyGUI::WidgetPtr);
+        void onClickLoadUserLevel(MyGUI::WidgetPtr);
 };
 
 class LevelSelect

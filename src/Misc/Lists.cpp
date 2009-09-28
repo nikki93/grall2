@@ -78,7 +78,7 @@ void addWorlds()
 {
     //Main menu.
     GlbVar.woMgr->addWorld(new MainMenu());
-    GlbVar.woMgr->addWorld(new Level(1, "NULL", "User-made Level"));
+    GlbVar.woMgr->addWorld(new Level(1, "", "", true)); //User level.
 
     //Levels.
     GlbVar.firstLevel = GlbVar.woMgr->getNumWorlds(); //Size = index + 1.

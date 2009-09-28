@@ -555,3 +555,7 @@ Sun Sep 27 14:53:30 AST 2009
   recursively. The user is free to organise his files any way he wants.
 - User can now play 'user levels' (loaded from 'Content' directory). A GUI prompt allows choosing user levels.
 - Added test 'user level'.
+
+Mon Sep 28 13:11:02 AST 2009
+----------------------------
+- User level selection dialog has now been moved to Main Menu to make things cleaner.

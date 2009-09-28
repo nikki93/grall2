@@ -26,9 +26,10 @@ class Level :
         Ogre::String mNgfName;
         Ogre::String mCaption;
         unsigned int mWorldNum;
+        bool mUserLevel;
 
     public:
-        Level(unsigned int worldNum, Ogre::String levelName, Ogre::String caption);
+        Level(unsigned int worldNum, Ogre::String levelName, Ogre::String caption, bool userLevel = false);
         ~Level() {}
 
         void init();
@@ -37,11 +38,11 @@ class Level :
 
         void startLevel();
 
-        void onClickLoadUserLevel(MyGUI::WidgetPtr);
-
         unsigned int getWorldNumber() { return mWorldNum; }
         Ogre::String getCaption() { return mCaption; }
         Ogre::String getNgfName() { return mNgfName; }
+        void setCaption(const Ogre::String &caption) { mCaption = caption; }
+        void setNgfName(const Ogre::String &ngfName) { mNgfName = ngfName; }
 };
 
 #endif

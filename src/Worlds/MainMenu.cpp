@@ -58,6 +58,11 @@ void MainMenu::init()
     if (GlbVar.records.firstTime)
         button->setEnabled(false);
 
+    button = GlbVar.gui->findWidget<MyGUI::Button>("but_userLevel");
+    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickUserLevel);
+    if (GlbVar.userNgfNames.empty())
+        button->setEnabled(false);
+
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_options");
     button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickOptions);
 
@@ -79,7 +84,11 @@ void MainMenu::init()
     mWindow->setPosition(30,5);
 
     //Create child interfaces.
+
+    //Level select.
     mLevelSelect = new LevelSelect();
+
+    //Credits.
     MyGUI::LayoutManager::getInstance().load("Credits.layout");
     mCreditsWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_credits");
     mCreditsWindow->setVisible(false);
@@ -98,6 +107,30 @@ void MainMenu::init()
     MyGUI::EditPtr credits = GlbVar.gui->findWidget<MyGUI::Edit>("edt_cr_credits");
     credits->setOnlyText(creditsStr);
     credits->setTextAlign(MyGUI::Align::Left | MyGUI::Align::Top);
+
+    //User level.
+    MyGUI::LayoutManager::getInstance().load("LoadUserLevel.layout");
+    mUserLevelWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_userLevel");
+    height = mUserLevelWindow->getHeight();
+    width = mUserLevelWindow->getWidth();
+    mUserLevelWindow->setCoord(MyGUI::IntCoord((winWidth - width)*0.5, (winHeight - height)*0.5, width, height));
+    mUserLevelWindow->setVisible(false);
+
+    //Tell the buttons to tell us.
+    button = GlbVar.gui->findWidget<MyGUI::Button>("but_loadUserLevel");
+    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickLoadUserLevel);
+
+    button = GlbVar.gui->findWidget<MyGUI::Button>("but_cancelUserLevel");
+    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCancelUserLevel);
+
+    //Populate the user level list.
+    MyGUI::ComboBox *list = GlbVar.gui->findWidget<MyGUI::ComboBox>("cmb_userLevel");
+
+    for (std::vector<Ogre::String>::iterator iter = GlbVar.userNgfNames.begin(); iter != GlbVar.userNgfNames.end(); ++iter)
+        list->addItem(*iter);
+
+    if (!(GlbVar.userNgfNames.empty()))
+        list->setIndexSelected(0);
 }
 //-------------------------------------------------------------------------------
 void MainMenu::tick(const Ogre::FrameEvent &evt)
@@ -111,6 +144,7 @@ void MainMenu::stop()
     GlbVar.optionsDialog->setVisible(false);
     GlbVar.gui->destroyWidget(mWindow);
     GlbVar.gui->destroyWidget(mCreditsWindow);
+    GlbVar.gui->destroyWidget(mUserLevelWindow);
     GlbVar.gui->destroyWidget(mLogo);
     GlbVar.gui->destroyWidget(mBackground);
 }
@@ -173,6 +207,29 @@ void MainMenu::onClickCloseCredits(MyGUI::WidgetPtr)
 void MainMenu::onClickOptions(MyGUI::WidgetPtr)
 {
     GlbVar.optionsDialog->setVisible(true);
+}
+//-------------------------------------------------------------------------------
+void MainMenu::onClickUserLevel(MyGUI::WidgetPtr)
+{
+    mUserLevelWindow->setVisibleSmooth(true);
+}
+//-------------------------------------------------------------------------------
+void MainMenu::onClickCancelUserLevel(MyGUI::WidgetPtr)
+{
+    mUserLevelWindow->setVisibleSmooth(false);
+}
+//-------------------------------------------------------------------------------
+void MainMenu::onClickLoadUserLevel(MyGUI::WidgetPtr)
+{
+    unsigned int worldNum = GlbVar.firstLevel - 1;
+    Level *userLevel = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(worldNum));
+
+    MyGUI::ComboBox *list = GlbVar.gui->findWidget<MyGUI::ComboBox>("cmb_userLevel");
+    Ogre::String ngf = list->getItemNameAt(list->getIndexSelected());
+    userLevel->setNgfName(ngf);
+    userLevel->setCaption(ngf);
+
+    GlbVar.woMgr->gotoWorld(worldNum);
 }
 //-------------------------------------------------------------------------------
 
