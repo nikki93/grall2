@@ -42,9 +42,9 @@ package.libpaths = {
 
 package.links = {
     -- Libaries.
-    "python2.6",
-    "boost_python",
-    "boost_serialization",
+    "python2.5",
+    "boost_python-mt-py25",
+    "boost_wserialization-mt",
     "BulletDynamics",
     "BulletCollision",
     "LinearMath"
@@ -84,7 +84,7 @@ debug.defines = { "DEBUG", "_DEBUG" }
 debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 
-debug.buildoptions = { "-g" --[["-pg"]] }                                    -- '-pg' for gprof
+debug.buildoptions = { "-g" --[[, "-pg"]] }                                  -- '-pg' for gprof
 -- debug.linkoptions = { "-pg" }                                             -- '-pg' for gprof
 
 -- Release configuration --------------------------------------------------------------------
@@ -93,4 +93,4 @@ release = package.config["Release"]
 release.objdir = "obj/release"
 release.target = "release/" .. package.name
 
-release.buildoptions = { "-O3", "-funroll-loops" }
+release.buildoptions = { "-O3" }

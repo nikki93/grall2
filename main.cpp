@@ -264,7 +264,7 @@ class Game
             ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Base", "FileSystem", "General");
             ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Shadows", "FileSystem", "General");
             ogreRmgr.addResourceLocation(DATA_PREFIX "Compositors", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "ParticleFX", "FileSystem", "General");
+            sdsud.addResourceLocation(DATA_PREFIX "ParticleFX", "FileSystem", "General");
 
             //Renderer. Just choose the first available one, we just load only one plugin (either
             //Direct3D or OpenGL) anyway.
