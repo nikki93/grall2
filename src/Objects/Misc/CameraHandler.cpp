@@ -292,8 +292,7 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
     }
     NGF_PY_METHOD_IMPL(targetPlayer)
     { 
-        NGF::Python::PythonObjectConnectorPtr obj = py::extract<NGF::Python::PythonObjectConnectorPtr>(args[0]);
-        NGF::ID id = obj->getID();
+        NGF::ID id = GlbVar.player->getID();
         mTargetNode = GlbVar.ogreSmgr->getSceneNode("id" + Ogre::StringConverter::toString(id) + "-controlnode");
 
         NGF_PY_RETURN();

@@ -44,6 +44,7 @@
 #include "Worlds/TestWorld.h"
 #include "Worlds/Level.h"
 #include "Worlds/MainMenu.h"
+#include "Worlds/MaterialViewer.h"
 
 //Register GameObject types.
 void registerGameObjectTypes()
@@ -78,6 +79,7 @@ void addWorlds()
 {
     //Main menu.
     GlbVar.woMgr->addWorld(new MainMenu());
+    GlbVar.woMgr->addWorld(new MaterialViewer());
     GlbVar.woMgr->addWorld(new Level(1, "", "", true)); //User level.
 
     //Levels.

@@ -594,6 +594,7 @@ NGF_PY_BEGIN_IMPL(Player)
     }
 
     NGF_PY_PROPERTY_IMPL(underControl, mUnderControl, bool)
+    NGF_PY_PROPERTY_IMPL(invincible, mInvincible, bool)
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
 //-------------------------------------------------------------------------------

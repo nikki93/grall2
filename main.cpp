@@ -107,7 +107,7 @@ class GameListener :
             GlbVar.optionsDialog->keyPressed(mCurrKey);
 
             //Tell MyGUI.
-            GlbVar.gui->injectKeyPress((MyGUI::KeyCodeObsolete) arg.key);
+            GlbVar.gui->injectKeyPress(arg);
 
             //Tell all GameObjects.
             if (!GlbVar.console->isVisible())

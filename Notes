@@ -6,8 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add a material viewer/editor world to allow artists to visualise materials.
-
 - Make more Brush textures.
 
 - Fix shadows.
@@ -560,3 +558,8 @@ Mon Sep 28 13:11:02 AST 2009
 ----------------------------
 - User level selection dialog has now been moved to Main Menu to make things cleaner.
 - Made .blend file externl data paths relative (textures).
+
+Tue Sep 29 21:22:45 AST 2009
+----------------------------
+- Added a material editor/viewer that allows users to make their own materials and view them in game. The editor can also save the
+  .material file, which allows the user to then use this material in his own levels.
