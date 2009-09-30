@@ -10,6 +10,22 @@ MainMenu.cpp
 #define LOGO_WIDTH 480
 #define LOGO_HEIGHT 151
 
+static Ogre::String creditsStr = 
+
+"Programming:\n"
+"  Nikhilesh (nikki)"
+"  s.nikhilesh@gmail.com"
+"\n"
+"Art:\n"
+"  Nikhilesh (nikki)"
+"  s.nikhilesh@gmail.com"
+"\n"
+"Testers:\n"
+"  Siddharth Malhotra "
+"  s.nikhilesh@gmail.com"
+
+;
+
 /*
  * ==============================================================================
  * MainMenu
@@ -99,10 +115,6 @@ void MainMenu::init()
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_cr_ok");
     button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCloseCredits);
-
-    Ogre::String creditsStr = 
-        "Everything:\n"
-        "  Nikhilesh (nikki)";
 
     MyGUI::EditPtr credits = GlbVar.gui->findWidget<MyGUI::Edit>("edt_cr_credits");
     credits->setOnlyText(creditsStr);

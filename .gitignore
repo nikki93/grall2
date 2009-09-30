@@ -4,6 +4,7 @@ ext
 #Files made by running/building.
 Makefile
 GraLL2.make
+premake.lua #premake.lua.def contains 'default', user can make his own.
 
 premake.exe
 GraLL2.sln
