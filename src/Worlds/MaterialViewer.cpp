@@ -58,6 +58,7 @@ void MaterialViewer::init()
         if (widget->getUserString("type") == "MaterialProperty") 
             dynamic_cast<MyGUI::Edit*>(widget)->setOnlyText(mMaterialSettings[widget->getUserString("property")]);
     }
+    GlbVar.gui->findWidget<MyGUI::Edit>("edt_lightColour")->setOnlyText("0.7 0.7 0.7");
 
     //Populate the material type list.
     MyGUI::ComboBoxPtr list = GlbVar.gui->findWidget<MyGUI::ComboBox>("cmb_materialType");
@@ -76,15 +77,15 @@ void MaterialViewer::tick(const Ogre::FrameEvent &evt)
     OIS::MouseState ms = Util::getMouseState();
     if (ms.buttonDown(OIS::MB_Right))
     {
-        Ogre::Degree hor(ms.X.rel * -10 * evt.timeSinceLastFrame);
-        Ogre::Degree ver(ms.Y.rel * 20 * evt.timeSinceLastFrame);
+        Ogre::Degree hor(ms.X.rel * GlbVar.settings.controls.turningSensitivity * -0.4);
+        Ogre::Degree ver(ms.Y.rel * GlbVar.settings.controls.turningSensitivity * 0.4);
 
         mCameraYawNode->yaw(hor);
-        mCameraPitchNode->pitch(ver);
+		mCameraPitchNode->pitch(ver);
     }
     else if (ms.buttonDown(OIS::MB_Middle))
     {
-        mCameraDist += ms.Y.rel * 1 * evt.timeSinceLastFrame;
+        mCameraDist += ms.Y.rel * GlbVar.settings.controls.turningSensitivity * 0.02;
         mCameraDist = Util::clamp<Ogre::Real>(mCameraDist, 0.5, 10);
     }
 
