@@ -6,18 +6,21 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Make more Brush textures.
+- Work on the forum.
 
-- Fix shadows.
+- Write more GameObject documentation.
+
+- Make a tutorial on how to make new materials.
 
 Side
 ----
 - Come up with new ideas.
 
-- Redo Switch and Teleporter textures.
+- Make more user level tutorials.
 
 Bugs
 ----
+- Fix shadows.
 
 +---------------------------+
 |         ChangeLog         |
@@ -563,3 +566,8 @@ Tue Sep 29 21:22:45 AST 2009
 ----------------------------
 - Added a material editor/viewer that allows users to make their own materials and view them in game. The editor can also save the
   .material file, which allows the user to then use this material in his own levels.
+
+Wed Sep 30 16:06:10 AST 2009
+----------------------------
+- Levels no longer need .material files, just .ngf and .mesh files. Material names are simply read from SubMesh material references. The
+  image name is retreived from the name (Blender TEXFACE), and 'Brushes/<name>' material is assigned.

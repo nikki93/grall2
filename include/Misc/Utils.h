@@ -127,7 +127,7 @@ inline void fixBrushMaterials(Ogre::Entity *ent)
     for (int i = 0; i < numSubs; ++i)
     {
         currSub = ent->getSubEntity(i);
-        matName = currSub->getMaterialName();
+        matName = currSub->getSubMesh()->getMaterialName();
         matName = "Brushes" + matName.substr(matName.find_last_of('/'));
         currSub->setMaterialName(matName);
     }

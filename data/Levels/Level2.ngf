@@ -467,25 +467,5 @@ ngflevel Level2
 			attenuation 70 1 0.3 0.2
 		}
 	}
-	object
-	{
-		type Teleporter
-		name noname
-		position -2.500000 -0.250000 -2.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			targetPoint teleExit
-		}
-	}
-	object
-	{
-		type Point
-		name teleExit
-		position 25.500000 0.500000 9.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
 }
 
