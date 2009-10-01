@@ -16,13 +16,13 @@ MovingBrush.cpp
 MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mTimer(-1),
-      mLastFrameTime(0.1),
-      mFollowDirectors(true)
+      mLastFrameTime(0.1)
 {
     addFlag("MovingBrush");
 
     //Save the director event.
     NGF_PY_SAVE_EVENT(director);
+    NGF_PY_SAVE_EVENT(point);
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
@@ -30,6 +30,7 @@ MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     //Get properties.
     mEnabled = Ogre::StringConverter::parseBool(properties.getValue("enabled", 0, "yes"));
     mVelocity = rot * Ogre::Vector3(0,0,-Ogre::StringConverter::parseReal(properties.getValue("speed", 0, "2")));
+    mFollowDirectors = Ogre::StringConverter::parseBool(properties.getValue("followDirectors", 0, "yes"));
 
     //Create the Ogre stuff.
     mEntity = createBrushEntity();
@@ -116,6 +117,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(currPoint)));
                 jumped = true;
                 mPoints.pop_front();
+                NGF_PY_CALL_EVENT(point, currPoint);
                 if (!mPoints.empty())
                     mVelocity = (mPoints.front() - currPoint).normalisedCopy() * mVelocity.length();
             }

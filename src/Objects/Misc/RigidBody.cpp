@@ -123,3 +123,4 @@ NGF_PY_BEGIN_IMPL(RigidBody)
     NGF_PY_PROPERTY_IMPL(angularDamping, mp_AngularDamping, Ogre::Real);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
+//-------------------------------------------------------------------------------
