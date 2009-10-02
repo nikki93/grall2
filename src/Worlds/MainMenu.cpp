@@ -13,16 +13,19 @@ MainMenu.cpp
 static Ogre::String creditsStr = 
 
 "Programming:\n"
-"  Nikhilesh (nikki)"
-"  s.nikhilesh@gmail.com"
+"  Nikhilesh (nikki)\n"
+"  s.nikhilesh@gmail.com\n"
 "\n"
 "Art:\n"
-"  Nikhilesh (nikki)"
-"  s.nikhilesh@gmail.com"
+"  Nikhilesh (nikki)\n"
+"  s.nikhilesh@gmail.com\n"
 "\n"
 "Testers:\n"
-"  Siddharth Malhotra "
-"  s.nikhilesh@gmail.com"
+"  Savinay Nangalia (savinay93)\n"
+"  savinay_gr8@hotmail.com\n"
+"\n"
+"  Siddharth Malhotra (siddharth)\n"
+"  siddharthmalhotra1994@hotmail.com\n"
 
 ;
 
