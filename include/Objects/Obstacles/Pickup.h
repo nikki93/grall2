@@ -30,6 +30,7 @@ class Pickup :
 
         Ogre::Real mSpin;
         Ogre::Real mBob;
+        Ogre::Real mTime;
 
     public:
         Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);

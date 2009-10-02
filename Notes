@@ -562,7 +562,7 @@ Sun Sep 27 14:53:30 AST 2009
 Mon Sep 28 13:11:02 AST 2009
 ----------------------------
 - User level selection dialog has now been moved to Main Menu to make things cleaner.
-- Made .blend file externl data paths relative (textures).
+- Made .blend file external data paths relative (textures).
 
 Tue Sep 29 21:22:45 AST 2009
 ----------------------------
@@ -573,3 +573,13 @@ Wed Sep 30 16:06:10 AST 2009
 ----------------------------
 - Levels no longer need .material files, just .ngf and .mesh files. Material names are simply read from SubMesh material references. The
   image name is retreived from the name (Blender TEXFACE), and 'Brushes/<name>' material is assigned.
+
+Thu Oct  1 20:49:14 AST 2009
+----------------------------
+- Added more properties to MovingBrush, MovingBomb.
+- Added more documentation to the Wiki.
+
+Fri Oct  2 23:56:31 AST 2009
+----------------------------
+- Added a 'canSwitchDimension' property to Player.
+- Added Pickup bounce and spin.

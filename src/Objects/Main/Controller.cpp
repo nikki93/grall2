@@ -19,6 +19,21 @@ Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 {
     addFlag("Controller");
 
+    //Set the Python us.
+    py::object &main = NGF::Python::PythonManager::getSingleton().getMainNamespace();
+    py::exec(
+            "import GraLL2\n\n"
+
+            "def setController(obj):\n"
+            "  GraLL2.controller = obj\n",
+            main, main
+            ); 
+    main["setController"](getConnector());
+    py::exec(
+            "del setController\n",
+            main, main
+            );
+
     //Load script.
     NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
     NGF_PY_SAVE_EVENT(levelStart);

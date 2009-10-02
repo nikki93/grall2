@@ -2,6 +2,23 @@ ngflevel Level1
 {
 	object
 	{
+		type Pickup
+		name noname
+		position -14.500000 6.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyR
+			meshFile Mesh_Key.mesh
+			material Objects/KeyR
+			spin 20
+			bob 0.1
+		}
+	}
+	object
+	{
 		type Bomb
 		name noname
 		position 0.500000 10.500000 28.500000
@@ -793,13 +810,6 @@ ngflevel Level1
 	}
 	object
 	{
-		type Player
-		name player1
-		position -2.499782 6.423803 -2.499271
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
 		type Switch
 		name noname
 		position -1.500000 5.770000 -3.500000
@@ -1250,6 +1260,38 @@ ngflevel Level1
 			fireTime 5
 			restTime 4
 			radius 30
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -15.500000 6.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyR
+			meshFile Mesh_Key.mesh
+			material Objects/KeyR
+			spin 20
+			bob 0.2
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -2.499782 6.389544 -2.499271
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4
+			captureCameraHandler yes
+			canSwitchDimensions yes
 		}
 	}
 }
