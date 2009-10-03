@@ -159,6 +159,11 @@ material Objects/KeyB : Objects/KeyR
         set $diffuse_tex "KeyB.png"
         set $glow_tex "KeyB.png"
 }
+material Objects/KeyY : Objects/KeyR
+{
+        set $diffuse_tex "KeyY.png"
+        set $glow_tex "KeyY.png"
+}
 
 //--- Bullet --------------------------------------------------------------------------
 material Objects/BulletR : BaseTransparent

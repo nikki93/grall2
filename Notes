@@ -583,3 +583,10 @@ Fri Oct  2 23:56:31 AST 2009
 ----------------------------
 - Added a 'canSwitchDimension' property to Player.
 - Added Pickup bounce and spin.
+
+Sat Oct  3 17:26:08 AST 2009
+----------------------------
+- Added a 'KeyY' prefab, like the gold keys from the original GraLL. They keep a count of how many total 'KeyY's were
+  created, so that you can do a 'other.numPickup("KeyY") == GraLL2.controller.m_numKeyY' test to do the usual
+  'did he get all the yello keys' test.
+- Player bugfix. Player didn't serialise his 'mPickups' map.

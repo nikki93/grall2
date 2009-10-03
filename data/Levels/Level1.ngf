@@ -4,6 +4,64 @@ ngflevel Level1
 	{
 		type Pickup
 		name noname
+		position -17.500000 6.500000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 20
+			bob 0.2
+			script : #KeyY Prefab Script
+			       : #------------------
+			       : 
+			       : #import GraLL2
+			       : #GraLL2.numKeyY = 0
+			       : 
+			       : #def init(self):
+			       : 	#GraLL2.numKeyY = 0
+			       : 
+			       : def create(self):
+			       : 	GraLL2.controller.locals.setdefault("m_numKeyY", 0)
+			       : 	GraLL2.controller.m_numKeyY += 1
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -16.500000 6.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 20
+			bob 0.2
+			script : #KeyY Prefab Script
+			       : #------------------
+			       : 
+			       : #import GraLL2
+			       : #GraLL2.numKeyY = 0
+			       : 
+			       : #def init(self):
+			       : 	#GraLL2.numKeyY = 0
+			       : 
+			       : def create(self):
+			       : 	GraLL2.controller.locals.setdefault("m_numKeyY", 0)
+			       : 	GraLL2.controller.m_numKeyY += 1
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
 		position -14.500000 6.500000 -5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
@@ -1043,21 +1101,6 @@ ngflevel Level1
 	}
 	object
 	{
-		type Light
-		name noname
-		position -20.500000 6.938363 -5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			lightType point
-			colour 0.4 0.7 0.9
-			attenuation 70 1 0.08 0.02
-		}
-	}
-	object
-	{
 		type StaticBrush
 		name noname
 		position -9.500000 6.500000 -9.500000
@@ -1086,7 +1129,7 @@ ngflevel Level1
 			ignoreCollisions no
 			brushMeshFile Level1_b19.mesh
 			repeat yes
-			condition other.hasDecPickup("KeyR")
+			condition : other.numPickup("KeyY") == GraLL2.controller.m_numKeyY
 			autoClose yes
 			script : #Door Prefab Script
 			       : #------------------
@@ -1110,6 +1153,7 @@ ngflevel Level1
 			       : #condition is, "other.hasFlag("Player")".
 			       : 
 			       : import Ngf
+			       : import GraLL2
 			       : 
 			       : def create(self):
 			       : 	#Not opened yet!
@@ -1292,6 +1336,35 @@ ngflevel Level1
 			minHeight -4
 			captureCameraHandler yes
 			canSwitchDimensions yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -7.500000 6.500000 -10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 20
+			bob 0.2
+			script : #KeyY Prefab Script
+			       : #------------------
+			       : 
+			       : #import GraLL2
+			       : #GraLL2.numKeyY = 0
+			       : 
+			       : #def init(self):
+			       : 	#GraLL2.numKeyY = 0
+			       : 
+			       : def create(self):
+			       : 	GraLL2.controller.locals.setdefault("m_numKeyY", 0)
+			       : 	GraLL2.controller.m_numKeyY += 1
 		}
 	}
 }
