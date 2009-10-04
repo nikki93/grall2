@@ -14,6 +14,7 @@
  */
 
 #include "Globals.h"
+#include "Objects/Misc/Slideshow.h"
 
 //--- Wrapper functions ---------------------------------------------------------
 
@@ -174,6 +175,32 @@ void py_setBonusTime(Ogre::Real time)
 Ogre::Real py_getBonusTime()
 {
     return GlbVar.bonusTime;
+}
+
+void py_startSlideshow(int width, int height, py::list slides)
+{
+    if (!GlbVar.newLevel)
+        return;
+
+    NGF::GameObject *obj = GlbVar.goMgr->createObject<Slideshow>(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("width", Ogre::StringConverter::toString(width))
+            ("height", Ogre::StringConverter::toString(height))
+            );
+
+    try
+    {
+        while(1)
+        {
+            py::tuple t = py::extract<py::tuple>(slides.pop(0));
+            Ogre::Real time = py::extract<Ogre::Real>(t[0]);
+            Ogre::String image = py::extract<Ogre::String>(t[1]);
+            GlbVar.goMgr->sendMessage(obj, NGF_MESSAGE(MSG_ADDSLIDE, time, image));
+        }
+    }
+    catch (...)
+    {
+        return;
+    }
 }
 
 
@@ -353,6 +380,14 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("getBonusTime", py_getBonusTime,
             "getBonusTime()\n"
             "Returns the bonus time."
+           );
+
+    //Slideshow
+    py::def("startSlideshow", py_startSlideshow,
+            "startSlideshow(width, height, slides)\n"
+            "Starts playing a slideshow. The 'slides' parameter is a list of tuples, with times and texture names. For example,"
+            "[(0.5,'Slide1.png'),(3,'Slide2.png')] etc. The 'width' and 'height' parameters describe the width and height of the"
+            "images."
            );
 }
 

@@ -27,6 +27,7 @@ class Level :
         Ogre::String mCaption;
         unsigned int mWorldNum;
         bool mUserLevel;
+        bool mFirstFrame;
 
     public:
         Level(unsigned int worldNum, Ogre::String levelName, Ogre::String caption, bool userLevel = false);

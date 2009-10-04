@@ -95,6 +95,9 @@ struct Globals : public Ogre::Singleton<Globals>
     //Currently shown MessageBox.
     NGF::GameObject *currMessageBox;
 
+    //Currently shown SlideShow.
+    NGF::GameObject *currSlideshow;
+
     //--- Global 'data' ----------------------------------------------------------------
     
     //Globally required data.
@@ -106,6 +109,8 @@ struct Globals : public Ogre::Singleton<Globals>
     std::vector<Ogre::String> ngfNames; //The NGF level script names ('official' levels).
     std::vector<Ogre::String> userNgfNames; //The NGF level script names ('user' levels).
 
+    bool newLevel; //Whether this is a 'new level' (either highest, or user level).
+    
     //Settings.
     struct Settings
     {
@@ -231,6 +236,7 @@ enum
     MSG_PICKEDUP,             //Pickup has been picked up (disables it).
     MSG_CAPTURECAMERAHANDLER, //Capture the CameraHandler.
     MSG_BULLETHIT,            //Bullet hit (for Player).
+    MSG_ADDSLIDE,             //Add slide (for Slideshow).
 };
 
 //Includes from the project used everywhere.

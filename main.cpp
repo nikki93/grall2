@@ -151,6 +151,10 @@ class GameListener :
                     if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
                         GlbVar.objectClicker->click();
                     break;
+
+                case OIS::KC_P:
+                    GlbVar.paused = !GlbVar.paused;
+                    break;
             }
 
             return true;
@@ -385,6 +389,7 @@ class Game
             GlbVar.player = 0;
             GlbVar.currCameraHandler = 0;
             GlbVar.currMessageBox = 0;
+            GlbVar.currSlideshow = 0;
             GlbVar.worldSwitch = -1;
             GlbVar.loadGame = true;
 

@@ -31,6 +31,11 @@ void Level::init()
     if (mWorldNum > GlbVar.records.highestLevelIndex)
         GlbVar.records.highestLevelIndex = mWorldNum;
 
+    if (GlbVar.records.highestLevelIndex == mWorldNum)
+        GlbVar.newLevel = true;
+    else
+        GlbVar.newLevel = false;
+
     //Create the GameObjects! If null name, user level not chosen yet, just skip.
     if (mNgfName != "NULL")
         startLevel();
@@ -41,7 +46,11 @@ void Level::init()
 void Level::tick(const Ogre::FrameEvent &evt)
 {
     //Part of the anti evt.timeSinceLastFrame hack.
-    GlbVar.paused = false;
+    if (mFirstFrame)
+    {
+        GlbVar.paused = false;
+        mFirstFrame = false;
+    }
     
     //Some key stuff.
     if (Util::isKeyDown(OIS::KC_N))
@@ -65,6 +74,9 @@ void Level::stop()
 //-------------------------------------------------------------------------------
 void Level::startLevel()
 {
+    //First we're not paused.
+    GlbVar.paused = false;
+
     //No stuff blocking our view.
     GlbVar.gui->hidePointer();
 
@@ -80,7 +92,9 @@ void Level::startLevel()
         GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTART));
     }
 
-    //To save from load-frame evt.timeSinceLastFrame spikes.
+    //To save from load-frame evt.timeSinceLastFrame spikes. If some GameObject paused it already,
+    //then we skip it.
+    mFirstFrame = !GlbVar.paused;
     GlbVar.paused = true;
 }
 //-------------------------------------------------------------------------------

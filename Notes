@@ -6,19 +6,17 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Work on the forum.
+- Create a 'slideshow' player, with different interval times, for 'storytelling'.
 
 - Start creating the initial levels.
-
-- Write more GameObject documentation.
-
-- Make a tutorial on how to make new materials.
 
 Side
 ----
 - Come up with new ideas.
 
-- Make more user level tutorials.
+- Write more GameObject documentation.
+
+- Make more tutorials.
 
 Bugs
 ----
@@ -588,5 +586,11 @@ Sat Oct  3 17:26:08 AST 2009
 ----------------------------
 - Added a 'KeyY' prefab, like the gold keys from the original GraLL. They keep a count of how many total 'KeyY's were
   created, so that you can do a 'other.numPickup("KeyY") == GraLL2.controller.m_numKeyY' test to do the usual
-  'did he get all the yello keys' test.
+  'did he get all the yellow keys' test.
 - Player bugfix. Player didn't serialise his 'mPickups' map.
+
+Sun Oct  4 20:46:38 AST 2009
+----------------------------
+- Level 'first frame spike' bugfix.
+- 'Slideshow' added. Plays a slideshow (good for storytelling, for example), each slide can have it's own time. Completely Python scriptable,
+  and attachable to any event.

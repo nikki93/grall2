@@ -1237,10 +1237,26 @@ ngflevel Level1
 			script : import Ngf
 			       : import GraLL2
 			       : 
+			       : def levelEnter(self):
+			       : 	print "Entered level!"
+			       : 	
+			       : def levelLeave(self):
+			       : 	print "Left level!"
+			       : 	
 			       : def levelStart(self):
+			       : 	print "Started level!"
 			       : 	self.setAlarm(3,0)
 			       : 	GraLL2.setDimension(1)
 			       : 	GraLL2.setBonusTime(49)
+			       : 	
+			       : def levelStop(self):
+			       : 	print "Stopped level!"
+			       : 	
+			       : def winLevel(self):
+			       : 	print "Won level!"
+			       : 
+			       : def loseLevel(self):
+			       : 	print "Lost level!"
 			       : 
 			       : def alarm(self, n):
 			       : 	if (n == 0):
