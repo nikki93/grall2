@@ -26,11 +26,15 @@
 
 #define GRALL2_SERIALISE_GAMEOBJECT()                                                          \
             /* Position, rotation. */                                                          \
-            NGF_SERIALISE_POSITION(mNode->getPosition());                                      \
-            NGF_SERIALISE_ROTATION(mNode->getOrientation());                                   \
+            if (mNode)                                                                         \
+            {                                                                                  \
+                NGF_SERIALISE_POSITION(mNode->getPosition());                                  \
+                NGF_SERIALISE_ROTATION(mNode->getOrientation());                               \
+            }                                                                                  \
                                                                                                \
             /* Complex members. */                                                             \
-            NGF_SERIALISE_BULLET_BODY(mBody);                                                  \
+            if (mBody)                                                                         \
+                NGF_SERIALISE_BULLET_BODY(mBody);                                              \
             NGF_SERIALISE_PYTHON_LOCALS();                                                     \
             GRALL2_SERIALISE_ALARMS();                                                         \
                                                                                                \
@@ -71,7 +75,7 @@ class GraLL2GameObject :
         //--- Non-NGF methods ----------------------------------------------------------
         void initBody(int specialFlags = DimensionManager::NONE);
         Ogre::Entity *createBrushEntity();
-        void destroyBody() { GlbVar.phyWorld->removeRigidBody(mBody); }
+        void destroyBody() { if (mBody) GlbVar.phyWorld->removeRigidBody(mBody); }
         void setDimension(int dimension);
         int getDimensions() { return mDimensions; }
 
