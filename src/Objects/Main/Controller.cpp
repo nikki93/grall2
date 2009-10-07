@@ -35,7 +35,8 @@ Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
             );
 
     //Load script.
-    NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    SET_PYTHON_SCRIPT();
+
     NGF_PY_SAVE_EVENT(levelStart);
     NGF_PY_SAVE_EVENT(levelStop);
     NGF_PY_SAVE_EVENT(winLevel);

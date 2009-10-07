@@ -43,6 +43,8 @@ class SlidingBrush :
         bool mIgnoreCollisions;
         bool mEnabled;
 
+        int mLastPlace;
+
     public:
         SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~SlidingBrush();
@@ -100,6 +102,7 @@ class SlidingBrush :
             NGF_SERIALISE_OGRE(Real, mSpeed);
             NGF_SERIALISE_OGRE(Real, mCurrentPlace);
             NGF_SERIALISE_OGRE(Bool, mIgnoreCollisions);
+            NGF_SERIALISE_OGRE(Int, mLastPlace);
 
             NGF_SERIALISE_STRING(pointsStr);
 

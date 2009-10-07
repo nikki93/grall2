@@ -26,7 +26,8 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
     addFlag("CameraHandler");
 
     //Load the Python script.
-    NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    SET_PYTHON_SCRIPT();
+
     NGF_PY_SAVE_EVENT(alarm);
 
     //Python init event.

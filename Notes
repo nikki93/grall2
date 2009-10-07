@@ -601,3 +601,11 @@ Tue Oct  6 21:38:41 AST 2009
 ----------------------------
 - Added scriptable 'Empty' object. Basically, an object type that's empty in it's 'native C++' form, but very scriptable, to allow 'from
   scratch Python objects', and fun level scripts.
+
+Wed Oct  7 22:15:19 AST 2009
+----------------------------
+- Completed physics body and graphics mesh creation, material assignment for 'Empty' GameObject.
+- Modified 'Empty' GameObject physics body creation to rely on enums instead of strings for performance.
+- Fixed 'Empty' serialisation problems.
+- Fixed 'SlidingBrush' bug related to 'point' event being called every frame while waiting on a point.
+- Allowed use of bytcode-compiled Python 'code objects' for scripts for performance benifits (especially 'script in script' objects).

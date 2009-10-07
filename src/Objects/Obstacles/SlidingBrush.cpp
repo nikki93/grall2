@@ -16,6 +16,7 @@ SlidingBrush.cpp
 SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mCurrentPlace(0.5),
+      mLastPlace(1),
       mForward(false)
 {
     addFlag("SlidingBrush");
@@ -134,8 +135,10 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
             if (nextPlace >= 0 && nextPlace < mPoints.size())
                 mCurrentPlace += mForward ? 1 : -1;
 
-            //Call the Python 'point' event.
-            NGF_PY_CALL_EVENT(point, currPlace);
+            //Call the Python 'point' event. Cut out repeated events using a 'last place' idea.
+            if (mLastPlace != currPlace)
+                NGF_PY_CALL_EVENT(point, currPlace);
+            mLastPlace = currPlace;
         }
         else
         {

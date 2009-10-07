@@ -560,19 +560,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Bomb
-		name noname
-		position -5.500000 6.500000 -4.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green yes
-		}
-	}
-	object
-	{
 		type StaticBrush
 		name noname
 		position -9.500000 6.500000 -12.500000
@@ -1183,6 +1170,7 @@ ngflevel TestLevel1
 			       : 	#We've hit the start point, so we've stopped moving.
 			       : 	if (n == 0):
 			       : 		self.m_moving = False
+			       : 		
 			       : 	#If we're auto-closing, we close after a small delay after
 			       : 	#reaching end point.
 			       : 	if (self.m_autoClose and (n == 1)):
@@ -1377,21 +1365,26 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			script : def create(self):
-			       : 	self.setAlarm(3, 0)
-			       : 	
-			       : def alarm(self, n):
-			       : 	if (n == 0):
-			       : 		Ngf.createObject("Crate", "", self.getPosition() + Ngf.Vector3(0,5,0), Ngf.Quaternion.IDENTITY, { "script" : '''print "Hi!"
-			       : 			
+			script : crateScript = compile("""
+			       : 
 			       : def init(self):
 			       : 	self.setAlarm(3, 0)
-			       : 	print "Hi!"
 			       : 	
 			       : def alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.move(Ngf.Vector3(0,0,-1))
-			       : 		self.setAlarm(2, 0)''' })
+			       : 		self.setAlarm(2, 0)
+			       : 		
+			       : """, 
+			       : 
+			       : "crateScript", "exec")
+			       : 
+			       : def create(self):
+			       : 	self.setAlarm(3, 0)
+			       : 	
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		Ngf.createObject("Crate", "", self.getPosition() + Ngf.Vector3(0,5,0), Ngf.Quaternion.IDENTITY, { "code" : "crateScript" })
 			       : 		self.setAlarm(3, 0)
 		}
 	}

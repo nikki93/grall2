@@ -211,6 +211,45 @@ BOOST_PYTHON_MODULE(GraLL2)
     //Docstring settings.
     py::docstring_options doc_options(true, true, false);
 
+    //Enums.
+    py::enum_<int>("Dimensions")
+        .value("DIM_1", DimensionManager::DIM_1)
+        .value("DIM_2", DimensionManager::DIM_2)
+        .value("DIM_BOTH", DimensionManager::DIM_BOTH)
+        ;
+
+    py::enum_<int>("CollisionShape")
+        .value("CONVEX", PythonBodyFlags::CONVEX)
+        .value("TRIMESH", PythonBodyFlags::TRIMESH)
+        .value("BOX", PythonBodyFlags::BOX)
+        .value("SPHERE", PythonBodyFlags::SPHERE)
+        .value("CYLINDERY", PythonBodyFlags::CYLINDERY)
+        .value("CYLINDERZ", PythonBodyFlags::CYLINDERZ)
+        .value("CYLINDERX", PythonBodyFlags::CYLINDERX)
+        ;
+
+    py::enum_<int>("BodyType")
+        .value("FREE", PythonBodyFlags::FREE)
+        .value("STATIC", PythonBodyFlags::STATIC)
+        .value("KINEMATIC", PythonBodyFlags::KINEMATIC)
+        ;
+
+    py::enum_<int>("CollisionFlags")
+        .value("PLAYER", DimensionManager::PLAYER)
+        .value("STATIC", DimensionManager::STATIC)
+        .value("MOVINGBOMB", DimensionManager::MOVINGBOMB)
+        .value("MOVINGBRUSH", DimensionManager::MOVINGBRUSH)
+        .value("GREENBOMB", DimensionManager::GREENBOMB)
+        .value("DIRECTOR", DimensionManager::DIRECTOR)
+
+        .value("NO_DIM_CHECK", DimensionManager::NO_DIM_CHECK)
+        .value("NO_CRATE_CHECK", DimensionManager::NO_CRATE_CHECK)
+        .value("NO_MOVING_CHECK", DimensionManager::NO_MOVING_CHECK)
+        .value("NO_BULLET_HIT", DimensionManager::NO_BULLET_HIT)
+        .value("INVISIBLE", DimensionManager::INVISIBLE)
+        .value("LIFTABLE", DimensionManager::LIFTABLE)
+        ;
+
     //Show message box.
     py::def("showMessage", py_showMessage,
             "showMessage(message, time)\n"

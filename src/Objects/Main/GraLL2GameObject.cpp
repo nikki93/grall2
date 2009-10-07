@@ -15,7 +15,7 @@ GraLL2GameObject::GraLL2GameObject(bool dimensional)
       mClickedTime(-1)
 {
     //Load the Python script. Events are called by children though.
-    NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    SET_PYTHON_SCRIPT();
     NGF_PY_SAVE_EVENT(alarm);
 
     if (dimensional)
@@ -101,6 +101,9 @@ Ogre::Entity *GraLL2GameObject::createBrushEntity()
 //-------------------------------------------------------------------------------
 void GraLL2GameObject::setDimension(int dimension)
 {
+    if (dimension == mDimensions)
+        return;
+
     //Save the new dimension info, and reset the btRigidBody flags.
     mDimensions = dimension;
     short int oldFlags = mBody->getBroadphaseHandle()->m_collisionFilterGroup;
@@ -115,6 +118,20 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
 {
     //setAlarm
     GRALL2_PY_ALARM_METHOD(setAlarm);
+
+    //switchDimension
+    NGF_PY_METHOD_IMPL(switchDimension)
+    {
+        setDimension(mDimensions ^ DimensionManager::DIM_SWITCH);
+        NGF_PY_RETURN();
+    }
+    //setDimension
+    NGF_PY_METHOD_IMPL(setDimension)
+    {
+        int dim = py::extract<int>(args[0]);
+        setDimension(dim);
+        NGF_PY_RETURN();
+    }
 
     //getPosition
     NGF_PY_METHOD_IMPL(getPosition)

@@ -24,6 +24,8 @@
  *    F10      - Show physics collision shapes
  *    F12      - Exit
  *    Ctrl+X   - Pick object (stored as 'clicked' in Python)
+ *    Ctrl+O   - Show Options dialog
+ *    Ctrl+P   - Pause game
  *
  */
 
@@ -143,17 +145,19 @@ class GameListener :
                     Util::screenshot("Screenshot", ".png");
                     break;
 
-                case OIS::KC_O:
-                    GlbVar.optionsDialog->setVisible(!(GlbVar.console->isVisible()));
-                    break;
-
                 case OIS::KC_X:
                     if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
                         GlbVar.objectClicker->click();
                     break;
 
+                case OIS::KC_O:
+                    if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+                        GlbVar.optionsDialog->setVisible(!(GlbVar.console->isVisible()));
+                    break;
+
                 case OIS::KC_P:
-                    GlbVar.paused = !GlbVar.paused;
+                    if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+                        GlbVar.paused = !GlbVar.paused;
                     break;
             }
 

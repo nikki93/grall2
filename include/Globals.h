@@ -30,6 +30,12 @@
 //Defines.
 #define GlbVar Globals::getSingleton()
 #define LOG(msg) Ogre::LogManager::getSingleton().logMessage(msg);
+#define SET_PYTHON_SCRIPT()                                                                      \
+    Ogre::String script = mProperties.getValue("script", 0, "");                                 \
+    if (script == "")                                                                            \
+        NGF::Python::PythonGameObject::setScriptCodeObject(mProperties.getValue("code", 0, "")); \
+    else                                                                                         \
+        NGF::Python::PythonGameObject::setScriptString(script);
 
 //Forward declarations.
 class DimensionManager;
@@ -237,6 +243,25 @@ enum
     MSG_CAPTURECAMERAHANDLER, //Capture the CameraHandler.
     MSG_BULLETHIT,            //Bullet hit (for Player).
     MSG_ADDSLIDE,             //Add slide (for Slideshow).
+};
+
+//Flags for creating Physics bodies from Python.
+struct PythonBodyFlags
+{
+    enum
+    {
+        CONVEX,
+        TRIMESH,
+        BOX,
+        SPHERE,
+        CYLINDERY,
+        CYLINDERZ,
+        CYLINDERX,
+
+        FREE,
+        STATIC,
+        KINEMATIC,
+    };
 };
 
 //Includes from the project used everywhere.

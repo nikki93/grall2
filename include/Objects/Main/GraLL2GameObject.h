@@ -84,6 +84,12 @@ class GraLL2GameObject :
         {
             //setAlarm(time, alarmnum)
             NGF_PY_METHOD_DECL(setAlarm)
+
+            //switchDimension()
+            NGF_PY_METHOD_DECL(switchDimension)
+            //setDimension(dimension)
+            NGF_PY_METHOD_DECL(setDimension)
+
             //getPosition()
             NGF_PY_METHOD_DECL(getPosition)
             //setPosition(pos)
@@ -135,7 +141,7 @@ class GraLL2GameObject :
 
 #ifdef  __GRALL2GAMEOBJECT_CPP__
 
-/* C++ code produced by gperf version 3.0.3 *//*{{{*/
+/* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */
 /* Computed positions: -k'1,4' */
 
@@ -196,7 +202,7 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::MakeHash (register const char *str, regist
       39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
       39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
       39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39,  5, 39, 39, 39, 39,
+      39, 39, 39, 39, 39,  5, 39, 39, 20, 39,
       39, 39, 39, 39, 39, 39,  5, 39, 39, 10,
        5, 39, 39, 39, 15, 39, 10, 39, 39, 39,
       39, 39, 39, 39, 39, 39, 39,  0, 39, 39,
@@ -225,7 +231,7 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
 {
   enum
     {
-      TOTAL_KEYWORDS = 19,
+      TOTAL_KEYWORDS = 21,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 23,
       MIN_HASH_VALUE = 9,
@@ -234,24 +240,32 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
 
   static const struct PythonMethod wordlist[] =
     {
+      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {"translate", NGF_PY_METHOD_GPERF(GraLL2GameObject, translate)},
       {"applyForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyForce)},
       {"applyTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorque)},
       {"applyImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyImpulse)},
       {"setAlarm", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAlarm)},
+      {""},
+      {"switchDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, switchDimension)},
       {"setPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, setPosition)},
       {"applyCentralForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralForce)},
       {"applyTorqueImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorqueImpulse)},
       {"applyCentralImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralImpulse)},
+      {""},
       {"getPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, getPosition)},
       {"setLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setLinearVelocity)},
       {"setAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAngularVelocity)},
       {"setOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, setOrientation)},
+      {""}, {""},
       {"getLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getLinearVelocity)},
       {"getAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getAngularVelocity)},
       {"getOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, getOrientation)},
+      {""}, {""},
+      {"setDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, setDimension)},
       {"getTotalForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalForce)},
       {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)},
+      {""}, {""}, {""},
       {"getVelocityInLocalPoint", NGF_PY_METHOD_GPERF(GraLL2GameObject, getVelocityInLocalPoint)}
     };
 
@@ -259,78 +273,12 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
     {
       register int key = MakeHash (str, len);
 
-      if (key <= MAX_HASH_VALUE && key >= MIN_HASH_VALUE)
+      if (key <= MAX_HASH_VALUE && key >= 0)
         {
-          register const struct PythonMethod *resword;
+          register const char *s = wordlist[key].name;
 
-          switch (key - 9)
-            {
-              case 0:
-                resword = &wordlist[0];
-                goto compare;
-              case 1:
-                resword = &wordlist[1];
-                goto compare;
-              case 2:
-                resword = &wordlist[2];
-                goto compare;
-              case 3:
-                resword = &wordlist[3];
-                goto compare;
-              case 4:
-                resword = &wordlist[4];
-                goto compare;
-              case 7:
-                resword = &wordlist[5];
-                goto compare;
-              case 8:
-                resword = &wordlist[6];
-                goto compare;
-              case 9:
-                resword = &wordlist[7];
-                goto compare;
-              case 10:
-                resword = &wordlist[8];
-                goto compare;
-              case 12:
-                resword = &wordlist[9];
-                goto compare;
-              case 13:
-                resword = &wordlist[10];
-                goto compare;
-              case 14:
-                resword = &wordlist[11];
-                goto compare;
-              case 15:
-                resword = &wordlist[12];
-                goto compare;
-              case 18:
-                resword = &wordlist[13];
-                goto compare;
-              case 19:
-                resword = &wordlist[14];
-                goto compare;
-              case 20:
-                resword = &wordlist[15];
-                goto compare;
-              case 24:
-                resword = &wordlist[16];
-                goto compare;
-              case 25:
-                resword = &wordlist[17];
-                goto compare;
-              case 29:
-                resword = &wordlist[18];
-                goto compare;
-            }
-          return 0;
-        compare:
-          {
-            register const char *s = resword->name;
-
-            if (*str == *s && !strcmp (str + 1, s + 1))
-              return resword;
-          }
+          if (*str == *s && !strcmp (str + 1, s + 1))
+            return &wordlist[key];
         }
     }
   return 0;

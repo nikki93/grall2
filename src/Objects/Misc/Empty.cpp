@@ -82,41 +82,64 @@ void Empty::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
 //-------------------------------------------------------------------------------
 
 //--- Non-NGF -------------------------------------------------------------------
-void Empty::createBody(Ogre::String type, bool kinematic, int flags)
+void Empty::createBody(int shape, int bodyType, int flags)
 {
     if (!(mNode && mEntity))
         return;
 
+    //Create mesh converter.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
 
-    if (type == "convex")
-        mShape = converter.createConvex();
-    else if (type == "trimesh")
-        mShape = converter.createTrimesh();
-    else if (type == "box")
-        mShape = converter.createBox();
-    else if (type == "sphere")
-        mShape = converter.createSphere();
-    else if (type == "cylinderY")
-        mShape = new btCylinderShape(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
-    else if (type == "cylinderZ")
-        mShape = new btCylinderShapeZ(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
-    else if (type == "cylinderX")
-        mShape = new btCylinderShapeX(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
-    else
-        mShape = converter.createConvex();
+    //Create shape.
+    switch (shape)
+    {
+        case PythonBodyFlags::TRIMESH:
+            mShape = converter.createTrimesh();
+            break;
 
-    btScalar mass = mp_Mass;
+        case PythonBodyFlags::BOX:
+            mShape = converter.createBox();
+            break;
+
+        case PythonBodyFlags::SPHERE:
+            mShape = converter.createSphere();
+            break;
+
+        case PythonBodyFlags::CYLINDERY:
+            mShape = new btCylinderShape(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            break;
+
+        case PythonBodyFlags::CYLINDERZ:
+            mShape = new btCylinderShapeZ(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            break;
+
+        case PythonBodyFlags::CYLINDERX:
+            mShape = new btCylinderShapeX(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            break;
+
+        default:
+            mShape = converter.createConvex();
+            break;
+    }
+
+    //Calculate inertia, (or not, if static/kinematic).
     btVector3 inertia;
+    switch (bodyType)
+    {
+        case PythonBodyFlags::KINEMATIC:
+        case PythonBodyFlags::STATIC:
+            inertia = btVector3(0,0,0);
+            mp_Mass = 0;
+            break;
 
-    if (mp_Mass)
-        mShape->calculateLocalInertia(mass, inertia);
-    else
-        inertia = btVector3(0,0,0);
+        default:
+            mShape->calculateLocalInertia(mp_Mass, inertia);
+            break;
+    }
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
 
-    btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
+    btRigidBody::btRigidBodyConstructionInfo info(mp_Mass, state, mShape, inertia);
     info.m_friction = mp_Friction;
     info.m_restitution = mp_Restitution;
     info.m_linearDamping = mp_LinearDamping;
@@ -125,7 +148,7 @@ void Empty::createBody(Ogre::String type, bool kinematic, int flags)
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
 
-    if (kinematic)
+    if (bodyType == PythonBodyFlags::KINEMATIC)
         mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
 
     initBody(flags);
@@ -156,10 +179,10 @@ NGF_PY_BEGIN_IMPL(Empty)
 {
     NGF_PY_METHOD_IMPL(createBody)
     {
-        Ogre::String type = py::extract<Ogre::String>(args[0]);
-        bool kinematic = py::extract<bool>(args[1]);
+        int shape = py::extract<int>(args[0]);
+        int bodyType = py::extract<int>(args[1]);
         int flags = py::extract<int>(args[2]);
-        createBody(type, kinematic, flags);
+        createBody(shape, bodyType, flags);
 
         NGF_PY_RETURN();
     }

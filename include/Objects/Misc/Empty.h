@@ -49,7 +49,7 @@ class Empty :
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
         //--- Non-NGF ------------------------------------------------------------------
-        void createBody(Ogre::String type, bool kinematic, int flags);
+        void createBody(int shape, int bodyType, int flags);
         void createMesh(Ogre::String meshName);
         void createBrushMesh();
         void setMaterial(Ogre::String matName);
@@ -76,6 +76,13 @@ class Empty :
         NGF_SERIALISE_BEGIN(Empty)
         {
             GRALL2_SERIALISE_GAMEOBJECT();
+
+            //GraLL2GameObject will skip if no SceneNode, so do it.
+            if (!mNode)
+            {
+                NGF_SERIALISE_POSITION(mPos);
+                NGF_SERIALISE_ROTATION(mRot);
+            }
 
             NGF_SERIALISE_OGRE(Real, mp_Mass);
             NGF_SERIALISE_OGRE(Real, mp_Friction);
