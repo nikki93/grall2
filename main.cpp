@@ -14,7 +14,7 @@
  */
 
 /* 
- * Game shortcut keys
+ * Testing shortcut keys
  *
  *    F1, F2   - Next world, previous world.
  *    F3, F4   - Toggle console visibility, run code
@@ -30,10 +30,6 @@
  */
 
 #include "Globals.h"
-
-#include "Objects/Main/Controller.h"
-
-#include "boost/format.hpp"
 
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
 
@@ -297,7 +293,7 @@ class Game
             viewport->setDimensions(0,0,1,1);
             GlbVar.ogreCamera->setAspectRatio((float)viewport->getActualWidth() / (float) viewport->getActualHeight());
             GlbVar.ogreCamera->setFarClipDistance(10000.0);
-            GlbVar.ogreCamera->setNearClipDistance(0.5);
+            GlbVar.ogreCamera->setNearClipDistance(0.1);
 
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList inputParams;
@@ -508,6 +504,7 @@ class Game
 int main(int argc, char *argv[])
 {
     Game game;
+
     try
     {
         //Init.

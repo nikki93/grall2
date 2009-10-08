@@ -325,7 +325,7 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
         if (pickupType != "NONE")
         {
             ++mPickups[pickupType];
-        GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_PICKEDUP));
+            GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_PICKEDUP));
         }
     }
     
