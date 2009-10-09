@@ -30,10 +30,11 @@ class Player :
         btSphereShape *mShape;
         NGF::GameObject *mCameraHandler;
 
-        bool mUnderControl; //It's all under control...
+        bool mUnderControl; //Whether the Player can control us.
         bool mDead;
         bool mInvincible;
         bool mCanSwitchDimensions;
+        bool mWon;
 
         Ogre::Real mMinHeight;
 

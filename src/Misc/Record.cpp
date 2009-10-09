@@ -106,6 +106,9 @@ void loseLevel()
 
 void winLevel()
 {
+    //Tell player.
+    GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_WINLEVEL));
+
     //Record stuff.
     unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
 

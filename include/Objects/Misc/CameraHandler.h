@@ -39,6 +39,7 @@ class CameraHandler :
             CS_THIRDPERSON,
             CS_SPLINE,
             CS_DEATH, //Intended to go into this just after third person.
+            CS_WIN,
         };
 
     protected:
@@ -58,8 +59,8 @@ class CameraHandler :
         Ogre::AnimationState *mSplineAnimState;
         Ogre::NodeAnimationTrack *mSplineTrack;
 
-        Ogre::Vector3 mDeathLastPos; //Position we were looking at when death happened.
-        Ogre::Vector3 mDeathOffset;
+        Ogre::Vector3 mGhostPos; //Position we were looking at when death happened.
+        Ogre::Vector3 mGhostOffset;
 
         int mCurrState;
 
@@ -179,8 +180,8 @@ class CameraHandler :
             NGF_SERIALISE_STRING(splineStr);
             NGF_SERIALISE_OGRE(Real, splineState);
             NGF_SERIALISE_OGRE(Real, splineLength);
-            NGF_SERIALISE_OGRE(Vector3, mDeathLastPos);
-            NGF_SERIALISE_OGRE(Vector3, mDeathOffset);
+            NGF_SERIALISE_OGRE(Vector3, mGhostPos);
+            NGF_SERIALISE_OGRE(Vector3, mGhostOffset);
 
             NGF_SERIALISE_ON_LOAD
             {

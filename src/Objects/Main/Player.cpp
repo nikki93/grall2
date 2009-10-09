@@ -52,7 +52,8 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
       mUnderControl(true),
       mDead(false),
       mLight(0),
-      mInvincible(false) //This makes the game harder.
+      mInvincible(false), //This makes the game harder.
+      mWon(false)
 {
     addFlag("Player");
     addFlag("Switcher");
@@ -290,6 +291,12 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
         case MSG_CAPTURECAMERAHANDLER:
             captureCameraHandler();
             NGF_NO_REPLY();
+
+        case MSG_WINLEVEL:
+            mUnderControl = false;
+            mWon = true;
+            mBody->setDamping(0.8, 0.9);
+            NGF_SEND_REPLY();
     }
 
     return GraLL2GameObject::receiveMessage(msg);
@@ -453,11 +460,12 @@ void Player::switchDimension()
 //-------------------------------------------------------------------------------
 void Player::die(bool explode)
 {
-    //We're invincible! :P
-    if (mInvincible)
+    //If we're invincible, nah! :P
+    if (mWon || mInvincible)
         return;
 
     //We lost the level.
+    //if (!mWon)
     loseLevel();
 
     //We're not going through this twice!
