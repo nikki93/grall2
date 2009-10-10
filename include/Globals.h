@@ -23,19 +23,25 @@
 #define __GLOBALS_H__
 
 //Some compile-time settings.
-#define NO_LIGHTS                  //No level-lights (hard-coded lights will stay).
 #define USER_PREFIX "../../usr/"   //The user data (saves, settings etc.) directory (with ending slash!).
 #define DATA_PREFIX "../../data/"  //The game data (meshes, textures etc.) directory (with ending slash!).
 
 //Defines.
 #define GlbVar Globals::getSingleton()
 #define LOG(msg) Ogre::LogManager::getSingleton().logMessage(msg);
-#define SET_PYTHON_SCRIPT()                                                                      \
-    Ogre::String script = mProperties.getValue("script", 0, "");                                 \
-    if (script == "")                                                                            \
-        NGF::Python::PythonGameObject::setScriptCodeObject(mProperties.getValue("code", 0, "")); \
-    else                                                                                         \
-        NGF::Python::PythonGameObject::setScriptString(script);
+#define SET_PYTHON_SCRIPT() do                                                                 \
+    {                                                                                          \
+        Ogre::String script = mProperties.getValue("script", 0, "");                           \
+        Ogre::String scriptObject = mProperties.getValue("scriptObject", 0, "");               \
+        Ogre::String scriptFile = mProperties.getValue("scriptFile", 0, "");                   \
+        if (script == "")                                                                      \
+            if (scriptObject == "")                                                            \
+                NGF::Python::PythonGameObject::setScriptFile(scriptFile, "General");           \
+            else                                                                               \
+                NGF::Python::PythonGameObject::setScriptCodeObject(scriptObject);              \
+        else                                                                                   \
+            NGF::Python::PythonGameObject::setScriptString(script);                            \
+    } while (0)
 
 //Forward declarations.
 class DimensionManager;

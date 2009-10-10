@@ -62,7 +62,7 @@ class Player :
         void captureCameraHandler();
         void loseCameraHandler();
         void switchDimension();
-        void die(bool explode);
+        void die(bool explode, bool corpse = false);
 
         inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && Util::isKeyDown(kc)); }
         inline OIS::MouseState getMouseState() { return mUnderControl ? Util::getMouseState() : OIS::MouseState(); }

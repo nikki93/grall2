@@ -6,6 +6,7 @@ vertex_program BaseAmbient_vp cg
         default_params
         {
                 param_named_auto worldViewProj worldviewproj_matrix
+                param_named_auto world world_matrix
         } 
 
         entry_point BaseAmbient_vp
@@ -33,6 +34,7 @@ vertex_program BaseAmbientNormalMapParallax_vp cg
         default_params
         {
                 param_named_auto eyePosition camera_position_object_space
+                param_named_auto world world_matrix
                 param_named_auto worldViewProj worldviewproj_matrix
         } 
 

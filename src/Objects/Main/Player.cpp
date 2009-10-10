@@ -14,9 +14,7 @@ Player.cpp
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/ParticleEffect.h"
 
-#define MAT_AMBIENT 0.9
-#define MAT_DIFFUSE 0.9
-#define MAT_SPECULAR 0.3
+#define PLAYER_TORQUE 12
 
 //Makes sure the ghost object stays with us.
 class PlayerMotionState : public BtOgre::RigidBodyState
@@ -90,6 +88,8 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Read in properties.
     mMinHeight = Ogre::StringConverter::parseReal(mProperties.getValue("minHeight", 0, "-4"));
+    if (mMinHeight < -10)
+        mMinHeight = -10;
     mCanSwitchDimensions = Ogre::StringConverter::parseBool(mProperties.getValue("canSwitchDimensions", 0, "yes"));
 
     //Create the ghost object for dimension tests (we do it before the actual body so that
@@ -197,7 +197,7 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
         torque.x =  isKeyDown(GlbVar.settings.controls.keys["backward"]) - isKeyDown(GlbVar.settings.controls.keys["forward"]);
         torque.z =  isKeyDown(GlbVar.settings.controls.keys["left"]) - isKeyDown(GlbVar.settings.controls.keys["right"]);
-        torque *= 6;
+        torque *= PLAYER_TORQUE;
 
         mBody->applyTorque(BtOgre::Convert::toBullet(mControlNode->getOrientation() * torque));
     }
@@ -206,43 +206,11 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     mControlNode->yaw(Ogre::Degree(-ms.X.rel * GlbVar.settings.controls.turningSensitivity * 0.4));
 
     //Fallage.
-    Ogre::Real currHeight = mBody->getWorldTransform().getOrigin().getY();
-    const Ogre::Real fadeHeight = 2.5;
-    if (currHeight < (mMinHeight + fadeHeight))
-    {
-        Ogre::MaterialPtr mat = mEntity->getSubEntity(0)->getMaterial();
-        Ogre::Pass *passAmb = mat->getTechnique(0)->getPass(0);
-        Ogre::Pass *passIter = mat->getTechnique(0)->getPass(1);
-
-        if (currHeight < mMinHeight)
-        {
-            //We fell off! Aaaaah! D: Fix materials, and then die.
-            passAmb->setAmbient(Ogre::ColourValue(MAT_AMBIENT,MAT_AMBIENT,MAT_AMBIENT));
-            passIter->setDiffuse(Ogre::ColourValue(MAT_DIFFUSE,MAT_DIFFUSE,MAT_DIFFUSE));
-            passIter->setSpecular(Ogre::ColourValue(MAT_SPECULAR,MAT_SPECULAR,MAT_SPECULAR));
-
-            die(false);
-        }
-        else
-        {
-            //Fade out. We're (supposed to be) the only ones using our material. If you use the Player texture for a Brush
-            //and see weird 'world-darkenings' when the Player falls of, we hope you've learnt your lesson.
-            Ogre::Real factor = (currHeight - mMinHeight) / fadeHeight;
-            Ogre::Real amb =  factor * MAT_AMBIENT;
-            Ogre::Real diff = factor * MAT_DIFFUSE;
-            Ogre::Real spec = factor * MAT_SPECULAR;
-
-            passAmb->setAmbient(Ogre::ColourValue(amb,amb,amb));
-            passIter->setDiffuse(Ogre::ColourValue(diff,diff,diff));
-            passIter->setSpecular(Ogre::ColourValue(spec,spec,spec));
-        }
-    }
+    if (mBody->getWorldTransform().getOrigin().getY() < mMinHeight)
+        die(false, true);
 
     //Move light.
     GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
-
-    //Player can't be in a dimension that's not being displayed. :P
-    //setDimension(GlbVar.dimMgr->getCurrentDimension());
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
@@ -458,8 +426,12 @@ void Player::switchDimension()
     setDimension(mDimensions ^ DimensionManager::DIM_SWITCH);
 }
 //-------------------------------------------------------------------------------
-void Player::die(bool explode)
+void Player::die(bool explode, bool corpse)
 {
+    //We're not going through this twice!
+    if (mDead)
+        return;
+
     //If we're invincible, nah! :P
     if (mWon || mInvincible)
         return;
@@ -468,16 +440,16 @@ void Player::die(bool explode)
     //if (!mWon)
     loseLevel();
 
-    //We're not going through this twice!
-    if (mDead)
-        return;
-
     //Explosions!
     if (explode)
         Util::createExplosion(mNode->getPosition());
 
-    //And of course, we don't exist anymore. :-(
-    GlbVar.goMgr->requestDestroy(getID());
+    //And of course, we don't exist anymore. :-( If leaving a corpse, then just lose
+    //control.
+    if (corpse)
+        mUnderControl = false;
+    else
+        GlbVar.goMgr->requestDestroy(getID());
     mDead = true;
 }
 //-------------------------------------------------------------------------------

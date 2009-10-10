@@ -42,11 +42,7 @@ GraLL2GameObject::GraLL2GameObject(bool dimensional)
 GraLL2GameObject::~GraLL2GameObject()
 {
     //We only delete stuff we handle. The child will (hopefully) have done the rest.
-    if (mBody)
-    {
-        delete mBody->getMotionState();
-        delete mBody;
-    }
+    destroyBody();
 
     if (mNode)
         GlbVar.ogreSmgr->destroySceneNode(mNode);

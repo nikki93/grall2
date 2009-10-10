@@ -42,6 +42,9 @@ float shadow(sampler2D shadowMap, float4 shadowMapPos, float ourDepth, float rad
     return smoothstep(0.4, 1, max(litFactor, p));
 }
 
+#define FADE_DEPTH -10
+#define FADE_DIST 9
+
 //--- The per-light shader ------------------------------------------------------------
 void BasePerLight_vp
     (
@@ -70,6 +73,7 @@ void BasePerLight_vp
          out float3 oHalfAngle : TEXCOORD4,
          out float3 oSpotlightDir : TEXCOORD5,
          out float4 oShadowMapPos : TEXCOORD6
+         //out float4 oWorldPos : TEXCOORD7
      ) 
 {
     oPos = mul(worldViewProj, position);
@@ -108,8 +112,8 @@ void BasePerLight_vp
 #endif
 
     //Shadowing stuff.
-    float4 worldPos = mul(world, position);
-    oShadowMapPos = mul(tvp, worldPos);
+    float4 oWorldPos = mul(world, position);
+    oShadowMapPos = mul(tvp, oWorldPos);
 }
 
 void BasePerLight_fp
@@ -125,6 +129,7 @@ void BasePerLight_fp
          float3 HalfAngle: TEXCOORD4,
          float3 SpotlightDir: TEXCOORD5,
          float4 ShadowMapPos: TEXCOORD6,
+         float4 WorldPos: TEXCOORD7,
 
          //Material properties.
          sampler2D diffuseMap: register(s0),
@@ -204,6 +209,7 @@ void BaseAmbient_vp
          float2 uv : TEXCOORD0,
 
          uniform float4x4 worldViewProj,
+         uniform float4x4 world, //world_matrix
 
          uniform float3 eyePosition,
 
@@ -214,7 +220,8 @@ void BaseAmbient_vp
 #endif
 
          out float4 oPos : POSITION,
-         out float2 oUv : TEXCOORD0
+         out float2 oUv : TEXCOORD0,
+         out float4 oWorldPos : TEXCOORD2
    )
 {
     oPos = mul(worldViewProj, position);
@@ -226,11 +233,14 @@ void BaseAmbient_vp
     oEyeDir = normalize(eyePosition - position.xyz);
     oEyeDir = mul(rotation, oEyeDir);
 #endif
+
+    oWorldPos = mul(world, position);
 }
 
 void BaseAmbient_fp
     (
          float2 uv : TEXCOORD0,
+         float4 WorldPos : TEXCOORD2,
 
 #if PARALLAX_MAPPING
          float2 eyeDir : TEXCOORD1,
@@ -254,4 +264,8 @@ void BaseAmbient_fp
 #endif
 
     oColor = tex2D(diffuseMap, uv) * matAmbient * lightAmbient;
+
+    //If lower, darker.
+    if (WorldPos.y < FADE_DEPTH)
+        oColor *= saturate((WorldPos.y -(FADE_DEPTH) + FADE_DIST) / FADE_DIST);
 }

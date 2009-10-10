@@ -41,10 +41,6 @@ class Teleporter :
         NGF::MessageReply receiveMessage(NGF::Message msg);
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
-        //--- Non-NGF ------------------------------------------------------------------
-        void on();
-        void off();
-
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Teleporter)
         {

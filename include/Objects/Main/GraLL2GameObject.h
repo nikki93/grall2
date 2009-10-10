@@ -75,9 +75,10 @@ class GraLL2GameObject :
         //--- Non-NGF methods ----------------------------------------------------------
         void initBody(int specialFlags = DimensionManager::NONE);
         Ogre::Entity *createBrushEntity();
-        void destroyBody() { if (mBody) GlbVar.phyWorld->removeRigidBody(mBody); }
+        void destroyBody() { if (mBody) { GlbVar.phyWorld->removeRigidBody(mBody); delete mBody->getMotionState(); delete mBody; mBody = 0; } }
         void setDimension(int dimension);
         int getDimensions() { return mDimensions; }
+        void checkFell() { if (mBody && mBody->getWorldTransform().getOrigin().y() < -20) GlbVar.goMgr->requestDestroy(getID()); }
 
         //--- Python interface ---------------------------------------------------------
         virtual NGF_PY_BEGIN_DECL(GraLL2GameObject)

@@ -40,6 +40,7 @@
 #include "Objects/Bots/Bullet.h"
 #include "Objects/Bots/Turret.h"
 #include "Objects/Misc/Empty.h"
+#include "Objects/Obstacles/FallingBrush.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -60,7 +61,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(MovingBrush);
     NGF_REGISTER_OBJECT_TYPE(Director);
     NGF_REGISTER_OBJECT_TYPE(Crate);
-    NGF::GameObjectFactory::getSingleton().registerObjectType<class MessageBox>("MessageBox"); //Problems on Windows.
+    NGF_REGISTER_OBJECT_TYPE(MessageBox);
     NGF_REGISTER_OBJECT_TYPE(Bomb);
     NGF_REGISTER_OBJECT_TYPE(ParticleEffect);
     NGF_REGISTER_OBJECT_TYPE(Ice);
@@ -74,6 +75,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Bullet);
     NGF_REGISTER_OBJECT_TYPE(Turret);
     NGF_REGISTER_OBJECT_TYPE(Empty);
+    NGF_REGISTER_OBJECT_TYPE(FallingBrush);
 }
 
 //Register worlds.

@@ -8,8 +8,6 @@ Teleporter.cpp
 
 #include "Objects/Obstacles/Teleporter.h"
 
-#include "Objects/Misc/ParticleEffect.h"
-
 #define TELEPORT_DELAY 0.08
 
 //--- NGF events ----------------------------------------------------------------

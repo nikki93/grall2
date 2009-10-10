@@ -154,9 +154,8 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
     mBody->setWorldTransform(btTransform(btQuaternion::getIdentity(), btVector3(fixedPos.x(), bodyTrans.getOrigin().y(), fixedPos.z())));
     */
 
-    //If fell off, die.
-    if (mBody->getWorldTransform().getOrigin().y() < -20)
-        GlbVar.goMgr->requestDestroy(getID());
+    //We might fall of.
+    checkFell();
     
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
