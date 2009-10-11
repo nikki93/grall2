@@ -125,6 +125,13 @@ void FallingBrush::fall()
     initBody( DimensionManager::STATIC
             );
 
+    const Ogre::Real rotFactor = 0.7;
+    mBody->setAngularVelocity(btVector3(
+                Ogre::Math::UnitRandom() * rotFactor,
+                Ogre::Math::UnitRandom() * rotFactor,
+                Ogre::Math::UnitRandom() * rotFactor
+                ));
+
     mFell = true;
 }
 //-------------------------------------------------------------------------------

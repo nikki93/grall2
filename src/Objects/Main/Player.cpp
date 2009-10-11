@@ -14,7 +14,7 @@ Player.cpp
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/ParticleEffect.h"
 
-#define PLAYER_TORQUE 12
+#define PLAYER_TORQUE 6
 
 //Makes sure the ghost object stays with us.
 class PlayerMotionState : public BtOgre::RigidBodyState

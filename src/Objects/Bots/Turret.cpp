@@ -300,7 +300,7 @@ bool Turret::doSingleScan()
 
         GlbVar.phyWorld->rayTest(pos1, pos2, res);
 
-        return res.m_collisionObject->getBroadphaseHandle()->m_collisionFilterGroup & DimensionManager::PLAYER;
+        return res.m_collisionObject && (res.m_collisionObject->getBroadphaseHandle()->m_collisionFilterGroup & DimensionManager::PLAYER);
     }
     
     return false;

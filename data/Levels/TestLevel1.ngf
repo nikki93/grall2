@@ -2,6 +2,42 @@ ngflevel TestLevel1
 {
 	object
 	{
+		type Pickup
+		name noname
+		position -6.500000 6.500000 -10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 20
+			bob 0.2
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -16.500000 6.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 20
+			bob 0.2
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
 		type FallingBrush
 		name noname
 		position 13.500000 5.750000 -11.500000
@@ -1337,7 +1373,7 @@ ngflevel TestLevel1
 
 		properties
 		{
-			dimensions 3
+			dimensions 2
 			brushMeshFile TestLevel1_b9.mesh
 			convex yes
 		}
@@ -1528,7 +1564,7 @@ ngflevel TestLevel1
 
 		properties
 		{
-			dimensions 2
+			dimensions 3
 			enabled no
 			brushMeshFile TestLevel1_b17.mesh
 			speed 0.5
@@ -1709,7 +1745,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b24.001.mesh
+			brushMeshFile TestLevel1_b24.mesh
 			convex yes
 		}
 	}
@@ -1841,20 +1877,52 @@ ngflevel TestLevel1
 		type SlidingBrush
 		name noname
 		position -9.500000 6.500000 -11.500000
-		rotation 1.000000 -0.000000 -0.000000 0.000000
+		rotation -0.000000 0.000000 1.000000 0.000000
 
 		properties
 		{
-			dimensions 1
+			dimensions 3
 			enabled yes
 			speed 1
 			distance 0.999
 			ignoreCollisions no
 			brushMeshFile TestLevel1_b26.mesh
 			repeat yes
-			condition True
+			condition : other.numPickup("KeyY") == GraLL2.controller.m_numKeyY
 			autoClose no
-			scriptFile Prefab_Door.py
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 19.500000 5.500000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b27.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -16.500000 6.500000 -10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 20
+			bob 0.2
+			scriptFile Prefab_KeyY.pyo
 		}
 	}
 }

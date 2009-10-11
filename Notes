@@ -6,7 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Allow scripted objects to use compiled '.pyc' files as scripts. Good for prefabs.
+- Create 'Trap' prefab.
 
 - Create a 'level end' thing.
 
@@ -23,7 +23,6 @@ Side
    - ElectricField
    - TimedSwitch
    - SpeedBoost
-   - Trap
    - OneWay
    - JumpPad
    - Fan
@@ -633,3 +632,8 @@ Sat Oct 10 18:36:23 AST 2009
 - Added FallingBrush. Falls off after a short interval after the Player touches it.
 - Default shader now makes objects fade as they hit the minY.
 - Allowed Player to 'leave a corpse' when he dies.
+
+Sun Oct 11 20:25:18 AST 2009
+----------------------------
+- Can run '.py', '.pyc', '.pyo' files for object scripts. Good for Prefabs (all instances of which have the same code).
+- Added slight angular velocity to FallingBrushes when they fall for a cool 'rotating falling block' effect.
