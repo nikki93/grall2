@@ -8,11 +8,17 @@ FallingBrush.cpp
 
 #include "Objects/Obstacles/FallingBrush.h"
 
+//#define APPLY_TORQUE
+
+#define TORQUE_TIME 1.4
+#define TORQUE_LIMIT 4
+
 //--- NGF events ----------------------------------------------------------------
 FallingBrush::FallingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mTime(0),
-      mFell(false)
+      mFell(false),
+      mTorque(0,0,0)
 {
     addFlag("FallingBrush");
 
@@ -23,28 +29,41 @@ FallingBrush::FallingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, 
     mFallTime = Ogre::StringConverter::parseReal(mProperties.getValue("time", 0, "0.5"));
 
     //Create the Ogre stuff.
+
     if (mProperties.getValue("brushMeshFile", 0, "n") == "n")
     {
         mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Template_Pad.mesh");
         mEntity->setMaterialName("Objects/SwitchOn");
+
+        BtOgre::StaticMeshToShapeConverter converter(mEntity);
+        mShape = converter.createBox();
     }
     else
     {
         mEntity = createBrushEntity();
+
+        BtOgre::StaticMeshToShapeConverter converter(mEntity);
+        mShape = converter.createConvex();
+        mShape->setMargin(0);
     }
+
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
     //Create the Physics stuff.
-    BtOgre::StaticMeshToShapeConverter converter(mEntity);
-
-    mShape = converter.createConvex();
-    mShape->setMargin(0);
-
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody( DimensionManager::STATIC
             );
+
+#ifdef APPLY_TORQUE
+    //Save a random torque.
+    mTorque = Ogre::Vector3(
+            Ogre::Math::UnitRandom() * TORQUE_LIMIT,
+            Ogre::Math::UnitRandom() * TORQUE_LIMIT,
+            Ogre::Math::UnitRandom() * TORQUE_LIMIT
+            );
+#endif
 }
 //-------------------------------------------------------------------------------
 void FallingBrush::postLoad()
@@ -71,12 +90,17 @@ void FallingBrush::unpausedTick(const Ogre::FrameEvent &evt)
     GraLL2GameObject::unpausedTick(evt);
 
     //Time flies, and we fall (ok, that was bad).
-    if (!mFell && mTime > 0)
+    if (mTime > 0)
     {
         mTime -= evt.timeSinceLastFrame;
 
-        if (mTime <= 0)
-            fall();
+#ifdef APPLY_TORQUE
+        if (mFell)
+            mBody->applyTorque(BtOgre::Convert::toBullet(mTorque));
+        else 
+#endif
+            if (mTime <= 0)
+                fall();
     }
     checkFell();
     
@@ -125,14 +149,10 @@ void FallingBrush::fall()
     initBody( DimensionManager::STATIC
             );
 
-    const Ogre::Real rotFactor = 0.7;
-    mBody->setAngularVelocity(btVector3(
-                Ogre::Math::UnitRandom() * rotFactor,
-                Ogre::Math::UnitRandom() * rotFactor,
-                Ogre::Math::UnitRandom() * rotFactor
-                ));
-
     mFell = true;
+#ifdef APPLY_TORQUE
+    mTime = TORQUE_TIME; //Apply torque for this long.
+#endif
 }
 //-------------------------------------------------------------------------------
 

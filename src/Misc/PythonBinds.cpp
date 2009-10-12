@@ -213,41 +213,43 @@ BOOST_PYTHON_MODULE(GraLL2)
 
     //Enums.
     py::enum_<int>("Dimensions")
-        .value("DIM_1", DimensionManager::DIM_1)
-        .value("DIM_2", DimensionManager::DIM_2)
-        .value("DIM_BOTH", DimensionManager::DIM_BOTH)
+        .value("Dim_1", DimensionManager::DIM_1)
+        .value("Dim_2", DimensionManager::DIM_2)
+        .value("Dim_Both", DimensionManager::DIM_BOTH)
         ;
 
     py::enum_<int>("CollisionShape")
-        .value("CONVEX", PythonBodyFlags::CONVEX)
-        .value("TRIMESH", PythonBodyFlags::TRIMESH)
-        .value("BOX", PythonBodyFlags::BOX)
-        .value("SPHERE", PythonBodyFlags::SPHERE)
-        .value("CYLINDERY", PythonBodyFlags::CYLINDERY)
-        .value("CYLINDERZ", PythonBodyFlags::CYLINDERZ)
-        .value("CYLINDERX", PythonBodyFlags::CYLINDERX)
+        .value("Convex", PythonBodyFlags::CONVEX)
+        .value("Trimesh", PythonBodyFlags::TRIMESH)
+        .value("Box", PythonBodyFlags::BOX)
+        .value("Sphere", PythonBodyFlags::SPHERE)
+        .value("CylinderY", PythonBodyFlags::CYLINDERY)
+        .value("CylinderZ", PythonBodyFlags::CYLINDERZ)
+        .value("CylinderX", PythonBodyFlags::CYLINDERX)
         ;
 
     py::enum_<int>("BodyType")
-        .value("FREE", PythonBodyFlags::FREE)
-        .value("STATIC", PythonBodyFlags::STATIC)
-        .value("KINEMATIC", PythonBodyFlags::KINEMATIC)
+        .value("Free", PythonBodyFlags::FREE)
+        .value("Static", PythonBodyFlags::STATIC)
+        .value("Kinematic", PythonBodyFlags::KINEMATIC)
         ;
 
     py::enum_<int>("CollisionFlags")
-        .value("PLAYER", DimensionManager::PLAYER)
-        .value("STATIC", DimensionManager::STATIC)
-        .value("MOVINGBOMB", DimensionManager::MOVINGBOMB)
-        .value("MOVINGBRUSH", DimensionManager::MOVINGBRUSH)
-        .value("GREENBOMB", DimensionManager::GREENBOMB)
-        .value("DIRECTOR", DimensionManager::DIRECTOR)
+        .value("None", 0)
 
-        .value("NO_DIM_CHECK", DimensionManager::NO_DIM_CHECK)
-        .value("NO_CRATE_CHECK", DimensionManager::NO_CRATE_CHECK)
-        .value("NO_MOVING_CHECK", DimensionManager::NO_MOVING_CHECK)
-        .value("NO_BULLET_HIT", DimensionManager::NO_BULLET_HIT)
-        .value("INVISIBLE", DimensionManager::INVISIBLE)
-        .value("LIFTABLE", DimensionManager::LIFTABLE)
+        .value("Player", DimensionManager::PLAYER)
+        .value("Static", DimensionManager::STATIC)
+        .value("Movingbomb", DimensionManager::MOVINGBOMB)
+        .value("Movingbrush", DimensionManager::MOVINGBRUSH)
+        .value("Greenbomb", DimensionManager::GREENBOMB)
+        .value("Director", DimensionManager::DIRECTOR)
+
+        .value("No_Dim_Check", DimensionManager::NO_DIM_CHECK)
+        .value("No_Crate_Check", DimensionManager::NO_CRATE_CHECK)
+        .value("No_Moving_Check", DimensionManager::NO_MOVING_CHECK)
+        .value("No_Bullet_Hit", DimensionManager::NO_BULLET_HIT)
+        .value("Invisible", DimensionManager::INVISIBLE)
+        .value("Liftable", DimensionManager::LIFTABLE)
         ;
 
     //Show message box.

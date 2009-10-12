@@ -57,9 +57,16 @@ class Empty :
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Empty)
         {
+            //createBody(GraLL2.CollisionShape.<shape>, GraLL2.BodyType.<type>, GraLL2.CollisionFlags.<flags>)
             NGF_PY_METHOD_DECL(createBody)
+
+            //createMesh(meshFile)
             NGF_PY_METHOD_DECL(createMesh)
+
+            //createBrushMesh()
             NGF_PY_METHOD_DECL(createBrushMesh)
+
+            //setMaterial(materialName)
             NGF_PY_METHOD_DECL(setMaterial)
             NGF_PY_METHOD_DECL(getPosition)
             NGF_PY_METHOD_DECL(getOrientation)

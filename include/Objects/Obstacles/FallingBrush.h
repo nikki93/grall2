@@ -29,6 +29,7 @@ class FallingBrush :
         Ogre::Real mTime;
         Ogre::Real mFallTime;
         bool mFell;
+        Ogre::Vector3 mTorque;
 
     public:
         FallingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -60,6 +61,7 @@ class FallingBrush :
             NGF_SERIALISE_OGRE(Real, mTime);
             NGF_SERIALISE_OGRE(Real, mFallTime);
             NGF_SERIALISE_OGRE(Bool, mFell);
+            NGF_SERIALISE_OGRE(Vector3, mTorque);
         }
         NGF_SERIALISE_END
 };

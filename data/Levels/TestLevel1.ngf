@@ -2,6 +2,101 @@ ngflevel TestLevel1
 {
 	object
 	{
+		type Empty
+		name noname
+		position -4.500000 5.750000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -3.500000 5.750000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -3.500000 5.750000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -4.500000 5.750000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 18.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 19.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 20.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
 		type Pickup
 		name noname
 		position -6.500000 6.500000 -10.500000
@@ -1713,30 +1808,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Controller
-		name noname
-		position 0.000000 -6.500000 -0.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 1
-			script : import Ngf
-			       : import GraLL2
-			       : 
-			       : def levelStart(self):
-			       : 	self.setAlarm(3,0)
-			       : 	GraLL2.setDimension(1)
-			       : 	GraLL2.setBonusTime(49)
-			       : 
-			       : def alarm(self, n):
-			       : 	if (n == 0):
-			       : 		self.showLevelText(2,4,3)
-			       : 
-		}
-	}
-	object
-	{
 		type StaticBrush
 		name noname
 		position -20.500000 6.200000 -8.500000
@@ -1897,7 +1968,7 @@ ngflevel TestLevel1
 	{
 		type StaticBrush
 		name noname
-		position 19.500000 5.500000 -11.500000
+		position 22.500000 5.500000 -11.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -1923,6 +1994,30 @@ ngflevel TestLevel1
 			spin 20
 			bob 0.2
 			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	self.setAlarm(3,0)
+			       : 	GraLL2.setDimension(1)
+			       : 	GraLL2.setBonusTime(49)
+			       : 
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		self.showLevelText(2,4,3)
+			       : 
 		}
 	}
 }

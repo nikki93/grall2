@@ -41,7 +41,7 @@ Bomb::Bomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyLis
     initBody( DimensionManager::NO_DIM_CHECK
             | (mGreen ? DimensionManager::NO_CRATE_CHECK : DimensionManager::NONE)
             );
-    setBulletObject(mBody);
+    mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 //-------------------------------------------------------------------------------
 void Bomb::postLoad()
@@ -146,6 +146,7 @@ NGF_PY_BEGIN_IMPL(Bomb)
                     | (mGreen ? DimensionManager::NO_CRATE_CHECK : DimensionManager::NONE)
                     , mDimensions
                     );
+            mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }
     }
 }

@@ -27,7 +27,7 @@ if (linux) then
 
 package.postbuildcommands = { 
     "rm `find -name '*.d'`",
-    "./compilePython.sh" 
+    "./scripts/compilePython.sh" 
 }
 
 -- Search paths -----------------------------------------------------------------------------

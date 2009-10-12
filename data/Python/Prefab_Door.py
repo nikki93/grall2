@@ -24,15 +24,16 @@ def collide(self, other):
             self.m_moving = True
 
 def point(self, n):
-    #We've hit the start point, so we've stopped moving.
     if (n == 0):
+        #We hit the start point, so we've stopped moving.
         self.m_moving = False
+
         #If we're auto-closing, we close after a small delay after
         #reaching end point.
         if (self.m_autoClose and (n == 1)):
             self.setAlarm(1, 0)
 
 def alarm(self, n):
-    #Delay is over, close.
     if (n == 0):
+        #Delay is over, close.
         self.p_forward = False
