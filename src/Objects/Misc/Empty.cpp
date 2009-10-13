@@ -14,7 +14,12 @@ Empty::Empty(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
       mEntity(0),
       mShape(0),
       mPos(pos),
-      mRot(rot)
+      mRot(rot),
+      mp_Mass(5),
+      mp_Friction(0.5),
+      mp_Restitution(0),
+      mp_LinearDamping(0),
+      mp_AngularDamping(0)
 {
     addFlag("Empty");
 
@@ -124,7 +129,7 @@ void Empty::createBody(int shape, int bodyType, int flags)
 
     //Calculate inertia, (or not, if static/kinematic).
     btVector3 inertia;
-    switch (bodyType)
+    switch (bodyType & (PythonBodyFlags::FREE | PythonBodyFlags::STATIC | PythonBodyFlags::STATIC))
     {
         case PythonBodyFlags::KINEMATIC:
         case PythonBodyFlags::STATIC:
@@ -150,6 +155,9 @@ void Empty::createBody(int shape, int bodyType, int flags)
 
     if (bodyType == PythonBodyFlags::KINEMATIC)
         mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+
+    if (bodyType & PythonBodyFlags::NO_CONTACT)
+        mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 
     initBody(flags);
 }

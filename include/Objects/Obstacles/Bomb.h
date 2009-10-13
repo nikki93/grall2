@@ -27,6 +27,7 @@ class Bomb :
         Ogre::Entity *mEntity;
         
         bool mGreen; //Green bombs are crate-fearing.
+        bool mBulletSensitive;
         bool mExploded;
 
     public:
@@ -57,6 +58,8 @@ class Bomb :
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_OGRE(Bool, mExploded);
+            NGF_SERIALISE_OGRE(Bool, mBulletSensitive);
+            NGF_SERIALISE_OGRE(Bool, mGreen);
         }
         NGF_SERIALISE_END
 };

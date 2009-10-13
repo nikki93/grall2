@@ -90,37 +90,39 @@ void clearRecord()
 
 void loseLevel()
 {
-    //Do the Camera thing.
-    GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_CAPTURECAMERAHANDLER));
-    GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_DEATH)));
+    //Do the camera animation, and the fade. Controller restarts level when done.
+    if (GlbVar.player)
+        GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_CAPTURECAMERAHANDLER));
+    if (GlbVar.currCameraHandler)
+        GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_DEATH)));
+    if (GlbVar.controller)
+        GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LOSELEVEL));
 
     //Set record stuff.
     unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
     Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
 
-    ++rec.losses; //Increment losses.
-
-    //Do the fade and restart.
-    GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LOSELEVEL));
+    ++rec.losses;
 }
 
 void winLevel()
 {
-    //Tell player.
-    GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_WINLEVEL));
+    //Tell player, do fade. Controller goes to next world when done.
+    if (GlbVar.player)
+        GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_WINLEVEL));
+    if (GlbVar.controller)
+        GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_WINLEVEL));
 
     //Record stuff.
     unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
 
-    if (levelNum)
+    if (levelNum) 
     {
         Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
 
-        rec.completed = true; //Completed!
-        if (rec.score < GlbVar.bonusTime) //Save better score.
+        rec.completed = true;
+        //Save better score.
+        if (rec.score < GlbVar.bonusTime) 
             rec.score = GlbVar.bonusTime;
     }
-
-    //Do the fade and go to next level.
-    GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_WINLEVEL));
 }

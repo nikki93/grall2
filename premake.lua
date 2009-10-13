@@ -82,8 +82,8 @@ debug.defines = { "DEBUG", "_DEBUG" }
 debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 
-debug.buildoptions = { "-g" --[["-pg"]] }                                  -- '-pg' for gprof
--- debug.linkoptions = { "-pg" }                                           -- '-pg' for gprof
+debug.buildoptions = { "-g" ,"-pg" }                                  -- '-pg' for gprof
+debug.linkoptions = { "-pg" }                                           -- '-pg' for gprof
 
 -- Release configuration --------------------------------------------------------------------
 

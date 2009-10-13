@@ -37,6 +37,7 @@ class MovingBomb :
         bool mEnabled;
         bool mExploded;
         bool mFollowDirectors;
+        bool mBulletSensitive;
         Ogre::Real mTimer;
         Ogre::Real mLastFrameTime;
 
@@ -101,6 +102,7 @@ class MovingBomb :
             NGF_SERIALISE_OGRE(Vector3, mVelocity);
             NGF_SERIALISE_OGRE(Bool, mEnabled);
             NGF_SERIALISE_OGRE(Bool, mFollowDirectors);
+            NGF_SERIALISE_OGRE(Bool, mBulletSensitive);
             NGF_SERIALISE_OGRE(Real, mTimer);
             NGF_SERIALISE_OGRE(Real, mLastFrameTime);
             NGF_SERIALISE_OGRE(Bool, mExploded);

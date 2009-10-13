@@ -8,8 +8,6 @@ Next
 ----
 - Add textures for Trap, default FallingFloor, Teleporter and Switch.
 
-- Create a 'level end' thing.
-
 - Make more brush textures.
 
 - Start creating the initial levels.
@@ -640,5 +638,11 @@ Sun Oct 11 20:25:18 AST 2009
 
 Mon Oct 12 22:27:55 AST 2009
 ----------------------------
-- Added 'Trap' Prefab.
+- Added 'Trap' Prefab, similar to the 'Trap' from the original GraLL.
 - Make 'Bomb' NO_CONTACT_RESPONSE, to avoid Player flying away when it's created in his position. :P
+
+Tue Oct 13 18:21:14 AST 2009
+----------------------------
+- Added 'above/below' check to Trap and FallingBrush.
+- Fixed bug in 'Empty' which caused weird physics problems due to uninitialised properties such as 'friction', 'mass' etc.
+- Added 'EndPoint' prefab, which marks the end of the level.

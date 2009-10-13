@@ -36,6 +36,7 @@ MovingBomb::MovingBomb(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mEnabled = Ogre::StringConverter::parseBool(properties.getValue("enabled", 0, "yes"));
     mVelocity = rot * Ogre::Vector3(0,0,-Ogre::StringConverter::parseReal(properties.getValue("speed", 0, "2")));
     mFollowDirectors = Ogre::StringConverter::parseBool(properties.getValue("followDirectors", 0, "yes"));
+    mBulletSensitive = Ogre::StringConverter::parseBool(mProperties.getValue("bulletSensitive", 0, "yes"));
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "MovingBomb.mesh");
@@ -254,7 +255,8 @@ NGF::MessageReply MovingBomb::receiveMessage(NGF::Message msg)
             NGF_NO_REPLY();
 
         case MSG_BULLETHIT:
-            explode();
+            if (mBulletSensitive)
+                explode();
             NGF_NO_REPLY();
     }
     

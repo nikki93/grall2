@@ -232,6 +232,7 @@ BOOST_PYTHON_MODULE(GraLL2)
         .value("Free", PythonBodyFlags::FREE)
         .value("Static", PythonBodyFlags::STATIC)
         .value("Kinematic", PythonBodyFlags::KINEMATIC)
+        .value("No_Contact", PythonBodyFlags::NO_CONTACT)
         ;
 
     py::enum_<int>("CollisionFlags")

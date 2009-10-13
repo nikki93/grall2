@@ -8,10 +8,10 @@ FallingBrush.cpp
 
 #include "Objects/Obstacles/FallingBrush.h"
 
-//#define APPLY_TORQUE
+#define APPLY_TORQUE
 
-#define TORQUE_TIME 1.4
-#define TORQUE_LIMIT 4
+#define TORQUE_TIME 1
+#define TORQUE_LIMIT 2
 
 //--- NGF events ----------------------------------------------------------------
 FallingBrush::FallingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -125,7 +125,13 @@ void FallingBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObj
         return;
 
     if (!mFell && !mTime && other->hasFlag("Player"))
-        mTime = mFallTime;
+    {
+        Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
+        btTransform trans;
+        mBody->getMotionState()->getWorldTransform(trans);
+        if (otherPos.y > trans.getOrigin().y() + 0.55)
+            mTime = mFallTime;
+    }
 
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

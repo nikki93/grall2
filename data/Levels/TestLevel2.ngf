@@ -2,17 +2,127 @@ ngflevel TestLevel2
 {
 	object
 	{
-		type Light
+		type Empty
 		name noname
-		position -6.798409 2.175604 12.500000
+		position -7.500000 1.250559 12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 1.500000 -0.250000 6.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			lightType point
-			colour 0.8 0.8 0.8
-			attenuation 70 1 0.2 0.01
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 0.500000 -0.250000 6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -0.500000 -0.250000 6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -0.500000 -0.250000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 0.500000 -0.250000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 1.500000 -0.250000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 1.500000 -0.250000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 0.500000 -0.250000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
 		}
 	}
 	object
@@ -465,6 +575,33 @@ ngflevel TestLevel2
 			lightType point
 			colour 0.8 0.2 0.1
 			attenuation 70 1 0.3 0.2
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -0.500000 -0.250000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 11.500000 1.250559 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_EndPoint.pyo
 		}
 	}
 }

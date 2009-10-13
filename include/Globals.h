@@ -267,6 +267,8 @@ struct PythonBodyFlags
         FREE,
         STATIC,
         KINEMATIC,
+
+        NO_CONTACT = 1<<16,
     };
 };
 

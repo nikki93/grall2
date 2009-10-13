@@ -14,7 +14,7 @@ Player.cpp
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/ParticleEffect.h"
 
-#define PLAYER_TORQUE 6
+#define PLAYER_TORQUE 7.77
 
 //Makes sure the ghost object stays with us.
 class PlayerMotionState : public BtOgre::RigidBodyState
@@ -263,7 +263,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
         case MSG_WINLEVEL:
             mUnderControl = false;
             mWon = true;
-            mBody->setDamping(0.8, 0.9);
+            mBody->setDamping(0.9, 0.9);
             NGF_SEND_REPLY();
     }
 

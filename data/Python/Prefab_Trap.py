@@ -12,16 +12,18 @@ def init(self):
                     GraLL2.CollisionFlags.Static)
 
     #We get the time from the properties.
-    self.m_bombTime = float(self.getProperty("time", 0, "0.2"))
+    self.m_bombTime = float(self.getProperty("time", 0, "0.56"))
 
     #Not touched yet.
     self.m_unTouched = True
 
 def collide(self, other):
-    #If not touched yet, and is Player, then we start waiting for bomb time.
+    #If not touched yet, and other is Player and above us, we start waiting for
+    #bomb-time
     if (self.m_unTouched and other.hasFlag("Player")):
-        self.m_unTouched = False
-        self.setAlarm(self.m_bombTime, 0)
+        if (other.getPosition().y > (self.getPosition().y + 0.55)):
+            self.m_unTouched = False
+            self.setAlarm(self.m_bombTime, 0)
 
 def alarm(self, n):
     if (n == 0):
