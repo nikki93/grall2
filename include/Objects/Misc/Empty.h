@@ -53,6 +53,7 @@ class Empty :
         void createMesh(Ogre::String meshName);
         void createBrushMesh();
         inline void setMaterial(Ogre::String matName) { mEntity->setMaterialName(matName); }
+        inline void setBrushMaterial() { Util::fixBrushMaterials(mEntity); }
         inline void createBoxShape(const Ogre::Vector3 &half) { mShape = new btBoxShape(BtOgre::Convert::toBullet(half)); }
 
         //--- Python interface ---------------------------------------------------------
@@ -61,6 +62,7 @@ class Empty :
             NGF_PY_METHOD_DECL(createMesh)
             NGF_PY_METHOD_DECL(createBrushMesh)
             NGF_PY_METHOD_DECL(setMaterial)
+            NGF_PY_METHOD_DECL(setBrushMaterial)
             NGF_PY_METHOD_DECL(createBody)
             NGF_PY_METHOD_DECL(createBoxShape)
 
@@ -164,8 +166,8 @@ NGF_PY_CLASS_GPERF(Empty)::MakeHash (register const char *str, register unsigned
       36, 36, 36, 36, 36, 36, 36, 20, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36,  5,
-      36,  0, 36,  5, 36,  0, 36, 36, 36, 36,
-       5, 36, 36, 36, 36,  0, 36, 36, 36, 36,
+      36,  0, 36,  5, 36,  5, 36, 36, 36, 36,
+      10, 36, 36, 36, 36,  0, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
@@ -189,7 +191,7 @@ NGF_PY_CLASS_GPERF(Empty)::Lookup (register const char *str, register unsigned i
 {
   enum
     {
-      TOTAL_KEYWORDS = 17,
+      TOTAL_KEYWORDS = 18,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 18,
       MIN_HASH_VALUE = 8,
@@ -202,26 +204,28 @@ NGF_PY_CLASS_GPERF(Empty)::Lookup (register const char *str, register unsigned i
       {"set_mass", NGF_PY_SET_GPERF(Empty, mass)},
       {""}, {""},
       {"setMaterial", NGF_PY_METHOD_GPERF(Empty, setMaterial)},
-      {"set_friction", NGF_PY_SET_GPERF(Empty, friction)},
+      {""},
       {"get_mass", NGF_PY_GET_GPERF(Empty, mass)},
       {""},
       {"set_restitution", NGF_PY_SET_GPERF(Empty, restitution)},
-      {"getPosition", NGF_PY_METHOD_GPERF(Empty, getPosition)},
-      {"get_friction", NGF_PY_GET_GPERF(Empty, friction)},
+      {"setBrushMaterial", NGF_PY_METHOD_GPERF(Empty, setBrushMaterial)},
+      {"set_friction", NGF_PY_SET_GPERF(Empty, friction)},
       {""},
       {"getOrientation", NGF_PY_METHOD_GPERF(Empty, getOrientation)},
       {"get_restitution", NGF_PY_GET_GPERF(Empty, restitution)},
-      {""},
-      {"set_linearDamping", NGF_PY_SET_GPERF(Empty, linearDamping)},
+      {"getPosition", NGF_PY_METHOD_GPERF(Empty, getPosition)},
+      {"get_friction", NGF_PY_GET_GPERF(Empty, friction)},
       {"set_angularDamping", NGF_PY_SET_GPERF(Empty, angularDamping)},
       {""},
       {"createBody", NGF_PY_METHOD_GPERF(Empty, createBody)},
       {""},
-      {"get_linearDamping", NGF_PY_GET_GPERF(Empty, linearDamping)},
+      {"set_linearDamping", NGF_PY_SET_GPERF(Empty, linearDamping)},
       {"get_angularDamping", NGF_PY_GET_GPERF(Empty, angularDamping)},
       {"createBoxShape", NGF_PY_METHOD_GPERF(Empty, createBoxShape)},
       {"createBrushMesh", NGF_PY_METHOD_GPERF(Empty, createBrushMesh)},
-      {""}, {""}, {""}, {""},
+      {""},
+      {"get_linearDamping", NGF_PY_GET_GPERF(Empty, linearDamping)},
+      {""}, {""},
       {"createMesh", NGF_PY_METHOD_GPERF(Empty, createMesh)}
     };
 

@@ -212,6 +212,9 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     //Move light.
     GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
 
+    //Jump to displayed dimension.
+    setDimension(GlbVar.dimMgr->getCurrentDimension());
+
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }

@@ -649,3 +649,5 @@ Wed Oct 14 20:34:12 AST 2009
 ----------------------------
 - Added an 'NGF_PY_PARAMS' macro to ease writing Python methods.
 - Added 'Acid' prefab, simlar to the Acid from the original GraLL.
+- Made Acid a brush type.
+- Added editor icons for EndPoint and Acid.

@@ -192,7 +192,8 @@ void Empty::createMesh(Ogre::String meshName)
 //-------------------------------------------------------------------------------
 void Empty::createBrushMesh()
 {
-    mEntity = createBrushEntity();
+    Ogre::String mesh = mProperties.getValue("brushMeshFile", 0, "Player.mesh");
+    mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, mesh);
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, mPos, mRot);
     mNode->attachObject(mEntity);
 }
@@ -227,6 +228,12 @@ NGF_PY_BEGIN_IMPL(Empty)
     {
         Ogre::String material = py::extract<Ogre::String>(args[0]);
         setMaterial(material);
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(setBrushMaterial)
+    {
+        setBrushMaterial();
 
         NGF_PY_RETURN();
     }
