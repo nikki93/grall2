@@ -92,9 +92,10 @@ void loseLevel()
 {
     //Do the camera animation, and the fade. Controller restarts level when done.
     if (GlbVar.player)
+    {
         GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_CAPTURECAMERAHANDLER));
-    if (GlbVar.currCameraHandler)
         GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETCAMERASTATE, int(CameraHandler::CS_DEATH)));
+    }
     if (GlbVar.controller)
         GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LOSELEVEL));
 

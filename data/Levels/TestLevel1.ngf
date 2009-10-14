@@ -2612,12 +2612,12 @@ ngflevel TestLevel1
 	{
 		type Empty
 		name noname
-		position -7.500000 7.250559 -12.500000
+		position -7.500000 7.500000 -12.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
-			dimensions 1
+			dimensions 3
 			scriptFile Prefab_EndPoint.pyo
 		}
 	}

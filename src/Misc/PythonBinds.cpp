@@ -226,6 +226,7 @@ BOOST_PYTHON_MODULE(GraLL2)
         .value("CylinderY", PythonBodyFlags::CYLINDERY)
         .value("CylinderZ", PythonBodyFlags::CYLINDERZ)
         .value("CylinderX", PythonBodyFlags::CYLINDERX)
+        .value("Manual", PythonBodyFlags::MANUAL)
         ;
 
     py::enum_<int>("BodyType")

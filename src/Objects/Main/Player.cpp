@@ -505,6 +505,13 @@ NGF_PY_BEGIN_IMPL(Player)
         Ogre::String type = py::extract<Ogre::String>(args[0]);
         NGF_PY_RETURN(mPickups[type] > 0 && mPickups[type]--);
     }
+    NGF_PY_METHOD_IMPL(die)
+    {
+        NGF_PY_METHOD_PARAMS(2, bool, explode, bool, corpse);
+
+        die(explode, corpse);
+        NGF_PY_RETURN();
+    }
 
     NGF_PY_PROPERTY_IMPL(underControl, mUnderControl, bool)
     NGF_PY_PROPERTY_IMPL(invincible, mInvincible, bool)

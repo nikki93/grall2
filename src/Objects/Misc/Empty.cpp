@@ -92,38 +92,59 @@ void Empty::createBody(int shape, int bodyType, int flags)
     if (!(mNode && mEntity))
         return;
 
-    //Create mesh converter.
-    BtOgre::StaticMeshToShapeConverter converter(mEntity);
-
     //Create shape.
     switch (shape)
     {
+        case PythonBodyFlags::MANUAL:
+            break;
+
         case PythonBodyFlags::TRIMESH:
-            mShape = converter.createTrimesh();
+            {
+                BtOgre::StaticMeshToShapeConverter converter(mEntity);
+                mShape = converter.createTrimesh();
+            }
             break;
 
         case PythonBodyFlags::BOX:
-            mShape = converter.createBox();
+            {
+                BtOgre::StaticMeshToShapeConverter converter(mEntity);
+                mShape = converter.createBox();
+            }
             break;
 
         case PythonBodyFlags::SPHERE:
-            mShape = converter.createSphere();
+            {
+                BtOgre::StaticMeshToShapeConverter converter(mEntity);
+                mShape = converter.createSphere();
+            }
             break;
 
         case PythonBodyFlags::CYLINDERY:
-            mShape = new btCylinderShape(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            {
+                BtOgre::StaticMeshToShapeConverter converter(mEntity);
+                mShape = new btCylinderShape(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            }
             break;
 
         case PythonBodyFlags::CYLINDERZ:
-            mShape = new btCylinderShapeZ(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            {
+                BtOgre::StaticMeshToShapeConverter converter(mEntity);
+                mShape = new btCylinderShapeZ(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            }
             break;
 
         case PythonBodyFlags::CYLINDERX:
-            mShape = new btCylinderShapeX(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            {
+                BtOgre::StaticMeshToShapeConverter converter(mEntity);
+                mShape = new btCylinderShapeX(BtOgre::Convert::toBullet(converter.getSize() * 0.5));
+            }
             break;
 
         default:
-            mShape = converter.createConvex();
+            {
+                BtOgre::StaticMeshToShapeConverter converter(mEntity);
+                mShape = converter.createConvex();
+            }
             break;
     }
 
@@ -176,11 +197,6 @@ void Empty::createBrushMesh()
     mNode->attachObject(mEntity);
 }
 //-------------------------------------------------------------------------------
-void Empty::setMaterial(Ogre::String matName)
-{
-    mEntity->setMaterialName(matName);
-}
-//-------------------------------------------------------------------------------
 
 //--- Python interface implementation -------------------------------------------
 NGF_PY_BEGIN_IMPL(Empty)
@@ -211,6 +227,14 @@ NGF_PY_BEGIN_IMPL(Empty)
     {
         Ogre::String material = py::extract<Ogre::String>(args[0]);
         setMaterial(material);
+
+        NGF_PY_RETURN();
+    }
+
+    NGF_PY_METHOD_IMPL(createBoxShape)
+    {
+        NGF_PY_METHOD_PARAMS(1, Ogre::Vector3, half);
+        createBoxShape(half);
 
         NGF_PY_RETURN();
     }

@@ -9,7 +9,6 @@ def init(self):
     self.setMaterial("Objects/EndPoint")
     self.createBody(GraLL2.CollisionShape.CylinderY, 
                     GraLL2.BodyType.Static | GraLL2.BodyType.No_Contact,
-                    GraLL2.CollisionFlags.None |
                     GraLL2.CollisionFlags.No_Dim_Check |
                     GraLL2.CollisionFlags.No_Crate_Check |
                     GraLL2.CollisionFlags.No_Moving_Check |

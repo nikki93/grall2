@@ -2,14 +2,92 @@ ngflevel TestLevel2
 {
 	object
 	{
+		type Crate
+		name noname
+		position -2.500000 0.750000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0
+		}
+	}
+	object
+	{
 		type Empty
 		name noname
-		position -7.500000 1.250559 12.500000
+		position -3.500000 -0.500000 -2.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 1
+			scriptFile Prefab_Acid.py
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -2.500000 -0.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_Acid.py
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -1.500000 -0.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_Acid.py
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -1.500000 -0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_Acid.py
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -2.500000 -0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_Acid.py
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -7.500000 1.500000 12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
 			scriptFile Prefab_EndPoint.pyo
 		}
 	}
@@ -595,13 +673,26 @@ ngflevel TestLevel2
 	{
 		type Empty
 		name noname
-		position 11.500000 1.250559 -8.500000
+		position 11.500000 1.500000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -3.500000 -0.500000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 1
-			scriptFile Prefab_EndPoint.pyo
+			scriptFile Prefab_Acid.py
 		}
 	}
 }

@@ -263,6 +263,7 @@ struct PythonBodyFlags
         CYLINDERY,
         CYLINDERZ,
         CYLINDERX,
+        MANUAL,
 
         FREE,
         STATIC,

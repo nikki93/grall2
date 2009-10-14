@@ -52,24 +52,21 @@ class Empty :
         void createBody(int shape, int bodyType, int flags);
         void createMesh(Ogre::String meshName);
         void createBrushMesh();
-        void setMaterial(Ogre::String matName);
+        inline void setMaterial(Ogre::String matName) { mEntity->setMaterialName(matName); }
+        inline void createBoxShape(const Ogre::Vector3 &half) { mShape = new btBoxShape(BtOgre::Convert::toBullet(half)); }
 
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Empty)
         {
-            //createBody(GraLL2.CollisionShape.<shape>, GraLL2.BodyType.<type>, GraLL2.CollisionFlags.<flags>)
-            NGF_PY_METHOD_DECL(createBody)
-
-            //createMesh(meshFile)
             NGF_PY_METHOD_DECL(createMesh)
-
-            //createBrushMesh()
             NGF_PY_METHOD_DECL(createBrushMesh)
-
-            //setMaterial(materialName)
             NGF_PY_METHOD_DECL(setMaterial)
+            NGF_PY_METHOD_DECL(createBody)
+            NGF_PY_METHOD_DECL(createBoxShape)
+
             NGF_PY_METHOD_DECL(getPosition)
             NGF_PY_METHOD_DECL(getOrientation)
+
 
             NGF_PY_PROPERTY_DECL(mass)
             NGF_PY_PROPERTY_DECL(friction)
@@ -192,7 +189,7 @@ NGF_PY_CLASS_GPERF(Empty)::Lookup (register const char *str, register unsigned i
 {
   enum
     {
-      TOTAL_KEYWORDS = 16,
+      TOTAL_KEYWORDS = 17,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 18,
       MIN_HASH_VALUE = 8,
@@ -222,7 +219,7 @@ NGF_PY_CLASS_GPERF(Empty)::Lookup (register const char *str, register unsigned i
       {""},
       {"get_linearDamping", NGF_PY_GET_GPERF(Empty, linearDamping)},
       {"get_angularDamping", NGF_PY_GET_GPERF(Empty, angularDamping)},
-      {""},
+      {"createBoxShape", NGF_PY_METHOD_GPERF(Empty, createBoxShape)},
       {"createBrushMesh", NGF_PY_METHOD_GPERF(Empty, createBrushMesh)},
       {""}, {""}, {""}, {""},
       {"createMesh", NGF_PY_METHOD_GPERF(Empty, createMesh)}

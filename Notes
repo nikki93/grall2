@@ -17,9 +17,7 @@ Side
 - Come up with new ideas.
 
 - Ideas from the original unimplemented in GraLL 2:-
-   - Acid
    - ElectricField
-   - TimedSwitch
    - SpeedBoost
    - OneWay
    - JumpPad
@@ -644,5 +642,10 @@ Mon Oct 12 22:27:55 AST 2009
 Tue Oct 13 18:21:14 AST 2009
 ----------------------------
 - Added 'above/below' check to Trap and FallingBrush.
-- Fixed bug in 'Empty' which caused weird physics problems due to uninitialised properties such as 'friction', 'mass' etc.
+- Fixed bug in Empty which caused weird physics problems due to uninitialised properties such as 'friction', 'mass' etc.
 - Added 'EndPoint' prefab, which marks the end of the level.
+
+Wed Oct 14 20:34:12 AST 2009
+----------------------------
+- Added an 'NGF_PY_PARAMS' macro to ease writing Python methods.
+- Added 'Acid' prefab, simlar to the Acid from the original GraLL.

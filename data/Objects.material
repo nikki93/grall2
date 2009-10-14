@@ -144,6 +144,7 @@ material Objects/KeyR : BaseGlow
 {
         set $diffuse_tex "KeyR.png"
         set $glow_tex "KeyR.png"
+        set $glow_amount "0.3"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
@@ -259,6 +260,63 @@ material Objects/EndPoint : BaseTransparent
                         texture_unit GlowMap
                         {
                                 texture $glow_tex
+                        }
+                }
+        }  
+}
+
+//--- Acid ----------------------------------------------------------------------------
+material Objects/Acid
+{
+        set $diffuse_tex "Acid.png"
+
+        set $ambient "0.95 0.95 0.95 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.8 0.8 0.8 1"
+
+        technique Shaders
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        scene_blend alpha_blend
+                        depth_write off
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                scroll_anim 2 2
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+        technique Glow
+        { 
+                scheme Scheme/Glow
+        }  
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        scene_blend alpha_blend
+                        depth_write off
+                        
+                        texture_unit DiffuseMap
+                        {
+                                scroll_anim 2 2
+                                texture $diffuse_tex
                         }
                 }
         }  
