@@ -515,6 +515,16 @@ NGF_PY_BEGIN_IMPL(Player)
         die(explode, corpse);
         NGF_PY_RETURN();
     }
+    NGF_PY_METHOD_IMPL(lightOff)
+    {
+        lightOff();
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(lightOn)
+    {
+        lightOn();
+        NGF_PY_RETURN();
+    }
 
     NGF_PY_PROPERTY_IMPL(underControl, mUnderControl, bool)
     NGF_PY_PROPERTY_IMPL(invincible, mInvincible, bool)

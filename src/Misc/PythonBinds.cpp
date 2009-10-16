@@ -72,17 +72,17 @@ void py_setDimension(int dimension)
 }
 
 //Fades.
-void py_fadeInScreen(Ogre::Real time) 
+void py_fadeInScreen(const Ogre::ColourValue &colour, Ogre::Real time) 
 { 
-    GlbVar.fader->fadeIn(time); 
+    GlbVar.fader->fadeIn(colour, time); 
 }
-void py_fadeOutScreen(Ogre::Real time) 
+void py_fadeOutScreen(const Ogre::ColourValue &colour, Ogre::Real time) 
 { 
-    GlbVar.fader->fadeOut(time); 
+    GlbVar.fader->fadeOut(colour, time); 
 }
-void py_fadeInOutScreen(Ogre::Real in, Ogre::Real pause, Ogre::Real out) 
+void py_fadeInOutScreen(const Ogre::ColourValue &colour, Ogre::Real in, Ogre::Real pause, Ogre::Real out) 
 { 
-    GlbVar.fader->fadeInOut(in, pause, out); 
+    GlbVar.fader->fadeInOut(colour, in, pause, out); 
 }
 
 //Level stuff.

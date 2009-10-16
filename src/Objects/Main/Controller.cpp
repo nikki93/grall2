@@ -100,7 +100,7 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
         //Sart the timer and go into second stage.
         if (mEndCountDown < 0)
         {
-            GlbVar.fader->fadeInOut(0.7,0.4,0.5);
+            GlbVar.fader->fadeInOut(Ogre::ColourValue::Black, 0.7, 0.4, 0.5);
             mEndCountDown = 778.1;
         }
     }

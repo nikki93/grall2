@@ -202,7 +202,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 //Move it up, rotate it.
                 mGhostOffset.y += 4 * evt.timeSinceLastFrame;
-                mGhostOffset = Ogre::Quaternion(Ogre::Degree(20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mGhostOffset;
+                mGhostOffset = Ogre::Quaternion(Ogre::Degree(mGhostDirection ? -20 : 20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mGhostOffset;
 
                 //Move the Camera toward it smoothly, make it look at the point.
                 Ogre::Vector3 toMove = ((mGhostPos + mGhostOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
@@ -246,6 +246,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     mGhostPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
                     mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3);
                     mTargetNode = 0;
+                    mGhostDirection = (Ogre::Math::UnitRandom() > 0.5);
                     break;
             }
             break;

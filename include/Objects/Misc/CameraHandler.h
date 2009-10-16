@@ -61,6 +61,7 @@ class CameraHandler :
 
         Ogre::Vector3 mGhostPos; //Position we were looking at when death happened.
         Ogre::Vector3 mGhostOffset;
+        bool mGhostDirection;
 
         int mCurrState;
 

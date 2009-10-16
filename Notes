@@ -6,11 +6,11 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Start creating the initial levels.
+
 - Add textures for Trap, default FallingFloor, Teleporter and Switch.
 
 - Make more brush textures.
-
-- Start creating the initial levels.
 
 Side
 ----
@@ -651,3 +651,12 @@ Wed Oct 14 20:34:12 AST 2009
 - Added 'Acid' prefab, simlar to the Acid from the original GraLL.
 - Made Acid a brush type.
 - Added editor icons for EndPoint and Acid.
+
+Thu Oct 15 17:58:29 AST 2009
+----------------------------
+- CameraHandler rotation direction is now random.
+
+Fri Oct 17 11:17:37 AST 2009
+----------------------------
+- Added ability to change fade colour to Fader.
+- Fixed Teleporter bug that assumed Player existed after a Teleport trigger.

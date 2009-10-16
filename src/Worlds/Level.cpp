@@ -25,7 +25,7 @@ void Level::init()
     unsigned int levelInd = Util::worldNumToLevelNum(mWorldNum);
 
     //Just for fun. :P
-    LOG("On to level: " + Ogre::StringConverter::toString(Util::worldNumToLevelNum(mWorldNum)) + ", NGF: " + mNgfName + ", Caption: " + mCaption + "!");
+    LOG(FORMAT("On to level: %d, NGF: %s, Caption: %s!", Util::worldNumToLevelNum(mWorldNum) % mNgfName % mCaption));
 
     //If higher than highest level, then highest level is this (user went to new level).
     if (mWorldNum > GlbVar.records.highestLevelIndex)

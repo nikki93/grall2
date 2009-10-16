@@ -29,6 +29,7 @@
 //Defines.
 #define GlbVar Globals::getSingleton()
 #define LOG(msg) Ogre::LogManager::getSingleton().logMessage(msg);
+#define FORMAT(fmt, params) (boost::format(fmt) % params).str()
 #define SET_PYTHON_SCRIPT() do                                                                 \
     {                                                                                          \
         Ogre::String script = mProperties.getValue("script", 0, "");                           \
@@ -249,6 +250,7 @@ enum
     MSG_CAPTURECAMERAHANDLER, //Capture the CameraHandler.
     MSG_BULLETHIT,            //Bullet hit (for Player).
     MSG_ADDSLIDE,             //Add slide (for Slideshow).
+    MSG_SETVISIBLE,           //Set visibility.
 };
 
 //Flags for creating Physics bodies from Python.

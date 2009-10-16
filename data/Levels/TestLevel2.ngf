@@ -86,20 +86,6 @@ ngflevel TestLevel2
 	{
 		type Empty
 		name noname
-		position 0.500000 -0.250000 5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.56
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
 		position 1.500000 -0.250000 5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
@@ -629,6 +615,19 @@ ngflevel TestLevel2
 		{
 			dimensions 3
 			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Teleporter
+		name noname
+		position 0.500000 -0.250000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			target 0 5 0
 		}
 	}
 }

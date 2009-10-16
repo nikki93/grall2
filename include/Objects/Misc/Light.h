@@ -38,6 +38,8 @@ class Light :
         Ogre::ColourValue mDiffuseColour;
         Ogre::ColourValue mSpecularColour;
 
+        bool mOn;
+
     public:
         Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Light();

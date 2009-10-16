@@ -8,7 +8,7 @@ Teleporter.cpp
 
 #include "Objects/Obstacles/Teleporter.h"
 
-#define TELEPORT_DELAY 0.08
+#define TELEPORT_DELAY 0.12
 
 //--- NGF events ----------------------------------------------------------------
 Teleporter::Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -83,7 +83,8 @@ void Teleporter::unpausedTick(const Ogre::FrameEvent &evt)
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(mPlayer, NGF_MESSAGE(MSG_GETPOSITION));
         Ogre::Vector3 offset = playerPos - mNode->getPosition(); //Our origin is 0.25 below surface, we want to find offset from surface.
         Ogre::Real yShift = offset.y - 0.75;
-        GlbVar.goMgr->sendMessage(mPlayer, NGF_MESSAGE(MSG_TELEPORT, mTarget + Ogre::Vector3(0,yShift,0)));
+        if (mPlayer)
+            GlbVar.goMgr->sendMessage(mPlayer, NGF_MESSAGE(MSG_TELEPORT, mTarget + Ogre::Vector3(0,yShift,0)));
         mTime = 0;
         mPlayer = 0;
     }
@@ -111,7 +112,7 @@ void Teleporter::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
     if (mTime == 0 && other->hasFlag("Player"))
     {
         mTime = TELEPORT_DELAY;
-        GlbVar.fader->fadeInOut(TELEPORT_DELAY, 0, TELEPORT_DELAY);
+        GlbVar.fader->fadeInOut(Ogre::ColourValue::White, TELEPORT_DELAY, 0, TELEPORT_DELAY);
         mPlayer = other;
     }
     //Python collide event.

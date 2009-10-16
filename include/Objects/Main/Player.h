@@ -63,6 +63,8 @@ class Player :
         void loseCameraHandler();
         void switchDimension();
         void die(bool explode, bool corpse = false);
+        inline void lightOff() { mEntity->setMaterialName("Objects/PlayerOff"); GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETVISIBLE, false)); }
+        inline void lightOn() { mEntity->setMaterialName("Objects/Player"); GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETVISIBLE, true)); }
 
         inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && Util::isKeyDown(kc)); }
         inline OIS::MouseState getMouseState() { return mUnderControl ? Util::getMouseState() : OIS::MouseState(); }
@@ -80,6 +82,8 @@ class Player :
             NGF_PY_METHOD_DECL(decPickup)
             NGF_PY_METHOD_DECL(hasDecPickup)
             NGF_PY_METHOD_DECL(die)
+            NGF_PY_METHOD_DECL(lightOff)
+            NGF_PY_METHOD_DECL(lightOn)
 
             NGF_PY_PROPERTY_DECL(underControl)
             NGF_PY_PROPERTY_DECL(invincible)
@@ -163,7 +167,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 26, duplicates = 0 */
+/* maximum key range = 28, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Player)
 {
@@ -213,16 +217,18 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 16,
+      TOTAL_KEYWORDS = 18,
       MIN_WORD_LENGTH = 3,
       MAX_WORD_LENGTH = 23,
-      MIN_HASH_VALUE = 9,
+      MIN_HASH_VALUE = 7,
       MAX_HASH_VALUE = 34
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
+      {""}, {""}, {""}, {""}, {""}, {""}, {""},
+      {"lightOn", NGF_PY_METHOD_GPERF(Player, lightOn)},
+      {"lightOff", NGF_PY_METHOD_GPERF(Player, lightOff)},
       {"hasPickup", NGF_PY_METHOD_GPERF(Player, hasPickup)},
       {""}, {""},
       {"hasDecPickup", NGF_PY_METHOD_GPERF(Player, hasDecPickup)},
