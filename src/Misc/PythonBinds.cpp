@@ -15,6 +15,7 @@
 
 #include "Globals.h"
 #include "Objects/Misc/Slideshow.h"
+#include "Objects/Misc/CameraHandler.h"
 
 //--- Wrapper functions ---------------------------------------------------------
 
@@ -252,6 +253,15 @@ BOOST_PYTHON_MODULE(GraLL2)
         .value("No_Bullet_Hit", DimensionManager::NO_BULLET_HIT)
         .value("Invisible", DimensionManager::INVISIBLE)
         .value("Liftable", DimensionManager::LIFTABLE)
+        ;
+
+    py::enum_<int>("CameraMode")
+        .value("None", CameraHandler::CS_NONE)
+        .value("LookAt", CameraHandler::CS_LOOKAT)
+        .value("ThirdPerson", CameraHandler::CS_THIRDPERSON)
+        .value("Spline", CameraHandler::CS_SPLINE)
+        .value("Lose", CameraHandler::CS_DEATH)
+        .value("Win", CameraHandler::CS_WIN)
         ;
 
     //Show message box.

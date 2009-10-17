@@ -6,7 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Start creating the initial levels.
+- Add help messages to Level 1.
 
 - Add textures for Trap, default FallingFloor, Teleporter and Switch.
 
@@ -660,3 +660,12 @@ Fri Oct 17 11:17:37 AST 2009
 ----------------------------
 - Added ability to change fade colour to Fader.
 - Fixed Teleporter bug that assumed Player existed after a Teleport trigger.
+
+Sat Oct 17 19:56:18 AST 2009
+----------------------------
+- Created Level 1 ('Awakening'), with an opening 'custcene' involving the camera rotating around GraLL, GraLL 2 'waking up',
+  and blasting through the glass.
+- Added CameraHandler relative-timed spline keyframe creation.
+- Added 'setVisible' to GraLL2GameObject base.
+- Added named enumerations for CameraHandler modes to Python binding.
+- Added direct access to current CameraHandler from 'GraLL2.cameraHandler' in Python.

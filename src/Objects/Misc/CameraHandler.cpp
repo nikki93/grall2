@@ -20,10 +20,26 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mViewAngle(30),
       mSplineAnim(NULL),
       mSplineAnimState(NULL),
-      mSplineTrack(NULL)
+      mSplineTrack(NULL),
+      mLastKeyFrameTime(0)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
+
+    //Set the Python us.
+    py::object &main = NGF::Python::PythonManager::getSingleton().getMainNamespace();
+    py::exec(
+            "import GraLL2\n\n"
+
+            "def setCameraHandler(obj):\n"
+            "  GraLL2.cameraHandler = obj\n",
+            main, main
+            ); 
+    main["setCameraHandler"](getConnector());
+    py::exec(
+            "del setCameraHandler\n",
+            main, main
+            );
 
     //Load the Python script.
     SET_PYTHON_SCRIPT();
@@ -313,11 +329,23 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
 
         mSplineTrack = mSplineAnim->createNodeTrack(0, mSplineNode);
 
+        mLastKeyFrameTime = 0;
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(addSplinePointAbsolute)
+    {
+        Ogre::Real time = py::extract<Ogre::Real>(args[0]);
+        mLastKeyFrameTime += time;
+        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(time);
+        key->setTranslate(py::extract<Ogre::Vector3>(args[1]));
+
         NGF_PY_RETURN();
     }
     NGF_PY_METHOD_IMPL(addSplinePoint)
     {
-        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(py::extract<Ogre::Real>(args[0]));
+        mLastKeyFrameTime += py::extract<Ogre::Real>(args[0]);
+        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(mLastKeyFrameTime);
         key->setTranslate(py::extract<Ogre::Vector3>(args[1]));
 
         NGF_PY_RETURN();

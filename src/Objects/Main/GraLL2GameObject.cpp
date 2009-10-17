@@ -12,7 +12,8 @@ GraLL2GameObject.cpp
 GraLL2GameObject::GraLL2GameObject(bool dimensional) 
     : NGF::GameObject(Ogre::Vector3(), Ogre::Quaternion(), NGF::ID(), NGF::PropertyList(), Ogre::String()),
       mOgreName("id" + Ogre::StringConverter::toString(getID())),
-      mClickedTime(-1)
+      mClickedTime(-1),
+      mVisible(true)
 {
     //Load the Python script. Events are called by children though.
     SET_PYTHON_SCRIPT();
@@ -58,7 +59,7 @@ void GraLL2GameObject::unpausedTick(const Ogre::FrameEvent &evt)
     else if (mNode)
     {
         //We can't be seen in dimensions we're not in.
-        mNode->setVisible(mDimensions & GlbVar.dimMgr->getCurrentDimension(), true);
+        mNode->setVisible(mVisible && (mDimensions & GlbVar.dimMgr->getCurrentDimension()), true);
     }
 
     //Tasks.
@@ -301,6 +302,13 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
             NGF_PY_RETURN();
 
         NGF_PY_RETURN(BtOgre::Convert::toOgre(mBody->getAngularVelocity()));
+    }
+    NGF_PY_METHOD_IMPL(setVisible)
+    {
+        NGF_PY_METHOD_PARAMS(1, bool, visible);
+        mVisible = visible;
+
+        NGF_PY_RETURN();
     }
 }
 NGF_PY_END_IMPL

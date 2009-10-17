@@ -1,0 +1,516 @@
+ngflevel Level1
+{
+	object
+	{
+		type StaticBrush
+		name stopBrush
+		position 9.618255 0.700000 11.500279
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b0.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type Point
+		name camPoint11
+		position 5.750585 3.971104 14.149936
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint10
+		position 5.642491 3.844783 13.714734
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint9
+		position 6.164166 1.987500 11.856307
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint8
+		position 7.424202 1.468542 9.350673
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint7
+		position 9.662710 1.345531 7.874728
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint6
+		position 13.060408 1.210469 8.155353
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint5
+		position 14.294789 1.222649 11.636704
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint4
+		position 13.126402 1.326002 14.162512
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint3
+		position 10.500000 1.406993 14.873978
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Point
+		name camPoint2
+		position 10.500000 3.086266 13.087982
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Light
+		name noname
+		position 3.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.6 0.2
+			attenuation 20 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -0.954326 6.500000 -11.500000
+		rotation 0.659379 0.659379 -0.255381 -0.255381
+
+		properties
+		{
+			dimensions 3
+			lightType spot
+			colour 1 1 1
+			attenuation 20 1 0.05 0.05
+			innerAngle 10
+			outerAngle 120
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -10.000000 2.300000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.2 0.3 0.6
+			attenuation 10 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -5.000000 2.300000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.2 0.3 0.6
+			attenuation 10 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 3.500000 0.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.6 0.2
+			attenuation 20 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 17.500000 0.500000 18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.6 0.2
+			attenuation 20 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 17.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.6 0.2
+			attenuation 20 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 11.500000 0.500000 11.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b1.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 10.500000 0.500000 10.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b2.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 9.500000 0.500000 12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b3.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 9.500000 0.500000 10.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b4.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 11.500000 0.500000 12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b5.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 10.500000 0.500000 12.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b6.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 11.500000 0.500000 10.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b7.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -5.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	GraLL2.setDimension(1)
+			       : 	GraLL2.setBonusTime(30)
+			       : 	self.setAlarm(8.2, 0)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+			       : 
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		self.showLevelText(2,4,3)
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 0.500000 1.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level1_b8.mesh
+			convex no
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -7.500000 2.500000 -22.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position 10.500217 0.389544 11.500729
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4
+			captureCameraHandler no
+			canSwitchDimensions no
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.lightOff()
+			       : 	self.m_underControl = False
+			       : 	self.m_numHits = 0
+			       : 	self.m_pushDir = -1
+			       : 	self.m_pushTime = 0
+			       : 	
+			       : 	self.setAlarm(GraLL2.controller.m_splineTime - 1, 0)
+			       : 	self.setAlarm(GraLL2.controller.m_splineTime, 1)
+			       : 	
+			       : 	Ngf.getObject("stopBrush").setVisible(False)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	if (self.m_pushTime > 0):
+			       : 		self.applyTorque(self.m_pushDir * Ngf.Vector3(0,0,-6))
+			       : 		self.m_pushTime -= elapsed
+			       : 	
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		self.lightOn()
+			       : 	elif (n == 1):
+			       : 		self.setAlarm(2, 2)
+			       : 	elif (n == 2):
+			       : 		if (self.m_numHits < 2):
+			       : 			self.m_pushDir = -1
+			       : 			self.m_pushTime = 1
+			       : 		else:
+			       : 			self.m_pushDir = -2
+			       : 			self.m_pushTime = 0.3
+			       : 			self.setAlarm(1, 4)
+			       : 
+			       : 		self.setAlarm(1.4, 3)
+			       : 	elif (n == 3):
+			       : 		self.m_numHits += 1
+			       : 		
+			       : 		if (self.m_numHits == 3):
+			       : 			return
+			       : 		elif (self.m_numHits == 2):
+			       : 			Ngf.destroyObject(Ngf.getObject("stopBrush"))
+			       : 		
+			       : 		self.m_pushDir = 1
+			       : 		self.m_pushTime = 0.5
+			       : 		self.setAlarm(1, 2)
+			       : 	elif (n == 4):
+			       : 		GraLL2.cameraHandler.p_currState = GraLL2.CameraMode.ThirdPerson
+			       : 		GraLL2.cameraHandler.p_rotationFactor = 2
+			       : 		GraLL2.cameraHandler.p_movementFactor = 1
+			       : 		self.setAlarm(4, 5)
+			       : 	elif (n == 5):
+			       : 		self.m_underControl = True
+			       : 		GraLL2.cameraHandler.p_rotationFactor = 0
+			       : 		GraLL2.cameraHandler.p_movementFactor = 4	
+		}
+	}
+	object
+	{
+		type RigidBody
+		name noname
+		position 9.500000 0.650000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			mass 1
+			friction 0.5
+			restitution 0
+			linearDamping 0
+			angularDamping 0
+			brushMeshFile Level1_b9.mesh
+			shape box
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -7.500000 6.400000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.9 0.9
+			attenuation 30 1 0.1 0.01
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 10.500000 5.500000 11.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType spot
+			colour 0.8 0.8 0.8
+			attenuation 20 1 0.1 0.05
+			innerAngle 10
+			outerAngle 85
+		}
+	}
+	object
+	{
+		type CameraHandler
+		name noname
+		position 10.500000 24.835087 11.962250
+		rotation 0.707107 -0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			script : import Ngf
+			       : 
+			       : def init(self):
+			       : 	GraLL2.controller.m_splineTime = 15
+			       : 
+			       : def create(self):
+			       : 	self.targetPlayer()
+			       : 	GraLL2.fadeOutColour(Ngf.ColourValue.White, 2.2)
+			       : 	
+			       : 	self.beginSpline(GraLL2.controller.m_splineTime)
+			       : 	self.addSplinePoint(0, self.getPosition())
+			       : 	self.addSplinePoint(4, Ngf.getObject("camPoint1").getPosition())
+			       : 	self.addSplinePoint(1.2, Ngf.getObject("camPoint2").getPosition())
+			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint3").getPosition())
+			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint4").getPosition())
+			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint5").getPosition())
+			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint6").getPosition())
+			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint7").getPosition())
+			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint8").getPosition())
+			       : 	self.addSplinePoint(1.2, Ngf.getObject("camPoint9").getPosition())
+			       : 	self.addSplinePoint(2, Ngf.getObject("camPoint10").getPosition())
+			       : 	self.addSplinePointAbsolute(20, Ngf.getObject("camPoint11").getPosition())
+			       : 	self.endSpline()
+			       : 	
+			       : 	self.p_currState = GraLL2.CameraMode.Spline
+		}
+	}
+	object
+	{
+		type Point
+		name camPoint1
+		position 10.500000 6.626955 11.801653
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+}
+
