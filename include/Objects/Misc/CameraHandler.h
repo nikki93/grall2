@@ -189,7 +189,9 @@ class CameraHandler :
 
             NGF_SERIALISE_ON_LOAD
             {
-                mTargetNodeName = targetName;
+                if (targetName != "NULL")
+                    mTargetNode = GlbVar.ogreSmgr->getSceneNode(targetName);
+
                 mSplineNode->setPosition(splineNodePos);
 
                 if (splineStr != "n")

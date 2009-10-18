@@ -8,13 +8,12 @@ Teleporter.cpp
 
 #include "Objects/Obstacles/Teleporter.h"
 
-#define TELEPORT_DELAY 0.12
+#define TELEPORT_DELAY 0.08
 
 //--- NGF events ----------------------------------------------------------------
 Teleporter::Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mTime(0),
-      mPlayer(0)
+      mTime(0)
 {
     addFlag("Teleporter");
 
@@ -76,17 +75,23 @@ void Teleporter::unpausedTick(const Ogre::FrameEvent &evt)
 
     //Time flies! :-)
     if (mTime > 0)
-        mTime -= evt.timeSinceLastFrame;
-    else if (mTime < 0)
+    {
+        if (GlbVar.player)
+            mTime -= evt.timeSinceLastFrame;
+        else
+        {
+            GlbVar.fader->abortFade(0);
+            mTime = 0;
+        }
+    }
+    else if (GlbVar.player && mTime < 0)
     {
         //We send the Y-difference from 0.5 above surface along to keep the floor-movement smooth.
-        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(mPlayer, NGF_MESSAGE(MSG_GETPOSITION));
+        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
         Ogre::Vector3 offset = playerPos - mNode->getPosition(); //Our origin is 0.25 below surface, we want to find offset from surface.
         Ogre::Real yShift = offset.y - 0.75;
-        if (mPlayer)
-            GlbVar.goMgr->sendMessage(mPlayer, NGF_MESSAGE(MSG_TELEPORT, mTarget + Ogre::Vector3(0,yShift,0)));
+        GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_TELEPORT, mTarget + Ogre::Vector3(0,yShift,0)));
         mTime = 0;
-        mPlayer = 0;
     }
 
     //Python utick event.
@@ -113,7 +118,6 @@ void Teleporter::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
     {
         mTime = TELEPORT_DELAY;
         GlbVar.fader->fadeInOut(Ogre::ColourValue::White, TELEPORT_DELAY, 0, TELEPORT_DELAY);
-        mPlayer = other;
     }
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

@@ -46,7 +46,21 @@ inline void deserialise(Ogre::String name)
 {
     NGF::Serialisation::Serialiser::load(USER_PREFIX "Saves/" + name + ".sav");
 }
-Ogre::String saveName(unsigned int worldNum);
+Ogre::String checkpointName(unsigned int worldNum);
+inline void saveCheckpoint()
+{
+    Util::serialise(Util::checkpointName(GlbVar.woMgr->getCurrentWorldIndex()));
+    Util::getRecordFromLevelNum(Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex())).checkpoint = true;
+}
+inline bool loadCheckpoint()
+{
+    if (Util::getRecordFromLevelNum(Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex())).checkpoint)
+    {
+        Util::deserialise(Util::checkpointName(GlbVar.woMgr->getCurrentWorldIndex()));
+        return true;
+    }
+    return false;
+}
 
 //Go to next, previous, or nth world.
 inline void nextWorld()

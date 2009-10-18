@@ -80,12 +80,8 @@ void Level::startLevel()
     //No stuff blocking our view.
     GlbVar.gui->hidePointer();
 
-    if (GlbVar.loadGame && Util::getRecordFromLevelNum(Util::worldNumToLevelNum(mWorldNum)).checkpoint)
-    {
-        //If we're loading games, and savefile exists, load it.
-        Util::deserialise(Util::saveName(mWorldNum));
-    }
-    else
+    //If there's a checkpoint, and we're loading games, load it.
+    if (!(GlbVar.loadGame && Util::loadCheckpoint()))
     {
         //Otherwise read in the level from the .ngf file.
         Util::loadNgf(mNgfName);

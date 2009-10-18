@@ -20,7 +20,7 @@ material Objects/Player : BaseGlow
 material Objects/PlayerOff : Objects/Player
 {
         set $glow_tex "Player_GW.png"
-        set $glow_amount "0.3"
+        set $glow_amount "0.2"
 }
 
 //--- Bomb ----------------------------------------------------------------------------
@@ -238,10 +238,16 @@ material Objects/EndPoint : BaseTransparent
         set $glow_tex "EndPoint.png"
         set $glow_amount 0.5
 
-        set $ambient "0 0 0 0.2"
-        set $diffuse "0 0 0 1"
-        set $specular "0 0 0 1"
+        set $ambient "1 1 1 0.2"
+        set $diffuse "0.1 0.1 0.1 1"
+        set $specular "0.1 0.1 0.1 1"
 
+        technique Shaders
+        { 
+                pass
+                {
+                }
+        }  
         technique Glow
         { 
                 scheme Scheme/Glow
@@ -265,6 +271,24 @@ material Objects/EndPoint : BaseTransparent
                         texture_unit GlowMap
                         {
                                 texture $glow_tex
+                        }
+                }
+        }  
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        scene_blend alpha_blend
+                        cull_hardware none
+                        cull_software none
+                        depth_write off
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
                         }
                 }
         }  

@@ -55,7 +55,6 @@ class Teleporter :
 
             NGF_SERIALISE_OGRE(Real, mTime);
             NGF_SERIALISE_OGRE(Vector3, mTarget);
-            NGF_SERIALISE_GAMEOBJECTPTR(mPlayer);
         }
         NGF_SERIALISE_END
 };

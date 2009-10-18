@@ -88,11 +88,13 @@ CameraHandler::~CameraHandler()
 void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
 {
     //Node-remembering hack.
+    /*
     if (mTargetNodeName != "")
     {
         mTargetNode = mTargetNodeName == "NULL" ? NULL : GlbVar.ogreSmgr->getSceneNode(mTargetNodeName);
         mTargetNodeName = "";
     }
+    */
 
     //Peeping.
     if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]) && Util::isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
@@ -149,6 +151,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         case CS_THIRDPERSON:
             {
                 //Weird stuff here.
+                if (!mTargetNode)
+                    break;
 
                 Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mViewOffset);
                 Ogre::Real factor = mMovementFactor;
@@ -197,7 +201,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             break;
 
         case CS_LOOKAT:
-            lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
+            if (mTargetNode)
+                lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
             break;
 
         case CS_NONE:

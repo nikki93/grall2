@@ -6,8 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add help messages to Level 1.
-
 - Add textures for Trap, default FallingFloor, Teleporter and Switch.
 
 - Make more brush textures.
@@ -669,3 +667,10 @@ Sat Oct 17 19:56:18 AST 2009
 - Added 'setVisible' to GraLL2GameObject base.
 - Added named enumerations for CameraHandler modes to Python binding.
 - Added direct access to current CameraHandler from 'GraLL2.cameraHandler' in Python.
+
+Sun Oct 18 00:14:49 AST 2009
+----------------------------
+- Added 'saveCheckpoint' and 'loadCheckpoint' to Utils (also in Python) to encapsulate checkpoint-handling.
+- Added help messages to Level 1.
+- Completed Level 1.
+- Fixed Teleporter bug involving dereferencing null Player pointer (yes, again).

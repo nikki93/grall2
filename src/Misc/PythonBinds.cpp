@@ -60,6 +60,14 @@ void py_deserialise(Ogre::String name)
 {
     Util::deserialise(name);
 }
+void py_saveCheckpoint()
+{
+    Util::saveCheckpoint();
+}
+bool py_loadCheckpoint()
+{
+    return Util::loadCheckpoint();
+}
 
 //Dimension stuff (if you want to switch dimensions, best you do it through the 
 //Player object).
@@ -311,6 +319,14 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("deserialise", py_deserialise,
             "deserialise(name)\n"
             "Restores the game state from a file with the given name and extension '.sav' under 'Saves' in the user directory."
+           );
+    py::def("saveCheckpoint", py_saveCheckpoint,
+            "saveCheckpoint()\n"
+            "Save a checkpoint for the current level."
+           );
+    py::def("loadCheckpoint", py_loadCheckpoint,
+            "loadCheckpoint()\n"
+            "Load checkpoint (if any) for the current level. If no checkpoint, returns False, else returns True."
            );
 
     //Dimension stuff
