@@ -450,6 +450,8 @@ ngflevel Level1
 			       : def alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.lightOn()
+			       : 	elif (n == 1):
+			       : 		self.m_save = True
 			       : 	elif (n == 2):
 			       : 		if (self.m_numHits < 2):
 			       : 			self.m_pushDir = -1
@@ -476,11 +478,11 @@ ngflevel Level1
 			       : 		GraLL2.cameraHandler.p_rotationFactor = 2
 			       : 		GraLL2.cameraHandler.p_movementFactor = 1
 			       : 		self.setAlarm(4, 5)
+			       : 		self.m_save = True
 			       : 	elif (n == 5):
 			       : 		self.p_underControl = True
 			       : 		GraLL2.cameraHandler.p_rotationFactor = 0
 			       : 		GraLL2.cameraHandler.p_movementFactor = 4	
-			       : 		self.m_save = True
 			       : 		
 			       : 		GraLL2.showMessage("{0}, {1}, {2}, {3} - Move forward, backward, left and right respectively".format(GraLL2.getControl("forward"), GraLL2.getControl("backward"), GraLL2.getControl("left"), GraLL2.getControl("right")), 6)
 		}
