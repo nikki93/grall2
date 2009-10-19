@@ -6,9 +6,13 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Add 'OneWay' GameObject type.
+
 - Add textures for Trap, default FallingFloor, Teleporter and Switch.
 
 - Make more brush textures.
+
+- Work on a HUD system.
 
 Side
 ----
@@ -17,7 +21,6 @@ Side
 - Ideas from the original unimplemented in GraLL 2:-
    - ElectricField
    - SpeedBoost
-   - OneWay
    - JumpPad
    - Fan
 
