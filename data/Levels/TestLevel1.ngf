@@ -2,9 +2,678 @@ ngflevel TestLevel1
 {
 	object
 	{
+		type FallingBrush
+		name noname
+		position 3.500000 5.750000 -17.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 4.500000 5.750000 -17.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 5.500000 5.750000 -17.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 6.500000 5.750000 -17.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 7.500000 5.750000 -17.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 8.500000 5.750000 -17.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 9.500000 5.750000 -17.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 9.500000 5.750000 -16.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 8.500000 5.750000 -16.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 7.500000 5.750000 -16.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 6.500000 5.750000 -16.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 5.500000 5.750000 -16.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 4.500000 5.750000 -16.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 3.500000 5.750000 -16.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 3.500000 5.750000 -15.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 4.500000 5.750000 -15.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 5.500000 5.750000 -15.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 6.500000 5.750000 -15.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 7.500000 5.750000 -15.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 8.500000 5.750000 -15.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 9.500000 5.750000 -15.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 9.500000 5.750000 -14.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 8.500000 5.750000 -14.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 7.500000 5.750000 -14.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 6.500000 5.750000 -14.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 5.500000 5.750000 -14.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 4.500000 5.750000 -14.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 3.500000 5.750000 -14.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 3.500000 5.750000 -13.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 4.500000 5.750000 -13.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 5.500000 5.750000 -13.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 6.500000 5.750000 -13.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 7.500000 5.750000 -13.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 8.500000 5.750000 -13.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 9.500000 5.750000 -13.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 9.500000 5.750000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 8.500000 5.750000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 7.500000 5.750000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 6.500000 5.750000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 5.500000 5.750000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 4.500000 5.750000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 3.500000 5.750000 -12.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.6
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -5.500000 6.050000 -14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -2.500000 5.750000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -2.500000 5.750000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -3.500000 5.750000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -3.500000 5.750000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -4.500000 5.750000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 18.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 19.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 20.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
 		type Pickup
 		name noname
-		position -17.500000 6.500000 -9.500000
+		position -6.500000 6.500000 -10.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -15,18 +684,7 @@ ngflevel TestLevel1
 			material Objects/KeyY
 			spin 20
 			bob 0.2
-			script : #KeyY Prefab Script
-			       : #------------------
-			       : 
-			       : #import GraLL2
-			       : #GraLL2.numKeyY = 0
-			       : 
-			       : #def init(self):
-			       : 	#GraLL2.numKeyY = 0
-			       : 
-			       : def create(self):
-			       : 	GraLL2.controller.locals.setdefault("m_numKeyY", 0)
-			       : 	GraLL2.controller.m_numKeyY += 1
+			scriptFile Prefab_KeyY.pyo
 		}
 	}
 	object
@@ -44,18 +702,610 @@ ngflevel TestLevel1
 			material Objects/KeyY
 			spin 20
 			bob 0.2
-			script : #KeyY Prefab Script
-			       : #------------------
-			       : 
-			       : #import GraLL2
-			       : #GraLL2.numKeyY = 0
-			       : 
-			       : #def init(self):
-			       : 	#GraLL2.numKeyY = 0
-			       : 
-			       : def create(self):
-			       : 	GraLL2.controller.locals.setdefault("m_numKeyY", 0)
-			       : 	GraLL2.controller.m_numKeyY += 1
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 13.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 14.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 15.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 16.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 17.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 12.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 11.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 10.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 9.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 8.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 7.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 1.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 2.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 3.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 4.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 5.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 6.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -14.500000 5.750000 -14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -15.500000 5.750000 -14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -15.500000 5.750000 -15.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -14.500000 5.750000 -15.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -14.500000 5.750000 -16.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -15.500000 5.750000 -16.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -15.500000 5.750000 -17.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -14.500000 5.750000 -17.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -14.500000 5.750000 -18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -15.500000 5.750000 -18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -15.500000 5.750000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -14.500000 5.750000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 0.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -7.500000 5.750000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -7.500000 5.750000 -18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -0.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -1.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -7.500000 5.750000 -17.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -7.500000 5.750000 -16.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -2.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -3.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -7.500000 5.750000 -15.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -7.500000 5.750000 -14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -12.500000 5.500000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b0.mesh
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -13.500000 5.500000 -18.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b1.mesh
+			time 0.1
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -11.500000 5.500000 -18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b2.mesh
+			time 0.2
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -10.500000 5.500000 -18.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b3.mesh
+			time 0.1
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -10.500000 5.500000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b4.mesh
+			time 0.3
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -4.500000 5.750000 -11.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.2
 		}
 	}
 	object
@@ -568,7 +1818,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b0.mesh
+			brushMeshFile TestLevel1_b5.mesh
 			convex yes
 		}
 	}
@@ -621,7 +1871,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 2
-			brushMeshFile TestLevel1_b1.mesh
+			brushMeshFile TestLevel1_b6.mesh
 			convex no
 		}
 	}
@@ -674,7 +1924,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b2.mesh
+			brushMeshFile TestLevel1_b7.mesh
 			convex yes
 		}
 	}
@@ -688,7 +1938,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b3.mesh
+			brushMeshFile TestLevel1_b8.mesh
 			convex yes
 		}
 	}
@@ -792,8 +2042,8 @@ ngflevel TestLevel1
 
 		properties
 		{
-			dimensions 3
-			brushMeshFile TestLevel1_b4.mesh
+			dimensions 2
+			brushMeshFile TestLevel1_b9.mesh
 			convex yes
 		}
 	}
@@ -807,7 +2057,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b5.mesh
+			brushMeshFile TestLevel1_b10.mesh
 			convex yes
 		}
 	}
@@ -821,7 +2071,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b6.mesh
+			brushMeshFile TestLevel1_b11.mesh
 			convex yes
 		}
 	}
@@ -835,7 +2085,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b7.mesh
+			brushMeshFile TestLevel1_b12.mesh
 			convex yes
 		}
 	}
@@ -849,7 +2099,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b8.mesh
+			brushMeshFile TestLevel1_b13.mesh
 			convex yes
 		}
 	}
@@ -884,7 +2134,7 @@ ngflevel TestLevel1
 		{
 			dimensions 3
 			enabled no
-			brushMeshFile TestLevel1_b9.mesh
+			brushMeshFile TestLevel1_b14.mesh
 			speed 1
 			script : import Ngf
 			       : 
@@ -936,7 +2186,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b10.mesh
+			brushMeshFile TestLevel1_b15.mesh
 			convex yes
 		}
 	}
@@ -954,7 +2204,7 @@ ngflevel TestLevel1
 			speed 2
 			distance 1.9
 			ignoreCollisions no
-			brushMeshFile TestLevel1_b11.mesh
+			brushMeshFile TestLevel1_b16.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -983,9 +2233,9 @@ ngflevel TestLevel1
 
 		properties
 		{
-			dimensions 2
+			dimensions 3
 			enabled no
-			brushMeshFile TestLevel1_b12.mesh
+			brushMeshFile TestLevel1_b17.mesh
 			speed 0.5
 		}
 	}
@@ -1013,7 +2263,7 @@ ngflevel TestLevel1
 		{
 			dimensions 3
 			enabled yes
-			brushMeshFile TestLevel1_b13.mesh
+			brushMeshFile TestLevel1_b18.mesh
 			speed 0.5
 		}
 	}
@@ -1027,7 +2277,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b14.mesh
+			brushMeshFile TestLevel1_b19.mesh
 			convex no
 		}
 	}
@@ -1041,7 +2291,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 1
-			brushMeshFile TestLevel1_b15.mesh
+			brushMeshFile TestLevel1_b20.mesh
 			convex no
 		}
 	}
@@ -1055,7 +2305,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 2
-			brushMeshFile TestLevel1_b16.mesh
+			brushMeshFile TestLevel1_b21.mesh
 			convex no
 		}
 	}
@@ -1082,7 +2332,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b17.mesh
+			brushMeshFile TestLevel1_b22.mesh
 			convex no
 		}
 	}
@@ -1096,90 +2346,8 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b18.mesh
+			brushMeshFile TestLevel1_b23.mesh
 			convex yes
-		}
-	}
-	object
-	{
-		type SlidingBrush
-		name door2
-		position -9.500000 6.500000 -11.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			enabled yes
-			speed 1
-			distance 0.999
-			ignoreCollisions no
-			brushMeshFile TestLevel1_b19.mesh
-			repeat yes
-			condition : other.numPickup("KeyY") == GraLL2.controller.m_numKeyY
-			autoClose yes
-			script : #Door Prefab Script
-			       : #------------------
-			       : 
-			       : #This is a generic door. It is not bound to any particular opening
-			       : #condition, it could open based on anything (does he have a key?
-			       : #is he moving fast? has some time elapsed? is some switch somewhere
-			       : #on? etc.).
-			       : 
-			       : #The non-SlidingBrush properties are as follows:-
-			       : #
-			       : # repeat    - Whether the door can be opened multiple times
-			       : #
-			       : # condition - The Python code condition which is checked. It
-			       : #             must evaluate to a True/False value.
-			       : #
-			       : # autoClose - Whether the door closes automatically after a
-			       : #             a delay after opening.
-			       : 
-			       : #The 'condition' code is run in collide-function scope. An example
-			       : #condition is, "other.hasFlag("Player")".
-			       : 
-			       : import Ngf
-			       : import GraLL2
-			       : 
-			       : def create(self):
-			       : 	#Not opened yet!
-			       : 	self.m_opened = False
-			       : 	
-			       : 	#We're not moving yet!
-			       : 	self.m_moving = False
-			       : 	
-			       : 	#Save some properties.
-			       : 	self.m_repeat = (self.getProperty("repeat", 0, "yes") == "yes")
-			       : 	self.m_autoClose = (self.getProperty("autoClose", 0, "yes") == "yes")
-			       : 	self.m_condition = self.getProperty("condition", 0, "True")
-			       : 	
-			       : def collide(self, other):
-			       : 	#If we're already moving, then nothing to check.
-			       : 	#If we're repeating, then do it. If we're not repeating, this
-			       : 	#must be first time. Also, the other object must be a 'Doorer'.
-			       : 	#Lastly, we check for the 'condition' (evaluate Python string)
-			       : 	#and if it's fine, then continue.
-			       : 	if ((not self.m_moving) and (self.m_repeat or (not self.m_opened)) and other.hasFlag("Doorer")):
-			       : 		if (eval(self.m_condition)):
-			       : 			self.p_forward = True
-			       : 			self.m_opened = True
-			       : 			self.m_moving = True
-			       : 
-			       : def point(self, n):
-			       : 	#We've hit the start point, so we've stopped moving.
-			       : 	if (n == 0):
-			       : 		self.m_moving = False
-			       : 		
-			       : 	#If we're auto-closing, we close after a small delay after
-			       : 	#reaching end point.
-			       : 	if (self.m_autoClose and (n == 1)):
-			       : 		self.setAlarm(1, 0)
-			       : 		
-			       : def alarm(self, n):
-			       : 	#Delay is over, close.
-			       : 	if (n == 0):
-			       : 		self.p_forward = False
 		}
 	}
 	object
@@ -1214,30 +2382,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Controller
-		name noname
-		position 0.000000 -6.500000 -0.000000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 1
-			script : import Ngf
-			       : import GraLL2
-			       : 
-			       : def levelStart(self):
-			       : 	self.setAlarm(3,0)
-			       : 	GraLL2.setDimension(1)
-			       : 	GraLL2.setBonusTime(49)
-			       : 
-			       : def alarm(self, n):
-			       : 	if (n == 0):
-			       : 		self.showLevelText(2,4,3)
-			       : 
-		}
-	}
-	object
-	{
 		type StaticBrush
 		name noname
 		position -20.500000 6.200000 -8.500000
@@ -1246,7 +2390,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel1_b20.mesh
+			brushMeshFile TestLevel1_b24.mesh
 			convex yes
 		}
 	}
@@ -1328,35 +2472,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Pickup
-		name noname
-		position -7.500000 6.500000 -10.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			pickupType KeyY
-			meshFile Mesh_Key.mesh
-			material Objects/KeyY
-			spin 20
-			bob 0.2
-			script : #KeyY Prefab Script
-			       : #------------------
-			       : 
-			       : #import GraLL2
-			       : #GraLL2.numKeyY = 0
-			       : 
-			       : #def init(self):
-			       : 	#GraLL2.numKeyY = 0
-			       : 
-			       : def create(self):
-			       : 	GraLL2.controller.locals.setdefault("m_numKeyY", 0)
-			       : 	GraLL2.controller.m_numKeyY += 1
-		}
-	}
-	object
-	{
 		type Empty
 		name noname
 		position -6.500000 6.500000 -2.500000
@@ -1384,8 +2499,126 @@ ngflevel TestLevel1
 			       : 	
 			       : def alarm(self, n):
 			       : 	if (n == 0):
-			       : 		Ngf.createObject("Crate", "", self.getPosition() + Ngf.Vector3(0,5,0), Ngf.Quaternion.IDENTITY, { "code" : "crateScript" })
+			       : 		Ngf.createObject("Crate", "", self.getPosition() + Ngf.Vector3(0,5,0), Ngf.Quaternion.IDENTITY, { "scriptObject" : "crateScript" })
 			       : 		self.setAlarm(3, 0)
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -8.500000 5.500000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b25.mesh
+			time 0.5
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -9.500000 6.500000 -11.500000
+		rotation -0.000000 0.000000 1.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled yes
+			speed 1
+			distance 0.999
+			ignoreCollisions no
+			brushMeshFile TestLevel1_b26.mesh
+			repeat yes
+			condition : other.numPickup("KeyY") == GraLL2.controller.m_numKeyY
+			autoClose no
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 22.500000 5.500000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b27.mesh
+			convex yes
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -16.500000 6.500000 -10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 20
+			bob 0.2
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	self.setAlarm(3,0)
+			       : 	GraLL2.setDimension(1)
+			       : 	GraLL2.setBonusTime(49)
+			       : 
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		self.showLevelText(2,4,3)
+			       : 
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -4.500000 5.750000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.56
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -7.500000 7.500000 -12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
 		}
 	}
 }

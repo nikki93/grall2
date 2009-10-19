@@ -20,10 +20,26 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mViewAngle(30),
       mSplineAnim(NULL),
       mSplineAnimState(NULL),
-      mSplineTrack(NULL)
+      mSplineTrack(NULL),
+      mLastKeyFrameTime(0)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
+
+    //Set the Python us.
+    py::object &main = NGF::Python::PythonManager::getSingleton().getMainNamespace();
+    py::exec(
+            "import GraLL2\n\n"
+
+            "def setCameraHandler(obj):\n"
+            "  GraLL2.cameraHandler = obj\n",
+            main, main
+            ); 
+    main["setCameraHandler"](getConnector());
+    py::exec(
+            "del setCameraHandler\n",
+            main, main
+            );
 
     //Load the Python script.
     SET_PYTHON_SCRIPT();
@@ -72,11 +88,13 @@ CameraHandler::~CameraHandler()
 void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
 {
     //Node-remembering hack.
+    /*
     if (mTargetNodeName != "")
     {
         mTargetNode = mTargetNodeName == "NULL" ? NULL : GlbVar.ogreSmgr->getSceneNode(mTargetNodeName);
         mTargetNodeName = "";
     }
+    */
 
     //Peeping.
     if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]) && Util::isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
@@ -133,6 +151,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         case CS_THIRDPERSON:
             {
                 //Weird stuff here.
+                if (!mTargetNode)
+                    break;
 
                 Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mViewOffset);
                 Ogre::Real factor = mMovementFactor;
@@ -181,7 +201,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             break;
 
         case CS_LOOKAT:
-            lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
+            if (mTargetNode)
+                lookAt(mTargetNode->getPosition(), evt.timeSinceLastFrame);
             break;
 
         case CS_NONE:
@@ -202,7 +223,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             {
                 //Move it up, rotate it.
                 mGhostOffset.y += 4 * evt.timeSinceLastFrame;
-                mGhostOffset = Ogre::Quaternion(Ogre::Degree(20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mGhostOffset;
+                mGhostOffset = Ogre::Quaternion(Ogre::Degree(mGhostDirection ? -20 : 20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mGhostOffset;
 
                 //Move the Camera toward it smoothly, make it look at the point.
                 Ogre::Vector3 toMove = ((mGhostPos + mGhostOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
@@ -246,6 +267,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     mGhostPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
                     mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3);
                     mTargetNode = 0;
+                    mGhostDirection = (Ogre::Math::UnitRandom() > 0.5);
                     break;
             }
             break;
@@ -312,11 +334,23 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
 
         mSplineTrack = mSplineAnim->createNodeTrack(0, mSplineNode);
 
+        mLastKeyFrameTime = 0;
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(addSplinePointAbsolute)
+    {
+        Ogre::Real time = py::extract<Ogre::Real>(args[0]);
+        mLastKeyFrameTime += time;
+        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(time);
+        key->setTranslate(py::extract<Ogre::Vector3>(args[1]));
+
         NGF_PY_RETURN();
     }
     NGF_PY_METHOD_IMPL(addSplinePoint)
     {
-        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(py::extract<Ogre::Real>(args[0]));
+        mLastKeyFrameTime += py::extract<Ogre::Real>(args[0]);
+        Ogre::TransformKeyFrame *key = mSplineTrack->createNodeKeyFrame(mLastKeyFrameTime);
         key->setTranslate(py::extract<Ogre::Vector3>(args[1]));
 
         NGF_PY_RETURN();

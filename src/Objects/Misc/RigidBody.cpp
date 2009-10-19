@@ -85,6 +85,9 @@ RigidBody::~RigidBody()
 void RigidBody::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
+
+    //We might fall of.
+    checkFell();
     
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

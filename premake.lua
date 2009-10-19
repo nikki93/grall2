@@ -25,7 +25,10 @@ release = package.config["Release"]
 
 if (linux) then
 
-package.postbuildcommands = { "rm `find -name '*.d'`" }
+package.postbuildcommands = { 
+    "rm `find -name '*.d'`",
+    "./scripts/compilePython.sh" 
+}
 
 -- Search paths -----------------------------------------------------------------------------
 
@@ -80,8 +83,8 @@ debug.defines = { "DEBUG", "_DEBUG" }
 debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 
-debug.buildoptions = { "-g" --[["-pg"]] }                                  -- '-pg' for gprof
--- debug.linkoptions = { "-pg" }                                           -- '-pg' for gprof
+debug.buildoptions = { "-g" ,"-pg" }
+debug.linkoptions = { "-pg" }
 
 -- Release configuration --------------------------------------------------------------------
 

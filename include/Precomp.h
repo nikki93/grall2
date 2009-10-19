@@ -26,3 +26,4 @@
 #include "ngfplugins/NgfPython.h"
 #include "ngfplugins/NgfSerialisation.h"
 #include "ngfplugins/NgfExtras.h"
+#include "boost/format.hpp"

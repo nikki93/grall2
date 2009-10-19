@@ -21,7 +21,7 @@
 class Fader
 {
     protected: 
-        MyGUI::StaticImagePtr mImage;
+        MyGUI::StaticTextPtr mImage;
 
         enum
         {
@@ -42,9 +42,7 @@ class Fader
         {
             int winHeight = GlbVar.ogreWindow->getHeight();
             int winWidth = GlbVar.ogreWindow->getWidth();
-            mImage = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Fade");
-
-            mImage->setImageTexture("fade.png");
+            mImage = GlbVar.gui->createWidget<MyGUI::StaticText>("RawRect", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Fade");
             mImage->setAlpha(0);
 
             mState = FM_NONE;
@@ -55,18 +53,26 @@ class Fader
             GlbVar.gui->destroyWidget(mImage);
         }
 
-        void fadeIn(Ogre::Real time)
+        void fadeIn(const Ogre::ColourValue &colour, Ogre::Real time)
         {
+            setColour(colour);
             mImage->setAlpha(0);
             mState = FM_IN;
             mRate = 1 / time;
         }
 
-        void fadeOut(Ogre::Real time)
+        void fadeOut(const Ogre::ColourValue &colour, Ogre::Real time)
         {
+            setColour(colour);
             mImage->setAlpha(1);
             mState = FM_OUT;
             mRate = 1 / time;
+        }
+
+        inline void setColour(const Ogre::ColourValue &colour)
+        {
+            MyGUI::RawRect *raw = mImage->getSubWidgetMain()->castType<MyGUI::RawRect>();
+            raw->setRectColour(colour, colour, colour, colour);
         }
 
         //Abort the fading, and jump to given alpha.
@@ -78,8 +84,9 @@ class Fader
 
         //'time' is the time for each step (fading in, and fading out).
         //'pause' is the time between each step.
-        void fadeInOut(Ogre::Real in, Ogre::Real pause, Ogre::Real out = -1)
+        void fadeInOut(const Ogre::ColourValue &colour, Ogre::Real in, Ogre::Real pause, Ogre::Real out = -1)
         {
+            setColour(colour);
             mPause = pause;
             mImage->setAlpha(0);
             mState = FM_INOUT;

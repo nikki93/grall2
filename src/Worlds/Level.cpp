@@ -25,7 +25,7 @@ void Level::init()
     unsigned int levelInd = Util::worldNumToLevelNum(mWorldNum);
 
     //Just for fun. :P
-    LOG("On to level: " + Ogre::StringConverter::toString(Util::worldNumToLevelNum(mWorldNum)) + ", NGF: " + mNgfName + ", Caption: " + mCaption + "!");
+    LOG(FORMAT("On to level: %d, NGF: %s, Caption: %s!", Util::worldNumToLevelNum(mWorldNum) % mNgfName % mCaption));
 
     //If higher than highest level, then highest level is this (user went to new level).
     if (mWorldNum > GlbVar.records.highestLevelIndex)
@@ -80,12 +80,8 @@ void Level::startLevel()
     //No stuff blocking our view.
     GlbVar.gui->hidePointer();
 
-    if (GlbVar.loadGame && Util::getRecordFromLevelNum(Util::worldNumToLevelNum(mWorldNum)).checkpoint)
-    {
-        //If we're loading games, and savefile exists, load it.
-        Util::deserialise(Util::saveName(mWorldNum));
-    }
-    else
+    //If there's a checkpoint, and we're loading games, load it.
+    if (!(GlbVar.loadGame && Util::loadCheckpoint()))
     {
         //Otherwise read in the level from the .ngf file.
         Util::loadNgf(mNgfName);

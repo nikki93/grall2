@@ -58,9 +58,11 @@ class CameraHandler :
         Ogre::Animation *mSplineAnim;
         Ogre::AnimationState *mSplineAnimState;
         Ogre::NodeAnimationTrack *mSplineTrack;
+        Ogre::Real mLastKeyFrameTime;
 
         Ogre::Vector3 mGhostPos; //Position we were looking at when death happened.
         Ogre::Vector3 mGhostOffset;
+        bool mGhostDirection;
 
         int mCurrState;
 
@@ -106,6 +108,7 @@ class CameraHandler :
             NGF_PY_METHOD_DECL(beginSpline)
             //(time, pointvec)
             NGF_PY_METHOD_DECL(addSplinePoint)
+            NGF_PY_METHOD_DECL(addSplinePointAbsolute)
             NGF_PY_METHOD_DECL(endSpline)
             
             NGF_PY_PROPERTY_DECL(currState)
@@ -180,12 +183,15 @@ class CameraHandler :
             NGF_SERIALISE_STRING(splineStr);
             NGF_SERIALISE_OGRE(Real, splineState);
             NGF_SERIALISE_OGRE(Real, splineLength);
+            NGF_SERIALISE_OGRE(Real, mLastKeyFrameTime);
             NGF_SERIALISE_OGRE(Vector3, mGhostPos);
             NGF_SERIALISE_OGRE(Vector3, mGhostOffset);
 
             NGF_SERIALISE_ON_LOAD
             {
-                mTargetNodeName = targetName;
+                if (targetName != "NULL")
+                    mTargetNode = GlbVar.ogreSmgr->getSceneNode(targetName);
+
                 mSplineNode->setPosition(splineNodePos);
 
                 if (splineStr != "n")
@@ -234,7 +240,7 @@ class CameraHandler :
 
 #ifdef __CAMERAHANDLER_CPP__
 
-/* C++ code produced by gperf version 3.0.3 *//*{{{*/
+/* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */
 /* Computed positions: -k'1,5' */
 
@@ -274,7 +280,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 26, duplicates = 0 */
+/* maximum key range = 36, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(CameraHandler)
 {
@@ -289,32 +295,32 @@ NGF_PY_CLASS_GPERF(CameraHandler)::MakeHash (register const char *str, register 
 {
   static const unsigned char asso_values[] =
     {
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34,  0,  0,  4,
-      34, 10, 34,  5, 34, 34, 34, 34,  0, 10,
-       0,  0,  0, 34,  0,  0,  5, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-      34, 34, 34, 34, 34, 34
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44,  0,  0, 25,
+      44, 10, 44,  5, 44, 44, 44, 44,  0, 10,
+       0,  0,  0, 44,  0,  0,  5, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
+      44, 44, 44, 44, 44, 44
     };
   return len + asso_values[(unsigned char)str[4]] + asso_values[(unsigned char)str[0]];
 }
@@ -324,96 +330,51 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
 {
   enum
     {
-      TOTAL_KEYWORDS = 15,
+      TOTAL_KEYWORDS = 16,
       MIN_WORD_LENGTH = 8,
-      MAX_WORD_LENGTH = 18,
+      MAX_WORD_LENGTH = 22,
       MIN_HASH_VALUE = 8,
-      MAX_HASH_VALUE = 33
+      MAX_HASH_VALUE = 43
     };
 
   static const struct PythonMethod wordlist[] =
     {
+      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {"setAlarm", NGF_PY_METHOD_GPERF(CameraHandler, setAlarm)},
       {"setTarget", NGF_PY_METHOD_GPERF(CameraHandler, setTarget)},
       {"set_offset", NGF_PY_SET_GPERF(CameraHandler, offset)},
       {"beginSpline", NGF_PY_METHOD_GPERF(CameraHandler, beginSpline)},
+      {""}, {""},
       {"addSplinePoint", NGF_PY_METHOD_GPERF(CameraHandler, addSplinePoint)},
       {"get_offset", NGF_PY_GET_GPERF(CameraHandler, offset)},
       {"getPosition", NGF_PY_METHOD_GPERF(CameraHandler, getPosition)},
-      {"set_currState", NGF_PY_SET_GPERF(CameraHandler, currState)},
+      {""},
       {"set_rotationFactor", NGF_PY_SET_GPERF(CameraHandler, rotationFactor)},
       {"endSpline", NGF_PY_METHOD_GPERF(CameraHandler, endSpline)},
-      {"get_currState", NGF_PY_GET_GPERF(CameraHandler, currState)},
+      {""}, {""},
+      {"addSplinePointAbsolute", NGF_PY_METHOD_GPERF(CameraHandler, addSplinePointAbsolute)},
       {"get_rotationFactor", NGF_PY_GET_GPERF(CameraHandler, rotationFactor)},
+      {""}, {""}, {""},
       {"targetPlayer", NGF_PY_METHOD_GPERF(CameraHandler, targetPlayer)},
       {"set_movementFactor", NGF_PY_SET_GPERF(CameraHandler, movementFactor)},
-      {"get_movementFactor", NGF_PY_GET_GPERF(CameraHandler, movementFactor)}
+      {""}, {""}, {""}, {""},
+      {"get_movementFactor", NGF_PY_GET_GPERF(CameraHandler, movementFactor)},
+      {""}, {""}, {""}, {""},
+      {"set_currState", NGF_PY_SET_GPERF(CameraHandler, currState)},
+      {""}, {""}, {""}, {""},
+      {"get_currState", NGF_PY_GET_GPERF(CameraHandler, currState)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
     {
       register int key = MakeHash (str, len);
 
-      if (key <= MAX_HASH_VALUE && key >= MIN_HASH_VALUE)
+      if (key <= MAX_HASH_VALUE && key >= 0)
         {
-          register const struct PythonMethod *resword;
+          register const char *s = wordlist[key].name;
 
-          switch (key - 8)
-            {
-              case 0:
-                resword = &wordlist[0];
-                goto compare;
-              case 1:
-                resword = &wordlist[1];
-                goto compare;
-              case 2:
-                resword = &wordlist[2];
-                goto compare;
-              case 3:
-                resword = &wordlist[3];
-                goto compare;
-              case 6:
-                resword = &wordlist[4];
-                goto compare;
-              case 7:
-                resword = &wordlist[5];
-                goto compare;
-              case 8:
-                resword = &wordlist[6];
-                goto compare;
-              case 9:
-                resword = &wordlist[7];
-                goto compare;
-              case 10:
-                resword = &wordlist[8];
-                goto compare;
-              case 11:
-                resword = &wordlist[9];
-                goto compare;
-              case 14:
-                resword = &wordlist[10];
-                goto compare;
-              case 15:
-                resword = &wordlist[11];
-                goto compare;
-              case 19:
-                resword = &wordlist[12];
-                goto compare;
-              case 20:
-                resword = &wordlist[13];
-                goto compare;
-              case 25:
-                resword = &wordlist[14];
-                goto compare;
-            }
-          return 0;
-        compare:
-          {
-            register const char *s = resword->name;
-
-            if (*str == *s && !strcmp (str + 1, s + 1))
-              return resword;
-          }
+          if (*str == *s && !strcmp (str + 1, s + 1))
+            return &wordlist[key];
         }
     }
   return 0;

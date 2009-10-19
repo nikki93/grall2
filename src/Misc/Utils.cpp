@@ -19,7 +19,7 @@ NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time)
             );
 }
 
-Ogre::String saveName(unsigned int worldNum)
+Ogre::String checkpointName(unsigned int worldNum)
 {
     //Makes savefile name from world number of Level.
     Level *lvl = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(worldNum));

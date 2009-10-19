@@ -23,6 +23,8 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mNode->attachObject(mLight);
 
     //Set light properties.
+    mOn = Ogre::StringConverter::parseBool(mProperties.getValue("on", 0, "yes")),
+
     mLight->setDiffuseColour(mDiffuseColour = Ogre::ColourValue(
             Ogre::StringConverter::parseReal(mProperties.getValue("colour", 0, "1")),
             Ogre::StringConverter::parseReal(mProperties.getValue("colour", 1, "1")),
@@ -80,7 +82,7 @@ Light::~Light()
 //-------------------------------------------------------------------------------
 void Light::unpausedTick(const Ogre::FrameEvent &evt)
 {
-    mLight->setVisible(GlbVar.settings.graphics.lighting);
+    mLight->setVisible(mOn && GlbVar.settings.graphics.lighting);
 
     if (mTimed)
     {
@@ -107,6 +109,9 @@ NGF::MessageReply Light::receiveMessage(NGF::Message msg)
             NGF_NO_REPLY();
         case MSG_SETPOSITION:
             mNode->setPosition(msg.getParam<Ogre::Vector3>(0));
+            NGF_NO_REPLY();
+        case MSG_SETVISIBLE:
+            mOn = msg.getParam<bool>(0);
             NGF_NO_REPLY();
     }
 

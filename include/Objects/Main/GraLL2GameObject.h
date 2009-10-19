@@ -61,6 +61,8 @@ class GraLL2GameObject :
 
         Ogre::Real mClickedTime; //Time after turning invisible for click feedback.
 
+        bool mVisible;
+
     public:
         GraLL2GameObject(bool dimensional = true);
         virtual ~GraLL2GameObject() = 0;
@@ -75,9 +77,10 @@ class GraLL2GameObject :
         //--- Non-NGF methods ----------------------------------------------------------
         void initBody(int specialFlags = DimensionManager::NONE);
         Ogre::Entity *createBrushEntity();
-        void destroyBody() { if (mBody) GlbVar.phyWorld->removeRigidBody(mBody); }
+        void destroyBody() { if (mBody) { GlbVar.phyWorld->removeRigidBody(mBody); delete mBody->getMotionState(); delete mBody; mBody = 0; } }
         void setDimension(int dimension);
         int getDimensions() { return mDimensions; }
+        void checkFell() { if (mBody && mBody->getWorldTransform().getOrigin().y() < -20) GlbVar.goMgr->requestDestroy(getID()); }
 
         //--- Python interface ---------------------------------------------------------
         virtual NGF_PY_BEGIN_DECL(GraLL2GameObject)
@@ -128,6 +131,8 @@ class GraLL2GameObject :
             NGF_PY_METHOD_DECL(setAngularVelocity)
             //getAngularVelocity()
             NGF_PY_METHOD_DECL(getAngularVelocity)
+
+            NGF_PY_METHOD_DECL(setVisible)
         }
         NGF_PY_END_DECL
 
@@ -196,32 +201,32 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::MakeHash (register const char *str, regist
 {
   static const unsigned char asso_values[] =
     {
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39,  5, 39, 39, 20, 39,
-      39, 39, 39, 39, 39, 39,  5, 39, 39, 10,
-       5, 39, 39, 39, 15, 39, 10, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39,  0, 39, 39,
-      39, 39, 39,  5, 39, 39, 39, 39,  0, 39,
-       0, 39, 39, 39, 39,  0,  0, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39, 39, 39, 39, 39,
-      39, 39, 39, 39, 39, 39
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40,  5, 40, 40, 20, 40,
+      40, 40, 40, 40, 40, 40,  5, 40, 40, 10,
+       5, 40, 40, 40, 20, 40,  5, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40,  0, 40, 40,
+      40, 40, 40,  5, 40, 40, 40, 40,  0, 40,
+       0, 40, 40, 40, 40,  0,  5, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40
     };
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[0]];
 }
@@ -231,28 +236,28 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
 {
   enum
     {
-      TOTAL_KEYWORDS = 21,
+      TOTAL_KEYWORDS = 22,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 23,
-      MIN_HASH_VALUE = 9,
-      MAX_HASH_VALUE = 38
+      MIN_HASH_VALUE = 10,
+      MAX_HASH_VALUE = 39
     };
 
   static const struct PythonMethod wordlist[] =
     {
       {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
-      {"translate", NGF_PY_METHOD_GPERF(GraLL2GameObject, translate)},
+      {""},
       {"applyForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyForce)},
       {"applyTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorque)},
       {"applyImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyImpulse)},
       {"setAlarm", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAlarm)},
-      {""},
-      {"switchDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, switchDimension)},
+      {"translate", NGF_PY_METHOD_GPERF(GraLL2GameObject, translate)},
+      {"setVisible", NGF_PY_METHOD_GPERF(GraLL2GameObject, setVisible)},
       {"setPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, setPosition)},
       {"applyCentralForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralForce)},
       {"applyTorqueImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorqueImpulse)},
       {"applyCentralImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralImpulse)},
-      {""},
+      {"switchDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, switchDimension)},
       {"getPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, getPosition)},
       {"setLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setLinearVelocity)},
       {"setAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAngularVelocity)},
@@ -263,10 +268,10 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
       {"getOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, getOrientation)},
       {""}, {""},
       {"setDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, setDimension)},
+      {"getVelocityInLocalPoint", NGF_PY_METHOD_GPERF(GraLL2GameObject, getVelocityInLocalPoint)},
+      {""}, {""}, {""}, {""},
       {"getTotalForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalForce)},
-      {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)},
-      {""}, {""}, {""},
-      {"getVelocityInLocalPoint", NGF_PY_METHOD_GPERF(GraLL2GameObject, getVelocityInLocalPoint)}
+      {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
