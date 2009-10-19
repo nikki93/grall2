@@ -53,8 +53,7 @@ ngflevel Level1
 			       : 
 			       : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
-			       : 		GraLL2.showMessage("""{0}, {1} - Peek left/right
-			       : {0}+{1} - Peek back""".format(GraLL2.getControl("peepLeft"), GraLL2.getControl("peepRight")), 7)
+			       : 		GraLL2.showMessage("%(l)s, %(r)s - Peek left/right\n%(l)s+%(r)s - Peek back" % { 'l' : GraLL2.getControl("peepLeft"), 'r' : GraLL2.getControl("peepRight")}, 7)
 			       : 		Ngf.destroyObject(self)
 		}
 	}
@@ -484,7 +483,7 @@ ngflevel Level1
 			       : 		GraLL2.cameraHandler.p_rotationFactor = 0
 			       : 		GraLL2.cameraHandler.p_movementFactor = 4	
 			       : 		
-			       : 		GraLL2.showMessage("{0}, {1}, {2}, {3} - Move forward, backward, left and right respectively".format(GraLL2.getControl("forward"), GraLL2.getControl("backward"), GraLL2.getControl("left"), GraLL2.getControl("right")), 6)
+			       : 		GraLL2.showMessage("%s, %s, %s, %s - Move forward, backward, left and right respectively" % (GraLL2.getControl("forward"), GraLL2.getControl("backward"), GraLL2.getControl("left"), GraLL2.getControl("right")), 6)
 		}
 	}
 	object
