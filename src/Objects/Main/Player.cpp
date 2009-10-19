@@ -510,7 +510,7 @@ NGF_PY_BEGIN_IMPL(Player)
     }
     NGF_PY_METHOD_IMPL(die)
     {
-        NGF_PY_METHOD_PARAMS(2, bool, explode, bool, corpse);
+        NGF_PY_METHOD_PARAMS_2(bool, explode, bool, corpse);
 
         die(explode, corpse);
         NGF_PY_RETURN();

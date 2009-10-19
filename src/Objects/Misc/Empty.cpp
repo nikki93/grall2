@@ -240,7 +240,7 @@ NGF_PY_BEGIN_IMPL(Empty)
 
     NGF_PY_METHOD_IMPL(createBoxShape)
     {
-        NGF_PY_METHOD_PARAMS(1, Ogre::Vector3, half);
+        NGF_PY_METHOD_PARAMS_1(Ogre::Vector3, half);
         createBoxShape(half);
 
         NGF_PY_RETURN();

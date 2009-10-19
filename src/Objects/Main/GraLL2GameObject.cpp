@@ -305,7 +305,7 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
     }
     NGF_PY_METHOD_IMPL(setVisible)
     {
-        NGF_PY_METHOD_PARAMS(1, bool, visible);
+        NGF_PY_METHOD_PARAMS_1(bool, visible);
         mVisible = visible;
 
         NGF_PY_RETURN();
