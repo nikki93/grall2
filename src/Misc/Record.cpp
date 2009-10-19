@@ -31,7 +31,7 @@ void loadRecord()
     {
         cfg.loadDirect(RECORD_FILE);
     }
-    catch (Ogre::FileNotFoundException &e)
+    catch (Ogre::FileNotFoundException &)
     {
         std::ofstream out(RECORD_FILE);
         out << std::endl;
@@ -106,13 +106,20 @@ void loseLevel()
 
 void winLevel()
 {
+    //Tell player.
+    GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_WINLEVEL));
+
     //Record stuff.
     unsigned int levelNum = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
-    Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
 
-    rec.completed = true; //Completed!
-    if (rec.score < GlbVar.bonusTime) //Save better score.
-        rec.score = GlbVar.bonusTime;
+    if (levelNum)
+    {
+        Globals::Records::Record &rec = Util::getRecordFromLevelNum(levelNum);
+
+        rec.completed = true; //Completed!
+        if (rec.score < GlbVar.bonusTime) //Save better score.
+            rec.score = GlbVar.bonusTime;
+    }
 
     //Do the fade and go to next level.
     GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_WINLEVEL));

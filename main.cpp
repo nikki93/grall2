@@ -14,7 +14,7 @@
  */
 
 /* 
- * Game shortcut keys
+ * Testing shortcut keys
  *
  *    F1, F2   - Next world, previous world.
  *    F3, F4   - Toggle console visibility, run code
@@ -24,14 +24,12 @@
  *    F10      - Show physics collision shapes
  *    F12      - Exit
  *    Ctrl+X   - Pick object (stored as 'clicked' in Python)
+ *    Ctrl+O   - Show Options dialog
+ *    Ctrl+P   - Pause game
  *
  */
 
 #include "Globals.h"
-
-#include "Objects/Main/Controller.h"
-
-#include "boost/format.hpp"
 
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
 
@@ -143,13 +141,19 @@ class GameListener :
                     Util::screenshot("Screenshot", ".png");
                     break;
 
-                case OIS::KC_O:
-                    GlbVar.optionsDialog->setVisible(!(GlbVar.console->isVisible()));
-                    break;
-
                 case OIS::KC_X:
                     if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
                         GlbVar.objectClicker->click();
+                    break;
+
+                case OIS::KC_O:
+                    if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+                        GlbVar.optionsDialog->setVisible(!(GlbVar.console->isVisible()));
+                    break;
+
+                case OIS::KC_P:
+                    if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+                        GlbVar.paused = !GlbVar.paused;
                     break;
             }
 
@@ -239,32 +243,8 @@ class Game
             }
 
             //Resources.
-            Ogre::ResourceGroupManager &ogreRmgr = Ogre::ResourceGroupManager::getSingleton();
-
-            ogreRmgr.addResourceLocation(".", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX, "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "GUI", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "GUI/Layouts", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Levels", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Sounds", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation(DATA_PREFIX "ObjectMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "ObjectTextures", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushMeshes", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Concrete", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Metal", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Other", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Special", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Tile", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "BrushTextures/Glass", "FileSystem", "General");
-
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Base", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Shaders/Shadows", "FileSystem", "General");
-            ogreRmgr.addResourceLocation(DATA_PREFIX "Compositors", "FileSystem", "General");
-            sdsud.addResourceLocation(DATA_PREFIX "ParticleFX", "FileSystem", "General");
+            Util::addResourceLocationRecursive(DATA_PREFIX, "General");
+            Util::addResourceLocationRecursive(USER_PREFIX "Content", "General");
 
             //Renderer. Just choose the first available one, we just load only one plugin (either
             //Direct3D or OpenGL) anyway.
@@ -313,7 +293,7 @@ class Game
             viewport->setDimensions(0,0,1,1);
             GlbVar.ogreCamera->setAspectRatio((float)viewport->getActualWidth() / (float) viewport->getActualHeight());
             GlbVar.ogreCamera->setFarClipDistance(10000.0);
-            GlbVar.ogreCamera->setNearClipDistance(0.5);
+            GlbVar.ogreCamera->setNearClipDistance(0.1);
 
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList inputParams;
@@ -376,7 +356,7 @@ class Game
 
             //--- Init resources and other stuff ---------------------------------------
             //Initialise the ResourceGroups.
-            ogreRmgr.initialiseAllResourceGroups();
+            Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
             //Shadows.
             initShadows();
@@ -409,6 +389,7 @@ class Game
             GlbVar.player = 0;
             GlbVar.currCameraHandler = 0;
             GlbVar.currMessageBox = 0;
+            GlbVar.currSlideshow = 0;
             GlbVar.worldSwitch = -1;
             GlbVar.loadGame = true;
 
@@ -418,6 +399,12 @@ class Game
 
             //Load user record (highest level, times, scores).
             loadRecord();
+
+            //List of user levels.
+            std::vector<Ogre::String> levels = GlbVar.lvlLoader->getLevels();
+            for (std::vector<Ogre::String>::iterator iter = levels.begin(); iter != levels.end(); ++iter)
+                if (std::find(GlbVar.ngfNames.begin(), GlbVar.ngfNames.end(), *iter) == GlbVar.ngfNames.end())
+                    GlbVar.userNgfNames.push_back(*iter);
 
             //Start running the Worlds.
             GlbVar.woMgr->start(0);
@@ -517,6 +504,7 @@ class Game
 int main(int argc, char *argv[])
 {
     Game game;
+
     try
     {
         //Init.

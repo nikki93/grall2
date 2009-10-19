@@ -16,7 +16,7 @@
 #ifndef __MUSIC_MANAGER_H__
 #define __MUSIC_MANAGER_H__
 
-#define LOAD_MUSIC(music) GlbVar.soundMgr->createSound(#music, #music ".ogg", true, false)
+#define LOAD_MUSIC(music) GlbVar.soundMgr->createSound(#music, #music ".ogg", true, true)
 
 #include "Globals.h"
 

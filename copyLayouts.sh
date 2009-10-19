@@ -1,5 +1,7 @@
 #!/bin/sh
 
+EDITORDIR=~/Development/Libraries/ogre/mygui-head/build/bin
+
 help=1
 while getopts ":ge" opt; do
  case "$opt" in
@@ -16,9 +18,9 @@ if [[ $help == 1 ]];then
 fi
 
 if [[ $toHere == 1 ]];then
- cp ~/Development/Libraries/ogre/mygui/Shared/linux/*.layout data/GUI/Layouts/
+ cp $EDITORDIR/*.layout data/GUI/Layouts/
 fi
 
 if [[ $toThere == 1 ]];then
- cp data/GUI/Layouts/*.layout ~/Development/Libraries/ogre/mygui/Shared/linux/
+ cp data/GUI/Layouts/*.layout $EDITORDIR
 fi

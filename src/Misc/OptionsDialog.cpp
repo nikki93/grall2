@@ -235,7 +235,7 @@ void OptionsDialog::setVisible(bool visible)
     }
     else
     {
-        int curInd = GlbVar.woMgr->getCurrentWorldIndex();
+        unsigned int curInd = GlbVar.woMgr->getCurrentWorldIndex();
         if (curInd >= GlbVar.firstLevel && curInd <= GlbVar.records.highestLevelIndex)
             GlbVar.gui->hidePointer();
     }

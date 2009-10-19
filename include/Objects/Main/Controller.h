@@ -74,6 +74,7 @@ class Controller :
             NGF_SERIALISE_OGRE(Int, bonusTime); //Save bonus time left.
 
             GRALL2_SERIALISE_ALARMS();
+            NGF_SERIALISE_PYTHON_LOCALS();
 
             NGF_SERIALISE_ON_LOAD
             {

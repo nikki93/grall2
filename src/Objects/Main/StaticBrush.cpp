@@ -40,7 +40,6 @@ StaticBrush::StaticBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody( DimensionManager::STATIC
             );
-    setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------
 void StaticBrush::postLoad()

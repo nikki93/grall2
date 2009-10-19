@@ -52,7 +52,8 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
       mUnderControl(true),
       mDead(false),
       mLight(0),
-      mInvincible(false) //This makes the game harder.
+      mInvincible(false), //This makes the game harder.
+      mWon(false)
 {
     addFlag("Player");
     addFlag("Switcher");
@@ -66,6 +67,21 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
         GlbVar.goMgr->destroyObject(GlbVar.player->getID());
     GlbVar.player = this;
 
+    //Set the Python us.
+    py::object &main = NGF::Python::PythonManager::getSingleton().getMainNamespace();
+    py::exec(
+            "import GraLL2\n\n"
+
+            "def setPlayer(obj):\n"
+            "  GraLL2.player = obj\n",
+            main, main
+            ); 
+    main["setPlayer"](getConnector());
+    py::exec(
+            "del setPlayer\n",
+            main, main
+            );
+
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Player.mesh");
     mEntity->setMaterialName("Objects/Player");
@@ -74,6 +90,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Read in properties.
     mMinHeight = Ogre::StringConverter::parseReal(mProperties.getValue("minHeight", 0, "-4"));
+    mCanSwitchDimensions = Ogre::StringConverter::parseBool(mProperties.getValue("canSwitchDimensions", 0, "yes"));
 
     //Create the ghost object for dimension tests (we do it before the actual body so that
     //we can pass it to the PlayerMotionState).
@@ -225,7 +242,7 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
 
     //Player can't be in a dimension that's not being displayed. :P
-    setDimension(GlbVar.dimMgr->getCurrentDimension());
+    //setDimension(GlbVar.dimMgr->getCurrentDimension());
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
@@ -274,6 +291,12 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
         case MSG_CAPTURECAMERAHANDLER:
             captureCameraHandler();
             NGF_NO_REPLY();
+
+        case MSG_WINLEVEL:
+            mUnderControl = false;
+            mWon = true;
+            mBody->setDamping(0.8, 0.9);
+            NGF_SEND_REPLY();
     }
 
     return GraLL2GameObject::receiveMessage(msg);
@@ -309,7 +332,7 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
         if (pickupType != "NONE")
         {
             ++mPickups[pickupType];
-        GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_PICKEDUP));
+            GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_PICKEDUP));
         }
     }
     
@@ -343,95 +366,12 @@ void Player::loseCameraHandler()
 //-------------------------------------------------------------------------------
 void Player::switchDimension()
 {
-    //If the other dimension isn't free at our place, then abort.
+    //Only if we can. :P
+    if (!mCanSwitchDimensions)
+        return;
 
-    /* v1: Do a cast.
-    //Collects only the results that matter.
-    struct PlayerDimensionCheckResult : public btDynamicsWorld::ConvexResultCallback
-    {
-        btCollisionObject *mIgnore;
-        int mOppDimension;
-        std::set<btCollisionObject*> mHits;
-        btVector3 mFrom, mTo;
-        bool mHit;
+    //Broadphase, narrowphase ghost check + ray even/odd test for trimeshes
 
-        PlayerDimensionCheckResult(btCollisionObject *ignore, int oppDimension, btVector3 from, btVector3 to)
-            : mIgnore(ignore),
-            mOppDimension(oppDimension),
-            mFrom(from),
-            mTo(to)
-        {
-        }
-
-        btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &convexResult, bool)
-        {
-            btCollisionObject *obj = convexResult.m_hitCollisionObject;
-            btCollisionShape *shape = obj->getCollisionShape();
-
-            //If triangle mesh, check if 'inside'.
-            if (shape->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE)
-            {
-                //(do inside-check here)
-                mHit = true;
-                mHits.insert(obj);
-            }
-            else
-            {
-                mHit = true;
-                mHits.insert(obj);
-            }
-
-            return convexResult.m_hitFraction;
-        }
-
-        bool needsCollision(btBroadphaseProxy* proxy0) const
-        {
-            //If it's the Player, doesn't want dimension checking or isn't in the other dimension, we don't care.
-            return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
-                && (!(proxy0->m_collisionFilterGroup & DimensionManager::NO_DIM_CHECK))
-                && (proxy0->m_collisionFilterGroup & mOppDimension);
-        }
-    };
-
-    //Where to cast from, where to cast to, etc.
-    btVector3 pos1 = mBody->getWorldTransform().getOrigin() - btVector3(0,0.01,0);
-    btVector3 pos2 = btVector3(pos1.x(),9999,pos1.z());
-    btQuaternion rot = mBody->getWorldTransform().getRotation();
-    btTransform trans1(rot, pos1);
-    btTransform trans2(rot, pos2);
-
-    //Do the cast.
-    PlayerDimensionCheckResult res(mBody, mDimensions ^ DimensionManager::DIM_SWITCH, pos1, pos2);
-    GlbVar.phyWorld->convexSweepTest(mGhostShape, trans1, trans2, res);
-
-    //If no hits, then switch.
-    if (!res.mHit)
-    {
-        GlbVar.dimMgr->switchDimension();
-        setDimension(mDimensions ^ DimensionManager::DIM_SWITCH);
-    }
-    */
-
-    /* v2: Broadphase ghost test.
-    GlbVar.phyWorld->getDispatcher()->dispatchAllCollisionPairs(mGhostObject->getOverlappingPairCache(), GlbVar.phyWorld->getDispatchInfo(), GlbVar.phyWorld->getDispatcher());
-
-    for (int i = 0; i < mGhostObject->getNumOverlappingObjects(); ++i)
-    {
-        btCollisionObject *obj = mGhostObject->getOverlappingObject(i);
-
-        if (obj == mBody) //It's us!
-            continue;
-
-        short int flags = obj->getBroadphaseHandle()->m_collisionFilterGroup;
-
-        if (flags & DimensionManager::NO_DIM_CHECK)
-            continue;
-        if (flags & (mDimensions ^ DimensionManager::DIM_SWITCH))
-            return;
-    }
-    */
-
-    /* v3: Broadphase, narrowphase ghost check + ray even/odd test for trimeshes */
     //First, do ghost test. Works for convex, and for trimesh-intersection.
     btManifoldArray manifoldArray;
     btBroadphasePairArray& pairArray = mGhostObject->getOverlappingPairCache()->getOverlappingPairArray();
@@ -520,11 +460,12 @@ void Player::switchDimension()
 //-------------------------------------------------------------------------------
 void Player::die(bool explode)
 {
-    //We're invincible! :P
-    if (mInvincible)
+    //If we're invincible, nah! :P
+    if (mWon || mInvincible)
         return;
 
     //We lost the level.
+    //if (!mWon)
     loseLevel();
 
     //We're not going through this twice!
@@ -594,6 +535,8 @@ NGF_PY_BEGIN_IMPL(Player)
     }
 
     NGF_PY_PROPERTY_IMPL(underControl, mUnderControl, bool)
+    NGF_PY_PROPERTY_IMPL(invincible, mInvincible, bool)
+    NGF_PY_PROPERTY_IMPL(canSwitchDimensions, mCanSwitchDimensions, bool)
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
 //-------------------------------------------------------------------------------

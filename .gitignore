@@ -4,6 +4,14 @@ ext
 #Files made by running/building.
 Makefile
 GraLL2.make
+premake.lua #premake.lua.def contains 'default', user can make his own.
+
+premake.exe
+GraLL2.sln
+GraLL2.suo
+GraLL2.vcproj*
+GraLL2.ncb
+
 obj
 bin/debug/
 bin/release/
@@ -17,7 +25,8 @@ tags
 *.log
 *.mesh.xml
 etc/local/*
+local
 
-#User files. However, let settings stay.
+#User files.
 usr/*
 !usr/Settings.ini

@@ -20,6 +20,8 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     addFlag("Crate");
     addFlag("Switcher");
 
+    Ogre::String script = mProperties.getValue("script", 0, "");
+
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 

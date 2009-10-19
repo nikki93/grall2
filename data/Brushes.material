@@ -104,7 +104,7 @@ material Brushes/TileMetal.png : BaseNormalMapParallax
 }
 
 //--- TileMetalHex --------------------------------------------------------------------
-material Brushes/TileMetalHex.png : BaseNormalMapParallax
+material Brushes/TileMetalHex.png : BaseNormalMap
 {
         set $diffuse_tex "TileMetalHex.png"
         set $normal_tex "TileMetalHex_NM.png"
@@ -290,6 +290,7 @@ material Brushes/WhiteLight.png : BaseNormalMapParallaxGlow
         set $diffuse_tex "WhiteLight.png"
         set $normal_tex "WhiteLight_NM.png"
         set $glow_tex "WhiteLight_GW.png"
+        set $glow_amount "0.5"
 
         set $ambient "0.7 0.7 0.7 1"
         set $diffuse "0.9 0.9 0.9 1"

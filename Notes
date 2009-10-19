@@ -6,18 +6,25 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Make more Brush textures.
+- Create a 'level end' thing.
 
-- Fix shadows.
+- Start creating the initial levels.
+
+- Come up with a logo.
+
+- Make more brush textures.
 
 Side
 ----
 - Come up with new ideas.
 
-- Redo Switch and Teleporter textures.
+- Write more GameObject documentation.
+
+- Make more tutorials.
 
 Bugs
 ----
+- Fix shadows.
 
 +---------------------------+
 |         ChangeLog         |
@@ -530,3 +537,77 @@ Sun Sep 20 01:50:31 AST 2009
 - Fixed Teleporter bug. The Teleporter tried to retreive a pointer to the target point in it's constructor, which would cause problems if
   the point was created after the Teleporter. This has now been moved to the 'postLoad' event instead.
 - Recorded new video, with voice, and made new level as a result.
+
+Mon Sep 21 16:45:12 AST 2009
+----------------------------
+- Allowed glowing materials to have per-material glow 'amount'.
+
+Fri Sep 25 14:54:48 AST 2009
+----------------------------
+- Built and tested dependencies on Windows.
+- Built and tested GraLL 2 on Windows.
+- Added Windows 'premake-windows.lua' file for Windows building.
+
+Sat Sep 26 21:18:09 AST 2009
+----------------------------
+- Made generic 'premake.lua' that works for both Windows and Linux.
+- Fixed 'Fallback' technique transparency.
+
+Sun Sep 27 14:53:30 AST 2009
+----------------------------
+- Moved to 'streaming' music load.
+- Added loading of resources from 'user' directory to allow user-made content. The 'Content' subdirectory is searched for user-made content,
+  recursively. The user is free to organise his files any way he wants.
+- User can now play 'user levels' (loaded from 'Content' directory). A GUI prompt allows choosing user levels.
+- Added test 'user level'.
+
+Mon Sep 28 13:11:02 AST 2009
+----------------------------
+- User level selection dialog has now been moved to Main Menu to make things cleaner.
+- Made .blend file external data paths relative (textures).
+
+Tue Sep 29 21:22:45 AST 2009
+----------------------------
+- Added a material editor/viewer that allows users to make their own materials and view them in game. The editor can also save the
+  .material file, which allows the user to then use this material in his own levels.
+
+Wed Sep 30 16:06:10 AST 2009
+----------------------------
+- Levels no longer need .material files, just .ngf and .mesh files. Material names are simply read from SubMesh material references. The
+  image name is retreived from the name (Blender TEXFACE), and 'Brushes/<name>' material is assigned.
+
+Thu Oct  1 20:49:14 AST 2009
+----------------------------
+- Added more properties to MovingBrush, MovingBomb.
+- Added more documentation to the Wiki.
+
+Fri Oct  2 23:56:31 AST 2009
+----------------------------
+- Added a 'canSwitchDimension' property to Player.
+- Added Pickup bounce and spin.
+
+Sat Oct  3 17:26:08 AST 2009
+----------------------------
+- Added a 'KeyY' prefab, like the gold keys from the original GraLL. They keep a count of how many total 'KeyY's were
+  created, so that you can do a 'other.numPickup("KeyY") == GraLL2.controller.m_numKeyY' test to do the usual
+  'did he get all the yellow keys' test.
+- Player bugfix. Player didn't serialise his 'mPickups' map.
+
+Sun Oct  4 20:46:38 AST 2009
+----------------------------
+- Level 'first frame spike' bugfix.
+- 'Slideshow' added. Plays a slideshow (good for storytelling, for example), each slide can have it's own time. Completely Python scriptable,
+  and attachable to any event.
+
+Tue Oct  6 21:38:41 AST 2009
+----------------------------
+- Added scriptable 'Empty' object. Basically, an object type that's empty in it's 'native C++' form, but very scriptable, to allow 'from
+  scratch Python objects', and fun level scripts.
+
+Wed Oct  7 22:15:19 AST 2009
+----------------------------
+- Completed physics body and graphics mesh creation, material assignment for 'Empty' GameObject.
+- Modified 'Empty' GameObject physics body creation to rely on enums instead of strings for performance.
+- Fixed 'Empty' serialisation problems.
+- Fixed 'SlidingBrush' bug related to 'point' event being called every frame while waiting on a point.
+- Allowed use of bytcode-compiled Python 'code objects' for scripts for performance benifits (especially 'script in script' objects).

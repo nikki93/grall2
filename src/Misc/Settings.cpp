@@ -25,7 +25,7 @@ void loadSettings()
     {
         cfg.loadDirect(SETTINGS_FILE);
     }
-    catch (Ogre::FileNotFoundException &e)
+    catch (Ogre::FileNotFoundException &)
     {
         std::ofstream out(SETTINGS_FILE);
         out << std::endl;
@@ -38,7 +38,7 @@ void loadSettings()
     
     GlbVar.settings.ogre.pluginDirectory = cfg.getSetting("pluginDirectory", "ogre", ".");
     GlbVar.settings.ogre.plugins = Ogre::StringConverter::parseStringVector(
-            cfg.getSetting("plugins", "ogre", "Plugin_CgProgramManager.so Plugin_ParticleFX.so Plugin_OctreeSceneManager.so")
+            cfg.getSetting("plugins", "ogre", "Plugin_CgProgramManager Plugin_ParticleFX Plugin_OctreeSceneManager")
             );
 
     GlbVar.settings.ogre.renderer = cfg.getSetting("renderer", "ogre", "OpenGL") == "Direct3D"
@@ -140,6 +140,5 @@ void saveSettings()
     //----------------------------------------------------------------------------------
 
     cfg.close();
-
 }
 

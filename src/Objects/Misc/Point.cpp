@@ -19,7 +19,7 @@ Point::Point(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(ogreName, pos);
 
     //Load the Python script.
-    NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    SET_PYTHON_SCRIPT();
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);

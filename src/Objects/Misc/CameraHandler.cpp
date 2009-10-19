@@ -26,7 +26,8 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
     addFlag("CameraHandler");
 
     //Load the Python script.
-    NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    SET_PYTHON_SCRIPT();
+
     NGF_PY_SAVE_EVENT(alarm);
 
     //Python init event.
@@ -200,13 +201,13 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         case CS_DEATH:
             {
                 //Move it up, rotate it.
-                mDeathOffset.y += 4 * evt.timeSinceLastFrame;
-                mDeathOffset = Ogre::Quaternion(Ogre::Degree(20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mDeathOffset;
+                mGhostOffset.y += 4 * evt.timeSinceLastFrame;
+                mGhostOffset = Ogre::Quaternion(Ogre::Degree(20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mGhostOffset;
 
                 //Move the Camera toward it smoothly, make it look at the point.
-                Ogre::Vector3 toMove = ((mDeathLastPos + mDeathOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
+                Ogre::Vector3 toMove = ((mGhostPos + mGhostOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
                 mCamera->move(toMove);
-                lookAt(mDeathLastPos + mLookAtOffset, evt.timeSinceLastFrame);
+                lookAt(mGhostPos + mLookAtOffset, evt.timeSinceLastFrame);
             }
             break;
     }
@@ -242,8 +243,8 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     mTargetNode = 0;
                     break;
                 case CS_DEATH:
-                    mDeathLastPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
-                    mDeathOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3);
+                    mGhostPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
+                    mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3);
                     mTargetNode = 0;
                     break;
             }
@@ -292,8 +293,7 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
     }
     NGF_PY_METHOD_IMPL(targetPlayer)
     { 
-        NGF::Python::PythonObjectConnectorPtr obj = py::extract<NGF::Python::PythonObjectConnectorPtr>(args[0]);
-        NGF::ID id = obj->getID();
+        NGF::ID id = GlbVar.player->getID();
         mTargetNode = GlbVar.ogreSmgr->getSceneNode("id" + Ogre::StringConverter::toString(id) + "-controlnode");
 
         NGF_PY_RETURN();

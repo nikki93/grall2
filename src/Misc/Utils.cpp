@@ -7,15 +7,25 @@ Utils.cpp
 #include "Misc/Utils.h"
 
 #include "Objects/Misc/MessageBox.h"
+#include "Worlds/Level.h"
 
 namespace Util {
 
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time)
 {
-    return GlbVar.goMgr->createObject<MessageBox>(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+    return GlbVar.goMgr->createObject("MessageBox", Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
             ("message", message, "")
             ("time", Ogre::StringConverter::toString(time))
             );
+}
+
+Ogre::String saveName(unsigned int worldNum)
+{
+    //Makes savefile name from world number of Level.
+    Level *lvl = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(worldNum));
+    if (lvl)
+        return lvl->getNgfName();
+    return "NULL";
 }
 
 void screenshot(Ogre::String filename, const Ogre::String &extension)

@@ -14,6 +14,7 @@
  */
 
 #include "Globals.h"
+#include "Objects/Misc/Slideshow.h"
 
 //--- Wrapper functions ---------------------------------------------------------
 
@@ -176,6 +177,32 @@ Ogre::Real py_getBonusTime()
     return GlbVar.bonusTime;
 }
 
+void py_startSlideshow(int width, int height, py::list slides)
+{
+    if (!GlbVar.newLevel)
+        return;
+
+    NGF::GameObject *obj = GlbVar.goMgr->createObject<Slideshow>(Ogre::Vector3::ZERO, Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+            ("width", Ogre::StringConverter::toString(width))
+            ("height", Ogre::StringConverter::toString(height))
+            );
+
+    try
+    {
+        while(1)
+        {
+            py::tuple t = py::extract<py::tuple>(slides.pop(0));
+            Ogre::Real time = py::extract<Ogre::Real>(t[0]);
+            Ogre::String image = py::extract<Ogre::String>(t[1]);
+            GlbVar.goMgr->sendMessage(obj, NGF_MESSAGE(MSG_ADDSLIDE, time, image));
+        }
+    }
+    catch (...)
+    {
+        return;
+    }
+}
+
 
 //--- The module ----------------------------------------------------------------
 
@@ -183,6 +210,45 @@ BOOST_PYTHON_MODULE(GraLL2)
 {
     //Docstring settings.
     py::docstring_options doc_options(true, true, false);
+
+    //Enums.
+    py::enum_<int>("Dimensions")
+        .value("DIM_1", DimensionManager::DIM_1)
+        .value("DIM_2", DimensionManager::DIM_2)
+        .value("DIM_BOTH", DimensionManager::DIM_BOTH)
+        ;
+
+    py::enum_<int>("CollisionShape")
+        .value("CONVEX", PythonBodyFlags::CONVEX)
+        .value("TRIMESH", PythonBodyFlags::TRIMESH)
+        .value("BOX", PythonBodyFlags::BOX)
+        .value("SPHERE", PythonBodyFlags::SPHERE)
+        .value("CYLINDERY", PythonBodyFlags::CYLINDERY)
+        .value("CYLINDERZ", PythonBodyFlags::CYLINDERZ)
+        .value("CYLINDERX", PythonBodyFlags::CYLINDERX)
+        ;
+
+    py::enum_<int>("BodyType")
+        .value("FREE", PythonBodyFlags::FREE)
+        .value("STATIC", PythonBodyFlags::STATIC)
+        .value("KINEMATIC", PythonBodyFlags::KINEMATIC)
+        ;
+
+    py::enum_<int>("CollisionFlags")
+        .value("PLAYER", DimensionManager::PLAYER)
+        .value("STATIC", DimensionManager::STATIC)
+        .value("MOVINGBOMB", DimensionManager::MOVINGBOMB)
+        .value("MOVINGBRUSH", DimensionManager::MOVINGBRUSH)
+        .value("GREENBOMB", DimensionManager::GREENBOMB)
+        .value("DIRECTOR", DimensionManager::DIRECTOR)
+
+        .value("NO_DIM_CHECK", DimensionManager::NO_DIM_CHECK)
+        .value("NO_CRATE_CHECK", DimensionManager::NO_CRATE_CHECK)
+        .value("NO_MOVING_CHECK", DimensionManager::NO_MOVING_CHECK)
+        .value("NO_BULLET_HIT", DimensionManager::NO_BULLET_HIT)
+        .value("INVISIBLE", DimensionManager::INVISIBLE)
+        .value("LIFTABLE", DimensionManager::LIFTABLE)
+        ;
 
     //Show message box.
     py::def("showMessage", py_showMessage,
@@ -353,6 +419,14 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("getBonusTime", py_getBonusTime,
             "getBonusTime()\n"
             "Returns the bonus time."
+           );
+
+    //Slideshow
+    py::def("startSlideshow", py_startSlideshow,
+            "startSlideshow(width, height, slides)\n"
+            "Starts playing a slideshow. The 'slides' parameter is a list of tuples, with times and texture names. For example,"
+            "[(0.5,'Slide1.png'),(3,'Slide2.png')] etc. The 'width' and 'height' parameters describe the width and height of the"
+            "images."
            );
 }
 

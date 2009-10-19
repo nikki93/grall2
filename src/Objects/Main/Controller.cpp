@@ -19,8 +19,24 @@ Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 {
     addFlag("Controller");
 
+    //Set the Python us.
+    py::object &main = NGF::Python::PythonManager::getSingleton().getMainNamespace();
+    py::exec(
+            "import GraLL2\n\n"
+
+            "def setController(obj):\n"
+            "  GraLL2.controller = obj\n",
+            main, main
+            ); 
+    main["setController"](getConnector());
+    py::exec(
+            "del setController\n",
+            main, main
+            );
+
     //Load script.
-    NGF::Python::PythonGameObject::setScript(mProperties.getValue("script", 0, ""));
+    SET_PYTHON_SCRIPT();
+
     NGF_PY_SAVE_EVENT(levelStart);
     NGF_PY_SAVE_EVENT(levelStop);
     NGF_PY_SAVE_EVENT(winLevel);
@@ -57,12 +73,25 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
     {
         mEndCountDown -= evt.timeSinceLastFrame;
 
-        //We either restart or go to next depending on whether we won.
+        //We either restart or go to next depending on whether we won. If user level, go to main menu.
         if (mEndCountDown < 777)
+        {
             if (mWin)
-                Util::nextWorld();
+            {
+                if (Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex()))
+                {
+                    Util::nextWorld();
+                }
+                else
+                {
+                    Util::gotoWorld(0);
+                }
+            }
             else
+            {
                 Util::gotoWorld(GlbVar.woMgr->getCurrentWorldIndex());
+            }
+        }
     }
     else if (mEndCountDown > 0)
     {
@@ -159,14 +188,14 @@ NGF_PY_BEGIN_IMPL(Controller)
         mLevelTextPause = py::extract<Ogre::Real>(args[1]);
         mLevelTextOut = py::extract<Ogre::Real>(args[2]);
 
-        Ogre::String level = Ogre::StringConverter::toString(Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex()));
-        Ogre::String caption = static_cast<Level*>((GlbVar.woMgr->getWorldAt(GlbVar.woMgr->getCurrentWorldIndex())))->getCaption();
+        unsigned int level = Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
+        Ogre::String caption = static_cast<Level*>((GlbVar.woMgr->getWorld(GlbVar.woMgr->getCurrentWorldIndex())))->getCaption();
 
         int w = GlbVar.ogreWindow->getWidth();
         int h = GlbVar.ogreWindow->getHeight();
         mLevelText = GlbVar.gui->createWidget<MyGUI::StaticText>("StaticText", 0, (int)(0.25 * h - 25), w, 50, MyGUI::Align::Default, "Popup");
         mLevelText->setTextAlign(MyGUI::Align::HCenter | MyGUI::Align::VCenter);
-        mLevelText->setCaption("Level " + level + " - " + caption);
+        mLevelText->setCaption((level ? "Level " + Ogre::StringConverter::toString(level) : "User Level") + " - " + caption);
         mLevelText->setFontName("BigFont");
         mLevelText->setAlpha(0);
         NGF_PY_RETURN();

@@ -39,11 +39,13 @@
 #include "Objects/Obstacles/Pickup.h"
 #include "Objects/Bots/Bullet.h"
 #include "Objects/Bots/Turret.h"
+#include "Objects/Misc/Empty.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
 #include "Worlds/Level.h"
 #include "Worlds/MainMenu.h"
+#include "Worlds/MaterialViewer.h"
 
 //Register GameObject types.
 void registerGameObjectTypes()
@@ -58,7 +60,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(MovingBrush);
     NGF_REGISTER_OBJECT_TYPE(Director);
     NGF_REGISTER_OBJECT_TYPE(Crate);
-    NGF_REGISTER_OBJECT_TYPE(MessageBox);
+    NGF::GameObjectFactory::getSingleton().registerObjectType<class MessageBox>("MessageBox"); //Problems on Windows.
     NGF_REGISTER_OBJECT_TYPE(Bomb);
     NGF_REGISTER_OBJECT_TYPE(ParticleEffect);
     NGF_REGISTER_OBJECT_TYPE(Ice);
@@ -71,22 +73,24 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(Pickup);
     NGF_REGISTER_OBJECT_TYPE(Bullet);
     NGF_REGISTER_OBJECT_TYPE(Turret);
+    NGF_REGISTER_OBJECT_TYPE(Empty);
 }
 
 //Register worlds.
 void addWorlds()
 {
-    //Main menu.
-    GlbVar.woMgr->addWorld(new MainMenu());
-
-    //Levels.
-    GlbVar.firstLevel = GlbVar.woMgr->getNumWorlds(); //Size = index + 1.
-    
     Ogre::ConfigFile cfg;
     cfg.loadFromResourceSystem("Levels.ini", "General");
 
-    unsigned int currNum = GlbVar.firstLevel;
+    //Main menu.
+    GlbVar.woMgr->addWorld(new MainMenu());
+    GlbVar.woMgr->addWorld(new MaterialViewer());
+    GlbVar.woMgr->addWorld(new Level(2, "", "", true)); //User level.
 
+    //Levels.
+    GlbVar.firstLevel = GlbVar.woMgr->getNumWorlds(); //Size = index + 1.
+
+    unsigned int currNum = GlbVar.firstLevel;
     for (int i = 1; ; ++i)
     {
         Ogre::String attrStr = cfg.getSetting("Level" + Ogre::StringConverter::toString(i));
@@ -96,29 +100,8 @@ void addWorlds()
 
         Ogre::StringVector attrStrs = Ogre::StringUtil::split(attrStr, "|");
         GlbVar.woMgr->addWorld(new Level(currNum++, attrStrs[0], attrStrs[1]));
+
+        GlbVar.ngfNames.push_back(attrStrs[0]);
     }
-
-    /*
-    std::vector<Ogre::String> lvlStrs = GlbVar.lvlLoader->getLevels();
-
-    int worldNum = GlbVar.woMgr->getNumWorlds();
-
-    for (int i = 1; ; ++i)
-    {
-        if (lvlStrs.empty())
-            break;
-
-        Ogre::String currName = "Level" + Ogre::StringConverter::toString(i);
-        std::vector<Ogre::String>::iterator iter = std::find(lvlStrs.begin(), lvlStrs.end(), currName);
-        if (iter != lvlStrs.end())
-        {
-            GlbVar.woMgr->addWorld(new Level(currName));
-            ++worldNum;
-            GlbVar.levelMap[worldNum] = currName;
-
-            lvlStrs.erase(iter);
-        }
-    }
-    */
 }
 

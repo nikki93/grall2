@@ -10,11 +10,14 @@ Level.cpp
 #define OPENING_TEXT_FADE_TIME 2
 
 //-------------------------------------------------------------------------------
-Level::Level(unsigned int worldNum, Ogre::String ngfName, Ogre::String caption)
+Level::Level(unsigned int worldNum, Ogre::String ngfName, Ogre::String caption, bool userLevel)
     : mNgfName(ngfName),
       mCaption(caption),
-      mWorldNum(worldNum)
+      mWorldNum(worldNum),
+      mUserLevel(userLevel)
 {
+    if (mUserLevel)
+        mNgfName = "NULL";
 }
 //-------------------------------------------------------------------------------
 void Level::init()
@@ -24,40 +27,39 @@ void Level::init()
     //Just for fun. :P
     LOG("On to level: " + Ogre::StringConverter::toString(Util::worldNumToLevelNum(mWorldNum)) + ", NGF: " + mNgfName + ", Caption: " + mCaption + "!");
 
-    //No stuff blocking our view.
-    GlbVar.gui->hidePointer();
-
     //If higher than highest level, then highest level is this (user went to new level).
     if (mWorldNum > GlbVar.records.highestLevelIndex)
         GlbVar.records.highestLevelIndex = mWorldNum;
 
-    //Create the GameObjects!
-    if (GlbVar.loadGame && Util::getRecordFromLevelNum(Util::worldNumToLevelNum(mWorldNum)).checkpoint)
-    {
-        //If we're loading games, and savefile exists, load it.
-        Util::deserialise(Util::saveName(mWorldNum));
-    }
+    if (GlbVar.records.highestLevelIndex == mWorldNum)
+        GlbVar.newLevel = true;
     else
-    {
-        //Otherwise read in the level from the .ngf file.
-        Util::loadNgf(mNgfName);
-        GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTART));
-    }
+        GlbVar.newLevel = false;
 
-    //To save from first frame evt.timeSinceLastFrame spikes.
-    GlbVar.paused = true;
+    //Create the GameObjects! If null name, user level not chosen yet, just skip.
+    if (mNgfName != "NULL")
+        startLevel();
+    else
+        Util::nextWorld();
 }
 //-------------------------------------------------------------------------------
 void Level::tick(const Ogre::FrameEvent &evt)
 {
     //Part of the anti evt.timeSinceLastFrame hack.
-    GlbVar.paused = false;
+    if (mFirstFrame)
+    {
+        GlbVar.paused = false;
+        mFirstFrame = false;
+    }
     
     //Some key stuff.
     if (Util::isKeyDown(OIS::KC_N))
         winLevel();
     if (Util::isKeyDown(OIS::KC_ESCAPE))
     {
+        if (mUserLevel)
+            mNgfName = "NULL";
+
         //In case some fades have been started, we stop 'em.
         GlbVar.fader->abortFade(0);
         Util::gotoWorld(0);
@@ -70,4 +72,29 @@ void Level::stop()
     Util::clearLevel();
 }
 //-------------------------------------------------------------------------------
+void Level::startLevel()
+{
+    //First we're not paused.
+    GlbVar.paused = false;
 
+    //No stuff blocking our view.
+    GlbVar.gui->hidePointer();
+
+    if (GlbVar.loadGame && Util::getRecordFromLevelNum(Util::worldNumToLevelNum(mWorldNum)).checkpoint)
+    {
+        //If we're loading games, and savefile exists, load it.
+        Util::deserialise(Util::saveName(mWorldNum));
+    }
+    else
+    {
+        //Otherwise read in the level from the .ngf file.
+        Util::loadNgf(mNgfName);
+        GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTART));
+    }
+
+    //To save from load-frame evt.timeSinceLastFrame spikes. If some GameObject paused it already,
+    //then we skip it.
+    mFirstFrame = !GlbVar.paused;
+    GlbVar.paused = true;
+}
+//-------------------------------------------------------------------------------
