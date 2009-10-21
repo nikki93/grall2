@@ -44,7 +44,11 @@ void loadRecord()
 
     Ogre::String highestLevelStr = cfg.getSetting("highestLevelIndex", Ogre::StringUtil::BLANK, "n");
     if (highestLevelStr != "n")
+    {
         GlbVar.records.highestLevelIndex = Ogre::StringConverter::parseInt(highestLevelStr);
+        if (GlbVar.records.highestLevelIndex >= GlbVar.woMgr->getNumWorlds())
+            GlbVar.records.highestLevelIndex = GlbVar.firstLevel;
+    }
     else
         GlbVar.records.highestLevelIndex = GlbVar.firstLevel;
 

@@ -7,7 +7,7 @@ import Ngf
 def init(self):
     #Create a Pad mesh, set the Trap material, and make a Box physics body.
     self.createMesh("Template_Pad.mesh")
-    self.setMaterial("Objects/SwitchOn")
+    self.setMaterial("Objects/Trap")
     self.createBody(GraLL2.CollisionShape.Box, GraLL2.BodyType.Static,
                     GraLL2.CollisionFlags.Static)
 

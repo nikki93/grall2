@@ -29,7 +29,7 @@ Bullet::Bullet(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Bullet.mesh");
-    mEntity->setMaterialName("Objects/BulletR");
+    mEntity->setMaterialName("Objects/Bullet1");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 

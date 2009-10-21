@@ -33,7 +33,7 @@ FallingBrush::FallingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, 
     if (mProperties.getValue("brushMeshFile", 0, "n") == "n")
     {
         mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Template_Pad.mesh");
-        mEntity->setMaterialName("Objects/SwitchOn");
+        mEntity->setMaterialName("Objects/FallingFloor");
 
         BtOgre::StaticMeshToShapeConverter converter(mEntity);
         mShape = converter.createBox();

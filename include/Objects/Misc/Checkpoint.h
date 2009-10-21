@@ -63,7 +63,7 @@ class Checkpoint :
             NGF_SERIALISE_ON_LOAD
             {
                 if (!mEnabled)
-                    mEntity->setMaterialName("Objects/Checkpoint_R");
+                    mEntity->setMaterialName("Objects/CheckpointOff");
             }
         }
         NGF_SERIALISE_END

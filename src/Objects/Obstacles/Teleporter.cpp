@@ -25,7 +25,7 @@ Teleporter::Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Mesh_Pad.mesh");
-    mEntity->setMaterialName("Objects/SwitchOn");
+    mEntity->setMaterialName("Objects/Teleporter");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 

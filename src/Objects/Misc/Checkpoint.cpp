@@ -26,7 +26,7 @@ Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
 
     //Create the Ogre stuff.
     mEntity = GlbVar.ogreSmgr->createEntity(mOgreName, "Checkpoint.mesh");
-    mEntity->setMaterialName("Objects/Checkpoint_B");
+    mEntity->setMaterialName("Objects/CheckpointOn");
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
 
@@ -99,7 +99,7 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
     if (!other)
         return;
 
-    if (other->hasFlag("Player"))
+    if (mEnabled && other->hasFlag("Player"))
     {
         //Check he's within some limits, we're a 'gate-like' object.
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
@@ -111,17 +111,13 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
         if (Ogre::Math::Abs(playerDisp.x) < 0.5 && Ogre::Math::Abs(playerDisp.z) <= 0.2)
         {
             //Save the game. Disable before saving though, so we're loaded disabled.
-            bool enabledPrev = mEnabled;
             mEnabled = false;
 
             //Change light colour.
             setLightColour(false);
 
-            if (enabledPrev)
-            {
-                Util::saveCheckpoint();
-                mEntity->setMaterialName("Objects/Checkpoint_R");
-            }
+            Util::saveCheckpoint();
+            mEntity->setMaterialName("Objects/CheckpointOff");
         }
     }
 

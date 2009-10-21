@@ -112,35 +112,37 @@ material Objects/Crate6 : Objects/Crate1
 }
 
 //--- Checkpoint ----------------------------------------------------------------------
-material Objects/Checkpoint_B : BaseGlow
+material Objects/CheckpointOn : BaseGlow
 {
-        set $diffuse_tex "Checkpoint_B.png"
+        set $diffuse_tex "CheckpointOn.png"
         set $normal_tex "Checkpoint_NM.png"
-        set $glow_tex "Checkpoint_B_GW.png"
+        set $glow_tex "CheckpointOn_GW.png"
 
         set $ambient "0.8 0.8 0.8 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "1 1 1 1"
 }
-material Objects/Checkpoint_R : Objects/Checkpoint_B
+material Objects/CheckpointOff : Objects/CheckpointOn
 {
-        set $diffuse_tex "Checkpoint_R.png"
-        set $glow_tex "Checkpoint_R_GW.png"
+        set $diffuse_tex "CheckpointOff.png"
+        set $glow_tex "CheckpointOff_GW.png"
 }
 
 //--- Switch --------------------------------------------------------------------------
-material Objects/SwitchOff : BaseGlow
+material Objects/SwitchOff : BaseNormalMapParallaxGlow
 {
         set $diffuse_tex "SwitchOff.png"
+        set $normal_tex "SwitchOff_NM.png"
         set $glow_tex "SwitchOff_GW.png"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
-        set $specular "0.8 0.8 0.8 0.8"
+        set $specular "1 1 1 0.8"
 }
 material Objects/SwitchOn : Objects/SwitchOff
 {
         set $diffuse_tex "SwitchOn.png"
+        set $normal_tex "SwitchOn_NM.png"
         set $glow_tex "SwitchOn_GW.png"
 }
 
@@ -172,10 +174,10 @@ material Objects/KeyY : Objects/KeyR
 }
 
 //--- Bullet --------------------------------------------------------------------------
-material Objects/BulletR : BaseTransparent
+material Objects/Bullet1 : BaseTransparent
 {
-        set $diffuse_tex "BulletR.png"
-        set $glow_tex "BulletR.png"
+        set $diffuse_tex "Bullet1.png"
+        set $glow_tex "Bullet1.png"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
@@ -203,10 +205,10 @@ material Objects/BulletR : BaseTransparent
                 }
         }  
 }
-material Objects/BulletB : Objects/BulletR
+material Objects/Bullet2 : Objects/Bullet1
 {
-    set $diffuse_tex "BulletB.png"
-    set $glow_tex "BulletB.png"
+    set $diffuse_tex "Bullet2.png"
+    set $glow_tex "Bullet2.png"
 }
 
 //--- Turret --------------------------------------------------------------------------
@@ -229,6 +231,39 @@ material Objects/TurretTop : BaseNormalMapGlow
         set $ambient "0.8 0.8 0.8 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "1 1 1 1"
+}
+
+//--- FallingFloor --------------------------------------------------------------------
+material Objects/FallingFloor : BaseNormalMapParallax
+{
+        set $diffuse_tex "FallingFloor.png"
+        set $glow_tex "FallingFloor_NM.png"
+
+        set $ambient "0.9 0.9 0.9 1"
+        set $diffuse "0.6 0.6 0.6 1"
+        set $specular "0.8 0.8 0.8 0.8"
+}
+
+//--- Trap ----------------------------------------------------------------------------
+material Objects/Trap : BaseNormalMapParallax
+{
+        set $diffuse_tex "Trap.png"
+        set $glow_tex "Trap_NM.png"
+
+        set $ambient "0.9 0.9 0.9 1"
+        set $diffuse "0.6 0.6 0.6 1"
+        set $specular "0.8 0.8 0.8 0.8"
+}
+
+//--- Teleporter ----------------------------------------------------------------------
+material Objects/Teleporter : BaseGlow
+{
+        set $diffuse_tex "Teleporter.png"
+        set $glow_tex "Teleporter_GW.png"
+
+        set $ambient "0.9 0.9 0.9 1"
+        set $diffuse "0.6 0.6 0.6 1"
+        set $specular "0.8 0.8 0.8 0.8"
 }
 
 //--- EndPoint ------------------------------------------------------------------------

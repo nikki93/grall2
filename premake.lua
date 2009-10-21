@@ -46,9 +46,9 @@ package.libpaths = {
 
 package.links = {
     -- Libaries.
-    "python2.5",
-    "boost_python-mt-py25",
-    "boost_wserialization-mt",
+    "python2.6",
+    "boost_python",
+    "boost_serialization",
     "BulletDynamics",
     "BulletCollision",
     "LinearMath"
