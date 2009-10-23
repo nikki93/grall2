@@ -14,6 +14,7 @@
  */
 
 #include "Globals.h"
+//#include "pydebug.h"
 #include "Objects/Misc/Slideshow.h"
 #include "Objects/Misc/CameraHandler.h"
 
@@ -223,6 +224,14 @@ BOOST_PYTHON_MODULE(GraLL2)
 {
     //Docstring settings.
     py::docstring_options doc_options(true, true, false);
+
+    //Compile to .pyo.
+    Py_OptimizeFlag = 1;
+    PyRun_SimpleString(
+            "import compileall\n\n"
+
+            "compileall.compile_dir('" DATA_PREFIX "Python')"
+            );
 
     //Enums.
     py::enum_<int>("Dimensions")

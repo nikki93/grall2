@@ -270,6 +270,17 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             NGF_SEND_REPLY();
 
         case MSG_ONEWAY:
+            /*
+            Ogre::Quaternion rot = msg.getParam<Ogre::Quaternion>(0);
+            Ogre::Quaternion inv = rot.UnitInverse();
+
+            Ogre::Vector3 rotVel = rot * BtOgre::Convert::toOgre(mBody->getLinearVelocity());
+            rotVel.z = rotVel.z >= 0 ? 0 : rotVel.z;
+
+            mBody->setLinearVelocity(BtOgre::Convert::toBullet(rot * rotVel));
+            // */
+
+            //*
             //Get component in OneWay's 'bad' direction.
             btVector3 currVel = mBody->getLinearVelocity();
             btVector3 dir = -BtOgre::Convert::toBullet(msg.getParam<Ogre::Vector3>(0));
@@ -277,7 +288,12 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 
             //If we have a non-negative component in that direction, then we have to remove it.
             if (comp >= 0)
-                mBody->setLinearVelocity(currVel - (comp * 5 * dir));
+            {
+                dir *= -comp;
+                mBody->setLinearVelocity(currVel + dir);
+                mBody->applyCentralForce(currVel + dir);
+            }
+            // */
 
             NGF_SEND_REPLY();
     }

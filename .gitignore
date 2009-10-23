@@ -5,6 +5,8 @@ ext
 Makefile
 GraLL2.make
 premake.lua #premake.lua.def contains 'default', user can make his own.
+*.pyo
+*.pyc
 
 premake.exe
 GraLL2.sln

@@ -77,20 +77,12 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
         if (mEndCountDown < 777)
         {
             if (mWin)
-            {
                 if (Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex()))
-                {
                     Util::nextWorld();
-                }
                 else
-                {
                     Util::gotoWorld(0);
-                }
-            }
             else
-            {
                 Util::gotoWorld(GlbVar.woMgr->getCurrentWorldIndex());
-            }
         }
     }
     else if (mEndCountDown > 0)

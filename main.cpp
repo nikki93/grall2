@@ -412,7 +412,7 @@ class Game
 
         void loop()
         {
-            while (true)
+            while (42)
             {
                 //Window message pumping, events etc.
                 Ogre::WindowEventUtilities::messagePump();
