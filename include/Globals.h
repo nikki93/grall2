@@ -251,6 +251,7 @@ enum
     MSG_BULLETHIT,            //Bullet hit (for Player).
     MSG_ADDSLIDE,             //Add slide (for Slideshow).
     MSG_SETVISIBLE,           //Set visibility.
+    MSG_ONEWAY,               //In a OneWay screen.
 };
 
 //Flags for creating Physics bodies from Python.

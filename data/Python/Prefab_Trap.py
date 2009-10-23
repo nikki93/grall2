@@ -26,7 +26,6 @@ def collide(self, other):
             self.setAlarm(self.m_bombTime, 0)
 
 def alarm(self, n):
-    if (n == 0):
-        #Bombs away! :D
-        Ngf.createObject("Bomb", "", self.getPosition() +
-                         Ngf.Vector3(0,0.75,0), Ngf.Quaternion.IDENTITY, {})
+    #Bombs away! :D
+    Ngf.createObject("Bomb", "", self.getPosition() +
+                     Ngf.Vector3(0,0.75,0), Ngf.Quaternion.IDENTITY, {})

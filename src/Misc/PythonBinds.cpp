@@ -79,6 +79,10 @@ void py_setDimension(int dimension)
 { 
     GlbVar.dimMgr->setDimension(dimension); 
 }
+int py_getCurrentDimension()
+{
+    return GlbVar.dimMgr->getCurrentDimension();
+}
 
 //Fades.
 void py_fadeInScreen(const Ogre::ColourValue &colour, Ogre::Real time) 
@@ -336,7 +340,11 @@ BOOST_PYTHON_MODULE(GraLL2)
             );
     py::def("setDimension", py_setDimension,
             "setDimension(n)\n"
-            "Sets the global dimension to the given one (1 or 2)."
+            "Sets the global dimension to the given one."
+            );
+    py::def("getCurrentDimension", py_getCurrentDimension,
+            "getCurrentDimension()\n"
+            "Returns the currently viewed dimension."
             );
 
     //Fades.

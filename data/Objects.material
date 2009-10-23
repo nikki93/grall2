@@ -29,6 +29,7 @@ material Objects/Bomb : BaseNormalMapParallaxGlow
         set $diffuse_tex "Bomb.png"
         set $normal_tex "Bomb_NM.png"
         set $glow_tex "Bomb_GW.png"
+        set $glow_amount "1"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
@@ -41,6 +42,7 @@ material Objects/MovingBomb : BaseNormalMapParallaxGlow
         set $diffuse_tex "MovingBomb.png"
         set $normal_tex "Bomb_NM.png"
         set $glow_tex "MovingBomb_GW.png"
+        set $glow_amount "1"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
@@ -53,6 +55,7 @@ material Objects/GreenBomb : BaseNormalMapParallaxGlow
         set $diffuse_tex "GreenBomb.png"
         set $normal_tex "GreenBomb_NM.png"
         set $glow_tex "GreenBomb_GW.png"
+        set $glow_amount "1"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
@@ -237,22 +240,24 @@ material Objects/TurretTop : BaseNormalMapGlow
 material Objects/FallingFloor : BaseNormalMapParallax
 {
         set $diffuse_tex "FallingFloor.png"
-        set $glow_tex "FallingFloor_NM.png"
+        set $normal_tex "FallingFloor_NM.png"
+        set $scaleBias "0.08 0.04"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
-        set $specular "0.8 0.8 0.8 0.8"
+        set $specular "0.9 0.9 0.9 0.8"
 }
 
 //--- Trap ----------------------------------------------------------------------------
-material Objects/Trap : BaseNormalMapParallax
+material Objects/Trap : BaseNormalMapParallaxGlow
 {
         set $diffuse_tex "Trap.png"
-        set $glow_tex "Trap_NM.png"
+        set $normal_tex "Trap_NM.png"
+        set $glow_tex "Trap_GW.png"
 
         set $ambient "0.9 0.9 0.9 1"
         set $diffuse "0.6 0.6 0.6 1"
-        set $specular "0.8 0.8 0.8 0.8"
+        set $specular "1 1 1 0.8"
 }
 
 //--- Teleporter ----------------------------------------------------------------------

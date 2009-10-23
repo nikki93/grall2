@@ -268,6 +268,18 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             mWon = true;
             mBody->setDamping(0.9, 0.9);
             NGF_SEND_REPLY();
+
+        case MSG_ONEWAY:
+            //Get component in OneWay's 'bad' direction.
+            btVector3 currVel = mBody->getLinearVelocity();
+            btVector3 dir = -BtOgre::Convert::toBullet(msg.getParam<Ogre::Vector3>(0));
+            Ogre::Real comp = (dir.dot(currVel) / dir.length());
+
+            //If we have a non-negative component in that direction, then we have to remove it.
+            if (comp >= 0)
+                mBody->setLinearVelocity(currVel - (comp * 5 * dir));
+
+            NGF_SEND_REPLY();
     }
 
     return GraLL2GameObject::receiveMessage(msg);

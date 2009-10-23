@@ -6,13 +6,12 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add textures for Trap, default FallingFloor, Teleporter.
-
 - Add 'OneWay' GameObject type.
 
-- Make more brush textures.
+- Add textures for Teleporter.
 
-- Work on a HUD system.
+- Work on a HUD system, using a MyGUI layout with transparent background (like in Main
+  Menu). Allow dynamic addition/removal of timers etc.
 
 Side
 ----
@@ -23,6 +22,8 @@ Side
    - SpeedBoost
    - JumpPad
    - Fan
+
+- Make more brush textures.
 
 - Work on logo.
 
@@ -685,3 +686,8 @@ Tue Oct 20 23:17:07 AST 2009
 Wed Oct 21 21:34:10 AST 2009
 ----------------------------
 - Created new Switch textures.
+
+Fri Oct 23 14:56:56 AST 2009
+----------------------------
+- Added Trap texture.
+- Added FallingFloor texture.

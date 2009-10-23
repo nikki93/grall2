@@ -2,6 +2,84 @@ ngflevel TestLevel2
 {
 	object
 	{
+		type FallingBrush
+		name noname
+		position 12.500000 -0.250000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 11.500000 -0.250000 14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 11.500000 -0.250000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 10.500000 -0.250000 13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 10.500000 -0.250000 12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 11.500000 -0.250000 12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+		}
+	}
+	object
+	{
 		type Empty
 		name noname
 		position -7.500000 1.500000 12.500000
@@ -545,7 +623,7 @@ ngflevel TestLevel2
 	{
 		type Switch
 		name noname
-		position 12.500000 -0.250000 12.500000
+		position 13.500000 -0.250000 12.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -628,6 +706,19 @@ ngflevel TestLevel2
 		{
 			dimensions 3
 			target 0 5 0
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 11.500000 -0.250000 11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
 		}
 	}
 }

@@ -34,6 +34,5 @@ def point(self, n):
             self.setAlarm(1, 0)
 
 def alarm(self, n):
-    if (n == 0):
-        #Delay is over, close.
-        self.p_forward = False
+    #Delay is over, close.
+    self.p_forward = False
