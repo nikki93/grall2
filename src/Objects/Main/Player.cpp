@@ -284,14 +284,15 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             //Get component in OneWay's 'bad' direction.
             btVector3 currVel = mBody->getLinearVelocity();
             btVector3 dir = -BtOgre::Convert::toBullet(msg.getParam<Ogre::Vector3>(0));
-            Ogre::Real comp = (dir.dot(currVel) / dir.length());
+            Ogre::Real comp = dir.dot(currVel); //OneWay must send us normalised direction!
 
-            //If we have a non-negative component in that direction, then we have to remove it.
+            //If we have a non-negative component in that direction, then we have to remove it, with some minimum removal to prevent
+            //'pushing' through.
             if (comp >= 0)
             {
+                comp = comp > 0.5 ? comp : 0.5;
                 dir *= -comp;
                 mBody->setLinearVelocity(currVel + dir);
-                mBody->applyCentralForce(currVel + dir);
             }
             // */
 

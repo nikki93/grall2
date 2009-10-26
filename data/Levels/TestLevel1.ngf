@@ -2621,18 +2621,5 @@ ngflevel TestLevel1
 			scriptFile Prefab_EndPoint.pyo
 		}
 	}
-	object
-	{
-		type OneWay
-		name noname
-		position -6.000000 6.900000 -9.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 1
-			brushMeshFile TestLevel1_b28.mesh
-		}
-	}
 }
 

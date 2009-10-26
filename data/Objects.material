@@ -276,7 +276,7 @@ material Objects/EndPoint : BaseTransparent
 {
         set $diffuse_tex "EndPoint.png"
         set $glow_tex "EndPoint.png"
-        set $glow_amount 0.5
+        set $glow_amount "0.5"
 
         set $ambient "1 1 1 0.2"
         set $diffuse "0.1 0.1 0.1 1"
@@ -385,6 +385,63 @@ material Objects/Acid
                         texture_unit DiffuseMap
                         {
                                 scroll_anim 2 2
+                                texture $diffuse_tex
+                        }
+                }
+        }  
+}
+
+//--- Acid ----------------------------------------------------------------------------
+material Objects/OneWay : BaseTransparent
+{
+        set $diffuse_tex "OneWay.png"
+        set $glow_tex "OneWay.png"
+        set $glow_amount "0.53"
+
+        set $ambient "0.45 0.45 0.45 1"
+        set $diffuse "0.45 0.45 0.45 1"
+        set $specular "0.45 0.45 0.45 1"
+        //set $ambient "0.6 0.6 0.6 0.2"
+        //set $diffuse "0.7 0.7 0.7 1"
+        //set $specular "0.5 0.5 0.5 1"
+
+        technique Glow
+        { 
+                scheme Scheme/Glow
+                pass
+                {
+                        ambient $glow_amount $glow_amount $glow_amount 1
+                        scene_blend alpha_blend
+                        depth_write off
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit GlowMap
+                        {
+                                texture $glow_tex
+                        }
+                }
+        }  
+        technique Fallback
+        { 
+                pass
+                {
+                        ambient $ambient
+                        diffuse $diffuse
+                        specular $specular
+                        scene_blend alpha_blend
+                        cull_hardware none
+                        cull_software none
+                        depth_write off
+                        
+                        texture_unit DiffuseMap
+                        {
                                 texture $diffuse_tex
                         }
                 }

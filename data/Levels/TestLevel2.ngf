@@ -2,6 +2,32 @@ ngflevel TestLevel2
 {
 	object
 	{
+		type OneWay
+		name noname
+		position 17.900000 1.000000 -10.300000
+		rotation 0.843391 0.000000 0.537300 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile TestLevel2_b0.001.mesh
+		}
+	}
+	object
+	{
+		type OneWay
+		name noname
+		position 18.000000 1.000000 -6.800000
+		rotation 0.537300 0.000000 0.843391 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile TestLevel2_b1.001.mesh
+		}
+	}
+	object
+	{
 		type FallingBrush
 		name noname
 		position 12.500000 -0.250000 13.500000
@@ -490,7 +516,7 @@ ngflevel TestLevel2
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel2_b0.mesh
+			brushMeshFile TestLevel2_b2.001.mesh
 			convex yes
 		}
 	}
@@ -533,7 +559,7 @@ ngflevel TestLevel2
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel2_b1.mesh
+			brushMeshFile TestLevel2_b3.001.mesh
 			convex no
 		}
 	}
@@ -547,7 +573,7 @@ ngflevel TestLevel2
 		properties
 		{
 			dimensions 3
-			brushMeshFile TestLevel2_b2.mesh
+			brushMeshFile TestLevel2_b4.001.mesh
 			convex yes
 		}
 	}
@@ -616,7 +642,7 @@ ngflevel TestLevel2
 			speed 1
 			distance 2
 			ignoreCollisions no
-			brushMeshFile TestLevel2_b3.mesh
+			brushMeshFile TestLevel2_b5.mesh
 		}
 	}
 	object
@@ -679,7 +705,7 @@ ngflevel TestLevel2
 		{
 			dimensions 1
 			scriptFile Prefab_Acid.pyo
-			brushMeshFile TestLevel2_b4.mesh
+			brushMeshFile TestLevel2_b6.mesh
 		}
 	}
 	object
@@ -719,6 +745,19 @@ ngflevel TestLevel2
 		{
 			dimensions 3
 			time 0.5
+		}
+	}
+	object
+	{
+		type OneWay
+		name noname
+		position 17.500000 1.000000 -8.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile TestLevel2_b7.mesh
 		}
 	}
 }

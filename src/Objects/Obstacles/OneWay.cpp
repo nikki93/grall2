@@ -34,7 +34,7 @@ OneWay::OneWay(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
         mShape = converter.createTrimesh();
         mShape->setMargin(0);
     }
-    mEntity->setMaterialName("Objects/SwitchOn");
+    mEntity->setMaterialName("Objects/OneWay");
 
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mNode->attachObject(mEntity);
@@ -45,7 +45,7 @@ OneWay::OneWay(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     initBody( DimensionManager::NO_DIM_CHECK 
             | DimensionManager::NO_CRATE_CHECK
             | DimensionManager::NO_MOVING_CHECK
-            //| DimensionManager::NO_BULLET_HIT
+            | DimensionManager::NO_BULLET_HIT
             );
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }

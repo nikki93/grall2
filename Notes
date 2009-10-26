@@ -6,8 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Fix 'OneWay', and add textures for it.
-
 - Add textures for Teleporter.
 
 - Work on a HUD system, using a MyGUI layout with transparent background (like in Main
@@ -691,3 +689,8 @@ Fri Oct 23 14:56:56 AST 2009
 ----------------------------
 - Added Trap texture.
 - Added FallingFloor texture.
+
+Mon Oct 26 12:38:34 AST 2009
+----------------------------
+- Added 'OneWay' GameObject.
+- Created textures for OneWay.
