@@ -78,6 +78,7 @@ MessageBox::~MessageBox()
 {
     //Destroy message.
     GlbVar.gui->destroyWidget(mMessage);
+    GlbVar.currMessageBox = 0;
 }
 //-------------------------------------------------------------------------------
 void MessageBox::unpausedTick(const Ogre::FrameEvent &evt)

@@ -14,7 +14,6 @@
  */
 
 #include "Globals.h"
-//#include "pydebug.h"
 #include "Objects/Misc/Slideshow.h"
 #include "Objects/Misc/CameraHandler.h"
 

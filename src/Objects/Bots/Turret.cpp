@@ -351,3 +351,4 @@ NGF_PY_BEGIN_IMPL(Turret)
     NGF_PY_PROPERTY_IMPL(alwaysScan, mAlwaysScan, bool);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
+//-------------------------------------------------------------------------------

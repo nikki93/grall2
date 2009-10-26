@@ -25,8 +25,6 @@ Side
 
 - Work on logo.
 
-- Work on documentation.
-
 Bugs
 ----
 - Fix shadows.
@@ -694,3 +692,5 @@ Mon Oct 26 12:38:34 AST 2009
 ----------------------------
 - Added 'OneWay' GameObject.
 - Created textures for OneWay.
+- Moved all loop stuff into loop() in Game, no more Ogre FrameListeners, more 'under control'.
+- Fixed MessageBox bug dereferencing null pointer.
