@@ -74,55 +74,58 @@ OptionsDialog::~OptionsDialog()
 //-------------------------------------------------------------------------------
 void OptionsDialog::tick()
 {
-    //Update key display.
-    MyGUI::EnumeratorWidgetPtr iter = GlbVar.gui->findWidget<MyGUI::TabItem>("o_tab_controls")->getEnumerator();
-    while (iter.next())
+    if (getVisible())
     {
-        MyGUI::Widget *widget = iter.current();
-
-        //If it's a key displayer, make it display the key it wants to display.
-        if (widget->getUserString("type") == "KeyDisplay") 
-            widget->setCaption(GlbVar.keyMap->keyToString(
-                        GlbVar.settings.controls.keys[widget->getUserString("key")]
-                        ));
-    }
-
-    //Tell user to press key if he has to.
-    mPressKeyText->setVisible(mListeningForKey);
-    if (mListeningForKey)
-    {
-        //Highlight the relevant key.
-        GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_" + mCurrKey)->setTextColour(MyGUI::Colour(0.8,0.6,0.1));
-    }
-
-    //Get slider values and update settings.
-    GlbVar.settings.controls.turningSensitivity = (mTurningScroll->getScrollPosition() + 1) * SLIDER_QUANTUM;
-    GlbVar.settings.controls.upDownSensitivity = (mUpDownScroll->getScrollPosition() + 1) * SLIDER_QUANTUM;
-
-    //Update slider text and checkbox. We update the sliders themselves only when we become visible.
-    mTurningText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.turningSensitivity, 2));
-    mUpDownText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.upDownSensitivity, 2));
-    mInvertMouseCheckBox->setStateCheck(GlbVar.settings.controls.invertMouse);
-
-    //Update graphics settings display.
-    Ogre::String res = mResolutionsBox->getItemNameAt(mResolutionsBox->getIndexSelected());
-    Ogre::StringVector vec = Ogre::StringUtil::split(res, "x");
-
-    if (vec.size() == 2)
-    {
-        int width = Ogre::StringConverter::parseInt(vec[0]);
-        int height = Ogre::StringConverter::parseInt(vec[1]);
-        if (width > 0 && height > 0)
+        //Update key display.
+        MyGUI::EnumeratorWidgetPtr iter = GlbVar.gui->findWidget<MyGUI::TabItem>("o_tab_controls")->getEnumerator();
+        while (iter.next())
         {
-            GlbVar.settings.ogre.winWidth = width;
-            GlbVar.settings.ogre.winHeight = height;
+            MyGUI::Widget *widget = iter.current();
+
+            //If it's a key displayer, make it display the key it wants to display.
+            if (widget->getUserString("type") == "KeyDisplay") 
+                widget->setCaption(GlbVar.keyMap->keyToString(
+                            GlbVar.settings.controls.keys[widget->getUserString("key")]
+                            ));
         }
+
+        //Tell user to press key if he has to.
+        mPressKeyText->setVisible(mListeningForKey);
+        if (mListeningForKey)
+        {
+            //Highlight the relevant key.
+            GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_" + mCurrKey)->setTextColour(MyGUI::Colour(0.8,0.6,0.1));
+        }
+
+        //Get slider values and update settings.
+        GlbVar.settings.controls.turningSensitivity = (mTurningScroll->getScrollPosition() + 1) * SLIDER_QUANTUM;
+        GlbVar.settings.controls.upDownSensitivity = (mUpDownScroll->getScrollPosition() + 1) * SLIDER_QUANTUM;
+
+        //Update slider text and checkbox. We update the sliders themselves only when we become visible.
+        mTurningText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.turningSensitivity, 2));
+        mUpDownText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.upDownSensitivity, 2));
+        mInvertMouseCheckBox->setStateCheck(GlbVar.settings.controls.invertMouse);
+
+        //Update graphics settings display.
+        Ogre::String res = mResolutionsBox->getItemNameAt(mResolutionsBox->getIndexSelected());
+        Ogre::StringVector vec = Ogre::StringUtil::split(res, "x");
+
+        if (vec.size() == 2)
+        {
+            int width = Ogre::StringConverter::parseInt(vec[0]);
+            int height = Ogre::StringConverter::parseInt(vec[1]);
+            if (width > 0 && height > 0)
+            {
+                GlbVar.settings.ogre.winWidth = width;
+                GlbVar.settings.ogre.winHeight = height;
+            }
+        }
+
+        mFullscreenCheckBox->setStateCheck(GlbVar.settings.ogre.winFullscreen);
+        mLightingCheckBox->setStateCheck(GlbVar.settings.graphics.lighting);
+
+        GlbVar.settings.ogre.renderer = mRenderersBox->getIndexSelected() == 1 ? Globals::Settings::OgreSettings::DIRECT3D : Globals::Settings::OgreSettings::OPENGL;
     }
-
-    mFullscreenCheckBox->setStateCheck(GlbVar.settings.ogre.winFullscreen);
-    mLightingCheckBox->setStateCheck(GlbVar.settings.graphics.lighting);
-
-    GlbVar.settings.ogre.renderer = mRenderersBox->getIndexSelected() == 1 ? Globals::Settings::OgreSettings::DIRECT3D : Globals::Settings::OgreSettings::OPENGL;
 }
 //-------------------------------------------------------------------------------
 void OptionsDialog::keyPressed(OIS::KeyCode kc)

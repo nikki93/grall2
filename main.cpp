@@ -386,7 +386,7 @@ class Game
 
         void loop()
         {
-            while (42)
+            while (7)
             {
                 //Find elapsed time.
                 Ogre::Real deltaTime = mTimer->getMilliseconds() * 0.001;

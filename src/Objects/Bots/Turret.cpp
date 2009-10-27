@@ -251,7 +251,7 @@ void Turret::fireSingleBullet()
         Ogre::Vector3 shootPos = mNode->getPosition() + SHOOT_OFFSET;
 
         Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
-        dir.y = Util::clamp<Ogre::Real>(dir.y, -0.5, 0.5);
+        dir.y = Util::clamp<Ogre::Real>(dir.y, -0.2, 0.2);
         dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
 
         Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
