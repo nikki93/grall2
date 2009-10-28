@@ -33,6 +33,8 @@ class RigidBody :
         Ogre::Real mp_LinearDamping;
         Ogre::Real mp_AngularDamping;
 
+        bool mMagnetic;
+
     public:
         RigidBody(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~RigidBody();

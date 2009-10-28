@@ -93,7 +93,8 @@ void OneWay::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
     if (!other)
         return;
 
-    GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_ONEWAY, mNode->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z));
+    if (other->hasFlag("OneWayer"))
+        GlbVar.goMgr->sendMessage(other, NGF_MESSAGE(MSG_ONEWAY, mNode->getOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z));
 
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

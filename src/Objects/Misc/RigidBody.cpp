@@ -24,6 +24,7 @@ RigidBody::RigidBody(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::P
     mp_LinearDamping = Ogre::StringConverter::parseReal(properties.getValue("linearDamping", 0, "0"));
     mp_AngularDamping = Ogre::StringConverter::parseReal(properties.getValue("angularDamping", 0, "0"));
     Ogre::String shape = properties.getValue("shape", 0, "convex");
+    mMagnetic = Ogre::StringConverter::parseBool(mProperties.getValue("magnetic", 0, "no"));
 
     //Create the Ogre stuff.
     mEntity = createBrushEntity();
@@ -60,7 +61,7 @@ RigidBody::RigidBody(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::P
     info.m_angularDamping = mp_AngularDamping;
 
     mBody = new btRigidBody(info);
-    initBody();
+    initBody(mMagnetic ? DimensionManager::MAGNETIC : DimensionManager::NONE);
 }
 //-------------------------------------------------------------------------------
 void RigidBody::postLoad()
@@ -101,6 +102,19 @@ void RigidBody::pausedTick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 NGF::MessageReply RigidBody::receiveMessage(NGF::Message msg)
 {
+    switch (msg.code)
+    {
+        case MSG_MAGNET:
+            Ogre::Vector3 dir = msg.getParam<Ogre::Vector3>(0) - mNode->getPosition();
+            Ogre::Real dis = dir.length();
+
+            Ogre::Real force = msg.getParam<Ogre::Real>(1) * (1.0 - (dis / msg.getParam<Ogre::Real>(2))); //lerp distance/radius.
+            dir = (dir * force) / dis;
+            mBody->applyCentralForce(BtOgre::Convert::toBullet(dir));
+
+            NGF_SEND_REPLY();
+    }
+
     return GraLL2GameObject::receiveMessage(msg);
 }
 //-------------------------------------------------------------------------------

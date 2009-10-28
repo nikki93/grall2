@@ -2465,7 +2465,7 @@ ngflevel TestLevel1
 		properties
 		{
 			dimensions 3
-			minHeight -4
+			minHeight -20
 			captureCameraHandler yes
 			canSwitchDimensions yes
 		}
@@ -2619,6 +2619,21 @@ ngflevel TestLevel1
 		{
 			dimensions 3
 			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Magnet
+		name noname
+		position -7.500000 10.500000 -6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			enabled yes
+			force 60
+			radius 10
 		}
 	}
 }

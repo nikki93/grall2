@@ -56,6 +56,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     addFlag("Player");
     addFlag("Switcher");
     addFlag("Doorer");
+    addFlag("OneWayer");
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
@@ -113,6 +114,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody( DimensionManager::PLAYER
             | DimensionManager::LIFTABLE
+            | DimensionManager::MAGNETIC
             );
     setBulletObject(mBody);
 
@@ -270,31 +272,43 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             NGF_SEND_REPLY();
 
         case MSG_ONEWAY:
-            /*
-            Ogre::Quaternion rot = msg.getParam<Ogre::Quaternion>(0);
-            Ogre::Quaternion inv = rot.UnitInverse();
-
-            Ogre::Vector3 rotVel = rot * BtOgre::Convert::toOgre(mBody->getLinearVelocity());
-            rotVel.z = rotVel.z >= 0 ? 0 : rotVel.z;
-
-            mBody->setLinearVelocity(BtOgre::Convert::toBullet(rot * rotVel));
-            // */
-
-            //*
-            //Get component in OneWay's 'bad' direction.
-            btVector3 currVel = mBody->getLinearVelocity();
-            btVector3 dir = -BtOgre::Convert::toBullet(msg.getParam<Ogre::Vector3>(0));
-            Ogre::Real comp = dir.dot(currVel); //OneWay must send us normalised direction!
-
-            //If we have a non-negative component in that direction, then we have to remove it, with some minimum removal to prevent
-            //'pushing' through.
-            if (comp >= 0)
             {
-                comp = comp > 0.5 ? comp : 0.5;
-                dir *= -comp;
-                mBody->setLinearVelocity(currVel + dir);
+                /*
+                   Ogre::Quaternion rot = msg.getParam<Ogre::Quaternion>(0);
+                   Ogre::Quaternion inv = rot.UnitInverse();
+
+                   Ogre::Vector3 rotVel = rot * BtOgre::Convert::toOgre(mBody->getLinearVelocity());
+                   rotVel.z = rotVel.z >= 0 ? 0 : rotVel.z;
+
+                   mBody->setLinearVelocity(BtOgre::Convert::toBullet(rot * rotVel));
+                // */
+
+                //*
+                //Get component in OneWay's 'bad' direction.
+                btVector3 currVel = mBody->getLinearVelocity();
+                btVector3 dir = -BtOgre::Convert::toBullet(msg.getParam<Ogre::Vector3>(0));
+                Ogre::Real comp = dir.dot(currVel); //OneWay must send us normalised direction!
+
+                //If we have a non-negative component in that direction, then we have to remove it, with some minimum removal to prevent
+                //'pushing' through.
+                if (comp >= 0)
+                {
+                    comp = comp > 0.5 ? comp : 0.5;
+                    dir *= -comp;
+                    mBody->setLinearVelocity(currVel + dir);
+                }
+                // */
             }
-            // */
+
+            NGF_SEND_REPLY();
+
+        case MSG_MAGNET:
+            Ogre::Vector3 dir = msg.getParam<Ogre::Vector3>(0) - mNode->getPosition();
+            Ogre::Real dis = dir.length();
+
+            Ogre::Real force = msg.getParam<Ogre::Real>(1) * (1.0 - (dis / msg.getParam<Ogre::Real>(2))); //lerp distance/radius.
+            dir = (dir * force) / dis;
+            mBody->applyCentralForce(BtOgre::Convert::toBullet(dir));
 
             NGF_SEND_REPLY();
     }

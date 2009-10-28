@@ -50,6 +50,7 @@ class DimensionManager
             NO_BULLET_HIT = BIT(13),      //Bullets pass through.
             INVISIBLE = BIT(8),           //Not a visible object (ignored by mousepick and Camera obstruction test).
             LIFTABLE = BIT(11),           //Can be lifted by MovingBrush, SlidingBrush etc.
+            MAGNETIC = BIT(14)            //Receives magnet events.
         };
 
     protected:

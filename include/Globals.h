@@ -252,6 +252,7 @@ enum
     MSG_ADDSLIDE,             //Add slide (for Slideshow).
     MSG_SETVISIBLE,           //Set visibility.
     MSG_ONEWAY,               //In a OneWay screen.
+    MSG_MAGNET,               //In a magnetic field.
 };
 
 //Flags for creating Physics bodies from Python.
