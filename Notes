@@ -6,8 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Expose Magnet properties to Python.
-
 - Add Magnet textures (attraction mode, repulsion mode, disabled).
 
 - Work on a HUD system, using a MyGUI layout with transparent background (like in Main
@@ -706,3 +704,7 @@ Wed Oct 28 21:25:05 AST 2009
 ----------------------------
 - Added 'Magnet' GameObject type. Affects Player, in both 'attraction' and 'repulsion' modes.
 - Added 'magnetic' property to RigidBody to allow magnetic (attracted, repelled by magnet) bodies.
+
+Thu Oct 29 23:57:24 AST 2009
+----------------------------
+- Exposed Magnet properties to Python.

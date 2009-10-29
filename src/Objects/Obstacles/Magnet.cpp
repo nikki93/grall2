@@ -50,8 +50,8 @@ Magnet::Magnet(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
             | DimensionManager::NO_MOVING_CHECK
             | DimensionManager::NO_BULLET_HIT
             | DimensionManager::INVISIBLE
-            | DimensionManager::DIM_BOTH, 
-            DimensionManager::DIM_BOTH
+            | mDimensions,
+            mDimensions
             );
 
     updateFieldPos();
@@ -160,9 +160,10 @@ void Magnet::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 //-------------------------------------------------------------------------------
 
 //--- Python interface implementation -------------------------------------------
-/*
 NGF_PY_BEGIN_IMPL(Magnet)
 {
+    NGF_PY_PROPERTY_IMPL(force, mForce, Ogre::Real);
+    NGF_PY_PROPERTY_IMPL(radius, mRadius, Ogre::Real);
+    NGF_PY_PROPERTY_IMPL(enabled, mEnabled, bool);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
-*/

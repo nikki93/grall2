@@ -303,14 +303,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
             NGF_SEND_REPLY();
 
         case MSG_MAGNET:
-            Ogre::Vector3 dir = msg.getParam<Ogre::Vector3>(0) - mNode->getPosition();
-            Ogre::Real dis = dir.length();
-
-            Ogre::Real force = msg.getParam<Ogre::Real>(1) * (1.0 - (dis / msg.getParam<Ogre::Real>(2))); //lerp distance/radius.
-            dir = (dir * force) / dis;
-            mBody->applyCentralForce(BtOgre::Convert::toBullet(dir));
-
-            NGF_SEND_REPLY();
+            DO_MSG_MAGNET();
     }
 
     return GraLL2GameObject::receiveMessage(msg);

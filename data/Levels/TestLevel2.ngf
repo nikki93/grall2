@@ -764,15 +764,16 @@ ngflevel TestLevel2
 	{
 		type Magnet
 		name noname
-		position 1.500000 0.500000 3.500000
+		position 3.500000 4.500000 4.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 1
 			enabled yes
-			force 40
-			radius 7
+			force 60
+			radius 12
+			mode attraction
 		}
 	}
 }
