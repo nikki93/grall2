@@ -85,6 +85,7 @@ void Magnet::unpausedTick(const Ogre::FrameEvent &evt)
 
     if (mEnabled)
     {
+        mEntity->setMaterialName(mForce > 0 ? "Objects/MagnetAttr" : "Objects/MagnetRepul");
         updateFieldPos();
         mFieldShape->setLocalScaling(btVector3(mRadius, mRadius, mRadius));
 
@@ -131,6 +132,8 @@ void Magnet::unpausedTick(const Ogre::FrameEvent &evt)
             }
         }
     }
+    else
+        mEntity->setMaterialName("Objects/MagnetDis");
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
