@@ -70,6 +70,7 @@ void Level::stop()
 {
     GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTOP));
     Util::clearLevel();
+    GlbVar.hud->clear();
 }
 //-------------------------------------------------------------------------------
 void Level::startLevel()

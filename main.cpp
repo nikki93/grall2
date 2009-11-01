@@ -355,6 +355,7 @@ class Game
             GlbVar.videoRec = new VideoRecorder();
             GlbVar.optionsDialog = new OptionsDialog();
             GlbVar.objectClicker = new ObjectClicker();
+            GlbVar.hud = new HUD();
 
             //The persistent Controller GameObject.
             GlbVar.controller = 0;//GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
@@ -366,6 +367,7 @@ class Game
             GlbVar.currSlideshow = 0;
             GlbVar.worldSwitch = -1;
             GlbVar.loadGame = true;
+            GlbVar.bonusTime = 0;
 
             //Add Worlds, register GameObjects.
             addWorlds();
@@ -440,6 +442,7 @@ class Game
                 GlbVar.videoRec->tick(evt);
                 GlbVar.optionsDialog->tick();
                 GlbVar.objectClicker->tick();
+                GlbVar.hud->tick(evt);
 
                 //Update Ogre.
                 GlbVar.ogreRoot->renderOneFrame();
@@ -457,6 +460,7 @@ class Game
             saveSettings();
 
             //Helpers.
+            delete GlbVar.hud;
             delete GlbVar.objectClicker;
             delete GlbVar.optionsDialog;
             delete GlbVar.videoRec;

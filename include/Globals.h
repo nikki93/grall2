@@ -53,6 +53,7 @@ class VideoRecorder;
 class KeyMap;
 class OptionsDialog;
 class ObjectClicker;
+class HUD;
 
 //The Globals class (actually a struct, but whatever).
 struct Globals : public Ogre::Singleton<Globals>
@@ -93,6 +94,7 @@ struct Globals : public Ogre::Singleton<Globals>
     KeyMap *keyMap;
     OptionsDialog *optionsDialog;
     ObjectClicker *objectClicker;
+    HUD *hud;
 
     //--- Global 'objects' -------------------------------------------------------------
 
@@ -287,6 +289,7 @@ struct PythonBodyFlags
 #include "Misc/KeyMap.h"
 #include "Misc/OptionsDialog.h"
 #include "Misc/ObjectClicker.h"
+#include "Misc/HUD.h"
 #include "Objects/Misc/AlarmGameObject.h"
 
 #endif

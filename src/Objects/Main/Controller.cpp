@@ -188,7 +188,7 @@ NGF_PY_BEGIN_IMPL(Controller)
         mLevelText = GlbVar.gui->createWidget<MyGUI::StaticText>("StaticText", 0, (int)(0.25 * h - 25), w, 50, MyGUI::Align::Default, "Popup");
         mLevelText->setTextAlign(MyGUI::Align::HCenter | MyGUI::Align::VCenter);
         mLevelText->setCaption((level ? "Level " + Ogre::StringConverter::toString(level) : "User Level") + " - " + caption);
-        mLevelText->setFontName("BigFont");
+        mLevelText->setFontName("Big");
         mLevelText->setAlpha(0);
         NGF_PY_RETURN();
     }

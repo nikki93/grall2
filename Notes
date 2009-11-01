@@ -6,8 +6,8 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Work on a HUD system, using a MyGUI layout with transparent background (like in Main
-  Menu). Allow dynamic addition/removal of timers etc.
+- Add dynamic 'PickupCounter' display to HUD (similar to the timer displays, allowing
+  'GraLL2.addHUDPickupCounter("KeyR", Ngf.ColourValue.Red)' for example.
 
 Side
 ----
@@ -710,3 +710,10 @@ Thu Oct 29 23:57:24 AST 2009
 Fri Oct 30 21:58:20 AST 2009
 ----------------------------
 - Added Magnet textures for attraction, repulsion and disable modes.
+
+Sun Nov  1 23:00:36 AST 2009
+----------------------------
+- Added a HUD system.
+- Added dynamic timer display management to HUD system. Can add/remove timers, with colours for each.
+- Added bonus time display to HUD system.
+- Added ability to add/remove timers from Python.

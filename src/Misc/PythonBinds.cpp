@@ -183,13 +183,14 @@ void py_screenshot(bool highRes, Ogre::String filename, Ogre::String extension)
 //Bonus time.
 void py_setBonusTime(Ogre::Real time)
 {
-    GlbVar.bonusTime = 0;
+    GlbVar.bonusTime = time;
 }
 Ogre::Real py_getBonusTime()
 {
     return GlbVar.bonusTime;
 }
 
+//Slideshow.
 void py_startSlideshow(int width, int height, py::list slides)
 {
     if (!GlbVar.newLevel)
@@ -216,6 +217,15 @@ void py_startSlideshow(int width, int height, py::list slides)
     }
 }
 
+//HUD.
+int py_addHUDTimer(Ogre::Real time, Ogre::ColourValue colour)
+{
+    return GlbVar.hud->addTimer(time, colour);
+}
+void py_removeHUDTimer(int id)
+{
+    GlbVar.hud->removeTimer(id);
+}
 
 //--- The module ----------------------------------------------------------------
 
@@ -467,12 +477,24 @@ BOOST_PYTHON_MODULE(GraLL2)
             "Returns the bonus time."
            );
 
-    //Slideshow
+    //Slideshow.
     py::def("startSlideshow", py_startSlideshow,
             "startSlideshow(width, height, slides)\n"
             "Starts playing a slideshow. The 'slides' parameter is a list of tuples, with times and texture names. For example,"
             "[(0.5,'Slide1.png'),(3,'Slide2.png')] etc. The 'width' and 'height' parameters describe the width and height of the"
             "images."
+           );
+
+    //HUD.
+    py::def("addHUDTimer", py_addHUDTimer,
+            "addHUDTimer(time, colour)\n"
+            "Add a count-down timer display to the HUD, with the given time and colour. Returns the 'id' (an integer) of the timer"
+            "which you can use to refer to the timer to remove it"
+           );
+    py::def("removeHUDTimer", py_removeHUDTimer,
+            "removeHUDTimer()\n"
+            "Remove the count-down timer display from the HUD with the given id. The id is the same as that returned by the"
+            "'addHUDTimer' function."
            );
 }
 
