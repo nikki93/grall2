@@ -120,6 +120,8 @@ int HUD::addTimer(Ogre::Real time, const Ogre::ColourValue &colour)
     for (; mTimers.find(id) != mTimers.end(); ++id);
 
     mTimers.insert(std::pair<int, HUDTimer*>(id, new HUDTimer(time, timerPosition(id), colour)));
+
+    return id;
 }
 //-------------------------------------------------------------------------------
 void HUD::removeTimer(int id)
