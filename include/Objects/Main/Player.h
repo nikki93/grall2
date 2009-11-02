@@ -68,6 +68,7 @@ class Player :
 
         inline bool isKeyDown(OIS::KeyCode kc) { return (mUnderControl && Util::isKeyDown(kc)); }
         inline OIS::MouseState getMouseState() { return mUnderControl ? Util::getMouseState() : OIS::MouseState(); }
+        inline int getNumPickups(const Ogre::String &type) { return mPickups[type]; }
 
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Player)

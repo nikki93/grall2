@@ -36,9 +36,22 @@ class HUD
             ~HUDTimer();
             bool update(Ogre::Real elapsed);
         };
-        typedef std::map<int, HUDTimer *> TimerMap;
 
+        struct PickupDisplay
+        {
+            Ogre::String mType;
+            MyGUI::StaticTextPtr mText;
+
+            PickupDisplay(const Ogre::String &type, const Ogre::ColourValue &colour);
+            ~PickupDisplay();
+            void update(const Ogre::Vector2 &pos);
+        };
+
+        typedef std::map<int, HUDTimer *> TimerMap;
         TimerMap mTimers;
+
+        typedef std::map<Ogre::String, PickupDisplay *> PickupDisplayMap;
+        PickupDisplayMap mPickupDisplays;
 
         MyGUI::StaticTextPtr mBonusTimer;
 
@@ -52,12 +65,19 @@ class HUD
             GlbVar.gui->destroyWidget(mBonusTimer);
         }
 
-        void clear();
         void tick(const Ogre::FrameEvent &evt);
+        void clear();
 
-        //Returns the 'ID' of the timer in the internal list.
+        //Handle bonus time display.
+        inline void setBonusTimerVisible(bool visible) { if (mBonusTimer) mBonusTimer->setVisible(visible); }
+
+        //Adds a timer, returns the 'ID' of the timer in the internal list.
         int addTimer(Ogre::Real time, const Ogre::ColourValue &colour = Ogre::ColourValue::White);
         void removeTimer(int timer);
+
+        //Adds a pickup display (tracks given pickup), with given colour.
+        void addPickupDisplay(const Ogre::String &type, const Ogre::ColourValue &colour = Ogre::ColourValue::White);
+        void removePickupDisplay(const Ogre::String &type);
 };
 
 #endif

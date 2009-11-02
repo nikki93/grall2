@@ -226,6 +226,14 @@ void py_removeHUDTimer(int id)
 {
     GlbVar.hud->removeTimer(id);
 }
+void py_addPickupDisplay(Ogre::String type, Ogre::ColourValue colour)
+{
+    GlbVar.hud->addPickupDisplay(type, colour);
+}
+void py_removePickupDisplay(Ogre::String type)
+{
+    GlbVar.hud->removePickupDisplay(type);
+}
 
 //--- The module ----------------------------------------------------------------
 
@@ -495,6 +503,15 @@ BOOST_PYTHON_MODULE(GraLL2)
             "removeHUDTimer()\n"
             "Remove the count-down timer display from the HUD with the given id. The id is the same as that returned by the"
             "'addHUDTimer' function."
+           );
+    py::def("addPickupDisplay", py_addPickupDisplay,
+            "addPickupDisplay(type, colour)\n"
+            "Add a pickup display of the given colour which tracks the given pickup type. If a display for this type already exists,"
+            "does nothing."
+           );
+    py::def("removePickupDisplay", py_removePickupDisplay,
+            "removePickupDisplay(type)\n"
+            "Remove pickup display of the given type."
            );
 }
 

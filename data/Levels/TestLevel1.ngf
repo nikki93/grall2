@@ -2587,7 +2587,7 @@ ngflevel TestLevel1
 			       : 	self.setAlarm(3,0)
 			       : 	GraLL2.setDimension(1)
 			       : 	GraLL2.setBonusTime(49)
-			       : 
+			       : 	
 			       : def alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.showLevelText(2,4,3)

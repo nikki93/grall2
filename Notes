@@ -6,8 +6,9 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add dynamic 'PickupCounter' display to HUD (similar to the timer displays, allowing
-  'GraLL2.addHUDPickupCounter("KeyR", Ngf.ColourValue.Red)' for example.
+- Work on sound system.
+
+- Add 'icon' display to HUD.
 
 Side
 ----
@@ -717,3 +718,7 @@ Sun Nov  1 23:00:36 AST 2009
 - Added dynamic timer display management to HUD system. Can add/remove timers, with colours for each.
 - Added bonus time display to HUD system.
 - Added ability to add/remove timers from Python.
+
+Mon Nov  2 23:52:01 AST 2009
+----------------------------
+- Added Pickup count display to HUD. Can add and remove pickup displays dynamically, from script.

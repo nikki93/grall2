@@ -42,19 +42,21 @@
             NGF_SERIALISE_OGRE(Int, mDimensions);
 
 #define DO_MSG_MAGNET()                                                                        \
-            Ogre::Vector3 dir = msg.getParam<Ogre::Vector3>(0) - mNode->getPosition();         \
-            Ogre::Real dis = dir.length();                                                     \
-            Ogre::Real radius = msg.getParam<Ogre::Real>(2);                                   \
+            {                                                                                  \
+                Ogre::Vector3 dir = msg.getParam<Ogre::Vector3>(0) - mNode->getPosition();     \
+                Ogre::Real dis = dir.length();                                                 \
+                Ogre::Real radius = msg.getParam<Ogre::Real>(2);                               \
                                                                                                \
-            if (dis > radius)                                                                  \
+                if (dis > radius)                                                              \
+                    NGF_SEND_REPLY();                                                          \
+                                                                                               \
+                Ogre::Real force = msg.getParam<Ogre::Real>(1);                                \
+                force *= (1.0 - (dis / msg.getParam<Ogre::Real>(2))); /* lerp */               \
+                dir = (dir * force) / dis;                                                     \
+                mBody->applyCentralForce(BtOgre::Convert::toBullet(dir));                      \
+                                                                                               \
                 NGF_SEND_REPLY();                                                              \
-                                                                                               \
-            Ogre::Real force = msg.getParam<Ogre::Real>(1);                                    \
-            force *= (1.0 - (dis / msg.getParam<Ogre::Real>(2))); /* lerp */                   \
-            dir = (dir * force) / dis;                                                         \
-            mBody->applyCentralForce(BtOgre::Convert::toBullet(dir));                          \
-                                                                                               \
-            NGF_SEND_REPLY();
+            }
 
 
 class GraLL2GameObject : 

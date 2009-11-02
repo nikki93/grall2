@@ -22,8 +22,6 @@ Level::Level(unsigned int worldNum, Ogre::String ngfName, Ogre::String caption, 
 //-------------------------------------------------------------------------------
 void Level::init()
 {
-    unsigned int levelInd = Util::worldNumToLevelNum(mWorldNum);
-
     //Just for fun. :P
     LOG(FORMAT("On to level: %d, NGF: %s, Caption: %s!", Util::worldNumToLevelNum(mWorldNum) % mNgfName % mCaption));
 
@@ -35,6 +33,11 @@ void Level::init()
         GlbVar.newLevel = true;
     else
         GlbVar.newLevel = false;
+
+    //Create default Pickup counters.
+    GlbVar.hud->addPickupDisplay("KeyR", Ogre::ColourValue(0.8, 0.2, 0.2));
+    GlbVar.hud->addPickupDisplay("KeyB", Ogre::ColourValue(0.2, 0.2, 0.8));
+    GlbVar.hud->addPickupDisplay("KeyG", Ogre::ColourValue(0.2, 0.8, 0.2));
 
     //Create the GameObjects! If null name, user level not chosen yet, just skip.
     if (mNgfName != "NULL")
