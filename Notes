@@ -18,7 +18,6 @@ Side
    - ElectricField
    - SpeedBoost
    - JumpPad
-   - Fan
 
 - Make more brush textures.
 
@@ -722,3 +721,8 @@ Sun Nov  1 23:00:36 AST 2009
 Mon Nov  2 23:52:01 AST 2009
 ----------------------------
 - Added Pickup count display to HUD. Can add and remove pickup displays dynamically, from script.
+
+Tue Nov  3 22:54:47 AST 2009
+----------------------------
+- KeyY prefab now uses 'KeyY' Pickup count of Player to keep count.
+- Added KeyY counter to HUD.

@@ -38,6 +38,7 @@ void Level::init()
     GlbVar.hud->addPickupDisplay("KeyR", Ogre::ColourValue(0.8, 0.2, 0.2));
     GlbVar.hud->addPickupDisplay("KeyB", Ogre::ColourValue(0.2, 0.2, 0.8));
     GlbVar.hud->addPickupDisplay("KeyG", Ogre::ColourValue(0.2, 0.8, 0.2));
+    GlbVar.hud->addPickupDisplay("KeyY", Ogre::ColourValue(0.8, 0.6, 0.2));
 
     //Create the GameObjects! If null name, user level not chosen yet, just skip.
     if (mNgfName != "NULL")

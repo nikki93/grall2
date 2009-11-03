@@ -4,6 +4,14 @@
 import GraLL2
 
 def create(self):
-    #If 'm_numKeyY' never set, set to 0. Otherwise, increment.
-    GraLL2.controller.locals.setdefault("m_numKeyY", 0)
-    GraLL2.controller.m_numKeyY += 1
+    #Increment count when created.
+    GraLL2.player.incPickup("KeyY")
+
+def pickedUp(self):
+    #Decrement count when picked up. We decrement twice because the Player
+    #already incremented it once (hacky, I know :( ).
+    GraLL2.player.decPickup("KeyY")
+    GraLL2.player.decPickup("KeyY")
+
+    #Debug print.
+    print "Picked up! :D"

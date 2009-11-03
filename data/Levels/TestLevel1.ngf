@@ -2533,7 +2533,7 @@ ngflevel TestLevel1
 			ignoreCollisions no
 			brushMeshFile TestLevel1_b26.mesh
 			repeat yes
-			condition : other.numPickup("KeyY") == GraLL2.controller.m_numKeyY
+			condition : GraLL2.player.numPickup("KeyY") == 0
 			autoClose no
 			scriptFile Prefab_Door.pyo
 		}
@@ -2588,7 +2588,7 @@ ngflevel TestLevel1
 			       : 	GraLL2.setDimension(1)
 			       : 	GraLL2.setBonusTime(49)
 			       : 	
-			       : def alarm(self, n):
+			       : adef alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.showLevelText(2,4,3)
 			       : 

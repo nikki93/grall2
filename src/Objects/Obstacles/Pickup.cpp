@@ -17,6 +17,7 @@ Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
+    NGF_PY_SAVE_EVENT(pickedUp);
 
     //Store properties.
     mPickupType = mProperties.getValue("pickupType", 0, "KeyR");
@@ -106,6 +107,8 @@ NGF::MessageReply Pickup::receiveMessage(NGF::Message msg)
         case MSG_GETPICKUPTYPE:
             NGF_SEND_REPLY(mPickupType);
         case MSG_PICKEDUP:
+            NGF_PY_CALL_EVENT(pickedUp);
+
             //We've been picked up! Now we become 'NONE' so that no more pickups are registered,
             //just in case Bullet sends a few callbacks before destruction.
             mPickupType = "NONE";
