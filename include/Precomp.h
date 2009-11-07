@@ -25,5 +25,6 @@
 #include "ngfplugins/NgfBullet.h"
 #include "ngfplugins/NgfPython.h"
 #include "ngfplugins/NgfSerialisation.h"
+#include "ngfplugins/NgfStates.h"
 #include "ngfplugins/NgfExtras.h"
 #include "boost/format.hpp"

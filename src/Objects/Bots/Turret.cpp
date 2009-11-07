@@ -19,10 +19,7 @@ Turret.cpp
 
 //--- NGF events ----------------------------------------------------------------
 Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
-    : NGF::GameObject(pos, rot, id , properties, name),
-      mBulletTimer(FIRST_BULLET_TIME),
-      mStateTimer(-1),
-      mState(TS_REST)
+    : NGF::GameObject(pos, rot, id , properties, name)
 {
     addFlag("Turret");                                      
 
@@ -30,7 +27,7 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     NGF_PY_CALL_EVENT(init);
 
     //Read properties.
-    mEnabled = Ogre::StringConverter::parseBool(mProperties.getValue("enabled", 0, "yes"));
+    bool enabled = Ogre::StringConverter::parseBool(mProperties.getValue("enabled", 0, "yes"));
     mRadius = Ogre::StringConverter::parseReal(mProperties.getValue("radius", 0, "20"));
 
     Ogre::Real initTime = Ogre::StringConverter::parseReal(mProperties.getValue("initTime", 0, "0"));
@@ -66,16 +63,25 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
             );
     setBulletObject(mBody);
 
+    //Initialise states.
+    NGF_STATES_INIT();
+    NGF_STATES_INIT_STATE(Fire);
+    NGF_STATES_INIT_STATE(Rest);
+    NGF_STATES_INIT_STATE(Scan);
+    NGF_STATES_INIT_STATE(Disabled);
+    NGF_STATES_INIT_STATE(MoveDown);
+    NGF_STATES_INIT_STATE(MoveUp);
+
     //Start!
-    if (mEnabled)
+    if (enabled)
         if (initScan)
             scan();
         else if (initTime)
             rest(initTime);
         else
-            startFiring();
+            fire(mFireTime);
     else
-        rest(mRestTime);
+        disable();
 }
 //-------------------------------------------------------------------------------
 void Turret::postLoad()
@@ -93,6 +99,7 @@ Turret::~Turret()
     destroyBody();
     delete mShape;
 
+    //Remove Ogre SceneNodes and Entities.
     mNode->detachAllObjects();
     mTopNode->detachAllObjects();
     mBaseNode->detachAllObjects();
@@ -106,85 +113,10 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
-    //Ze ol' switch-case FSM. :D
-    switch (mState)
-    {
-        case TS_RESTTOFIRE:
-            {
-                Ogre::Real speed = (TOP_MOVE_DISTANCE / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
+    //Update state.
+    NGF_STATES_UPDATE();
+    mCurrState->unpausedTick(evt);
 
-                if (-(mTopNode->getPosition().y) < speed)
-                {
-                    mTopNode->setPosition(Ogre::Vector3::ZERO);
-                    fire(mFireTime);
-                    break;
-                }
-                else
-                {
-                    mTopNode->translate(Ogre::Vector3(0,speed,0));
-                }
-            }
-            break;
-        case TS_FIRETOREST:
-            {
-                Ogre::Real speed = (TOP_MOVE_DISTANCE / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
-
-                if (mTopNode->getPosition().y + TOP_MOVE_DISTANCE < speed)
-                {
-                    mTopNode->setPosition(Ogre::Vector3(0,-TOP_MOVE_DISTANCE,0));
-
-                    if (mAlwaysScan)
-                        scan();
-                    else
-                        rest(mRestTime);
-                    break;
-                }
-                else
-                {
-                    mTopNode->translate(Ogre::Vector3(0,-speed,0));
-                }
-            }
-            break;
-
-        case TS_FIRE:
-            {
-                mStateTimer -= evt.timeSinceLastFrame;
-
-                if (mEnabled && mStateTimer > 0)
-                {
-                    mBulletTimer -= evt.timeSinceLastFrame;
-
-                    if (mBulletTimer < 0)
-                    {
-                        fireSingleBullet();
-                        mBulletTimer = BULLET_TIME + Ogre::Math::RangeRandom(-0.07,0.07);
-                    }
-                }
-                else
-                {
-                    stopFiring();
-                }
-            }
-            break;
-        case TS_REST:
-            {
-                mStateTimer -= evt.timeSinceLastFrame;
-                
-                if (mEnabled && playerIsInRadius() && mStateTimer < 0)
-                    startFiring();
-            }
-            break;
-
-        case TS_SCAN:
-            {
-                //Even though startFiring does the radius check, we do it anyway
-                //to avoid wasting time with the scan raycast.
-                if (mEnabled && playerIsInRadius() && doSingleScan())
-                    startFiring();
-            }
-            break;
-    }
-    
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
@@ -212,60 +144,163 @@ void Turret::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 }
 //-------------------------------------------------------------------------------
 
-//--- Non-NGF -------------------------------------------------------------------
-void Turret::startFiring()
+//Require the Turret head to be down or up. If not, it'll move into place.
+#define REQUIRE_HEAD_UP()                                                              \
+    if (mObj->mTopNode->getPosition().y < 0)                                           \
+        NGF_STATES_CONTAINER_PUSH_STATE(MoveUp)
+#define REQUIRE_HEAD_DOWN()                                                            \
+    if (mObj->mTopNode->getPosition().y > -TOP_MOVE_DISTANCE)                          \
+        NGF_STATES_CONTAINER_PUSH_STATE(MoveDown)
+
+//--- Fire ----------------------------------------------------------------------
+void Turret::Fire::enter()
 {
-    if (mState != TS_FIRE)
-        mState = TS_RESTTOFIRE;
+    REQUIRE_HEAD_UP();
+    mObj->mBulletTime = FIRST_BULLET_TIME;
 }
 //-------------------------------------------------------------------------------
-void Turret::stopFiring()
+void Turret::Fire::unpausedTick(const Ogre::FrameEvent &evt)
 {
-    if (mState != TS_REST)
-        mState = TS_FIRETOREST;
+    //Time flies!
+    mObj->mTime -= evt.timeSinceLastFrame;
+
+    if (GlbVar.player && mObj->mTime > 0)
+    {
+        //Otherwise we shoot!
+        mObj->mBulletTime -= evt.timeSinceLastFrame;
+
+        if (mObj->mBulletTime < 0)
+        {
+            mObj->fireSingleBullet();
+            mObj->mBulletTime = BULLET_TIME + Ogre::Math::RangeRandom(-0.07,0.07);
+        }
+    }
+    else
+    {
+        //If no time left (or no player), switch to the next state (scan or rest, depends).
+        if (mObj->mAlwaysScan)
+            mObj->scan();
+        else
+            mObj->rest(mObj->mRestTime);
+    }
 }
 //-------------------------------------------------------------------------------
+
+//--- Disabled ------------------------------------------------------------------
+void Turret::Disabled::enter()
+{
+    REQUIRE_HEAD_DOWN();
+}
+//-------------------------------------------------------------------------------
+
+//--- Rest ----------------------------------------------------------------------
+void Turret::Rest::enter()
+{
+    REQUIRE_HEAD_DOWN();
+}
+//-------------------------------------------------------------------------------
+void Turret::Rest::unpausedTick(const Ogre::FrameEvent &evt)
+{
+    if (mObj->mTime > 0)
+        mObj->mTime -= evt.timeSinceLastFrame;
+    else
+        if (mObj->playerIsInRadius())
+            mObj->fire(mObj->mFireTime);
+}
+//-------------------------------------------------------------------------------
+
+//--- Scan ----------------------------------------------------------------------
+void Turret::Scan::enter()
+{
+    REQUIRE_HEAD_DOWN();
+}
+//-------------------------------------------------------------------------------
+void Turret::Scan::unpausedTick(const Ogre::FrameEvent &)
+{
+    if (mObj->playerIsInRadius() && mObj->doSingleScan())
+        mObj->fire(mObj->mFireTime);
+}
+//-------------------------------------------------------------------------------
+
+//--- MoveDown ------------------------------------------------------------------
+void Turret::MoveDown::unpausedTick(const Ogre::FrameEvent &evt)
+{
+    Ogre::Real speed = (TOP_MOVE_DISTANCE / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
+
+    if (mObj->mTopNode->getPosition().y + TOP_MOVE_DISTANCE < speed)
+    {
+        mObj->mTopNode->setPosition(Ogre::Vector3(0,-TOP_MOVE_DISTANCE,0));
+        NGF_STATES_CONTAINER_POP_STATE();
+    }
+    else
+        mObj->mTopNode->translate(Ogre::Vector3(0,-speed,0));
+}
+//-------------------------------------------------------------------------------
+
+//--- MoveUp ------------------------------------------------------------------
+void Turret::MoveUp::unpausedTick(const Ogre::FrameEvent &evt)
+{
+    Ogre::Real speed = (TOP_MOVE_DISTANCE / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
+
+    if (-(mObj->mTopNode->getPosition().y) < speed)
+    {
+        mObj->mTopNode->setPosition(Ogre::Vector3::ZERO);
+        NGF_STATES_CONTAINER_POP_STATE();
+    }
+    else
+        mObj->mTopNode->translate(Ogre::Vector3(0,speed,0));
+}
+//-------------------------------------------------------------------------------
+
+//--- State switches ------------------------------------------------------------
 void Turret::fire(Ogre::Real time)
 {
-    mState = TS_FIRE;
-    mStateTimer = time;
-    mBulletTimer = FIRST_BULLET_TIME;
+    NGF_STATES_CLEAR_STACK();
+    mTime = time;
+    NGF_STATES_PUSH_STATE(Fire);
 }
 //-------------------------------------------------------------------------------
 void Turret::rest(Ogre::Real time)
 {
-    mState = TS_REST;
-    mStateTimer = time;
+    NGF_STATES_CLEAR_STACK();
+    mTime = time;
+    NGF_STATES_PUSH_STATE(Rest);
 }
 //-------------------------------------------------------------------------------
 void Turret::scan()
 {
-    mState = TS_SCAN;
+    NGF_STATES_CLEAR_STACK();
+    NGF_STATES_PUSH_STATE(Scan);
 }
 //-------------------------------------------------------------------------------
+void Turret::disable()
+{
+    NGF_STATES_PUSH_STATE(Disabled);
+}
+//-------------------------------------------------------------------------------
+void Turret::enable()
+{
+    if (NGF_STATES_CURRENT_STATE(Disabled))
+        NGF_STATES_POP_STATE(); //Will resume whatever was the previous state.
+}
+//-------------------------------------------------------------------------------
+
+//--- Some helper functions -----------------------------------------------------
 void Turret::fireSingleBullet()
 {
-    if (GlbVar.player)
-    {
-        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
-        Ogre::Vector3 shootPos = mNode->getPosition() + SHOOT_OFFSET;
+    Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
+    Ogre::Vector3 shootPos = mNode->getPosition() + SHOOT_OFFSET;
 
-        Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
-        dir.y = Util::clamp<Ogre::Real>(dir.y, -0.2, 0.2);
-        dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
+    Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
+    dir.y = Util::clamp<Ogre::Real>(dir.y, -0.2, 0.2);
+    dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
 
-        Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
-        Ogre::Vector3 bulletPos = shootPos + (bulletRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
+    Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
+    Ogre::Vector3 bulletPos = shootPos + (bulletRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
 
-        GlbVar.goMgr->createObject<Bullet>(bulletPos, bulletRot, NGF::PropertyList::create
-                ("dimensions", Ogre::StringConverter::toString(mDimensions))
-                );
-    }
-    else
-    {
-        //Our work is done. ;-)
-        stopFiring();
-    }
+    GlbVar.goMgr->createObject<Bullet>(bulletPos, bulletRot, NGF::PropertyList::create
+            ("dimensions", Ogre::StringConverter::toString(mDimensions))
+            );
 }
 //-------------------------------------------------------------------------------
 bool Turret::doSingleScan()
@@ -325,23 +360,25 @@ NGF_PY_BEGIN_IMPL(Turret)
 {
     NGF_PY_METHOD_IMPL(startFiring)
     {
-        startFiring();
+        fire(mFireTime);
         NGF_PY_RETURN();
     }
     NGF_PY_METHOD_IMPL(stopFiring)
     {
-        stopFiring();
+        if (mAlwaysScan)
+            scan();
+        else
+            rest(mRestTime);
         NGF_PY_RETURN();
     }
     NGF_PY_METHOD_IMPL(enable)
     {
-        mEnabled = true;
+        enable();
         NGF_PY_RETURN();
     }
     NGF_PY_METHOD_IMPL(disable)
     {
-        mEnabled = false;
-        stopFiring();
+        disable();
         NGF_PY_RETURN();
     }
 

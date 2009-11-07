@@ -32,26 +32,71 @@ class Turret :
         Ogre::Entity *mBaseEntity;
 
         Ogre::Real mRadius;
-
+        bool mAlwaysScan;
         Ogre::Real mFireTime;
         Ogre::Real mRestTime;
 
-        enum
+        //--- States -------------------------------------------------------------------
+        
+        Ogre::Real mTime;
+        Ogre::Real mBulletTime;
+
+        void fire(Ogre::Real time);
+        void rest(Ogre::Real time);
+        void scan();
+        void disable();
+        void enable();
+
+        NGF_STATES_INTERFACE_BEGIN(Turret)
         {
-            TS_FIRETOREST,
-            TS_REST,
-            TS_RESTTOFIRE,
-            TS_FIRE,
-            TS_SCAN,
-        };
+            virtual void unpausedTick(const Ogre::FrameEvent &evt) {}
+        }
+        NGF_STATES_INTERFACE_END
 
-        int mState;
-        bool mEnabled;
-        Ogre::Real mStateTimer;
+        //Firing.
+        NGF_STATES_STATE_BEGIN(Fire)
+        {
+            void enter();
+            void unpausedTick(const Ogre::FrameEvent &evt);
+        }
+        NGF_STATES_STATE_END(Fire)
 
-        Ogre::Real mBulletTimer;
+        //Disabled (waiting for next enable).
+        NGF_STATES_STATE_BEGIN(Disabled)
+        {
+            void enter();
+        }
+        NGF_STATES_STATE_END(Disabled)
 
-        bool mAlwaysScan;
+        //Rest (waiting for next fire time).
+        NGF_STATES_STATE_BEGIN(Rest)
+        {
+            void enter();
+            void unpausedTick(const Ogre::FrameEvent &evt);
+        }
+        NGF_STATES_STATE_END(Rest)
+
+        //Scanning (when see Player, start firing).
+        NGF_STATES_STATE_BEGIN(Scan)
+        {
+            void enter();
+            void unpausedTick(const Ogre::FrameEvent &evt);
+        }
+        NGF_STATES_STATE_END(Scan)
+
+        //Moving head down.
+        NGF_STATES_STATE_BEGIN(MoveDown)
+        {
+            void unpausedTick(const Ogre::FrameEvent &evt);
+        }
+        NGF_STATES_STATE_END(MoveDown)
+
+        //Moving head up.
+        NGF_STATES_STATE_BEGIN(MoveUp)
+        {
+            void unpausedTick(const Ogre::FrameEvent &evt);
+        }
+        NGF_STATES_STATE_END(MoveUp)
 
     public:
         Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -64,12 +109,7 @@ class Turret :
         NGF::MessageReply receiveMessage(NGF::Message msg);
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
-        //--- Non-NGF ------------------------------------------------------------------
-        void startFiring();
-        void stopFiring();
-        void fire(Ogre::Real time);
-        void rest(Ogre::Real time);
-        void scan();
+        //--- Some helper functions ----------------------------------------------------
         void fireSingleBullet();
         bool doSingleScan();
         bool playerIsInRadius();
@@ -102,17 +142,15 @@ class Turret :
 
             GRALL2_SERIALISE_GAMEOBJECT();
 
+            NGF_SERIALISE_OGRE(Real, mRadius);
+            NGF_SERIALISE_OGRE(Bool, mAlwaysScan);
             NGF_SERIALISE_OGRE(Real, mFireTime);
             NGF_SERIALISE_OGRE(Real, mRestTime);
-            NGF_SERIALISE_OGRE(Bool, mAlwaysScan);
 
-            NGF_SERIALISE_OGRE(Int, mState);
-
-            NGF_SERIALISE_OGRE(Real, mStateTimer);
-            NGF_SERIALISE_OGRE(Real, mBulletTimer);
+            NGF_SERIALISE_OGRE(Real, mTime);
+            NGF_SERIALISE_OGRE(Real, mBulletTime);
 
             NGF_SERIALISE_OGRE(Vector3, topPos);
-
 
             NGF_SERIALISE_ON_LOAD
             {
@@ -123,6 +161,13 @@ class Turret :
 };
 
 #ifdef __TURRET_CPP__
+
+const unsigned int Turret::St_Fire;
+const unsigned int Turret::St_Rest;
+const unsigned int Turret::St_Scan;
+const unsigned int Turret::St_Disabled;
+const unsigned int Turret::St_MoveUp;
+const unsigned int Turret::St_MoveDown;
 
 /* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */
