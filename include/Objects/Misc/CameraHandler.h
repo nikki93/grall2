@@ -124,9 +124,7 @@ class CameraHandler :
             Ogre::String targetName;
             Ogre::Vector3 splineNodePos;
 
-            Ogre::String splineStr;
             std::map<Ogre::Real, Ogre::String> splineStrMap;
-            std::stringstream splineStream(std::stringstream::in | std::stringstream::out);
             Ogre::Real splineState;
             Ogre::Real splineLength;
             Ogre::Real viewAngle;
@@ -150,18 +148,9 @@ class CameraHandler :
                         splineStrMap[time] = pos;
                     }
 
-                    //Serialise map.
-                    boost::archive::text_oarchive oa(splineStream);
-                    oa << splineStrMap;
-                    splineStr = splineStream.str();
-
                     //Save time.
                     splineState = mSplineAnimState->getTimePosition();
                     splineLength = mSplineAnim->getLength();
-                }
-                else
-                {
-                    splineStr = "n";
                 }
 
                 viewAngle = mViewAngle.valueDegrees();
@@ -180,12 +169,13 @@ class CameraHandler :
             NGF_SERIALISE_OGRE(Real, viewAngle);
             NGF_SERIALISE_OGRE(Real, mMovementFactor);
             NGF_SERIALISE_OGRE(Real, mRotationFactor);
-            NGF_SERIALISE_STRING(splineStr);
             NGF_SERIALISE_OGRE(Real, splineState);
             NGF_SERIALISE_OGRE(Real, splineLength);
             NGF_SERIALISE_OGRE(Real, mLastKeyFrameTime);
             NGF_SERIALISE_OGRE(Vector3, mGhostPos);
             NGF_SERIALISE_OGRE(Vector3, mGhostOffset);
+
+            NGF_SERIALISE_STL_CONTAINER(splineStrMap);
 
             NGF_SERIALISE_ON_LOAD
             {
@@ -194,7 +184,7 @@ class CameraHandler :
 
                 mSplineNode->setPosition(splineNodePos);
 
-                if (splineStr != "n")
+                if (!splineStrMap.empty())
                 {
                     //Clear/initialise stuff.
                     if (mSplineAnim)
@@ -212,11 +202,6 @@ class CameraHandler :
                     mSplineAnimState = GlbVar.ogreSmgr->createAnimationState("cameraSpline");
                     mSplineAnimState->setEnabled(true);
                     mSplineAnimState->setLoop(false);
-
-                    //Deserialise map.
-                    splineStream << splineStr;
-                    boost::archive::text_iarchive ia(splineStream);
-                    ia >> splineStrMap;
 
                     //Get keyframes from map.
                     for (std::map<Ogre::Real, Ogre::String>::iterator iter = splineStrMap.begin(); iter != splineStrMap.end(); ++iter)

@@ -16,9 +16,6 @@
 #ifndef __ALARMGAMEOBJECT_H__
 #define __ALARMGAMEOBJECT_H__
 
-#include <sstream>
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/map.hpp>
 
 class AlarmGameObject
@@ -70,24 +67,7 @@ class AlarmGameObject
     }
 
 #define GRALL2_SERIALISE_ALARMS()                                                              \
-    Ogre::String alarmsStr;                                                                    \
-    std::stringstream alarmsStrm(std::stringstream::in | std::stringstream::out);              \
-                                                                                               \
-    NGF_SERIALISE_ON_SAVE                                                                      \
-    {                                                                                          \
-        boost::archive::text_oarchive oa(alarmsStrm);                                          \
-        oa << mAlarms;                                                                         \
-        alarmsStr = alarmsStrm.str();                                                          \
-    }                                                                                          \
-                                                                                               \
-    NGF_SERIALISE_STRING(alarmsStr);                                                           \
-    NGF_SERIALISE_OGRE(Real, mCurrTime);                                                       \
-                                                                                               \
-    NGF_SERIALISE_ON_LOAD                                                                      \
-    {                                                                                          \
-        alarmsStrm << alarmsStr;                                                               \
-        boost::archive::text_iarchive ia(alarmsStrm);                                          \
-        ia >> mAlarms;                                                                         \
-    }
+    NGF_SERIALISE_STL_CONTAINER(mAlarms);                                                      \
+    NGF_SERIALISE_OGRE(Real, mCurrTime);
 
 #endif

@@ -20,6 +20,8 @@
 #include "Globals.h"
 #include "Objects/Main/GraLL2GameObject.h"
 
+#include <boost/serialization/vector.hpp>
+
 class Turret :
     public GraLL2GameObject
 {
@@ -141,6 +143,7 @@ class Turret :
             }
 
             GRALL2_SERIALISE_GAMEOBJECT();
+            NGF_SERIALISE_STATE_SYSTEM();
 
             NGF_SERIALISE_OGRE(Real, mRadius);
             NGF_SERIALISE_OGRE(Bool, mAlwaysScan);
@@ -156,6 +159,7 @@ class Turret :
             {
                 mTopNode->setPosition(topPos);
             }
+ 
         }
         NGF_SERIALISE_END
 };

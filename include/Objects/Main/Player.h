@@ -21,6 +21,8 @@
 
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
 
+#include "boost/serialization/map.hpp"
+
 class Player :
     public GraLL2GameObject
 {
@@ -96,15 +98,10 @@ class Player :
         NGF_SERIALISE_BEGIN(Player)
         {
             Ogre::Quaternion controlRot;
-            Ogre::String pickupsStr;
-            std::stringstream sstrm;
 
             NGF_SERIALISE_ON_SAVE
             {
                 controlRot = mControlNode->getOrientation();
-                boost::archive::text_oarchive oa(sstrm);
-                oa << mPickups;
-                pickupsStr = sstrm.str();
             }
 
             GRALL2_SERIALISE_GAMEOBJECT();
@@ -112,15 +109,12 @@ class Player :
             NGF_SERIALISE_OGRE(Quaternion, controlRot);
             NGF_SERIALISE_OGRE(Bool, mUnderControl);
             NGF_SERIALISE_OGRE(Bool, mDead);
-            NGF_SERIALISE_STRING(pickupsStr);
             NGF_SERIALISE_GAMEOBJECTPTR(mLight);
+            NGF_SERIALISE_STL_CONTAINER(mPickups);
 
             NGF_SERIALISE_ON_LOAD
             {
                 mControlNode->setOrientation(controlRot);
-                sstrm << pickupsStr;
-                boost::archive::text_iarchive ia(sstrm);
-                ia >> mPickups;
             }
         }
         NGF_SERIALISE_END

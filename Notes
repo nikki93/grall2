@@ -726,3 +726,14 @@ Tue Nov  3 22:54:47 AST 2009
 ----------------------------
 - KeyY prefab now uses 'KeyY' Pickup count of Player to keep count.
 - Added KeyY counter to HUD.
+
+Sat Nov  7 00:11:59 AST 2009
+----------------------------
+- Added Ngf states system, inspired by UDK.
+- Modified Turret code to use Ngf States system.
+
+Sun Nov  8 21:48:05 AST 2009
+----------------------------
+- Added serialisation of new states system.
+- Made Turret serialise the state of it's state system too.
+- Added easy STL container (with elements of serialisable type) serialisation.

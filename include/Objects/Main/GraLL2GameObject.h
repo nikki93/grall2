@@ -39,7 +39,8 @@
             GRALL2_SERIALISE_ALARMS();                                                         \
                                                                                                \
             /* Simple members. */                                                              \
-            NGF_SERIALISE_OGRE(Int, mDimensions);
+            NGF_SERIALISE_OGRE(Int, mDimensions);                                              \
+            NGF_SERIALISE_OGRE(Bool, mVisible);
 
 #define DO_MSG_MAGNET()                                                                        \
             {                                                                                  \

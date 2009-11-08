@@ -75,26 +75,13 @@ class MovingBomb :
         NGF_SERIALISE_BEGIN(MovingBomb)
         {
             std::vector<Ogre::String> pointsStrVec;
-            Ogre::String pointsStr;
-            std::stringstream pointsStream(std::stringstream::in | std::stringstream::out);
 
             NGF_SERIALISE_ON_SAVE
             {
+                //Write each point.
                 if (!mPoints.empty())
-                {
-                    //Write each point.
                     for (std::deque<Ogre::Vector3>::iterator iter = mPoints.begin(); iter != mPoints.end(); ++iter)
                         pointsStrVec.push_back(Ogre::StringConverter::toString(*iter));
-
-                    //Serialise all.
-                    boost::archive::text_oarchive oa(pointsStream);
-                    oa << pointsStrVec;
-                    pointsStr = pointsStream.str();
-                }
-                else
-                {
-                    pointsStr = "n";
-                }
             }
 
             GRALL2_SERIALISE_GAMEOBJECT();
@@ -106,20 +93,14 @@ class MovingBomb :
             NGF_SERIALISE_OGRE(Real, mTimer);
             NGF_SERIALISE_OGRE(Real, mLastFrameTime);
             NGF_SERIALISE_OGRE(Bool, mExploded);
-
-            NGF_SERIALISE_STRING(pointsStr);
+            NGF_SERIALISE_STL_CONTAINER(pointsStrVec);
 
             NGF_SERIALISE_ON_LOAD
             {
-                if (pointsStr != "n")
+                if (!pointsStrVec.empty())
                 {
                     //Clear what we already have (actually supposed to be nothing, but we do this anyway).
                     mPoints.clear();
-
-                    //Deserialise.
-                    pointsStream << pointsStr;
-                    boost::archive::text_iarchive ia(pointsStream);
-                    ia >> pointsStrVec;
 
                     //Read it all back.
                     for (std::vector<Ogre::String>::iterator iter = pointsStrVec.begin(); iter != pointsStrVec.end(); ++iter)

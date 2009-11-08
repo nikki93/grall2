@@ -17,6 +17,14 @@ Turret.cpp
 #define BULLET_TIME 0.14
 #define MAX_BULLET_DEVIATION_ANGLE 0.08
 
+//Require the Turret head to be down or up. If not, it'll move into place.
+#define REQUIRE_HEAD_UP()                                                              \
+    if (mObj->mTopNode->getPosition().y < 0)                                           \
+        NGF_STATES_CONTAINER_PUSH_STATE(MoveUp)
+#define REQUIRE_HEAD_DOWN()                                                            \
+    if (mObj->mTopNode->getPosition().y > -TOP_MOVE_DISTANCE)                          \
+        NGF_STATES_CONTAINER_PUSH_STATE(MoveDown)
+
 //--- NGF events ----------------------------------------------------------------
 Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name)
@@ -115,7 +123,8 @@ void Turret::unpausedTick(const Ogre::FrameEvent &evt)
 
     //Update state.
     NGF_STATES_UPDATE();
-    mCurrState->unpausedTick(evt);
+    if (mCurrState)
+        mCurrState->unpausedTick(evt);
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
@@ -143,14 +152,6 @@ void Turret::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
         NGF_PY_CALL_EVENT(collide, oth->getConnector());
 }
 //-------------------------------------------------------------------------------
-
-//Require the Turret head to be down or up. If not, it'll move into place.
-#define REQUIRE_HEAD_UP()                                                              \
-    if (mObj->mTopNode->getPosition().y < 0)                                           \
-        NGF_STATES_CONTAINER_PUSH_STATE(MoveUp)
-#define REQUIRE_HEAD_DOWN()                                                            \
-    if (mObj->mTopNode->getPosition().y > -TOP_MOVE_DISTANCE)                          \
-        NGF_STATES_CONTAINER_PUSH_STATE(MoveDown)
 
 //--- Fire ----------------------------------------------------------------------
 void Turret::Fire::enter()
