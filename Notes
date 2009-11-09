@@ -6,9 +6,9 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Work on sound system.
-
 - Add 'icon' display to HUD.
+
+- Work on sound system.
 
 Side
 ----
@@ -25,6 +25,8 @@ Side
 
 Bugs
 ----
+- Make Pickup displacement sine-wave dependent, not speed.
+
 - Fix shadows.
 
 - Add Turret up/down angle range.
@@ -737,3 +739,10 @@ Sun Nov  8 21:48:05 AST 2009
 - Added serialisation of new states system.
 - Made Turret serialise the state of it's state system too.
 - Added easy STL container (with elements of serialisable type) serialisation.
+
+Mon Nov  9 10:12:31 AST 2009
+----------------------------
+- Added GravityManager and 'gravity invert' feature. Inverts world gravity, allows fun puzzles.
+- Fixed many places in code that assumed a +Y up axis. Now they work with a -Y up axis too in case
+  of inverted gravity.
+- Created new test level.

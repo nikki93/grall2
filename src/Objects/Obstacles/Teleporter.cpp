@@ -89,7 +89,7 @@ void Teleporter::unpausedTick(const Ogre::FrameEvent &evt)
         //We send the Y-difference from 0.5 above surface along to keep the floor-movement smooth.
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
         Ogre::Vector3 offset = playerPos - mNode->getPosition(); //Our origin is 0.25 below surface, we want to find offset from surface.
-        Ogre::Real yShift = offset.y - 0.75;
+        Ogre::Real yShift = offset.y - (mNode->getOrientation() * Ogre::Vector3(0,0.75,0)).y;
         GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_TELEPORT, mTarget + Ogre::Vector3(0,yShift,0)));
         mTime = 0;
     }

@@ -98,7 +98,17 @@ class GraLL2GameObject :
         void destroyBody() { if (mBody) { GlbVar.phyWorld->removeRigidBody(mBody); delete mBody->getMotionState(); delete mBody; mBody = 0; } }
         void setDimension(int dimension);
         int getDimensions() { return mDimensions; }
-        void checkFell() { if (mBody && mBody->getWorldTransform().getOrigin().y() < -20) GlbVar.goMgr->requestDestroy(getID()); }
+        void checkFell() 
+        { 
+            if (GlbVar.gravMgr->isUp())
+            {
+                if (mBody && mBody->getWorldTransform().getOrigin().y() < -20) 
+                    GlbVar.goMgr->requestDestroy(getID());
+            }
+            else
+                if (mBody && mBody->getWorldTransform().getOrigin().y() > 20) 
+                    GlbVar.goMgr->requestDestroy(getID());
+        }
 
         //--- Python interface ---------------------------------------------------------
         virtual NGF_PY_BEGIN_DECL(GraLL2GameObject)

@@ -141,6 +141,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             mViewOffset.y = 3.42 - ((3.42 - mViewOffset.y) * 1.2);
         }
     }
+    mViewOffset.y *= GlbVar.gravMgr->getSign();
 
     //Python utick event (do it before camera handling to allow offset-modifications).
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
@@ -156,7 +157,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
 
                 Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mViewOffset);
                 Ogre::Real factor = mMovementFactor;
-                Ogre::Vector3 lookAtOffset = mLookAtOffset;
+                Ogre::Vector3 lookAtOffset = GlbVar.gravMgr->getSign() * mLookAtOffset;
 
                 //Raycast from target to us, then if hit, go to hit point, but 0.5 units closer.
                 if (GlbVar.settings.misc.fixCameraObstruction)
@@ -222,7 +223,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         case CS_DEATH:
             {
                 //Move it up, rotate it.
-                mGhostOffset.y += 4 * evt.timeSinceLastFrame;
+                mGhostOffset.y += GlbVar.gravMgr->getSign() * 4 * evt.timeSinceLastFrame;
                 mGhostOffset = Ogre::Quaternion(Ogre::Degree(mGhostDirection ? -20 : 20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mGhostOffset;
 
                 //Move the Camera toward it smoothly, make it look at the point.
@@ -265,7 +266,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     break;
                 case CS_DEATH:
                     mGhostPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
-                    mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3);
+                    mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + GlbVar.gravMgr->getSign(), 3);
                     mTargetNode = 0;
                     mGhostDirection = (Ogre::Math::UnitRandom() > 0.5);
                     break;

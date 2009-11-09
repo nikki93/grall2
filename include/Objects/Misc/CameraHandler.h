@@ -95,6 +95,7 @@ class CameraHandler :
             }
 
             mCamera->setDirection(res);
+            mCamera->setFixedYawAxis(true, GlbVar.gravMgr->getUpVector());
         }
 
         //--- Python interface ---------------------------------------------------------

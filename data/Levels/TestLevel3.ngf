@@ -1,0 +1,153 @@
+ngflevel TestLevel3
+{
+	object
+	{
+		type Magnet
+		name noname
+		position 14.500000 4.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			enabled yes
+			force 50
+			radius 5
+			mode attraction
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -2.500000 9.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -6.500000 11.500000 -6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel3_b0.mesh
+			convex no
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 2.500000 -2.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile TestLevel3_b1.mesh
+			convex no
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(60)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 -0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel3_b2.mesh
+			convex no
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -6.500000 6.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position 1.500218 0.389544 -1.499271
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -9
+			captureCameraHandler yes
+			canSwitchDimensions yes
+		}
+	}
+	object
+	{
+		type Magnet
+		name noname
+		position 7.500000 4.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			enabled yes
+			force 50
+			radius 5
+			mode attraction
+		}
+	}
+}
+

@@ -194,7 +194,7 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 btTransform trans2(rot, pos2);
 
                 //Do the cast.
-                SlidingBrushCheckResult res(mBody, mDimensions, pos1.y() < pos2.y());
+                SlidingBrushCheckResult res(mBody, mDimensions, GlbVar.gravMgr->isUp() ? pos1.y() < pos2.y() : pos1.y() > pos2.y());
                 GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
                 //If hit, don't move.

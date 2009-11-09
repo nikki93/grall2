@@ -21,11 +21,17 @@ def collide(self, other):
     #If not touched yet, and other is Player and above us, we start waiting for
     #bomb-time
     if (self.m_unTouched and other.hasFlag("Player")):
-        if (other.getPosition().y > (self.getPosition().y + 0.55)):
-            self.m_unTouched = False
-            self.setAlarm(self.m_bombTime, 0)
+        minY = (self.getOrientation() * Ngf.Vector3(0,0.55,0)).y
+        if (minY > 0):
+            if (other.getPosition().y > (self.getPosition().y + minY)):
+                self.m_unTouched = False
+                self.setAlarm(self.m_bombTime, 0)
+        else:
+            if (other.getPosition().y < (self.getPosition().y + minY)):
+                self.m_unTouched = False
+                self.setAlarm(self.m_bombTime, 0)
 
 def alarm(self, n):
     #Bombs away! :D
-    Ngf.createObject("Bomb", "", self.getPosition() +
+    Ngf.createObject("Bomb", "", self.getPosition() + self.getOrientation() *
                      Ngf.Vector3(0,0.75,0), Ngf.Quaternion.IDENTITY, {})

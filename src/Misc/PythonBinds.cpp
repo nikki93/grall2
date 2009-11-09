@@ -235,6 +235,20 @@ void py_removePickupDisplay(Ogre::String type)
     GlbVar.hud->removePickupDisplay(type);
 }
 
+//Gravity.
+void py_invertGravity()
+{
+    GlbVar.gravMgr->invert();
+}
+void py_setUp(bool up)
+{
+    GlbVar.gravMgr->setUp(up);
+}
+bool py_isUp()
+{
+    return GlbVar.gravMgr->isUp();
+}
+
 //--- The module ----------------------------------------------------------------
 
 BOOST_PYTHON_MODULE(GraLL2)
@@ -512,6 +526,20 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("removePickupDisplay", py_removePickupDisplay,
             "removePickupDisplay(type)\n"
             "Remove pickup display of the given type."
+           );
+
+    //Gravity.
+    py::def("invertGravity", py_invertGravity,
+            "invertGravity()\n"
+            "Invert gravity."
+           );
+    py::def("setUp", py_setUp,
+            "setUp(isUp)\n"
+            "Set the world up direction (changes gravity). If 'True', up, else down."
+           );
+    py::def("isUp", py_isUp,
+            "isUp()\n"
+            "Whether the world is up (ie. gravity is normal)."
            );
 }
 

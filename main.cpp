@@ -127,6 +127,11 @@ class GameListener :
                     if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
                         GlbVar.paused = !GlbVar.paused;
                     break;
+
+                case OIS::KC_G:
+                    if (!GlbVar.console->isVisible())
+                        GlbVar.gravMgr->invert();
+                    break;
             }
 
             return true;
@@ -356,6 +361,7 @@ class Game
             GlbVar.optionsDialog = new OptionsDialog();
             GlbVar.objectClicker = new ObjectClicker();
             GlbVar.hud = new HUD();
+            GlbVar.gravMgr = new GravityManager();
 
             //The persistent Controller GameObject.
             GlbVar.controller = 0;//GlbVar.goMgr->createObject<Controller>(Ogre::Vector3::ZERO, Ogre::Quaternion::ZERO);
@@ -394,6 +400,7 @@ class Game
                 Ogre::Real deltaTime = mTimer->getMilliseconds() * 0.001;
                 Ogre::FrameEvent evt = { deltaTime, deltaTime };
                 mTimer->reset();
+                LOG(FORMAT("Delta: %.10d", deltaTime));
 
                 //Window message pumping, events etc.
                 Ogre::WindowEventUtilities::messagePump();
@@ -460,6 +467,7 @@ class Game
             saveSettings();
 
             //Helpers.
+            delete GlbVar.gravMgr;
             delete GlbVar.hud;
             delete GlbVar.objectClicker;
             delete GlbVar.optionsDialog;

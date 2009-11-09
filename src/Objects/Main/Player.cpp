@@ -197,15 +197,15 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     if (mBody->getAngularVelocity().length2() < 600)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
-        torque.x =  isKeyDown(GlbVar.settings.controls.keys["backward"]) - isKeyDown(GlbVar.settings.controls.keys["forward"]);
-        torque.z =  isKeyDown(GlbVar.settings.controls.keys["left"]) - isKeyDown(GlbVar.settings.controls.keys["right"]);
+        torque.x =  GlbVar.gravMgr->getSign() * (isKeyDown(GlbVar.settings.controls.keys["backward"]) - isKeyDown(GlbVar.settings.controls.keys["forward"]));
+        torque.z =  (isKeyDown(GlbVar.settings.controls.keys["left"]) - isKeyDown(GlbVar.settings.controls.keys["right"]));
         torque *= PLAYER_TORQUE;
 
         mBody->applyTorque(BtOgre::Convert::toBullet(mControlNode->getOrientation() * torque));
     }
 
     OIS::MouseState ms = getMouseState();
-    mControlNode->yaw(Ogre::Degree(-ms.X.rel * GlbVar.settings.controls.turningSensitivity * 0.4));
+    mControlNode->yaw(Ogre::Degree(GlbVar.gravMgr->getSign() * -ms.X.rel * GlbVar.settings.controls.turningSensitivity * 0.4));
 
     //Fallage.
     if (mBody->getWorldTransform().getOrigin().getY() < mMinHeight)
@@ -316,8 +316,8 @@ void Player::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 
     //(Much) Less friction if not ground hit.
     Ogre::Vector3 hitPos = BtOgre::Convert::toOgre(contact.getPositionWorldOnA());
-    if (mNode->getPosition().y - hitPos.y < (mShape->getRadius() - 0.1))
-       contact.m_combinedFriction = 0;
+    if (GlbVar.gravMgr->getSign() * (mNode->getPosition().y - hitPos.y) < (mShape->getRadius() - 0.1))
+        contact.m_combinedFriction = 0;
 
     //Do the GameObject type checks.
     if (other->hasFlag("Explosive"))

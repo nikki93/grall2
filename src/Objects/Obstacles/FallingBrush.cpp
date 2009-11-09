@@ -129,8 +129,14 @@ void FallingBrush::collide(GameObject *other, btCollisionObject *otherPhysicsObj
         Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
         btTransform trans;
         mBody->getMotionState()->getWorldTransform(trans);
-        if (otherPos.y > trans.getOrigin().y() + 0.55)
-            mTime = mFallTime;
+        if (GlbVar.gravMgr->isUp())
+        {
+            if (otherPos.y > trans.getOrigin().y() + 0.55)
+                mTime = mFallTime;
+        }
+        else
+            if (otherPos.y < trans.getOrigin().y() - 0.55)
+                mTime = mFallTime;
     }
 
     //Python collide event.

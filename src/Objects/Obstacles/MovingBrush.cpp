@@ -184,7 +184,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btTransform trans2(rot, pos2);
 
         //Do the cast.
-        MovingBrushCheckResult res(mBody, mDimensions, castDisp.y() > 0);
+        MovingBrushCheckResult res(mBody, mDimensions, GlbVar.gravMgr->isUp() ? castDisp.y() > 0 : castDisp.y() < 0);
         GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
         //If hit Director, get directed. Use timer to avoid getting stuck to Director.
