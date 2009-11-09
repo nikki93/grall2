@@ -51,6 +51,7 @@ def write(filename):
                     numProps = numProps + 1
                     key = prop.getName()
                     params = prop.getData()
+                    data = ""
 
                     if prop.getName() == "isBrush":
                         nameToSet = scn.getName() + "_b" + str(numBrush)
@@ -70,19 +71,25 @@ def write(filename):
                         params = object.getData(1) + ".mesh"
                         object.select(True)
 
-                    if params.startswith("refText"):
-                        textName = params[8:]
-                        text = Blender.Text.Get(textName)
-                        indent = "\t\t\t" + (" " * len(key)) + " "
-                        params = ": "
-                        notFirst = False
-                        for line in text.asLines():
-                            if notFirst:
-                                params = params + "\n" + indent + ": "
-                            params = params + line
-                            notFirst = True
+                    if (prop.getType() == "STRING"):
+                        #If string check for refText.
+                        if params.startswith("refText"):
+                            textName = params[8:]
+                            text = Blender.Text.Get(textName)
+                            indent = "\t\t\t" + (" " * len(key)) + " "
+                            params = ": "
+                            notFirst = False
+                            for line in text.asLines():
+                                if notFirst:
+                                    params = params + "\n" + indent + ": "
+                                params = params + line
+                                notFirst = True
+                        data = params
+                    else:
+                        #Otherwise convert whatever it is (float, bool, etc.) to a string.
+                        data = str(params)
 
-                    propStr = propStr + ("\t\t\t%s %s\n" % (key, params))
+                    propStr = propStr + ("\t\t\t%s %s\n" % (key, data))
 
             propStr = propStr + "\t\t}\n"
             if numProps != 0:

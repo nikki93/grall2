@@ -1,6 +1,9 @@
 #Door Prefab Script
 #------------------
 
+def parseBool(str):
+    return (str == '1') or (str == 'true') or (str == 'yes')
+
 def create(self):
     #Not opened yet!
     self.m_opened = False
@@ -9,8 +12,8 @@ def create(self):
     self.m_moving = False
 
     #Save some properties.
-    self.m_repeat = (self.getProperty("repeat", 0, "yes") == "yes")
-    self.m_autoClose = (self.getProperty("autoClose", 0, "yes") == "yes")
+    self.m_repeat = parseBool(self.getProperty("repeat", 0, "1"))
+    self.m_autoClose = parseBool(self.getProperty("autoClose", 0, "yes"))
     self.m_condition = self.getProperty("condition", 0, "True")
 
 def collide(self, other):
@@ -28,10 +31,10 @@ def point(self, n):
         #We hit the start point, so we've stopped moving.
         self.m_moving = False
 
+    if (self.m_autoClose and (n == 1)):
         #If we're auto-closing, we close after a small delay after
         #reaching end point.
-        if (self.m_autoClose and (n == 1)):
-            self.setAlarm(1, 0)
+        self.setAlarm(1, 0)
 
 def alarm(self, n):
     #Delay is over, close.

@@ -266,7 +266,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     break;
                 case CS_DEATH:
                     mGhostPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
-                    mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + GlbVar.gravMgr->getSign(), 3);
+                    mGhostOffset = GlbVar.gravMgr->getSign() * (mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + GlbVar.gravMgr->getSign(), 3));
                     mTargetNode = 0;
                     mGhostDirection = (Ogre::Math::UnitRandom() > 0.5);
                     break;

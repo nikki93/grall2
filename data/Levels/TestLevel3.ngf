@@ -2,6 +2,51 @@ ngflevel TestLevel3
 {
 	object
 	{
+		type Light
+		name noname
+		position -4.500000 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.1 0.2 0.6
+			attenuation 70 1 0.01 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -5.500000 9.500000 -10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 10 1 0.01 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -6.500000 7.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 10 1 0.05 0.1
+		}
+	}
+	object
+	{
 		type Magnet
 		name noname
 		position 14.500000 4.500000 -1.500000
@@ -147,6 +192,42 @@ ngflevel TestLevel3
 			force 50
 			radius 5
 			mode attraction
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 1.500000 2.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.3 0.2
+			attenuation 70 1 0.01 0.1
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position 1.500000 0.500000 -4.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.99900007248
+			ignoreCollisions 0
+			brushMeshFile TestLevel3_b3.mesh
+			repeat 1
+			condition True
+			autoClose 1
+			scriptFile Prefab_Door.pyo
 		}
 	}
 }

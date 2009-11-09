@@ -415,9 +415,9 @@ ngflevel Level1
 		properties
 		{
 			dimensions 3
-			minHeight -4
-			captureCameraHandler no
-			canSwitchDimensions no
+			minHeight -4.0
+			captureCameraHandler 0
+			canSwitchDimensions 0
 			script : import Ngf
 			       : 
 			       : def create(self):

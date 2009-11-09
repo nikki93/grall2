@@ -82,8 +82,14 @@ void Pickup::unpausedTick(const Ogre::FrameEvent &evt)
     btQuaternion rot(btVector3(0,1,0), mSpin * evt.timeSinceLastFrame);
 
     //Bob!
-    mTime += evt.timeSinceLastFrame * 3;
-    btVector3 disp = btVector3(0,Ogre::Math::Sin(mTime) * mBob * 0.02,0);
+    static bool firstFrame = false; //Anti first-frame-spike hax.
+    btVector3 disp = btVector3(0,0,0);
+    if (!firstFrame)
+    {
+        mTime += evt.timeSinceLastFrame * 3;
+        disp.setY(Ogre::Math::Sin(mTime) * mBob * 0.02);
+        firstFrame = true;
+    }
 
     //Set trans.
     trans *= btTransform(rot, disp);
