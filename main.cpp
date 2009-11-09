@@ -60,6 +60,7 @@ class MaterialListener :
 
 //--------------------------------------------------------------------------------------
 class GameListener :
+    public Ogre::FrameListener,
     public OIS::KeyListener,
     public OIS::MouseListener
 {
@@ -67,6 +68,34 @@ class GameListener :
         static OIS::KeyCode mCurrKey; //Stores keycode to broadcast to GameObjects.
 
     public:
+        bool frameStarted(const Ogre::FrameEvent &evt)
+        {
+            //GUI update.
+            GlbVar.gui->injectFrameEntered(evt.timeSinceLastFrame);
+
+            //Physics update.
+            if (!GlbVar.paused)
+                GlbVar.phyWorld->stepSimulation(evt.timeSinceLastFrame, 7);
+            GlbVar.phyWorld->debugDrawWorld();
+
+            //Shows debug if F10 key down.
+            GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F10));
+            GlbVar.phyDebug->step();
+
+            //Update helpers.
+            GlbVar.dimMgr->tick();
+            GlbVar.fader->tick(evt);
+            GlbVar.musicMgr->tick(evt);
+            GlbVar.videoRec->tick(evt);
+            GlbVar.optionsDialog->tick();
+            GlbVar.objectClicker->tick();
+            GlbVar.hud->tick(evt);
+
+            //NGF update.
+            GlbVar.goMgr->tick(GlbVar.paused, evt);
+            return GlbVar.woMgr->tick(evt);
+        }
+
         //--- Send keypress events to GameObjects, and all events to MyGUI -------------
         bool keyPressed(const OIS::KeyEvent &arg)
         {
@@ -179,16 +208,13 @@ class Game
         btCollisionDispatcher *mDispatcher;
         btSequentialImpulseConstraintSolver *mSolver;
 
-        Ogre::Timer *mTimer;
-
     public:
         bool init()
         {
-            //--- Globals, settings, timer ---------------------------------------------
+            //--- Globals, settings ----------------------------------------------------
             new Globals();
             GlbVar.keyMap = new KeyMap();
             loadSettings();
-            mTimer = new Ogre::Timer();
 
             //--- Ogre (Graphics) ------------------------------------------------------
             //Root.
@@ -296,6 +322,7 @@ class Game
 
             //--- Listeners ------------------------------------------------------------
             mGameListener = new GameListener();
+            GlbVar.ogreRoot->addFrameListener(mGameListener);
             GlbVar.keyboard->setEventCallback(mGameListener);
             GlbVar.mouse->setEventCallback(mGameListener);
 
@@ -396,22 +423,12 @@ class Game
         {
             while (7)
             {
-                //Find elapsed time.
-                Ogre::Real deltaTime = mTimer->getMilliseconds() * 0.001;
-                Ogre::FrameEvent evt = { deltaTime, deltaTime };
-                mTimer->reset();
-                LOG(FORMAT("Delta: %.10d", deltaTime));
-
                 //Window message pumping, events etc.
                 Ogre::WindowEventUtilities::messagePump();
 
                 //Update input.
                 GlbVar.keyboard->capture();
                 GlbVar.mouse->capture();
-
-                //Exit if F12 pressed.
-                if (GlbVar.keyboard->isKeyDown(OIS::KC_F12))
-                    GlbVar.woMgr->shutdown();
 
                 //If we need to switch Worlds, do so, but not again.
                 if (GlbVar.worldSwitch != -1)
@@ -427,32 +444,13 @@ class Game
                     GlbVar.worldSwitch = -1;
                 }
 
-                //GUI update.
-                GlbVar.gui->injectFrameEntered(deltaTime);
-
-                //Physics update.
-                if (!GlbVar.paused)
-                    GlbVar.phyWorld->stepSimulation(deltaTime, 7);
-                GlbVar.phyDebug->setDebugMode(GlbVar.keyboard->isKeyDown(OIS::KC_F10));
-                GlbVar.phyDebug->step();
-                GlbVar.phyWorld->debugDrawWorld();
-
-                //NGF update.
-                GlbVar.goMgr->tick(GlbVar.paused, evt);
-                if (!GlbVar.woMgr->tick(evt))
-                    break;
-
-                //Update helpers.
-                GlbVar.dimMgr->tick();
-                GlbVar.fader->tick(evt);
-                GlbVar.musicMgr->tick(evt);
-                GlbVar.videoRec->tick(evt);
-                GlbVar.optionsDialog->tick();
-                GlbVar.objectClicker->tick();
-                GlbVar.hud->tick(evt);
+                //Exit if F12 pressed.
+                if (GlbVar.keyboard->isKeyDown(OIS::KC_F12))
+                    GlbVar.woMgr->shutdown();
 
                 //Update Ogre.
-                GlbVar.ogreRoot->renderOneFrame();
+                if(!GlbVar.ogreRoot->renderOneFrame())
+                    break;
             }
         }
 
