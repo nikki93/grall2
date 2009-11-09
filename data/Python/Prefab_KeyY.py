@@ -12,6 +12,3 @@ def pickedUp(self):
     #already incremented it once (hacky, I know :( ).
     GraLL2.player.decPickup("KeyY")
     GraLL2.player.decPickup("KeyY")
-
-    #Debug print.
-    print "Picked up! :D"

@@ -21,6 +21,7 @@
 #include "Objects/Main/GraLL2GameObject.h"
 
 #include <boost/serialization/vector.hpp>
+#include <boost/preprocessor.hpp>
 
 class Turret :
     public GraLL2GameObject
@@ -165,13 +166,6 @@ class Turret :
 };
 
 #ifdef __TURRET_CPP__
-
-const unsigned int Turret::St_Fire;
-const unsigned int Turret::St_Rest;
-const unsigned int Turret::St_Scan;
-const unsigned int Turret::St_Disabled;
-const unsigned int Turret::St_MoveUp;
-const unsigned int Turret::St_MoveDown;
 
 /* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */

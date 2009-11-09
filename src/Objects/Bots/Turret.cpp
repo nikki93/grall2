@@ -73,6 +73,7 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Initialise states.
     NGF_STATES_INIT();
+
     NGF_STATES_INIT_STATE(Fire);
     NGF_STATES_INIT_STATE(Rest);
     NGF_STATES_INIT_STATE(Scan);
