@@ -256,14 +256,6 @@ BOOST_PYTHON_MODULE(GraLL2)
     //Docstring settings.
     py::docstring_options doc_options(true, true, false);
 
-    //Compile to .pyo.
-    Py_OptimizeFlag = 1;
-    PyRun_SimpleString(
-            "import compileall\n\n"
-
-            "compileall.compile_dir('" DATA_PREFIX "Python')"
-            );
-
     //Enums.
     py::enum_<int>("Dimensions")
         .value("Dim_1", DimensionManager::DIM_1)
@@ -547,6 +539,17 @@ BOOST_PYTHON_MODULE(GraLL2)
 
 void initPythonBinds()
 {
+    //Make the GraLL2 module bindings.
     initGraLL2();
+
+    //Compile all scripts to .pyc.
+    PyRun_SimpleString(
+            "import compileall\n\n"
+
+            "compileall.compile_dir('" DATA_PREFIX "Python')"
+            );
+
+    //Run the startup script.
+    NGF::Python::Util::runFile("Startup.py", "General");
 }
 

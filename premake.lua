@@ -26,8 +26,8 @@ release = package.config["Release"]
 if (linux) then
 
 package.postbuildcommands = { 
-    "rm `find -name '*.d'`",
-    "./scripts/compilePython.sh" 
+    "rm `find -name '*.d'`" --,
+    -- "./scripts/compilePython.sh" 
 }
 
 -- Search paths -----------------------------------------------------------------------------

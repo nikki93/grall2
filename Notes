@@ -6,20 +6,18 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add a .py file to be run on startup, to allow some functions, classes etc. to be
-  written in Python, used in scripts.
-
 - Work on 'Prop' system (premade static meshes, like 'Static Meshes' in Unreal engine).
   Prop meshes go in data/PropMeshes, textures in data/PropTextures, materials in
   data/Props.material. This is only for materials specific to Props, if they use
-  Brush materials, they can skip this. Props are made by skipping the 'isBrush'
-  in a StaticBrush, and setting the 'brushMeshFile' manually.
+  Brush materials, they can skip this. Props are made by appending a brush object
+  (from Objects.blender or Prefabs.blend) to 'Props.blend', editing the mesh and
+  materials, removing 'isBrush' property, and setting 'brushMeshFile' manually.
 
 - Add 'icon' display to HUD.
 
 - Add smooth camera rotation for gravity invert.
 
-- Work on sound system.
+- Work on sound system. Add ability to add 'ambient sounds' etc. in level editor.
 
 Side
 ----
@@ -759,3 +757,9 @@ Mon Nov  9 10:12:31 AST 2009
 - Created new test level.
 - Blender properties now of different types, not just strings. Makes editing in Blender easier
   (GUI controls).
+
+Tue Nov 10 13:41:25 AST 2009
+----------------------------
+- Added 'Startup.py', which is run on game startup to allow some functions, classes etc. to be
+  written in Python and used in scripts.
+

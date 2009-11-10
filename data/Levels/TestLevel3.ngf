@@ -125,6 +125,9 @@ ngflevel TestLevel3
 			       : 	#Show the white text with the level number
 			       : 	#and caption.
 			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Set default gravity.
+			       : 	GraLL2.setUp(True)
 			       : 
 			       : def levelStop(self):
 			       : 	pass

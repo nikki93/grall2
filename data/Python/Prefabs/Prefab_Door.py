@@ -1,9 +1,6 @@
 #Door Prefab Script
 #------------------
 
-def parseBool(str):
-    return (str == '1') or (str == 'true') or (str == 'yes')
-
 def create(self):
     #Not opened yet!
     self.m_opened = False
