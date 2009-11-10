@@ -23,6 +23,18 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/preprocessor.hpp>
 
+#define TURRET_TOP_HEIGHT 0.16f
+#define TURRET_FIRST_BULLET_TIME 1
+
+//Move Turret head up or down. Just pushes a temporary move state on stack, which pops
+//itself off when done. If already in position, skip.
+#define TURRET_HEAD_UP()                                                               \
+    if (mObj->mTopNode->getPosition().y < 0)                                           \
+        NGF_STATES_CONTAINER_PUSH_STATE(MoveUp)
+#define TURRET_HEAD_DOWN()                                                             \
+    if (mObj->mTopNode->getPosition().y > -TURRET_TOP_HEIGHT)                          \
+        NGF_STATES_CONTAINER_PUSH_STATE(MoveDown)
+
 class Turret :
     public GraLL2GameObject
 {
@@ -33,6 +45,9 @@ class Turret :
         Ogre::SceneNode *mBaseNode;
         Ogre::Entity *mTopEntity;
         Ogre::Entity *mBaseEntity;
+
+        OgreAL::Sound *mShootSound;
+        OgreAL::Sound *mMoveSound;
 
         Ogre::Real mRadius;
         bool mAlwaysScan;
@@ -59,7 +74,7 @@ class Turret :
         //Firing.
         NGF_STATES_STATE_BEGIN(Fire)
         {
-            void enter();
+            void enter() { TURRET_HEAD_UP(); mObj->mBulletTime = TURRET_FIRST_BULLET_TIME; }
             void unpausedTick(const Ogre::FrameEvent &evt);
         }
         NGF_STATES_STATE_END(Fire)
@@ -67,14 +82,15 @@ class Turret :
         //Disabled (waiting for next enable).
         NGF_STATES_STATE_BEGIN(Disabled)
         {
-            void enter();
+            void enter() { TURRET_HEAD_DOWN(); }
+            //unpausedTick is default (do nothing).
         }
         NGF_STATES_STATE_END(Disabled)
 
         //Rest (waiting for next fire time).
         NGF_STATES_STATE_BEGIN(Rest)
         {
-            void enter();
+            void enter() { TURRET_HEAD_DOWN(); }
             void unpausedTick(const Ogre::FrameEvent &evt);
         }
         NGF_STATES_STATE_END(Rest)
@@ -82,7 +98,7 @@ class Turret :
         //Scanning (when see Player, start firing).
         NGF_STATES_STATE_BEGIN(Scan)
         {
-            void enter();
+            void enter() { TURRET_HEAD_DOWN(); }
             void unpausedTick(const Ogre::FrameEvent &evt);
         }
         NGF_STATES_STATE_END(Scan)
@@ -90,6 +106,9 @@ class Turret :
         //Moving head down.
         NGF_STATES_STATE_BEGIN(MoveDown)
         {
+            //Moving sound.
+            void enter() { mObj->mMoveSound->play(); }
+            void exit() { mObj->mMoveSound->stop(); }
             void unpausedTick(const Ogre::FrameEvent &evt);
         }
         NGF_STATES_STATE_END(MoveDown)
@@ -97,6 +116,9 @@ class Turret :
         //Moving head up.
         NGF_STATES_STATE_BEGIN(MoveUp)
         {
+            //Moving sound.
+            void enter() { mObj->mMoveSound->play(); }
+            void exit() { mObj->mMoveSound->stop(); }
             void unpausedTick(const Ogre::FrameEvent &evt);
         }
         NGF_STATES_STATE_END(MoveUp)

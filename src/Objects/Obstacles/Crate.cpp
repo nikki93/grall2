@@ -93,6 +93,12 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     //Crate materials, again for variety.
     int n = Ogre::Math::Floor(Ogre::Math::RangeRandom(1, MAX_CRATE_MATERIALS + 0.99));
     mEntity->setMaterialName("Objects/Crate" + Ogre::StringConverter::toString(n));
+
+    //Sound.
+    mSound = GlbVar.soundMgr->createSound(mOgreName + "_Sound", "CrateMove.ogg", true, false);
+    mNode->attachObject(mSound);
+    mSound->setMaxGain(0.9);
+    mSound->setDistanceValues(10, 10, 3);
 }
 //-------------------------------------------------------------------------------
 void Crate::postLoad()
@@ -105,6 +111,8 @@ Crate::~Crate()
 {
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
+
+    GlbVar.soundMgr->destroySound(mSound);
 
     //We only clear up stuff that we did.
     GlbVar.phyWorld->removeConstraint(mConstraint);
@@ -145,7 +153,12 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
             btVector3 vel = BtOgre::Convert::toBullet(Ogre::Vector3(speed,0,0).getRotationTo(mTarget - currPos) * Ogre::Vector3(speed,0,0));
             mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), oldTrans.getOrigin() + vel));
         }
+
+        if (!mSound->isPlaying())
+            mSound->play();
     }
+    else if (mSound->isPlaying())
+        mSound->stop();
 
     /*
     mFixedBody->getMotionState()->getWorldTransform(oldTrans);

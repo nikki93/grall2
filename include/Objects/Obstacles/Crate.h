@@ -37,6 +37,8 @@ class Crate :
 
         bool mExploded;
 
+        OgreAL::Sound *mSound;
+
     public:
         Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Crate();

@@ -10,20 +10,13 @@ Turret.cpp
 
 #include "Objects/Bots/Bullet.h"
 
-#define TOP_MOVE_DISTANCE 0.16f
 #define SHOOT_OFFSET (Ogre::Vector3(0,0.89,0))
 #define TOP_MOVE_TIME 1.0f
-#define FIRST_BULLET_TIME 1
 #define BULLET_TIME 0.14
 #define MAX_BULLET_DEVIATION_ANGLE 0.08
+#define SHOOT_SOUND_PITCH_RANGE 1.6, 2.2
 
-//Require the Turret head to be down or up. If not, it'll move into place.
-#define REQUIRE_HEAD_UP()                                                              \
-    if (mObj->mTopNode->getPosition().y < 0)                                           \
-        NGF_STATES_CONTAINER_PUSH_STATE(MoveUp)
-#define REQUIRE_HEAD_DOWN()                                                            \
-    if (mObj->mTopNode->getPosition().y > -TOP_MOVE_DISTANCE)                          \
-        NGF_STATES_CONTAINER_PUSH_STATE(MoveDown)
+//'TURRET_TOP_HEIGHT', 'TURRET_FIRST_BULLET_TIME' in Turret.h.
 
 //--- NGF events ----------------------------------------------------------------
 Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
@@ -53,7 +46,7 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
     mBaseNode = mNode->createChildSceneNode(mOgreName + "_base");
-    mTopNode = mNode->createChildSceneNode(mOgreName + "_top", Ogre::Vector3(0,-TOP_MOVE_DISTANCE,0));
+    mTopNode = mNode->createChildSceneNode(mOgreName + "_top", Ogre::Vector3(0,-TURRET_TOP_HEIGHT,0));
 
     mBaseNode->attachObject(mBaseEntity);
     mTopNode->attachObject(mTopEntity);
@@ -70,6 +63,16 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     initBody( DimensionManager::NO_BULLET_HIT
             );
     setBulletObject(mBody);
+
+    //Create sounds.
+    mShootSound = GlbVar.soundMgr->createSound(mOgreName + "_shootSound", "TurretShoot.ogg");
+    mNode->attachObject(mShootSound);
+    mShootSound->setMaxGain(0.8);
+    mShootSound->setDistanceValues(40, 4, 5);
+
+    mMoveSound = GlbVar.soundMgr->createSound(mOgreName + "_moveSound", "TurretMove.ogg", true);
+    mNode->attachObject(mMoveSound);
+    mMoveSound->setDistanceValues(40, 3, 4);
 
     //Initialise states.
     NGF_STATES_INIT();
@@ -107,6 +110,10 @@ Turret::~Turret()
     //We only clear up stuff that we did.
     destroyBody();
     delete mShape;
+
+    //Destroy sounds.
+    GlbVar.soundMgr->destroySound(mShootSound);
+    GlbVar.soundMgr->destroySound(mMoveSound);
 
     //Remove Ogre SceneNodes and Entities.
     mNode->detachAllObjects();
@@ -155,20 +162,17 @@ void Turret::collide(GameObject *other, btCollisionObject *otherPhysicsObject, b
 //-------------------------------------------------------------------------------
 
 //--- Fire ----------------------------------------------------------------------
-void Turret::Fire::enter()
-{
-    REQUIRE_HEAD_UP();
-    mObj->mBulletTime = FIRST_BULLET_TIME;
-}
-//-------------------------------------------------------------------------------
 void Turret::Fire::unpausedTick(const Ogre::FrameEvent &evt)
 {
     //Time flies!
     mObj->mTime -= evt.timeSinceLastFrame;
 
-    if (GlbVar.player && mObj->mTime > 0)
+    if (mObj->mTime > 0)
     {
-        //Otherwise we shoot!
+        //If no Player (we did it!), then we stop after 1 second.
+        if (!GlbVar.player && mObj->mTime > 1)
+            mObj->mTime = 1;
+
         mObj->mBulletTime -= evt.timeSinceLastFrame;
 
         if (mObj->mBulletTime < 0)
@@ -179,7 +183,7 @@ void Turret::Fire::unpausedTick(const Ogre::FrameEvent &evt)
     }
     else
     {
-        //If no time left (or no player), switch to the next state (scan or rest, depends).
+        //If no time left switch to the next state (scan or rest, depends).
         if (mObj->mAlwaysScan)
             mObj->scan();
         else
@@ -188,19 +192,7 @@ void Turret::Fire::unpausedTick(const Ogre::FrameEvent &evt)
 }
 //-------------------------------------------------------------------------------
 
-//--- Disabled ------------------------------------------------------------------
-void Turret::Disabled::enter()
-{
-    REQUIRE_HEAD_DOWN();
-}
-//-------------------------------------------------------------------------------
-
 //--- Rest ----------------------------------------------------------------------
-void Turret::Rest::enter()
-{
-    REQUIRE_HEAD_DOWN();
-}
-//-------------------------------------------------------------------------------
 void Turret::Rest::unpausedTick(const Ogre::FrameEvent &evt)
 {
     if (mObj->mTime > 0)
@@ -212,11 +204,6 @@ void Turret::Rest::unpausedTick(const Ogre::FrameEvent &evt)
 //-------------------------------------------------------------------------------
 
 //--- Scan ----------------------------------------------------------------------
-void Turret::Scan::enter()
-{
-    REQUIRE_HEAD_DOWN();
-}
-//-------------------------------------------------------------------------------
 void Turret::Scan::unpausedTick(const Ogre::FrameEvent &)
 {
     if (mObj->playerIsInRadius() && mObj->doSingleScan())
@@ -227,11 +214,11 @@ void Turret::Scan::unpausedTick(const Ogre::FrameEvent &)
 //--- MoveDown ------------------------------------------------------------------
 void Turret::MoveDown::unpausedTick(const Ogre::FrameEvent &evt)
 {
-    Ogre::Real speed = (TOP_MOVE_DISTANCE / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
+    Ogre::Real speed = (TURRET_TOP_HEIGHT / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
 
-    if (mObj->mTopNode->getPosition().y + TOP_MOVE_DISTANCE < speed)
+    if (mObj->mTopNode->getPosition().y + TURRET_TOP_HEIGHT < speed)
     {
-        mObj->mTopNode->setPosition(Ogre::Vector3(0,-TOP_MOVE_DISTANCE,0));
+        mObj->mTopNode->setPosition(Ogre::Vector3(0,-TURRET_TOP_HEIGHT,0));
         NGF_STATES_CONTAINER_POP_STATE();
     }
     else
@@ -242,7 +229,7 @@ void Turret::MoveDown::unpausedTick(const Ogre::FrameEvent &evt)
 //--- MoveUp ------------------------------------------------------------------
 void Turret::MoveUp::unpausedTick(const Ogre::FrameEvent &evt)
 {
-    Ogre::Real speed = (TOP_MOVE_DISTANCE / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
+    Ogre::Real speed = (TURRET_TOP_HEIGHT / TOP_MOVE_TIME) * evt.timeSinceLastFrame;
 
     if (-(mObj->mTopNode->getPosition().y) < speed)
     {
@@ -290,19 +277,29 @@ void Turret::enable()
 //--- Some helper functions -----------------------------------------------------
 void Turret::fireSingleBullet()
 {
-    Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
-    Ogre::Vector3 shootPos = mNode->getPosition() + SHOOT_OFFSET;
+    if (GlbVar.player)
+    {
+        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
+        Ogre::Vector3 shootPos = mNode->getPosition() + SHOOT_OFFSET;
 
-    Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
-    dir.y = Util::clamp<Ogre::Real>(dir.y, -0.2, 0.2);
-    dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
+        //Get the direction, then deviate a bit or we'll get complaints that Turrets are too accurate.
+        Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
+        dir.y = Util::clamp<Ogre::Real>(dir.y, -0.2, 0.2);
+        dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
 
-    Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
-    Ogre::Vector3 bulletPos = shootPos + (bulletRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
+        Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
+        Ogre::Vector3 bulletPos = shootPos + (bulletRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
 
-    GlbVar.goMgr->createObject<Bullet>(bulletPos, bulletRot, NGF::PropertyList::create
-            ("dimensions", Ogre::StringConverter::toString(mDimensions))
-            );
+        //Make the bullet.
+        GlbVar.goMgr->createObject<Bullet>(bulletPos, bulletRot, NGF::PropertyList::create
+                ("dimensions", Ogre::StringConverter::toString(mDimensions))
+                );
+
+        //Play the sound.
+        mShootSound->stop();
+        mShootSound->setPitch(Ogre::Math::RangeRandom(SHOOT_SOUND_PITCH_RANGE));
+        mShootSound->play();
+    }
 }
 //-------------------------------------------------------------------------------
 bool Turret::doSingleScan()
