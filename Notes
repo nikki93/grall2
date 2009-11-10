@@ -6,6 +6,8 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Work on sound system. Add ability to add 'ambient sounds' etc. in level editor.
+
 - Work on 'Prop' system (premade static meshes, like 'Static Meshes' in Unreal engine).
   Prop meshes go in data/PropMeshes, textures in data/PropTextures, materials in
   data/Props.material. This is only for materials specific to Props, if they use
@@ -16,8 +18,6 @@ Next
 - Add 'icon' display to HUD.
 
 - Add smooth camera rotation for gravity invert.
-
-- Work on sound system. Add ability to add 'ambient sounds' etc. in level editor.
 
 Side
 ----
@@ -34,11 +34,11 @@ Side
 
 Bugs
 ----
-- Make Pickup displacement sine-wave dependent, not speed.
-
-- Fix shadows.
+- Fix Pickup bob.
 
 - Add Turret up/down angle range.
+
+- Fix shadows.
 
 +---------------------------+
 |         ChangeLog         |

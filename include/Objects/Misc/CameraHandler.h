@@ -44,6 +44,7 @@ class CameraHandler :
 
     protected:
         Ogre::Camera *mCamera;
+        Ogre::SceneNode *mCamNode;
 
         Ogre::SceneNode *mTargetNode;
         Ogre::String mTargetNodeName;
@@ -80,22 +81,23 @@ class CameraHandler :
         //--- Non-NGF ------------------------------------------------------------------
         inline void lookAt(Ogre::Vector3 target, Ogre::Real elapsed)
         {
-            Ogre::Vector3 dirA = mCamera->getDirection();
-            Ogre::Vector3 dirB = target - mCamera->getPosition();
+            Ogre::Vector3 dirA = mCamNode->_getDerivedOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
+            Ogre::Vector3 dirB = target - mCamNode->_getDerivedPosition();
             dirB.normalise();
             Ogre::Vector3 res;
 
             if (mRotationFactor)
             {
                 res = dirA + ((dirB - dirA) * elapsed * mRotationFactor);
+                res.normalise();
             }
             else
             {
                 res = dirB;
             }
 
-            mCamera->setDirection(res);
-            mCamera->setFixedYawAxis(true, GlbVar.gravMgr->getUpVector());
+            mCamNode->setDirection(res, Ogre::Node::TS_WORLD);
+            mCamNode->setFixedYawAxis(true, GlbVar.gravMgr->getUpVector());
         }
 
         //--- Python interface ---------------------------------------------------------
@@ -158,8 +160,8 @@ class CameraHandler :
             }
 
             //The actual read/write.
-            NGF_SERIALISE_POSITION(mCamera->getPosition());
-            NGF_SERIALISE_ROTATION(mCamera->getOrientation());
+            NGF_SERIALISE_POSITION(mCamNode->getPosition());
+            NGF_SERIALISE_ROTATION(mCamNode->getOrientation());
             NGF_SERIALISE_PYTHON_LOCALS();
             GRALL2_SERIALISE_ALARMS();
 

@@ -43,7 +43,6 @@ class GravityManager
         {
             mUp = !mUp;
             updateGravity();
-            GlbVar.ogreCamera->roll(Ogre::Degree(180));
         }
 
         inline void setUp(bool up)

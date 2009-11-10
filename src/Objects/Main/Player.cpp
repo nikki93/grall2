@@ -166,9 +166,6 @@ Player::~Player()
     //Python destroy event.
     NGF_PY_CALL_EVENT(destroy);
 
-    //Fix FOV.
-    GlbVar.ogreCamera->setFOVy(Ogre::Degree(45));
-
     //Destroy the light.
     if (mLight)
         GlbVar.goMgr->destroyObject(mLight->getID());

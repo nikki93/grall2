@@ -12,6 +12,7 @@ CameraHandler.cpp
 CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
       mCamera(GlbVar.ogreCamera),
+      mCamNode(GlbVar.camNode),
       mCurrState(CS_NONE),
       mTargetNode(NULL),
       mTargetNodeName(""),
@@ -54,13 +55,9 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
         GlbVar.goMgr->destroyObject(GlbVar.currCameraHandler->getID());
     GlbVar.currCameraHandler = this;
 
-    //Attach Camera.
-    Ogre::SceneNode *prev = mCamera->getParentSceneNode();
-    if (prev && prev != GlbVar.ogreSmgr->getRootSceneNode())
-        prev->detachObject(mCamera);
-
-    mCamera->setPosition(pos);
-    mCamera->setOrientation(rot);
+    //Set initial position.
+    mCamNode->setPosition(pos);
+    mCamNode->setOrientation(rot);
 
     //Create the spline node.
     mSplineNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(ogreName, pos);
@@ -193,8 +190,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 }
 
                 //Smoothly move to target.
-                Ogre::Vector3 toMove = (target - mCamera->getPosition()) * factor * evt.timeSinceLastFrame;
-                mCamera->move(toMove);
+                Ogre::Vector3 toMove = (target - mCamNode->getPosition()) * factor * evt.timeSinceLastFrame;
+                mCamNode->translate(toMove);
 
                 //Gotta look at the guy. :P
                 lookAt(mTargetNode->getPosition() + lookAtOffset, evt.timeSinceLastFrame);
@@ -216,7 +213,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             if (mSplineAnim)
             {
                 mSplineAnimState->addTime(evt.timeSinceLastFrame);
-                mCamera->setPosition(mSplineNode->getPosition());
+                mCamNode->setPosition(mSplineNode->getPosition());
             }
             break;
 
@@ -227,8 +224,8 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 mGhostOffset = Ogre::Quaternion(Ogre::Degree(mGhostDirection ? -20 : 20) * evt.timeSinceLastFrame, Ogre::Vector3::UNIT_Y) * mGhostOffset;
 
                 //Move the Camera toward it smoothly, make it look at the point.
-                Ogre::Vector3 toMove = ((mGhostPos + mGhostOffset) - mCamera->getPosition()) * 4 * evt.timeSinceLastFrame;
-                mCamera->move(toMove);
+                Ogre::Vector3 toMove = ((mGhostPos + mGhostOffset) - mCamNode->getPosition()) * 4 * evt.timeSinceLastFrame;
+                mCamNode->translate(toMove);
                 lookAt(mGhostPos + mLookAtOffset, evt.timeSinceLastFrame);
             }
             break;
@@ -281,11 +278,11 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
             //Get current offset, and then move to the teleported position with same offset.
             Ogre::Vector3 currOffset;
             if (mTargetNode)
-                currOffset = mCamera->getPosition() - mTargetNode->getPosition();
+                currOffset = mCamNode->getPosition() - mTargetNode->getPosition();
             else
                 currOffset = 0;
             Ogre::Vector3 newPos = msg.getParam<Ogre::Vector3>(0) + currOffset;
-            mCamera->setPosition(newPos);
+            mCamNode->setPosition(newPos);
             break;
     }
     NGF_NO_REPLY();
@@ -304,7 +301,7 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
 
     NGF_PY_METHOD_IMPL(getPosition)
     { 
-        NGF_PY_RETURN(mCamera->getPosition());
+        NGF_PY_RETURN(mCamNode->getPosition());
     }
     NGF_PY_METHOD_IMPL(setTarget)
     { 

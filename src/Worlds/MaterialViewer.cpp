@@ -89,8 +89,8 @@ void MaterialViewer::tick(const Ogre::FrameEvent &evt)
         mCameraDist = Util::clamp<Ogre::Real>(mCameraDist, 0.5, 10);
     }
 
-    GlbVar.ogreCamera->setPosition(mCameraPitchNode->_getDerivedOrientation() * Ogre::Vector3(0,0,-mCameraDist));
-    GlbVar.ogreCamera->lookAt(Ogre::Vector3::ZERO);
+    GlbVar.camNode->setPosition(mCameraPitchNode->_getDerivedOrientation() * Ogre::Vector3(0,0,-mCameraDist));
+    GlbVar.camNode->lookAt(Ogre::Vector3::ZERO, Ogre::Node::TS_WORLD);
 
     if (Util::isKeyDown(OIS::KC_ESCAPE))
         Util::gotoWorld(0);
@@ -180,7 +180,7 @@ void MaterialViewer::onClickSave(MyGUI::WidgetPtr)
 //-------------------------------------------------------------------------------
 void MaterialViewer::onClickCreateLight(MyGUI::WidgetPtr)
 {
-    GlbVar.goMgr->createObject("Light", GlbVar.ogreCamera->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
+    GlbVar.goMgr->createObject("Light", GlbVar.camNode->getPosition(), Ogre::Quaternion::IDENTITY, NGF::PropertyList::create
             ("lightType", "point")
             ("colour", GlbVar.gui->findWidget<MyGUI::Edit>("edt_lightColour")->getOnlyText())
             ("attenuation", "10 0.3 0.1 0.05")

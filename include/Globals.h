@@ -66,6 +66,7 @@ struct Globals : public Ogre::Singleton<Globals>
     Ogre::SceneManager *ogreSmgr;
     Ogre::RenderWindow *ogreWindow;
     Ogre::Camera *ogreCamera;
+    Ogre::SceneNode *camNode;
 
     //OIS.
     OIS::Keyboard *keyboard;

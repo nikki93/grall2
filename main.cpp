@@ -301,6 +301,9 @@ class Game
             GlbVar.ogreCamera->setFarClipDistance(10000.0);
             GlbVar.ogreCamera->setNearClipDistance(0.1);
 
+            GlbVar.camNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode("camNode");
+            GlbVar.camNode->attachObject(GlbVar.ogreCamera);
+
             //--- OIS (Input) ----------------------------------------------------------
             OIS::ParamList inputParams;
             size_t windowHnd = 0;
@@ -347,6 +350,7 @@ class Game
 
             //--- OgreAL (Sound) -------------------------------------------------------
             GlbVar.soundMgr = new OgreAL::SoundManager();
+            GlbVar.camNode->attachObject(GlbVar.soundMgr->getListener());
 
             //--- NGF (Game architecture framework) ------------------------------------
             //Usual stuff.
