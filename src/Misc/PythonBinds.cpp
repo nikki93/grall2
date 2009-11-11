@@ -254,7 +254,7 @@ typedef boost::shared_ptr<OgreAL::Sound> SoundPtr;
 OgreAL::Sound *py_createSound(Ogre::String filename, bool loop, bool stream)
 {
     unsigned long count = 0;
-    Ogre::String name = "pysound" + count++;
+    Ogre::String name = "pysound" + Ogre::StringConverter::toString(count++);
     //return SoundPtr(GlbVar.soundMgr->createSound(name, filename, loop, stream));
     return GlbVar.soundMgr->createSound(name, filename, loop, stream);
 }
@@ -271,7 +271,15 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::docstring_options doc_options(true, true, false);
 
     //OgreAL.
+    void (OgreAL::Sound::*Sound_setVelocity) (const Ogre::Vector3 &) = &OgreAL::Sound::setPosition;
+    void (OgreAL::Sound::*Sound_setPosition) (const Ogre::Vector3 &) = &OgreAL::Sound::setPosition;
+    void (OgreAL::Sound::*Sound_setDirection) (const Ogre::Vector3 &) = &OgreAL::Sound::setPosition;
+
     py::class_<OgreAL::Sound, SoundPtr>("Sound", py::no_init)
+        .def("setVelocity", Sound_setVelocity)
+        .def("setPosition", Sound_setPosition)
+        .def("setDirection", Sound_setDirection)
+        
         .def("play", &OgreAL::Sound::play)
         .def("isPlaying", &OgreAL::Sound::isPlaying)
         .def("pause", &OgreAL::Sound::pause)
@@ -299,14 +307,11 @@ BOOST_PYTHON_MODULE(GraLL2)
         .def("setReferenceDistance", &OgreAL::Sound::setReferenceDistance)
         .def("getReferenceDistance", &OgreAL::Sound::getReferenceDistance)
         .def("setDistanceValues", &OgreAL::Sound::setDistanceValues)
-        //.def("setVelocity", &OgreAL::Sound::setVelocity) TODO: Fix overloads.
-        //.def("getVelocity", &OgreAL::Sound::getVelocity) TODO: Fix const ref return.
+        .def("getVelocity", &OgreAL::Sound::getVelocity, py::return_value_policy<py::copy_const_reference>())
         .def("setRelativeToListener", &OgreAL::Sound::setRelativeToListener)
         .def("isRelativeToListener", &OgreAL::Sound::isRelativeToListener)
-        //.def("setPosition", &OgreAL::Sound::setPosition) TODO: Fix overloads.
-        //.def("getPosition", &OgreAL::Sound::getPosition) TODO: Fix const ref return.
-        //.def("setDirection", &OgreAL::Sound::setDirection) TODO: Fix overloads.
-        //.def("getDirection", &OgreAL::Sound::getDirection) TODO: Fix const ref return.
+        .def("getPosition", &OgreAL::Sound::getPosition, py::return_value_policy<py::copy_const_reference>())
+        .def("getDirection", &OgreAL::Sound::getDirection, py::return_value_policy<py::copy_const_reference>())
         .def("setOuterConeGain", &OgreAL::Sound::setOuterConeGain)
         .def("getOuterConeGain", &OgreAL::Sound::getOuterConeGain)
         .def("setInnerConeAngle", &OgreAL::Sound::setInnerConeAngle)
@@ -321,9 +326,21 @@ BOOST_PYTHON_MODULE(GraLL2)
         .def("getSecondDuration", &OgreAL::Sound::getSecondDuration)
         .def("setSecondOffset", &OgreAL::Sound::setSecondOffset)
         .def("getSecondOffset", &OgreAL::Sound::getSecondOffset)
-        //.def("getDerivedPosition", &OgreAL::Sound::getDerivedPosition) TODO: Fix const ref return.
-        //.def("getDerivedDirection", &OgreAL::Sound::getDerivedDirection) TODO: Fix const ref return.
+        .def("getDerivedPosition", &OgreAL::Sound::getDerivedPosition, py::return_value_policy<py::copy_const_reference>())
+        .def("getDerivedDirection", &OgreAL::Sound::getDerivedDirection, py::return_value_policy<py::copy_const_reference>())
+
+        //.enable_pickling()
         ;
+
+    /*
+    PyRun_SimpleString(
+            "def tmp_Sound__getinitargs__(self):\n"
+            " 	return ()\n"
+            "GraLL2.Sound.__getinitargs__ = tmp_Sound__getinitargs__\n"
+            "del tmp_Sound__getinitargs__\n\n"
+            );
+    */
+
     py::def("createSound", py_createSound,
             py::return_value_policy<py::reference_existing_object>()
             //"createSound(filename, loop, stream)\n",

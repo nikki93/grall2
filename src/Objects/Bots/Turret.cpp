@@ -68,11 +68,11 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mShootSound = GlbVar.soundMgr->createSound(mOgreName + "_shootSound", "TurretShoot.ogg");
     mNode->attachObject(mShootSound);
     mShootSound->setMaxGain(0.8);
-    mShootSound->setDistanceValues(40, 4, 5);
+    mShootSound->setDistanceValues(40, 4, 3);
 
     mMoveSound = GlbVar.soundMgr->createSound(mOgreName + "_moveSound", "TurretMove.ogg", true);
     mNode->attachObject(mMoveSound);
-    mMoveSound->setDistanceValues(40, 3, 4);
+    mMoveSound->setDistanceValues(40, 2.1, 2);
 
     //Initialise states.
     NGF_STATES_INIT();
