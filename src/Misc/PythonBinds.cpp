@@ -249,12 +249,91 @@ bool py_isUp()
     return GlbVar.gravMgr->isUp();
 }
 
+//OgreAL.
+typedef boost::shared_ptr<OgreAL::Sound> SoundPtr;
+OgreAL::Sound *py_createSound(Ogre::String filename, bool loop, bool stream)
+{
+    unsigned long count = 0;
+    Ogre::String name = "pysound" + count++;
+    //return SoundPtr(GlbVar.soundMgr->createSound(name, filename, loop, stream));
+    return GlbVar.soundMgr->createSound(name, filename, loop, stream);
+}
+void py_destroySound(OgreAL::Sound *sound)
+{
+    GlbVar.soundMgr->destroySound(sound);
+}
+
 //--- The module ----------------------------------------------------------------
 
 BOOST_PYTHON_MODULE(GraLL2)
 {
     //Docstring settings.
     py::docstring_options doc_options(true, true, false);
+
+    //OgreAL.
+    py::class_<OgreAL::Sound, SoundPtr>("Sound", py::no_init)
+        .def("play", &OgreAL::Sound::play)
+        .def("isPlaying", &OgreAL::Sound::isPlaying)
+        .def("pause", &OgreAL::Sound::pause)
+        .def("isPaused", &OgreAL::Sound::isPaused)
+        .def("stop", &OgreAL::Sound::stop)
+        .def("isStopped", &OgreAL::Sound::isStopped)
+        .def("isInitial", &OgreAL::Sound::isInitial)
+        .def("isFading", &OgreAL::Sound::isFading)
+        .def("fadeIn", &OgreAL::Sound::fadeIn)
+        .def("fadeOut", &OgreAL::Sound::fadeOut)
+        .def("cancelFade", &OgreAL::Sound::cancelFade)
+        .def("setPitch", &OgreAL::Sound::setPitch)
+        .def("getPitch", &OgreAL::Sound::getPitch)
+        .def("setGain", &OgreAL::Sound::setGain)
+        .def("getGain", &OgreAL::Sound::getGain)
+        .def("setMaxGain", &OgreAL::Sound::setMaxGain)
+        .def("getMaxGain", &OgreAL::Sound::getMaxGain)
+        .def("setMinGain", &OgreAL::Sound::setMinGain)
+        .def("getMinGain", &OgreAL::Sound::getMinGain)
+        //.def("setGainValues", &OgreAL::Sound::setGainValues)
+        .def("setMaxDistance", &OgreAL::Sound::setMaxDistance)
+        .def("getMaxDistance", &OgreAL::Sound::getMaxDistance)
+        .def("setRolloffFactor", &OgreAL::Sound::setRolloffFactor)
+        .def("getRolloffFactor", &OgreAL::Sound::getRolloffFactor)
+        .def("setReferenceDistance", &OgreAL::Sound::setReferenceDistance)
+        .def("getReferenceDistance", &OgreAL::Sound::getReferenceDistance)
+        .def("setDistanceValues", &OgreAL::Sound::setDistanceValues)
+        //.def("setVelocity", &OgreAL::Sound::setVelocity) TODO: Fix overloads.
+        //.def("getVelocity", &OgreAL::Sound::getVelocity) TODO: Fix const ref return.
+        .def("setRelativeToListener", &OgreAL::Sound::setRelativeToListener)
+        .def("isRelativeToListener", &OgreAL::Sound::isRelativeToListener)
+        //.def("setPosition", &OgreAL::Sound::setPosition) TODO: Fix overloads.
+        //.def("getPosition", &OgreAL::Sound::getPosition) TODO: Fix const ref return.
+        //.def("setDirection", &OgreAL::Sound::setDirection) TODO: Fix overloads.
+        //.def("getDirection", &OgreAL::Sound::getDirection) TODO: Fix const ref return.
+        .def("setOuterConeGain", &OgreAL::Sound::setOuterConeGain)
+        .def("getOuterConeGain", &OgreAL::Sound::getOuterConeGain)
+        .def("setInnerConeAngle", &OgreAL::Sound::setInnerConeAngle)
+        .def("getInnerConeAngle", &OgreAL::Sound::getInnerConeAngle)
+        .def("setOuterConeAngle", &OgreAL::Sound::setOuterConeAngle)
+        .def("getOuterConeAngle", &OgreAL::Sound::getOuterConeAngle)
+        .def("setLoop", &OgreAL::Sound::setLoop)
+        .def("isLooping", &OgreAL::Sound::isLooping)
+        .def("isStreaming", &OgreAL::Sound::isStreaming)
+        .def("setPriority", &OgreAL::Sound::setPriority)
+        .def("getPriority", &OgreAL::Sound::getPriority)
+        .def("getSecondDuration", &OgreAL::Sound::getSecondDuration)
+        .def("setSecondOffset", &OgreAL::Sound::setSecondOffset)
+        .def("getSecondOffset", &OgreAL::Sound::getSecondOffset)
+        //.def("getDerivedPosition", &OgreAL::Sound::getDerivedPosition) TODO: Fix const ref return.
+        //.def("getDerivedDirection", &OgreAL::Sound::getDerivedDirection) TODO: Fix const ref return.
+        ;
+    py::def("createSound", py_createSound,
+            py::return_value_policy<py::reference_existing_object>()
+            //"createSound(filename, loop, stream)\n",
+            //"Create a sound and return a sound handle. 'loop' is whether sound should loop, 'stream' whether it should be"
+            //"loaded while played."
+            );
+    py::def("destroySound", py_destroySound,
+            "destroySound(handle)\n"
+            "Destroy sound with given handle."
+            );
 
     //Enums.
     py::enum_<int>("Dimensions")
