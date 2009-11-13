@@ -1,0 +1,7 @@
+//'Prop' materials, ie., materials used on 'pre-made' meshes that can be used
+//for Brush objects.
+//
+//These were written manually and are not Blender-exported.
+
+import * from Base.program
+

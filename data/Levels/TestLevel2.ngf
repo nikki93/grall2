@@ -581,8 +581,8 @@ ngflevel TestLevel2
 	{
 		type Player
 		name player1
-		position -12.499782 0.389544 -1.499271
-		rotation 1.000000 0.000000 0.000000 -0.000000
+		position -12.499782 0.389544 -0.999271
+		rotation 0.707107 0.000000 -0.707107 -0.000000
 	}
 	object
 	{
@@ -774,6 +774,20 @@ ngflevel TestLevel2
 			force 60
 			radius 12
 			mode attraction
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -9.500000 0.500000 0.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile ArchWay.mesh
+			convex no
 		}
 	}
 }

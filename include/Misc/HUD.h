@@ -47,11 +47,24 @@ class HUD
             void update(const Ogre::Vector2 &pos);
         };
 
+        struct Icon
+        {
+            MyGUI::StaticImagePtr mImage;
+
+            Icon(const Ogre::String &imageFile);
+            ~Icon();
+            void update(const Ogre::Vector2 &pos);
+            void setImage(const Ogre::String &imageFile);
+        };
+
         typedef std::map<int, HUDTimer *> TimerMap;
         TimerMap mTimers;
 
         typedef std::map<Ogre::String, PickupDisplay *> PickupDisplayMap;
         PickupDisplayMap mPickupDisplays;
+
+        typedef std::map<Ogre::String, Icon *> IconMap;
+        IconMap mIcons;
 
         MyGUI::StaticTextPtr mBonusTimer;
 
@@ -78,6 +91,10 @@ class HUD
         //Adds a pickup display (tracks given pickup), with given colour.
         void addPickupDisplay(const Ogre::String &type, const Ogre::ColourValue &colour = Ogre::ColourValue::White);
         void removePickupDisplay(const Ogre::String &type);
+
+        //Adds icon identified by given name, with given image. If icon already exists, updates the image.
+        void setIcon(const Ogre::String &name, const Ogre::String &imageFile);
+        void removeIcon(const Ogre::String &name);
 };
 
 #endif

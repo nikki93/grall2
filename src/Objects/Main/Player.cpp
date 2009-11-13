@@ -301,6 +301,13 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 
         case MSG_MAGNET:
             DO_MSG_MAGNET();
+
+        case MSG_DIMENSIONCHANGED:
+            if (mCanSwitchDimensions)
+                if (GlbVar.dimMgr->getCurrentDimension() == 1)
+                    GlbVar.hud->setIcon("dimension", "Dimension1Icon.png");
+                else
+                    GlbVar.hud->setIcon("dimension", "Dimension2Icon.png");
     }
 
     return GraLL2GameObject::receiveMessage(msg);

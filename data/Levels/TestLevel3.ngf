@@ -233,5 +233,36 @@ ngflevel TestLevel3
 			scriptFile Prefab_Door.pyo
 		}
 	}
+	object
+	{
+		type Empty
+		name noname
+		position 1.500000 4.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_AmbientSound.pyo
+			soundFile Wind.ogg
+			loop 1
+			stream 1
+			attenuation 20 4 6
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 0.500000 0.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile ArchWay.mesh
+			convex no
+		}
+	}
 }
 

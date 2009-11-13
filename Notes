@@ -6,14 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add 'Prop' (pre-made static mesh) system. Non-brush Prop data goes in
-  data/Prop{Meshes,Textures,s.material}. Props are made by appending a
-  brush object (from Objects.blender or Prefabs.blend) to 'Props.blend',
-  editing the mesh and materials, removing 'isBrush' property, and setting
-  'brushMeshFile' manually.
-
-- Add 'icon' display to HUD.
-
 - Add smooth camera rotation for gravity invert.
 
 Side
@@ -767,3 +759,18 @@ Wed Nov 11 23:31:40 AST 2009
 ----------------------------
 - Exposed OgreAL sound stuff to Python.
 - Added 'AmbientSound' Prefab for placing level sounds in editor (mostly for atmospheric effects).
+
+Thu Nov 12 22:25:19 AST 2009
+----------------------------
+- Added custom serialisation for scripted objects (calls 'save', 'load' events in script).
+- Added serialisation of AmbientSound, with serialisation of sound offset, etc.
+
+Fri Nov 13 10:44:28 AST 2009
+----------------------------
+- Added 'Prop' system, for 'pre-made' Brush meshes. Props are made by appending a brush object
+  to Props.blend, removing 'isBrush' and setting 'brushMeshFile' manually. Props can then be used
+  in levels by appending from Props.blend. Props can by any kind of brush - StaticBrush,
+  MovingBrush, or even prefabs, like Generic Door.
+- Added icon display to HUD. Can dynamically add, remove and change icons.
+- Added dimension icon display (shows current dimension, if Player can switch dimensions).
+- Added 'initPlay' property to AmbientSound.

@@ -20,7 +20,28 @@ def init(self):
 
 def create(self):
     #Play!
-    self.m_sound.play()
+    if (parseBool(self.getProperty("initPlay", 0, "1"))):
+        self.m_sound.play()
 
 def destroy(self):
     GraLL2.destroySound(self.m_sound)
+
+#Return dict to save.
+def save(self):
+    values = {
+        "playing" : self.m_sound.isPlaying(),
+        "offset" : self.m_sound.getSecondOffset()
+    }
+
+    return values
+
+#Get the saved dict, use it.
+def load(self, values):
+    if (values["playing"]):
+        self.m_sound.play()
+    else:
+        self.m_sound.stop()
+
+    self.m_sound.setSecondOffset(values["offset"])
+
+    return True

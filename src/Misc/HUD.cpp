@@ -12,10 +12,14 @@ HUD.cpp
 
 #define TEXT_WIDTH 40 //Width of each text block.
 #define TEXT_HEIGHT 50 //Height of each text block.
-
-#define TEXT_SIDE_PAD 55 //Space between first text block and screen side edge.
-#define TEXT_BOTTOM_PAD 50 //Space between text blocks and screen bottom edge.
 #define TEXT_BETWEEN_PAD 10 //Space between each text block.
+#define TEXT_SIDE_PAD 55 //Space between text block and screen side edge.
+#define TEXT_BOTTOM_PAD 50 //Space between text block and screen bottom edge.
+
+#define ICON_WIDTH 32 //With of each icon.
+#define ICON_HEIGHT 32 //Height of each icon.
+#define ICON_BETWEEN_PAD 10 //Space between each icon.
+#define ICON_BOTTOM_PAD 50 //Space between icon and screen bottom edge.
 
 //Returns the position that the ID'th timer should have.
 static inline Ogre::Vector2 timerPosition(int id)
@@ -37,6 +41,19 @@ static inline Ogre::Vector2 pickupDisplayPosition(int i)
     return Ogre::Vector2(
             TEXT_SIDE_PAD + ((TEXT_WIDTH + TEXT_BETWEEN_PAD) * i),
             winHeight - TEXT_BOTTOM_PAD - TEXT_HEIGHT
+            );
+}
+
+//Returns the position that the i'th icon should have.
+static inline Ogre::Vector2 iconPosition(int i, int num)
+{
+    size_t winWidth = GlbVar.ogreWindow->getWidth();
+    size_t winHeight = GlbVar.ogreWindow->getHeight();
+
+    return Ogre::Vector2(
+            ((winWidth - ((ICON_WIDTH + ICON_BETWEEN_PAD) * num - ICON_BETWEEN_PAD)) / 2) //First icon position.
+            + (ICON_WIDTH + ICON_BETWEEN_PAD) * i, //Current icon position.
+            winHeight - ICON_BOTTOM_PAD - ICON_HEIGHT
             );
 }
 
@@ -74,6 +91,12 @@ void HUD::clear()
         delete iter->second;
     mPickupDisplays.clear();
 
+    //Remove all icons.
+    for (IconMap::iterator iter = mIcons.begin(); 
+            iter != mIcons.end(); ++iter)
+        delete iter->second;
+    mIcons.clear();
+
     //Clear bonus timer.
     mBonusTimer ->setCaption("");
 }
@@ -95,12 +118,17 @@ void HUD::tick(const Ogre::FrameEvent &evt)
     }
 
     //Update each pickup display.
-    {
-        int i = 0;
-        for (PickupDisplayMap::iterator iter = mPickupDisplays.begin(); 
-                iter != mPickupDisplays.end(); ++i, ++iter)
-            iter->second->update(pickupDisplayPosition(i));
-    }
+    int i = 0;
+    for (PickupDisplayMap::iterator iter = mPickupDisplays.begin(); 
+            iter != mPickupDisplays.end(); ++i, ++iter)
+        iter->second->update(pickupDisplayPosition(i));
+
+    //Update each icon.
+    i = 0;
+    int num = mIcons.size();
+    for (IconMap::iterator iter = mIcons.begin(); 
+            iter != mIcons.end(); ++i, ++iter)
+        iter->second->update(iconPosition(i, num));
 
     //If there's a bonus time, show it, else don't.
     if (mBonusTimer)
@@ -135,8 +163,11 @@ void HUD::removeTimer(int id)
 void HUD::addPickupDisplay(const Ogre::String &type, const Ogre::ColourValue &colour)
 {
     //If we don't already have a timer for this type, add it.
-    if (mPickupDisplays.find(type) == mPickupDisplays.end())
-        mPickupDisplays.insert(std::make_pair(type, new PickupDisplay(type, colour)));
+    std::pair<PickupDisplayMap::iterator, bool> ret = 
+        mPickupDisplays.insert(std::make_pair(type, (PickupDisplay *) 0));
+
+    if (ret.second)
+        ret.first->second = new PickupDisplay(type, colour);
 }
 //-------------------------------------------------------------------------------
 void HUD::removePickupDisplay(const Ogre::String &type)
@@ -147,6 +178,27 @@ void HUD::removePickupDisplay(const Ogre::String &type)
     {
         delete iter->second;
         mPickupDisplays.erase(iter);
+    }
+}
+//-------------------------------------------------------------------------------
+void HUD::setIcon(const Ogre::String &name, const Ogre::String &imageFile)
+{
+    std::pair<IconMap::iterator, bool> ret = mIcons.insert(std::make_pair(name, (Icon *) 0));
+
+    if (ret.second) //If new element.
+        ret.first->second = new Icon(imageFile);
+    else
+        ret.first->second->setImage(imageFile);
+}
+//-------------------------------------------------------------------------------
+void HUD::removeIcon(const Ogre::String &name)
+{
+    IconMap::iterator iter = mIcons.find(name);
+
+    if (iter != mIcons.end())
+    {
+        delete iter->second;
+        mIcons.erase(iter);
     }
 }
 //-------------------------------------------------------------------------------
@@ -201,5 +253,29 @@ void HUD::PickupDisplay::update(const Ogre::Vector2 &pos)
         if (player)
             mText->setCaption(Ogre::StringConverter::toString(player->getNumPickups(mType)));
     }
+}
+//-------------------------------------------------------------------------------
+
+//--- Icon ----------------------------------------------------------------------
+HUD::Icon::Icon(const Ogre::String &imageFile)
+{
+    mImage = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", 
+            MyGUI::IntCoord(0,0,ICON_WIDTH,ICON_HEIGHT), MyGUI::Align::Default, HUD_LAYER);
+    mImage->setImageTexture(imageFile);
+}
+//-------------------------------------------------------------------------------
+HUD::Icon::~Icon()
+{
+    GlbVar.gui->destroyWidget(mImage);
+}
+//-------------------------------------------------------------------------------
+void HUD::Icon::update(const Ogre::Vector2 &pos)
+{
+    mImage->setPosition(pos.x, pos.y);
+}
+//-------------------------------------------------------------------------------
+void HUD::Icon::setImage(const Ogre::String &imageFile)
+{
+    mImage->setImageTexture(imageFile);
 }
 //-------------------------------------------------------------------------------

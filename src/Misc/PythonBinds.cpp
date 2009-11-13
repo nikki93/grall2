@@ -234,6 +234,14 @@ void py_removePickupDisplay(Ogre::String type)
 {
     GlbVar.hud->removePickupDisplay(type);
 }
+void py_setHUDIcon(Ogre::String name, Ogre::String imageFile)
+{
+    GlbVar.hud->setIcon(name, imageFile);
+}
+void py_removeHUDIcon(Ogre::String name)
+{
+    GlbVar.hud->removeIcon(name);
+}
 
 //Gravity.
 void py_invertGravity()
@@ -614,6 +622,15 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("removePickupDisplay", py_removePickupDisplay,
             "removePickupDisplay(type)\n"
             "Remove pickup display of the given type."
+           );
+    py::def("setHUDIcon", py_setHUDIcon,
+            "setHUDIcon(name, imageFile)\n"
+            "Adds an icon to the HUD. The icon is identified with the given name. If an icon with this name already exists, it updates"
+            "the image for that icon. 'imageFile' is the filename of an image that can be found in the game resource directories."
+           );
+    py::def("removeHUDIcon", py_removeHUDIcon,
+            "removeHUDIcon(name)\n"
+            "Remove HUD icon with given name."
            );
 
     //Gravity.
