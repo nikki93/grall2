@@ -30,6 +30,13 @@ class GravityManager
         {
             //When up, gravity is down.
             GlbVar.phyWorld->setGravity(mUp ? DOWN_GRAVITY : UP_GRAVITY);
+
+            //Tell camera handler.
+            if (GlbVar.currCameraHandler)
+                GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_GRAVITYCHANGE));
+
+            //Update HUD.
+            GlbVar.hud->setIcon("gravity", mUp ? "GravityDownIcon.png" : "GravityUpIcon.png");
         }
 
     public:
@@ -47,8 +54,11 @@ class GravityManager
 
         inline void setUp(bool up)
         {
-            mUp = up;
-            updateGravity();
+            if (up != mUp)
+            {
+                mUp = up;
+                updateGravity();
+            }
         }
 
         inline Ogre::Vector3 getUpVector()

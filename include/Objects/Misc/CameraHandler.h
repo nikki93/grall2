@@ -50,6 +50,7 @@ class CameraHandler :
         Ogre::String mTargetNodeName;
 
         Ogre::Vector3 mViewOffset;
+        Ogre::Quaternion mViewRoll;
         Ogre::Vector3 mLookAtOffset;
         Ogre::Degree mViewAngle;
         Ogre::Real mMovementFactor; //The fraction of the required displacement that the camera moves by (lerp).
@@ -97,7 +98,6 @@ class CameraHandler :
             }
 
             mCamNode->setDirection(res, Ogre::Node::TS_WORLD);
-            mCamNode->setFixedYawAxis(true, GlbVar.gravMgr->getUpVector());
         }
 
         //--- Python interface ---------------------------------------------------------
@@ -177,6 +177,7 @@ class CameraHandler :
             NGF_SERIALISE_OGRE(Real, mLastKeyFrameTime);
             NGF_SERIALISE_OGRE(Vector3, mGhostPos);
             NGF_SERIALISE_OGRE(Vector3, mGhostOffset);
+            NGF_SERIALISE_OGRE(Quaternion, mViewRoll);
 
             NGF_SERIALISE_STL_CONTAINER(splineStrMap);
 

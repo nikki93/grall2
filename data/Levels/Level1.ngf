@@ -362,6 +362,8 @@ ngflevel Level1
 			       : def levelStart(self):
 			       : 	GraLL2.setDimension(1)
 			       : 	GraLL2.setBonusTime(49)
+			       : 	GraLL2.setUp(True)
+			       : 	
 			       : 	self.setAlarm(8.2, 0)
 			       : 
 			       : def levelStop(self):
@@ -615,7 +617,7 @@ ngflevel Level1
 			soundFile Wind.ogg
 			loop 1
 			stream 1
-			attenuation 40 3 7
+			attenuation 40 4 7
 		}
 	}
 }

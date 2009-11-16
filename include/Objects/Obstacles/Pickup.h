@@ -32,6 +32,8 @@ class Pickup :
         Ogre::Real mBob;
         Ogre::Real mTime;
 
+        bool mFirstFrame;
+
     public:
         Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Pickup();
@@ -57,6 +59,7 @@ class Pickup :
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_STRING(mPickupType);
+            NGF_SERIALISE_OGRE(Bool, mFirstFrame);
         }
         NGF_SERIALISE_END
 };

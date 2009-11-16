@@ -22,7 +22,8 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mSplineAnim(NULL),
       mSplineAnimState(NULL),
       mSplineTrack(NULL),
-      mLastKeyFrameTime(0)
+      mLastKeyFrameTime(0),
+      mViewRoll(Ogre::Quaternion::IDENTITY)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
@@ -131,18 +132,28 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             else if (diff >= max)
                 fact = 1;
             else 
-                fact = (3 * ((diff - min) / (max - min)) * ((diff - min) / (max - min))) - (2 * ((diff - min) / (max - min)) * ((diff - min) / (max - min)) * ((diff - min) / (max - min)));
+                fact = (3 * ((diff - min) / (max - min)) * ((diff - min) / (max - min))) 
+                    - (2 * ((diff - min) / (max - min)) * ((diff - min) / (max - min)) * ((diff - min) / (max - min)));
 
             mViewOffset.z -= fact;
             mLookAtOffset.y += 3 * fact;
             mViewOffset.y = 3.42 - ((3.42 - mViewOffset.y) * 1.2);
         }
     }
-    mViewOffset.y *= GlbVar.gravMgr->getSign();
+
+    if (GlbVar.gravMgr->isUp())
+        mViewRoll = Ogre::Quaternion::Slerp(2.5 * evt.timeSinceLastFrame, mViewRoll, Ogre::Quaternion::IDENTITY, true);
+    else
+        mViewRoll = Ogre::Quaternion::Slerp(2.5 * evt.timeSinceLastFrame, mViewRoll, 
+                Ogre::Quaternion(((Ogre::Math::UnitRandom() > 0.5) ? -1 : 1) * Ogre::Degree(179.8), Ogre::Vector3::UNIT_Z), 
+                true);
+
+    mViewOffset = mViewRoll * mViewOffset;
 
     //Python utick event (do it before camera handling to allow offset-modifications).
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 
+    mCamNode->setFixedYawAxis(true, GlbVar.gravMgr->getSign() * Ogre::Vector3::UNIT_Y);
     //Do the camera-handling based on state.
     switch (mCurrState)
     {
@@ -194,6 +205,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 mCamNode->translate(toMove);
 
                 //Gotta look at the guy. :P
+                mCamNode->setFixedYawAxis(true, mViewRoll * mTargetNode->getOrientation() * Ogre::Vector3::UNIT_Y);
                 lookAt(mTargetNode->getPosition() + lookAtOffset, evt.timeSinceLastFrame);
             }
             break;
@@ -226,7 +238,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 //Move the Camera toward it smoothly, make it look at the point.
                 Ogre::Vector3 toMove = ((mGhostPos + mGhostOffset) - mCamNode->getPosition()) * 4 * evt.timeSinceLastFrame;
                 mCamNode->translate(toMove);
-                lookAt(mGhostPos + mLookAtOffset, evt.timeSinceLastFrame);
+                lookAt(mGhostPos + GlbVar.gravMgr->getSign() * mLookAtOffset, evt.timeSinceLastFrame);
             }
             break;
     }
@@ -263,7 +275,8 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     break;
                 case CS_DEATH:
                     mGhostPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
-                    mGhostOffset = GlbVar.gravMgr->getSign() * (mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + GlbVar.gravMgr->getSign(), 3));
+                    //mGhostOffset = mViewRoll * (mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3));
+                    mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + GlbVar.gravMgr->getSign(), 3);
                     mTargetNode = 0;
                     mGhostDirection = (Ogre::Math::UnitRandom() > 0.5);
                     break;

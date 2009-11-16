@@ -258,6 +258,7 @@ enum
     MSG_SETVISIBLE,           //Set visibility.
     MSG_ONEWAY,               //In a OneWay screen.
     MSG_MAGNET,               //In a magnetic field.
+    MSG_GRAVITYCHANGE,        //Gravity changed.
 };
 
 //Flags for creating Physics bodies from Python.

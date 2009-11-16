@@ -11,7 +11,8 @@ Pickup.cpp
 //--- NGF events ----------------------------------------------------------------
 Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mTime(0)
+      mTime(0),
+      mFirstFrame(true)
 {
     addFlag("Pickup");
 
@@ -82,14 +83,13 @@ void Pickup::unpausedTick(const Ogre::FrameEvent &evt)
     btQuaternion rot(btVector3(0,1,0), mSpin * evt.timeSinceLastFrame);
 
     //Bob!
-    static bool firstFrame = false; //Anti first-frame-spike hax.
     btVector3 disp = btVector3(0,0,0);
-    if (!firstFrame)
+    if (!mFirstFrame)
     {
         mTime += evt.timeSinceLastFrame * 3;
         disp.setY(Ogre::Math::Sin(mTime) * mBob * 0.02);
-        firstFrame = true;
     }
+    mFirstFrame = false;
 
     //Set trans.
     trans *= btTransform(rot, disp);
