@@ -156,11 +156,6 @@ class GameListener :
                     if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
                         GlbVar.paused = !GlbVar.paused;
                     break;
-
-                case OIS::KC_G:
-                    if (!GlbVar.console->isVisible())
-                        GlbVar.gravMgr->invert();
-                    break;
             }
 
             return true;

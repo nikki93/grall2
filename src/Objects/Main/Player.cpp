@@ -51,7 +51,8 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
       mDead(false),
       mLight(0),
       mInvincible(false), //This makes the game harder.
-      mWon(false)
+      mWon(false),
+      mCanSwitchGravity(false)
 {
     addFlag("Player");
     addFlag("Switcher");
@@ -239,6 +240,8 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                     switchDimension();
                 else if (key == GlbVar.settings.controls.keys["selfDestruct"])
                     die(true);
+                else if (mCanSwitchGravity && key == OIS::KC_G)
+                    GlbVar.gravMgr->invert();
             }
             NGF_NO_REPLY();
 
@@ -569,6 +572,7 @@ NGF_PY_BEGIN_IMPL(Player)
     NGF_PY_PROPERTY_IMPL(underControl, mUnderControl, bool)
     NGF_PY_PROPERTY_IMPL(invincible, mInvincible, bool)
     NGF_PY_PROPERTY_IMPL(canSwitchDimensions, mCanSwitchDimensions, bool)
+    NGF_PY_PROPERTY_IMPL(canSwitchGravity, mCanSwitchGravity, bool)
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
 //-------------------------------------------------------------------------------

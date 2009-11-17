@@ -261,7 +261,7 @@ bool py_isUp()
 typedef boost::shared_ptr<OgreAL::Sound> SoundPtr;
 OgreAL::Sound *py_createSound(Ogre::String filename, bool loop, bool stream)
 {
-    unsigned long count = 0;
+    static unsigned long count = 0;
     Ogre::String name = "pysound" + Ogre::StringConverter::toString(count++);
     //return SoundPtr(GlbVar.soundMgr->createSound(name, filename, loop, stream));
     return GlbVar.soundMgr->createSound(name, filename, loop, stream);
@@ -279,14 +279,17 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::docstring_options doc_options(true, true, false);
 
     //OgreAL.
-    void (OgreAL::Sound::*Sound_setVelocity) (const Ogre::Vector3 &) = &OgreAL::Sound::setPosition;
+    void (OgreAL::Sound::*Sound_setVelocity) (const Ogre::Vector3 &) = &OgreAL::Sound::setVelocity;
     void (OgreAL::Sound::*Sound_setPosition) (const Ogre::Vector3 &) = &OgreAL::Sound::setPosition;
-    void (OgreAL::Sound::*Sound_setDirection) (const Ogre::Vector3 &) = &OgreAL::Sound::setPosition;
+    void (OgreAL::Sound::*Sound_setDirection) (const Ogre::Vector3 &) = &OgreAL::Sound::setDirection;
 
     py::class_<OgreAL::Sound, SoundPtr>("Sound", py::no_init)
-        .def("setVelocity", Sound_setVelocity)
-        .def("setPosition", Sound_setPosition)
-        .def("setDirection", Sound_setDirection)
+        //.def("setVelocity", Sound_setVelocity)
+        //.def("setPosition", Sound_setPosition)
+        //.def("setDirection", Sound_setDirection)
+        .def("setVelocity", (void (OgreAL::Sound::*) (const Ogre::Vector3 &)) &OgreAL::Sound::setVelocity)
+        .def("setPosition", (void (OgreAL::Sound::*) (const Ogre::Vector3 &)) &OgreAL::Sound::setPosition)
+        .def("setDirection", (void (OgreAL::Sound::*) (const Ogre::Vector3 &)) &OgreAL::Sound::setDirection)
         
         .def("play", &OgreAL::Sound::play)
         .def("isPlaying", &OgreAL::Sound::isPlaying)
@@ -350,10 +353,10 @@ BOOST_PYTHON_MODULE(GraLL2)
     */
 
     py::def("createSound", py_createSound,
-            py::return_value_policy<py::reference_existing_object>()
-            //"createSound(filename, loop, stream)\n",
-            //"Create a sound and return a sound handle. 'loop' is whether sound should loop, 'stream' whether it should be"
-            //"loaded while played."
+            py::return_value_policy<py::reference_existing_object>(),
+            "createSound(filename, loop, stream)\n"
+            "Create a sound and return a sound handle. 'loop' is whether sound should loop, 'stream' whether it should be"
+            "loaded while played."
             );
     py::def("destroySound", py_destroySound,
             "destroySound(handle)\n"

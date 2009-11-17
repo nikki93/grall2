@@ -6,6 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Add a setting to change gravity-invert control.
 
 Side
 ----
@@ -781,3 +782,8 @@ Mon Nov 16 14:56:37 AST 2009
 - Added smooth camera rotation for gravity invert.
 - Changed dimension icons.
 - Added gravity icons display (shows current gravity state).
+
+Tue Nov 17 18:17:16 AST 2009
+----------------------------
+- Fixed bug in OgreAL Sound stop().
+- Added regulation for gravity inversion ability.

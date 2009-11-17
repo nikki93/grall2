@@ -35,7 +35,6 @@ class Player :
         bool mUnderControl; //Whether the Player can control us.
         bool mDead;
         bool mInvincible;
-        bool mCanSwitchDimensions;
         bool mWon;
 
         Ogre::Real mMinHeight;
@@ -48,6 +47,9 @@ class Player :
         //Our inventory. :-)
         typedef std::map<Ogre::String, unsigned int> PickupMap;
         PickupMap mPickups;
+
+        bool mCanSwitchDimensions;
+        bool mCanSwitchGravity;
 
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -91,6 +93,7 @@ class Player :
             NGF_PY_PROPERTY_DECL(underControl)
             NGF_PY_PROPERTY_DECL(invincible)
             NGF_PY_PROPERTY_DECL(canSwitchDimensions)
+            NGF_PY_PROPERTY_DECL(canSwitchGravity)
         }
         NGF_PY_END_DECL
 
@@ -186,7 +189,7 @@ NGF_PY_CLASS_GPERF(Player)::MakeHash (register const char *str, register unsigne
       35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
       35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
       35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35,  0,
+      35, 35, 35, 35, 35, 35, 35, 35, 35, 10,
       15, 35, 35,  5,  0, 25, 35, 35,  0, 35,
       20, 35, 35, 35, 35,  0, 35, 35, 35, 35,
       35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
@@ -212,7 +215,7 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 18,
+      TOTAL_KEYWORDS = 20,
       MIN_WORD_LENGTH = 3,
       MAX_WORD_LENGTH = 23,
       MIN_HASH_VALUE = 7,
@@ -234,17 +237,18 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
       {"loseCameraHandler", NGF_PY_METHOD_GPERF(Player, loseCameraHandler)},
       {"die", NGF_PY_METHOD_GPERF(Player, die)},
       {"get_invincible", NGF_PY_GET_GPERF(Player, invincible)},
-      {"captureCameraHandler", NGF_PY_METHOD_GPERF(Player, captureCameraHandler)},
+      {"set_canSwitchGravity", NGF_PY_SET_GPERF(Player, canSwitchGravity)},
       {"get_underControl", NGF_PY_GET_GPERF(Player, underControl)},
       {""},
       {"set_canSwitchDimensions", NGF_PY_SET_GPERF(Player, canSwitchDimensions)},
       {"decPickup", NGF_PY_METHOD_GPERF(Player, decPickup)},
-      {""},
+      {"get_canSwitchGravity", NGF_PY_GET_GPERF(Player, canSwitchGravity)},
       {"getControlOrientation", NGF_PY_METHOD_GPERF(Player, getControlOrientation)},
       {""},
       {"get_canSwitchDimensions", NGF_PY_GET_GPERF(Player, canSwitchDimensions)},
       {"numPickup", NGF_PY_METHOD_GPERF(Player, numPickup)},
-      {""}, {""}, {""}, {""},
+      {"captureCameraHandler", NGF_PY_METHOD_GPERF(Player, captureCameraHandler)},
+      {""}, {""}, {""},
       {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)}
     };
 
