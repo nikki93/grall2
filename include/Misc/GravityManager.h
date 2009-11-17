@@ -34,9 +34,6 @@ class GravityManager
             //Tell camera handler.
             if (GlbVar.currCameraHandler)
                 GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_GRAVITYCHANGE));
-
-            //Update HUD.
-            GlbVar.hud->setIcon("gravity", mUp ? "GravityDownIcon.png" : "GravityUpIcon.png");
         }
 
     public:

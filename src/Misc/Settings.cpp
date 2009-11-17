@@ -67,6 +67,7 @@ void loadSettings()
     GlbVar.settings.controls.keys["right"] = GlbVar.keyMap->stringToKey(cfg.getSetting("right", "controls", "D"), OIS::KC_W);
 
     GlbVar.settings.controls.keys["dimensionSwitch"] = GlbVar.keyMap->stringToKey(cfg.getSetting("dimensionSwitch", "controls", "SPACE"), OIS::KC_W);
+    GlbVar.settings.controls.keys["gravitySwitch"] = GlbVar.keyMap->stringToKey(cfg.getSetting("gravitySwitch", "controls", "G"), OIS::KC_W);
     GlbVar.settings.controls.keys["selfDestruct"] = GlbVar.keyMap->stringToKey(cfg.getSetting("selfDestruct", "controls", "Z"), OIS::KC_W);
 
     GlbVar.settings.controls.keys["peepLeft"] = GlbVar.keyMap->stringToKey(cfg.getSetting("peepLeft", "controls", "Q"), OIS::KC_W);
@@ -125,6 +126,7 @@ void saveSettings()
     cfg << "left = " << GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys["left"]) << std::endl;
     cfg << "right = " << GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys["right"]) << std::endl;
     cfg << "dimensionSwitch = " << GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys["dimensionSwitch"]) << std::endl;
+    cfg << "gravitySwitch = " << GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys["gravitySwitch"]) << std::endl;
     cfg << "selfDestruct = " << GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys["selfDestruct"]) << std::endl;
     cfg << "peepLeft = " << GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys["peepLeft"]) << std::endl;
     cfg << "peepRight = " << GlbVar.keyMap->keyToString(GlbVar.settings.controls.keys["peepRight"]) << std::endl;

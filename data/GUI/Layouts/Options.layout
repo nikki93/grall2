@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
-    <Widget type="Window" skin="WindowC" position="345 51 572 372" layer="Main" name="win_options">
+    <Widget type="Window" skin="WindowC" position="345 51 572 396" layer="Main" name="win_options">
         <Property key="Widget_Caption" value="Options"/>
-        <Widget type="Tab" skin="Tab" position="8 9 544 283" layer="Main">
-            <Widget type="TabItem" skin="Default" position="4 26 535 251" layer="Main" name="o_tab_controls">
+        <Widget type="Tab" skin="Tab" position="8 9 544 307" layer="Main">
+            <Widget type="TabItem" skin="Default" position="4 26 535 275" layer="Main" name="o_tab_controls">
                 <Property key="Sheet_Select" value="true"/>
                 <Property key="Widget_Caption" value="Controls"/>
                 <Widget type="StaticText" skin="StaticText" position="132 10 80 18" layer="Main" name="o_c_txt_forward">
@@ -27,16 +27,19 @@
                 <Widget type="StaticText" skin="StaticText" position="8 82 124 18" layer="Main">
                     <Property key="Widget_Caption" value="Right:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 142 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Self destuct:"/>
-                </Widget>
                 <Widget type="StaticText" skin="StaticText" position="8 118 124 18" layer="Main">
                     <Property key="Widget_Caption" value="Dimension switch:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 178 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Peep left:"/>
+                <Widget type="StaticText" skin="StaticText" position="8 142 124 18" layer="Main">
+                    <Property key="Widget_Caption" value="Gravity switch:"/>
+                </Widget>
+                <Widget type="StaticText" skin="StaticText" position="8 166 124 18" layer="Main">
+                    <Property key="Widget_Caption" value="Self destuct:"/>
                 </Widget>
                 <Widget type="StaticText" skin="StaticText" position="8 202 124 18" layer="Main">
+                    <Property key="Widget_Caption" value="Peep left:"/>
+                </Widget>
+                <Widget type="StaticText" skin="StaticText" position="8 226 124 18" layer="Main">
                     <Property key="Widget_Caption" value="Peep right:"/>
                 </Widget>
                 <Widget type="StaticText" skin="StaticText" position="132 34 80 18" layer="Main" name="o_c_txt_backward">
@@ -55,15 +58,19 @@
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="dimensionSwitch"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 142 80 18" layer="Main" name="o_c_txt_selfDestruct">
+                <Widget type="StaticText" skin="StaticText" position="132 142 80 18" layer="Main" name="o_c_txt_gravitySwitch">
+                    <UserString key="type" value="KeyDisplay"/>
+                    <UserString key="key" value="gravitySwitch"/>
+                </Widget>
+                <Widget type="StaticText" skin="StaticText" position="132 166 80 18" layer="Main" name="o_c_txt_selfDestruct">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="selfDestruct"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 178 80 18" layer="Main" name="o_c_txt_peepLeft">
+                <Widget type="StaticText" skin="StaticText" position="132 202 80 18" layer="Main" name="o_c_txt_peepLeft">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="peepLeft"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 202 80 18" layer="Main" name="o_c_txt_peepRight">
+                <Widget type="StaticText" skin="StaticText" position="132 226 80 18" layer="Main" name="o_c_txt_peepRight">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="peepRight"/>
                 </Widget>
@@ -87,22 +94,27 @@
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="dimensionSwitch"/>
                 </Widget>
-                <Widget type="Button" skin="Button" position="216 142 60 18" layer="Main" name="o_c_but_selfDestruct">
+                <Widget type="Button" skin="Button" position="216 142 60 18" layer="Main" name="o_c_but_gravitySwitch">
+                    <Property key="Widget_Caption" value="Change"/>
+                    <UserString key="type" value="KeyChange"/>
+                    <UserString key="key" value="gravitySwitch"/>
+                </Widget>
+                <Widget type="Button" skin="Button" position="216 166 60 18" layer="Main" name="o_c_but_selfDestruct">
                     <Property key="Widget_Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="selfDestruct"/>
                 </Widget>
-                <Widget type="Button" skin="Button" position="216 178 60 18" layer="Main" name="o_c_but_peepLeft">
+                <Widget type="Button" skin="Button" position="216 202 60 18" layer="Main" name="o_c_but_peepLeft">
                     <Property key="Widget_Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="peepLeft"/>
                 </Widget>
-                <Widget type="Button" skin="Button" position="216 202 60 18" layer="Main" name="o_c_but_peepRight">
+                <Widget type="Button" skin="Button" position="216 226 60 18" layer="Main" name="o_c_but_peepRight">
                     <Property key="Widget_Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="peepRight"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 230 256 18" layer="Back" name="o_c_txt_pressKey">
+                <Widget type="StaticText" skin="StaticText" position="8 254 256 18" layer="Back" name="o_c_txt_pressKey">
                     <Property key="Widget_Caption" value="Press the new key!"/>
                     <Property key="Text_TextAlign" value="Center"/>
                     <Property key="Text_TextColour" value="0.8 0.6 0.1"/>
@@ -127,7 +139,7 @@
                     <Property key="Text_TextAlign" value="Right VCenter"/>
                 </Widget>
             </Widget>
-            <Widget type="TabItem" skin="Default" position="4 26 535 251" layer="Main">
+            <Widget type="TabItem" skin="Default" position="4 26 535 275" layer="Main">
                 <Property key="Widget_Caption" value="Graphics"/>
                 <Widget type="StaticText" skin="StaticText" position="8 34 96 18" layer="Back">
                     <Property key="Widget_Caption" value="Resolution:"/>
@@ -164,7 +176,7 @@
                 <Widget type="Button" skin="CheckBox" position="415 7 24 24" layer="Back" name="o_g_chk_lighting"/>
             </Widget>
         </Widget>
-        <Widget type="Button" skin="Button" position="424 297 128 32" layer="Back" name="o_but_ok">
+        <Widget type="Button" skin="Button" position="424 321 128 32" layer="Back" name="o_but_ok">
             <Property key="Widget_Caption" value="OK"/>
         </Widget>
         <Widget type="StaticText" skin="StaticText" position="299 -107 44 88" layer="Back"/>

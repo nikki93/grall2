@@ -1905,7 +1905,7 @@ ngflevel TestLevel1
 	{
 		type Director
 		name noname
-		position -2.000000 9.500000 1.500000
+		position -22.000000 16.500000 4.500000
 		rotation 0.707107 -0.707107 -0.000000 0.000000
 
 		properties
@@ -2228,22 +2228,22 @@ ngflevel TestLevel1
 	{
 		type MovingBrush
 		name mover1
-		position -2.000000 5.500000 1.500000
+		position -22.000000 5.500000 4.500000
 		rotation 0.707107 0.707107 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled no
+			enabled yes
 			brushMeshFile TestLevel1_b17.mesh
-			speed 0.5
+			speed 1.2
 		}
 	}
 	object
 	{
 		type Director
 		name noname
-		position -2.000000 5.500000 1.500000
+		position -22.000000 3.500000 4.500000
 		rotation 0.707107 0.707107 0.000000 -0.000000
 
 		properties
@@ -2634,6 +2634,20 @@ ngflevel TestLevel1
 			enabled yes
 			force 60
 			radius 10
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -22.500000 12.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b28.mesh
+			convex 1
 		}
 	}
 }

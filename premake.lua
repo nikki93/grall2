@@ -26,8 +26,7 @@ release = package.config["Release"]
 if (linux) then
 
 package.postbuildcommands = { 
-    "rm `find -name '*.d'`" --,
-    -- "./scripts/compilePython.sh" 
+    "rm `find -name '*.d'`"
 }
 
 -- Search paths -----------------------------------------------------------------------------
@@ -35,6 +34,10 @@ package.postbuildcommands = {
 package.includepaths = {
     "../../Libraries/ogre/btogre/include",                                   -- BtOgre
     "../../Libraries/ogre/ngf/include",                                      -- NGF
+    "/usr/local/include/OGRE",                                               -- Ogre
+    "/usr/local/include/OIS",                                                -- OIS
+    "/usr/local/include/MYGUI",                                              -- MyGUI
+    "/usr/local/include/OgreAL",                                             -- OgreAL
 
     "./include"                                                              -- GraLL2 files
 }
@@ -45,29 +48,23 @@ package.libpaths = {
 -- Libraries --------------------------------------------------------------------------------
 
 package.links = {
-    -- Libaries.
-    "python2.6",
-    "boost_python",
-    "boost_serialization",
     "BulletDynamics",
     "BulletCollision",
-    "LinearMath"
-}
-
--- pkg-configable stuff ---------------------------------------------------------------------
-
-package.buildoptions = {
-    "`pkg-config OGRE --cflags`" ..
-    "`pkg-config OIS --cflags`" ..
-    "`pkg-config MyGUI --cflags`" ..
-    "`pkg-config OgreAL --cflags`"
-}
-
-package.linkoptions = {
-    "`pkg-config OGRE --libs`" ..
-    "`pkg-config OIS --libs`" ..
-    "`pkg-config MyGUI --libs`" ..
-    "`pkg-config OgreAL --libs`"
+    "LinearMath",
+    "OIS",
+    "OgreAL",
+    "OgreMain",
+    "boost_python",
+    "boost_serialization",
+    "m",
+    "mygui",
+    "ogg",
+    "openal",
+    "pthread",
+    "python2.6",
+    "uuid",
+    "vorbis",
+    "vorbisfile"
 }
 
 -- Files ------------------------------------------------------------------------------------

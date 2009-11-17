@@ -284,8 +284,18 @@ void Turret::fireSingleBullet()
 
         //Get the direction, then deviate a bit or we'll get complaints that Turrets are too accurate.
         Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
-        dir.y = Util::clamp<Ogre::Real>(dir.y, -0.2, 0.2);
         dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
+
+        //60 -> 0.866, 30 -> 0.5
+#define COS 0.866
+#define SIN 0.5
+        if (Ogre::Math::Abs(dir.y) > SIN)
+        {
+            Ogre::Real fact = Ogre::Math::Sqrt((dir.x * dir.x + dir.z * dir.z) / (COS * COS));
+            dir.x /= fact; dir.z /= fact;
+            dir.y = dir.y < 0 ? -SIN : SIN;
+        }
+        dir.normalise();
 
         Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
         Ogre::Vector3 bulletPos = shootPos + (bulletRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.

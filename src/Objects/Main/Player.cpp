@@ -215,6 +215,23 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     //Jump to displayed dimension.
     setDimension(GlbVar.dimMgr->getCurrentDimension());
 
+    //Set HUD icons.
+    if (mCanSwitchDimensions)
+        if (GlbVar.dimMgr->getCurrentDimension() & 1)
+            GlbVar.hud->setIcon("dimension", "Dimension1Icon.png");
+        else
+            GlbVar.hud->setIcon("dimension", "Dimension2Icon.png");
+    else
+        GlbVar.hud->removeIcon("dimension");
+
+    if (mCanSwitchGravity)
+        if (GlbVar.gravMgr->isUp())
+            GlbVar.hud->setIcon("gravity", "GravityDownIcon.png");
+        else
+            GlbVar.hud->setIcon("gravity", "GravityUpIcon.png");
+    else
+        GlbVar.hud->removeIcon("gravity");
+
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
@@ -240,7 +257,7 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                     switchDimension();
                 else if (key == GlbVar.settings.controls.keys["selfDestruct"])
                     die(true);
-                else if (mCanSwitchGravity && key == OIS::KC_G)
+                else if (mCanSwitchGravity && key == GlbVar.settings.controls.keys["gravitySwitch"])
                     GlbVar.gravMgr->invert();
             }
             NGF_NO_REPLY();
@@ -304,13 +321,6 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 
         case MSG_MAGNET:
             DO_MSG_MAGNET();
-
-        case MSG_DIMENSIONCHANGED:
-            if (mCanSwitchDimensions)
-                if (GlbVar.dimMgr->getCurrentDimension() == 1)
-                    GlbVar.hud->setIcon("dimension", "Dimension1Icon.png");
-                else
-                    GlbVar.hud->setIcon("dimension", "Dimension2Icon.png");
     }
 
     return GraLL2GameObject::receiveMessage(msg);
