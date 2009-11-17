@@ -52,7 +52,9 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
       mLight(0),
       mInvincible(false), //This makes the game harder.
       mWon(false),
-      mCanSwitchGravity(false)
+      mGravityTime(-1),
+      mCanSwitchGravity(false),
+      mGravityHUDId(-1)
 {
     addFlag("Player");
     addFlag("Switcher");
@@ -188,8 +190,12 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
+    //Jump to displayed dimension.
+    setDimension(GlbVar.dimMgr->getCurrentDimension());
+
     //Allow stuff to catch up.
     mControlNode->setPosition(mNode->getPosition());
+    GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
 
     //Controls.
     if (mBody->getAngularVelocity().length2() < 600)
@@ -205,17 +211,25 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     OIS::MouseState ms = getMouseState();
     mControlNode->yaw(Ogre::Degree(GlbVar.gravMgr->getSign() * -ms.X.rel * GlbVar.settings.controls.turningSensitivity * 0.4));
 
-    //Fallage.
+    //Check whether we fell off.
     if (mBody->getWorldTransform().getOrigin().getY() < mMinHeight)
         die(false, true);
 
-    //Move light.
-    GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
+    //Update gravity timer.
+    if (mGravityTime > 0)
+    {
+        mGravityTime -= evt.timeSinceLastFrame;
 
-    //Jump to displayed dimension.
-    setDimension(GlbVar.dimMgr->getCurrentDimension());
+        if (mGravityTime <= 0)
+        {
+            mCanSwitchGravity = false;
+            GlbVar.gravMgr->setUp(true); //Go back to normal.
+        }
+        else
+            mCanSwitchGravity = true;
+    }
 
-    //Set HUD icons.
+    //Update HUD.
     if (mCanSwitchDimensions)
         if (GlbVar.dimMgr->getCurrentDimension() & 1)
             GlbVar.hud->setIcon("dimension", "Dimension1Icon.png");
@@ -576,6 +590,18 @@ NGF_PY_BEGIN_IMPL(Player)
     NGF_PY_METHOD_IMPL(lightOn)
     {
         lightOn();
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(setGravityTime)
+    {
+        NGF_PY_METHOD_PARAMS_1(Ogre::Real, time);
+
+        //If we're already counting down, we remove the old timer.
+        if (mGravityTime >= 0 && mGravityHUDId != -1)
+            GlbVar.hud->removeTimer(mGravityHUDId);
+
+        mGravityTime = time;
+        mGravityHUDId = GlbVar.hud->addTimer(time, Ogre::ColourValue(0.8, 0.6, 0.2));
         NGF_PY_RETURN();
     }
 

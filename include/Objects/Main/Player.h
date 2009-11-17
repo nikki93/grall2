@@ -50,6 +50,8 @@ class Player :
 
         bool mCanSwitchDimensions;
         bool mCanSwitchGravity;
+        int mGravityHUDId;
+        Ogre::Real mGravityTime;
 
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -89,6 +91,7 @@ class Player :
             NGF_PY_METHOD_DECL(die)
             NGF_PY_METHOD_DECL(lightOff)
             NGF_PY_METHOD_DECL(lightOn)
+            NGF_PY_METHOD_DECL(setGravityTime)
 
             NGF_PY_PROPERTY_DECL(underControl)
             NGF_PY_PROPERTY_DECL(invincible)
@@ -114,6 +117,10 @@ class Player :
             NGF_SERIALISE_OGRE(Bool, mDead);
             NGF_SERIALISE_GAMEOBJECTPTR(mLight);
             NGF_SERIALISE_STL_CONTAINER(mPickups);
+            NGF_SERIALISE_OGRE(Bool, mCanSwitchDimensions);
+            NGF_SERIALISE_OGRE(Real, mGravityTime);
+            NGF_SERIALISE_OGRE(Int, mGravityHUDId);
+            NGF_SERIALISE_OGRE(Bool, mCanSwitchGravity);
 
             NGF_SERIALISE_ON_LOAD
             {
@@ -127,7 +134,7 @@ class Player :
 
 /* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */
-/* Computed positions: -k'1' */
+/* Computed positions: -k'1,4' */
 
 #if !((' ' == 32) && ('!' == 33) && ('"' == 34) && ('#' == 35) \
       && ('%' == 37) && ('&' == 38) && ('\'' == 39) && ('(' == 40) \
@@ -165,7 +172,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 28, duplicates = 0 */
+/* maximum key range = 38, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Player)
 {
@@ -180,34 +187,47 @@ NGF_PY_CLASS_GPERF(Player)::MakeHash (register const char *str, register unsigne
 {
   static const unsigned char asso_values[] =
     {
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 10,
-      15, 35, 35,  5,  0, 25, 35, 35,  0, 35,
-      20, 35, 35, 35, 35,  0, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35, 35, 35, 35, 35,
-      35, 35, 35, 35, 35, 35
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45,  0,  0, 45,
+      45, 30, 45, 45, 45, 45, 45, 45, 45, 45,
+      15, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45,  0, 45, 45, 45, 10,
+      10,  0, 45,  5,  0, 15, 45, 45,  0, 45,
+       5, 45, 45, 45, 45,  0,  0, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
+      45, 45, 45, 45, 45, 45
     };
-  return len + asso_values[(unsigned char)str[0]];
+  register int hval = len;
+
+  switch (hval)
+    {
+      default:
+        hval += asso_values[(unsigned char)str[3]];
+      /*FALLTHROUGH*/
+      case 3:
+      case 2:
+      case 1:
+        hval += asso_values[(unsigned char)str[0]];
+        break;
+    }
+  return hval;
 }
 
 const struct PythonMethod *
@@ -215,11 +235,11 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
 {
   enum
     {
-      TOTAL_KEYWORDS = 20,
+      TOTAL_KEYWORDS = 21,
       MIN_WORD_LENGTH = 3,
       MAX_WORD_LENGTH = 23,
       MIN_HASH_VALUE = 7,
-      MAX_HASH_VALUE = 34
+      MAX_HASH_VALUE = 44
     };
 
   static const struct PythonMethod wordlist[] =
@@ -227,21 +247,20 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
       {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {"lightOn", NGF_PY_METHOD_GPERF(Player, lightOn)},
       {"lightOff", NGF_PY_METHOD_GPERF(Player, lightOff)},
-      {"hasPickup", NGF_PY_METHOD_GPERF(Player, hasPickup)},
-      {""}, {""},
+      {""}, {""}, {""},
       {"hasDecPickup", NGF_PY_METHOD_GPERF(Player, hasDecPickup)},
-      {""},
+      {"die", NGF_PY_METHOD_GPERF(Player, die)},
       {"set_invincible", NGF_PY_SET_GPERF(Player, invincible)},
       {"switchDimension", NGF_PY_METHOD_GPERF(Player, switchDimension)},
       {"set_underControl", NGF_PY_SET_GPERF(Player, underControl)},
       {"loseCameraHandler", NGF_PY_METHOD_GPERF(Player, loseCameraHandler)},
-      {"die", NGF_PY_METHOD_GPERF(Player, die)},
+      {""},
       {"get_invincible", NGF_PY_GET_GPERF(Player, invincible)},
       {"set_canSwitchGravity", NGF_PY_SET_GPERF(Player, canSwitchGravity)},
       {"get_underControl", NGF_PY_GET_GPERF(Player, underControl)},
       {""},
       {"set_canSwitchDimensions", NGF_PY_SET_GPERF(Player, canSwitchDimensions)},
-      {"decPickup", NGF_PY_METHOD_GPERF(Player, decPickup)},
+      {"hasPickup", NGF_PY_METHOD_GPERF(Player, hasPickup)},
       {"get_canSwitchGravity", NGF_PY_GET_GPERF(Player, canSwitchGravity)},
       {"getControlOrientation", NGF_PY_METHOD_GPERF(Player, getControlOrientation)},
       {""},
@@ -249,7 +268,11 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
       {"numPickup", NGF_PY_METHOD_GPERF(Player, numPickup)},
       {"captureCameraHandler", NGF_PY_METHOD_GPERF(Player, captureCameraHandler)},
       {""}, {""}, {""},
-      {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)}
+      {"decPickup", NGF_PY_METHOD_GPERF(Player, decPickup)},
+      {""}, {""}, {""}, {""},
+      {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)},
+      {""}, {""}, {""}, {""},
+      {"setGravityTime", NGF_PY_METHOD_GPERF(Player, setGravityTime)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)

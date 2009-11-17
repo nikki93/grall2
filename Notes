@@ -790,3 +790,5 @@ Tue Nov 17 18:17:16 AST 2009
 - Improved dimension icon update policy.
 - Added setting for gravity switch key.
 - Added vertical angle limits for Turret.
+- Added Player gravity timer. Player can now be given gravity inversion ability for a certain time,
+  and the countdown is displayed in HUD.
