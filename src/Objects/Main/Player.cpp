@@ -592,7 +592,7 @@ NGF_PY_BEGIN_IMPL(Player)
         lightOn();
         NGF_PY_RETURN();
     }
-    NGF_PY_METHOD_IMPL(setGravityTime)
+    NGF_PY_METHOD_IMPL(setGravitySwitchTime)
     {
         NGF_PY_METHOD_PARAMS_1(Ogre::Real, time);
 

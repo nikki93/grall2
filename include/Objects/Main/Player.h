@@ -91,7 +91,7 @@ class Player :
             NGF_PY_METHOD_DECL(die)
             NGF_PY_METHOD_DECL(lightOff)
             NGF_PY_METHOD_DECL(lightOn)
-            NGF_PY_METHOD_DECL(setGravityTime)
+            NGF_PY_METHOD_DECL(setGravitySwitchTime)
 
             NGF_PY_PROPERTY_DECL(underControl)
             NGF_PY_PROPERTY_DECL(invincible)
@@ -172,7 +172,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 38, duplicates = 0 */
+/* maximum key range = 33, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Player)
 {
@@ -187,32 +187,32 @@ NGF_PY_CLASS_GPERF(Player)::MakeHash (register const char *str, register unsigne
 {
   static const unsigned char asso_values[] =
     {
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45,  0,  0, 45,
-      45, 30, 45, 45, 45, 45, 45, 45, 45, 45,
-      15, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45,  0, 45, 45, 45, 10,
-      10,  0, 45,  5,  0, 15, 45, 45,  0, 45,
-       5, 45, 45, 45, 45,  0,  0, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45, 45, 45, 45, 45,
-      45, 45, 45, 45, 45, 45
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40,  0,  0, 40,
+      40, 15, 40, 40, 40, 40, 40, 40, 40, 40,
+      15, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40,  0, 40, 40, 40, 10,
+      10,  0, 40,  5,  0, 15, 40, 40,  0, 40,
+       5, 40, 40, 40, 40,  0,  0, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
+      40, 40, 40, 40, 40, 40
     };
   register int hval = len;
 
@@ -239,7 +239,7 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
       MIN_WORD_LENGTH = 3,
       MAX_WORD_LENGTH = 23,
       MIN_HASH_VALUE = 7,
-      MAX_HASH_VALUE = 44
+      MAX_HASH_VALUE = 39
     };
 
   static const struct PythonMethod wordlist[] =
@@ -269,10 +269,9 @@ NGF_PY_CLASS_GPERF(Player)::Lookup (register const char *str, register unsigned 
       {"captureCameraHandler", NGF_PY_METHOD_GPERF(Player, captureCameraHandler)},
       {""}, {""}, {""},
       {"decPickup", NGF_PY_METHOD_GPERF(Player, decPickup)},
-      {""}, {""}, {""}, {""},
-      {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)},
-      {""}, {""}, {""}, {""},
-      {"setGravityTime", NGF_PY_METHOD_GPERF(Player, setGravityTime)}
+      {"setGravitySwitchTime", NGF_PY_METHOD_GPERF(Player, setGravitySwitchTime)},
+      {""}, {""}, {""},
+      {"incPickup", NGF_PY_METHOD_GPERF(Player, incPickup)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)

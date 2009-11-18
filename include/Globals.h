@@ -182,7 +182,6 @@ struct Globals : public Ogre::Singleton<Globals>
             bool completed;
             bool checkpoint;
 
-            friend class boost::serialization::access;
             template<class Archive>
             void serialize(Archive &ar, const unsigned int version)
             {
@@ -284,6 +283,7 @@ struct PythonBodyFlags
 };
 
 //Includes from the project used everywhere.
+#include "Objects/Misc/AlarmGameObject.h"
 #include "Misc/DimensionManager.h"
 #include "Misc/Console.h"
 #include "Misc/Utils.h"
@@ -295,6 +295,5 @@ struct PythonBodyFlags
 #include "Misc/ObjectClicker.h"
 #include "Misc/HUD.h"
 #include "Misc/GravityManager.h"
-#include "Objects/Misc/AlarmGameObject.h"
 
 #endif

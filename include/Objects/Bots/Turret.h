@@ -166,7 +166,33 @@ class Turret :
             }
 
             GRALL2_SERIALISE_GAMEOBJECT();
-            NGF_SERIALISE_STATE_SYSTEM();
+
+            std::vector<unsigned int> stateInds;                                               
+            int currState, nextState;                                                                    
+                                                                                               
+            NGF_SERIALISE_ON_SAVE                                                              
+            {                                                                                  
+                for (std::vector<__State *>::iterator iter = __mStateStack.begin();            
+                        iter != __mStateStack.end(); ++iter)                                   
+                    stateInds.push_back((*iter)->getIndex());                                 
+                                                                                               
+                currState = mCurrState ? mCurrState->getIndex() : 0;                           
+                nextState = __mNextState ? __mNextState->getIndex() : 0;                           
+            }                                                                                  
+                                                                                               
+            NGF_SERIALISE_STL_CONTAINER(stateInds);                                            
+            NGF_SERIALISE_OGRE(Int, currState);                                                
+                                                                                               
+            NGF_SERIALISE_ON_LOAD                                                              
+            {                                                                                  
+                __mStateStack.clear();                                                         
+                for (std::vector<unsigned int>::iterator iter = stateInds.begin();             
+                        iter != stateInds.end(); ++iter)                                       
+                    __mStateStack.push_back(NGF_STATES_GET_STATE_FROM_INDEX(*iter));           
+                                                                                               
+                mCurrState = currState ? NGF_STATES_GET_STATE_FROM_INDEX(currState) : 0;       
+                __mNextState = nextState ? NGF_STATES_GET_STATE_FROM_INDEX(nextState) : 0;       
+            }
 
             NGF_SERIALISE_OGRE(Real, mRadius);
             NGF_SERIALISE_OGRE(Bool, mAlwaysScan);

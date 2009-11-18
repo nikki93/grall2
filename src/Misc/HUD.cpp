@@ -106,7 +106,7 @@ void HUD::tick(const Ogre::FrameEvent &evt)
     //Update each timer, removing it if it's run out.
     for (TimerMap::iterator iter = mTimers.begin(); iter != mTimers.end(); )
     {
-        HUDTimer *timer = iter->second;
+        Timer *timer = iter->second;
 
         if (!timer->update(evt.timeSinceLastFrame))
         {
@@ -144,7 +144,7 @@ int HUD::addTimer(Ogre::Real time, const Ogre::ColourValue &colour)
     int id = 1;
     for (; mTimers.find(id) != mTimers.end(); ++id);
 
-    mTimers.insert(std::make_pair(id, new HUDTimer(time, timerPosition(id), colour)));
+    mTimers.insert(std::make_pair(id, new Timer(time, timerPosition(id), colour)));
 
     return id;
 }
@@ -203,8 +203,8 @@ void HUD::removeIcon(const Ogre::String &name)
 }
 //-------------------------------------------------------------------------------
 
-//--- HUDTimer ------------------------------------------------------------------
-HUD::HUDTimer::HUDTimer(Ogre::Real time, Ogre::Vector2 pos, const Ogre::ColourValue &colour)
+//--- Timer ------------------------------------------------------------------
+HUD::Timer::Timer(Ogre::Real time, Ogre::Vector2 pos, const Ogre::ColourValue &colour)
     : mTime(time),
       mText(0)
 {
@@ -212,13 +212,13 @@ HUD::HUDTimer::HUDTimer(Ogre::Real time, Ogre::Vector2 pos, const Ogre::ColourVa
     mText->setCaption(Ogre::StringConverter::toString((int) mTime));
 }
 //-------------------------------------------------------------------------------
-HUD::HUDTimer::~HUDTimer()
+HUD::Timer::~Timer()
 {
     if (mText)
         GlbVar.gui->destroyWidget(mText);
 }
 //-------------------------------------------------------------------------------
-bool HUD::HUDTimer::update(Ogre::Real elapsed)
+bool HUD::Timer::update(Ogre::Real elapsed)
 {
     mTime -= elapsed;
 
@@ -258,10 +258,11 @@ void HUD::PickupDisplay::update(const Ogre::Vector2 &pos)
 
 //--- Icon ----------------------------------------------------------------------
 HUD::Icon::Icon(const Ogre::String &imageFile)
+    : mTextureName(imageFile)
 {
     mImage = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", 
             MyGUI::IntCoord(0,0,ICON_WIDTH,ICON_HEIGHT), MyGUI::Align::Default, HUD_LAYER);
-    mImage->setImageTexture(imageFile);
+    mImage->setImageTexture(mTextureName);
 }
 //-------------------------------------------------------------------------------
 HUD::Icon::~Icon()
@@ -276,6 +277,7 @@ void HUD::Icon::update(const Ogre::Vector2 &pos)
 //-------------------------------------------------------------------------------
 void HUD::Icon::setImage(const Ogre::String &imageFile)
 {
-    mImage->setImageTexture(imageFile);
+    mTextureName = imageFile;
+    mImage->setImageTexture(mTextureName);
 }
 //-------------------------------------------------------------------------------

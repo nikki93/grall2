@@ -11,8 +11,7 @@ Pickup.cpp
 //--- NGF events ----------------------------------------------------------------
 Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
     : NGF::GameObject(pos, rot, id , properties, name),
-      mTime(0),
-      mFirstFrame(true)
+      mTime(0)
 {
     addFlag("Pickup");
 
@@ -23,7 +22,8 @@ Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     //Store properties.
     mPickupType = mProperties.getValue("pickupType", 0, "KeyR");
     mSpin = Ogre::Math::DegreesToRadians(Ogre::StringConverter::parseReal(mProperties.getValue("spin", 0, "0")));
-    mBob = Ogre::StringConverter::parseReal(mProperties.getValue("bob", 0, "0"));
+    mBobAmp = Ogre::StringConverter::parseReal(mProperties.getValue("bobAmplitude", 0, "0"));
+    mBobVel = 2 * Ogre::Math::PI * Ogre::StringConverter::parseReal(mProperties.getValue("bobFrequency", 0, "0"));
 
     //Create the Ogre stuff. Pickups can be brushes too. :-)
     if (mProperties.getValue("brushMeshFile", 0, "n") == "n")
@@ -38,7 +38,9 @@ Pickup::Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
         mEntity = createBrushEntity();
     }
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
-    mNode->attachObject(mEntity);
+
+    mChildNode = mNode->createChildSceneNode(mOgreName + "_child");
+    mChildNode->attachObject(mEntity);
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
@@ -68,33 +70,25 @@ Pickup::~Pickup()
     delete mShape;
 
     mNode->detachAllObjects();
+    mChildNode->detachAllObjects();
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
+    GlbVar.ogreSmgr->destroySceneNode(mChildNode);
 }
 //-------------------------------------------------------------------------------
 void Pickup::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
-    //Get trans.
-    btTransform trans;
-    mBody->getMotionState()->getWorldTransform(trans);
-
-    //Spin!
-    btQuaternion rot(btVector3(0,1,0), mSpin * evt.timeSinceLastFrame);
-
-    //Bob!
-    btVector3 disp = btVector3(0,0,0);
-    if (!mFirstFrame)
+    if (mBobAmp)
     {
-        mTime += evt.timeSinceLastFrame * 3;
-        disp.setY(Ogre::Math::Sin(mTime) * mBob * 0.02);
+        mTime += evt.timeSinceLastFrame;
+        if (mTime * mBobVel > 2 * Ogre::Math::PI)
+            mTime -= (2 * Ogre::Math::PI) / mBobVel;
+        mChildNode->setPosition(Ogre::Vector3(0,Ogre::Math::Sin(mTime * mBobVel) * mBobAmp,0));
     }
-    mFirstFrame = false;
 
-    //Set trans.
-    trans *= btTransform(rot, disp);
-    mBody->setWorldTransform(trans);
-    mBody->getMotionState()->setWorldTransform(trans);
+    if (mSpin)
+        mChildNode->yaw(Ogre::Radian(mSpin * evt.timeSinceLastFrame));
 
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);

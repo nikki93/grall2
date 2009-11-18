@@ -19,21 +19,20 @@
 #include "Globals.h"
 
 /*
- * The HUD class manages the HUD. Anyone can call 'addTimer' to add a timer, and the HUD
- * will dynamically update and arrange this timers on screen. It also shows bonus time,
- * which is given a special location among the other timers.
+ * The HUD class manages the HUD. Simple interface calls such as 'addTimer' and
+ * 'addIcon' are all that's needed, the positioning etc. is managed automatically
  */
 
 class HUD
 {
     protected:
-        struct HUDTimer
+        struct Timer
         {
             Ogre::Real mTime;
             MyGUI::StaticTextPtr mText;
 
-            HUDTimer(Ogre::Real time, Ogre::Vector2 pos, const Ogre::ColourValue &colour);
-            ~HUDTimer();
+            Timer(Ogre::Real time, Ogre::Vector2 pos, const Ogre::ColourValue &colour);
+            ~Timer();
             bool update(Ogre::Real elapsed);
         };
 
@@ -50,6 +49,7 @@ class HUD
         struct Icon
         {
             MyGUI::StaticImagePtr mImage;
+            Ogre::String mTextureName;
 
             Icon(const Ogre::String &imageFile);
             ~Icon();
@@ -57,7 +57,7 @@ class HUD
             void setImage(const Ogre::String &imageFile);
         };
 
-        typedef std::map<int, HUDTimer *> TimerMap;
+        typedef std::map<int, Timer *> TimerMap;
         TimerMap mTimers;
 
         typedef std::map<Ogre::String, PickupDisplay *> PickupDisplayMap;
@@ -95,6 +95,102 @@ class HUD
         //Adds icon identified by given name, with given image. If icon already exists, updates the image.
         void setIcon(const Ogre::String &name, const Ogre::String &imageFile);
         void removeIcon(const Ogre::String &name);
+
+    protected:
+
+        //--- For serialisation --------------------------------------------------------
+
+        friend class Controller;
+
+        struct TimerRecord
+        {
+            Ogre::Real time; MyGUI::Colour colour;
+
+            TimerRecord() {}
+            TimerRecord(Ogre::Real t, const MyGUI::Colour &c)
+                : time(t), colour(c)
+            {
+            }
+
+            template<class Archive>
+            void serialize(Archive &ar, const unsigned int version)
+            {
+                ar & time;
+                ar & colour.red;
+                ar & colour.green;
+                ar & colour.blue;
+                ar & colour.alpha;
+            }
+        };
+        typedef std::vector<TimerRecord> TimerRecordVec;
+
+        struct PickupDisplayRecord
+        {
+            MyGUI::Colour colour;
+
+            PickupDisplayRecord() {}
+            PickupDisplayRecord(const MyGUI::Colour &c)
+                : colour(c)
+            {
+            }
+
+            template<class Archive>
+            void serialize(Archive &ar, const unsigned int version)
+            {
+                ar & colour.red;
+                ar & colour.green;
+                ar & colour.blue;
+                ar & colour.alpha;
+            }
+        };
+        typedef std::map<Ogre::String, PickupDisplayRecord> PickupDisplayRecordMap;
+
+        struct IconRecord
+        {
+            Ogre::String textureName;
+
+            IconRecord() {}
+            IconRecord(const Ogre::String &t)
+                : textureName(t)
+            {
+            }
+
+            template<class Archive>
+            void serialize(Archive &ar, const unsigned int version)
+            {
+                ar & textureName;
+            }
+        };
+        typedef std::map<Ogre::String, IconRecord> IconRecordMap;
+
+        void writeTimerRecords(TimerRecordVec &out)
+        {
+            for (TimerMap::iterator iter = mTimers.begin();
+                    iter != mTimers.end(); ++iter)
+            {
+                Timer *timer = iter->second;
+                out.push_back(TimerRecord(timer->mTime, timer->mText->getTextColour()));
+            }
+        }
+
+        void writePickupDisplayRecords(PickupDisplayRecordMap &out)
+        {
+            for (PickupDisplayMap::iterator iter = mPickupDisplays.begin();
+                    iter != mPickupDisplays.end(); ++iter)
+            {
+                PickupDisplay *pd = iter->second;
+                out.insert(std::make_pair(pd->mType, pd->mText->getTextColour()));
+            }
+        }
+
+        void writeIconRecords(IconRecordMap &out)
+        {
+            for (IconMap::iterator iter = mIcons.begin();
+                    iter != mIcons.end(); ++iter)
+            {
+                out.insert(std::make_pair(iter->first, iter->second->mTextureName));
+            }
+        }
 };
 
 #endif

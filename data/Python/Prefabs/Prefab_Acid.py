@@ -1,7 +1,7 @@
 #Acid Prefab Script
 #------------------
 
-def create(self):
+def init(self):
     #The mesh is a brush representing the acid region.
     self.createBrushMesh()
     self.setMaterial("Objects/Acid")

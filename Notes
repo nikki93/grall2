@@ -6,8 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add a pickup that gives gravity-switching ability for a certain amount of time.
-
 - Start adding sound effects.
 
 Side
@@ -792,3 +790,10 @@ Tue Nov 17 18:17:16 AST 2009
 - Added vertical angle limits for Turret.
 - Added Player gravity timer. Player can now be given gravity inversion ability for a certain time,
   and the countdown is displayed in HUD.
+
+Wed Nov 18 17:18:20 AST 2009
+----------------------------
+- Added HUD serialisation. All data displayed in HUD is now saved when the game is saved, and is
+  restored when the game is loaded.
+- Added 'GravityKey' prefab, a pickup which gives Player gravity inversion ability for some amount
+  of time. Created new material and mesh for it.

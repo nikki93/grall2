@@ -24,15 +24,16 @@ class Pickup :
 {
     protected:
         btCollisionShape *mShape;
+
+        Ogre::SceneNode *mChildNode;
         Ogre::Entity *mEntity;
 
         Ogre::String mPickupType; //The pickup type (KeyR, KeyG etc.). Maps to the pickups map key in Player.
 
         Ogre::Real mSpin;
-        Ogre::Real mBob;
+        Ogre::Real mBobAmp;
+        Ogre::Real mBobVel;
         Ogre::Real mTime;
-
-        bool mFirstFrame;
 
     public:
         Pickup(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -59,7 +60,10 @@ class Pickup :
             GRALL2_SERIALISE_GAMEOBJECT();
 
             NGF_SERIALISE_STRING(mPickupType);
-            NGF_SERIALISE_OGRE(Bool, mFirstFrame);
+            NGF_SERIALISE_OGRE(Real, mTime);
+            NGF_SERIALISE_OGRE(Real, mSpin);
+            NGF_SERIALISE_OGRE(Real, mBobAmp);
+            NGF_SERIALISE_OGRE(Real, mBobVel);
         }
         NGF_SERIALISE_END
 };

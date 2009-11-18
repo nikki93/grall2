@@ -214,27 +214,6 @@ ngflevel TestLevel3
 	}
 	object
 	{
-		type SlidingBrush
-		name noname
-		position 1.500000 0.500000 -4.500000
-		rotation 0.707107 0.000000 0.707107 -0.000000
-
-		properties
-		{
-			dimensions 3
-			enabled 1
-			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
-			brushMeshFile TestLevel3_b3.mesh
-			repeat 1
-			condition True
-			autoClose 1
-			scriptFile Prefab_Door.pyo
-		}
-	}
-	object
-	{
 		type Empty
 		name noname
 		position 1.500000 4.500000 -3.500000
@@ -252,16 +231,21 @@ ngflevel TestLevel3
 	}
 	object
 	{
-		type StaticBrush
+		type Pickup
 		name noname
-		position 0.500000 0.500000 -2.500000
+		position 2.500000 0.500000 -3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			brushMeshFile ArchWay.mesh
-			convex no
+			pickupType GravityKey
+			meshFile GravityKey.mesh
+			material Objects/GravityKey
+			spin 56.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.20000000298
+			scriptFile Prefab_GravityKey.pyo
 		}
 	}
 }

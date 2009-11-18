@@ -21,6 +21,9 @@
 
 #include "Globals.h"
 
+#include <boost/serialization/map.hpp>
+#include <boost/serialization/vector.hpp>
+
 class Controller :
     public NGF::Serialisation::SerialisableGameObject,
     public NGF::Python::PythonGameObject,
@@ -58,34 +61,103 @@ class Controller :
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Controller)
         {
-            //Save dimension, music.
-            int dimension, bonusTime;
-            Ogre::String musicName;
-
-            NGF_SERIALISE_ON_SAVE
-            {
-                dimension = GlbVar.dimMgr->getCurrentDimension();
-                musicName = GlbVar.musicMgr->getCurrentMusic();
-                bonusTime = GlbVar.bonusTime;
-            }
-
-            NGF_SERIALISE_OGRE(Int, dimension);
-            NGF_SERIALISE_STRING(musicName);
-            NGF_SERIALISE_OGRE(Int, bonusTime); //Save bonus time left.
-
             GRALL2_SERIALISE_ALARMS();
             NGF_SERIALISE_PYTHON_LOCALS();
 
+            // ---
+            
+            int dimension, bonusTime;
+            bool gravity;
+            Ogre::String musicName;
+
+            HUD::TimerRecordVec hudTimers;
+            HUD::PickupDisplayRecordMap hudPickups;
+            HUD::IconRecordMap hudIcons;
+
+            //--- On save --------------------------------------------------------------
+
+            NGF_SERIALISE_ON_SAVE
+            {
+                //Dimension.
+                dimension = GlbVar.dimMgr->getCurrentDimension();
+
+                //Gravity.
+                gravity = GlbVar.gravMgr->isUp();
+
+                //Music.
+                musicName = GlbVar.musicMgr->getCurrentMusic();
+
+                //Bonus time.
+                bonusTime = GlbVar.bonusTime;
+
+                //HUD.
+                GlbVar.hud->writeTimerRecords(hudTimers);
+                GlbVar.hud->writePickupDisplayRecords(hudPickups);
+                GlbVar.hud->writeIconRecords(hudIcons);
+            }
+
+            //--- Read/write -----------------------------------------------------------
+
+            //Dimension.
+            NGF_SERIALISE_OGRE(Int, dimension);
+
+            //Gravity.
+            NGF_SERIALISE_OGRE(Bool, gravity);
+
+            //Music.
+            NGF_SERIALISE_STRING(musicName);
+
+            //Bonus time.
+            NGF_SERIALISE_OGRE(Int, bonusTime);
+
+            //HUD.
+            NGF_SERIALISE_STL_CONTAINER(hudTimers);
+            NGF_SERIALISE_STL_CONTAINER(hudPickups);
+            NGF_SERIALISE_STL_CONTAINER(hudIcons);
+
+            //--- On load --------------------------------------------------------------
+
             NGF_SERIALISE_ON_LOAD
             {
+                //Dimension.
                 GlbVar.dimMgr->setDimension(dimension);
 
+                //Gravity.
+                GlbVar.gravMgr->setUp(gravity);
+
+                //Music.
                 if (musicName != "<none>")
                     GlbVar.musicMgr->playMusic(musicName);
                 else
                     GlbVar.musicMgr->stopMusic();
 
+                //Bonus time.
                 GlbVar.bonusTime = bonusTime;
+
+                //HUD.
+                GlbVar.hud->clear();
+
+                for (HUD::TimerRecordVec::iterator iter = hudTimers.begin();
+                        iter != hudTimers.end(); ++iter)
+                    GlbVar.hud->addTimer(iter->time, Ogre::ColourValue(
+                                iter->colour.red,
+                                iter->colour.green,
+                                iter->colour.blue,
+                                iter->colour.alpha
+                                ));
+
+                for (HUD::PickupDisplayRecordMap::iterator iter = hudPickups.begin();
+                        iter != hudPickups.end(); ++iter)
+                    GlbVar.hud->addPickupDisplay(iter->first, Ogre::ColourValue(
+                                iter->second.colour.red,
+                                iter->second.colour.green,
+                                iter->second.colour.blue,
+                                iter->second.colour.alpha
+                                ));
+
+                for (HUD::IconRecordMap::iterator iter = hudIcons.begin();
+                        iter != hudIcons.end(); ++iter)
+                    GlbVar.hud->setIcon(iter->first, iter->second.textureName);
             }
         }
         NGF_SERIALISE_END
