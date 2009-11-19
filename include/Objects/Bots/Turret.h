@@ -107,8 +107,8 @@ class Turret :
         NGF_STATES_STATE_BEGIN(MoveDown)
         {
             //Moving sound.
-            void enter() { mObj->mMoveSound->play(); }
-            void exit() { mObj->mMoveSound->stop(); }
+            void enter() { mObj->mMoveSound->play(); mObj->mMoveSound->setSecondOffset(0.54); }
+            //void exit() { mObj->mMoveSound->stop(); }
             void unpausedTick(const Ogre::FrameEvent &evt);
         }
         NGF_STATES_STATE_END(MoveDown)
@@ -118,7 +118,7 @@ class Turret :
         {
             //Moving sound.
             void enter() { mObj->mMoveSound->play(); }
-            void exit() { mObj->mMoveSound->stop(); }
+            //void exit() { mObj->mMoveSound->stop(); }
             void unpausedTick(const Ogre::FrameEvent &evt);
         }
         NGF_STATES_STATE_END(MoveUp)

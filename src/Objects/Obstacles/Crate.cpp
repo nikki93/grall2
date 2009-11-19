@@ -97,8 +97,8 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     //Sound.
     mSound = GlbVar.soundMgr->createSound(mOgreName + "_Sound", "CrateMove.ogg", true, false);
     mNode->attachObject(mSound);
-    mSound->setMaxGain(0.9);
-    mSound->setDistanceValues(10, 10, 3);
+    mSound->setReferenceDistance(1.2);
+    mSound->setGain(2.1);
 }
 //-------------------------------------------------------------------------------
 void Crate::postLoad()

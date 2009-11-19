@@ -414,6 +414,9 @@ class Game
                 if (std::find(GlbVar.ngfNames.begin(), GlbVar.ngfNames.end(), *iter) == GlbVar.ngfNames.end())
                     GlbVar.userNgfNames.push_back(*iter);
 
+            //Run the startup script (we do it here so that all managers and stuff are created and initialised).
+            runPythonStartupScript();
+
             //Start running the Worlds.
             GlbVar.woMgr->start(0);
         }

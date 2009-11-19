@@ -6,7 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Start adding sound effects.
+- Add sound effects for:-
 
 Side
 ----
@@ -797,3 +797,10 @@ Wed Nov 18 17:18:20 AST 2009
   restored when the game is loaded.
 - Added 'GravityKey' prefab, a pickup which gives Player gravity inversion ability for some amount
   of time. Created new material and mesh for it.
+
+Thu Nov 19 21:06:41 AST 2009
+----------------------------
+- Moved Startup.py execution till after setup.
+- Fixed sound gain/attenuation bugs.
+- Created a sound effect testing system (bash script to do most tasks).
+- Added some more sound effects, added sound effects for Level 1.

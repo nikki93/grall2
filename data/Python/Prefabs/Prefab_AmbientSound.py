@@ -8,29 +8,33 @@ def init(self):
     stream = parseBool(self.getProperty("stream", 0, "1"))
 
     #Create sound.
-    self.m_sound = GraLL2.createSound(soundFile, loop, stream)
-    self.m_sound.setPosition(self.getPosition())
+    self.v_sound = GraLL2.createSound(soundFile, loop, stream)
+    self.v_sound.setPosition(self.getPosition())
 
     #Set sound properties.
-    self.m_sound.setDistanceValues(
+    self.v_sound.setDistanceValues(
         float(self.getProperty("attenuation", 0, "20")),
         float(self.getProperty("attenuation", 1, "4")),
         float(self.getProperty("attenuation", 2, "6"))
+    )
+    self.v_sound.setGain(
+        float(self.getProperty("gain", 0, "1"))
     )
 
 def create(self):
     #Play!
     if (parseBool(self.getProperty("initPlay", 0, "1"))):
-        self.m_sound.play()
+        self.v_sound.play()
 
 def destroy(self):
-    GraLL2.destroySound(self.m_sound)
+    GraLL2.destroySound(self.v_sound)
 
 #Return dict to save.
 def save(self):
     values = {
-        "playing" : self.m_sound.isPlaying(),
-        "offset" : self.m_sound.getSecondOffset()
+        "playing" : self.v_sound.isPlaying(),
+        "offset" : self.v_sound.getSecondOffset(),
+        "gain" : self.v_sound.getGain()
     }
 
     return values
@@ -38,10 +42,11 @@ def save(self):
 #Get the saved dict, use it.
 def load(self, values):
     if (values["playing"]):
-        self.m_sound.play()
+        self.v_sound.play()
     else:
-        self.m_sound.stop()
+        self.v_sound.stop()
 
-    self.m_sound.setSecondOffset(values["offset"])
+    self.v_sound.setSecondOffset(values["offset"])
+    self.v_sound.setGain(values["gain"])
 
     return True

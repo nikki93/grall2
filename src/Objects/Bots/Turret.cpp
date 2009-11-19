@@ -16,6 +16,9 @@ Turret.cpp
 #define MAX_BULLET_DEVIATION_ANGLE 0.08
 #define SHOOT_SOUND_PITCH_RANGE 1.6, 2.2
 
+#define SOUND_MOVE "TurretMove.wav"
+#define SOUND_SHOOT "TurretShoot.ogg"
+
 //'TURRET_TOP_HEIGHT', 'TURRET_FIRST_BULLET_TIME' in Turret.h.
 
 //--- NGF events ----------------------------------------------------------------
@@ -65,14 +68,14 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     setBulletObject(mBody);
 
     //Create sounds.
-    mShootSound = GlbVar.soundMgr->createSound(mOgreName + "_shootSound", "TurretShoot.ogg");
+    mShootSound = GlbVar.soundMgr->createSound(mOgreName + "_shootSound", SOUND_SHOOT);
     mNode->attachObject(mShootSound);
-    mShootSound->setMaxGain(0.8);
-    mShootSound->setDistanceValues(40, 4, 3);
+    mShootSound->setReferenceDistance(1.2);
 
-    mMoveSound = GlbVar.soundMgr->createSound(mOgreName + "_moveSound", "TurretMove.ogg", true);
+    mMoveSound = GlbVar.soundMgr->createSound(mOgreName + "_moveSound", SOUND_MOVE);
     mNode->attachObject(mMoveSound);
-    mMoveSound->setDistanceValues(40, 2.1, 2);
+    mMoveSound->setReferenceDistance(1.2);
+    mMoveSound->setGain(1.3);
 
     //Initialise states.
     NGF_STATES_INIT();

@@ -664,8 +664,10 @@ void initPythonBinds()
 
             "compileall.compile_dir('" DATA_PREFIX "Python')"
             );
+}
 
+void runPythonStartupScript()
+{
     //Run the startup script.
     NGF::Python::Util::runFile("Startup.py", "General");
 }
-

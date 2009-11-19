@@ -421,6 +421,19 @@ ngflevel Level1
 			captureCameraHandler 0
 			canSwitchDimensions 0
 			script : import Ngf
+			       : import random
+			       : 
+			       : def init(self):
+			       : 	self.v_hitSound1 = GraLL2.createSound("Bang-2.wav", False, False)
+			       : 	self.v_hitSound2 = GraLL2.createSound("Bang.wav", False, False)
+			       : 	
+			       : 	obj = Ngf.getObject("stopBrush")
+			       : 	if (obj):
+			       : 		self.v_hitSound1.setPosition(obj.getPosition())
+			       : 		self.v_hitSound2.setPosition(obj.getPosition())
+			       : 		
+			       : 	self.v_hitSound2.setPitch(random.uniform(0.7, 1.1))
+			       : 	self.v_hitSound2.setGain(1.4)
 			       : 
 			       : def create(self):
 			       : 	self.lightOff()
@@ -428,6 +441,7 @@ ngflevel Level1
 			       : 	self.m_numHits = 0
 			       : 	self.m_pushDir = -1
 			       : 	self.m_pushTime = 0
+			       : 	self.m_colTime = 0
 			       : 	
 			       : 	self.setAlarm(GraLL2.controller.m_splineTime - 2, 0)
 			       : 	self.setAlarm(GraLL2.controller.m_splineTime + 2, 2)
@@ -441,6 +455,9 @@ ngflevel Level1
 			       : 		self.applyTorque(self.m_pushDir * Ngf.Vector3(0,0,-6))
 			       : 		self.m_pushTime -= elapsed
 			       : 		
+			       : 	if (self.m_colTime > 0):
+			       : 		self.m_colTime -= elapsed
+			       : 		
 			       : 	if (self.m_save):
 			       : 		#We set 'no save' before saving, so that
 			       : 		#we don't keep saving repeatedly (m_save is
@@ -449,10 +466,12 @@ ngflevel Level1
 			       : 		GraLL2.saveCheckpoint()
 			       : 	
 			       : def alarm(self, n):
+			       : 	#Turn on lights.
 			       : 	if (n == 0):
 			       : 		self.lightOn()
 			       : 	elif (n == 1):
 			       : 		self.m_save = True
+			       : 	#Start hitting.
 			       : 	elif (n == 2):
 			       : 		if (self.m_numHits < 2):
 			       : 			self.m_pushDir = -1
@@ -463,6 +482,7 @@ ngflevel Level1
 			       : 			self.setAlarm(1, 4)
 			       : 
 			       : 		self.setAlarm(1.4, 3)
+			       : 	#One hit.
 			       : 	elif (n == 3):
 			       : 		self.m_numHits += 1
 			       : 		
@@ -474,24 +494,51 @@ ngflevel Level1
 			       : 		self.m_pushDir = 1
 			       : 		self.m_pushTime = 0.5
 			       : 		self.setAlarm(1, 2)
+			       : 	#Go into thirdperson.
 			       : 	elif (n == 4):
 			       : 		GraLL2.cameraHandler.p_currState = GraLL2.CameraMode.ThirdPerson
 			       : 		GraLL2.cameraHandler.p_rotationFactor = 2
 			       : 		GraLL2.cameraHandler.p_movementFactor = 1
 			       : 		self.setAlarm(4, 5)
 			       : 		self.m_save = True
+			       : 	#Gain control! :D
 			       : 	elif (n == 5):
 			       : 		self.p_underControl = True
 			       : 		GraLL2.cameraHandler.p_rotationFactor = 0
 			       : 		GraLL2.cameraHandler.p_movementFactor = 4	
 			       : 		
 			       : 		GraLL2.showMessage("%s, %s, %s, %s - Move forward, backward, left and right respectively" % (GraLL2.getControl("forward"), GraLL2.getControl("backward"), GraLL2.getControl("left"), GraLL2.getControl("right")), 6)
+			       : 		
+			       : def collide(self, other):
+			       : 	if (self.m_numHits < 2):
+			       : 		if (other.getName() == "stopBrush"):
+			       : 			if (self.m_colTime <= 0):
+			       : 				print "1"
+			       : 				if (self.m_numHits == 0):
+			       : 					self.v_hitSound1.setGain(0.6)
+			       : 				else:
+			       : 					self.v_hitSound1.setGain(0.9)
+			       : 						
+			       : 				self.v_hitSound1.setPitch(random.uniform(0.5, 1.1))
+			       : 				self.v_hitSound1.play()
+			       : 				self.m_colTime = 1.2
+			       : 	elif (other.getName() == "glass"):
+			       : 		if (self.m_colTime <= 0):
+			       : 			print "2"
+			       : 			self.v_hitSound1.setGain(1.2)
+			       : 			self.v_hitSound1.setPitch(random.uniform(0.5, 1.1))
+			       : 			self.v_hitSound1.play()
+			       : 	
+			       : 			self.v_hitSound2.play()
+			       : 			
+			       : 			self.m_colTime = 50
+			       : 
 		}
 	}
 	object
 	{
 		type RigidBody
-		name noname
+		name glass
 		position 9.500000 0.650000 11.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
@@ -607,7 +654,7 @@ ngflevel Level1
 	{
 		type Empty
 		name noname
-		position -7.500000 4.500000 -11.500000
+		position -7.500000 3.500000 -11.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -617,7 +664,9 @@ ngflevel Level1
 			soundFile Wind.ogg
 			loop 1
 			stream 1
-			attenuation 40 4 7
+			attenuation -1 1 1
+			initPlay 1
+			gain 11.4794921875
 		}
 	}
 }

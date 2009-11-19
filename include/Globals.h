@@ -214,6 +214,7 @@ struct Globals : public Ogre::Singleton<Globals>
 void registerGameObjectTypes();
 void addWorlds();
 void initPythonBinds();
+void runPythonStartupScript();
 void initShadows();
 void loadSettings();
 void saveSettings();
