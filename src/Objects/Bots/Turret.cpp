@@ -71,11 +71,12 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mShootSound = GlbVar.soundMgr->createSound(mOgreName + "_shootSound", SOUND_SHOOT);
     mNode->attachObject(mShootSound);
     mShootSound->setReferenceDistance(1.2);
+    mShootSound->setGain(1.2);
 
     mMoveSound = GlbVar.soundMgr->createSound(mOgreName + "_moveSound", SOUND_MOVE);
     mNode->attachObject(mMoveSound);
     mMoveSound->setReferenceDistance(1.2);
-    mMoveSound->setGain(1.3);
+    mMoveSound->setGain(1.7);
 
     //Initialise states.
     NGF_STATES_INIT();
@@ -289,16 +290,23 @@ void Turret::fireSingleBullet()
         Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
         dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
 
-        //60 -> 0.866, 30 -> 0.5
-#define COS 0.866
-#define SIN 0.5
-        if (Ogre::Math::Abs(dir.y) > SIN)
+        //We're gonna use 30 degree limit. sin is 0.5, cos is 0.866.
+#define COS_MAX_ANG 0.866
+#define SIN_MAX_ANG 0.5
+        if (Ogre::Math::Abs(dir.y) > SIN_MAX_ANG)
         {
-            Ogre::Real fact = Ogre::Math::Sqrt((dir.x * dir.x + dir.z * dir.z) / (COS * COS));
-            dir.x /= fact; dir.z /= fact;
-            dir.y = dir.y < 0 ? -SIN : SIN;
+            //Make length of XZ part equal to cosine by scaling it down.
+            Ogre::Real fact = Ogre::Math::Sqrt((dir.x * dir.x + dir.z * dir.z) 
+                    / (COS_MAX_ANG * COS_MAX_ANG));
+            dir.x /= fact; 
+            dir.z /= fact;
+
+            //Make y part the sine.
+            dir.y = dir.y < 0 ? -SIN_MAX_ANG : SIN_MAX_ANG;
+
+            //Well this shouldn't be needed actually (cos^2 + sin^2 = 1). Anyway.
+            //dir.normalise();
         }
-        dir.normalise();
 
         Ogre::Quaternion bulletRot = Ogre::Vector3::NEGATIVE_UNIT_Z.getRotationTo(dir);
         Ogre::Vector3 bulletPos = shootPos + (bulletRot * Ogre::Vector3(0,0,-0.25)); //We make the bullet a little bit in it's direction.
@@ -370,12 +378,12 @@ bool Turret::playerIsInRadius()
 //--- Python interface implementation -------------------------------------------
 NGF_PY_BEGIN_IMPL(Turret)
 {
-    NGF_PY_METHOD_IMPL(startFiring)
+    NGF_PY_METHOD_IMPL(fire)
     {
         fire(mFireTime);
         NGF_PY_RETURN();
     }
-    NGF_PY_METHOD_IMPL(stopFiring)
+    NGF_PY_METHOD_IMPL(stop)
     {
         if (mAlwaysScan)
             scan();

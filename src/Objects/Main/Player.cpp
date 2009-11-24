@@ -140,6 +140,11 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Player can't be in a dimension that's not being displayed. :P
     setDimension(GlbVar.dimMgr->getCurrentDimension());
+
+    //Make sounds.
+    mDimSound = GlbVar.soundMgr->createSound(mOgreName + "_dimSound", "DimensionSwitch.wav", false, false);
+    mNoDimSound = GlbVar.soundMgr->createSound(mOgreName + "_noDimSound", "NoDimensionSwitch.wav", false, false);
+    mDimSound->setGain(0.4);
 }
 //-------------------------------------------------------------------------------
 void Player::postLoad()
@@ -183,6 +188,8 @@ Player::~Player()
 
     GlbVar.ogreSmgr->destroySceneNode(mControlNode);
     mNode->detachAllObjects();
+    GlbVar.soundMgr->destroySound(mDimSound);
+    GlbVar.soundMgr->destroySound(mNoDimSound);
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
@@ -304,17 +311,6 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
 
         case MSG_ONEWAY:
             {
-                /*
-                   Ogre::Quaternion rot = msg.getParam<Ogre::Quaternion>(0);
-                   Ogre::Quaternion inv = rot.UnitInverse();
-
-                   Ogre::Vector3 rotVel = rot * BtOgre::Convert::toOgre(mBody->getLinearVelocity());
-                   rotVel.z = rotVel.z >= 0 ? 0 : rotVel.z;
-
-                   mBody->setLinearVelocity(BtOgre::Convert::toBullet(rot * rotVel));
-                // */
-
-                //*
                 //Get component in OneWay's 'bad' direction.
                 btVector3 currVel = mBody->getLinearVelocity();
                 btVector3 dir = -BtOgre::Convert::toBullet(msg.getParam<Ogre::Vector3>(0));
@@ -328,7 +324,6 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                     dir *= -comp;
                     mBody->setLinearVelocity(currVel + dir);
                 }
-                // */
             }
 
             NGF_SEND_REPLY();
@@ -447,7 +442,11 @@ void Player::switchDimension()
                 if (pt.getDistance() < 0.f)
                 {
                     if (flags & (mDimensions ^ DimensionManager::DIM_SWITCH)) //It's in the opposite dimension, abort!
+                    {
+                        mNoDimSound->stop(); 
+                        mNoDimSound->play();
                         return;
+                    }
                 }
             }
         }
@@ -489,11 +488,17 @@ void Player::switchDimension()
 
     for (std::map<btCollisionObject*, bool>::iterator iter = res.mHitMap.begin(); iter != res.mHitMap.end(); ++iter)
         if (iter->second) //The final bool for each trimesh is whether hits are odd (read previous comment).
+        {
+            mNoDimSound->stop(); 
+            mNoDimSound->play();
             return;
+        }
 
     //All clear, switch!
     GlbVar.dimMgr->switchDimension();
     setDimension(mDimensions ^ DimensionManager::DIM_SWITCH);
+    mDimSound->stop();
+    mDimSound->play();
 }
 //-------------------------------------------------------------------------------
 void Player::die(bool explode, bool corpse)

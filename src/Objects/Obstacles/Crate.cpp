@@ -197,7 +197,8 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
     if (!other)
         return;
 
-    if (!mMoving && other->hasFlag("Player"))
+    //Only if not moving, and we're standing on something, do we move.
+    if (!mMoving && other->hasFlag("Player") && !isPlaceFree(Ogre::Vector3(0,-0.25,0)))
     {
         Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
         btTransform myTrans; mBody->getMotionState()->getWorldTransform(myTrans);
@@ -237,6 +238,36 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
     else
         newDir = Ogre::Vector3(0, 0, Ogre::Math::Sign(dir.z));
 
+    //If free, move.
+    if (isPlaceFree(newDir))
+    {
+        mBody->activate();
+        mMoving = true;
+
+        //Calculate new target by adding direction.
+        btTransform fixedTrans;
+        mFixedBody->getMotionState()->getWorldTransform(fixedTrans);
+        btVector3 fixedPos = fixedTrans.getOrigin();
+        //btVector3 myPos = myTrans.getOrigin();
+        mTarget = BtOgre::Convert::toOgre(fixedPos) + newDir;
+    }
+}
+//-------------------------------------------------------------------------------
+void Crate::explode()
+{
+    if (mExploded)
+        return;
+
+    //FX!
+    Util::createExplosion(mNode->getPosition());
+
+    //Us no more. :-(
+    GlbVar.goMgr->requestDestroy(getID());
+    mExploded = true;
+}
+//-------------------------------------------------------------------------------
+bool Crate::isPlaceFree(const Ogre::Vector3 &dir)
+{
     //The cast result callback.
     struct CrateCheckResult : public btDynamicsWorld::ConvexResultCallback
     {
@@ -271,7 +302,7 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
     btTransform myTrans;
     mBody->getMotionState()->getWorldTransform(myTrans);
     btVector3 pos1 = myTrans.getOrigin();
-    btVector3 pos2 = myTrans.getOrigin() + BtOgre::Convert::toBullet(newDir);
+    btVector3 pos2 = myTrans.getOrigin() + BtOgre::Convert::toBullet(dir);
     btQuaternion rot = myTrans.getRotation();
     btTransform trans1(rot, pos1);
     btTransform trans2(rot, pos2);
@@ -280,32 +311,8 @@ void Crate::makeMove(const Ogre::Vector3 &dir)
     CrateCheckResult res(mBody, mDimensions);
     GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
-    //If not hit, move!
-    if (!res.mHit)
-    {
-        mBody->activate();
-        mMoving = true;
-
-        //Calculate new target by adding direction.
-        btTransform fixedTrans;
-        mFixedBody->getMotionState()->getWorldTransform(fixedTrans);
-        btVector3 fixedPos = fixedTrans.getOrigin();
-        //btVector3 myPos = myTrans.getOrigin();
-        mTarget = BtOgre::Convert::toOgre(fixedPos) + newDir;
-    }
-}
-//-------------------------------------------------------------------------------
-void Crate::explode()
-{
-    if (mExploded)
-        return;
-
-    //FX!
-    Util::createExplosion(mNode->getPosition());
-
-    //Us no more. :-(
-    GlbVar.goMgr->requestDestroy(getID());
-    mExploded = true;
+    //If not hit, return true.
+    return !(res.mHit);
 }
 //-------------------------------------------------------------------------------
 

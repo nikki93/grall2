@@ -29,7 +29,7 @@ void Level::init()
     if (mWorldNum > GlbVar.records.highestLevelIndex)
         GlbVar.records.highestLevelIndex = mWorldNum;
 
-    if (GlbVar.records.highestLevelIndex == mWorldNum)
+    if (mUserLevel && GlbVar.records.highestLevelIndex == mWorldNum)
         GlbVar.newLevel = true;
     else
         GlbVar.newLevel = false;

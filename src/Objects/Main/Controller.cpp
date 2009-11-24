@@ -73,11 +73,11 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
     {
         mEndCountDown -= evt.timeSinceLastFrame;
 
-        //We either restart or go to next depending on whether we won. If user level, go to main menu.
+        //If we lost, restart. If we won a new level, go to next level. Otherwise return to main menu.
         if (mEndCountDown < 777)
         {
             if (mWin)
-                if (Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex()))
+                if (GlbVar.newLevel)
                     Util::nextWorld();
                 else
                     Util::gotoWorld(0);

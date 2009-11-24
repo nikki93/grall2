@@ -53,6 +53,10 @@ class Player :
         int mGravityHUDId;
         Ogre::Real mGravityTime;
 
+        //Sounds.
+        OgreAL::Sound *mDimSound;
+        OgreAL::Sound *mNoDimSound;
+
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Player();

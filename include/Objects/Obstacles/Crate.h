@@ -51,6 +51,7 @@ class Crate :
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
 
         //--- Non-NGF ------------------------------------------------------------------
+        bool isPlaceFree(const Ogre::Vector3 &dir);
         void makeMove(const Ogre::Vector3 &dir);
         void explode();
 

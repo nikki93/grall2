@@ -141,15 +141,6 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         }
     }
 
-    if (GlbVar.gravMgr->isUp())
-        mViewRoll = Ogre::Quaternion::Slerp(2.5 * evt.timeSinceLastFrame, mViewRoll, Ogre::Quaternion::IDENTITY, true);
-    else
-        mViewRoll = Ogre::Quaternion::Slerp(2.5 * evt.timeSinceLastFrame, mViewRoll, 
-                Ogre::Quaternion(((Ogre::Math::UnitRandom() > 0.5) ? -1 : 1) * Ogre::Degree(179.8), Ogre::Vector3::UNIT_Z), 
-                true);
-
-    mViewOffset = mViewRoll * mViewOffset;
-
     //Python utick event (do it before camera handling to allow offset-modifications).
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 
@@ -163,9 +154,18 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
                 if (!mTargetNode)
                     break;
 
+                if (GlbVar.gravMgr->isUp())
+                    mViewRoll = Ogre::Quaternion::Slerp(2 * evt.timeSinceLastFrame, mViewRoll, Ogre::Quaternion::IDENTITY, true);
+                else
+                    mViewRoll = Ogre::Quaternion::Slerp(2 * evt.timeSinceLastFrame, mViewRoll, 
+                            Ogre::Quaternion(((Ogre::Math::UnitRandom() > 0.5) ? -1 : 1) * Ogre::Degree(179.8), Ogre::Vector3::NEGATIVE_UNIT_Z), 
+                            true);
+
+                mViewOffset = mViewRoll * mViewOffset;
+
                 Ogre::Vector3 target = mTargetNode->getPosition() + (mTargetNode->getOrientation() * mViewOffset);
                 Ogre::Real factor = mMovementFactor;
-                Ogre::Vector3 lookAtOffset = GlbVar.gravMgr->getSign() * mLookAtOffset;
+                Ogre::Vector3 lookAtOffset = mViewRoll * mLookAtOffset;
 
                 //Raycast from target to us, then if hit, go to hit point, but 0.5 units closer.
                 if (GlbVar.settings.misc.fixCameraObstruction)

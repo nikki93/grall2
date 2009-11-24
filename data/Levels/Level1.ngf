@@ -361,7 +361,7 @@ ngflevel Level1
 			       : 
 			       : def levelStart(self):
 			       : 	GraLL2.setDimension(1)
-			       : 	GraLL2.setBonusTime(49)
+			       : 	GraLL2.setBonusTime(77)
 			       : 	GraLL2.setUp(True)
 			       : 	
 			       : 	self.setAlarm(8.2, 0)
@@ -426,13 +426,9 @@ ngflevel Level1
 			       : def init(self):
 			       : 	self.v_hitSound1 = GraLL2.createSound("Bang-2.wav", False, False)
 			       : 	self.v_hitSound2 = GraLL2.createSound("Bang.wav", False, False)
-			       : 	
-			       : 	obj = Ngf.getObject("stopBrush")
-			       : 	if (obj):
-			       : 		self.v_hitSound1.setPosition(obj.getPosition())
-			       : 		self.v_hitSound2.setPosition(obj.getPosition())
+			       : 	self.v_electricSound = GraLL2.createSound("ElectricSound.wav", False, False)
 			       : 		
-			       : 	self.v_hitSound2.setPitch(random.uniform(0.7, 1.1))
+			       : 	self.v_hitSound2.setPitch(random.uniform(0.9, 1.1))
 			       : 	self.v_hitSound2.setGain(1.4)
 			       : 
 			       : def create(self):
@@ -443,12 +439,25 @@ ngflevel Level1
 			       : 	self.m_pushTime = 0
 			       : 	self.m_colTime = 0
 			       : 	
+			       : 	self.setAlarm(GraLL2.controller.m_splineTime - 3.5, 6)
 			       : 	self.setAlarm(GraLL2.controller.m_splineTime - 2, 0)
 			       : 	self.setAlarm(GraLL2.controller.m_splineTime + 2, 2)
 			       : 	
 			       : 	Ngf.getObject("stopBrush").setVisible(False)
 			       : 	
+			       : 	self.v_electricSound.setPosition(self.getPosition())
+			       : 	
+			       : 	obj = Ngf.getObject("stopBrush")
+			       : 	if (obj):
+			       : 		self.v_hitSound1.setPosition(obj.getPosition())
+			       : 		self.v_hitSound2.setPosition(obj.getPosition())
+			       : 	
 			       : 	self.m_save = False
+			       : 	
+			       : def destroy(self):
+			       : 	GraLL2.destroySound(self.v_hitSound1)
+			       : 	GraLL2.destroySound(self.v_hitSound2)
+			       : 	GraLL2.destroySound(self.v_electricSound)
 			       : 	
 			       : def utick(self, elapsed):
 			       : 	if (self.m_pushTime > 0):
@@ -466,8 +475,23 @@ ngflevel Level1
 			       : 		GraLL2.saveCheckpoint()
 			       : 	
 			       : def alarm(self, n):
+			       : 	#Play that electric sound, flicker the light.
+			       : 	if (n == 6):
+			       : 		self.v_electricSound.play()
+			       : 		self.setAlarm(0.3, 7)
+			       : 	elif (n == 7):
+			       : 		self.lightOn()
+			       : 		self.setAlarm(0.07, 8)
+			       : 	elif (n == 8):
+			       : 		self.lightOff()
+			       : 		self.setAlarm(0.15, 9)
+			       : 	elif (n == 9):
+			       : 		self.lightOn()
+			       : 		self.setAlarm(0.12, 10)
+			       : 	elif (n == 10):
+			       : 		self.lightOff()
 			       : 	#Turn on lights.
-			       : 	if (n == 0):
+			       : 	elif (n == 0):
 			       : 		self.lightOn()
 			       : 	elif (n == 1):
 			       : 		self.m_save = True
@@ -513,20 +537,18 @@ ngflevel Level1
 			       : 	if (self.m_numHits < 2):
 			       : 		if (other.getName() == "stopBrush"):
 			       : 			if (self.m_colTime <= 0):
-			       : 				print "1"
 			       : 				if (self.m_numHits == 0):
 			       : 					self.v_hitSound1.setGain(0.6)
 			       : 				else:
 			       : 					self.v_hitSound1.setGain(0.9)
 			       : 						
-			       : 				self.v_hitSound1.setPitch(random.uniform(0.5, 1.1))
+			       : 				self.v_hitSound1.setPitch(random.uniform(0.8, 1.1))
 			       : 				self.v_hitSound1.play()
 			       : 				self.m_colTime = 1.2
 			       : 	elif (other.getName() == "glass"):
 			       : 		if (self.m_colTime <= 0):
-			       : 			print "2"
 			       : 			self.v_hitSound1.setGain(1.2)
-			       : 			self.v_hitSound1.setPitch(random.uniform(0.5, 1.1))
+			       : 			self.v_hitSound1.setPitch(random.uniform(0.8, 1.1))
 			       : 			self.v_hitSound1.play()
 			       : 	
 			       : 			self.v_hitSound2.play()
@@ -599,7 +621,7 @@ ngflevel Level1
 			script : import Ngf
 			       : 
 			       : def init(self):
-			       : 	GraLL2.controller.m_splineTime = 15
+			       : 	GraLL2.controller.m_splineTime = 20
 			       : 
 			       : def create(self):
 			       : 	self.targetPlayer()
@@ -615,9 +637,9 @@ ngflevel Level1
 			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint6").getPosition())
 			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint7").getPosition())
 			       : 	self.addSplinePoint(1, Ngf.getObject("camPoint8").getPosition())
-			       : 	self.addSplinePoint(1.2, Ngf.getObject("camPoint9").getPosition())
-			       : 	self.addSplinePoint(2, Ngf.getObject("camPoint10").getPosition())
-			       : 	self.addSplinePoint(5, Ngf.getObject("camPoint11").getPosition())
+			       : 	self.addSplinePoint(1.8, Ngf.getObject("camPoint9").getPosition())
+			       : 	self.addSplinePoint(4, Ngf.getObject("camPoint10").getPosition())
+			       : 	self.addSplinePoint(10, Ngf.getObject("camPoint11").getPosition())
 			       : 	self.endSpline()
 			       : 	
 			       : 	self.p_currState = GraLL2.CameraMode.Spline
@@ -661,12 +683,12 @@ ngflevel Level1
 		{
 			dimensions 1
 			scriptFile Prefab_AmbientSound.pyo
-			soundFile Wind.ogg
+			soundFile AmbientSpooky.wav
 			loop 1
 			stream 1
-			attenuation -1 1 1
+			attenuation -1 5 5
 			initPlay 1
-			gain 11.4794921875
+			gain 3.638671875
 		}
 	}
 }

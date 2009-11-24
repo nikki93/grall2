@@ -142,8 +142,8 @@ class Turret :
         //--- Python interface ---------------------------------------------------------
         NGF_PY_BEGIN_DECL(Turret)
         {
-            NGF_PY_METHOD_DECL(startFiring)
-            NGF_PY_METHOD_DECL(stopFiring)
+            NGF_PY_METHOD_DECL(fire)
+            NGF_PY_METHOD_DECL(stop)
             NGF_PY_METHOD_DECL(enable)
             NGF_PY_METHOD_DECL(disable)
 
@@ -255,7 +255,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 22, duplicates = 0 */
+/* maximum key range = 24, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(Turret)
 {
@@ -277,11 +277,11 @@ NGF_PY_CLASS_GPERF(Turret)::MakeHash (register const char *str, register unsigne
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
-      10, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
-      28, 28, 28, 28, 28, 28, 28,  0,  0, 28,
+      28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
+      28, 28, 28, 28, 28, 28, 28,  5,  0, 28,
        0,  0, 10,  5, 28, 28, 28, 28,  0, 28,
-      28, 28, 28, 28,  0,  0,  0, 28, 28, 28,
+      28, 28, 28, 28,  0,  0, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
@@ -297,7 +297,21 @@ NGF_PY_CLASS_GPERF(Turret)::MakeHash (register const char *str, register unsigne
       28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
       28, 28, 28, 28, 28, 28
     };
-  return len + asso_values[(unsigned char)str[4]] + asso_values[(unsigned char)str[0]];
+  register int hval = len;
+
+  switch (hval)
+    {
+      default:
+        hval += asso_values[(unsigned char)str[4]];
+      /*FALLTHROUGH*/
+      case 4:
+      case 3:
+      case 2:
+      case 1:
+        hval += asso_values[(unsigned char)str[0]];
+        break;
+    }
+  return hval;
 }
 
 const struct PythonMethod *
@@ -306,32 +320,35 @@ NGF_PY_CLASS_GPERF(Turret)::Lookup (register const char *str, register unsigned 
   enum
     {
       TOTAL_KEYWORDS = 12,
-      MIN_WORD_LENGTH = 6,
+      MIN_WORD_LENGTH = 4,
       MAX_WORD_LENGTH = 14,
-      MIN_HASH_VALUE = 6,
+      MIN_HASH_VALUE = 4,
       MAX_HASH_VALUE = 27
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {""}, {""}, {""}, {""}, {""}, {""},
+      {""}, {""}, {""}, {""},
+      {"stop", NGF_PY_METHOD_GPERF(Turret, stop)},
+      {""},
       {"enable", NGF_PY_METHOD_GPERF(Turret, enable)},
       {"disable", NGF_PY_METHOD_GPERF(Turret, disable)},
       {""}, {""},
       {"set_radius", NGF_PY_SET_GPERF(Turret, radius)},
-      {"startFiring", NGF_PY_METHOD_GPERF(Turret, startFiring)},
+      {""},
       {"set_restTime", NGF_PY_SET_GPERF(Turret, restTime)},
       {""},
-      {"set_alwaysScan", NGF_PY_SET_GPERF(Turret, alwaysScan)},
+      {"fire", NGF_PY_METHOD_GPERF(Turret, fire)},
       {"get_radius", NGF_PY_GET_GPERF(Turret, radius)},
       {""},
       {"get_restTime", NGF_PY_GET_GPERF(Turret, restTime)},
       {""},
-      {"get_alwaysScan", NGF_PY_GET_GPERF(Turret, alwaysScan)},
-      {"stopFiring", NGF_PY_METHOD_GPERF(Turret, stopFiring)},
-      {""},
+      {"set_alwaysScan", NGF_PY_SET_GPERF(Turret, alwaysScan)},
+      {""}, {""},
       {"set_fireTime", NGF_PY_SET_GPERF(Turret, fireTime)},
-      {""}, {""}, {""}, {""},
+      {""},
+      {"get_alwaysScan", NGF_PY_GET_GPERF(Turret, alwaysScan)},
+      {""}, {""},
       {"get_fireTime", NGF_PY_GET_GPERF(Turret, fireTime)}
     };
 
