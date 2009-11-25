@@ -198,22 +198,25 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
         return;
 
     //Only if not moving, and we're standing on something, do we move.
-    if (!mMoving && other->hasFlag("Player") && !isPlaceFree(Ogre::Vector3(0,-0.25,0)))
+    if (!mMoving && other->hasFlag("Player"))
     {
-        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
-        btTransform myTrans; mBody->getMotionState()->getWorldTransform(myTrans);
-        Ogre::Vector3 myPos = BtOgre::Convert::toOgre(myTrans.getOrigin());
-
-        //We have to go the other way, not toward player, so subtract this way.
-        Ogre::Vector3 push = myPos - playerPos;
-
-        //Check that we got hit on side and not up or (lol?) below. :-)
-        if (Ogre::Math::Abs(push.y) < (mHeight / 2.0))
+        if (!isPlaceFree(Ogre::Vector3(0,GlbVar.gravMgr->getSign() * -0.25,0), true))
         {
-            makeMove(push);
-            btVector3 currVel = mBody->getLinearVelocity();
-            currVel.setY(0);
-            mBody->setLinearVelocity(currVel);
+            Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
+            btTransform myTrans; mBody->getMotionState()->getWorldTransform(myTrans);
+            Ogre::Vector3 myPos = BtOgre::Convert::toOgre(myTrans.getOrigin());
+
+            //We have to go the other way, not toward player, so subtract this way.
+            Ogre::Vector3 push = myPos - playerPos;
+
+            //Check that we got hit on side and not up or (lol?) below. :-)
+            if (Ogre::Math::Abs(push.y) < (mHeight / 2.0))
+            {
+                makeMove(push);
+                btVector3 currVel = mBody->getLinearVelocity();
+                currVel.setY(0);
+                mBody->setLinearVelocity(currVel);
+            }
         }
     }
 
@@ -266,19 +269,20 @@ void Crate::explode()
     mExploded = true;
 }
 //-------------------------------------------------------------------------------
-bool Crate::isPlaceFree(const Ogre::Vector3 &dir)
+bool Crate::isPlaceFree(const Ogre::Vector3 &dir, bool ignorePlayer)
 {
     //The cast result callback.
     struct CrateCheckResult : public btDynamicsWorld::ConvexResultCallback
     {
         btCollisionObject *mIgnore;
         int mDimension;
-        bool mHit;
+        bool mHit, mIgnorePlayer;
 
-        CrateCheckResult(btCollisionObject *ignore, int dimension)
+        CrateCheckResult(btCollisionObject *ignore, int dimension, bool ignorePlayer)
             : mIgnore(ignore),
             mDimension(dimension),
-            mHit(false)
+            mHit(false),
+            mIgnorePlayer(ignorePlayer)
         {
         }
 
@@ -293,6 +297,7 @@ bool Crate::isPlaceFree(const Ogre::Vector3 &dir)
             //If it's us, or isn't in our dimension, we don't care.
             return ((btCollisionObject*) proxy0->m_clientObject != mIgnore) 
                 && !(proxy0->m_collisionFilterGroup & DimensionManager::NO_CRATE_CHECK)
+                && !(mIgnorePlayer && proxy0->m_collisionFilterGroup & DimensionManager::PLAYER)
                 && (proxy0->m_collisionFilterGroup & mDimension);
                 //&& !(((btCollisionObject*) proxy0->m_clientObject)->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
         }
@@ -308,7 +313,7 @@ bool Crate::isPlaceFree(const Ogre::Vector3 &dir)
     btTransform trans2(rot, pos2);
 
     //Do the cast.
-    CrateCheckResult res(mBody, mDimensions);
+    CrateCheckResult res(mBody, mDimensions, ignorePlayer);
     GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
 
     //If not hit, return true.

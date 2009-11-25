@@ -161,6 +161,7 @@ class GraLL2GameObject :
             NGF_PY_METHOD_DECL(getAngularVelocity)
 
             NGF_PY_METHOD_DECL(setVisible)
+            NGF_PY_METHOD_DECL(attachSound)
         }
         NGF_PY_END_DECL
 
@@ -214,7 +215,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 30, duplicates = 0 */
+/* maximum key range = 32, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(GraLL2GameObject)
 {
@@ -235,11 +236,11 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::MakeHash (register const char *str, regist
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40,  5, 40, 40, 20, 40,
-      40, 40, 40, 40, 40, 40,  5, 40, 40, 10,
-       5, 40, 40, 40, 20, 40,  5, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40,  0, 40, 40,
-      40, 40, 40,  5, 40, 40, 40, 40,  0, 40,
+      40, 40, 40, 40, 40,  0, 40, 40,  0, 40,
+      40, 40, 40, 40, 40, 40, 10, 40, 40,  5,
+      15, 40, 40, 40, 15, 40,  0, 40, 40, 40,
+      40, 40, 40, 40, 40, 40, 40,  5, 40, 40,
+      40, 40, 40, 10, 40, 40, 40, 40,  0, 40,
        0, 40, 40, 40, 40,  0,  5, 40, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
       40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
@@ -264,40 +265,43 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
 {
   enum
     {
-      TOTAL_KEYWORDS = 22,
+      TOTAL_KEYWORDS = 23,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 23,
-      MIN_HASH_VALUE = 10,
+      MIN_HASH_VALUE = 8,
       MAX_HASH_VALUE = 39
     };
 
   static const struct PythonMethod wordlist[] =
     {
-      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
+      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
+      {"setAlarm", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAlarm)},
       {""},
+      {"setVisible", NGF_PY_METHOD_GPERF(GraLL2GameObject, setVisible)},
+      {""},
+      {"setDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, setDimension)},
+      {""},
+      {"translate", NGF_PY_METHOD_GPERF(GraLL2GameObject, translate)},
       {"applyForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyForce)},
       {"applyTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorque)},
       {"applyImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyImpulse)},
-      {"setAlarm", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAlarm)},
-      {"translate", NGF_PY_METHOD_GPERF(GraLL2GameObject, translate)},
-      {"setVisible", NGF_PY_METHOD_GPERF(GraLL2GameObject, setVisible)},
-      {"setPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, setPosition)},
+      {"setAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAngularVelocity)},
+      {"setOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, setOrientation)},
+      {"switchDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, switchDimension)},
+      {"attachSound", NGF_PY_METHOD_GPERF(GraLL2GameObject, attachSound)},
       {"applyCentralForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralForce)},
       {"applyTorqueImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorqueImpulse)},
       {"applyCentralImpulse", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyCentralImpulse)},
-      {"switchDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, switchDimension)},
-      {"getPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, getPosition)},
+      {""},
+      {"setPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, setPosition)},
       {"setLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setLinearVelocity)},
-      {"setAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAngularVelocity)},
-      {"setOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, setOrientation)},
-      {""}, {""},
-      {"getLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getLinearVelocity)},
       {"getAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getAngularVelocity)},
       {"getOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, getOrientation)},
-      {""}, {""},
-      {"setDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, setDimension)},
+      {""}, {""}, {""},
       {"getVelocityInLocalPoint", NGF_PY_METHOD_GPERF(GraLL2GameObject, getVelocityInLocalPoint)},
-      {""}, {""}, {""}, {""},
+      {""}, {""},
+      {"getPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, getPosition)},
+      {"getLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getLinearVelocity)},
       {"getTotalForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalForce)},
       {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)}
     };

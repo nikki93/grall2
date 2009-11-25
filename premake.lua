@@ -81,6 +81,7 @@ debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 
 debug.buildoptions = { "-g" ,"-pg" }
+-- debug.buildoptions = { "-g", "-pg", "-E" }  -- Preprocessor only.
 debug.linkoptions = { "-pg" }
 
 -- Release configuration --------------------------------------------------------------------

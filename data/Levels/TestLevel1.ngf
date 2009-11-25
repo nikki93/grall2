@@ -671,42 +671,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Pickup
-		name noname
-		position -6.500000 6.500000 -10.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			pickupType KeyY
-			meshFile Mesh_Key.mesh
-			material Objects/KeyY
-			spin 20
-			bob 0.2
-			scriptFile Prefab_KeyY.pyo
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -16.500000 6.500000 -5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			pickupType KeyY
-			meshFile Mesh_Key.mesh
-			material Objects/KeyY
-			spin 20
-			bob 0.2
-			scriptFile Prefab_KeyY.pyo
-		}
-	}
-	object
-	{
 		type FallingBrush
 		name noname
 		position 13.500000 5.750000 -11.500000
@@ -1310,23 +1274,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Pickup
-		name noname
-		position -14.500000 6.500000 -5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			pickupType KeyR
-			meshFile Mesh_Key.mesh
-			material Objects/KeyR
-			spin 20
-			bob 0.1
-		}
-	}
-	object
-	{
 		type Bomb
 		name noname
 		position 0.500000 10.500000 28.500000
@@ -1826,39 +1773,13 @@ ngflevel TestLevel1
 	{
 		type Crate
 		name noname
-		position -9.500000 6.750000 -5.500000
+		position -9.500000 7.750000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			heightDeficiency 0.2
-		}
-	}
-	object
-	{
-		type Crate
-		name noname
-		position -9.500000 6.750000 -4.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 2
-			heightDeficiency 0
-		}
-	}
-	object
-	{
-		type Crate
-		name noname
-		position -11.500000 6.750000 -3.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			heightDeficiency 0.5
 		}
 	}
 	object
@@ -2311,19 +2232,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Crate
-		name noname
-		position -8.500000 6.750000 -3.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 1
-			heightDeficiency 0.3
-		}
-	}
-	object
-	{
 		type StaticBrush
 		name noname
 		position -28.000000 0.000000 2.000000
@@ -2440,23 +2348,6 @@ ngflevel TestLevel1
 	}
 	object
 	{
-		type Pickup
-		name noname
-		position -15.500000 6.500000 -2.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			pickupType KeyR
-			meshFile Mesh_Key.mesh
-			material Objects/KeyR
-			spin 20
-			bob 0.2
-		}
-	}
-	object
-	{
 		type Player
 		name player1
 		position -2.499782 6.389544 -2.499271
@@ -2468,39 +2359,6 @@ ngflevel TestLevel1
 			minHeight -20
 			captureCameraHandler yes
 			canSwitchDimensions yes
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position -6.500000 6.500000 -2.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			script : crateScript = compile("""
-			       : 
-			       : def init(self):
-			       : 	self.setAlarm(3, 0)
-			       : 	
-			       : def alarm(self, n):
-			       : 	if (n == 0):
-			       : 		self.move(Ngf.Vector3(0,0,-1))
-			       : 		self.setAlarm(2, 0)
-			       : 		
-			       : """, 
-			       : 
-			       : "crateScript", "exec")
-			       : 
-			       : def create(self):
-			       : 	self.setAlarm(3, 0)
-			       : 	
-			       : def alarm(self, n):
-			       : 	if (n == 0):
-			       : 		Ngf.createObject("Crate", "", self.getPosition() + Ngf.Vector3(0,5,0), Ngf.Quaternion.IDENTITY, { "scriptObject" : "crateScript" })
-			       : 		self.setAlarm(3, 0)
 		}
 	}
 	object
@@ -2550,24 +2408,6 @@ ngflevel TestLevel1
 			dimensions 3
 			brushMeshFile TestLevel1_b27.mesh
 			convex yes
-		}
-	}
-	object
-	{
-		type Pickup
-		name noname
-		position -16.500000 6.500000 -10.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			pickupType KeyY
-			meshFile Mesh_Key.mesh
-			material Objects/KeyY
-			spin 20
-			bob 0.2
-			scriptFile Prefab_KeyY.pyo
 		}
 	}
 	object
@@ -2647,6 +2487,20 @@ ngflevel TestLevel1
 		{
 			dimensions 3
 			brushMeshFile TestLevel1_b28.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -9.500000 6.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile TestLevel1_b29.mesh
 			convex 1
 		}
 	}

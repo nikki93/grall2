@@ -13,7 +13,8 @@ GraLL2GameObject::GraLL2GameObject(bool dimensional)
     : NGF::GameObject(Ogre::Vector3(), Ogre::Quaternion(), NGF::ID(), NGF::PropertyList(), Ogre::String()),
       mOgreName("id" + Ogre::StringConverter::toString(getID())),
       mClickedTime(-1),
-      mVisible(true)
+      mVisible(true),
+      mNode(0)
 {
     //Load the Python script. Events are called by children though.
     SET_PYTHON_SCRIPT();
@@ -303,10 +304,19 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
 
         NGF_PY_RETURN(BtOgre::Convert::toOgre(mBody->getAngularVelocity()));
     }
+
     NGF_PY_METHOD_IMPL(setVisible)
     {
         NGF_PY_METHOD_PARAMS_1(bool, visible);
         mVisible = visible;
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(attachSound)
+    {
+        NGF_PY_METHOD_PARAMS_1(OgreAL::Sound *, sound);
+        if (mNode)
+            mNode->attachObject(sound);
 
         NGF_PY_RETURN();
     }

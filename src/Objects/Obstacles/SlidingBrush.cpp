@@ -289,5 +289,17 @@ NGF_PY_BEGIN_IMPL(SlidingBrush)
     NGF_PY_PROPERTY_IMPL(enabled, mEnabled, bool);
     NGF_PY_PROPERTY_IMPL(forward, mForward, bool);
     NGF_PY_PROPERTY_IMPL(speed, mSpeed, Ogre::Real);
+
+    }
+    //NGF_PY_END_IMPL_BASE(GraLL2GameObject)
+        }
+    }
+
+    if (mPythonEvents.has_key(NGF_name))
+    {
+        return (NGF::Python::PythonManager::getSingleton().getMainNamespace()["callFunc"]) 
+            (mPythonEvents, NGF_name, mConnector, args);   
+    }
+
+    return GraLL2GameObject::pythonMethod(NGF_name, args);
 }
-NGF_PY_END_IMPL_BASE(GraLL2GameObject)

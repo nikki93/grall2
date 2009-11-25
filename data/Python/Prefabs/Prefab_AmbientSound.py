@@ -21,6 +21,8 @@ def init(self):
         float(self.getProperty("gain", 0, "1"))
     )
 
+    #Sound test.
+
 def create(self):
     #Play!
     if (parseBool(self.getProperty("initPlay", 0, "1"))):
