@@ -2488,6 +2488,7 @@ ngflevel TestLevel1
 			dimensions 3
 			brushMeshFile TestLevel1_b28.mesh
 			convex 1
+			transparent 1
 		}
 	}
 	object

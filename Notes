@@ -6,7 +6,13 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add sound effects for:-
+- Add SpeedBoost prefab.
+
+- Add JumpPad prefab.
+
+- Add sound effects.
+
+- Start working on levels.
 
 Side
 ----
@@ -14,8 +20,6 @@ Side
 
 - Ideas from the original unimplemented in GraLL 2:-
    - ElectricField
-   - SpeedBoost
-   - JumpPad
 
 - Make more brush textures.
 
@@ -826,3 +830,7 @@ Wed Nov 25 20:35:06 AST 2009
 ----------------------------
 - Added ability to write new Python methods for GameObjects from script.
 - Added 'open()' and 'close()' functions to Door prefab using the 'make methods in script' feature.
+
+Thu Nov 26 23:17:44 AST 2009
+----------------------------
+- Added ability to specify that a brush is transparent to prevent it from causing 'camera-fixing'.

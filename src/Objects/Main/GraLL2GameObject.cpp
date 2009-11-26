@@ -85,7 +85,13 @@ NGF::MessageReply GraLL2GameObject::receiveMessage(NGF::Message msg)
 //--- Utilities -----------------------------------------------------------------
 void GraLL2GameObject::initBody(int specialFlags)
 {
-    GlbVar.phyWorld->addRigidBody(mBody, mDimensions | specialFlags, mDimensions);
+    int invisiFlag = Ogre::StringConverter::parseBool(mProperties.getValue("transparent", 0, "0")) ? 
+        DimensionManager::INVISIBLE : DimensionManager::NONE;
+
+    GlbVar.phyWorld->addRigidBody(mBody, specialFlags
+            | mDimensions
+            | invisiFlag
+            , mDimensions);
     setBulletObject(mBody);
 }
 //-------------------------------------------------------------------------------
