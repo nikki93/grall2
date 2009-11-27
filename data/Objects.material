@@ -485,3 +485,15 @@ material Objects/GravityKey : BaseGlow
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.3 0.3 0.3 1"
 }
+
+//--- SpeedBoost ----------------------------------------------------------------------
+material Objects/SpeedBoost : BaseGlow
+{
+        set $diffuse_tex "SpeedBoost.png"
+        set $glow_tex "SpeedBoost_GW.png"
+        set $glow_amount "0.2"
+
+        set $ambient "0.9 0.9 0.9 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.3 0.3 0.3 1"
+}

@@ -250,5 +250,25 @@ ngflevel TestLevel3
 			gain 7.318359375
 		}
 	}
+	object
+	{
+		type Pickup
+		name noname
+		position 0.500000 0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType SpeedBoost
+			meshFile SpeedBoost.mesh
+			material Objects/SpeedBoost
+			spin 90.0
+			bobAmplitude 0.00700000021607
+			bobFrequency 0.10000000149
+			scriptFile Prefab_SpeedBoost.pyo
+			multiplier 7.0
+		}
+	}
 }
 
