@@ -23,7 +23,7 @@ def create(self):
     lightPos = self.getPosition() - Ngf.Vector3(0,0.8,0)
     Ngf.createObject("Light", "", lightPos, Ngf.Quaternion.IDENTITY, {
         "colour" : "0.7 0.4 0.02",
-        "attenuation": "10 0.8 0.2 0.09"
+        "attenuation" : "10 0.8 0.2 0.09"
     })
 
 def collide(self, other):

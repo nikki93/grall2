@@ -1,6 +1,20 @@
 #Door Prefab Script
 #------------------
 
+#--- Methods ------
+
+def open(self):
+    #Make brush move forward, and play sound.
+    self.p_forward = True
+    self.v_sound.play()
+    self.m_opened = True
+    self.m_moving = True
+
+def close(self):
+    #Make brush go back, play sound.
+    self.p_forward = False
+    self.v_sound.play()
+
 #--- Events -------
 
 def init(self):
@@ -8,8 +22,8 @@ def init(self):
     self.v_sound = GraLL2.createSound("DoorOpen.wav", True, False)
 
     #Methods.
-    self.registerMethod("open")
-    self.registerMethod("close")
+    self.open = open
+    self.close = close
 
 def create(self):
     #Not opened yet!
@@ -32,9 +46,9 @@ def destroy(self):
 
 def collide(self, other):
     #If we're already moving, then nothing to check. If we're repeating, then do it. If we're not 
-    #repeating, this must be first time. Also, the other object must be a 'Doorer'. Lastly, we check 
-    #for the 'condition' (evaluate Python string) and if it's fine, then continue.
+    #repeating, this must be first time. Also, the other object must be a 'Doorer'.
     if ((not self.m_moving) and (self.m_repeat or (not self.m_opened)) and other.hasFlag("Doorer")):
+        #Everything else is fine, check the door condition itself now.
         if (eval(self.m_condition)):
             self.open()
 
@@ -55,16 +69,3 @@ def alarm(self, n):
     #Delay is over, close.
     self.close()
 
-#--- Methods ------
-
-def open(self):
-    #Make brush move, and play sound.
-    self.p_forward = True
-    self.v_sound.play()
-    self.m_opened = True
-    self.m_moving = True
-
-def close(self):
-    #Make brush go back, play sound.
-    self.p_forward = False
-    self.v_sound.play()

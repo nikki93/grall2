@@ -2,6 +2,20 @@ ngflevel TestLevel2
 {
 	object
 	{
+		type Empty
+		name noname
+		position -6.500000 -0.250000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 20.0
+			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
 		type OneWay
 		name noname
 		position 17.900000 1.000000 -10.300000
@@ -788,6 +802,20 @@ ngflevel TestLevel2
 			dimensions 3
 			brushMeshFile ArchWay.mesh
 			convex no
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -6.500000 -0.250000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 20.0
+			scriptFile Prefab_JumpPad.pyo
 		}
 	}
 }

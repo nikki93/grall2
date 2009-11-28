@@ -21,8 +21,6 @@ def init(self):
         float(self.getProperty("gain", 0, "1"))
     )
 
-    #Sound test.
-
 def create(self):
     #Play!
     if (parseBool(self.getProperty("initPlay", 0, "1"))):
@@ -33,13 +31,11 @@ def destroy(self):
 
 #Return dict to save.
 def save(self):
-    values = {
+    return {
         "playing" : self.v_sound.isPlaying(),
         "offset" : self.v_sound.getSecondOffset(),
         "gain" : self.v_sound.getGain()
     }
-
-    return values
 
 #Get the saved dict, use it.
 def load(self, values):

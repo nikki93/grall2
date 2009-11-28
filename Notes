@@ -6,8 +6,6 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add JumpPad prefab.
-
 - Add sound effects.
 
 - Start working on levels.
@@ -813,7 +811,7 @@ Fri Nov 21 21:46:41 AST 2009
 ----------------------------
 - Added some more sound effects.
 
-Sat Nov 21 22:31:16 AST 2009
+Sat Nov 22 22:31:16 AST 2009
 ----------------------------
 - Fixed a bug in the camera rotation for gravity switch.
 
@@ -837,3 +835,8 @@ Fri Nov 27 15:34:18 AST 2009
 ----------------------------
 - Added 'SpeedBoost' prefab, which boosts GraLL's angular velocity when picked up.
 - Added mesh and material for SpeedBoost prefab.
+
+Sat Nov 28 18:02:51 AST 2009
+----------------------------
+- Added 'JumpPad' prefab.
+- Added material for JumpPad prefab.
