@@ -56,6 +56,8 @@ class Player :
         //Sounds.
         OgreAL::Sound *mDimSound;
         OgreAL::Sound *mNoDimSound;
+        OgreAL::Sound *mGravitySound;
+        OgreAL::Sound *mTimeUpSound;
 
     public:
         Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);

@@ -145,6 +145,9 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mDimSound = GlbVar.soundMgr->createSound(mOgreName + "_dimSound", "DimensionSwitch.wav", false, false);
     mNoDimSound = GlbVar.soundMgr->createSound(mOgreName + "_noDimSound", "NoDimensionSwitch.wav", false, false);
     mDimSound->setGain(0.4);
+    mGravitySound = GlbVar.soundMgr->createSound(mOgreName + "_gravitySound", "GravitySwitch.wav", false, false);
+    mGravitySound->setGain(0.55);
+    mTimeUpSound = GlbVar.soundMgr->createSound(mOgreName + "_timeUpSound", "TimeUp.wav", false, false);
 }
 //-------------------------------------------------------------------------------
 void Player::postLoad()
@@ -188,8 +191,12 @@ Player::~Player()
 
     GlbVar.ogreSmgr->destroySceneNode(mControlNode);
     mNode->detachAllObjects();
+
     GlbVar.soundMgr->destroySound(mDimSound);
     GlbVar.soundMgr->destroySound(mNoDimSound);
+    GlbVar.soundMgr->destroySound(mGravitySound);
+    GlbVar.soundMgr->destroySound(mTimeUpSound);
+
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
@@ -230,7 +237,12 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
         if (mGravityTime <= 0)
         {
             mCanSwitchGravity = false;
-            GlbVar.gravMgr->setUp(true); //Go back to normal.
+            if (!GlbVar.gravMgr->isUp())
+            {
+                GlbVar.gravMgr->setUp(true); //Go back to normal.
+                mTimeUpSound->stop();
+                mTimeUpSound->play();
+            }
         }
         else
             mCanSwitchGravity = true;
@@ -279,7 +291,11 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 else if (key == GlbVar.settings.controls.keys["selfDestruct"])
                     die(true);
                 else if (mCanSwitchGravity && key == GlbVar.settings.controls.keys["gravitySwitch"])
+                {
+                    mGravitySound->stop();
+                    mGravitySound->play();
                     GlbVar.gravMgr->invert();
+                }
             }
             NGF_NO_REPLY();
 

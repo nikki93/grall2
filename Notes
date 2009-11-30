@@ -6,7 +6,14 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add sound effects.
+- Add sound effects for:-
+  - Bullet hit.
+  - Checkpoint save.
+  - MessageBox show.
+  - Explosions (Bomb, MovingBomb, Player).
+  - Crate ground hit from height.
+  - Switch on/off.
+  - Teleporter teleport.
 
 - Start working on levels.
 
