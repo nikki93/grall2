@@ -347,6 +347,16 @@ class Game
             GlbVar.soundMgr = new OgreAL::SoundManager();
             GlbVar.camNode->attachObject(GlbVar.soundMgr->getListener());
 
+            //Make some 'persistent' sounds (usually played on destruction so not able to manage).
+            //Yes, hax. :/
+            GlbVar.playerExplosionSound = GlbVar.soundMgr->createSound("PlayerExplosion", "PlayerExplosion.wav", false, false);
+            GlbVar.playerExplosionSound->setReferenceDistance(1.2);
+            GlbVar.playerExplosionSound->setGain(0.42);
+
+            GlbVar.bombExplosionSound = GlbVar.soundMgr->createSound("BombExplosion", "BombExplosion.wav", false, false);
+            GlbVar.bombExplosionSound->setReferenceDistance(1.2);
+            //GlbVar.playerExplosionSound->setGain(0.42);
+
             //--- NGF (Game architecture framework) ------------------------------------
             //Usual stuff.
             GlbVar.goMgr = new NGF::GameObjectManager();

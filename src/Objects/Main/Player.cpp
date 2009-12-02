@@ -148,6 +148,8 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mGravitySound = GlbVar.soundMgr->createSound(mOgreName + "_gravitySound", "GravitySwitch.wav", false, false);
     mGravitySound->setGain(0.55);
     mTimeUpSound = GlbVar.soundMgr->createSound(mOgreName + "_timeUpSound", "TimeUp.wav", false, false);
+
+    mNode->attachObject(GlbVar.playerExplosionSound);
 }
 //-------------------------------------------------------------------------------
 void Player::postLoad()
@@ -533,7 +535,11 @@ void Player::die(bool explode, bool corpse)
 
     //Explosions!
     if (explode)
+    {
         Util::createExplosion(mNode->getPosition());
+        GlbVar.playerExplosionSound->stop();
+        GlbVar.playerExplosionSound->play();
+    }
 
     //And of course, we don't exist anymore. :-( If leaving a corpse, then just lose
     //control.

@@ -128,6 +128,10 @@ struct Globals : public Ogre::Singleton<Globals>
     std::vector<Ogre::String> userNgfNames; //The NGF level script names ('user' levels).
 
     bool newLevel; //Whether this is a 'new level' (either highest, or user level).
+
+    //Some persistent sounds.
+    OgreAL::Sound *playerExplosionSound;
+    OgreAL::Sound *bombExplosionSound;
     
     //Settings.
     struct Settings

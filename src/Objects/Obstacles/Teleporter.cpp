@@ -35,6 +35,12 @@ Teleporter::Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody();
+
+    //Sound.
+    mSound = GlbVar.soundMgr->createSound(mOgreName + "_teleSound", "Teleporter.wav", false, false);
+    mNode->attachObject(mSound);
+    mSound->setReferenceDistance(1.2);
+    mSound->setGain(4.2);
 }
 //-------------------------------------------------------------------------------
 void Teleporter::postLoad()
@@ -66,6 +72,7 @@ Teleporter::~Teleporter()
     delete mShape;
 
     mNode->detachAllObjects();
+    GlbVar.soundMgr->destroySound(mSound);
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
@@ -92,6 +99,9 @@ void Teleporter::unpausedTick(const Ogre::FrameEvent &evt)
         Ogre::Real yShift = offset.y - (mNode->getOrientation() * Ogre::Vector3(0,0.75,0)).y;
         GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_TELEPORT, mTarget + Ogre::Vector3(0,yShift,0)));
         mTime = 0;
+
+        mSound->stop();
+        mSound->play();
     }
 
     //Python utick event.

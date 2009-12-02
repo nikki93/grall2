@@ -33,10 +33,9 @@ class MusicManager
         MusicManager()
             : mCurrentSound(0),
               mPreviousSound(0),
-              mActualGain(0.2)
+              mActualGain(0.24)
         {
             LOAD_MUSIC(Track1);
-            LOAD_MUSIC(Track2);
         }
 
         ~MusicManager() 

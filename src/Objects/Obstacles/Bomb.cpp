@@ -120,6 +120,11 @@ void Bomb::explode()
     if (mExploded)
         return;
 
+    //Boom! :P
+    GlbVar.bombExplosionSound->setPosition(mNode->getPosition());
+    GlbVar.bombExplosionSound->stop();
+    GlbVar.bombExplosionSound->play();
+
     //FX!
     Util::createExplosion(mNode->getPosition());
 

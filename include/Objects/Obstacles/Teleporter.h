@@ -28,7 +28,8 @@ class Teleporter :
 
         Ogre::Vector3 mTarget;
         Ogre::Real mTime;
-        NGF::GameObject *mPlayer;
+
+        OgreAL::Sound *mSound;
 
     public:
         Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);

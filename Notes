@@ -10,10 +10,8 @@ Next
   - Bullet hit.
   - Checkpoint save.
   - MessageBox show.
-  - Explosions (Bomb, MovingBomb, Player).
   - Crate ground hit from height.
   - Switch on/off.
-  - Teleporter teleport.
 
 - Start working on levels.
 
@@ -847,3 +845,12 @@ Sat Nov 28 18:02:51 AST 2009
 ----------------------------
 - Added 'JumpPad' prefab.
 - Added material for JumpPad prefab.
+
+Tue Dec  1 00:21:56 AST 2009
+----------------------------
+- Added more sound effects.
+
+Wed Dec  2 22:36:42 AST 2009
+----------------------------
+- Added more sound effects.
+- Added 'persistent' sounds for Player explosion, bomb explosion, etc.

@@ -365,6 +365,8 @@ ngflevel Level1
 			       : 	GraLL2.setUp(True)
 			       : 	
 			       : 	self.setAlarm(8.2, 0)
+			       : 	
+			       : 	GraLL2.playMusic("Track1")
 			       : 
 			       : def levelStop(self):
 			       : 	pass

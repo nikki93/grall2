@@ -2,6 +2,32 @@ ngflevel TestLevel3
 {
 	object
 	{
+		type Bomb
+		name noname
+		position 3.500000 0.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 2.500000 0.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
 		type Light
 		name noname
 		position -4.500000 3.500000 -5.500000
@@ -268,6 +294,19 @@ ngflevel TestLevel3
 			bobFrequency 0.10000000149
 			scriptFile Prefab_SpeedBoost.pyo
 			multiplier 7.0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 3.500000 0.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
 		}
 	}
 }
