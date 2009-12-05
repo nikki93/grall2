@@ -7,11 +7,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 Next
 ----
 - Add sound effects for:-
-  - Bullet hit.
-  - Checkpoint save.
   - MessageBox show.
-  - Crate ground hit from height.
-  - Switch on/off.
 
 - Start working on levels.
 
@@ -854,3 +850,11 @@ Wed Dec  2 22:36:42 AST 2009
 ----------------------------
 - Added more sound effects.
 - Added 'persistent' sounds for Player explosion, bomb explosion, etc.
+
+Fri Dec  4 19:07:29 AST 2009
+----------------------------
+- Added more sound effects.
+
+Sun Dec  5 23:45:59 AST 2009
+----------------------------
+- Added more sound effects.

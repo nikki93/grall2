@@ -29,7 +29,7 @@ void Level::init()
     if (mWorldNum > GlbVar.records.highestLevelIndex)
         GlbVar.records.highestLevelIndex = mWorldNum;
 
-    if (mUserLevel && GlbVar.records.highestLevelIndex == mWorldNum)
+    if (!mUserLevel && GlbVar.records.highestLevelIndex == mWorldNum)
         GlbVar.newLevel = true;
     else
         GlbVar.newLevel = false;
@@ -75,6 +75,7 @@ void Level::stop()
     GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_LEVELSTOP));
     Util::clearLevel();
     GlbVar.hud->clear();
+    GlbVar.bonusTime = 0;
 }
 //-------------------------------------------------------------------------------
 void Level::startLevel()

@@ -45,6 +45,9 @@ class Switch :
 
         NGF::GameObject *mSlidingBrush;
 
+        OgreAL::Sound *mOnSound;
+        OgreAL::Sound *mOffSound;
+
     public:
         Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Switch();

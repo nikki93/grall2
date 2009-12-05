@@ -37,6 +37,12 @@ Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody();
+
+    //Create sound.
+    mSound = GlbVar.soundMgr->createSound(mOgreName + "_sound", "Checkpoint.wav", false, false);
+    mNode->attachObject(mSound);
+    mSound->setReferenceDistance(1.2);
+    mSound->setGain(3);
 }
 //-------------------------------------------------------------------------------
 void Checkpoint::postLoad()
@@ -72,6 +78,7 @@ Checkpoint::~Checkpoint()
     delete mShape;
 
     mNode->detachAllObjects();
+    GlbVar.soundMgr->destroySound(mSound);
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
@@ -118,6 +125,10 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
 
             Util::saveCheckpoint();
             mEntity->setMaterialName("Objects/CheckpointOff");
+            
+            //Play the sound.
+            mSound->stop();
+            mSound->play();
         }
     }
 

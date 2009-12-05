@@ -30,6 +30,8 @@ class Checkpoint :
 
         NGF::GameObject *mLight;
 
+        OgreAL::Sound *mSound;
+
     public:
         Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Checkpoint();

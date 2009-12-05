@@ -20,6 +20,8 @@ def close(self):
 def init(self):
     #Sound we play when moving.
     self.v_sound = GraLL2.createSound("DoorOpen.wav", True, False)
+    self.attachSound(self.v_sound)
+    self.v_sound.setReferenceDistance(1.2)
 
     #Methods.
     self.open = open
@@ -36,10 +38,6 @@ def create(self):
     self.m_repeat = parseBool(self.getProperty("repeat", 0, "1"))
     self.m_autoClose = parseBool(self.getProperty("autoClose", 0, "yes"))
     self.m_condition = self.getProperty("condition", 0, "True")
-
-    #Sound moves with us! :P
-    self.attachSound(self.v_sound)
-    self.v_sound.setReferenceDistance(1.2)
 
 def destroy(self):
     GraLL2.destroySound(self.v_sound)

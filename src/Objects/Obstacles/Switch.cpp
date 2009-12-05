@@ -47,6 +47,17 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody();
+
+    //Create sounds.
+    mOnSound = GlbVar.soundMgr->createSound(mOgreName + "_onSound", "SwitchOn.wav", false, false);
+    mNode->attachObject(mOnSound);
+    mOnSound->setReferenceDistance(1.2);
+    mOnSound->setGain(0.3);
+
+    mOffSound = GlbVar.soundMgr->createSound(mOgreName + "_offSound", "SwitchOff.wav", false, false);
+    mNode->attachObject(mOffSound);
+    mOffSound->setReferenceDistance(1.2);
+    mOffSound->setGain(5);
 }
 //-------------------------------------------------------------------------------
 void Switch::postLoad()
@@ -68,6 +79,8 @@ Switch::~Switch()
     delete mShape;
 
     mNode->detachAllObjects();
+    GlbVar.soundMgr->destroySound(mOnSound);
+    GlbVar.soundMgr->destroySound(mOffSound);
     GlbVar.ogreSmgr->destroyEntity(mEntity->getName());
 }
 //-------------------------------------------------------------------------------
@@ -153,6 +166,9 @@ void Switch::on()
     if (mSlidingBrush)
         GlbVar.goMgr->sendMessage(mSlidingBrush, NGF_MESSAGE(MSG_SETFORWARD, (bool) true));
 
+    mOnSound->stop();
+    mOnSound->play();
+
     NGF_PY_CALL_EVENT(on);
 }
 //-------------------------------------------------------------------------------
@@ -160,6 +176,9 @@ void Switch::off()
 {
     if (mSlidingBrush)
         GlbVar.goMgr->sendMessage(mSlidingBrush, NGF_MESSAGE(MSG_SETFORWARD, (bool) false));
+
+    mOffSound->stop();
+    mOffSound->play();
 
     NGF_PY_CALL_EVENT(off);
 }

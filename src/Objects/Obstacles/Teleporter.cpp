@@ -40,7 +40,7 @@ Teleporter::Teleporter(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mSound = GlbVar.soundMgr->createSound(mOgreName + "_teleSound", "Teleporter.wav", false, false);
     mNode->attachObject(mSound);
     mSound->setReferenceDistance(1.2);
-    mSound->setGain(4.2);
+    mSound->setGain(3.9);
 }
 //-------------------------------------------------------------------------------
 void Teleporter::postLoad()
