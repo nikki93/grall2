@@ -78,6 +78,9 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mConstraint->setUpperAngLimit(0);
     //mConstraint->setRestitutionOrthoLin(3);
 
+    mBody->setAngularFactor(btVector3(0,0,0));
+    mBody->setLinearFactor(btVector3(0,1,0));
+
     GlbVar.phyWorld->addConstraint(mConstraint, true);
 
     //Height deficiency, for some variety in Crates.
@@ -131,11 +134,12 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
     GraLL2GameObject::unpausedTick(evt);
 
     //If gotta move, move.
-    btTransform oldTrans;
-    mFixedBody->getMotionState()->getWorldTransform(oldTrans);
-
     if (mMoving)
     {
+        btTransform oldTrans, bodyTrans;
+        mFixedBody->getMotionState()->getWorldTransform(oldTrans);
+        mBody->getMotionState()->getWorldTransform(bodyTrans);
+
         Ogre::Real speed = CRATE_MOVE_SPEED * evt.timeSinceLastFrame;
         Ogre::Vector3 currPos = BtOgre::Convert::toOgre(oldTrans.getOrigin());
 
@@ -143,29 +147,24 @@ void Crate::unpausedTick(const Ogre::FrameEvent &evt)
         {
             //If next move'll take us overboard, just jump to the target.
             mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(mTarget)));
-            btTransform trans = mBody->getWorldTransform();
-            mBody->setWorldTransform(btTransform(oldTrans.getRotation(), btVector3(mTarget.x, trans.getOrigin().y(), mTarget.z)));
             mMoving = false;
         }
         else
         {
             //Else move toward target.
-            btVector3 vel = BtOgre::Convert::toBullet(Ogre::Vector3(speed,0,0).getRotationTo(mTarget - currPos) * Ogre::Vector3(speed,0,0));
+            btVector3 vel = BtOgre::Convert::toBullet((mTarget - currPos).normalisedCopy() * speed);
             mFixedBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), oldTrans.getOrigin() + vel));
         }
+
+        //Update the body itself. Y = Y of body X,Z = X,Z of fixed body.
+        mFixedBody->getMotionState()->getWorldTransform(oldTrans);
+        mBody->setWorldTransform(btTransform(oldTrans.getRotation(), btVector3(oldTrans.getOrigin().x(), bodyTrans.getOrigin().y(), oldTrans.getOrigin().z())));
 
         if (!mSound->isPlaying())
             mSound->play();
     }
     else if (mSound->isPlaying())
         mSound->stop();
-
-    /*
-    mFixedBody->getMotionState()->getWorldTransform(oldTrans);
-    btVector3 fixedPos = oldTrans.getOrigin();
-    btTransform bodyTrans = mBody->getWorldTransform();
-    mBody->setWorldTransform(btTransform(btQuaternion::getIdentity(), btVector3(fixedPos.x(), bodyTrans.getOrigin().y(), fixedPos.z())));
-    */
 
     //We might fall of.
     checkFell();

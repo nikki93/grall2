@@ -6,8 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Add sound effects for:-
-  - MessageBox show.
+- Make more brush textures.
 
 - Start working on levels.
 
@@ -15,17 +14,10 @@ Side
 ----
 - Come up with new ideas.
 
-- Ideas from the original unimplemented in GraLL 2:-
-   - ElectricField
-
-- Make more brush textures.
-
 - Work on logo.
 
 Bugs
 ----
-- Rework Crate dynamics.
-
 - Fix shadows.
 
 +---------------------------+
@@ -858,3 +850,8 @@ Fri Dec  4 19:07:29 AST 2009
 Sun Dec  5 23:45:59 AST 2009
 ----------------------------
 - Added more sound effects.
+
+Tue Dec  8 01:08:36 AST 2009
+----------------------------
+- Fixed Crates dynamics bugs. Crates now work perfectly. For now, labelled as 'done', but still needs
+  testing. If any problems are encountered in the future, it'll be back on the list.
