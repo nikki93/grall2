@@ -19,6 +19,7 @@ static Ogre::String creditsStr =
 "Art:\n"
 "  Nikhilesh (nikki)\n"
 "  s.nikhilesh@gmail.com\n"
+/*
 "\n"
 "Testers:\n"
 "  Savinay Nangalia (savinay93)\n"
@@ -26,6 +27,7 @@ static Ogre::String creditsStr =
 "\n"
 "  Siddharth Malhotra (siddharth)\n"
 "  siddharthmalhotra1994@hotmail.com\n"
+*/
 
 ;
 

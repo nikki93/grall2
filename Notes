@@ -851,7 +851,12 @@ Sun Dec  5 23:45:59 AST 2009
 ----------------------------
 - Added more sound effects.
 
-Tue Dec  8 01:08:36 AST 2009
+Mon Dec  7 22:08:36 AST 2009
 ----------------------------
 - Fixed Crates dynamics bugs. Crates now work perfectly. For now, labelled as 'done', but still needs
   testing. If any problems are encountered in the future, it'll be back on the list.
+
+Tue Dec  8 23:05:44 AST 2009
+----------------------------
+- Added more brush textures.
+- Added 'LedgeLamp' prop.

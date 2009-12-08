@@ -276,7 +276,7 @@ ngflevel TestLevel2
 	{
 		type Light
 		name noname
-		position 1.500000 1.688289 5.500000
+		position -2.432495 2.492863 4.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -816,6 +816,21 @@ ngflevel TestLevel2
 			dimensions 3
 			impulse 20.0
 			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -3.500000 2.500000 4.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile LedgeLamp.mesh
+			convex 0
+			transparent 1
 		}
 	}
 }

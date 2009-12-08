@@ -5,16 +5,23 @@
 
 import * from Base.program
 
-//--- FlatMetal1 ----------------------------------------------------------------------
-material Brushes/FlatMetal1.png : BaseNormalMapParallax
+//--- FlatMetal -----------------------------------------------------------------------
+material Brushes/FlatMetal1.png : Base
 {
-        set $diffuse_tex "WhiteTile1.png"
-        set $normal_tex "WhiteTile_NM.png"
-        //set $diffuse_tex "FlatMetal1.png"
+        set $diffuse_tex "FlatMetal1.png"
 
         set $ambient "0.7 0.7 0.7 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
+}
+material Brushes/FlatMetal2.png : BaseNormalMap
+{
+        set $diffuse_tex "FlatMetal2.png"
+        set $normal_tex "FlatMetal2_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.8 0.7 0.7 1"
+        set $specular "0.95 0.95 0.95 1"
 }
 
 //--- TileMetalLong1 ------------------------------------------------------------------
@@ -214,6 +221,13 @@ material Brushes/Concrete5.png : Brushes/Concrete2.png
         set $normal_tex "Concrete5_NM.png"
 }
 
+//--- Concrete6 -----------------------------------------------------------------------
+material Brushes/Concrete6.png : Brushes/Concrete2.png
+{
+        set $diffuse_tex "Concrete6.png"
+        set $normal_tex "Concrete6_NM.png"
+}
+
 //--- GripMetal -----------------------------------------------------------------------
 material Brushes/GripMetal.png : BaseNormalMap
 {
@@ -305,4 +319,15 @@ material Brushes/Glass1.png : BaseTransparent
         set $ambient "0.95 0.95 0.95 1"
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.8 0.8 0.8 1"
+}
+
+//--- RustedMetal ----------------------------------------------------------------------
+material Brushes/RustedMetal1.png : BaseNormalMap
+{
+        set $diffuse_tex "RustedMetal1.png"
+        set $normal_tex "RustedMetal1_NM.png"
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "0.9 0.9 0.9 1"
 }
