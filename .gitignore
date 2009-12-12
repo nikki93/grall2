@@ -1,5 +1,9 @@
 #Sources to ignore.
-ext
+ext/BtOgre.cpp
+ext/Ngf.cpp
+ext/NgfBullet.cpp
+ext/NgfPython.cpp
+ext/NgfSerialisation.cpp
 
 #Files made by running/building.
 Makefile
@@ -32,3 +36,4 @@ local
 #User files.
 usr/*
 !usr/Settings.ini
+

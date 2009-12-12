@@ -109,6 +109,11 @@ material Brushes/TileMetal.png : BaseNormalMapParallax
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
 }
+material Brushes/TileMetal2.png : BaseNormalMapParallax
+{
+        set $diffuse_tex "TileMetal2.png"
+        set $normal_tex "TileMetal2_NM.png"
+}
 
 //--- TileMetalHex --------------------------------------------------------------------
 material Brushes/TileMetalHex.png : BaseNormalMap
