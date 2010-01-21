@@ -324,7 +324,8 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
         case MSG_WINLEVEL:
             mUnderControl = false;
             mWon = true;
-            mBody->setDamping(0.9, 0.9);
+            if (msg.getParam<bool>(0))
+                mBody->setDamping(0.9, 0.9);
             NGF_SEND_REPLY();
 
         case MSG_ONEWAY:

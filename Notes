@@ -866,3 +866,9 @@ Tue Dec  8 23:05:44 AST 2009
 Wed Dec  9 23:55:35 AST 2009
 ----------------------------
 - Added more brush textures.
+
+(long break - exams etc. :-( )
+
+Wed Jan 20 15:24:43 AST 2010
+----------------------------
+- Made EndPoint pull Player to center once Player wins.

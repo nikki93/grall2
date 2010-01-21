@@ -111,9 +111,9 @@ unsigned int py_getCurrentLevelNum()
 {
     return Util::worldNumToLevelNum(GlbVar.woMgr->getCurrentWorldIndex());
 }
-void py_winLevel()
+void py_winLevel(bool damp)
 {
-    winLevel();
+    winLevel(damp);
 }
 void py_loseLevel()
 {
@@ -435,8 +435,9 @@ BOOST_PYTHON_MODULE(GraLL2)
             "Go to the NGF World with the given index (0 = first)."
             );
     py::def("winLevel", py_winLevel,
-            "winLevel()\n"
-            "The current level is 'completed'."
+            "winLevel(damp)\n"
+            "The current level is 'completed'. 'damp' is whether GraLL should slow down to a stop himself. 'False' if you want to"
+            "control him yourself, for example."
             );
     py::def("loseLevel", py_loseLevel,
             "loseLevel()\n"

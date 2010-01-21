@@ -309,5 +309,41 @@ ngflevel TestLevel3
 			green 1
 		}
 	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position 1.500000 0.500000 -2.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 3.0
+			ignoreCollisions 0
+			brushMeshFile TestLevel3_b3.mesh
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.m_moving = False
+			       : 
+			       : def collide(self, other):
+			       : 	if ((not self.m_moving) and other.hasFlag("Player")):
+			       : 		self.p_forward = True
+			       : 		self.setAlarm(3, 0)
+			       : 		GraLL2.addHUDTimer(3, Ngf.ColourValue.White)
+			       : 		self.m_moving = True
+			       : 		
+			       : def point(self, n):
+			       : 	if (n == 0):
+			       : 		self.m_moving = False
+			       : 		
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		self.p_forward = False
+		}
+	}
 }
 

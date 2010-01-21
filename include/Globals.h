@@ -226,7 +226,7 @@ void loadRecord();
 void saveRecord();
 void clearRecord();
 void loseLevel();
-void winLevel();
+void winLevel(bool damp = true);
 
 //Messages.
 enum

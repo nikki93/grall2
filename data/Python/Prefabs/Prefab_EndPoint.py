@@ -26,8 +26,22 @@ def create(self):
         "attenuation" : "10 0.8 0.2 0.09"
     })
 
+def utick(self, elapsed):
+    if (not self.m_unTouched):
+        player = Ngf.getObject("player1")
+        if (player):
+            #Push him toward us.
+            dir = self.getPosition() - player.getPosition()
+            dir.y = 0
+            dist = dir.squaredLength()
+            if (dist > 0.04):
+                player.applyCentralForce(dir * 15)
+            else:
+                player.applyCentralForce(dir * 7)
+
 def collide(self, other):
-    if (self.m_unTouched and other.hasFlag("Player")):
-        #We win! :D
-        self.m_unTouched = False
-        GraLL2.winLevel()
+    if (other.hasFlag("Player")):
+        if (self.m_unTouched):
+            #We win! :D
+            self.m_unTouched = False
+            GraLL2.winLevel(True)

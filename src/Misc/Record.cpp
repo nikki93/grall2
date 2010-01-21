@@ -110,11 +110,11 @@ void loseLevel()
     ++rec.losses;
 }
 
-void winLevel()
+void winLevel(bool damp)
 {
     //Tell player, do fade. Controller goes to next world when done.
     if (GlbVar.player)
-        GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_WINLEVEL));
+        GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_WINLEVEL, damp));
     if (GlbVar.controller)
         GlbVar.goMgr->sendMessage(GlbVar.controller, NGF_MESSAGE(MSG_WINLEVEL));
 
