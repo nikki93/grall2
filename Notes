@@ -872,3 +872,8 @@ Wed Dec  9 23:55:35 AST 2009
 Wed Jan 20 15:24:43 AST 2010
 ----------------------------
 - Made EndPoint pull Player to center once Player wins.
+
+Tue Jan 26 00:58:48 AST 2010
+----------------------------
+- Added 'MessageTrigger' prefab.
+- Added 'MaterialTest' level to test materials.

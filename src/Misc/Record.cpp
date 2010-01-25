@@ -112,6 +112,9 @@ void loseLevel()
 
 void winLevel(bool damp)
 {
+    //No need to be able to see this anymore.
+    GlbVar.hud->setBonusTimerVisible(false);
+
     //Tell player, do fade. Controller goes to next world when done.
     if (GlbVar.player)
         GlbVar.goMgr->sendMessage(GlbVar.player, NGF_MESSAGE(MSG_WINLEVEL, damp));
