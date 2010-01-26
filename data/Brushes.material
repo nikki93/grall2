@@ -302,6 +302,32 @@ material Brushes/Door.png : BaseNormalMapParallax
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "1 1 1 1"
 }
+material Brushes/DoorR.png : BaseNormalMapParallaxGlow
+{
+        set $diffuse_tex "DoorR.png"
+        set $normal_tex "Door_NM.png"
+        set $glow_tex "DoorR_GW.png"
+        set $glow_amount 0.5
+
+        set $ambient "0.7 0.7 0.7 1"
+        set $diffuse "0.9 0.9 0.9 1"
+        set $specular "1 1 1 1"
+}
+material Brushes/DoorG.png : Brushes/DoorR.png
+{
+        set $diffuse_tex "DoorG.png"
+        set $glow_tex "DoorG_GW.png"
+}
+material Brushes/DoorB.png : Brushes/DoorR.png
+{
+        set $diffuse_tex "DoorB.png"
+        set $glow_tex "DoorB_GW.png"
+}
+material Brushes/DoorY.png : Brushes/DoorR.png
+{
+        set $diffuse_tex "DoorY.png"
+        set $glow_tex "DoorY_GW.png"
+}
 
 //--- WhiteLight -----------------------------------------------------------------------
 material Brushes/WhiteLight.png : BaseNormalMapParallaxGlow

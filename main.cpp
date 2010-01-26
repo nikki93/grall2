@@ -293,7 +293,7 @@ class Game
 
             viewport->setDimensions(0,0,1,1);
             GlbVar.ogreCamera->setAspectRatio((float)viewport->getActualWidth() / (float) viewport->getActualHeight());
-            GlbVar.ogreCamera->setFarClipDistance(10000.0);
+            GlbVar.ogreCamera->setFarClipDistance(50.0);
             GlbVar.ogreCamera->setNearClipDistance(0.1);
 
             GlbVar.camNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode("camNode");
@@ -374,7 +374,7 @@ class Game
             Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
             //Shadows.
-            initShadows();
+            //initShadows();
             
             //Compositor chain.
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Glow");

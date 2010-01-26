@@ -2391,7 +2391,7 @@ ngflevel TestLevel1
 			ignoreCollisions no
 			brushMeshFile TestLevel1_b26.mesh
 			repeat yes
-			condition : GraLL2.player.numPickup("KeyY") == 0
+			condition : yellowKeysTaken()
 			autoClose no
 			scriptFile Prefab_Door.pyo
 		}

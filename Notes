@@ -6,14 +6,16 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Release new windows and linux versions for the artists. Get contact with a few and start talking, helping.
+- svn up ogre, mygui, ogreal.
 
-- Make more brush textures.
+- Add LOD levels for shader materials to decrease GPU load.
 
 - Start working on levels.
 
 Side
 ----
+- Make more brush textures.
+
 - Come up with new ideas.
 
 - Work on logo.
@@ -877,3 +879,7 @@ Tue Jan 26 00:58:48 AST 2010
 ----------------------------
 - Added 'MessageTrigger' prefab.
 - Added 'MaterialTest' level to test materials.
+- Added Level 2, explaining some obstacles.
+- Added DoorR, DoorG and DoorB materials.
+- Added DoorR, DoorG and DoorB prefabs.
+- Added 'massageDict' to prevent having to write long help messages in the Blender properties.
