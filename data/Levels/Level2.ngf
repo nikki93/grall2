@@ -140,7 +140,7 @@ ngflevel Level2
 	{
 		type Trigger
 		name noname
-		position 6.000000 -0.100000 6.500000
+		position 3.000000 -0.100000 6.500000
 		rotation 0.707107 0.000000 -0.707107 -0.000000
 
 		properties
@@ -1100,7 +1100,7 @@ ngflevel Level2
 			       : 	GraLL2.setDimension(1)
 			       : 	
 			       : 	#Set the bonus time for this level.
-			       : 	GraLL2.setBonusTime(0)
+			       : 	GraLL2.setBonusTime(90)
 			       : 	
 			       : 	#Show the white text with the level number
 			       : 	#and caption.
@@ -1173,7 +1173,7 @@ ngflevel Level2
 			dimensions 3
 			minHeight -4.0
 			captureCameraHandler 1
-			canSwitchDimensions 1
+			canSwitchDimensions 0
 		}
 	}
 	object
@@ -1541,7 +1541,7 @@ ngflevel Level2
 			scriptFile Prefab_MessageTrigger.pyo
 			message : <message>
 			messageKey checkpoint
-			time 7.0
+			time 9.0
 		}
 	}
 }

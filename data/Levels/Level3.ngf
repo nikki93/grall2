@@ -1,0 +1,723 @@
+ngflevel Level3
+{
+	object
+	{
+		type Trigger
+		name noname
+		position -3.500000 0.500000 -29.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b0.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey movingBomb
+			time 5.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -7.000000 0.600000 -19.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b1.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey crateSwitch
+			time 5.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -1.500000 0.500000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b2.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey switch
+			time 5.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 7.500000 -0.500000 -29.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 7.500000 5.500000 -29.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.7 0.7 0.9
+			attenuation 70 1 0.01 0.3
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 15.500000 5.500000 -29.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.8 0.8
+			attenuation 70 1 0.01 0.07
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -5.500000 5.500000 -29.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.6 0.2
+			attenuation 70 1 0.01 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -5.500000 5.500000 -21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.7 1 0.7
+			attenuation 70 1 0.1 0.07
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -18.500000 2.500000 -16.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 1 0.4 0.4
+			attenuation 70 1 0.03 0.1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 19.500000 0.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 18.500000 0.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 17.500000 0.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 15.500000 0.750000 -30.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 14.500000 0.750000 -28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 13.500000 0.750000 -28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name noname
+		position 3.500000 -0.500000 -29.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 0
+			brushMeshFile Level3_b3.mesh
+			speed 1.0
+			followDirectors 1
+			script : def collide(self, other):
+			       : 	if (other.hasFlag("Player")):
+			       : 		self.p_enabled = True
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 0.500000 -33.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 0.500000 -25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 0.500000 -26.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 0.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.500000 0.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -10.500000 0.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -11.500000 0.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -11.500000 0.500000 -26.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Director
+		name test
+		position -15.500000 -0.500000 -22.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 0.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -18.500000 -0.500000 -22.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -18.500000 -0.500000 -16.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+		}
+	}
+	object
+	{
+		type Switch
+		name switch2
+		position -12.500000 -0.250000 -22.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType press
+			script : import Ngf
+			       : 
+			       : def on(self):
+			       : 	Ngf.getObject("mover1").p_enabled = True
+			       : 	
+			       : def off(self):
+			       : 	Ngf.getObject("mover1").p_enabled = False
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -2.500000 0.500000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b4.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(180)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -2.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b5.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name noname
+		position -0.500000 -0.500000 -13.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			brushMeshFile Level3_b6.mesh
+			speed 1.0
+			followDirectors 1
+		}
+	}
+	object
+	{
+		type Switch
+		name none
+		position 0.500000 -0.250000 -22.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType once
+			script : import Ngf
+			       : 
+			       : def on(self):
+			       : 	door = Ngf.getObject("door1")
+			       : 	door.m_condition = "True"
+			       : 	door.open()
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door1
+		position -5.500000 0.500000 -19.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.99900007248
+			ignoreCollisions 0
+			brushMeshFile Level3_b7.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -7.500000 0.750000 -22.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name mover1
+		position -11.500000 -0.500000 -16.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 0
+			brushMeshFile Level3_b8.mesh
+			speed 1.0
+			followDirectors 1
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -9.500000 0.500000 -24.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.99900007248
+			ignoreCollisions 0
+			brushMeshFile Level3_b9.mesh
+			repeat 1
+			condition : GraLL2.player.hasDecPickup("KeyR")
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -18.500000 0.500000 -16.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyR
+			meshFile Mesh_Key.mesh
+			material Objects/KeyR
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -11.500000 0.500000 -25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position -5.500000 1.159853 -29.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.500000 0.500000 -32.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -0.499782 0.389544 -1.499271
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4.0
+			captureCameraHandler 1
+			canSwitchDimensions 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 13.500000 -0.500000 -29.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b10.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 22.500000 1.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -0.500000 4.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.8 0.5
+			attenuation 70 1 0.2 0.01
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -0.500000 0.500000 -6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b11.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey movingPlatform
+			time 5.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 7.500000 0.500000 -29.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level3_b12.mesh
+			script : def create(self):
+			       :     self.m_done = False
+			       : 
+			       : def collide(self, other):
+			       :     if ((not self.m_done) and other.hasFlag("Player")):
+			       :         GraLL2.showMessage("%s - Self-destruct (useful if stuck)" % GraLL2.getControl("selfDestruct"), 7)
+			       : 
+			       :         #Don't to it again. :P
+			       :         self.m_done = True
+			       :         Ngf.destroyObject(self)
+			       : 
+		}
+	}
+}
+

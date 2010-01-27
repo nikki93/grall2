@@ -883,3 +883,9 @@ Tue Jan 26 00:58:48 AST 2010
 - Added DoorR, DoorG and DoorB materials.
 - Added DoorR, DoorG and DoorB prefabs.
 - Added 'massageDict' to prevent having to write long help messages in the Blender properties.
+
+Thu Jan 28 00:59:42 AST 2010
+----------------------------
+- Added Level 3, explaining more obstacles and presenting a little puzzle.
+- messageDict now also stores message times.
+- MovingBrush bugfix (Director-missing... Yes, again).

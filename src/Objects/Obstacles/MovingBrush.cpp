@@ -103,7 +103,7 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
         btVector3 prevPos = oldTrans.getOrigin();
 
         //Squared speed.
-        Ogre::Real sqSpeed = (mVelocity.squaredLength() + 0.02) * evt.timeSinceLastFrame * evt.timeSinceLastFrame;
+        Ogre::Real sqSpeed = mVelocity.squaredLength() * evt.timeSinceLastFrame;
 
         //If we're near the next point on our list then we take it off our list and start moving to the next one (if it exists).
         //This way, you don't _need_ a point-list. You could do it using Directors, or even bouncing between walls, but when they're
@@ -189,29 +189,25 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
         //If hit Director, get directed. Use timer to avoid getting stuck to Director.
         if (mTimer < 0)
-        {
             for (std::set<GameObject*>::iterator iter = res.mDirectorsHit.begin(); iter != res.mDirectorsHit.end(); ++iter)
             {
                 NGF::GameObject *other = *iter;
                 Ogre::Vector3 otherPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
-                Ogre::Real sqDist = (otherPos - BtOgre::Convert::toOgre(prevPos)).squaredLength() - 0.001;
+                Ogre::Real sqDist = (otherPos - BtOgre::Convert::toOgre(prevPos)).squaredLength();
 
                 if (sqDist < sqSpeed)
                 {
                     mBody->getMotionState()->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(otherPos)));
                     jumped = true;
 
-                    //-1 means keep speed, only change direction.
                     Ogre::Quaternion dir = GlbVar.goMgr->sendMessageWithReply<Ogre::Quaternion>(other, NGF_MESSAGE(MSG_GETDIRECTION));
                     Ogre::Real speed = GlbVar.goMgr->sendMessageWithReply<Ogre::Real>(other, NGF_MESSAGE(MSG_GETSPEED));
 
+                    //-1 means keep speed, only change direction.
                     if (speed == -1)
                         mVelocity = mVelocity.getRotationTo(dir * Ogre::Vector3::NEGATIVE_UNIT_Z) * mVelocity;
                     else
-                    {
-                        //Rotate it by the amount required to rotate it to face a velocity in that direction.
                         mVelocity = dir * Ogre::Vector3(0,0,-speed);
-                    }
 
                     //Call the Python director event (seperate from collision event so that we can be notifed exactly when 'directed').
                     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
@@ -221,11 +217,8 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                     mTimer = 1/(mVelocity.length());
                 }
             }
-        }
         else
-        {
             mTimer -= evt.timeSinceLastFrame;
-        }
 
         //Do the actual movement.
         if (!jumped)

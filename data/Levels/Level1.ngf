@@ -361,7 +361,7 @@ ngflevel Level1
 			       : 
 			       : def levelStart(self):
 			       : 	GraLL2.setDimension(1)
-			       : 	GraLL2.setBonusTime(77)
+			       : 	GraLL2.setBonusTime(90)
 			       : 	GraLL2.setUp(True)
 			       : 	
 			       : 	self.setAlarm(8.2, 0)

@@ -59,7 +59,7 @@ MessageBox::MessageBox(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     coord.height = ((lines + 2) * FONT_HEIGHT);
     coord.width = (maxWidth * FONT_WIDTH) + 5;
 
-    coord.top = (winHeight - coord.height) - 60;
+    coord.top = (winHeight - coord.height) - 90;
     coord.left = (winWidth - coord.width) / 2;
 
     //Show the message.

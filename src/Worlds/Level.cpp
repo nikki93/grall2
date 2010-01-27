@@ -80,6 +80,8 @@ void Level::stop()
 //-------------------------------------------------------------------------------
 void Level::startLevel()
 {
+    GlbVar.hud->setBonusTimerVisible(true);
+
     //First we're not paused.
     GlbVar.paused = false;
 
