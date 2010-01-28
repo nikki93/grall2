@@ -49,7 +49,6 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
-    info.m_friction = 0;
 
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
@@ -81,7 +80,7 @@ Crate::Crate(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     mBody->setAngularFactor(btVector3(0,0,0));
     mBody->setLinearFactor(btVector3(0,1,0));
 
-    GlbVar.phyWorld->addConstraint(mConstraint, true);
+    //GlbVar.phyWorld->addConstraint(mConstraint, true);
 
     //Height deficiency, for some variety in Crates.
     mHeight = 1.5 - heightDef;
@@ -196,26 +195,24 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
     if (!other)
         return;
 
-    //Only if not moving, and we're standing on something, do we move.
-    if (!mMoving && other->hasFlag("Player"))
+    //Only if not moving, pushed py Player, and standing on something, do we move.
+    if (!mMoving && other->hasFlag("Player")
+			&& !isPlaceFree(Ogre::Vector3(0,GlbVar.gravMgr->getSign() * -0.25,0), true))
     {
-        if (!isPlaceFree(Ogre::Vector3(0,GlbVar.gravMgr->getSign() * -0.25,0), true))
+        Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
+        btTransform myTrans; mBody->getMotionState()->getWorldTransform(myTrans);
+        Ogre::Vector3 myPos = BtOgre::Convert::toOgre(myTrans.getOrigin());
+
+        //We have to go the other w, not toward player, so subtract this way.
+        Ogre::Vector3 push = myPos - playerPos;
+
+        //Check that we got hit on side and not up or (lol?) below. :-)
+        if (Ogre::Math::Abs(push.y) < (mHeight / 2.0))
         {
-            Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETPOSITION));
-            btTransform myTrans; mBody->getMotionState()->getWorldTransform(myTrans);
-            Ogre::Vector3 myPos = BtOgre::Convert::toOgre(myTrans.getOrigin());
-
-            //We have to go the other way, not toward player, so subtract this way.
-            Ogre::Vector3 push = myPos - playerPos;
-
-            //Check that we got hit on side and not up or (lol?) below. :-)
-            if (Ogre::Math::Abs(push.y) < (mHeight / 2.0))
-            {
-                makeMove(push);
-                btVector3 currVel = mBody->getLinearVelocity();
-                currVel.setY(0);
-                mBody->setLinearVelocity(currVel);
-            }
+            makeMove(push);
+            btVector3 currVel = mBody->getLinearVelocity();
+            currVel.setY(0);
+            mBody->setLinearVelocity(currVel);
         }
     }
 

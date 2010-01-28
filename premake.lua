@@ -108,7 +108,7 @@ package.buildoptions = { "/MP" }            -- Parallel building (good for multi
 package.includepaths = {
     "../../Libraries/boost",                                                 -- Boost
     "../../Libraries/btogre/include",                                        -- BtOgre
-    "../../Libraries/bullet/src",                                            -- Bullet
+    "../../Libraries/bullet/include",                                        -- Bullet
     "../../Libraries/mygui/MyGUIEngine/include",                             -- MyGUI
     "../../Libraries/ngf/include",                                           -- NGF
     "../../Libraries/ogg/include",                                           -- Ogg
@@ -125,7 +125,7 @@ package.includepaths = {
 
 package.libpaths = {
     "../../Libraries/boost/lib",                                             -- Boost
-    "../../Libraries/bullet/out/$(ConfigurationName)8/libs",                 -- Bullet
+    "../../Libraries/bullet/lib/$(ConfigurationName)",                       -- Bullet
     "../../Libraries/mygui/MyGUIEngine/lib/$(ConfigurationName)",            -- MyGUI
     "../../Libraries/ogre/Dependencies/lib/$(ConfigurationName)",            -- OIS
     "../../Libraries/ogre/build/lib/$(ConfigurationName)",                   -- Ogre
@@ -137,9 +137,9 @@ package.libpaths = {
 -- Libraries --------------------------------------------------------------------------------
 
 debug.links = {
-    "libbulletdynamics_d",
-    "libbulletcollision_d",
-    "libbulletmath_d",
+    "bulletdynamics",
+    "bulletcollision",
+    "linearmath",
     "python26",
     "OIS_d",
     "OgreMain_d",
@@ -148,9 +148,9 @@ debug.links = {
 }
 
 release.links = {
-    "libbulletdynamics",
-    "libbulletcollision",
-    "libbulletmath",
+    "bulletdynamics",
+    "bulletcollision",
+    "linearmath",
     "python26",
     "OIS",
     "OgreMain",
