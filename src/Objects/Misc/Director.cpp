@@ -22,6 +22,7 @@ Director::Director(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Pro
 
     //Save properties.
     //mVelocity = Ogre::Vector3(0,0,-(Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "2"))));
+    mEnabled = Ogre::StringConverter::parseBool(mProperties.getValue("enabled", 0, "1"));
     mSpeed = Ogre::StringConverter::parseReal(mProperties.getValue("speed", 0, "2"));
     mDirection = rot;
 
@@ -31,7 +32,7 @@ Director::Director(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Pro
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
 
     //Lots of flags. :-)
-    initBody( DimensionManager::DIRECTOR 
+    initBody( (mEnabled ? DimensionManager::DIRECTOR : DimensionManager::NO_MOVING_CHECK)
             | DimensionManager::INVISIBLE 
             | DimensionManager::NO_DIM_CHECK 
             | DimensionManager::NO_CRATE_CHECK 
@@ -61,6 +62,16 @@ Director::~Director()
 void Director::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
+
+    //Flip flags if needed.
+    short int flags = mBody->getBroadphaseHandle()->m_collisionFilterGroup;
+    if (mEnabled != (bool) (flags & DimensionManager::DIRECTOR))
+    {
+        flags ^= DimensionManager::DIRECTOR;
+        flags ^= DimensionManager::NO_MOVING_CHECK;
+        GlbVar.phyWorld->removeRigidBody(mBody);
+        GlbVar.phyWorld->addRigidBody(mBody, flags, mDimensions);
+    }
     
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
@@ -109,6 +120,7 @@ NGF_PY_BEGIN_IMPL(Director)
         NGF_PY_RETURN();
     }
 
+    NGF_PY_PROPERTY_IMPL(enabled, mEnabled, bool);
     NGF_PY_PROPERTY_IMPL(direction, mDirection, Ogre::Quaternion);
     NGF_PY_PROPERTY_IMPL(speed, mSpeed, Ogre::Real);
 }

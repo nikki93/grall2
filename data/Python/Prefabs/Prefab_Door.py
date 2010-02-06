@@ -1,6 +1,8 @@
 #Door Prefab Script
 #------------------
 
+import GraLL2
+
 #--- Methods ------
 
 def open(self):

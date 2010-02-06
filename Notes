@@ -6,11 +6,7 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- svn up ogre, mygui, ogreal.
-
-- Add LOD levels for shader materials to decrease GPU load.
-
-- Start working on levels.
+- Work on Level 4.
 
 Side
 ----
@@ -889,3 +885,21 @@ Thu Jan 28 00:59:42 AST 2010
 - Added Level 3, explaining more obstacles and presenting a little puzzle.
 - messageDict now also stores message times.
 - MovingBrush bugfix (Director-missing... Yes, again).
+
+Fri Jan 29 21:19:21 AST 2010
+----------------------------
+- Updated to latest Bullet version on Windows.
+- Crazy Crate bug fixed. For some reason, when GraLL walked on a Crate he was thrown off into space. 
+  Seems this was because Crate friction was 0, and Player friction was infinity. Weird. O_o
+
+Sat Jan 30 15:06:40 AST 2010
+----------------------------
+- Added LOD levels for shader materials to decrease GPU load.
+- Player now has to actually push Crates to get them to move, not just touch them. Decreases chances
+  of moving Crates unintentially.
+
+Sat Feb  6 01:36:16 AST 2010
+----------------------------
+- Fixed Turret state machine bug.
+- Added ability to enable/disable Directors for even more MovingBomb/MovingBrush fun. :D
+- Added Level 4.

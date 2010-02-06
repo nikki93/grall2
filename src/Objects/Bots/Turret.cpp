@@ -89,14 +89,13 @@ Turret::Turret(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     NGF_STATES_INIT_STATE(MoveUp);
 
     //Start!
-    if (enabled)
-        if (initScan)
-            scan();
-        else if (initTime)
-            rest(initTime);
-        else
-            fire(mFireTime);
+    if (initScan)
+        scan();
+    else if (initTime)
+        rest(initTime);
     else
+        fire(mFireTime);
+    if (!enabled)
         disable();
 }
 //-------------------------------------------------------------------------------

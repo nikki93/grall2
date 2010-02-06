@@ -1,8 +1,8 @@
 #Trap Prefab Script
 #------------------
 
-import GraLL2
 import Ngf
+import GraLL2
 
 def init(self):
     #Create a Pad mesh, set the Trap material, and make a Box physics body.

@@ -52,7 +52,7 @@ class Crate :
 
         //--- Non-NGF ------------------------------------------------------------------
         bool isPlaceFree(const Ogre::Vector3 &dir, bool ignorePlayer = false);
-        void makeMove(const Ogre::Vector3 &dir);
+        void makeMove(const Ogre::Vector3 &dir, bool fix = true);
         void explode();
 
         //--- Python interface ---------------------------------------------------------

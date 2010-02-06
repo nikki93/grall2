@@ -2,6 +2,45 @@ ngflevel TestLevel1
 {
 	object
 	{
+		type Crate
+		name noname
+		position -6.500000 6.750000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.2
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -8.500000 6.750000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.2
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -9.500000 6.750000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.2
+		}
+	}
+	object
+	{
 		type FallingBrush
 		name noname
 		position 3.500000 5.750000 -17.500000
@@ -2332,7 +2371,7 @@ ngflevel TestLevel1
 	{
 		type Turret
 		name noname
-		position -22.500000 6.500000 -2.500000
+		position -22.500000 6.500000 -11.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties

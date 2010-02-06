@@ -633,7 +633,7 @@ ngflevel Level3
 			dimensions 3
 			minHeight -4.0
 			captureCameraHandler 1
-			canSwitchDimensions 1
+			canSwitchDimensions 0
 		}
 	}
 	object

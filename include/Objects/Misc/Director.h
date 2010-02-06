@@ -30,6 +30,8 @@ class Director :
         Ogre::Real mSpeed;
         Ogre::Quaternion mDirection;
 
+        bool mEnabled;
+
     public:
         Director(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Director();
@@ -46,6 +48,7 @@ class Director :
         {
             NGF_PY_PROPERTY_DECL(direction)
             NGF_PY_PROPERTY_DECL(speed)
+            NGF_PY_PROPERTY_DECL(enabled)
 
             NGF_PY_METHOD_DECL(setOrientation)
         }
@@ -58,13 +61,14 @@ class Director :
 
             NGF_SERIALISE_OGRE(Real, mSpeed);
             NGF_SERIALISE_OGRE(Quaternion, mDirection);
+            NGF_SERIALISE_OGRE(Bool, mEnabled);
         }
         NGF_SERIALISE_END
 };
 
 #ifdef __DIRECTOR_CPP__
 
-/* C++ code produced by gperf version 3.0.3 *//*{{{*/
+/* C++ code produced by gperf version 3.0.4 *//*{{{*/
 /* Command-line: gperf  */
 /* Computed positions: -k'1' */
 
@@ -154,7 +158,7 @@ NGF_PY_CLASS_GPERF(Director)::Lookup (register const char *str, register unsigne
 {
   enum
     {
-      TOTAL_KEYWORDS = 5,
+      TOTAL_KEYWORDS = 7,
       MIN_WORD_LENGTH = 9,
       MAX_WORD_LENGTH = 14,
       MIN_HASH_VALUE = 9,
@@ -163,9 +167,16 @@ NGF_PY_CLASS_GPERF(Director)::Lookup (register const char *str, register unsigne
 
   static const struct PythonMethod wordlist[] =
     {
+      {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""}, {""},
       {"get_speed", NGF_PY_GET_GPERF(Director, speed)},
+      {""},
+      {"get_enabled", NGF_PY_GET_GPERF(Director, enabled)},
+      {""},
       {"get_direction", NGF_PY_GET_GPERF(Director, direction)},
       {"set_speed", NGF_PY_SET_GPERF(Director, speed)},
+      {""},
+      {"set_enabled", NGF_PY_SET_GPERF(Director, enabled)},
+      {""},
       {"set_direction", NGF_PY_SET_GPERF(Director, direction)},
       {"setOrientation", NGF_PY_METHOD_GPERF(Director, setOrientation)}
     };
@@ -174,36 +185,12 @@ NGF_PY_CLASS_GPERF(Director)::Lookup (register const char *str, register unsigne
     {
       register int key = MakeHash (str, len);
 
-      if (key <= MAX_HASH_VALUE && key >= MIN_HASH_VALUE)
+      if (key <= MAX_HASH_VALUE && key >= 0)
         {
-          register const struct PythonMethod *resword;
+          register const char *s = wordlist[key].name;
 
-          switch (key - 9)
-            {
-              case 0:
-                resword = &wordlist[0];
-                goto compare;
-              case 4:
-                resword = &wordlist[1];
-                goto compare;
-              case 5:
-                resword = &wordlist[2];
-                goto compare;
-              case 9:
-                resword = &wordlist[3];
-                goto compare;
-              case 10:
-                resword = &wordlist[4];
-                goto compare;
-            }
-          return 0;
-        compare:
-          {
-            register const char *s = resword->name;
-
-            if (*str == *s && !strcmp (str + 1, s + 1))
-              return resword;
-          }
+          if (*str == *s && !strcmp (str + 1, s + 1))
+            return &wordlist[key];
         }
     }
   return 0;

@@ -192,6 +192,7 @@ fragment_program BasePerLightNormalMapParallax_fp cg
 material Base
 { 
         receive_shadows on
+        lod_values 14
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -200,7 +201,7 @@ material Base
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
 
-        technique Shaders
+        technique Shaders1
         { 
                 pass
                 {
@@ -274,6 +275,7 @@ material Base
 material BaseNormalMap
 {
         receive_shadows on
+        lod_values 14
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -284,8 +286,9 @@ material BaseNormalMap
 
         set $scaleBias "0.04 0.02"
 
-        technique Shaders
+        technique Shaders1
         { 
+                lod_index 0
                 pass
                 {
                         ambient $ambient
@@ -346,6 +349,63 @@ material BaseNormalMap
                 }  
 
         }  
+        technique Shaders2
+        { 
+                lod_index 1
+                pass
+                {
+                        ambient $ambient
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+                pass 
+                {
+                        max_lights 12
+                        scene_blend add
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                        
+                        texture_unit NormalMap
+                        {
+                        }
+
+                        texture_unit ShadowMap
+                        {
+                                content_type shadow
+                                filtering anisotropic
+                                max_anisotropy 16
+                                tex_address_mode border
+                                tex_border_colour 1 1 1
+                        }
+                }  
+
+        }  
         technique Fallback
         { 
                 pass
@@ -364,6 +424,7 @@ material BaseNormalMap
 material BaseNormalMapParallax
 {
         receive_shadows on
+        lod_values 14
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -374,8 +435,9 @@ material BaseNormalMapParallax
 
         set $scaleBias "0.04 0.02"
 
-        technique Shaders
+        technique Shaders1
         { 
+                lod_index 0
                 pass
                 {
                         ambient $ambient
@@ -437,6 +499,63 @@ material BaseNormalMapParallax
                         }
                 }  
         }  
+        technique Shaders2
+        { 
+                lod_index 1
+                pass
+                {
+                        ambient $ambient
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+                pass 
+                {
+                        max_lights 12
+                        scene_blend add
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                        
+                        texture_unit NormalMap
+                        {
+                        }
+
+                        texture_unit ShadowMap
+                        {
+                                content_type shadow
+                                filtering anisotropic
+                                max_anisotropy 16
+                                tex_address_mode border
+                                tex_border_colour 1 1 1
+                        }
+                }  
+
+        }  
         technique Fallback
         { 
                 pass
@@ -455,6 +574,7 @@ material BaseNormalMapParallax
 material BaseGlow
 { 
         receive_shadows on
+        lod_values 14
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -465,8 +585,66 @@ material BaseGlow
         set $specular "0.9 0.9 0.9 1"
         set $glow_amount "0.7"
 
-        technique Shaders
+        technique Shaders1
         { 
+                lod_index 0
+                pass
+                {
+                        ambient $ambient
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+                pass 
+                {
+                        max_lights 12
+                        scene_blend add
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                        
+                        texture_unit NormalMap
+                        {
+                        }
+
+                        texture_unit ShadowMap
+                        {
+                                content_type shadow
+                                filtering anisotropic
+                                max_anisotropy 16
+                                tex_address_mode border
+                                tex_border_colour 1 1 1
+                        }
+                }  
+
+        }  
+        technique Shaders2
+        { 
+                lod_index 1
                 pass
                 {
                         ambient $ambient
@@ -560,6 +738,7 @@ material BaseGlow
 material BaseNormalMapGlow
 {
         receive_shadows on
+        lod_values 14
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -572,8 +751,9 @@ material BaseNormalMapGlow
 
         set $scaleBias "0.04 0.02"
 
-        technique Shaders
+        technique Shaders1
         { 
+                lod_index 0
                 pass
                 {
                         ambient $ambient
@@ -634,6 +814,63 @@ material BaseNormalMapGlow
                 }  
 
         }  
+        technique Shaders2
+        { 
+                lod_index 1
+                pass
+                {
+                        ambient $ambient
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+                pass 
+                {
+                        max_lights 12
+                        scene_blend add
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                        
+                        texture_unit NormalMap
+                        {
+                        }
+
+                        texture_unit ShadowMap
+                        {
+                                content_type shadow
+                                filtering anisotropic
+                                max_anisotropy 16
+                                tex_address_mode border
+                                tex_border_colour 1 1 1
+                        }
+                }  
+
+        }  
         technique Fallback
         { 
                 pass
@@ -673,6 +910,7 @@ material BaseNormalMapGlow
 material BaseNormalMapParallaxGlow
 {
         receive_shadows on
+        lod_values 14
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -685,8 +923,9 @@ material BaseNormalMapParallaxGlow
 
         set $scaleBias "0.04 0.02"
 
-        technique Shaders
+        technique Shaders1
         { 
+                lod_index 0
                 pass
                 {
                         ambient $ambient
@@ -748,6 +987,63 @@ material BaseNormalMapParallaxGlow
                         }
                 }  
         }  
+        technique Shaders2
+        { 
+                lod_index 1
+                pass
+                {
+                        ambient $ambient
+                        
+                        vertex_program_ref BaseAmbient_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BaseAmbient_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                }
+                pass 
+                {
+                        max_lights 12
+                        scene_blend add
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                texture $diffuse_tex
+                        }
+                        
+                        texture_unit NormalMap
+                        {
+                        }
+
+                        texture_unit ShadowMap
+                        {
+                                content_type shadow
+                                filtering anisotropic
+                                max_anisotropy 16
+                                tex_address_mode border
+                                tex_border_colour 1 1 1
+                        }
+                }  
+
+        }  
         technique Fallback
         { 
                 pass
@@ -787,7 +1083,7 @@ material BaseNormalMapParallaxGlow
 }
 material BaseTransparent : Base
 { 
-        technique Shaders
+        technique Shaders1
         { 
                 pass
                 {

@@ -91,6 +91,9 @@ class GameListener :
             GlbVar.objectClicker->tick();
             GlbVar.hud->tick(evt);
 
+            //Log FPS
+            //Ogre::LogManager::getSingleton().logMessage(FORMAT("FPS: %1%", GlbVar.ogreWindow->getLastFPS()));
+
             //NGF update.
             GlbVar.goMgr->tick(GlbVar.paused, evt);
             return GlbVar.woMgr->tick(evt);
@@ -293,7 +296,7 @@ class Game
 
             viewport->setDimensions(0,0,1,1);
             GlbVar.ogreCamera->setAspectRatio((float)viewport->getActualWidth() / (float) viewport->getActualHeight());
-            GlbVar.ogreCamera->setFarClipDistance(50.0);
+            GlbVar.ogreCamera->setFarClipDistance(1000.0);
             GlbVar.ogreCamera->setNearClipDistance(0.1);
 
             GlbVar.camNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode("camNode");

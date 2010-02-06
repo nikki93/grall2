@@ -27,6 +27,7 @@ class Trigger :
 {
     protected:
         btCollisionShape *mShape;
+        bool mTouched;
 
     public:
         Trigger(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);

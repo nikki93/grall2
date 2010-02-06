@@ -10,12 +10,14 @@ Trigger.cpp
 
 //--- NGF events ----------------------------------------------------------------
 Trigger::Trigger(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name)
-    : NGF::GameObject(pos, rot, id , properties, name)
+    : NGF::GameObject(pos, rot, id , properties, name),
+      mTouched(false)
 {
     addFlag("Trigger");
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
+    NGF_PY_SAVE_EVENT(touchPlayer);
 
     //Create the Ogre stuff.
     mNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode(mOgreName, pos, rot);
@@ -78,6 +80,12 @@ void Trigger::collide(GameObject *other, btCollisionObject *otherPhysicsObject, 
 {
     if (!other)
         return;
+
+    if (!mTouched && other->hasFlag("Player"))
+    {
+        NGF_PY_CALL_EVENT(touchPlayer);
+        mTouched = true;
+    }
 
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);

@@ -257,12 +257,13 @@ enum
     MSG_GETPICKUPTYPE,        //Get Pickup type (for... Pickups).
     MSG_PICKEDUP,             //Pickup has been picked up (disables it).
     MSG_CAPTURECAMERAHANDLER, //Capture the CameraHandler.
-    MSG_BULLETHIT,            //Bullet hit (for Player).
+    MSG_BULLETHIT,            //Bullet hit.
     MSG_ADDSLIDE,             //Add slide (for Slideshow).
     MSG_SETVISIBLE,           //Set visibility.
     MSG_ONEWAY,               //In a OneWay screen.
     MSG_MAGNET,               //In a magnetic field.
     MSG_GRAVITYCHANGE,        //Gravity changed.
+    MSG_GETCRATEFORCE,        //Get 'crate-pushing' force (for Player).
 };
 
 //Flags for creating Physics bodies from Python.

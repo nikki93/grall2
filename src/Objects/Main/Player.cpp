@@ -267,6 +267,12 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     else
         GlbVar.hud->removeIcon("gravity");
 
+    //Log force.
+    //Ogre::Vector3 torque = BtOgre::Convert::toOgre(mBody->getTotalTorque());
+    //Ogre::Vector3 velocity = BtOgre::Convert::toOgre(mBody->getLinearVelocity());
+    //Ogre::LogManager::getSingleton().logMessage("torque: " + Ogre::StringConverter::toString(torque));
+    //Ogre::LogManager::getSingleton().logMessage("velocity: " + Ogre::StringConverter::toString(velocity));
+
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
@@ -345,10 +351,14 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 }
             }
 
-            NGF_SEND_REPLY();
+            NGF_NO_REPLY();
 
         case MSG_MAGNET:
             DO_MSG_MAGNET();
+
+        case MSG_GETCRATEFORCE:
+            btVector3 torque = mBody->getTotalTorque();
+            NGF_SEND_REPLY(GlbVar.gravMgr->getSign() * Ogre::Vector3(-torque.z(), 0, torque.x()));
     }
 
     return GraLL2GameObject::receiveMessage(msg);

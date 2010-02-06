@@ -209,10 +209,19 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
         //Check that we got hit on side and not up or (lol?) below. :-)
         if (Ogre::Math::Abs(push.y) < (mHeight / 2.0))
         {
-            makeMove(push);
-            btVector3 currVel = mBody->getLinearVelocity();
-            currVel.setY(0);
-            mBody->setLinearVelocity(currVel);
+            Ogre::Vector3 dir = Ogre::Vector3(0, 0, Ogre::Math::Sign(push.z));
+            if (Ogre::Math::Abs(push.x) > Ogre::Math::Abs(push.z))
+                dir = Ogre::Vector3(Ogre::Math::Sign(push.x), 0, 0);
+
+            Ogre::Vector3 force = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(other, NGF_MESSAGE(MSG_GETCRATEFORCE));
+
+            if (dir.dotProduct(force) > 2)
+            {
+                makeMove(dir, false);
+                btVector3 currVel = mBody->getLinearVelocity();
+                currVel.setY(0);
+                mBody->setLinearVelocity(currVel);
+            }
         }
     }
 
@@ -224,18 +233,20 @@ void Crate::collide(GameObject *other, btCollisionObject *otherPhysicsObject, bt
 //-------------------------------------------------------------------------------
 
 //--- Non-NGF -------------------------------------------------------------------
-void Crate::makeMove(const Ogre::Vector3 &dir)
+void Crate::makeMove(const Ogre::Vector3 &dir, bool fix)
 {
     //If we're already moving, we continue.
     if (mMoving)
         return;
 
+    Ogre::Vector3 newDir = dir;
+
     //If x dir greater, move on x, else on z.
-    Ogre::Vector3 newDir;
-    if (Ogre::Math::Abs(dir.x) > Ogre::Math::Abs(dir.z))
-        newDir = Ogre::Vector3(Ogre::Math::Sign(dir.x), 0, 0);
-    else
-        newDir = Ogre::Vector3(0, 0, Ogre::Math::Sign(dir.z));
+    if (fix)
+        if (Ogre::Math::Abs(dir.x) > Ogre::Math::Abs(dir.z))
+            newDir = Ogre::Vector3(Ogre::Math::Sign(dir.x), 0, 0);
+        else
+            newDir = Ogre::Vector3(0, 0, Ogre::Math::Sign(dir.z));
 
     //If free, move.
     if (isPlaceFree(newDir))

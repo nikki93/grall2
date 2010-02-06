@@ -1,6 +1,8 @@
 #AmbientSound Prefab Script
 #--------------------------
 
+import GraLL2
+
 def init(self):
     #Get the properties.
     soundFile = self.getProperty("soundFile", 0, "Default.wav")

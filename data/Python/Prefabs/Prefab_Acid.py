@@ -1,6 +1,8 @@
 #Acid Prefab Script
 #------------------
 
+import GraLL2
+
 def init(self):
     #The mesh is a brush representing the acid region.
     self.createBrushMesh()

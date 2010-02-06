@@ -362,3 +362,13 @@ material Brushes/RustedMetal1.png : BaseNormalMap
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
 }
+
+//--- Black ----------------------------------------------------------------------------
+material Brushes/Black.png : Base
+{
+        set $diffuse_tex "Black.png"
+
+        set $ambient "0 0 0 0"
+        set $diffuse "0 0 0 0"
+        set $specular "0 0 0 0"
+}
