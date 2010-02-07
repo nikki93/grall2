@@ -63,7 +63,7 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 void Switch::postLoad()
 {
     //Get the SlidingBrush (if there's one).
-    mSlidingBrush= GlbVar.goMgr->getByName(mProperties.getValue("slidingBrush", 0, "none"));
+    mSlidingBrush = GlbVar.goMgr->getByName(mProperties.getValue("slidingBrush", 0, "noname"));
 
     //Python create event.
     NGF_PY_CALL_EVENT(create);

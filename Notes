@@ -6,7 +6,17 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Work on Level 4.
+- Work on Level 5.
+
+- Work on new music system. A collection of tracks, different versions of the same music (a 'soft' version,
+  an 'intense' version, etc.) are organised into 'sets'. Depending upon the 'mood' that's set, the track is
+  selected.
+
+- Add music, associate intensity with different points in levels.
+
+- Add ambient noises in levels.
+
+- Decorate levels (textures, props).
 
 Side
 ----
@@ -903,3 +913,9 @@ Sat Feb  6 01:36:16 AST 2010
 - Fixed Turret state machine bug.
 - Added ability to enable/disable Directors for even more MovingBomb/MovingBrush fun. :D
 - Added Level 4.
+
+Sun Feb  7 23:26:14 AST 2010
+----------------------------
+- Made default Switch-SlidingBrush name 'noname' instead, to avoid problems if there's actually an
+  object named 'none'.
+- Initial version of Level 5 done (fun puzzle in this one :-) ).

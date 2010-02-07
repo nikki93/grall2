@@ -279,8 +279,8 @@ material Objects/EndPoint : BaseTransparent
         set $glow_amount "0.5"
 
         set $ambient "1 1 1 0.2"
-        set $diffuse "0.1 0.1 0.1 1"
-        set $specular "0.1 0.1 0.1 1"
+        set $diffuse "0 0 0 0"
+        set $specular "0 0 0 0"
 
         technique Shaders
         { 

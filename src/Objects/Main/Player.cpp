@@ -530,7 +530,7 @@ void Player::switchDimension()
     mDimSound->play();
 }
 //-------------------------------------------------------------------------------
-void Player::die(bool explode, bool corpse)
+void Player::die(bool explode, bool corpse, bool offLight)
 {
     //We're not going through this twice!
     if (mDead)
@@ -553,9 +553,14 @@ void Player::die(bool explode, bool corpse)
     }
 
     //And of course, we don't exist anymore. :-( If leaving a corpse, then just lose
-    //control.
+    //control, switch of light if needed.
     if (corpse)
+    {
         mUnderControl = false;
+
+        if (offLight)
+            lightOff();
+    }
     else
         GlbVar.goMgr->requestDestroy(getID());
     mDead = true;
@@ -615,9 +620,27 @@ NGF_PY_BEGIN_IMPL(Player)
     }
     NGF_PY_METHOD_IMPL(die)
     {
-        NGF_PY_METHOD_PARAMS_2(bool, explode, bool, corpse);
+        switch (py::len(args))
+        {
+            default:
+            case 3:
+                die(py::extract<bool>(args[0]), py::extract<bool>(args[1]), 
+                        py::extract<bool>(args[2]));
+                break;
 
-        die(explode, corpse);
+            case 2:
+                die(py::extract<bool>(args[0]), py::extract<bool>(args[1]));
+                break;
+
+            case 1:
+                die(py::extract<bool>(args[0]));
+                break;
+
+            case 0:
+                die();
+                break;
+        }
+
         NGF_PY_RETURN();
     }
     NGF_PY_METHOD_IMPL(lightOff)

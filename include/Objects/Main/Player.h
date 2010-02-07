@@ -74,7 +74,7 @@ class Player :
         void captureCameraHandler();
         void loseCameraHandler();
         void switchDimension();
-        void die(bool explode, bool corpse = false);
+        void die(bool explode = true, bool corpse = false, bool lightOff = false);
         inline void lightOff() { mEntity->setMaterialName("Objects/PlayerOff"); GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETVISIBLE, false)); }
         inline void lightOn() { mEntity->setMaterialName("Objects/Player"); GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETVISIBLE, true)); }
 

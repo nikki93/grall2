@@ -21,5 +21,5 @@ def collide(self, other):
     if (self.m_unTouched and other.hasFlag("Player")):
         self.m_unTouched = False
 
-        #No explosion, leave 'corpse'.
-        other.die(False, True)
+        #No explosion, leave 'corpse', switch off light.
+        other.die(False, True, True)
