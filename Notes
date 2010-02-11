@@ -8,8 +8,6 @@ Next
 ----
 - Work on Level 6.
 
-- Make FallingBrush save 'falling' or 'stuck' state when serialised.
-
 - Work on new music system. A collection of tracks, different versions of the same music (a 'soft' version,
   an 'intense' version, etc.) are organised into 'sets'. Depending upon the 'mood' that's set, the track is
   selected.
@@ -931,3 +929,5 @@ Mon Feb  8 21:49:35 AST 2010
 Thu Feb 11 11:37:40 AST 2010
 ----------------------------
 - Completed Level 5. Fun level. :-)
+- Fixed FallingBrush serialisation bug - FallingBrushes in the 'falling' state wouldn't be properly 
+  deserialised.

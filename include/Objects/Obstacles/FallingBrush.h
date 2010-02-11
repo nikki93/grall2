@@ -62,6 +62,12 @@ class FallingBrush :
             NGF_SERIALISE_OGRE(Real, mFallTime);
             NGF_SERIALISE_OGRE(Bool, mFell);
             NGF_SERIALISE_OGRE(Vector3, mTorque);
+
+            NGF_SERIALISE_ON_LOAD
+            {
+                if (mFell)
+                    fall();
+            }
         }
         NGF_SERIALISE_END
 };
