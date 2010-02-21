@@ -2,6 +2,45 @@ ngflevel Level5
 {
 	object
 	{
+		type Bomb
+		name noname
+		position -1.500000 0.500000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 0.500000 -13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.500000 0.500000 -13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 0
+		}
+	}
+	object
+	{
 		type Light
 		name noname
 		position -0.500000 1.703550 -55.000000
@@ -41,7 +80,7 @@ ngflevel Level5
 		{
 			dimensions 3
 			enabled 1
-			brushMeshFile Level5_b0.001.mesh
+			brushMeshFile Level5_b0.mesh
 			speed 2.04999995232
 			followDirectors 1
 		}
@@ -542,214 +581,6 @@ ngflevel Level5
 	}
 	object
 	{
-		type Bomb
-		name noname
-		position -1.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -3.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -3.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 1.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 1.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 0.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 0.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -0.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 2.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 2.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 3.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 3.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
 		type OneWay
 		name noname
 		position 8.000000 0.900000 -34.500000
@@ -960,6 +791,10 @@ ngflevel Level5
 			       : 	
 			       : 	#Gravity is initially normal.
 			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Testing music.
+			       : 	GraLL2.playMusic("test")
+			       : 	GraLL2.switchMusicMood("calm")
 			       : 
 			       : def levelStop(self):
 			       : 	pass
@@ -1373,6 +1208,38 @@ ngflevel Level5
 		{
 			dimensions 3
 			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.500000 0.500000 -11.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -0.500000 0.500000 -24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level5_b20.mesh
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def touchPlayer(self):
+			       : 	GraLL2.setMusicMood("intense")
+			       : 	Ngf.destroyObject(self)
 		}
 	}
 }

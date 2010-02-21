@@ -8,10 +8,6 @@ Next
 ----
 - Work on Level 6.
 
-- Work on new music system. A collection of tracks, different versions of the same music (a 'soft' version,
-  an 'intense' version, etc.) are organised into 'sets'. Depending upon the 'mood' that's set, the track is
-  selected.
-
 - Add music, associate intensity with different points in levels.
 
 - Add ambient noises in levels.
@@ -931,3 +927,7 @@ Thu Feb 11 11:37:40 AST 2010
 - Completed Level 5. Fun level. :-)
 - Fixed FallingBrush serialisation bug - FallingBrushes in the 'falling' state wouldn't be properly 
   deserialised.
+
+Sun Feb 21 23:04:46 AST 2010
+----------------------------
+- Added 'mood' and 'group' music system to allow changes in music according to game 'mood'.

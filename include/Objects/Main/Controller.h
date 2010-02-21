@@ -68,7 +68,7 @@ class Controller :
             
             int dimension, bonusTime;
             bool gravity;
-            Ogre::String musicName;
+            Ogre::String musicMood, musicGroup;
 
             HUD::TimerRecordVec hudTimers;
             HUD::PickupDisplayRecordMap hudPickups;
@@ -85,7 +85,8 @@ class Controller :
                 gravity = GlbVar.gravMgr->isUp();
 
                 //Music.
-                musicName = GlbVar.musicMgr->getCurrentMusic();
+                musicGroup = GlbVar.musicMgr->getCurrentGroupName();
+                musicMood = GlbVar.musicMgr->getMood();
 
                 //Bonus time.
                 bonusTime = GlbVar.bonusTime;
@@ -105,7 +106,8 @@ class Controller :
             NGF_SERIALISE_OGRE(Bool, gravity);
 
             //Music.
-            NGF_SERIALISE_STRING(musicName);
+            NGF_SERIALISE_STRING(musicGroup);
+            NGF_SERIALISE_STRING(musicMood);
 
             //Bonus time.
             NGF_SERIALISE_OGRE(Int, bonusTime);
@@ -126,10 +128,13 @@ class Controller :
                 GlbVar.gravMgr->setUp(gravity);
 
                 //Music.
-                if (musicName != "<none>")
-                    GlbVar.musicMgr->playMusic(musicName);
+                if (musicGroup != "none")
+                {
+                    GlbVar.musicMgr->play(musicGroup);
+                    GlbVar.musicMgr->switchMood(musicMood);
+                }
                 else
-                    GlbVar.musicMgr->stopMusic();
+                    GlbVar.musicMgr->stop();
 
                 //Bonus time.
                 GlbVar.bonusTime = bonusTime;

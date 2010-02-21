@@ -1,6 +1,8 @@
 #Run on game startup
 #-------------------
 
+import GraLL2
+
 #Parse a boolean value from a string.
 def parseBool(str):
     return (str == '1') or (str == 'true') or (str == 'yes')

@@ -55,7 +55,7 @@ float4 GlowB_fp
     //Add this to original, return.
     return 
 #if RENDER_SCENE
-        tex2D(scene, uv) + 
+        tex2D(scene, uv) +
 #endif
         colour * (5.7 + sin(time) * 0.35);
 }

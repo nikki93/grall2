@@ -121,13 +121,29 @@ void py_loseLevel()
 }
 
 //Music stuff.
-void py_playMusic(Ogre::String music)
+void py_playMusic(Ogre::String group)
 {
-    GlbVar.musicMgr->playMusic(music);
+    GlbVar.musicMgr->play(group);
 }
-void py_crossFadeMusic(Ogre::String music, Ogre::Real time)
+void py_stopMusic()
 {
-    GlbVar.musicMgr->crossFade(music, time);
+    GlbVar.musicMgr->stop();
+}
+void py_fadeInMusic(Ogre::String group)
+{
+    GlbVar.musicMgr->fadeIn(group);
+}
+void py_fadeOutMusic()
+{
+    GlbVar.musicMgr->fadeOut();
+}
+void py_setMusicMood(Ogre::String mood)
+{
+    GlbVar.musicMgr->setMood(mood);
+}
+void py_switchMusicMood(Ogre::String mood)
+{
+    GlbVar.musicMgr->switchMood(mood);
 }
 void py_setMusicGain(Ogre::Real gain)
 {
@@ -517,12 +533,28 @@ BOOST_PYTHON_MODULE(GraLL2)
 
     //Music stuff.
     py::def("playMusic", py_playMusic,
-            "playMusic(track)\n"
-            "Plays music track given."
+            "playMusic(group)\n"
+            "Plays music group given."
             );
-    py::def("crossFadeMusic", py_crossFadeMusic,
-            "crossFadeMusic(track,time)\n"
-            "Crossfades from playing track to given track in given time."
+    py::def("stopMusic", py_stopMusic,
+            "stopMusic()\n"
+            "Stop playing music."
+            );
+    py::def("fadeInMusic", py_fadeInMusic,
+            "fadeInMusic(group)\n"
+            "Crossfades from playing group to given group. If no group was playing earlier, just fades in."
+            );
+    py::def("fadeOutMusic", py_fadeOutMusic,
+            "fadeOutMusic()\n"
+            "Fades out currently playing group."
+            );
+    py::def("setMusicMood", py_setMusicMood,
+            "setMusicMood(mood)\n"
+            "Sets music mood ('calm', 'intense' etc.)."
+            );
+    py::def("switchMusicMood", py_switchMusicMood,
+            "switchMusicMood(mood)\n"
+            "Switches music mood ('calm', 'intense' etc.) without fade."
             );
     py::def("setMusicGain", py_setMusicGain,
             "setMusicGain(n)\n"
