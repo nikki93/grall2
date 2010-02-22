@@ -149,17 +149,24 @@ class MusicManager
               mActualGain(1),
               mCurrGroupName("none")
         {
-            mGroups["test"]["calm"] = LOAD_MUSIC(Elysis-Picnics-nodrums);
-            mGroups["test"]["intense"] = LOAD_MUSIC(Elysis-Picnics-withdrums);
+            Ogre::ConfigFile cfg;
+            cfg.loadFromResourceSystem("Music.ini", "General");
 
-            mGroups["test"]["calm"]->setUserAny(Ogre::Any(&(mGroups["test"])));
-            mGroups["test"]["intense"]->setUserAny(Ogre::Any(&(mGroups["test"])));
+            Ogre::ConfigFile::SectionIterator iter = cfg.getSectionIterator();
 
-            mGroups["test2"]["calm"] = LOAD_MUSIC(ravin_in_paradise);
-            mGroups["test2"]["intense"] = LOAD_MUSIC(ravin_in_paradise_intense);
+            for (; iter.hasMoreElements(); iter.moveNext())
+            {
+                Ogre::String group = iter.peekNextKey();
 
-            mGroups["test2"]["calm"]->setUserAny(Ogre::Any(&(mGroups["test2"])));
-            mGroups["test2"]["intense"]->setUserAny(Ogre::Any(&(mGroups["test2"])));
+                Ogre::ConfigFile::SettingsMultiMap *moods = iter.peekNextValue();
+
+                for (Ogre::ConfigFile::SettingsMultiMap::iterator iter = moods->begin();
+                        iter != moods->end(); ++iter)
+                {
+                    mGroups[group][iter->first] = GlbVar.soundMgr->createSound(iter->second, iter->second, true, true);
+                    mGroups[group][iter->first]->setUserAny(Ogre::Any(&(mGroups[group])));
+                }
+            }
         }
         
         void tick(const Ogre::FrameEvent &evt);
@@ -235,14 +242,31 @@ class MusicManager
 
         void switchMood(const Mood &mood)
         {
-            Ogre::String group = mCurrGroupName;
-            stop();
+            if (mCurrTrack)
+                mCurrTrack->setGain(0);
+
             mMood = mood;
-            play(group);
+
+            if (mCurrGroup)
+            {
+                Group &group = *mCurrGroup;
+                Group::iterator iter = group.find(mMood);
+
+                if (iter == group.end())
+                    mCurrTrack = group.begin()->second;
+                else
+                    mCurrTrack = iter->second;
+
+                mCurrTrack->setGain(mActualGain);
+                mCurrTrack->play();
+            }
         }
 
         void setMood(const Mood &mood)
         {
+            if (mMood == mood)
+                return;
+
             mFadeOutTrack = mCurrTrack;
             mMood = mood;
 

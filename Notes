@@ -931,3 +931,10 @@ Thu Feb 11 11:37:40 AST 2010
 Sun Feb 21 23:04:46 AST 2010
 ----------------------------
 - Added 'mood' and 'group' music system to allow changes in music according to game 'mood'.
+
+Mon Feb 22 18:56:58 AST 2010
+----------------------------
+- Music bugfix - fixed 'setMood' and 'switchMood' and Controller music serialisation to keep things
+  smoother.
+- Music track filenames are now read from 'Music.ini' file. 'groups' and 'moods' can be set through
+  the file.

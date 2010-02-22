@@ -131,7 +131,7 @@ class Controller :
                 if (musicGroup != "none")
                 {
                     GlbVar.musicMgr->play(musicGroup);
-                    GlbVar.musicMgr->switchMood(musicMood);
+                    GlbVar.musicMgr->setMood(musicMood);
                 }
                 else
                     GlbVar.musicMgr->stop();

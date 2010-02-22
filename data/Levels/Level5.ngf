@@ -793,7 +793,7 @@ ngflevel Level5
 			       : 	GraLL2.setUp(True)
 			       : 	
 			       : 	#Testing music.
-			       : 	GraLL2.playMusic("test")
+			       : 	GraLL2.playMusic("track1")
 			       : 	GraLL2.switchMusicMood("calm")
 			       : 
 			       : def levelStop(self):
