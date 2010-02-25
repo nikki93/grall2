@@ -366,8 +366,6 @@ ngflevel Level1
 			       : 	
 			       : 	self.setAlarm(8.2, 0)
 			       : 	
-			       : 	#GraLL2.playMusic("Track1")
-			       : 
 			       : def levelStop(self):
 			       : 	pass
 			       : 
@@ -380,7 +378,6 @@ ngflevel Level1
 			       : def alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.showLevelText(2,4,3)
-			       : 		GraLL2.playMusic("Track1")
 			       : 
 		}
 	}

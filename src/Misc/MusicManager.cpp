@@ -30,7 +30,7 @@ void MusicManager::tick(const Ogre::FrameEvent &evt)
 {
     if (mFadeOutTrack && mFadeOutTrack->getGain() > 0)
     {
-        Ogre::Real newGain = mFadeOutTrack->getGain() - 0.3 * evt.timeSinceLastFrame;
+        Ogre::Real newGain = mFadeOutTrack->getGain() - 0.2 * evt.timeSinceLastFrame;
 
         if (newGain > 0)
             mFadeOutTrack->setGain(newGain);
@@ -44,5 +44,13 @@ void MusicManager::tick(const Ogre::FrameEvent &evt)
     }
 
     if (mCurrTrack && mCurrTrack->getGain() < mActualGain)
-        mCurrTrack->setGain(Util::clamp(mCurrTrack->getGain() + 0.3f * evt.timeSinceLastFrame, 0.0f, mActualGain));
+        mCurrTrack->setGain(Util::clamp(mCurrTrack->getGain() + 0.2f * evt.timeSinceLastFrame, 0.0f, mActualGain));
+
+    /*
+    LOG(FORMAT("track1:\n  calm - playing: %1%, gain: %2%\n  intense - playing: %3%, gain: %4%",
+                mGroups["track1"]["calm"]->isPlaying() %
+                mGroups["track1"]["calm"]->getGain() %
+                mGroups["track1"]["intense"]->isPlaying() %
+                mGroups["track1"]["intense"]->getGain()));
+    */
 }

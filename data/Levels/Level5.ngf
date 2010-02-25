@@ -2,6 +2,25 @@ ngflevel Level5
 {
 	object
 	{
+		type Trigger
+		name noname
+		position -0.500000 0.500000 -48.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level5_b0.mesh
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def touchPlayer(self):
+			       : 	GraLL2.setMusicMood("intense")
+			       : 	Ngf.destroyObject(self)
+		}
+	}
+	object
+	{
 		type Bomb
 		name noname
 		position -1.500000 0.500000 -11.500000
@@ -80,7 +99,7 @@ ngflevel Level5
 		{
 			dimensions 3
 			enabled 1
-			brushMeshFile Level5_b0.mesh
+			brushMeshFile Level5_b1.mesh
 			speed 2.04999995232
 			followDirectors 1
 		}
@@ -406,7 +425,7 @@ ngflevel Level5
 		{
 			dimensions 3
 			enabled 1
-			brushMeshFile Level5_b1.mesh
+			brushMeshFile Level5_b2.mesh
 			speed 2.04999995232
 			followDirectors 1
 		}
@@ -589,7 +608,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 1
-			brushMeshFile Level5_b2.mesh
+			brushMeshFile Level5_b3.mesh
 		}
 	}
 	object
@@ -602,7 +621,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b3.mesh
+			brushMeshFile Level5_b4.mesh
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player") and Ngf.getObject("crateTrigger").m_crateTouched):
 			       : 		Ngf.getObject("crateBlocker").open()
@@ -652,7 +671,7 @@ ngflevel Level5
 			speed 1.0
 			distance 2.99900007248
 			ignoreCollisions 0
-			brushMeshFile Level5_b4.mesh
+			brushMeshFile Level5_b5.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyR")
 			autoClose 0
@@ -687,7 +706,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 1
-			brushMeshFile Level5_b5.mesh
+			brushMeshFile Level5_b6.mesh
 		}
 	}
 	object
@@ -743,7 +762,7 @@ ngflevel Level5
 		{
 			dimensions 3
 			enabled 0
-			brushMeshFile Level5_b6.mesh
+			brushMeshFile Level5_b7.mesh
 			speed 2.04999995232
 			followDirectors 1
 			script : def collide(self, other):
@@ -761,7 +780,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b7.mesh
+			brushMeshFile Level5_b8.mesh
 			convex 1
 		}
 	}
@@ -783,7 +802,7 @@ ngflevel Level5
 			       : 	GraLL2.setDimension(1)
 			       : 	
 			       : 	#Set the bonus time for this level.
-			       : 	GraLL2.setBonusTime(0)
+			       : 	GraLL2.setBonusTime(2379)
 			       : 	
 			       : 	#Show the white text with the level number
 			       : 	#and caption.
@@ -816,7 +835,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b8.mesh
+			brushMeshFile Level5_b9.mesh
 			convex 1
 		}
 	}
@@ -831,7 +850,7 @@ ngflevel Level5
 		{
 			dimensions 3
 			enabled 0
-			brushMeshFile Level5_b9.mesh
+			brushMeshFile Level5_b10.mesh
 			speed 2.04999995232
 			followDirectors 1
 			script : def collide(self, other):
@@ -881,7 +900,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b10.mesh
+			brushMeshFile Level5_b11.mesh
 			convex 0
 		}
 	}
@@ -895,7 +914,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b11.mesh
+			brushMeshFile Level5_b12.mesh
 			convex 0
 			transparent 1
 		}
@@ -914,7 +933,7 @@ ngflevel Level5
 			speed 1.0
 			distance 1.29999995232
 			ignoreCollisions 0
-			brushMeshFile Level5_b12.mesh
+			brushMeshFile Level5_b13.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -944,7 +963,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 1
-			brushMeshFile Level5_b13.mesh
+			brushMeshFile Level5_b14.mesh
 		}
 	}
 	object
@@ -1010,7 +1029,7 @@ ngflevel Level5
 			speed 1.0
 			distance 1.99900007248
 			ignoreCollisions 0
-			brushMeshFile Level5_b14.mesh
+			brushMeshFile Level5_b15.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyB")
 			autoClose 0
@@ -1031,7 +1050,7 @@ ngflevel Level5
 			speed 1.0
 			distance 2.99900007248
 			ignoreCollisions 0
-			brushMeshFile Level5_b15.mesh
+			brushMeshFile Level5_b16.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyG")
 			autoClose 0
@@ -1052,7 +1071,7 @@ ngflevel Level5
 			speed 1.0
 			distance 1.99900007248
 			ignoreCollisions 0
-			brushMeshFile Level5_b16.mesh
+			brushMeshFile Level5_b17.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyG")
 			autoClose 0
@@ -1107,7 +1126,7 @@ ngflevel Level5
 			speed 0.699999988079
 			distance 3.0
 			ignoreCollisions 0
-			brushMeshFile Level5_b17.mesh
+			brushMeshFile Level5_b18.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -1131,7 +1150,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b18.mesh
+			brushMeshFile Level5_b19.mesh
 			script : def create(self):
 			       : 	self.m_crateTouched = False
 			       : 
@@ -1193,7 +1212,7 @@ ngflevel Level5
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b19.mesh
+			brushMeshFile Level5_b20.mesh
 			convex 0
 		}
 	}
@@ -1227,18 +1246,18 @@ ngflevel Level5
 	{
 		type Trigger
 		name noname
-		position -0.500000 0.500000 -24.500000
+		position -5.500000 0.500000 -28.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level5_b20.mesh
+			brushMeshFile Level5_b21.mesh
 			script : import Ngf
 			       : import GraLL2
 			       : 
 			       : def touchPlayer(self):
-			       : 	GraLL2.setMusicMood("intense")
+			       : 	GraLL2.setMusicMood("mid")
 			       : 	Ngf.destroyObject(self)
 		}
 	}

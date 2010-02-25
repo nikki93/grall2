@@ -20,87 +20,6 @@
 
 #include "Globals.h"
 
-/*
-class MusicManager
-{
-    protected:
-        OgreAL::Sound *mPreviousSound;
-        OgreAL::Sound *mCurrentSound;
-        Ogre::Real mFadeRate;
-
-        Ogre::Real mActualGain;
-
-    public:
-        MusicManager()
-            : mCurrentSound(0),
-              mPreviousSound(0),
-              mActualGain(0.24)
-        {
-            LOAD_MUSIC(Track1);
-        }
-
-        ~MusicManager() 
-        {
-        }
-
-        void playMusic(Ogre::String music)
-        {
-            //Don't cut if same song.
-            if (mCurrentSound)
-            {
-                if (music == mCurrentSound->getName())
-                    return;
-                mCurrentSound->stop();
-            }
-            mCurrentSound = GlbVar.soundMgr->getSound(music);
-            mCurrentSound->play();
-            mCurrentSound->setGain(mActualGain);
-        }
-        
-        Ogre::String getCurrentMusic()
-        {
-            if (mCurrentSound)
-                return mCurrentSound->getName();
-            else
-                return "<none>";
-        }
-
-        void stopMusic()
-        {
-            if (mCurrentSound)
-                mCurrentSound->stop();
-        }
-
-        void crossFade(Ogre::String music, Ogre::Real time)
-        {
-            //Don't fade to same song.
-            if (mCurrentSound && music == mCurrentSound->getName())
-                return;
-
-            mPreviousSound = mCurrentSound;
-            mCurrentSound = GlbVar.soundMgr->getSound(music);
-            mCurrentSound->stop();
-            mCurrentSound->play();
-            mCurrentSound->setGain(0);
-
-            mFadeRate = mActualGain / time;
-        }
-
-        void setGain(Ogre::Real gain)
-        {
-            mCurrentSound->setGain(gain);
-            mActualGain = gain;
-        }
-
-        Ogre::Real getGain()
-        {
-            return mActualGain;
-        }
-
-        void tick(const Ogre::FrameEvent &evt);
-};
-*/
-
 class MusicManager
 {
     protected:
@@ -293,12 +212,13 @@ class MusicManager
         void setGain(Ogre::Real gain)
         {
             mActualGain = gain;
-            mCurrTrack->setGain(gain);
+            if (mCurrTrack)
+                mCurrTrack->setGain(gain);
         }
 
         Ogre::Real getGain()
         {
-            return mCurrTrack->getGain();
+            return mActualGain;
         }
 };
 

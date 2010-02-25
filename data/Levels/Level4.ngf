@@ -895,7 +895,7 @@ ngflevel Level4
 	{
 		type Player
 		name player1
-		position 12.500218 0.389544 12.500729
+		position 11.500218 0.389544 11.500729
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -1198,7 +1198,7 @@ ngflevel Level4
 		{
 			dimensions 3
 			lightType point
-			colour 0.7 0.7 0.7
+			colour 0.8 0.5 0.1
 			attenuation 70 1 0.02 0.02
 		}
 	}

@@ -2,6 +2,36 @@ ngflevel Level3
 {
 	object
 	{
+		type Light
+		name noname
+		position 2.500000 0.500000 -8.300000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.2 0.17
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -3.500000 0.500000 -8.300000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.2 0.17
+		}
+	}
+	object
+	{
 		type Trigger
 		name noname
 		position -3.500000 0.500000 -29.500000
@@ -376,7 +406,7 @@ ngflevel Level3
 		properties
 		{
 			dimensions 3
-			speed -1.0
+			speed 1.0
 		}
 	}
 	object
@@ -545,7 +575,7 @@ ngflevel Level3
 			dimensions 3
 			enabled 0
 			brushMeshFile Level3_b8.mesh
-			speed 1.0
+			speed 0.699999988079
 			followDirectors 1
 		}
 	}
@@ -667,15 +697,15 @@ ngflevel Level3
 	{
 		type Light
 		name noname
-		position -0.500000 4.500000 -2.500000
+		position -0.500000 3.500000 -1.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			lightType point
-			colour 0.9 0.8 0.5
-			attenuation 70 1 0.2 0.01
+			colour 0.9 0.6 0.4
+			attenuation 70 1 0.2 0.1
 		}
 	}
 	object

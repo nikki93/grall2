@@ -860,7 +860,7 @@ ngflevel Level2
 	{
 		type Bomb
 		name noname
-		position -8.500000 1.100000 1.500000
+		position -8.500000 1.100000 3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -873,7 +873,7 @@ ngflevel Level2
 	{
 		type Bomb
 		name noname
-		position -7.500000 1.100000 2.500000
+		position -7.500000 1.100000 3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
