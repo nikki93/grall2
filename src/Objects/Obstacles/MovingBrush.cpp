@@ -158,8 +158,6 @@ void MovingBrush::unpausedTick(const Ogre::FrameEvent &evt)
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
             {
-                bool y = mYCast;
-                y = mYCast;
                 if ((btCollisionObject*) proxy0->m_clientObject == mIgnore)
                     return false;
 

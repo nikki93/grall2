@@ -142,7 +142,7 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
                 {
                     NGF::GameObject *gobj = NGF::Bullet::fromBulletObject(obj);
 
-                    if (!(gobj->hasFlag("Player")))
+                    //if (!(gobj->hasFlag("Player")))
                         mHit = true;
                 }
 
@@ -165,8 +165,7 @@ void MovingBomb::unpausedTick(const Ogre::FrameEvent &evt)
         //Where to cast from, where to cast to, etc.
         btVector3 normVel = currVel.normalized();
         btVector3 pos1 = prevPos;
-        btVector3 castDisp = currVel + (normVel * (CAST_SHAPE_SHRINK + 0.05));
-        castDisp.setY(0);
+        btVector3 castDisp = currVel;
         btVector3 pos2 = prevPos + castDisp;
         btQuaternion rot = mBody->getWorldTransform().getRotation();
         btTransform trans1(rot, pos1);

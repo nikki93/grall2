@@ -75,5 +75,10 @@ The switch here is a 'once' switch.""", 15),
 ("""Crates can be used to activate Switches.""", 7),
 
 "movingBomb":
-("""Bombs can move too!""", 6)
+("""Bombs can move too!""", 6),
+
+"dimSwitch":
+("""You found the Dimension Switch prototype! The Dimension Switch is an
+experimental piece of technology that allows the user to jump between
+dimensions.""", 10)
 }

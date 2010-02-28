@@ -8,22 +8,29 @@ import GraLL2
 def open(self):
     #Make brush move forward, and play sound.
     self.p_forward = True
-    self.v_sound.play()
     self.m_opened = True
     self.m_moving = True
+
+    if (self.m_playSound):
+        self.v_sound.play()
 
 def close(self):
     #Make brush go back, play sound.
     self.p_forward = False
-    self.v_sound.play()
+
+    if (self.m_playSound):
+        self.v_sound.play()
 
 #--- Events -------
 
 def init(self):
     #Sound we play when moving.
-    self.v_sound = GraLL2.createSound("DoorOpen.wav", True, False)
-    self.attachSound(self.v_sound)
-    self.v_sound.setReferenceDistance(1.2)
+    self.m_playSound = parseBool(self.getProperty("playSound", 0, "1"))
+
+    if (self.m_playSound):
+        self.v_sound = GraLL2.createSound("DoorOpen.wav", True, False)
+        self.attachSound(self.v_sound)
+        self.v_sound.setReferenceDistance(1.2)
 
     #Methods.
     self.open = open
@@ -38,11 +45,12 @@ def create(self):
 
     #Save some properties.
     self.m_repeat = parseBool(self.getProperty("repeat", 0, "1"))
-    self.m_autoClose = parseBool(self.getProperty("autoClose", 0, "yes"))
+    self.m_autoClose = parseBool(self.getProperty("autoClose", 0, "1"))
     self.m_condition = self.getProperty("condition", 0, "True")
 
 def destroy(self):
-    GraLL2.destroySound(self.v_sound)
+    if (self.m_playSound):
+        GraLL2.destroySound(self.v_sound)
 
 def collide(self, other):
     #If we're already moving, then nothing to check. If we're repeating, then do it. If we're not 
@@ -53,7 +61,8 @@ def collide(self, other):
             self.open()
 
 def point(self, n):
-    self.v_sound.stop()
+    if (self.m_playSound):
+        self.v_sound.stop()
 
     if (n == 0):
         #We hit the start point, so we've stopped moving.

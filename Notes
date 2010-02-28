@@ -24,6 +24,8 @@ Side
 
 - Work on logo.
 
+- Try adding analog stick control mechanism.
+
 Bugs
 ----
 - Fix shadows.
@@ -940,3 +942,14 @@ Mon Feb 22 18:56:58 AST 2010
   smoother.
 - Music track filenames are now read from 'Music.ini' file. 'groups' and 'moods' can be set through
   the file.
+
+Sat Feb 27 12:49:51 AST 2010
+----------------------------
+- Made Lights Python-scriptable.
+- Added 'playSound' option to Generic Door prefab.
+- Started work on Level 6.
+
+Sun Feb 28 23:44:29 AST 2010
+----------------------------
+- Further work on Level 6 (added Moving Bomb ambush).
+- MovingBomb bugfix (vertical movement Director problems).

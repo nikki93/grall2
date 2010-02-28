@@ -1,0 +1,2115 @@
+commit f29b3ca20bbfff3c4762bbd9610710833e46e3bb
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Thu Feb 25 21:36:53 2010 +0300
+
+    Some small changes...
+
+commit 4277d37e5a51e58db878f45ad26699af88739dfe
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Mon Feb 22 21:49:17 2010 +0300
+
+    Music bugfix, 'Music.ini'
+    -------------------------
+    - Music bugfix - fixed 'setMood' and 'switchMood' and Controller music
+      serialisation to keep things smoother.
+    
+    - Music track filenames are now read from 'Music.ini' file. 'groups'
+      and 'moods' can be set through the file.
+
+commit 69cc51579b57e1ade99fe8ebcbafb17fb4cb5776
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sun Feb 21 23:56:38 2010 +0300
+
+    Music system overhaul
+    ---------------------
+    - Added 'mood' and 'group' music system to allow changes in music
+      according to game 'mood'.
+
+commit de96afc76d369a22aa872b253b5093ecdd031be9
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Thu Feb 11 19:11:03 2010 +0300
+
+    FallingBrush bugfix
+    -------------------
+    - Fixed FallingBrush serialisation bug - FallingBrushes in the 'falling'
+      state wouldn't be properly deserialised.
+
+commit add5d4be42314dc168c622301b2f2b18d5bd1749
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Thu Feb 11 16:40:11 2010 +0300
+
+    Level 5 completed
+    -----------------
+    - Completed Level 5. Fun level. :-)
+
+commit 457d66ba508fa3635143a68cbc9933ba24315ce0
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sun Feb 7 23:35:24 2010 +0300
+
+    Switch bugfix, Level 5 wip
+    --------------------------
+    - Made default Switch-SlidingBrush name 'noname' instead, to avoid
+      problems if there's actually an object named 'none'.
+    
+    - Initial version of Level 5 done (fun puzzle in this one :-) ).
+
+commit ef5a8a4eeeea156dfd563337073dc5916a63fe6d
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sat Feb 6 20:04:39 2010 +0300
+
+    LOD, Crate push, Turret bugfix, Director enable/disable, Level 4
+    ----------------------------------------------------------------
+    - Added LOD levels for shader materials to decrease GPU load.
+    
+    - Player now has to actually push Crates to get them to move, not just
+      touch them. Decreases chances
+      of moving Crates unintentially.
+    
+    - Fixed Turret state machine bug.
+    
+    - Added ability to enable/disable Directors for even more
+      MovingBomb/MovingBrush fun. :D
+    
+    - Added Level 4.
+
+commit 21823d9d9c03fd94f169c031dc4500a1a56aa700
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Jan 28 23:52:14 2010 +0400
+
+    Windows build, crazy Crate bug fixed
+    ------------------------------------
+    - Updated to latest Bullet version on Windows.
+    
+    - Crazy Crate bug fixed. For some reason, when GraLL walked on a Crate
+      he was thrown off into space. Seems this was because Crate friction
+      was 0, and Player friction was infinity. Weird. O_o
+
+commit 9a961da10ed2e48be015fcb1a1ee2823757326be
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Thu Jan 28 01:34:11 2010 +0300
+
+    Level 3, messageDict now stores time, MovingBrush bugfix
+    -------------------------------------------------------
+    - Added Level 3, explaining more obstacles and presenting a little puzzle.
+    
+    - messageDict now also stores message times.
+    
+    - MovingBrush bugfix (Director-missing... Yes, again).
+
+commit 6d0df873e353fe828b7197180440fb9d16fe672a
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Wed Jan 27 00:08:31 2010 +0300
+
+    Level 2, coloured Door prefabs, 'messageDict'
+    ---------------------------------------------
+    - Added Level 2, explaining some obstacles.
+    
+    - Added DoorR, DoorG and DoorB materials.
+    
+    - Added DoorR, DoorG and DoorB prefabs.
+    
+    - Added 'massageDict' to prevent having to write long help messages in
+      the Blender properties.
+
+commit 1244366a272cd23f149d8e36da1003cb62ca452d
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Jan 26 00:59:55 2010 +0300
+
+    'MessageTrigger' prefab, 'MaterialTest' level
+    ---------------------------------------------
+    - Added 'MessageTrigger' prefab.
+    
+    - Added 'MaterialTest' level to test materials.
+
+commit 2d97779c5fcddb7d69300f8a7ff97696acf8b532
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Thu Jan 21 13:20:02 2010 +0300
+
+    EndPoint 'center-pull'
+    ----------------------
+    - Made EndPoint pull Player to center once Player wins.
+
+commit b4b0c1abf4fc6cfaf612b0338348b4313110340f
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sat Dec 12 13:08:56 2009 +0300
+
+    Added more brush textures.
+
+commit 52e001426c5072fa3461f0029515c00f3dbb8457
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Dec 8 23:58:04 2009 +0300
+
+    More brush textures, 'LedgeLamp' prop
+    -------------------------------------
+    - Added more brush textures.
+    
+    - Added 'LedgeLamp' prop.
+
+commit 2894a7e88b45536503ecd230e10b7f4043062851
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Dec 8 01:09:48 2009 +0300
+
+    Crate bugfix
+    ------------
+    - Fixed Crates dynamics bugs. Crates now work perfectly. For now, labelled
+      as 'done', but still needs testing. If any problems are encountered in
+      the future, it'll be back on the list.
+
+commit 3410f86585e53f78882ab6e38a77a975446ee6d0
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sun Dec 6 00:46:30 2009 +0300
+
+    Added more sound effects.
+
+commit f878f623d172eef8e40a5e0f11df9a280fa87c96
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Thu Dec 3 00:37:14 2009 +0300
+
+    More sound effects, persistent sounds
+    -------------------------------------
+    - Added more sound effects.
+    
+    - Added 'persistent' sounds for Player explosion, bomb explosion, etc.
+
+commit a6655cdda0a99bb746bf3809f824a5e7247e38a5
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Dec 1 00:21:51 2009 +0300
+
+    Added more sound effects.
+
+commit a3f57d72f97403702223783b33333c16c14ea488
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sat Nov 28 23:30:19 2009 +0300
+
+    'JumpPad' prefab
+    ----------------
+    - Added 'JumpPad' prefab.
+    
+    - Added material for JumpPad prefab.
+
+commit 0b87c0e66656b1c05d3c584119392be90c96524c
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Fri Nov 27 23:43:29 2009 +0300
+
+    'SpeedBoost' prefab
+    -------------------
+    - Added 'SpeedBoost' prefab, which boosts GraLL's angular velocity when
+      picked up.
+    
+    - Added mesh and material for SpeedBoost prefab.
+
+commit 658c64aa6fd522e93f0818edd83194d490855fda
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Fri Nov 27 01:57:43 2009 +0300
+
+    Transparent brush camera obstruction bugfix
+    -------------------------------------------
+    - Added ability to specify that a brush is transparent to prevent it
+      from causing 'camera-obstruction-handling'.
+
+commit 4d1f7bf447c49d4135c265a29d33c9e6b2153128
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Wed Nov 25 23:53:15 2009 +0300
+
+    Scripted Python methods, Door 'open()', 'close()'
+    -------------------------------------------------
+    - Added ability to write new Python methods for GameObjects from script.
+    
+    - Added 'open()' and 'close()' functions to Door prefab using the 'make
+      methods in script' feature.
+
+commit 56ec60ea8c4f420533a52cf1b2e3ccc681362b14
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Nov 24 23:50:49 2009 +0300
+
+    Crate bugfix, more sound effects, Python sound attach
+    -----------------------------------------------------
+    - Crates now don't get pushed when there's no ground under them.
+    
+    - Added more sound effects.
+    
+    - Added ability to attach sounds to object SceneNodes from Python (the
+      Python interface doesn't really know about the SceneNode, you just do
+      obj.attachSound(sound), the object handles it).
+
+commit 4c89e070a37ae7e25ec269e33312039e6a71eae2
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Nov 24 14:23:23 2009 +0300
+
+    More sound effects, gravity switch bugfix
+    -----------------------------------------
+    - Added some more sound effects.
+    
+    - Fixed a bug in the camera rotation for gravity switch.
+
+commit c72648ef03e1c8815401d167343733b23ac8c95a
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Fri Nov 20 01:19:56 2009 +0300
+
+    Startup.py bugfix, sound bugfix, more sound effects
+    ---------------------------------------------------
+    - Moved Startup.py execution till after setup.
+    
+    - Fixed sound gain/attenuation bugs.
+    
+    - Created a sound effect testing system (bash script to do most tasks).
+    
+    - Added some more sound effects, added sound effects for Level 1.
+
+commit 3f210338e4668fd13650577c8df931d24820e1b2
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Wed Nov 18 21:26:25 2009 +0300
+
+    HUD serialisation, 'GravityKey' prefab
+    --------------------------------------
+    - Added HUD serialisation. All data displayed in HUD is now saved when
+      the game is saved, and is restored when the game is loaded.
+    
+    - Added 'GravityKey' prefab, a pickup which gives Player gravity inversion
+      ability for some amount of time. Created new material and mesh for it.
+
+commit 9e301ef447a73b7cfff99ff0778c5875ac8df5fe
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Nov 17 22:59:16 2009 +0300
+
+    Player gravity inversion timer
+    ------------------------------
+    - Added Player gravity timer. Player can now be given gravity inversion
+      ability for a certain time, and the countdown is displayed in HUD.
+
+commit e7973474334f119aaf88b946dd3aa6a7551c4982
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Nov 17 21:29:56 2009 +0300
+
+    Sound bugfix, icon update, gravity regulation, setting, Turret limits
+    ---------------------------------------------------------------------
+    - Fixed bug in OgreAL Sound stop().
+    
+    - Added regulation for gravity inversion ability.
+    
+    - Improved dimension icon update policy.
+    
+    - Added setting for gravity switch key.
+    
+    - Added vertical angle limits for Turret.
+
+commit 3bc1e08f43d132b1bb82c642822229d89e0147c3
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Nov 17 18:17:54 2009 +0300
+
+    Sound bugfix, gravity invert regulation
+    ---------------------------------------
+    - Fixed bug in OgreAL Sound stop().
+    
+    - Added regulation for gravity inversion ability.
+
+commit dee06f0e91dc3555f55ec055e8b69ee00834b3f7
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Nov 16 16:02:22 2009 +0300
+
+    Pickup bugfix, gravity invert camera, dimension icons, gravity icons.
+    ---------------------------------------------------------------------
+    - Fixed bug in Pickup bob.
+    
+    - Added smooth camera rotation for gravity invert.
+    
+    - Changed dimension icons.
+    
+    - Added gravity icons display (shows current gravity state).
+
+commit 63a3e06594e0347239b3f8304e2e2b76bac84159
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Nov 13 23:11:06 2009 +0300
+
+    AmbientSound serialisation, 'Props', HUD icons, AmbientSound 'initPlay'
+    -----------------------------------------------------------------------
+    - Added custom serialisation for scripted objects (calls 'save', 'load'
+      events in script).
+    
+    - Added serialisation of AmbientSound, with serialisation of sound
+      offset, etc.
+    
+    - Added 'Prop' system, for 'pre-made' Brush meshes. Props are made
+      by appending a brush object to Props.blend, removing 'isBrush' and
+      setting 'brushMeshFile' manually. Props can then be used in levels by
+      appending from Props.blend. Props can by any kind of brush - StaticBrush,
+      MovingBrush, or even prefabs, like Generic Door.
+    
+    - Added icon display to HUD. Can dynamically add, remove and change icons.
+    
+    - Added dimension icon display (shows current dimension, if Player can
+      switch dimensions).
+    
+    - Added 'initPlay' property to AmbientSound.
+
+commit d149e8fa27a5be786eed40037fad3854b1f8201e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Nov 11 23:32:26 2009 +0300
+
+    'AmbientSound' Prefab
+    ---------------------
+    - Added 'AmbientSound' Prefab for placing level sounds in editor (mostly
+      for atmospheric effects).
+
+commit f0bd3d536522c69e20604659f3516fb9c6b1174e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Nov 11 21:40:06 2009 +0300
+
+    Python-OgreAL bindings
+    ----------------------
+    - Added Python-OgreAL connection to allow sound stuff from Python.
+
+commit 803ed105bdf36b5e8e5cb0e94cef2db57d931d3c
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Nov 10 23:13:53 2009 +0300
+
+    Tested sound effects
+    --------------------
+    - Added sound effects to Crate, Turret. Right now the sound effects are
+      simply test placeholders, but the positional audio and attenuation
+      works.
+
+commit bb86b521cfe0e1bd5ccf490bd6c3f8c42e6b651c
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Nov 10 15:25:41 2009 +0300
+
+    Camera SceneNode
+    ----------------
+    - Camera is now attached to a SceneNode, and it's position and
+      orientation are modified though this SceneNode. This way, the
+      sound listener will only have to be attached to this SceneNode,
+      and it's state will remain up to date.
+
+commit 452c9bc7632ab4856e4911241f56f9b9eee3906c
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Nov 10 13:58:47 2009 +0300
+
+    'Startup.py' startup script
+    ---------------------------
+    - Added 'Startup.py', which is run on game startup to allow some
+      functions, classes etc. to be written in Python and used in scripts.
+
+commit fcd0a282d71e1329ed4807c09f73e14b06fbc4f6
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Nov 9 23:27:55 2009 +0300
+
+    Blender property GUI controls
+    -----------------------------
+    - Blender properties now of different types, not just strings. Makes
+      editing in Blender easier (GUI controls).
+
+commit a354b9448f6edec2838ea3b6b972faf236697b96
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Nov 9 11:03:33 2009 +0300
+
+    Revert "'Manual' main loop"
+    
+    This reverts commit d4db290319ef3727cddc28aab3e58808f248f1ee.
+    
+    Conflicts:
+    
+    	main.cpp
+    
+    Manual loop idea was ditched because Ogre FrameListener callback
+    received 'nicer' delta times for some reason.
+
+commit ec9a3447f972065260d31e614451c09e5446ff8e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Nov 9 10:54:57 2009 +0300
+
+    GravityManager, gravity invert, new test level
+    ----------------------------------------------
+    - Added GravityManager and 'gravity invert' feature. Inverts world
+      gravity, allows fun puzzles.
+    
+    - Fixed many places in code that assumed a +Y up axis. Now they work
+      with a -Y up axis too in case
+      of inverted gravity.
+    
+    - Created new test level.
+
+commit b60ec2049a34c3154ecb5b5fbc4337b9cd49d062
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Nov 9 04:02:47 2009 +0300
+
+    Removed need to explicitly define state index constants.
+
+commit 62bda43e93a9645efd98be9671916f56a458a08d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Nov 8 22:03:39 2009 +0300
+
+    States serialisation, STL container serialisation
+    -------------------------------------------------
+    - Added serialisation of new states system.
+    
+    - Made Turret serialise the state of it's state system too.
+    
+    - Added easy STL container (with elements of serialisable type)
+      serialisation.
+
+commit eb10672e366aea6f71fb97de7dbd67c788e5273f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Nov 7 22:50:30 2009 +0300
+
+    Turret now uses NgfStates system
+    --------------------------------
+    - Modified Turret code to rely on NgfStates sytem instead of an
+      old-style switch-case mechanism.
+
+commit 0555a7938fc39992744201e054579d98424a9612
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Nov 3 23:09:16 2009 +0300
+
+    KeyY Pickup count, HUD KeyY counter
+    -----------------------------------
+    - KeyY prefab now uses 'KeyY' Pickup count of Player to keep count.
+    
+    - Added KeyY counter to HUD.
+
+commit f909884caf25e718757a2ff333824163f3d56aed
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Nov 2 23:59:38 2009 +0300
+
+    HUD Pickup display
+    ------------------
+    - Added Pickup count display to HUD. Can add and remove pickup displays
+      dynamically, from script.
+
+commit e3b9cf3634a3ed79d4a5ecaae9ab6cd889a057d6
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Nov 1 23:21:34 2009 +0300
+
+    Made addTimer return id.
+
+commit 6f6cd74e2ef6283585e7b2eb543a8107e01fc073
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Nov 1 23:14:35 2009 +0300
+
+    'HUD', HUD timers, bonus time, Python scriptability
+    ---------------------------------------------------
+    - Added a HUD system.
+    
+    - Added dynamic timer display management to HUD system. Can add/remove
+      timers, with colours for each.
+    
+    - Added bonus time display to HUD system.
+    
+    - Added ability to add/remove timers from Python.
+
+commit 6a2493664d738dc0c49a0e50931dd2760911c29f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Oct 30 23:02:16 2009 +0300
+
+    Magnet textures
+    ---------------
+    - Added Magnet textures for attraction, repulsion and disable modes.
+
+commit d1150d5abc3ab1e8ff62fb4902d4bf7fb5203e1f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Oct 29 23:59:56 2009 +0300
+
+    Magnet Python properties
+    ------------------------
+    - Exposed Magnet properties to Python.
+
+commit 018abd63367ded899d2065381e8f9b8067c7d8b1
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Oct 28 21:32:41 2009 +0300
+
+    'Magnet' GameObject, magnetic Player, magnetic RigidBody
+    --------------------------------------------------------
+    - Added 'Magnet' GameObject type. Affects Player, in both 'attraction'
+      and 'repulsion' modes.
+    
+    - Added 'magnetic' property to RigidBody to allow magnetic (attracted,
+      repelled by magnet) bodies.
+
+commit 04838d5439639093246569fa6dba89117cca04fc
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Oct 27 22:14:18 2009 +0300
+
+    OptionsDialog bugfix, Teleporter texture
+    ----------------------------------------
+    - Removed unnecessary OptionsDialog updates when OptionsDialog is
+      invisible.
+    
+    - Created a new texture for the Teleporter.
+
+commit cd6500e7abc5dbc1c7633dc6a52da5bbd14f7b90
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Oct 26 22:26:19 2009 +0300
+
+    MessageBox bugfix
+    -----------------
+    - Fixed potential bug in MessageBox related to not 'nulling' the global
+      'currentMessage' pointer when destroyed.
+
+commit d4db290319ef3727cddc28aab3e58808f248f1ee
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Oct 26 20:03:13 2009 +0300
+
+    'Manual' main loop
+    ------------------
+    - Now all loop stuff goes in loop() in Game, no more FrameListeners,
+      more 'under control'.
+
+commit 9f19db5bc88772fe1f8796fe6b65acb06bb9a0f9
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Oct 26 12:43:56 2009 +0300
+
+    OneWay bugfix, textures
+    -----------------------
+    - Fixed OneWay logic, works properly now, and can't 'push through'.
+    
+    - Added OneWay textures.
+
+commit 55bbb4115d23d3dbc2cd9640455dcb0b9868ff2d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Oct 24 01:52:27 2009 +0300
+
+    OneWay GameObject
+    -----------------
+    - Added 'OneWay' GameObject which allows GraLL to pass only in one
+      direction along an axis. It's free on other axes.
+
+commit 6320689e7c7db7802b479daf32c80a13524a6077
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Oct 23 19:06:06 2009 +0300
+
+    Trap texture, default FallingFloor texture, 'OneWay'
+    ----------------------------------------------------
+    - Added Trap texture.
+    - Added FallingFloor texture.
+    - Added preliminary version of 'OneWay' GameObject.
+
+commit 393087c359f6a1a3afa55007307aaad729ba6414
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Oct 21 21:49:28 2009 +0300
+
+    New Object textures
+    -------------------
+    - Seperated Trap, Teleporter, Switch and FallingFloor textures.
+    
+    - Created new Switch textures.
+
+commit 5610bba1e26e6d1eca1ab2417e35e76e3425301c
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Oct 19 20:15:02 2009 +0300
+
+    NGF_PY_METHOD_PARAMS fix, CameraHandler bugfix
+    ----------------------------------------------
+    - Moved to NGF_PY_METHOD_PARAMS_n defines instead of
+      NGF_PY_METHOD_PARAMS(n, ...) to allow compilation on Windows.
+    
+    - Fixed a bug in CameraHandler that tried to destroy the spline track
+      after destroying animation (so access error).
+
+commit 1e6bcb2a66839a626ea2de34a35a8a3434541052
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Oct 19 18:57:32 2009 +0300
+
+    Settings changes back to desktop.
+
+commit 27b6e41a0268dfa06800f6744b1af246dc5fccca
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Mon Oct 19 18:49:20 2009 +0530
+
+    Python2.5-compatibility changes.
+
+commit 0628b852883c6cfcec628bcb232874b112e957d5
+Merge: b497a64 c80b0d9
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Mon Oct 19 17:49:04 2009 +0530
+
+    Merge branch 'master' of git@github.com:nikki93/grall2
+
+commit b497a6435bfcad9256d2422b126ef1f5bc968625
+Merge: b634095 cdff9ae
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Mon Oct 19 17:46:16 2009 +0530
+
+    Merge branch 'master' of git@github.com:nikki93/grall2
+    
+    Conflicts:
+    	main.cpp
+    	premake.lua
+    	usr/Settings.ini
+
+commit c80b0d967929e7a1cc6d2b68dbb8da3532ae0fb4
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Oct 18 19:07:24 2009 +0300
+
+    Slight change to Level 1 checkpoint timing.
+
+commit 921c8f8c1aae92c8eb8b2da863efd8d3e148a3a0
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Oct 18 18:58:49 2009 +0300
+
+    Python save/load checkpoint, Level 1 help messages, Teleporter bugfix
+    ---------------------------------------------------------------------
+    - Added 'saveCheckpoint' and 'loadCheckpoint' to Utils (also in Python)
+      to encapsulate checkpoint-handling.
+    
+    - Added help messages to Level 1.
+    
+    - Completed Level 1.
+    
+    - Fixed Teleporter bug involving dereferencing null Player pointer
+      (yes, again).
+
+commit 0dbe04e335f303dbec683e649b90c75a000f0dad
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Oct 17 20:12:40 2009 +0300
+
+    Level 1; CameraHandler relative keyframe, Python enum, access, base 'setVisible'
+    --------------------------------------------------------------------------------
+    - Created Level 1 ('Awakening'), with an opening 'custcene' involving
+      the camera rotating around GraLL, GraLL 2 'waking up', and blasting
+      through the glass.
+    
+    - Added CameraHandler relative-timed spline keyframe creation.
+    
+    - Added 'setVisible' to GraLL2GameObject base.
+    
+    - Added named enumerations for CameraHandler modes to Python binding.
+    
+    - Added direct access to current CameraHandler from 'GraLL2.cameraHandler'
+      in Python.
+
+commit 14d7932eeb28acd7b47cd4c787f6a74f73b0a53d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Oct 17 02:18:45 2009 +0300
+
+    CameraHandler rotation random, Fader colour choice, Teleporter bugfix
+    ---------------------------------------------------------------------
+    - CameraHandler rotation direction is now random.
+    
+    - Added ability to change fade colour to Fader.
+    
+    - Fixed Teleporter bug that assumed Player existed after a Teleport
+      trigger.
+
+commit a531b9592702d4d4ed939cf4a7e68a6ffcd8bdbd
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Oct 14 23:05:44 2009 +0300
+
+    Acid brush-ified, EndPoint, Acid Blender icons
+    ----------------------------------------------
+    - Made Acid a brush type.
+    
+    - Added editor icons for EndPoint and Acid.
+
+commit 65371f3974efa6f23787c6fe8e3d97d3a62e9dd0
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Oct 14 20:38:11 2009 +0300
+
+    'NGF_PY_PARAMS', 'Acid' Prefab
+    ------------------------------
+    - Added an 'NGF_PY_PARAMS' macro to ease writing Python methods.
+    
+    - Added 'Acid' Prefab, simlar to the Acid from the original GraLL.
+
+commit bd0c1fbc5f6ab9cff9c7356b403f3a3844ed9945
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Oct 13 22:57:58 2009 +0300
+
+    Trap/FallingBrush 'above/below' check, Empty bugfix, 'EndPoint' Prefab
+    ----------------------------------------------------------------------
+    - Added 'above/below' check to Trap and FallingBrush.
+    
+    - Fixed bug in 'Empty' which caused weird physics problems due to
+      uninitialised properties such as 'friction', 'mass' etc.
+    
+    - Added 'EndPoint' Prefab, which marks the end of the level.
+
+commit a066d56ad9394e8e9f3f31c7708646a161f660ff
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Oct 12 22:35:44 2009 +0300
+
+    'Trap' Prefab, Bomb NO_CONTACT_RESPONSE
+    ---------------------------------------
+    - Added 'Trap' Prefab.
+    - Made 'Bomb' NO_CONTACT_RESPONSE, to avoid Player flying away when it's created in his position. :P
+
+commit e56237ccf05832c3ebc579a0e555725511baa432
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Oct 11 22:50:43 2009 +0300
+
+    Compiled Python object scripts, FallingBrush angular velocity
+    -------------------------------------------------------------
+    - Can run '.py', '.pyc', '.pyo' files for object scripts. Good for Prefabs
+      (all instances of which have the same code). Prefab scripts are in
+      data/Python now.
+    
+    - Added slight angular velocity to FallingBrushes when they fall for a
+      cool 'rotating falling block' effect.
+
+commit d95ee27c38eba1399f745801798853144d5d3d80
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Oct 10 23:42:00 2009 +0300
+
+    'FallingBrush', deep object fade, Player corpse, Python compiled file run
+    -------------------------------------------------------------------------
+    - Added FallingBrush. Falls off after a short interval after the Player
+      touches it.
+    
+    - Default shader now makes objects fade as they hit the minY.
+    
+    - Allowed Player to 'leave a corpse' when he dies.
+    
+    - Began NGF Python 'run .py/.pyc' file for object script' mechanism
+
+commit cdff9ae20caf2ee08fc3749c37281ec5265452ad
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Oct 9 22:23:38 2009 +0300
+
+    Modified win animation, made .blend paths relative.
+
+commit 8ed014e626cea03950c968adb1032d324ed94ac2
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Oct 8 17:23:02 2009 +0300
+
+    Cleaned up code a bit.
+
+commit f4ed84b7d09e86f8d9f326df94c5dc46cff5ef33
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Oct 7 22:19:12 2009 +0300
+
+    'Empty' body/mesh/material, bugfix, SlidingBrush bugfix, bytecode Python scripts
+    --------------------------------------------------------------------------------
+    - Completed physics body and graphics mesh creation, material assignment
+      for 'Empty' GameObject.
+    
+    - Modified 'Empty' GameObject physics body creation to rely on enums
+      instead of strings for performance.
+    
+    - Fixed 'Empty' serialisation problems.
+    
+    - Fixed 'SlidingBrush' bug related to 'point' event being called every
+      frame while waiting on a point.
+    
+    - Allowed use of bytcode-compiled Python 'code objects' for scripts for
+      performance benifits (especially 'script in script' objects).
+
+commit 8208d6a9beec7d94a7709c63f0a8003d05448a85
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Oct 6 21:39:32 2009 +0300
+
+    Added 'Empty' GameObject
+    ------------------------
+    - Added scriptable 'Empty' object. Basically, an object type that's
+      empty in it's 'native C++' form, but very scriptable, to allow 'from
+      scratch Python objects', and fun level scripts.
+
+commit 61dd9c55e422267a7ee8da3459424b7f69feafac
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Oct 4 22:40:20 2009 +0300
+
+    Re-added Settings.ini
+    ---------------------
+    - Re-added Settings.ini because default settings are pretty bad. :P
+
+commit 0ed23e4aa9fa13d4b874462e7d8c49028b769ead
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Oct 4 20:48:18 2009 +0300
+
+    Level bugfix, 'Slideshow' added
+    -------------------------------
+    - Level 'first frame spike' bugfix.
+    
+    - 'Slideshow' added. Plays a slideshow (good for storytelling, for
+      example), each slide can have it's own time. Completely Python
+      scriptable, and attachable to any event.
+
+commit 0eb77e46ced05e8170fa4d00f44a0dc8a8bb0b0f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Oct 3 22:07:04 2009 +0300
+
+    'KeyY' prefab, Player pickup-map serialise bugfix
+    -------------------------------------------------
+    - Added a 'KeyY' prefab, like the gold keys from the original GraLL. They
+      keep a count of how many total 'KeyY's were created, so that you can do a
+      'other.numPickup("KeyY") == GraLL2.controller.m_numKeyY' test to do the
+      usual 'did he get all the yellow keys' test.
+    
+    - Player bugfix. Player didn't serialise his 'mPickups' map.
+
+commit 7ce4839741d10b2d5fc60fa0e2a1d90786073ec2
+Merge: a22be18 be2f121
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Oct 3 00:15:54 2009 +0300
+
+    Merge branch 'master' of github.com:nikki93/grall2
+
+commit a22be1808fd636fc0f11778531cf770e4f77de60
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Oct 3 00:12:03 2009 +0300
+
+    'canSwitchDimension' property, Pickup bounce and spin
+    -----------------------------------------------------
+    - Added a 'canSwitchDimension' property to Player.
+    - Added Pickup bounce and spin.
+
+commit be2f1213809916ae7bb7ab7fe02cc38e047492ab
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Oct 1 22:38:27 2009 +0300
+
+    Changed credits text, fixed 'TileMetalHex' brush material
+    ---------------------------------------------------------
+    - Changed the credits text to fix newlines.
+    
+    - TileMetalHex didn't need parallax mapping.
+
+commit 1df5583217f1ad605e8b6a2e513507b04b33d8c6
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Oct 1 14:27:10 2009 +0300
+
+    Added a few properties to MovingBrush, MovingBomb, wrote more documentation.
+
+commit 2dda0a6b676df4281f744f0c9e9416919745e855
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Oct 1 00:49:42 2009 +0300
+
+    premake.lua moved to premake.lua.def to prevent conflicts for other users.
+
+commit c749d32747e93b98c67259f466693390af94ba90
+Merge: f97bef6 f033a5a
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Sep 30 17:09:14 2009 +0300
+
+    Merge remote branch 'origin/master'
+
+commit f97bef6fce7672c6fc8ff0db7244db043009a431
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Sep 30 17:07:02 2009 +0300
+
+    Levels no longer need '.material' file
+    --------------------------------------
+    - Levels no longer need .material files, just .ngf and .mesh
+      files. Material names are simply read from SubMesh material
+      references. The image name is retreived from the name (Blender
+      TEXFACE), and 'Brushes/<name>' material is assigned.
+
+commit f033a5a41e8f599f196ab5ff57df08f3bd64e33f
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Wed Sep 30 00:28:28 2009 +0300
+
+    Material editor default light text, mouse sensitivity
+    -----------------------------------------------------
+    - The material editor light colour now has default values for quick
+      light-creation.
+    
+    - Material editor mouse movements are now affected by turning sensitivity
+      settings.
+
+commit 27086a3e0509de9df0d87491a1764f159fd9c286
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Sep 29 21:25:10 2009 +0300
+
+    Material viewer, write .material files.
+    ---------------------------------------
+    - Added a material editor/viewer that allows users to make their own
+      materials and view them in game. The editor can also save the .material
+      file, which allows the user to then use the material in his own levels.
+      A user can also zip up his files and send it to others, who can then
+      use the material in levels without unzipping.
+
+commit b634095a1266db5fa44cb8eda6deaf3c814a729b
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Mon Sep 28 17:44:39 2009 +0530
+
+    Changed stuff.
+
+commit 466dbea7a16a1c464b94cf8608ef96c05aaa3a51
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Sep 28 14:28:41 2009 +0300
+
+    Relative paths in .blend
+    ------------------------
+    - Made .blend file externl data paths relative (textures).
+
+commit 5bc53777fc1214e052ed4708a74b4fd4321c3374
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Sep 28 13:11:55 2009 +0300
+
+    User level dialog moved to Main Menu
+    ------------------------------------
+    - User level selection dialog has now been moved to Main Menu to make
+      things cleaner.
+
+commit 3f0ea964c25a07158a6f32f9fde5269dc80c7f20
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Sep 28 02:25:15 2009 +0300
+
+    Streaming music load, user content, user levels
+    -----------------------------------------------
+    - Moved to 'streaming' music load.
+    - Added loading of resources from 'user' directory to allow user-made content. The 'Content' subdirectory is searched for user-made content,
+      recursively. The user is free to organise his files any way he wants.
+    - User can now play 'user levels' (loaded from 'Content' directory). A GUI prompt allows choosing user levels.
+    - Added test 'user level'.
+
+commit 9bd850e4ad5e115081f7455b1a2ae5f6c20ca182
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sun Sep 27 18:10:22 2009 +0300
+
+    Aesthetic code changes, premake.lua changes
+    -------------------------------------------
+    - Made some changes in code pointed out in Visual C++ 2008
+      warnings.
+    
+    - Moved Visual C++ 2008 include settings to premake.lua, made
+      all paths relative.
+
+commit 2865f904349e7b320a732ce145852c29d00cad7d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Sep 27 14:57:20 2009 +0300
+
+    Streaming music load
+    --------------------
+    - Music is now streamed when played, not loaded on startup.
+
+commit c5fe6dce1ca8c5cc146ef5e6ff332dbc556f4551
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Sep 27 02:12:42 2009 +0300
+
+    Fallback material bugfix
+    ------------------------
+    - Fixed 'Fallback' technique transparency.
+
+commit eeeebbbe4451a82f8254a68daab418df56b85bb5
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sat Sep 26 16:45:51 2009 +0300
+
+    Removed non-cross-platform code in plugin load
+    ----------------------------------------------
+    - The default plugin line in Settings.cpp had '.so', which
+      prevented loading on Windows.
+
+commit 18879589198198ebda42c48f5c7fd9a3db2b8de0
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Sep 26 15:10:35 2009 +0300
+
+    More Windows compatibility changes, Settings.ini now git-ignored.
+
+commit f07769ffb7798cfd05f42c73e5b08b653de26463
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Sep 26 14:31:48 2009 +0300
+
+    More Windows compatibility changes
+    ----------------------------------
+    - Windows line endings bug in .ngf parser fixed.
+    
+    - Generic premake.lua added.
+
+commit 3766286f5808b01a60aef4d4b57eb80e7310133e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Sep 26 02:47:00 2009 +0300
+
+    Windows compatibility changes
+    -----------------------------
+    - A few more changes to allow easy building on Windows.
+
+commit 1ad0138982e3f07b40341d3b87f6d919a83572d0
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Sep 26 00:21:34 2009 +0300
+
+    Changed Python include policy to allow Windows compatibility
+
+commit 22e98add6b0c9ee7d6b046dd4bf0d3ca82adde43
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Sep 25 14:56:06 2009 +0300
+
+    Windows test, Windows build file
+    --------------------------------
+    - Built and tested dependencies on Windows.
+    - Built and tested GraLL 2 on Windows.
+    - Added Windows 'premake-windows.lua' file for Windows building.
+
+commit 94b481ef5a87989ba4378037297a680f1a7d48d1
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Sep 21 00:00:45 2009 +0300
+
+    Turret enable/disable, Teleporter bugfix, new video
+    ---------------------------------------------------
+    - Added Turret enable/disable functionality.
+    
+    - Fixed Teleporter bug. The Teleporter tried to retreive a pointer to
+      the target point in it's constructor, which would cause problems if
+      the point was created after the Teleporter. This has now been moved
+      to the 'postLoad' event instead.
+    
+    - Recorded new video, with voice, and made new level as a result.
+
+commit 858759331b384187e686e32725dd295615d4ef2d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Sep 19 21:37:34 2009 +0300
+
+    New Test levels, Crate bugfix, Level->Controller migration
+    ----------------------------------------------------------
+    - Made more test levels.
+    
+    - Fixed a few Crate bugs.
+    
+    - Moved global level logic to Controller, to keep the level independent.
+
+commit b56a448d9929878f3b25d2beecec5f27d56fffa5
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Sep 18 19:40:44 2009 +0300
+
+    Physics flag cleanup; Turret bugfix, features, textures; Bullet motion-blur
+    -----------------------------------------------------------------------------------------
+    - Cleaned up Physics flag groups.
+    
+    - Fixed many Turret-related bugs.
+    
+    - Added more Turret features: 'scan', 'initTime', 'alwaysScan' etc.
+    
+    - Made Bullet texture fade out at ends for motion-blur effect.
+    
+    - Added Turret texture.
+
+commit 40d5b6142550ac45df3304aee6dae5b565ad5914
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Sep 18 03:48:44 2009 +0300
+
+    MovingBomb, MovingBrush bugfix, glass bugfix, 'Turret', 'Bullet' GameObject
+    ---------------------------------------------------------------------------
+    - Improved MovingBomb and MovingBrush Director hit detection.
+    - Fixed bug that didn't allow glowing objects to glow through glass.
+    - Added 'Turret' GameObject. The Turret alternates between periods of rest and shooting. The switching between these periods is animated.
+    - Added 'Bullet' GameObject.
+
+commit 3bc251b5994cf2acc9173d3d45119bd1fa0042a5
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Sep 17 14:48:10 2009 +0300
+
+    Level text, glass, transparency bugfix, MovingBomb/MovingBrush bugfix
+    ---------------------------------------------------------------------
+    - Added 'level text', which displays the level number and caption at
+      start of the level (or whenever scripted).
+    
+    - Added a glass texture.
+    
+    - Fixed transparency issues.
+    
+    - Improved MovingBomb and MovingBrush Director hit detection.
+
+commit 123e9984d6758342a24922ec3410708cc9325bd3
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Sep 16 17:17:30 2009 +0300
+
+    Test shadow push.
+
+commit 9e5447c95e596bb0edb3393cdc8b1d334a55bd89
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Sep 16 00:40:55 2009 +0300
+
+    Python physics 'get', explosives better scriptable, decentralised win/lose
+    --------------------------------------------------------------------------
+    - Fixed GraLL2GameObject Python physics-related 'get' methods to return
+      Ogre-type values for Python compatibility.
+    
+    - Exposed 'explode' methods of Bomb, MovingBomb and CameraHandler
+      to Python.
+    
+    - Bomb 'setGreen' method exposed to Python.
+    
+    - Modified the win/lose animation (although 'win' doesn't have the camera
+      part yet) to make it more decentralised. Now it's better managed.
+
+commit fe7087e46b894f2663eeb8776e1485ebb02894fa
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Sep 14 21:46:51 2009 +0300
+
+    Mouse cursor visibility, Physics flags, exporter bugfix
+    -------------------------------------------------------
+    - Made object clicker show mouse cursor when clicking.
+    
+    - Revamped Physics flags system. Now it makes more sense, GameObjects
+      can be parts of 'flag families' (no crate check, no dimension check) etc.
+    
+    - Fixed a few bugs in the GraLL 2 modified Blender NGF Exporter.
+
+commit 02594de87bbd1d51014e7ad7eb549b96ac05de35
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Sep 13 23:24:09 2009 +0300
+
+    Directory prefixes, visibility check criteria, 'Pickup' GameObject, Door prefab bugfix, GraLL 2 specific NGF exporter, PythonGameObject method error feedback
+    ------------------------------------------------------------------
+    - Added 'data prefix'. Made both 'user prefix' and 'data prefix' use
+      compile-time concatenation.
+    
+    - Made visibility checks rely on 'INVISIBLE' flag, instead of assuming
+      that 'NO_CONTACT_RESPONSE' is invisible.
+    
+    - Added generic 'Pickup' objects. A Pickup has a string 'type', and the
+      Player has a count of the Pickups he has of each
+      type. The numbers of Pickups of each type can be examined and modified
+      in Python, opening up great possibilities for scripting.
+    
+    - Bug in Door prefab fixed to allow condition testing only on open,
+      and not during move (otherwise poor Player loses all
+      his hard-earned keys :-( ).
+    
+    - Made GraLL 2 specific version of NGF Blender exporter which saves
+      dimension information based on Blender 'layers'.
+      Makes doing dimension stuff much easier and more convenient in levels.
+    
+    - An attempt to call inexistent PythonGameObject methods now show an
+      error message.
+
+commit d2f67d629abd7e303b07f17022ca2ae438c88e57
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Sep 12 22:48:19 2009 +0300
+
+    Mouse picking, Console history, Crate collision shape, Crate explosion, Python docstrings
+    -----------------------------------------------------------------------------------------
+    - Added ability to retrieve object handles in Python console using mousepicking.
+    - Added Console 'history' (like that in bash).
+    - Made Crate use cuboid with bevelled bottom to allow them to slide onto Switches.
+    - Now Crates create an explosion too on GreenBomb encounters.
+    - Added Python docstrings to both GraLL2 and NGF modules.
+
+commit 24a4a172a55ce2a73151f1a65064124572425bfd
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Sep 11 23:28:20 2009 +0300
+
+    'Util' namespace
+
+commit e18980e31b3742d47c5c9146744a63b5a8871f13
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Sep 11 22:31:17 2009 +0300
+
+    Modified Explosion effect
+
+commit 49b2258d9248b2d849f113a2bb6ff0c664d8924b
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Sep 11 21:21:53 2009 +0300
+
+    Green Bombs added
+    -----------------
+    - Added Green Bombs (the Crate-sensitive bombs from the original GraLL). Good for fun Crate puzzles. :-)
+
+commit ec738d4a0678b4c64b0830d7379724ffb031d419
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Sep 11 02:36:39 2009 +0300
+
+    Fixed few more Crate bugs
+
+commit 8924e53d936ff9f6b5cc0c690cca3c2221ad0752
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Sep 10 20:04:15 2009 +0300
+
+    Generic 'Door' prefab
+    ---------------------
+    - Added generic 'Door' prefab. The Door has 'repeat' and 'autoClose'
+      options, and a generic condition, which is a string of Python code
+      that evaluates to a True or False value, run in the scope of the
+      'collide' function. Thus, each Door can have a unique condition
+      ('does hey have the key?', 'is he moving fast?', or even, 'is this
+      music track playing?').
+
+commit a6c83e6e1104a4bd1a2ffd2f44fa02fa2879598f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Sep 9 19:28:16 2009 +0300
+
+    Back from vacation, auto level select, Crate dynamics fixed
+    -----------------------------------------------------------
+    - Level select dialog now automatically selects highest level.
+    
+    - Fixed Crate dynamics. Crates are new grid-aligned, while also keeping
+      Y axis dynamics.
+
+commit cfb3beb2f228f66bd58bdadf410f15e98f3397d6
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Tue Aug 25 16:49:35 2009 +0530
+
+    Graphics options, resolution, fullscreen, lighting, renderer
+    ------------------------------------------------------------
+    - Added graphics options to Options dialog.
+    
+    - Screen resolution and fullscreen can be set.
+    
+    - Added lighting and renderer settings too.
+
+commit 32dfe82bcea57f01e44663d9fd8b78fe2c00ad9e
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sun Aug 23 19:02:26 2009 +0530
+
+    More options, 'checkpoint' field in records
+    -------------------------------------------
+    - Added more options to... Options dialog. :P
+    
+    - Made save-check and save-delete rely on level records instead.
+    
+    - Now 'New Game' makes removes all checkpoints too (because default record
+      'checkpoint' field is false).
+
+commit 61bc65801273d3fbd56c76fd85247eef7984134a
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Fri Aug 21 23:33:46 2009 +0530
+
+    Keys map, Python scripted controls, Options dialog, new test level
+    ------------------------------------------------------------------
+    - Made new test level.
+    - Added 'keys' map to store control keys.
+    - Controls can now be changed from Python.
+    - Added Options dialog. For now you can change controls through it.
+
+commit 5d8c28449d9b5e9969a018663735bdeb2a0a744e
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Mon Aug 17 23:25:53 2009 +0530
+
+    Logo, Main Menu background
+    --------------------------
+    - Made logo.
+    - Added background to Main Menu.
+
+commit 7424da0369461233b89e983a681029463da1be6c
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sun Aug 16 23:21:15 2009 +0530
+
+    'Credits' dialog
+    ----------------
+    - Added Credits dialog. Click on 'Credits' in the Main Menu to see it.
+
+commit 66f55cd89abb347d7b4e23f5f67bbe87d97bd7cf
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sat Aug 15 16:58:54 2009 +0530
+
+    Score, losses system, save/load of Records
+    ------------------------------------------
+    - Score system added (no display of bonus time on screen yet though :P ).
+    - Losses are counted on a per-level basis.
+    - 'record' database, stores level stats on a per-level basis, can be saved/loaded (serialisation).
+
+commit 75d1b7c95148e5101775cd42cc0b04714c4a46ea
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Fri Aug 14 01:23:38 2009 +0530
+
+    LevelSelect dialog additions
+    ----------------------------
+    - LevelSelect dialog now can be used to select level, display score etc.,
+      remove checkpoints, play selected level.
+
+commit 1b64f246e572fdcc400b67cf35ae967b84b61ca9
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Thu Aug 13 23:57:25 2009 +0530
+
+    MainMenu, LevelSelect, 'record' system
+    --------------------------------------
+    - MainMenu added.
+    
+    - LevelSelect dialog added.
+    
+    - Made various changes to the save and level system.
+    
+    - Added 'user record' system to save scores, highest level reached, etc.
+
+commit 09cc5661fded98ceb77142599824aebe957641d6
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Wed Aug 12 00:54:58 2009 +0530
+
+    CameraHandler obstruction handling + setting
+    --------------------------------------------
+    - CameraHandler now places Camera in front of any obstructions for a
+      better view in third-person mode.
+    
+    - Whether or not camera obstruction is handled is now exposed as
+    a setting.
+
+commit 3d19a15c1be1aa95fa6f2fd56d997328a81218d9
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Mon Aug 10 21:33:32 2009 +0530
+
+    Player dimension checked fixed
+    ------------------------------
+    - Fixed Player dimension test, for all objects, convex as well as
+      trimesh. :-) It's been tested well, but will probably still need more
+      testing. For now it's labelled as 'done', but if in future there's a
+      problem, it'll have to be fixed.
+
+commit 83ac04790fa0a0139e1ebaf5e8e031c923d37917
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sun Aug 9 23:21:28 2009 +0530
+
+    MovingBrush, StaticBrush bugfix, switchDimension bugfix, Director changes
+    -------------------------------------------------------------------------
+    - Numerous bugfixes relating to MovingBrush and StaticBrush collision
+      checks.
+    
+    - Dimension setting in GraLL2GameObject now makes sure that other flags
+      aren't disturbed.
+    
+    - Added change-direction-but-not-velocity Directors.
+
+commit 16616f7b6aad479d63979eac094b27d9cf5fee4b
+Author: nikki93 <s.nikhilesh@gmail.com>
+Date:   Sat Aug 8 15:35:17 2009 +0530
+
+    Player dimension-check with ghosts, 'lighting' setting
+    ------------------------------------------------------
+    - Player dimension-check now uses Bullet 'ghost objects' instead. More
+      reliable. Only trimesh-test left (or use convex-only static geometry).
+    
+    - Added 'lighting' option in Settings to enable or disable lighting.
+
+commit a969f8e0ce849d6dc522ff5a8eec177a6b588442
+Author: Nikhilesh <nikki@nikki-laptop.home>
+Date:   Thu Aug 6 23:47:41 2009 +0530
+
+    Persistent destroyAll bugfix, Music serialisation bugfix
+    --------------------------------------------------------
+    - Fixed persistent object destroyAll bug.
+    
+    - Fixed a few serialisation bugs involving MusicManager assuming there's
+      always some music playing (and so
+      using null-pointers).
+    
+    (also few settings changes, and disabled lights, for laptop-friendliness)
+
+commit d0be908a2251f3ff8854aaa2bbe7ce895fbc4014
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jul 29 12:20:29 2009 +0300
+
+    Vacation commit
+    ---------------
+    - Last commit before vacation. Not many changes.
+    
+    During vacations, I'll just review the code, make corrections in a few
+    places etc., but not make any radical new changes.
+    
+    See you soon! ;-)
+
+commit 47c4933995823aa641be5ad9b54fea6e8bcce549
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jul 27 23:45:00 2009 +0300
+
+    Teleporter offsets
+    ------------------
+    - Fixed the teleporter-Player offsetting for proper teleportation.
+
+commit 3a332af6cdddd5837ea97a0c988e391f2fcfcc19
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Jul 25 23:16:24 2009 +0300
+
+    Switch types, 'Teleporter'
+    --------------------------
+    - Switches can now be of different types, 'toggle', 'once' or 'press'.
+    
+    - 'Teleporter' GameObject added, which teleports the Player to a another
+      position.
+
+commit 71832057e7dd479a2927936243ac0f31e7db439e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Jul 25 00:55:40 2009 +0300
+
+    Material listener for non-glowing objects
+    -----------------------------------------
+    - Instead of messing around with Base materials, a
+      MaterialManager::Listener approach is used for render non-glowing
+      objects black.
+
+commit e8384827184cc2509588fbc2102235ec9c92abe3
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jul 24 01:49:41 2009 +0300
+
+    Switch texture changed
+    ----------------------
+    - Switch texture has been changed. Most likely will change again, I'm
+      not entirely satisfied with this one.
+
+commit d281a97fdf3d7474dcd10c6b6179d07d653d679f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Jul 23 19:00:19 2009 +0300
+
+    'Controller' GameObject
+    -----------------------
+    - Persistent 'Controller' GameObject added, which watches over
+      stuff. Right now it handles dimension and music saving during save/load.
+
+commit 99e90e90fcd3e90847b333dd62ea0f895968bc2b
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Jul 23 13:48:53 2009 +0300
+
+    Fallback materials
+    ------------------
+    - Added fallback materials for old hardware.
+
+commit 886a90dd3e254fdaabd1866a8f232b5082fa96a8
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jul 22 23:39:18 2009 +0300
+
+    GameObject pointer serialisation, ownership, floor lights
+    ---------------------------------------------------------
+    - Fixed NGF GameObject pointer serialisation problems.
+    
+    - Added GameObject 'persistence', (allow GameObjects to survive
+      destroyAll), for ownership management (among other things).
+    
+    - Added (cool-looking) 'floor light' texture with glow.
+
+commit e5898fc81813f4a94d1ad5f71e81af2cd220a456
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Jul 21 20:11:18 2009 +0300
+
+    Glow effect
+    -----------
+    - New 'glow' effect added. Inspired by Tron. Each object can have
+      'glow-maps', which allow an easy way to specify region, colour, brightnes,
+      size etc. of glow.
+
+commit a11d361610965c93b519bbb5d1efdb0c1ae22def
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Jul 21 05:09:53 2009 +0300
+
+    Glow test
+    ---------
+    - Just tried out glow. Worked before, isn't working now, will fix.
+
+commit 51b4b372d3f2c466ad133c54c8c2f5c9ad4827b5
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jul 17 21:56:00 2009 +0300
+
+    Delayed world switch functions
+    ------------------------------
+    - The delayed world switch system now has a function interface, with
+      functions like 'nextWorld' and 'previousWorld' etc.
+
+commit 2be2764a79ad10e9789182a4e11599cdfb603011
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Jul 16 01:58:25 2009 +0300
+
+    Checkpoint lighting
+    -------------------
+    - Checkpoint now has a coloured lighting where the 'diamond' is.
+
+commit 07689f824e8f4a483c67d69ef553329fd0c3caab
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Jul 12 00:42:57 2009 +0300
+
+    Undone changes for video, changed default brush size
+    ----------------------------------------------------
+    - Undone a change that was made for the video that got commited by mistake.
+    
+    - Changed default brush size to something more convenient.
+
+commit efdb5ade91b33442109d18ea3405d6e0ecd8db9e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jul 10 02:20:56 2009 +0300
+
+    Switch serialisation, 'once' Switches, 'VideoRecorder', new video
+    -----------------------------------------------------------------
+    - Fixed a bug in GameObject serialisation in NGF that disallowed
+      serialisation of NULL pointers.
+    
+    - Made Siwtch save the name of the SlidingBrush it controls (if any)
+      instead of pointer, because of serialisation order dependendencies.
+    
+    - Added the ability to specify that a Switch should be switched only
+      'once'.
+    
+    - Added 'VideoRecorder' for recording videos from in-game, which basically
+      just does a screenshot-per-blah-milliseconds.
+    
+    - Recorded, edited and uploaded a new preview video for Vimeo.
+
+commit 9250677cebcd94f5a4d89740703b7eae5722af03
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jul 8 23:52:44 2009 +0300
+
+    'Switch' GameObject added
+    -------------------------
+    - Added a generic 'Switch' GameObject that has a 'p_enabled' Python
+      property and broadcasts 'on' and 'off' Python events, allowing good
+      scriptability. So, it can be used for everything from disabling
+      a MovingPlatform righ to going to the next level through changing
+      dimension. Also has a 'built-in' SlidingBrush informer feature to allow
+      Switches to easily control SlidingBrushes, which is what they'll mostly
+      be used for, probably.
+
+commit 325ae55b610bd91aec520873380f687794744a49
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jul 8 00:13:10 2009 +0300
+
+    RigidBody physical shape now a property
+    ---------------------------------------
+    - Earlier, all RigidBody instance used a convex hull shape. Now shape
+      can be specified for each instance (sphere, cylinder etc.).
+
+commit 0cea2c7a991a625c62145976520a571a5ca317ba
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jul 6 19:07:58 2009 +0300
+
+    MovingBomb, bugfixes
+    --------------------
+    - 'MovingBomb' added. Basically, a Bomb that moves around.
+    
+    - Bugs fixed (not sure which ones exactly, but I do remember fixing some :-) ).
+
+commit cf6abae9e835586e6ad7cba22872b22b9d0c297a
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jul 6 01:15:51 2009 +0300
+
+    Sound subsystem, Music Manager
+    ------------------------------
+    - Sound subsystem added (uses OgreAL).
+    
+    - 'MusicManager' added. Manages the playing, volume, fading etc. of music.
+    
+    - MusicManager functionality now accessible from Python.
+
+commit 20196339871a1a5c50c931901920a0ca56fb2263
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jul 1 22:13:10 2009 +0300
+
+    More textures
+    -------------
+    - Added even more textures.
+
+commit cba4a9e29acea89381d87b0fbeb2d71509a52ec9
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Jun 30 22:54:58 2009 +0300
+
+    More brush textures
+    -------------------
+    - More brush textures added.
+
+commit 2fe9473785665bf200646908b3a5cd5172c5a501
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jun 29 22:54:20 2009 +0300
+
+    More textures, 'template' level, new level, slight Checkpoint changes
+    ---------------------------------------------------------------------
+    - Added a few more brush textures.
+    
+    - Modified Checkpoint mesh for smoother pass-through.
+    
+    - Created a new test level, and a 'Template Level'.
+
+commit c6b767eebc42ccd41d94623c41559218457dd422
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jun 26 23:22:38 2009 +0300
+
+    Checkpoint texture, settings file, Camera peeping (yes, again)
+    --------------------------------------------------------------
+    - Created Checkpoint textures.
+    
+    - Exposed few more properties as settings.
+    
+    - Reintroduced camera peeping in third person.
+    
+    - Settings saved and loaded from text file.
+
+commit 41b790cd1d8823e9f8ebd45ca76bc554a9b6e08a
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jun 26 01:45:57 2009 +0300
+
+    New camera controls, setting system
+    -----------------------------------
+    - Third person camera now fully mouse-controlled. Can look up, down etc.
+    
+    - 'Settings' added to globals to make setting and retreiving settings
+      easier.
+
+commit a5f927f1418e49331619c4368a96b22fa6641052
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jun 24 22:46:20 2009 +0300
+
+    Checkpoint added
+    ----------------
+    - Added 'Checkpoint' GameObject. Allows the Player to save his progress
+      mid-level. Once used, can't be used again.
+
+commit e1f0c4791419a29b70a744446ce64cc9c5be7325
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Jun 23 23:27:48 2009 +0300
+
+    'Level' system, auto level-load
+    -------------------------------
+    - 'Level' system added. Savegames handled.
+    
+    - Levels auto-detected and loaded, no hard-coding of level names needed.
+
+commit e17e97c80f362669dbaca8f697c91581fe3a495b
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jun 22 22:55:18 2009 +0300
+
+    Fader, Player death restart, more Python connectivity
+    -----------------------------------------------------
+    - Exposed more stuff to Python (Dimension switching, World switching)
+    
+    - Added 'Fader', which handles screen 'fade-in's and 'fade-out's
+    
+    - Player death now makes World restart.
+    
+    - Restart after Player death involves fade-in and fade-out of screen.
+
+commit 45ce092469913223a3fd4f9dfa401b09dda53c3a
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Jun 21 23:04:49 2009 +0300
+
+    MovingPlatform Director-check now per-frame
+    -------------------------------------------
+    - MovingPlatform earlier did the Director-check only in 'collide'
+      events, which caused jumpy movement because the location difference
+      treshold was large. Now it can be smaller (and framerate independent)
+
+commit a96c60b61ef6f7b1bd7abaadc520508524a21162
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jun 19 17:56:17 2009 +0300
+
+    'SlidingBrush' added
+    --------------------
+    - Added 'SlidingBrush' GameObject, which moves on a path when in 'forward'
+      mode, and moves back along the path, from wherever it's at, in
+      'backward' mode. Highly scriptable. Coupled with MovingBrush and
+      scripting allows for versatile obstacles and puzzles.
+
+commit ad2b6644d187f4042e5bd666abec99585586f143
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jun 17 22:19:01 2009 +0300
+
+    Semitransparent Ice, Player fading
+    ----------------------------------
+    - Player now to black when he falls of the level.
+    
+    - Ice now looks semitransparentish. :P
+
+commit 63c9a5bdbdaeb9055b97a3d19af695bb1c35327d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Jun 16 22:39:54 2009 +0300
+
+    Materials cleaned up, Ice
+    -------------------------
+    - Cleaned up Materials. 'Multiple similar materials' like the 'Crate'
+      and 'WhiteTile' materials now use inheritance.
+    
+    - Added 'Ice' GameObject. Slippery stuff. :-)
+
+commit e8e4085d053f33bb04fd72b7b7cc046bbc5219ed
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jun 15 22:58:36 2009 +0300
+
+    NGF bug fixed, 'ParticleEffect' GameObject, explosions
+    ------------------------------------------------------
+    - Fixed bug with NGF, due to which duplicate IDs were assigned to
+      GameObjects created after deserialising previous ones.
+    
+    - Added 'ParticleEffect' GameObject.
+    
+    - Added explosion effect (with lights) for Player-Bomb contact.
+
+commit f5a8d9c3f2ee123563ac19827cc84e40341ac876
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Jun 14 21:42:56 2009 +0300
+
+    Bombs, Crate material variety
+    -----------------------------
+    - Bomb textures completed.
+    
+    - 'Bomb' GameObject added. Highly explosive, bad for GraLL's health.
+    
+    - Crate materials added, for variety. Each Crate is assigned a random
+      material.
+
+commit 796e57b91c6609025c1f3764f5704b5c94ebb1ec
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat Jun 13 01:08:54 2009 +0300
+
+    MessageBox bugs fixed, tested with Triggers, Bomb mesh added
+    ------------------------------------------------------------
+    - Fixed some bugs with MessageBox.
+    
+    - Tested MessageBox with Triggers. Great for help messages.
+    
+    - Created Bomb mesh, also UV unwrapped. Now have to make texture.
+
+commit 60c5fd26fa3ec1966f7755ff94515bb663d5a32b
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jun 12 16:07:36 2009 +0300
+
+    MessageBox added
+    ----------------
+    - Added 'MessageBox' GameObject, which shows message in white text at the bottom of the screen, on a transperent
+      slightly dark rectangle. Also can be controlled from Python.
+
+commit b210d4971af5c489bc8054317b4e8370513622b4
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Jun 11 23:43:00 2009 +0300
+
+    GraLL2 Python library, Player death
+    -----------------------------------
+    - GraLL2 Python library added, for game-specific functions (for example,
+      GraLL2.playMusic("blah")) would go into this).
+    
+    - Player death added. When Player dies, camera goes into 'death' mode
+      where it circles around above the site, like in the origin GraLL.
+
+commit 6536d7716fd15c01bb46b6f69693709b1695ee7f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jun 10 21:02:46 2009 +0300
+
+    Crate Pythonified
+    -----------------
+    - Crate now Python-scriptable.
+
+commit 14c65fb8095059c18a1dbd4f8f352cb8d74f069b
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Jun 9 18:48:06 2009 +0300
+
+    Fixed tabs
+
+commit b5b58edfda31bc222752de1522747d80140af78a
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue Jun 9 18:26:44 2009 +0300
+
+    Pass-per-light, spotlight support, initial shadow test
+    ------------------------------------------------------
+    - Reworked lighting shaders for once_per_light iteration. Makes the
+      shader itself a bit smaller, less TEXCOORDs used, allows more than 3
+      lights, and mainly, makes shadows easier.
+    
+    - Added smooth spotlight support (Cg smoothstep).
+    
+    - Began integrating nullsquared's soft shadow code (doesn't work yet
+      though :P ).
+
+commit a8946b5dfeaeb7b20001616d385fa95fe1d42eb5
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jun 8 22:19:35 2009 +0300
+
+    Crate dynamics completed
+    ------------------------
+    - Completed Crate dynamics, now affected by gravity, but still
+      kinematic, using slider constraint with static body.
+
+commit 1990101348615904fc7928b5db97b5f2213f9b3a
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun Jun 7 21:48:57 2009 +0300
+
+    Crate dynamics
+    --------------
+    - Added Crate push dynamics. Grid-aligned. Puzzles impossible otherwise.
+
+commit d5fd3921de8a9be361f6aba406ff4dbd270117c4
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jun 5 23:14:07 2009 +0300
+
+    Crate added, Shader system reworked.
+    ------------------------------------
+    - Added 'Crate' GameObject.
+    
+    - Cleaned up shaders a bit.
+
+commit 0f1b09a34dcff1c755ea510998ad80a4c47e207a
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri Jun 5 00:16:14 2009 +0300
+
+    High-res screenshot taker added, shader tweaked
+    -----------------------------------------------
+    - Added a high-res screenshot taker (used with 'F9' key)
+    
+    - Small tweak in shader (normalmapping must use offset coordinates too).
+
+commit 5f593a0de15d06276b63a0b27ef1e67cf7334a7d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu Jun 4 20:38:02 2009 +0300
+
+    Parallax mapping, heightmaps
+    ----------------------------
+    - Parallax mapping added.
+    
+    - Heightmaps added for existing textures.
+
+commit 22a5bfb266f60db16eec616b0541d4979c7e3b0e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed Jun 3 20:47:49 2009 +0300
+
+    Normalmapping Fix, Director scriptability
+    -----------------------------------------
+    - Normalmapping finally fixed. Looks beautiful. Yay! :-)
+    
+    - Director direction now scriptable.
+
+commit 0d7fac21dcfbe85e1c916e4836da38b788b3bd97
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon Jun 1 22:58:21 2009 +0300
+
+    MovingBrush path serialisation, Directors
+    -----------------------------------------
+    - Added serialisation for MovingBrush path points.
+    
+    - 'Director' GameObject added for moving object guidance.
+
+commit aa1461a65b22889ddd8f5706d609a5c766b60e85
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 29 22:15:46 2009 +0300
+
+    RigidBody, MovingBrush
+    ----------------------
+    - Added generic 'RigidBody' GameObject for physics props.
+    
+    - Added generic 'MovingBrush' GameObject for lifts, moving platforms
+      etc. Highly scriptable, and thus, fun.
+
+commit 90d00e59367ba995428e07bc52e3a9b8ab2a7e9f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue May 26 22:17:42 2009 +0300
+
+    Fixed 'Notes' to reflect NGF udpates.
+
+commit ea2ea91c4f64c920871b9b00ce79ae2d15925199
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon May 25 19:30:45 2009 +0300
+
+    Fixed 'Notes' file to reflect previous changes.
+
+commit d5ca9109f0385d207498910ecb1cc2fa3e060bec
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon May 25 19:28:29 2009 +0300
+
+    Spline-camera-track serialisation, 'Trigger' for scripted events
+    ---------------------------------------------------------------
+    - Added serialisation of spline in CameraHandler.
+    
+    - Added 'Trigger' GameObject that can be used for scripted events. Actual physical simulation of collision
+      and dimension check avoided.
+
+commit 577666b89e0d6e981bec12528efa93d15357725d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun May 24 22:44:12 2009 +0300
+
+    'Point' GameObject, spline camera handling
+    ------------------------------------------
+    ----------------------------
+    - 'Point' GameObject added for visual location-specification in
+      Blender. Also can be moved using script etc.
+    
+    - Spline camera tracking added to CameraHandler.
+
+commit 6735b4731ff688573835749e27a4761822346ff1
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat May 23 22:53:08 2009 +0300
+
+    'Alarm' system added
+    --------------------
+    - 'Alarm' system added, for timed events. Useful for cutscenes, scripted
+      events, just about anything that requires delay/timing. Python
+      scriptable, serialiseable too. Good for a Saturday (got tests in school
+      on Sundays).
+
+commit cb5280c7900c4ba230bac5965ee7f666c7fa79ae
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 22 22:01:06 2009 +0300
+
+    View height changing
+    --------------------
+    - Added ability to change view height similar to the original GraLL
+      to CameraHandler
+
+commit bf72c38888eae75b90ec9b29191edcbdf625a4ed
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 22 21:29:05 2009 +0300
+
+    Player dimension-checking improved
+    ----------------------------------
+    - Player opposite dimension checking improved, now only 'inside-check'
+      for trimeshes left.
+
+commit bbd70fb5facd9d4285e83ea00ae894cb184c31e9
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 22 17:24:30 2009 +0300
+
+    Camera rotation lerp, Player dimension check
+    --------------------------------------------
+    - Added linear interpolating (scriptable) rotation to CameraHandler.
+    - Modified cutscene to try the lerp rotations.
+    - Made more progress on Player opposite dimension checking.
+
+commit 20399e84cf41ae783382becb8b02964dba424418
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue May 19 22:46:27 2009 +0300
+
+    Dimension 2 visuals, Player serialisation overlooked error fixed
+    ----------------------------------------------------------------
+    - Added dimension 2 compositor effect.
+    
+    - Fixed Player serialisation error that left out one of the members.
+
+commit 8378e2046a9ca6c054f3198dd618d40660075b2e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun May 17 21:55:47 2009 +0300
+
+    Camera peeping, dimension check
+    -------------------------------
+    - Added left/right peeping to CameraHandler.
+    - Started work on Player opposite dimension checking before switch.
+
+commit df6bb0892f7249774cb768a9be3fca79213b2d0e
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 15 17:27:20 2009 +0300
+
+    - Fixed the serialisation of CameraHandler. Saving/load works perfectly
+     for all features added till date.
+    
+    - CameraHandler is now a single global object instead of multiple
+      instances, and so management of the Camera is much simpler now. If a
+      new CameraHandler is created, the previous one is destroyed. Now, for
+      example, getting a third-person view of an object is just a matter of
+      'MSG_SETTARGET' and 'MSG_SETSTATE' on the global instance.
+    
+    - Added a Player and CameraHandler Python interface.
+    
+    - Made a test cutscene using just scripting, it's cool. :-) Save/load
+      works even within the cutscene!
+
+commit 34fa4b47c47cb53e15dea6b6cbaecfca901b8a3c
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Wed May 13 22:52:03 2009 +0300
+
+    CameraHandler done, Player dynamics, per-pixel lighting added
+    --------------------------------------------
+    - Finished work on third-person and tracking parts of CameraHandler.
+    - Added Player dynamics and basic controls.
+    - Added per-pixel lighting shader and started on normal mapping (tangent
+      space transform)
+
+commit c3d96ad7697b1a4337c1c4e4ffdb529665209c6c
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue May 12 23:20:38 2009 +0300
+
+    CameraHandler added
+    -------------------
+    - 'CameraHandler' GameObject interface to Camera handling
+      (third-person, tracking, spline etc.) adde.
+
+commit 68d35acacf0dcc9dc6f603ac91722575dee137e2
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue May 12 15:20:18 2009 +0300
+
+    Shader/Material System Developed
+    --------------------------------
+    - A proper material system for Brushes and Objects has been put in place
+      allowing shaders and other eye candy. The only thing left now is to
+      actually write the shaders (parallax mapping, per-pixel lighting etc.).
+      Test shaders seem to work.
+
+commit ac9f9dd5747007ef2a1156b0148559fd991346f5
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun May 10 22:21:34 2009 +0300
+
+    Dimension-Test, Lights
+    ----------------------
+    - Added a few walls in different dimensions to test. It works. And it's
+      fun. :-)
+    
+    - Added a 'Light' GameObject type to be able to edit lighting in Blender
+      with the same interface as the other objects. It works, but the actual
+      lighting itself is a bit faulty because the test level geometry mesh
+      was bad. Will be fixed.
+
+commit 5e24e65449e64a35da37147f8c41acbfedbded83
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sat May 9 00:05:57 2009 +0300
+
+    Brush textures, test level, shadows
+    -----------------------------------
+    - Added a few level geometry textures (tiles, metal etc.).
+    
+    - Made a test level using Blender.
+    
+    - Exported the level and loaded it up in the game. It works! :-)
+    
+    - Added simple shadowing.
+
+commit 292980acada9d6843a10acd6ebd14a7e608cd2b8
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 8 15:20:20 2009 +0300
+
+    Console autofocus
+
+commit b22c1ade9c9e93da4da7390fac45789d1b13c3a8
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Thu May 7 22:42:15 2009 +0300
+
+    Added Python Console, Python Events
+    -----------------------------------
+    - Player, StaticBrush now call the Python events.
+    
+    - A Python console window was added to execute Python scripts.
+
+commit 7a8b56467fb07e02accd7c70b998031ecc083541
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Tue May 5 19:36:41 2009 -0700
+
+    Fixed git problems
+    ------------------
+    Previous git push from laptop didn't really add the StaticBrush files, I
+    forgot to git add. Also, I had to pull the stuff back on desktop, and
+    made a few mistakes, lost the files, and then restored them through git
+    with the help of a few IRC fellows. Now though, everything's fine. Have
+    fun! ;-)
+
+commit 8d6c4e5c9ce0b847dca6b924e4f551940c65fa9f
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Mon May 4 22:57:11 2009 -0700
+
+    Added StaticBrush + more
+    ------------------------
+    - Added StaticBrush
+    
+    - Made non-dimensional objects possible
+    
+    ps. Did this on the laptop. git FTW!
+
+commit b4894d70f3dd51365272bbb130e31be00a594fe6
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Sun May 3 18:43:09 2009 +0300
+
+    Player added, GraLL2GameObject finalised
+    ----------------------------------------
+    - A preliminary Player GameObject type has been added
+    
+    - The GraLL2GameObject base has been finalised.
+    
+    Check the ChangeLog in the file 'Notes' for more.
+
+commit 983e79e994dbe667f517750ac8af0624c4a18a23
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 1 15:55:26 2009 +0300
+
+    Cleaned up the code a bit.
+
+commit ea7486cf439a13635f9ff44e5d70936e94ed4436
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 1 15:42:03 2009 +0300
+
+    Removed vim config (yes, again)
+
+commit 6f24bb9d8f7e4e3272a8573b8f6cb0abfe7fe88d
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 1 15:40:30 2009 +0300
+
+    Added base plugins.cfg
+
+commit 16b1b58e6f684f168b4dadbc8252db73ade66308
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 1 15:38:05 2009 +0300
+
+    Removed more unneeded files, converted tabs
+    -------------------------------------------
+    - Removed some more unneeded files, such as vim config, symlinked
+      libary .cpp files, and a few runtime required configuration files.
+    
+    - Converted all tabs to spaces.
+
+commit f62e876692e65f354ab8fb1e93f951a02e8ee9dd
+Author: Nikhilesh S (nikki) <s.nikhilesh@gmail.com>
+Date:   Fri May 1 15:11:32 2009 +0300
+
+    First commit
+    ------------
+    Some unecessary and space-wasting files have been added to
+    .git/info/exclude.

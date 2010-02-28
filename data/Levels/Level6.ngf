@@ -1,0 +1,1072 @@
+ngflevel Level6
+{
+	object
+	{
+		type MovingBomb
+		name last
+		position -0.500000 -2.500000 1.672008
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 1.500000 -2.500000 0.235460
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 1.89999997616
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.500000 -2.500000 1.672008
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.500000 -2.500000 -0.764540
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.500000 -2.500000 -0.764540
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.500000 -2.500000 -4.230464
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 1.86000001431
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.500000 -2.500000 -6.175685
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.500000 -2.500000 -6.175685
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.500000 -2.500000 -3.764540
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 1.500000 -2.500000 -4.246533
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.500000 -2.500000 -3.764540
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.500000 -2.500000 -9.323153
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.500000 -2.500000 -7.175685
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.500000 -2.500000 -10.323153
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.500000 -2.500000 -10.456435
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 1.500000 -2.500000 -11.323153
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.500000 -2.500000 -13.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.500000 -2.500000 -12.974189
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 0.000000 -1.150000 -16.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_Acid.pyo
+			brushMeshFile Level6_b0.001.mesh
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.500000 -2.500000 -12.704482
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			script : import GraLL2
+			       : 
+			       : def utick(self, other):
+			       : 	self.p_enabled = GraLL2.controller.m_startBombs
+			enabled 0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 1.500000 -1.500000 4.500000
+		rotation 1.000000 0.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 -1.500000 4.500000
+		rotation 1.000000 0.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -0.500000 -1.500000 4.500000
+		rotation 1.000000 0.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -1.500000 -1.500000 4.500000
+		rotation 1.000000 0.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -1.500000 0.500000 4.500000
+		rotation 0.707107 -0.707107 -0.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -0.500000 0.500000 4.500000
+		rotation 0.707107 -0.707107 -0.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 0.500000 4.500000
+		rotation 0.707107 -0.707107 -0.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 1.500000 0.500000 4.500000
+		rotation 0.707107 -0.707107 -0.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 1.500000 0.500000 -17.500000
+		rotation 0.000000 1.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 0.500000 -17.500000
+		rotation 0.000000 1.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -0.500000 0.500000 -17.500000
+		rotation 0.000000 1.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -1.500000 0.500000 -17.500000
+		rotation 0.000000 1.000000 -0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -1.500000 -2.500000 -17.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -0.500000 -2.500000 -17.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.500000 -2.500000 -17.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 0.000000 2.500000 -16.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.01 0.1
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name bombInlet1b
+		position -0.000000 -1.950000 -18.150000
+		rotation 0.500000 0.500000 0.500000 -0.500000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.29999995232
+			ignoreCollisions 1
+			brushMeshFile Level6_b1.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
+		type Point
+		name bo1p2
+		position 0.000000 -0.400000 3.500218
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type SlidingBrush
+		name bombDoor1
+		position -0.000000 0.900000 -2.500000
+		rotation 0.500000 -0.500000 -0.500000 -0.500000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.7990000248
+			ignoreCollisions 0
+			brushMeshFile Level6_b2.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 0.000000 4.500000 -8.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 1 1 1
+			attenuation 70 1 0.008 0.05
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 0.000000 2.500000 11.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.05 0.03
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 0.000000 4.500000 2.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 1 1 1
+			attenuation 70 1 0.01 0.05
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name trap2
+		position 2.500000 -0.998324 5.500000
+		rotation -0.000000 -0.000000 0.707107 -0.707107
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 2.0
+			ignoreCollisions 0
+			brushMeshFile Level6_b3.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 0
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name trap4
+		position -2.500000 -0.998324 5.500000
+		rotation -0.000000 -0.000000 0.707107 -0.707107
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 2.0
+			ignoreCollisions 0
+			brushMeshFile Level6_b4.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name trap3
+		position 0.000000 -0.898324 5.500000
+		rotation -0.000000 -0.000000 0.707107 -0.707107
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.79999995232
+			ignoreCollisions 0
+			brushMeshFile Level6_b5.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 0
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name trap5
+		position -2.500000 -0.898324 1.650000
+		rotation 0.500000 0.500000 -0.500000 0.500000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.79999995232
+			ignoreCollisions 0
+			brushMeshFile Level6_b6.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 0
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(0)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Haven't gotten the key yet.
+			       : 	self.m_dimSwitchTaken = False
+			       : 	self.m_startBombs = False
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+			       : 
+			       : def alarm(self, n):
+			       : 	if (n == 0):
+			       : 		#Dimension switch taken! :O
+			       : 		GraLL2.showMessage("Uh oh! Looks like they weren't very happy with that!\nBe careful!", 7)
+			       : 		
+			       : 		Ngf.getObject("theLight").setDiffuseColour(Ngf.ColourValue(1, 0.2, 0))
+			       : 		
+			       : 		GraLL2.stopMusic()
+			       : 		GraLL2.setMusicMood("calm")
+			       : 		GraLL2.playMusic("track4")
+			       : 				
+			       : 		Ngf.getObject("trap1").open()
+			       : 		Ngf.getObject("trap2").open()
+			       : 		Ngf.getObject("trap3").open()
+			       : 		Ngf.getObject("trap4").open()
+			       : 		Ngf.getObject("trap5").open()
+			       : 		
+			       : 		self.setAlarm(2, 1)
+			       : 		
+			       : 		GraLL2.saveCheckpoint()
+			       : 				
+			       : 	if (n == 1):
+			       : 		Ngf.getObject("bombDoor1").open()
+			       : 		Ngf.getObject("bombInlet1a").open()
+			       : 		Ngf.getObject("bombInlet1b").open()
+			       : 		Ngf.getObject("bombOutlet1").p_forward = True
+			       : 		self.m_startBombs = True
+			       : 		
+			       : 	if (n == 2):
+			       : 		Ngf.getObject("bombInlet1a").close()
+			       : 		Ngf.getObject("bombInlet1b").close()
+			       : 		Ngf.getObject("bombOutlet1").p_forward = False
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name none
+		position -0.000001 0.081425 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level6_b7.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name trap1
+		position 2.500000 -0.898324 1.650000
+		rotation 0.500000 0.500000 -0.500000 0.500000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.79999995232
+			ignoreCollisions 0
+			brushMeshFile Level6_b8.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 0
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position 0.000218 0.089545 12.000729
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4.0
+			captureCameraHandler 1
+			canSwitchDimensions 0
+		}
+	}
+	object
+	{
+		type Pickup
+		name dimSwitch
+		position 0.000000 0.500000 3.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level6_b9.mesh
+			pickupType DimSwitch
+			spin 20.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.17499999702
+			script : import GraLL2
+			       : import Ngf
+			       : 
+			       : def pickedUp(self):
+			       : 	GraLL2.controller.setAlarm(1.2, 0)
+			       : 	GraLL2.player.p_canSwitchDimensions = True
+			       : 
+		}
+	}
+	object
+	{
+		type Light
+		name theLight
+		position 0.000000 2.500000 3.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.5 0.5 0.5
+			attenuation 70 1 0.02 0.1
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -0.000000 0.900000 7.500000
+		rotation 0.500000 -0.500000 -0.500000 -0.500000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.7990000248
+			ignoreCollisions 0
+			brushMeshFile Level6_b10.mesh
+			repeat 1
+			condition True
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 0.000000 0.600000 7.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level6_b11.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey dimSwitch
+			time 5.0
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name bombOutlet1
+		position -0.000000 -0.200000 4.500000
+		rotation 0.707107 -0.707107 0.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 0.600000023842
+			distance n
+			ignoreCollisions 0
+			brushMeshFile Level6_b12.mesh
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.addPoint(Ngf.getObject("bo1p1").getPosition())
+			       : 	self.addPoint(Ngf.getObject("bo1p2").getPosition())
+		}
+	}
+	object
+	{
+		type Point
+		name bo1p1
+		position -0.000000 -0.400000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 0.000000 -1.150000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_Acid.pyo
+			brushMeshFile Level6_b13.mesh
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name bombInlet1a
+		position 0.000000 -0.150000 -17.650000
+		rotation 0.500000 0.500000 0.500000 -0.500000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.29999995232
+			ignoreCollisions 1
+			brushMeshFile Level6_b14.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 1.500000 -2.500000 -17.500000
+		rotation 0.707107 0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 0.000000 -1.500000 1.600000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level6_b15.mesh
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.hasFlag("MovingBomb")):
+			       : 		#Last one means stop!
+			       : 		if (other.getName() == "last"):
+			       : 			GraLL2.controller.setAlarm(1, 2)
+			       : 			
+			       : 		Ngf.destroyObject(other)
+		}
+	}
+}
+

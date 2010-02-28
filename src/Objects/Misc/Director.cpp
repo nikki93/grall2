@@ -125,3 +125,4 @@ NGF_PY_BEGIN_IMPL(Director)
     NGF_PY_PROPERTY_IMPL(speed, mSpeed, Ogre::Real);
 }
 NGF_PY_END_IMPL_BASE(GraLL2GameObject)
+//-------------------------------------------------------------------------------

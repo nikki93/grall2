@@ -118,3 +118,39 @@ NGF::MessageReply Light::receiveMessage(NGF::Message msg)
     NGF_NO_REPLY();
 }
 //-------------------------------------------------------------------------------
+
+//--- Python interface implementation -------------------------------------------
+NGF_PY_BEGIN_IMPL(Light)
+{
+    NGF_PY_METHOD_IMPL(setDiffuseColour)
+    {
+        mLight->setDiffuseColour(py::extract<Ogre::ColourValue>(args[0]));
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(setSpecularColour)
+    {
+        mLight->setSpecularColour(py::extract<Ogre::ColourValue>(args[0]));
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(setAttenuation)
+    {
+        mLight->setAttenuation(py::extract<Ogre::Real>(args[0]),
+                py::extract<Ogre::Real>(args[1]),
+                py::extract<Ogre::Real>(args[2]),
+                py::extract<Ogre::Real>(args[3])
+                );
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(setInnerConeAngle)
+    {
+        mLight->setSpotlightInnerAngle(py::extract<Ogre::Radian>(args[0]));
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(setOuterConeAngle)
+    {
+        mLight->setSpotlightOuterAngle(py::extract<Ogre::Radian>(args[0]));
+        NGF_PY_RETURN();
+    }
+}
+NGF_PY_END_IMPL
+//-------------------------------------------------------------------------------
