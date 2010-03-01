@@ -21,6 +21,14 @@ def yellowKeysTaken():
     else:
         return False
 
+#Show a message from the messageDict.
+def showMessageFromDict(key):
+    pair = messageDict[key]
+    message = pair[0]
+    time = pair[1]
+
+    GraLL2.showMessage(message, time)
+
 #Messages.
 messageDict = {
 "default":
@@ -80,5 +88,5 @@ The switch here is a 'once' switch.""", 15),
 "dimSwitch":
 ("""You found the Dimension Switch prototype! The Dimension Switch is an
 experimental piece of technology that allows the user to jump between
-dimensions.""", 10)
+dimensions.""", 8)
 }

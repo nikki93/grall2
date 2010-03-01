@@ -13,17 +13,12 @@ def collide(self, other):
         message = self.getProperty("message", 0, "<message>")
 
         if (message != "<message>"):
-            #If it was given, show the message, with the given time.
-            message = message.replace("\\n", "\n")
-            time = float(self.getProperty("time", 0, "5"))
+            #If it was given, show it.
+            GraLL2.showMessage(message.replace("\\n", "\n"),
+                               float(self.getProperty("time", 0, "5")))
         else:
-            #Otherwise, get the message from the messageDict. If the messageKey
-            #isn't given either, shows the 'default' message.
-            pair = messageDict[self.getProperty("messageKey", 0, "default")]
-            message = pair[0]
-            time = pair[1]
-
-        GraLL2.showMessage(message, time)
+            #Otherwise show message from messageDict.
+            showMessageFromDict(self.getProperty("messageKey", 0, "default"))
 
         #Don't to it again. :P
         self.m_done = True

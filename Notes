@@ -953,3 +953,7 @@ Sun Feb 28 23:44:29 AST 2010
 ----------------------------
 - Further work on Level 6 (added Moving Bomb ambush).
 - MovingBomb bugfix (vertical movement Director problems).
+
+Mon Mar  1 23:27:10 AST 2010
+----------------------------
+- Further work on Level 6 (introduced dimension-switching).

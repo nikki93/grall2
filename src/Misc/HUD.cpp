@@ -235,7 +235,7 @@ bool HUD::Timer::update(Ogre::Real elapsed)
 HUD::PickupDisplay::PickupDisplay(const Ogre::String &type, const Ogre::ColourValue &colour)
     : mType(type)
 {
-    mText = createStaticText(MyGUI::IntCoord(0,0,0,0), MyGUI::Align::Left, colour);
+    mText = createStaticText(MyGUI::IntCoord(-100,-100,0,0), MyGUI::Align::Left, colour);
     mText->setCaption(""); //Initially empty.
 }
 //-------------------------------------------------------------------------------
@@ -261,7 +261,7 @@ HUD::Icon::Icon(const Ogre::String &imageFile)
     : mTextureName(imageFile)
 {
     mImage = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", 
-            MyGUI::IntCoord(0,0,ICON_WIDTH,ICON_HEIGHT), MyGUI::Align::Default, HUD_LAYER);
+            MyGUI::IntCoord(-100,-100,ICON_WIDTH,ICON_HEIGHT), MyGUI::Align::Default, HUD_LAYER);
     mImage->setImageTexture(mTextureName);
 }
 //-------------------------------------------------------------------------------
