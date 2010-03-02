@@ -120,6 +120,8 @@ class GraLL2GameObject :
             NGF_PY_METHOD_DECL(switchDimension)
             //setDimension(dimension)
             NGF_PY_METHOD_DECL(setDimension)
+            //getDimension()
+            NGF_PY_METHOD_DECL(getDimension)
 
             //getPosition()
             NGF_PY_METHOD_DECL(getPosition)
@@ -215,7 +217,7 @@ const char *name;
 int code;
 };
 #endif //;
-/* maximum key range = 32, duplicates = 0 */
+/* maximum key range = 35, duplicates = 0 */
 
 class NGF_PY_CLASS_GPERF(GraLL2GameObject)
 {
@@ -230,32 +232,32 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::MakeHash (register const char *str, regist
 {
   static const unsigned char asso_values[] =
     {
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40,  0, 40, 40,  0, 40,
-      40, 40, 40, 40, 40, 40, 10, 40, 40,  5,
-      15, 40, 40, 40, 15, 40,  0, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40,  5, 40, 40,
-      40, 40, 40, 10, 40, 40, 40, 40,  0, 40,
-       0, 40, 40, 40, 40,  0,  5, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40, 40, 40, 40, 40,
-      40, 40, 40, 40, 40, 40
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43,  0, 43, 43, 20, 43,
+      43, 43, 43, 43, 43, 43, 10, 43, 43,  5,
+      15, 43, 43, 43, 15, 43,  0, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43,  5, 43, 43,
+      43, 43, 43, 10, 43, 43, 43, 43,  0, 43,
+       0, 43, 43, 43, 43,  0,  5, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43, 43, 43, 43, 43,
+      43, 43, 43, 43, 43, 43
     };
   return len + asso_values[(unsigned char)str[3]] + asso_values[(unsigned char)str[0]];
 }
@@ -265,11 +267,11 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
 {
   enum
     {
-      TOTAL_KEYWORDS = 23,
+      TOTAL_KEYWORDS = 24,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 23,
       MIN_HASH_VALUE = 8,
-      MAX_HASH_VALUE = 39
+      MAX_HASH_VALUE = 42
     };
 
   static const struct PythonMethod wordlist[] =
@@ -278,9 +280,7 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
       {"setAlarm", NGF_PY_METHOD_GPERF(GraLL2GameObject, setAlarm)},
       {""},
       {"setVisible", NGF_PY_METHOD_GPERF(GraLL2GameObject, setVisible)},
-      {""},
-      {"setDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, setDimension)},
-      {""},
+      {""}, {""}, {""},
       {"translate", NGF_PY_METHOD_GPERF(GraLL2GameObject, translate)},
       {"applyForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyForce)},
       {"applyTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, applyTorque)},
@@ -297,13 +297,16 @@ NGF_PY_CLASS_GPERF(GraLL2GameObject)::Lookup (register const char *str, register
       {"setLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, setLinearVelocity)},
       {"getAngularVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getAngularVelocity)},
       {"getOrientation", NGF_PY_METHOD_GPERF(GraLL2GameObject, getOrientation)},
-      {""}, {""}, {""},
+      {""}, {""},
+      {"setDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, setDimension)},
       {"getVelocityInLocalPoint", NGF_PY_METHOD_GPERF(GraLL2GameObject, getVelocityInLocalPoint)},
       {""}, {""},
       {"getPosition", NGF_PY_METHOD_GPERF(GraLL2GameObject, getPosition)},
       {"getLinearVelocity", NGF_PY_METHOD_GPERF(GraLL2GameObject, getLinearVelocity)},
       {"getTotalForce", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalForce)},
-      {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)}
+      {"getTotalTorque", NGF_PY_METHOD_GPERF(GraLL2GameObject, getTotalTorque)},
+      {""}, {""},
+      {"getDimension", NGF_PY_METHOD_GPERF(GraLL2GameObject, getDimension)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)

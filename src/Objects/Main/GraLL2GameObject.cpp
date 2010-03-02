@@ -136,6 +136,11 @@ NGF_PY_BEGIN_IMPL(GraLL2GameObject)
         setDimension(dim);
         NGF_PY_RETURN();
     }
+    //getDimension
+    NGF_PY_METHOD_IMPL(getDimension)
+    {
+        NGF_PY_RETURN(mDimensions);
+    }
 
     //getPosition
     NGF_PY_METHOD_IMPL(getPosition)

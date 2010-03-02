@@ -205,7 +205,7 @@ ngflevel Level4
 		properties
 		{
 			dimensions 3
-			speed 4.0
+			speed 3.0
 		}
 	}
 	object
@@ -274,7 +274,7 @@ ngflevel Level4
 		properties
 		{
 			dimensions 3
-			speed 4.0
+			speed 3.0
 		}
 	}
 	object

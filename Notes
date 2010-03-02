@@ -957,3 +957,8 @@ Sun Feb 28 23:44:29 AST 2010
 Mon Mar  1 23:27:10 AST 2010
 ----------------------------
 - Further work on Level 6 (introduced dimension-switching).
+
+Tue Mar  2 20:02:21 AST 2010
+----------------------------
+- Completed Level 6.
+- Added 'getDimension' Python method to GraLL2GameObject base.

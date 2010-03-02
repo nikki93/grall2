@@ -2,6 +2,132 @@ ngflevel Level6
 {
 	object
 	{
+		type Trigger
+		name noname
+		position 3.453742 0.500000 -33.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level6_b0.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey dimCareful
+			time 5.0
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -6.000000 3.111417 -24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.6 0.7 0.8
+			attenuation 70 1 0.01 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -10.500000 1.689208 -21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.2 0.9 0.4
+			attenuation 70 1 0.01 0.2
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -4.500000 -0.100000 -19.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -8.500000 -0.850000 -21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			time 0.560000002384
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.500000 -0.100000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.500000 -0.100000 -28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 1
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -5.500000 0.150000 -30.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			heightDeficiency -0.119999997318
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -5.500000 0.150000 -33.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
 		type Light
 		name noname
 		position 1.000000 3.689208 -30.000000
@@ -25,7 +151,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 1
-			brushMeshFile Level6_b0.mesh
+			brushMeshFile Level6_b1.mesh
 		}
 	}
 	object
@@ -38,7 +164,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 2
-			brushMeshFile Level6_b1.mesh
+			brushMeshFile Level6_b2.mesh
 			convex 0
 		}
 	}
@@ -377,7 +503,7 @@ ngflevel Level6
 		{
 			dimensions 3
 			scriptFile Prefab_Acid.pyo
-			brushMeshFile Level6_b2.mesh
+			brushMeshFile Level6_b3.mesh
 		}
 	}
 	object
@@ -637,7 +763,7 @@ ngflevel Level6
 			speed 1.0
 			distance 1.29999995232
 			ignoreCollisions 1
-			brushMeshFile Level6_b3.mesh
+			brushMeshFile Level6_b4.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -666,7 +792,7 @@ ngflevel Level6
 			speed 1.0
 			distance 1.7990000248
 			ignoreCollisions 0
-			brushMeshFile Level6_b4.mesh
+			brushMeshFile Level6_b5.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -733,7 +859,7 @@ ngflevel Level6
 			speed 1.0
 			distance 2.0
 			ignoreCollisions 0
-			brushMeshFile Level6_b5.mesh
+			brushMeshFile Level6_b6.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -755,7 +881,7 @@ ngflevel Level6
 			speed 1.0
 			distance 2.0
 			ignoreCollisions 0
-			brushMeshFile Level6_b6.mesh
+			brushMeshFile Level6_b7.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -777,7 +903,7 @@ ngflevel Level6
 			speed 1.0
 			distance 1.79999995232
 			ignoreCollisions 0
-			brushMeshFile Level6_b7.mesh
+			brushMeshFile Level6_b8.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -799,7 +925,7 @@ ngflevel Level6
 			speed 1.0
 			distance 1.79999995232
 			ignoreCollisions 0
-			brushMeshFile Level6_b8.mesh
+			brushMeshFile Level6_b9.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -908,7 +1034,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level6_b9.mesh
+			brushMeshFile Level6_b10.mesh
 			convex 0
 		}
 	}
@@ -926,7 +1052,7 @@ ngflevel Level6
 			speed 1.0
 			distance 1.79999995232
 			ignoreCollisions 0
-			brushMeshFile Level6_b10.mesh
+			brushMeshFile Level6_b11.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -938,7 +1064,7 @@ ngflevel Level6
 	{
 		type Player
 		name player1
-		position 0.000218 0.095471 12.000729
+		position 0.000218 0.089857 12.000729
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -959,7 +1085,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level6_b11.mesh
+			brushMeshFile Level6_b12.mesh
 			pickupType DimSwitch
 			spin 20.0
 			bobAmplitude 0.15000000596
@@ -1002,7 +1128,7 @@ ngflevel Level6
 			speed 1.0
 			distance 1.7990000248
 			ignoreCollisions 0
-			brushMeshFile Level6_b12.mesh
+			brushMeshFile Level6_b13.mesh
 			repeat 1
 			condition True
 			autoClose 0
@@ -1019,7 +1145,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level6_b13.mesh
+			brushMeshFile Level6_b14.mesh
 			scriptFile Prefab_MessageTrigger.pyo
 			message : <message>
 			messageKey dimSwitch
@@ -1040,7 +1166,7 @@ ngflevel Level6
 			speed 0.600000023842
 			distance n
 			ignoreCollisions 0
-			brushMeshFile Level6_b14.mesh
+			brushMeshFile Level6_b15.mesh
 			script : import Ngf
 			       : 
 			       : def create(self):
@@ -1066,7 +1192,7 @@ ngflevel Level6
 		{
 			dimensions 3
 			scriptFile Prefab_Acid.pyo
-			brushMeshFile Level6_b15.mesh
+			brushMeshFile Level6_b16.mesh
 		}
 	}
 	object
@@ -1083,7 +1209,7 @@ ngflevel Level6
 			speed 1.0
 			distance 1.29999995232
 			ignoreCollisions 1
-			brushMeshFile Level6_b16.mesh
+			brushMeshFile Level6_b17.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -1115,7 +1241,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level6_b17.mesh
+			brushMeshFile Level6_b18.mesh
 			script : import Ngf
 			       : 
 			       : def collide(self, other):
@@ -1137,7 +1263,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 1
-			brushMeshFile Level6_b18.mesh
+			brushMeshFile Level6_b19.mesh
 			convex 0
 		}
 	}
@@ -1151,7 +1277,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 1
-			brushMeshFile Level6_b19.mesh
+			brushMeshFile Level6_b20.mesh
 		}
 	}
 	object
@@ -1182,7 +1308,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level6_b20.mesh
+			brushMeshFile Level6_b21.mesh
 			convex 0
 		}
 	}
@@ -1200,7 +1326,7 @@ ngflevel Level6
 			speed 1.0
 			distance 2.99900007248
 			ignoreCollisions 0
-			brushMeshFile Level6_b21.mesh
+			brushMeshFile Level6_b22.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyR")
 			autoClose 0
@@ -1224,7 +1350,7 @@ ngflevel Level6
 		properties
 		{
 			dimensions 3
-			brushMeshFile Level6_b22.mesh
+			brushMeshFile Level6_b23.mesh
 			script : import Ngf
 			       : import GraLL2
 			       : 
@@ -1245,6 +1371,142 @@ ngflevel Level6
 			       : 	if (not self.m_touched and other.hasFlag("Player")):
 			       : 		GraLL2.showMessage("Press %s to switch dimensions." % GraLL2.getControl("dimensionSwitch"), 5)
 			       : 		self.m_touched = True
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -6.500000 0.150000 -32.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			heightDeficiency 0.10000000149
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.500000 -0.100000 -29.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -8.500000 -0.850000 -21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.560000002384
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -10.500000 -0.100000 -21.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyG
+			meshFile Mesh_Key.mesh
+			material Objects/KeyG
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -8.500000 -0.100000 -17.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.99900007248
+			ignoreCollisions 0
+			brushMeshFile Level6_b24.001.mesh
+			repeat 1
+			condition : GraLL2.player.hasDecPickup("KeyG")
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -11.000000 0.900000 -17.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -6.500000 -0.100000 -19.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -3.846258 0.500000 -34.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level6_b25.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey dimObj
+			time 5.0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -5.500000 0.500000 -28.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile Level6_b26.mesh
+			convex 1
 		}
 	}
 }

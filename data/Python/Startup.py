@@ -88,5 +88,15 @@ The switch here is a 'once' switch.""", 15),
 "dimSwitch":
 ("""You found the Dimension Switch prototype! The Dimension Switch is an
 experimental piece of technology that allows the user to jump between
-dimensions.""", 8)
+dimensions.""", 8),
+
+"dimObj":
+("""Objects can either be in Dimension 1, Dimension 2, or both. Objects only
+interact with other objects that share a dimension with them.
+ 
+You cannot switch dimensions when there's an object in your position in the
+other dimension.""", 12),
+
+"dimCareful":
+("""Be careful where you switch dimensions!""", 6)
 }
