@@ -1360,10 +1360,12 @@ ngflevel Level6
 			       : def utick(self, elapsed):
 			       : 	if (self.m_touched and GraLL2.getCurrentDimension() == 2):
 			       : 		GraLL2.showMessage("""You are now in Dimension 2. Dimension 2 is slightly different from
-			       : Dimension 1. Use this difference to your advantage. For example, the 
+			       : Dimension 1. Use this difference to your advantage. For example, the
 			       : wall that blocked your path in Dimension 1 isn't here in Dimension 2.
 			       : 
-			       : You can press %s to switch back to Dimension 1.""" % GraLL2.getControl("dimensionSwitch"), 15)
+			       : The icon in the bottom of the screen shows which dimension you're in.
+			       : 
+			       : You can press %s to switch back to Dimension 1.""" % GraLL2.getControl("dimensionSwitch"), 20)
 			       : 		
 			       : 		Ngf.destroyObject(self)
 			       : 		
