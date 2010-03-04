@@ -993,9 +993,9 @@ ngflevel Level6
 			       : 		
 			       : 		Ngf.getObject("theLight").setDiffuseColour(Ngf.ColourValue(1, 0.2, 0))
 			       : 		
-			       : 		GraLL2.stopMusic()
-			       : 		GraLL2.setMusicMood("calm")
-			       : 		GraLL2.playMusic("track4")
+			       : 		#GraLL2.stopMusic()
+			       : 		#GraLL2.setMusicMood("calm")
+			       : 		#GraLL2.playMusic("track4")
 			       : 				
 			       : 		Ngf.getObject("trap1").open()
 			       : 		Ngf.getObject("trap2").open()
