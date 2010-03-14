@@ -1,20 +1,20 @@
-Crate
-Acid
-Bomb, GreenBomb
-Trap
-KeyR, KeyG, KeyB
-DoorR, DoorG, DoorB
-KeyY, DoorY
-Door
-Switch
++ Crate
++ Acid
++ Bomb, GreenBomb
++ Trap
++ KeyR, KeyG, KeyB
++ DoorR, DoorG, DoorB
++ KeyY, DoorY
++ Door
++ Switch
 
-Ice
-OneWay
-FallingBrush
-MovingBrush
-MovingBomb
++ Ice
++ OneWay
++ FallingBrush
++ MovingBrush
++ MovingBomb
+
 Teleporter
-
 JumpPad
 SpeedBoost
 Turret

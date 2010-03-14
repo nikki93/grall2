@@ -8,7 +8,7 @@ Next
 ----
 - Work on Level 7.
 
-- Fix Windows bug.
+- Fix Windows bug (check device name on Desktop-Windows).
 
 - Work on opening slideshow.
 
@@ -20,11 +20,11 @@ Next
 
 Side
 ----
-- Make more brush textures.
-
-- Come up with new ideas.
+- Come up with new level ideas.
 
 - Work on logo.
+
+- Make more brush textures.
 
 - Try adding analog stick control mechanism.
 
@@ -964,3 +964,7 @@ Tue Mar  2 20:02:21 AST 2010
 ----------------------------
 - Completed Level 6.
 - Added 'getDimension' Python method to GraLL2GameObject base.
+
+Sun Mar 14 23:30:46 AST 2010
+----------------------------
+- Started work on Level 7.

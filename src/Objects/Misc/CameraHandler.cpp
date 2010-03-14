@@ -110,7 +110,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             Ogre::Real yRel = -ms.Y.rel * 0.1;
             int invert = GlbVar.settings.controls.invertMouse ? -1 : 1;
             mViewAngle -= Ogre::Degree(yRel) * GlbVar.settings.controls.upDownSensitivity * invert;
-            mViewAngle = Util::clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 70);
+            mViewAngle = Util::clamp<Ogre::Real>(mViewAngle.valueDegrees(), 10, 75);
         }
 
         mViewOffset = Ogre::Vector3(0, Ogre::Math::Sin(mViewAngle), Ogre::Math::Cos(mViewAngle)) * 10;
