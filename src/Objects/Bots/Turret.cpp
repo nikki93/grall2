@@ -289,8 +289,8 @@ void Turret::fireSingleBullet()
         Ogre::Vector3 dir = (playerPos - shootPos).normalisedCopy();
         dir = dir.randomDeviant(Ogre::Radian(Ogre::Math::UnitRandom() * MAX_BULLET_DEVIATION_ANGLE));
 
-        //We're gonna use 30 degree limit. sin is 0.5, cos is 0.866.
-#define COS_MAX_ANG 0.866
+        //We're gonna use 30 degree limit. sin is 0.5, cos is 0.866025404.
+#define COS_MAX_ANG 0.866025404
 #define SIN_MAX_ANG 0.5
         if (Ogre::Math::Abs(dir.y) > SIN_MAX_ANG)
         {

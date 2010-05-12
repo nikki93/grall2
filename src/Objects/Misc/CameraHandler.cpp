@@ -18,7 +18,7 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mTargetNodeName(""),
       mMovementFactor(4),
       mRotationFactor(0),
-      mViewAngle(30),
+      mViewAngle(53),
       mSplineAnim(NULL),
       mSplineAnimState(NULL),
       mSplineTrack(NULL),

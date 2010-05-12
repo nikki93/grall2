@@ -38,6 +38,8 @@ package.includepaths = {
     "/usr/local/include/OIS",                                                -- OIS
     "/usr/local/include/MYGUI",                                              -- MyGUI
     "/usr/local/include/OgreAL",                                             -- OgreAL
+    "/usr/include/python2.6",                                                -- Python
+
 
     "./ext",                                                                 -- 'External' stuff
     "./include"                                                              -- GraLL2 files

@@ -39,35 +39,46 @@ MovingBrush::MovingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NG
 
     //Create the Physics stuff.
     BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createConvex();
-    mShape->setMargin(0); //Bad, but we gotta.
+    if (Ogre::StringConverter::parseBool(properties.getValue("boxShape", 0, "no")))
+    {
+        mShape = converter.createBox();
+        mCastShape = new btBoxShape(BtOgre::Convert::toBullet((converter.getSize() * 0.5) - Ogre::Vector3(0.1,0.1,0.1)));
+    }
+    else
+    {
+        btConvexHullShape *shape = converter.createConvex();
+        shape->setMargin(0); //Bad, but we gotta.
+
+        //Make smaller shape for cast.
+        //Get vertices.
+        btAlignedObjectArray<btVector3> offsetVerts;
+        btVector3 *iter = shape->getUnscaledPoints(); 
+        for (int i = 0; i < shape->getNumPoints(); ++i, ++iter)
+            offsetVerts.push_back(*iter);
+
+        //Push 'em in by 0.1;
+        btAlignedObjectArray<btVector3> offsetPlanes;
+        btGeometryUtil::getPlaneEquationsFromVertices(offsetVerts, offsetPlanes);
+        int sz = offsetPlanes.size();
+        for (int i=0 ; i<sz ; ++i) 
+            offsetPlanes[i][3] += CAST_SHAPE_SHRINK;
+        offsetVerts.clear();
+        btGeometryUtil::getVerticesFromPlaneEquations(offsetPlanes, offsetVerts);
+
+        //Fill the shape with the new points.
+        btConvexHullShape *castShape = new btConvexHullShape();
+        for (int i = 0; i < offsetVerts.size() ; ++i) 
+            castShape->addPoint(offsetVerts[i]);
+
+        mShape = shape;
+        mCastShape = castShape;
+    }
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape);
     mBody->setCollisionFlags(mBody->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
     mBody->setActivationState(DISABLE_DEACTIVATION);
     initBody(DimensionManager::MOVINGBRUSH);
-
-    //Make smaller shape for cast.
-    //Get vertices.
-    btAlignedObjectArray<btVector3> offsetVerts;
-    btVector3 *iter = mShape->getUnscaledPoints(); 
-    for (int i = 0; i < mShape->getNumPoints(); ++i, ++iter)
-        offsetVerts.push_back(*iter);
-
-    //Push 'em in by 0.1;
-    btAlignedObjectArray<btVector3> offsetPlanes;
-    btGeometryUtil::getPlaneEquationsFromVertices(offsetVerts, offsetPlanes);
-    int sz = offsetPlanes.size();
-    for (int i=0 ; i<sz ; ++i) 
-        offsetPlanes[i][3] += CAST_SHAPE_SHRINK;
-    offsetVerts.clear();
-    btGeometryUtil::getVerticesFromPlaneEquations(offsetPlanes, offsetVerts);
-
-    //Fill the shape with the new points.
-    mCastShape = new btConvexHullShape();
-    for (int i = 0; i < offsetVerts.size() ; ++i) 
-        mCastShape->addPoint(offsetVerts[i]);
 }
 //-------------------------------------------------------------------------------
 void MovingBrush::postLoad()

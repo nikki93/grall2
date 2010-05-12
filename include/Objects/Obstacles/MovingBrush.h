@@ -29,8 +29,8 @@ class MovingBrush :
     public GraLL2GameObject
 {
     protected:
-        btConvexHullShape *mShape;
-        btConvexHullShape *mCastShape;
+        btConvexShape *mShape;
+        btConvexShape *mCastShape;
         Ogre::Entity *mEntity;
 
         Ogre::Vector3 mVelocity;

@@ -315,7 +315,11 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 Ogre::Vector3 target = msg.getParam<Ogre::Vector3>(0);
                 GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_TELEPORT, target));
                 btTransform oldTrans = mBody->getWorldTransform();
+
+                short int oldFlags = mBody->getBroadphaseHandle()->m_collisionFilterGroup;
+                GlbVar.phyWorld->removeRigidBody(mBody);
                 mBody->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(target)));
+                GlbVar.phyWorld->addRigidBody(mBody, mDimensions | oldFlags, mDimensions);
             }
             NGF_NO_REPLY();
 
@@ -411,7 +415,7 @@ void Player::captureCameraHandler()
     //If it isn't already there we create it.
     if (!GlbVar.currCameraHandler)
     {
-        GlbVar.currCameraHandler = GlbVar.goMgr->createObject<CameraHandler>(mControlNode->getPosition() + (mControlNode->getOrientation() * Ogre::Vector3(0,9,16)), mControlNode->getOrientation());
+        GlbVar.currCameraHandler = GlbVar.goMgr->createObject<CameraHandler>(mControlNode->getPosition() + (mControlNode->getOrientation() * Ogre::Vector3(0,15,12)), mControlNode->getOrientation());
         GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, NGF_MESSAGE(MSG_SETSMOOTHINGFACTOR, Ogre::Real(4)));
     }
 

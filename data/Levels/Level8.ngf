@@ -1,0 +1,1719 @@
+ngflevel Level8
+{
+	object
+	{
+		type Light
+		name noname
+		position -0.028680 2.407367 0.388634
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 1 0.2 0.1
+			attenuation 70 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 11.998458 2.407367 0.388634
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.1 0.08
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 0.028160 2.407367 -11.677061
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.1 0.08
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -11.497988 2.407367 -0.176485
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.1 0.08
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name noname
+		position 0.000000 -0.500000 -0.000000
+		rotation 0.865529 0.000000 -0.500859 -0.000000
+
+		properties
+		{
+			dimensions 2
+			brushMeshFile Level8_b0.mesh
+			enabled 1
+			followDirectors 0
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def utick(self, elapsed):
+			       : 	rot = self.getOrientation()
+			       : 	self.setOrientation(rot * Ngf.Quaternion(Ngf.Radian(0.164 * elapsed), Ngf.Vector3.NEGATIVE_UNIT_Y))
+			boxShape 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.000001 -0.000000 4.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
+
+		properties
+		{
+			dimensions 2
+			brushMeshFile Level8_b1.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -4.000000 0.000000 -0.000001
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			brushMeshFile Level8_b2.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -17.500000 -0.500000 -2.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level8_b3.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position 1.500000 1.159853 18.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position 12.481050 0.499858 0.977088
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 10.465425 0.500153 3.946071
+		rotation 0.917247 0.000000 -0.398320 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.421645 0.500153 3.719429
+		rotation 0.917247 0.000000 -0.398320 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 12.260202 0.500153 4.160178
+		rotation 0.917247 0.000000 -0.398320 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 10.810946 0.500153 0.981207
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 9.547592 0.500153 0.869735
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 10.810946 0.500153 -1.656971
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.777039 0.500153 -2.400120
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 12.483030 0.500153 -3.477686
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 5.453661 0.500000 -11.710485
+		rotation 0.209663 0.000000 0.977774 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 4.821348 0.500000 -10.303870
+		rotation 0.209663 0.000000 0.977774 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 3.443457 0.500000 -7.238679
+		rotation 0.977774 0.000000 -0.209663 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 2.423572 0.500000 -7.640822
+		rotation 0.989822 0.000000 -0.142310 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.774753 0.500000 -8.836874
+		rotation 0.142310 0.000000 0.989822 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 3.804821 0.500000 -12.345088
+		rotation 0.142310 0.000000 0.989822 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -0.475200 0.500000 -8.001877
+		rotation 0.999183 0.000000 0.040427 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.584553 0.500000 -9.351041
+		rotation 0.040427 0.000000 -0.999182 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -0.871292 0.500000 -12.888705
+		rotation 0.040427 0.000000 -0.999182 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -2.414569 0.500000 -12.690458
+		rotation 0.100528 0.000000 -0.994934 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.224330 0.500000 -11.758669
+		rotation 0.100528 0.000000 -0.994934 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -1.433811 0.500000 -7.886700
+		rotation 0.994934 0.000000 0.100528 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position 7.251247 0.499781 -6.173395
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 8.131333 0.500084 -3.558849
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 8.654417 0.500075 -4.605021
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 8.724161 0.500074 -5.930175
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 8.061589 0.500085 -7.011225
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 6.945680 0.500105 -7.569191
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 5.515924 0.500130 -7.604072
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 6.228978 0.500148 -5.250629
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 5.217690 0.500166 -4.274212
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 4.225659 0.500153 -6.802017
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 8.001925 0.500151 3.205600
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 7.912230 0.500000 5.236669
+		rotation 0.942385 0.000000 0.334531 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 6.171030 0.500000 3.093209
+		rotation 0.334531 0.000000 -0.942385 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 4.485163 0.500000 1.017865
+		rotation 0.334531 0.000000 -0.942385 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 6.921383 0.500151 7.656331
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 6.640543 0.500152 6.584026
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 5.950006 0.500153 5.449273
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 5.676668 0.500151 4.315838
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 4.297081 0.500153 3.418537
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 3.399779 0.500153 2.521235
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.697383 0.500153 2.096197
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 8.264101 0.500153 1.104441
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 8.358554 0.500153 -0.170673
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.886289 0.500153 -1.493014
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.083439 0.500153 -2.531997
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 2.756656 0.500189 -0.695431
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 3.165158 0.500189 0.998192
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 4.176462 0.500189 -0.187474
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -7.383089 0.500007 -9.239640
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -0.804354 0.499922 -5.022617
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.925032 0.499939 -3.146516
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.644179 0.499970 -2.125236
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 3.462812 0.500097 -5.606405
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 2.696853 0.500065 -6.653207
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.573449 0.500059 -6.857461
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.424512 0.500054 -7.010652
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.852082 0.500037 -7.061707
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.924422 0.500023 -6.244675
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.124424 0.500007 -5.912750
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.287771 0.499996 2.189689
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.934567 0.499996 2.853525
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.188847 0.499996 3.083314
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.286730 0.499996 2.879057
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.976098 0.499996 2.087561
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.644180 0.499996 -1.257151
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.912979 0.500105 -2.824114
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -10.293303 0.499990 2.081030
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -10.548624 0.499990 0.932083
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -10.667236 0.500107 -6.936697
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.879577 0.500106 -6.332824
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.000022 0.500105 -5.728951
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.147023 0.500105 -5.160286
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.000000 0.500000 -3.034011
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.703449 0.499998 -3.027476
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -3.383089 0.500007 -2.239640
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.521807 0.499996 -3.712484
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.231627 0.499996 -4.416867
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.941447 0.499996 -5.121250
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.070907 0.499996 -7.234399
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.780727 0.499996 -7.938782
+		rotation 0.924613 0.000000 -0.380907 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.147023 0.500105 -2.160286
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.147023 0.500105 -1.114098
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.461778 0.500058 -2.230038
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.345829 0.500038 -1.811562
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.508868 0.500023 -1.044354
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.706778 0.500009 -0.033033
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.462664 0.500005 1.222401
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -5.452833 0.500000 1.109094
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.080563 0.500000 4.829372
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -3.984533 0.500000 6.026522
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -13.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -12.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -11.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -10.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -9.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -7.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.901785 0.500000 3.281043
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.042731 0.500000 2.769159
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.183676 0.500000 2.257274
+		rotation 0.964120 0.000000 0.265467 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.935669 0.500000 7.124248
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.747559 0.500000 8.363448
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.335013 0.500000 9.568749
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 0.000000 0.000000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level8_b4.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(0)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+		}
+	}
+	object
+	{
+		type MovingBrush
+		name noname
+		position 0.000000 -0.500000 -0.000000
+		rotation 0.998878 0.000000 0.047361 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile Level8_b5.mesh
+			enabled 1
+			followDirectors 0
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def utick(self, elapsed):
+			       : 	rot = self.getOrientation()
+			       : 	self.setOrientation(rot * Ngf.Quaternion(Ngf.Radian(0.164 * elapsed), Ngf.Vector3.NEGATIVE_UNIT_Y))
+			boxShape 1
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position 0.000218 0.389544 18.500729
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4.0
+			captureCameraHandler 1
+			canSwitchDimensions 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.287843 0.500000 10.798120
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green 0
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -8.108521 0.499991 8.422074
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyY
+			meshFile Mesh_Key.mesh
+			material Objects/KeyY
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+			scriptFile Prefab_KeyY.pyo
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.000000 0.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.0
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position 0.000000 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -2.500000 -0.500000 17.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Level8_b6.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position -1.500000 1.159853 18.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+	}
+	object
+	{
+		type Light
+		name noname
+		position 0.028160 2.407367 9.847578
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.1 0.08
+		}
+	}
+}
+

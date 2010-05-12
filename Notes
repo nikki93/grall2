@@ -6,27 +6,16 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
-- Work on Level 7.
+- Complete Level 8 (add dimension 2 part, final touches).
 
-- Fix Windows bug (check device name on Desktop-Windows).
-
-- Work on opening slideshow.
-
-- Decorate levels (textures, props).
-
-- Work on level music, mood, and ambient sound.
-
-- Add more settings options.
+- Add more graphics settings, optimise shaders.
 
 Side
 ----
-- Come up with new level ideas.
 
-- Work on logo.
+- Work on first story slideshow.
 
-- Make more brush textures.
-
-- Try adding analog stick control mechanism.
+- Make more brush textures, decorate levels (textures, props).
 
 Bugs
 ----
@@ -968,3 +957,11 @@ Tue Mar  2 20:02:21 AST 2010
 Sun Mar 14 23:30:46 AST 2010
 ----------------------------
 - Started work on Level 7.
+
+(AP + 'chillax' break ^_^ )
+
+Wed May 12 20:54:07 AST 2010
+----------------------------
+- Completed Level 7.
+- Added an option for 'Box' collision shapes for MovingBrush.
+- Began work on Level 8, 'Vortex', involving a spinning moving platform in a circular void.
