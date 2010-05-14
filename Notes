@@ -965,3 +965,7 @@ Wed May 12 20:54:07 AST 2010
 - Completed Level 7.
 - Added an option for 'Box' collision shapes for MovingBrush.
 - Began work on Level 8, 'Vortex', involving a spinning moving platform in a circular void.
+
+Fri May 14 03:18:14 AST 2010
+----------------------------
+- Added dimension 2 part of Level 8.

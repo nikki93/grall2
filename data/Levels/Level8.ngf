@@ -2,17 +2,2601 @@ ngflevel Level8
 {
 	object
 	{
-		type Light
+		type MovingBomb
 		name noname
-		position -0.028680 2.407367 0.388634
+		position -7.392659 0.500000 5.346605
+		rotation 0.945194 0.000000 0.326508 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.280000001192
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -4.191376 0.500000 -8.103701
+		rotation 0.864218 0.000000 -0.503117 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.280000001192
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 8.351919 0.500000 -3.671926
+		rotation 0.224705 -0.000000 -0.974427 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.280000001192
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.058142 0.500000 9.971568
+		rotation 0.393499 0.000000 0.919325 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 4.252625 0.500000 8.071727
+		rotation 0.499841 0.000000 0.866117 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.280000001192
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 9.199523 0.500000 4.293862
+		rotation 0.070394 -0.000000 -0.997519 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 9.643229 0.500000 3.174369
+		rotation 0.129430 -0.000000 -0.991589 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 9.950972 0.500000 2.011626
+		rotation 0.187942 -0.000000 -0.982180 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 10.123317 0.500000 0.766127
+		rotation 0.248403 -0.000000 -0.968657 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 10.174692 0.500000 -0.379145
+		rotation 0.293432 -0.000000 -0.955980 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 10.062071 0.500000 -1.556542
+		rotation 0.348463 -0.000000 -0.937323 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 9.794468 0.500000 -2.781456
+		rotation 0.405514 -0.000000 -0.914089 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 9.409808 0.500000 -3.888913
+		rotation 0.457467 -0.000000 -0.889227 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 8.931029 0.500000 -4.889258
+		rotation 0.505216 -0.000000 -0.862993 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 8.279764 0.500000 -5.925675
+		rotation 0.556177 -0.000000 -0.831064 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 7.404625 0.500000 -6.988537
+		rotation 0.611093 -0.000000 -0.791559 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.112593 0.500000 7.530934
+		rotation 0.516905 -0.000000 0.856043 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.140000000596
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 6.697792 0.500000 3.444883
+		rotation 0.012117 0.000000 -0.999927 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.140000000596
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 3.342421 0.500000 -6.749508
+		rotation 0.720925 0.000000 -0.693013 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.140000000596
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -5.626725 0.500000 -5.006755
+		rotation 0.993516 0.000000 -0.113692 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.140000000596
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -7.274523 0.500000 1.951649
+		rotation 0.928405 0.000000 0.371569 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.140000000596
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -8.295426 0.500000 -5.903728
+		rotation 0.999548 -0.000000 -0.030066 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -7.642527 0.500000 -6.727548
+		rotation 0.996663 -0.000000 -0.081623 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -6.987481 0.500000 -7.405622
+		rotation 0.991816 -0.000000 -0.127679 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -5.924494 0.500000 -8.280608
+		rotation 0.980914 -0.000000 -0.194444 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -4.887984 0.500000 -8.931726
+		rotation 0.967452 -0.000000 -0.253056 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -3.887570 0.500000 -9.410362
+		rotation 0.952234 -0.000000 -0.305368 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.780059 0.500000 -9.794865
+		rotation 0.933074 -0.000000 -0.359683 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.555107 0.500000 -10.062294
+		rotation 0.909158 -0.000000 -0.416452 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.377693 0.500000 -10.174746
+		rotation 0.883434 -0.000000 -0.468555 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.767570 0.500000 -10.123207
+		rotation 0.860555 -0.000000 -0.509358 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.013046 0.500000 -9.950685
+		rotation 0.827361 -0.000000 -0.561670 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 3.175744 0.500000 -9.642776
+		rotation 0.792637 -0.000000 -0.609694 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 4.295175 0.500000 -9.198911
+		rotation 0.755082 -0.000000 -0.655631 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 5.430470 0.500000 -8.577790
+		rotation 0.711760 -0.000000 -0.702422 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 6.498423 0.500000 -7.799934
+		rotation 0.664546 -0.000000 -0.747248 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -9.010899 0.500000 -4.676769
+		rotation 0.998779 0.000000 0.049408 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -9.541934 0.500000 -3.466983
+		rotation 0.993447 0.000000 0.114294 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -9.905448 0.500000 -2.224990
+		rotation 0.984143 0.000000 0.177378 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -10.099219 0.500000 -1.036464
+		rotation 0.971891 0.000000 0.235433 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -10.150921 0.500000 0.165201
+		rotation 0.956238 0.000000 0.292591 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -10.052647 0.500000 1.418723
+		rotation 0.936283 0.000000 0.351245 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -9.857664 0.500000 2.548443
+		rotation 0.918833 0.000000 0.394648 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -9.495610 0.500000 3.674438
+		rotation 0.894359 0.000000 0.447350 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -8.971993 0.500000 4.813671
+		rotation 0.865118 0.000000 0.501568 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -8.359178 0.500000 5.813111
+		rotation 0.834807 0.000000 0.550542 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -7.677354 0.500000 6.687775
+		rotation 0.803585 0.000000 0.595190 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -6.819322 0.500000 7.560751
+		rotation 0.766355 0.000000 0.642417 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -5.736945 0.500000 8.411633
+		rotation 0.721168 0.000000 0.692761 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -4.934294 0.500000 8.906226
+		rotation 0.688321 0.000000 0.725407 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -3.989741 0.500000 9.367501
+		rotation 0.649957 0.000000 0.759971 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.832148 0.500000 9.779931
+		rotation 0.602911 0.000000 0.797808 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.817337 0.500000 10.018253
+		rotation 0.561280 0.000000 0.827626 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.573377 0.500000 10.165597
+		rotation 0.509306 0.000000 0.860586 0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.670637 0.500000 10.159644
+		rotation 0.455781 0.000000 0.890092 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.271542 0.500000 4.836616
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
-			dimensions 3
-			lightType point
-			colour 1 0.2 0.1
-			attenuation 70 1 0.1 0.1
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.300000011921
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.026389 0.499999 3.355137
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.300000011921
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 5.408757 0.499999 0.022161
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.300000011921
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.618812 0.499999 -2.868519
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.300000011921
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.889407 0.500000 -5.410667
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.300000011921
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -3.457832 0.500000 -1.671741
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq -0.300000011921
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -6.038646 0.500000 -1.940036
+		rotation 0.994622 0.000000 0.103569 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -6.291283 0.500000 -0.805442
+		rotation 0.980947 0.000000 0.194273 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -6.321424 0.500000 0.518242
+		rotation 0.955312 0.000000 0.295599 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -6.026557 0.500000 1.977266
+		rotation 0.914026 0.000000 0.405655 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -5.534546 0.500000 3.098026
+		rotation 0.870620 0.000000 0.491957 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -4.851961 0.500000 4.085027
+		rotation 0.820175 0.000000 0.572112 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -4.028542 0.500000 4.898962
+		rotation 0.764534 0.000000 0.644583 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.971440 0.500000 5.603527
+		rotation 0.696138 0.000000 0.717908 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.040979 0.500000 6.005279
+		rotation 0.354526 0.000000 0.935046 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 3.282775 0.500000 5.427003
+		rotation 0.251480 0.000000 0.967862 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 4.208060 0.500000 4.745652
+		rotation 0.162773 0.000000 0.986664 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 5.116201 0.500000 3.748795
+		rotation 0.056965 0.000000 0.998376 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 5.831196 0.500000 2.495222
+		rotation 0.056986 0.000000 -0.998375 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 6.234372 0.500000 1.166869
+		rotation 0.165899 0.000000 -0.986143 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 6.342026 0.500000 0.087639
+		rotation 0.249606 0.000000 -0.968347 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 6.245024 0.500000 -1.108444
+		rotation 0.340092 0.000000 -0.940392 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 5.851872 0.500000 -2.446339
+		rotation 0.441406 0.000000 -0.897308 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 5.195103 0.500000 -3.638665
+		rotation 0.535146 0.000000 -0.844759 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 4.320143 0.500000 -4.643850
+		rotation 0.620931 0.000000 -0.783865 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 3.055176 0.500000 -5.558316
+		rotation 0.712665 0.000000 -0.701504 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 1.722345 0.500000 -6.104302
+		rotation 0.787708 0.000000 -0.616049 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.434350 0.500000 -6.327742
+		rotation 0.846999 0.000000 -0.531595 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.095195 0.500000 -6.247361
+		rotation 0.904988 0.000000 -0.425437 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.560740 0.500000 -5.802722
+		rotation 0.949732 0.000000 -0.313064 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -3.719134 0.500000 -5.137802
+		rotation 0.977416 0.000000 -0.211324 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -4.741733 0.500000 -4.212473
+		rotation 0.994597 0.000000 -0.103810 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -5.509400 0.500000 -3.142526
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.414306 0.500000 1.644006
+		rotation 0.877049 0.000000 0.480401 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.280568 0.500000 2.625219
+		rotation 0.724367 0.000000 0.689415 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.175831 0.500000 2.915598
+		rotation 0.525311 0.000000 0.850910 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 1.417940 0.500000 2.553640
+		rotation 0.323816 0.000000 0.946120 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.442380 0.500000 1.602003
+		rotation 0.087948 0.000000 0.996125 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.900678 0.500000 0.343073
+		rotation 0.142847 0.000000 -0.989745 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 2.780129 0.500000 -0.895832
+		rotation 0.350459 0.000000 -0.936578 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 1.907768 0.500000 -2.211799
+		rotation 0.590545 0.000000 -0.807005 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position 0.512463 0.500000 -2.875589
+		rotation 0.782966 0.000000 -0.622065 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -0.840974 0.500000 -2.797212
+		rotation 0.905953 0.000000 -0.423379 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -1.928469 0.500000 -2.193773
+		rotation 0.975319 0.000000 -0.220799 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name noname
+		position -2.685291 0.500000 -1.149281
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			speed 0.0
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       : 	self.m_ang = Ngf.Radian(float(self.getProperty("rotFreq", 0, "2")) * 2)
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	rot = Ngf.Quaternion(self.m_ang * elapsed, Ngf.Vector3.UNIT_Y)
+			       : 	self.setPosition(rot * self.getPosition())
+			       : 
+			clockwise 1
+			rotFreq 0.25
+			enabled 0
 		}
 	}
 	object
@@ -1560,7 +4144,7 @@ ngflevel Level8
 			       : 
 			       : def levelStart(self):
 			       : 	#Set the initially viewed dimension.
-			       : 	GraLL2.setDimension(1)
+			       : 	GraLL2.setDimension(2)
 			       : 	
 			       : 	#Set the bonus time for this level.
 			       : 	GraLL2.setBonusTime(0)
@@ -1609,7 +4193,7 @@ ngflevel Level8
 	{
 		type Player
 		name player1
-		position 0.000218 0.389544 18.500729
+		position -1.026164 0.389551 0.298023
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
