@@ -43,6 +43,9 @@ Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mNode->attachObject(mSound);
     mSound->setReferenceDistance(1.2);
     mSound->setGain(3);
+
+    //Preload materials.
+    Util::preloadMaterial("Objects/CheckpointOff");
 }
 //-------------------------------------------------------------------------------
 void Checkpoint::postLoad()

@@ -159,6 +159,10 @@ class GameListener :
                     if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
                         GlbVar.paused = !GlbVar.paused;
                     break;
+
+                case OIS::KC_R:
+                    Util::reloadMaterials();
+                    break;
             }
 
             return true;
@@ -213,6 +217,7 @@ class Game
             new Globals();
             GlbVar.keyMap = new KeyMap();
             loadSettings();
+            Util::writeShaderConfig();
 
             //--- Ogre (Graphics) ------------------------------------------------------
             //Root.
@@ -384,6 +389,13 @@ class Game
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Dimension2");
             Ogre::CompositorManager::getSingleton().setCompositorEnabled(viewport, "Compositor/Glow", true);
 
+            //Preloader.
+            Ogre::SceneNode *preloadNode = GlbVar.ogreSmgr->getRootSceneNode()->createChildSceneNode();
+            GlbVar.preloadEntity = GlbVar.ogreSmgr->createEntity(Ogre::SceneManager::PT_PLANE);
+            preloadNode->attachObject(GlbVar.preloadEntity);
+            preloadNode->setVisible(false);
+            Util::preloadMaterial("ParticleFX/Flare");
+
             return true;
         }
 
@@ -478,6 +490,7 @@ class Game
             //Save settings, user record.
             saveRecord();
             saveSettings();
+            Util::writeShaderConfig();
 
             //Helpers.
             delete GlbVar.gravMgr;

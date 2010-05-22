@@ -58,6 +58,9 @@ Switch::Switch(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mNode->attachObject(mOffSound);
     mOffSound->setReferenceDistance(1.2);
     mOffSound->setGain(5);
+
+    //Preload the 'off' material to avoid hiccups.
+    Util::preloadMaterial("Objects/SwitchOn");
 }
 //-------------------------------------------------------------------------------
 void Switch::postLoad()

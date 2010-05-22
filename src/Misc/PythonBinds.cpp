@@ -287,6 +287,12 @@ void py_destroySound(OgreAL::Sound *sound)
     GlbVar.soundMgr->destroySound(sound);
 }
 
+//Preload.
+void py_preloadMaterial(Ogre::String mat)
+{
+    Util::preloadMaterial(mat);
+}
+
 //--- The module ----------------------------------------------------------------
 
 BOOST_PYTHON_MODULE(GraLL2)
@@ -681,6 +687,11 @@ BOOST_PYTHON_MODULE(GraLL2)
     py::def("isUp", py_isUp,
             "isUp()\n"
             "Whether the world is up (ie. gravity is normal)."
+           );
+
+    py::def("preloadMaterial", py_preloadMaterial,
+            "preloadMaterial()\n"
+            "Preload a material to avoid the hiccup caused by loading it when it's actually first used."
            );
 }
 

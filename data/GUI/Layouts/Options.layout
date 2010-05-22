@@ -2,7 +2,7 @@
 <MyGUI type="Layout">
     <Widget type="Window" skin="WindowC" position="345 51 572 396" layer="Main" name="win_options">
         <Property key="Widget_Caption" value="Options"/>
-        <Widget type="Tab" skin="Tab" position="8 9 544 307" layer="Main">
+        <Widget type="Tab" skin="Tab" position="8 10 544 307" layer="Main">
             <Widget type="TabItem" skin="Default" position="4 26 535 275" layer="Main" name="o_tab_controls">
                 <Property key="Sheet_Select" value="true"/>
                 <Property key="Widget_Caption" value="Controls"/>
@@ -145,19 +145,19 @@
                     <Property key="Widget_Caption" value="Resolution:"/>
                 </Widget>
                 <Widget type="ComboBox" skin="ComboBox" position="112 34 128 18" layer="Back" name="o_g_cmb_resolution">
-                    <Property key="ComboBox_AddItem" value ="800x600"/>
-                    <Property key="ComboBox_AddItem" value ="1024x768"/>
-                    <Property key="ComboBox_AddItem" value ="1152x864"/>
-                    <Property key="ComboBox_AddItem" value ="1280x768"/>
-                    <Property key="ComboBox_AddItem" value ="1280x800"/>
-                    <Property key="ComboBox_AddItem" value ="1280x960"/>
-                    <Property key="ComboBox_AddItem" value ="1280x1024"/>
-                    <Property key="ComboBox_AddItem" value ="1366x768"/>
-                    <Property key="ComboBox_AddItem" value ="1440x900"/>
-                    <Property key="ComboBox_AddItem" value ="1600x1200"/>
-                    <Property key="ComboBox_AddItem" value ="1680x1050"/>
-                    <Property key="ComboBox_AddItem" value ="1920x1080"/>
-                    <Property key="ComboBox_AddItem" value ="1920x1200"/>
+                    <Property key="ComboBox_AddItem" value="800x600"/>
+                    <Property key="ComboBox_AddItem" value="1024x768"/>
+                    <Property key="ComboBox_AddItem" value="1152x864"/>
+                    <Property key="ComboBox_AddItem" value="1280x768"/>
+                    <Property key="ComboBox_AddItem" value="1280x800"/>
+                    <Property key="ComboBox_AddItem" value="1280x960"/>
+                    <Property key="ComboBox_AddItem" value="1280x1024"/>
+                    <Property key="ComboBox_AddItem" value="1366x768"/>
+                    <Property key="ComboBox_AddItem" value="1440x900"/>
+                    <Property key="ComboBox_AddItem" value="1600x1200"/>
+                    <Property key="ComboBox_AddItem" value="1680x1050"/>
+                    <Property key="ComboBox_AddItem" value="1920x1080"/>
+                    <Property key="ComboBox_AddItem" value="1920x1200"/>
                 </Widget>
                 <Widget type="StaticText" skin="StaticText" position="8 58 84 20" layer="Back">
                     <Property key="Widget_Caption" value="Fullscreen:"/>
@@ -170,13 +170,24 @@
                     <Property key="ComboBox_AddItem" value="OpenGL"/>
                     <Property key="ComboBox_AddItem" value="Direct3D"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="307 11 104 18" layer="Back">
+                <Widget type="StaticText" skin="StaticText" position="307 10 154 18" layer="Back">
                     <Property key="Widget_Caption" value="Lighting:"/>
                 </Widget>
-                <Widget type="Button" skin="CheckBox" position="415 7 24 24" layer="Back" name="o_g_chk_lighting"/>
+                <Widget type="Button" skin="CheckBox" position="466 6 24 24" layer="Back" name="o_g_chk_lighting"/>
+                <Widget type="StaticText" skin="StaticText" position="307 34 153 18" layer="Back">
+                    <Property key="Widget_Caption" value="Normal mapping:"/>
+                </Widget>
+                <Widget type="Button" skin="CheckBox" position="466 30 48 24" layer="Back" name="o_g_chk_normalMap"/>
+                <Widget type="StaticText" skin="StaticText" position="307 58 156 18" layer="Back">
+                    <Property key="Widget_Caption" value="Parallax mapping:"/>
+                </Widget>
+                <Widget type="Button" skin="CheckBox" position="466 54 48 24" layer="Back" name="o_g_chk_parallaxMap"/>
+                <Widget type="Button" skin="Button" position="412 236 117 32" layer="Back" name="o_g_but_apply">
+                    <Property key="Widget_Caption" value="Apply Changes"/>
+                </Widget>
             </Widget>
         </Widget>
-        <Widget type="Button" skin="Button" position="424 321 128 32" layer="Back" name="o_but_ok">
+        <Widget type="Button" skin="Button" position="424 322 128 32" layer="Back" name="o_but_ok">
             <Property key="Widget_Caption" value="OK"/>
         </Widget>
         <Widget type="StaticText" skin="StaticText" position="299 -107 44 88" layer="Back"/>

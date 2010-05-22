@@ -12,7 +12,6 @@ Next
 
 Side
 ----
-
 - Work on first story slideshow.
 
 - Make more brush textures, decorate levels (textures, props).
@@ -969,3 +968,10 @@ Wed May 12 20:54:07 AST 2010
 Fri May 14 03:18:14 AST 2010
 ----------------------------
 - Added dimension 2 part of Level 8.
+
+Fri May 21 16:07:17 AST 2010
+----------------------------
+- Added Material preloading feature, to remove mid-game resource-loading hiccups.
+- Added Material reloader - changes to material/shader files can be picked up while the game is running.
+- Added shader settings feature (normal mapping and parallax mapping can now be enabled/disabled).
+- Added shader settings to Options Dialog.

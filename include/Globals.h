@@ -116,6 +116,9 @@ struct Globals : public Ogre::Singleton<Globals>
     //Currently shown SlideShow.
     NGF::GameObject *currSlideshow;
 
+    //Preload overlay.
+    Ogre::Entity *preloadEntity;
+
     //--- Global 'data' ----------------------------------------------------------------
     
     //Globally required data.
@@ -155,6 +158,8 @@ struct Globals : public Ogre::Singleton<Globals>
         struct GraphicsSettings
         {
             bool lighting;
+            bool normalMapping;
+            bool parallaxMapping;
         } graphics;
 
         struct ControlSettings

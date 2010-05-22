@@ -202,6 +202,24 @@ inline void clearLevel()
     GlbVar.goMgr->destroyAll();
 }
 
+//Preload a material.
+inline void preloadMaterial(const Ogre::String &name)
+{
+    GlbVar.preloadEntity->setMaterialName(name);
+}
+
+//Reload all materials.
+void reloadMaterials();
+
+//Write Cg shader config .h file.
+inline void writeShaderConfig()
+{
+    std::ofstream config(USER_PREFIX "Content/ShaderConfig.h");
+
+    config << "#define SET_NORMAL_MAPPING " << GlbVar.settings.graphics.normalMapping << std::endl;
+    config << "#define SET_PARALLAX_MAPPING " << GlbVar.settings.graphics.parallaxMapping << std::endl;
+}
+
 } //namespace Util
 
 #endif

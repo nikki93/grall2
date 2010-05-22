@@ -31,6 +31,10 @@ OptionsDialog::OptionsDialog()
     mFullscreenCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickFullscreen);
     mLightingCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_lighting");
     mLightingCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickLighting);
+    mNormalMapCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_normalMap");
+    mNormalMapCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickNormalMap);
+    mParallaxMapCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_parallaxMap");
+    mParallaxMapCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickParallaxMap);
     mRenderersBox = GlbVar.gui->findWidget<MyGUI::ComboBox>("o_g_cmb_renderer");
 
     //Configure sliders.
@@ -61,6 +65,8 @@ OptionsDialog::OptionsDialog()
     MyGUI::ButtonPtr button;
     button = GlbVar.gui->findWidget<MyGUI::Button>("o_but_ok");
     button->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickOK);
+    button = GlbVar.gui->findWidget<MyGUI::Button>("o_g_but_apply");
+    button->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickGraphicsApply);
 
     //Quick hack to update.
     setVisible(true);
@@ -123,6 +129,8 @@ void OptionsDialog::tick()
 
         mFullscreenCheckBox->setStateCheck(GlbVar.settings.ogre.winFullscreen);
         mLightingCheckBox->setStateCheck(GlbVar.settings.graphics.lighting);
+        mNormalMapCheckBox->setStateCheck(GlbVar.settings.graphics.normalMapping);
+        mParallaxMapCheckBox->setStateCheck(GlbVar.settings.graphics.parallaxMapping);
 
         GlbVar.settings.ogre.renderer = mRenderersBox->getIndexSelected() == 1 ? Globals::Settings::OgreSettings::DIRECT3D : Globals::Settings::OgreSettings::OPENGL;
     }
@@ -187,6 +195,16 @@ void OptionsDialog::onClickLighting(MyGUI::WidgetPtr button)
     GlbVar.settings.graphics.lighting = !GlbVar.settings.graphics.lighting;
 }
 //-------------------------------------------------------------------------------
+void OptionsDialog::onClickNormalMap(MyGUI::WidgetPtr button)
+{
+    GlbVar.settings.graphics.normalMapping = !GlbVar.settings.graphics.normalMapping;
+}
+//-------------------------------------------------------------------------------
+void OptionsDialog::onClickParallaxMap(MyGUI::WidgetPtr button)
+{
+    GlbVar.settings.graphics.parallaxMapping = !GlbVar.settings.graphics.parallaxMapping;
+}
+//-------------------------------------------------------------------------------
 void OptionsDialog::onSelectResolution(MyGUI::ComboBoxPtr, size_t index)
 {
     Ogre::String res = mResolutionsBox->getItemNameAt(index);
@@ -242,5 +260,11 @@ void OptionsDialog::setVisible(bool visible)
         if (curInd >= GlbVar.firstLevel && curInd <= GlbVar.records.highestLevelIndex)
             GlbVar.gui->hidePointer();
     }
+}
+//-------------------------------------------------------------------------------
+void OptionsDialog::onClickGraphicsApply(MyGUI::WidgetPtr)
+{
+    Util::writeShaderConfig();
+    Util::reloadMaterials();
 }
 //-------------------------------------------------------------------------------

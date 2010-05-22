@@ -54,6 +54,8 @@ void loadSettings()
     //--- Graphics ---------------------------------------------------------------------
 
     GlbVar.settings.graphics.lighting = Ogre::StringConverter::parseBool(cfg.getSetting("lighting", "graphics", "yes"));
+    GlbVar.settings.graphics.normalMapping = Ogre::StringConverter::parseBool(cfg.getSetting("normalMapping", "graphics", "yes"));
+    GlbVar.settings.graphics.parallaxMapping = Ogre::StringConverter::parseBool(cfg.getSetting("parallaxMapping", "graphics", "yes"));
 
     //--- Controls ---------------------------------------------------------------------
 
@@ -110,6 +112,8 @@ void saveSettings()
     cfg << "[graphics]" << std::endl;
 
     cfg << "lighting = " << GlbVar.settings.graphics.lighting << std::endl;
+    cfg << "normalMapping = " << GlbVar.settings.graphics.normalMapping << std::endl;
+    cfg << "parallaxMapping = " << GlbVar.settings.graphics.parallaxMapping << std::endl;
     cfg << std::endl;
     
     //--- Controls ---------------------------------------------------------------------

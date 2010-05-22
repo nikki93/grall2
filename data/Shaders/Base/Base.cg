@@ -1,4 +1,5 @@
 //--- Helper functions ----------------------------------------------------------------
+#include "ShaderConfig.h"
 
 //Expand a compressed vector.
 float3 expand(float3 v)
@@ -63,7 +64,7 @@ void BasePerLight_vp
 
          out float4 oPos : POSITION,
          out float2 oUv : TEXCOORD0,
-#if NORMAL_MAPPING
+#if (NORMAL_MAPPING && SET_NORMAL_MAPPING)
          out float3 oEyeDir : TEXCOORD1,
 #else
          out float3 oNorm : TEXCOORD1,
@@ -93,7 +94,7 @@ void BasePerLight_vp
 
     oSpotlightDir = mul(world, spotlightDir).xyz;
 
-#if NORMAL_MAPPING
+#if (NORMAL_MAPPING && SET_NORMAL_MAPPING)
     //If normal mapping is on, we move everything to tangent-space.
     float3 binormal = cross(tangent, normal);
     float3x3 rotation = float3x3(tangent, binormal, normal);
@@ -105,7 +106,7 @@ void BasePerLight_vp
 
     oHalfAngle = normalize(oLightDir + EyeDir);
 
-#if NORMAL_MAPPING
+#if (NORMAL_MAPPING && SET_NORMAL_MAPPING)
     oEyeDir = EyeDir;
 #else
     oNorm = normal;
@@ -119,7 +120,7 @@ void BasePerLight_vp
 void BasePerLight_fp
     (
          float2 uv: TEXCOORD0,
-#if NORMAL_MAPPING
+#if (NORMAL_MAPPING && SET_NORMAL_MAPPING)
          float3 eyeDir : TEXCOORD1,
 #else
          float3 normal: TEXCOORD1,
@@ -134,14 +135,14 @@ void BasePerLight_fp
          //Material properties.
          sampler2D diffuseMap: register(s0),
          sampler2D normalBumpMap : register(s1),
-#if PARALLAX_MAPPING
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
          sampler2D glowMap : register(s3),
 #endif
 
          uniform float4 matDiffuse,
          uniform float4 matSpecular,
 
-#if PARALLAX_MAPPING
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
          uniform float4 scaleBias,
 #endif
 
@@ -160,8 +161,8 @@ void BasePerLight_fp
          out float4 oColor : COLOR
     )
 { 
-#if NORMAL_MAPPING
-#if PARALLAX_MAPPING
+#if (NORMAL_MAPPING && SET_NORMAL_MAPPING)
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
     float height = tex2D(normalBumpMap, uv).a;
     float displacement = (height * scaleBias.x) - scaleBias.y;
     float3 uv2 = float3(uv, 1); 
@@ -197,7 +198,7 @@ void BasePerLight_fp
     //Diffuse texture.
     oColor *= tex2D(diffuseMap, uv);
 
-#if PARALLAX_MAPPING
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
     oColor += tex2D(glowMap, uv);
 #endif
 }
@@ -213,7 +214,7 @@ void BaseAmbient_vp
 
          uniform float3 eyePosition,
 
-#if PARALLAX_MAPPING
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
          float3 normal : NORMAL, 
          float3 tangent : TANGENT,
          out float3 oEyeDir : TEXCOORD1,
@@ -227,7 +228,7 @@ void BaseAmbient_vp
     oPos = mul(worldViewProj, position);
     oUv = uv;
 
-#if PARALLAX_MAPPING
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
     float3 binormal = cross(tangent, normal);
     float3x3 rotation = float3x3(tangent, binormal, normal);
     oEyeDir = normalize(eyePosition - position.xyz);
@@ -242,7 +243,7 @@ void BaseAmbient_fp
          float2 uv : TEXCOORD0,
          float4 WorldPos : TEXCOORD2,
 
-#if PARALLAX_MAPPING
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
          float2 eyeDir : TEXCOORD1,
          uniform float4 scaleBias,
 #endif
@@ -256,7 +257,7 @@ void BaseAmbient_fp
          out float4 oColor : COLOR
     )
 { 
-#if PARALLAX_MAPPING
+#if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
     float height = tex2D(normalBumpMap, uv).a;
     float displacement = (height * scaleBias.x) - scaleBias.y;
     float3 uv2 = float3(uv, 1); 
