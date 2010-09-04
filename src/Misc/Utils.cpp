@@ -47,7 +47,7 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
     pFileName = (USER_PREFIX "Screenshots/") + pFileName + Ogre::StringConverter::toString(count);
 
     //Don't want mouse cursor showing up in the shot.
-    GlbVar.gui->isVisiblePointer(false);
+    GlbVar.gui->setVisiblePointer(false);
 
     Ogre::String gridFilename;
 
@@ -142,7 +142,7 @@ void highResScreenshot(Ogre::RenderWindow* pRenderWindow, Ogre::Camera* pCamera,
         }
     }
 
-    GlbVar.gui->isVisiblePointer(true);
+    GlbVar.gui->setVisiblePointer(true);
 }
 
 //--- Resource reloading ---

@@ -234,7 +234,7 @@ void OptionsDialog::setVisible(bool visible)
     if (visible)
     {
         //Gotta see where we click!
-        GlbVar.gui->isVisiblePointer(true);
+        GlbVar.gui->setVisiblePointer(true);
 
         //Update scrolls.
         mTurningScroll->setScrollPosition((GlbVar.settings.controls.turningSensitivity / SLIDER_QUANTUM) - 1);
