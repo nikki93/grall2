@@ -2,7 +2,7 @@ compositor Compositor/Glow
 {
     technique
     {
-        texture rt0 target_width target_height PF_A8R8G8B8 shared
+        texture rt0 target_width target_height PF_A8R8G8B8
         texture glowMap target_width target_height PF_A8R8G8B8
         texture AtoB target_width target_height PF_A8R8G8B8
 
