@@ -247,9 +247,7 @@ class Game
 
             for (Ogre::StringVector::iterator iter = GlbVar.settings.ogre.plugins.begin();
                     iter != GlbVar.settings.ogre.plugins.end(); ++iter)
-            {
                 GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/" + (*iter));
-            }
 
             //Resources.
             Util::addResourceLocationRecursive(DATA_PREFIX, "General");
