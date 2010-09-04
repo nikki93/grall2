@@ -234,7 +234,7 @@ void OptionsDialog::setVisible(bool visible)
     if (visible)
     {
         //Gotta see where we click!
-        GlbVar.gui->showPointer();
+        GlbVar.gui->isVisiblePointer(true);
 
         //Update scrolls.
         mTurningScroll->setScrollPosition((GlbVar.settings.controls.turningSensitivity / SLIDER_QUANTUM) - 1);
@@ -258,7 +258,7 @@ void OptionsDialog::setVisible(bool visible)
     {
         unsigned int curInd = GlbVar.woMgr->getCurrentWorldIndex();
         if (curInd >= GlbVar.firstLevel && curInd <= GlbVar.records.highestLevelIndex)
-            GlbVar.gui->hidePointer();
+            GlbVar.gui->setVisiblePointer(false);
     }
 }
 //-------------------------------------------------------------------------------

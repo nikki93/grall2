@@ -29,15 +29,16 @@ package.postbuildcommands = {
     "rm `find -name '*.d'`"
 }
 
+-- pkg-config -------------------------------------------------------------------------------
+
+package.buildoptions = { "`pkg-config --cflags OGRE MYGUI bullet OgreAL OIS`" }
+package.linkoptions = { "`pkg-config --libs OGRE MYGUI bullet OgreAL OIS`" }
+
 -- Search paths -----------------------------------------------------------------------------
 
 package.includepaths = {
-    "../../Libraries/ogre/btogre/include",                                   -- BtOgre
-    "../../Libraries/ogre/ngf/include",                                      -- NGF
-    "/usr/local/include/OGRE",                                               -- Ogre
-    "/usr/local/include/OIS",                                                -- OIS
-    "/usr/local/include/MYGUI",                                              -- MyGUI
-    "/usr/local/include/OgreAL",                                             -- OgreAL
+    "../btogre/include",                                                     -- BtOgre
+    "../ngf/include",                                                        -- NGF
     "/usr/include/python2.6",                                                -- Python
 
 
@@ -51,23 +52,10 @@ package.libpaths = {
 -- Libraries --------------------------------------------------------------------------------
 
 package.links = {
-    "BulletDynamics",
-    "BulletCollision",
-    "LinearMath",
-    "OIS",
-    "OgreAL",
-    "OgreMain",
+    "MyGUI.OgrePlatform",
     "boost_python",
     "boost_serialization",
-    "m",
-    "mygui",
-    "ogg",
-    "openal",
-    "pthread",
     "python2.6",
-    "uuid",
-    "vorbis",
-    "vorbisfile"
 }
 
 -- Files ------------------------------------------------------------------------------------

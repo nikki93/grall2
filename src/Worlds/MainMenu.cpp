@@ -49,7 +49,7 @@ void MainMenu::init()
     GlbVar.fader->abortFade(0);
 
     //Gotta see where we click. :-)
-    GlbVar.gui->showPointer();
+    GlbVar.gui->setVisiblePointer(true);
 
     //Background, logo.
     mBackground = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Back");
