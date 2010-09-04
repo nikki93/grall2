@@ -71,8 +71,9 @@ class Fader
 
         inline void setColour(const Ogre::ColourValue &colour)
         {
+            MyGUI::Colour col(colour.r, colour.g, colour.b, colour.a);
             MyGUI::RawRect *raw = mImage->getSubWidgetMain()->castType<MyGUI::RawRect>();
-            raw->setRectColour(colour, colour, colour, colour);
+            raw->setRectColour(col, col, col, col);
         }
 
         //Abort the fading, and jump to given alpha.

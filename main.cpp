@@ -32,6 +32,7 @@
 #include "Globals.h"
 
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
+#include "MyGUI_OgrePlatform.h"
 
 template<> Globals* Ogre::Singleton<Globals>::ms_Singleton = 0;
 
@@ -71,7 +72,7 @@ class GameListener :
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
             //GUI update.
-            GlbVar.gui->injectFrameEntered(evt.timeSinceLastFrame);
+            //GlbVar.gui->injectFrameEntered(evt.timeSinceLastFrame);
 
             //Physics update.
             if (!GlbVar.paused)
@@ -100,6 +101,10 @@ class GameListener :
         }
 
         //--- Send keypress events to GameObjects, and all events to MyGUI -------------
+        static void sendKeyPressMessage(NGF::GameObject *obj)
+        {
+            GlbVar.goMgr->sendMessage(obj, NGF_MESSAGE(MSG_KEYPRESSED, mCurrKey));
+        }
         bool keyPressed(const OIS::KeyEvent &arg)
         {
             mCurrKey = arg.key;
@@ -109,7 +114,7 @@ class GameListener :
             GlbVar.optionsDialog->keyPressed(mCurrKey);
 
             //Tell MyGUI.
-            GlbVar.gui->injectKeyPress(arg);
+            GlbVar.gui->injectKeyPress(MyGUI::KeyCode::Enum(arg.key), arg.text);
 
             //Tell all GameObjects.
             if (!GlbVar.console->isVisible())
@@ -167,30 +172,25 @@ class GameListener :
 
             return true;
         }
-        static void sendKeyPressMessage(NGF::GameObject *obj)
-        {
-            GlbVar.goMgr->sendMessage(obj, NGF_MESSAGE(MSG_KEYPRESSED, mCurrKey));
-        }
-
         bool keyReleased(const OIS::KeyEvent &arg)
         {
-            GlbVar.gui->injectKeyRelease(arg);
+            GlbVar.gui->injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
             return true;
         }
 
         bool mouseMoved(const OIS::MouseEvent &arg)
         {
-            GlbVar.gui->injectMouseMove(arg);
+            GlbVar.gui->injectMouseMove(arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
             return true;
         }
         bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
         {
-            GlbVar.gui->injectMousePress(arg, id);
+            GlbVar.gui->injectMousePress(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
             return true;
         }
         bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
         {
-            GlbVar.gui->injectMouseRelease(arg, id);
+            GlbVar.gui->injectMouseRelease(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
             return true;
         }
 };
@@ -247,9 +247,7 @@ class Game
 
             for (Ogre::StringVector::iterator iter = GlbVar.settings.ogre.plugins.begin();
                     iter != GlbVar.settings.ogre.plugins.end(); ++iter)
-            {
                 GlbVar.ogreRoot->loadPlugin(GlbVar.settings.ogre.pluginDirectory + "/" + (*iter));
-            }
 
             //Resources.
             Util::addResourceLocationRecursive(DATA_PREFIX, "General");
@@ -348,8 +346,10 @@ class Game
             GlbVar.phyWorld->setDebugDrawer(GlbVar.phyDebug);
 
             //--- MyGUI (GUI) ----------------------------------------------------------
+            MyGUI::OgrePlatform *guiPlatform = new MyGUI::OgrePlatform();
+            guiPlatform->initialise(GlbVar.ogreWindow, GlbVar.ogreSmgr);
             GlbVar.gui = new MyGUI::Gui();
-            GlbVar.gui->initialise(GlbVar.ogreWindow);
+            GlbVar.gui->initialise();
 
             //--- OgreAL (Sound) -------------------------------------------------------
             GlbVar.soundMgr = new OgreAL::SoundManager();
