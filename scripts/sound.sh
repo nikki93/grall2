@@ -80,16 +80,16 @@ done
 
 if [[ $help == 1 ]];then
         echo "Usage: "
-        echo "       scripts/sound.sh -d <gamename> <localname>"
+        echo "       scripts/sound.sh -d <downloadfilename> <gamename>"
+        echo "       scripts/sound.sh -f <downloadfilename> <gamename> <localname>"
         echo "       scripts/sound.sh -p <gamename> <localname>"
         echo "       scripts/sound.sh -t <gamename>"
-        echo "       scripts/sound.sh -f <downloadfilename> <gamename> <localname>"
-        echo "       scripts/sound.sh -d <downloadfilename> <gamename>"
+        echo "       scripts/sound.sh -g <gamename> <localname>"
         echo "       scripts/sound.sh -n <basegamename> <localname> <localname> ..."
         echo "       scripts/sound.sh -l"
         echo
-        echo " 'gamename' identifies the sound in the game. 'localname' can be used to"
-        echo " differentiate local sounds."
+        echo " 'gamename' identifies the actual sound in the game. 'localname' can be used to"
+        echo " differentiate local (candidate) sounds."
         echo
         echo "Eg: "
         echo "       scripts/sound.sh -f shoot01.wav TurretShoot bigshoot"
@@ -105,8 +105,3 @@ if [[ $help == 1 ]];then
         exit
 fi
 
-if [[ $toHere == 1 ]];then
-fi
-
-if [[ $toThere == 1 ]];then
-fi
