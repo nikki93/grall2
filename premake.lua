@@ -45,7 +45,7 @@ package.linkoptions = { "`pkg-config --libs OGRE MYGUI bullet OgreAL OIS`" }
 
 package.includepaths = {
     "/usr/include/python2.6",                                                -- Python
-    "./include"                                                              -- GraLL2 files
+    "./include",                                                             -- GraLL2 files
     "./lib"                                                                  -- NGF, BtOgre
 }
 
@@ -59,7 +59,7 @@ package.links = {
     "boost_python",
     "boost_filesystem",
     "boost_serialization",
-    "python2.6",
+    "python2.6"
 }
 
 -- Files ------------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ package.includepaths = {
     "../../Libraries/vorbis/include",                                        -- Vorbis
 
     "./ext",                                                                 -- 'External' stuff
-    "./include"                                                              -- GraLL2 files
+    "./include",                                                             -- GraLL2 files
     "./lib"                                                                  -- NGF, BtOgre
 }
 
