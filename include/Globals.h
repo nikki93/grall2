@@ -22,7 +22,7 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
 
-//Some compile-time settingsj
+//Some compile-time settings
 #ifdef USE_HOME
 #define USER_PREFIX Ogre::String(getenv("HOME")) + "/.grall2/"
 #else
@@ -30,7 +30,7 @@
 #endif
 
 #ifndef DATA_PREFIX
-#define DATA_PREFIX(str) "../../data/" str
+#define DATA_PREFIX "../../data/"
 #endif
 
 //Defines.
