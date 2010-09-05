@@ -216,12 +216,21 @@ class Game
             //--- Globals, settings ----------------------------------------------------
             new Globals();
             GlbVar.keyMap = new KeyMap();
+
+            Util::requireDirectory(USER_PREFIX);
+            Util::requireFile(USER_PREFIX "Settings.ini");
+            Util::requireFile(USER_PREFIX "Record");
+            Util::requireDirectory(USER_PREFIX "Content");
+            Util::requireDirectory(USER_PREFIX "Saves");
+            Util::requireDirectory(USER_PREFIX "Screenshots");
+            Util::requireDirectory(USER_PREFIX "Video");
+            Util::requireDirectory(DATA_PREFIX);
             loadSettings();
             Util::writeShaderConfig();
 
             //--- Ogre (Graphics) ------------------------------------------------------
             //Root.
-            GlbVar.ogreRoot = new Ogre::Root("", "", "GraLL2.log");
+            GlbVar.ogreRoot = new Ogre::Root("", "", USER_PREFIX "main.log");
 
             /*
             if (!GlbVar.ogreRoot->restoreConfig())
@@ -349,7 +358,7 @@ class Game
             MyGUI::OgrePlatform *guiPlatform = new MyGUI::OgrePlatform();
             guiPlatform->initialise(GlbVar.ogreWindow, GlbVar.ogreSmgr);
             GlbVar.gui = new MyGUI::Gui();
-            GlbVar.gui->initialise();
+            GlbVar.gui->initialise("core.xml", USER_PREFIX "gui.log");
 
             //--- OgreAL (Sound) -------------------------------------------------------
             GlbVar.soundMgr = new OgreAL::SoundManager();

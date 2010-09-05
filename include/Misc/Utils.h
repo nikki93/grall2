@@ -18,7 +18,37 @@
 
 #include "Globals.h"
 
+#include <boost/filesystem/operations.hpp>
+#include <boost/filesystem/fstream.hpp>
+
 namespace Util {
+
+//Checks whether a file or directory exists.
+inline bool pathExists(const Ogre::String &filename)
+{
+    struct stat st;
+    return stat(filename.c_str(), &st) == 0;
+}
+inline bool touchFile(const Ogre::String &filename)
+{
+    std::ofstream out(filename.c_str());
+    out << std::endl;
+    out.close();
+}
+inline bool touchDirectory(const Ogre::String &path)
+{
+    boost::filesystem::create_directory(path);
+}
+inline void requireDirectory(const Ogre::String &path)
+{
+    if (!pathExists(path))
+        touchDirectory(path);
+}
+inline void requireFile(const Ogre::String &path)
+{
+    if (!pathExists(path))
+        touchFile(path);
+}
 
 //Shows a message. Returns pointer to the MessageBox GameObject.
 NGF::GameObject *showMessage(Ogre::String message, Ogre::Real time);
@@ -214,7 +244,7 @@ void reloadMaterials();
 //Write Cg shader config .h file.
 inline void writeShaderConfig()
 {
-    std::ofstream config(USER_PREFIX "Content/ShaderConfig.h");
+    std::ofstream config((USER_PREFIX "Content/ShaderConfig.h").c_str());
 
     config << "#define SET_NORMAL_MAPPING " << GlbVar.settings.graphics.normalMapping << std::endl;
     config << "#define SET_PARALLAX_MAPPING " << GlbVar.settings.graphics.parallaxMapping << std::endl;

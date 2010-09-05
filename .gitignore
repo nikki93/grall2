@@ -1,10 +1,3 @@
-#Sources to ignore.
-ext/BtOgre.cpp
-ext/Ngf.cpp
-ext/NgfBullet.cpp
-ext/NgfPython.cpp
-ext/NgfSerialisation.cpp
-
 #Files made by running/building.
 Makefile
 GraLL2.make

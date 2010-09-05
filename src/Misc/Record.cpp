@@ -21,7 +21,7 @@
 
 #include "Objects/Misc/CameraHandler.h"
 
-#define RECORD_FILE (USER_PREFIX "Record")
+#define RECORD_FILE (USER_PREFIX "Record").c_str()
 
 void loadRecord()
 {

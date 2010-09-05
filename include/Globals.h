@@ -22,9 +22,16 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
 
-//Some compile-time settings.
-#define USER_PREFIX "../../usr/"   //The user data (saves, settings etc.) directory (with ending slash!).
-#define DATA_PREFIX "../../data/"  //The game data (meshes, textures etc.) directory (with ending slash!).
+//Some compile-time settingsj
+#ifdef USE_HOME
+#define USER_PREFIX Ogre::String(getenv("HOME")) + "/.grall2/"
+#else
+#define USER_PREFIX Ogre::String("../../usr/") +
+#endif
+
+#ifndef DATA_PREFIX
+#define DATA_PREFIX(str) "../../data/" str
+#endif
 
 //Defines.
 #define GlbVar Globals::getSingleton()

@@ -15,24 +15,12 @@
 
 #include "Globals.h"
 
-#define SETTINGS_FILE (USER_PREFIX "Settings.ini")
+#define SETTINGS_FILE (USER_PREFIX "Settings.ini").c_str()
 
 void loadSettings()
 {
     Ogre::ConfigFile cfg;
-
-    try
-    {
-        cfg.loadDirect(SETTINGS_FILE);
-    }
-    catch (Ogre::FileNotFoundException &)
-    {
-        std::ofstream out(SETTINGS_FILE);
-        out << std::endl;
-        out.close();
-
-        cfg.loadDirect(SETTINGS_FILE);
-    }
+    cfg.loadDirect(SETTINGS_FILE);
 
     //--- Ogre -------------------------------------------------------------------------
     

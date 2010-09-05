@@ -29,9 +29,16 @@ package.postbuildcommands = {
     "rm `find -name '*.d'`"
 }
 
+if (options["data_prefix"]) then
+    table.insert(package.buildoptions, "-D 'DATA_PREFIX=\"" .. options["data_prefix"] .. "\"'")
+end
+if (options["use_home"]) then
+    table.insert(package.buildoptions, "-D USE_HOME")
+end
+
 -- pkg-config -------------------------------------------------------------------------------
 
-package.buildoptions = { "`pkg-config --cflags OGRE MYGUI bullet OgreAL OIS`" }
+table.insert(package.buildoptions, "`pkg-config --cflags OGRE MYGUI bullet OgreAL OIS`")
 package.linkoptions = { "`pkg-config --libs OGRE MYGUI bullet OgreAL OIS`" }
 
 -- Search paths -----------------------------------------------------------------------------
@@ -54,6 +61,7 @@ package.libpaths = {
 package.links = {
     "MyGUI.OgrePlatform",
     "boost_python",
+    "boost_filesystem",
     "boost_serialization",
     "python2.6",
 }
@@ -67,7 +75,8 @@ package.files = {
 
 -- Debug configuration ----------------------------------------------------------------------
 
-debug.defines = { "DEBUG", "_DEBUG" }
+table.insert(debug.defines, "DEBUG")
+table.insert(debug.defines, "_DEBUG")
 debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 

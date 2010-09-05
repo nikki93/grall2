@@ -28,3 +28,4 @@
 #include "ngfplugins/NgfStates.h"
 #include "ngfplugins/NgfExtras.h"
 #include "boost/format.hpp"
+#include "sys/stat.h"
