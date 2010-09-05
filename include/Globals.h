@@ -26,7 +26,7 @@
 #ifdef USE_HOME
 #define USER_PREFIX Ogre::String(getenv("HOME")) + "/.grall2/"
 #else
-#define USER_PREFIX Ogre::String("../../usr/") +
+#define USER_PREFIX Ogre::String("../../usr/") + ""
 #endif
 
 #ifndef DATA_PREFIX
