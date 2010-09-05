@@ -112,7 +112,6 @@ package.includepaths = {
     "../../Libraries/python/include",                                        -- Python
     "../../Libraries/vorbis/include",                                        -- Vorbis
 
-    "./ext",                                                                 -- 'External' stuff
     "./include",                                                             -- GraLL2 files
     "./lib"                                                                  -- NGF, BtOgre
 }
