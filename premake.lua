@@ -44,13 +44,9 @@ package.linkoptions = { "`pkg-config --libs OGRE MYGUI bullet OgreAL OIS`" }
 -- Search paths -----------------------------------------------------------------------------
 
 package.includepaths = {
-    "../btogre/include",                                                     -- BtOgre
-    "../ngf/include",                                                        -- NGF
     "/usr/include/python2.6",                                                -- Python
-
-
-    "./ext",                                                                 -- 'External' stuff
     "./include"                                                              -- GraLL2 files
+    "./lib"                                                                  -- NGF, BtOgre
 }
 
 package.libpaths = {
@@ -106,10 +102,8 @@ package.buildoptions = { "/MP" }            -- Parallel building (good for multi
 
 package.includepaths = {
     "../../Libraries/boost",                                                 -- Boost
-    "../../Libraries/btogre/include",                                        -- BtOgre
     "../../Libraries/bullet/include",                                        -- Bullet
     "../../Libraries/mygui/MyGUIEngine/include",                             -- MyGUI
-    "../../Libraries/ngf/include",                                           -- NGF
     "../../Libraries/ogg/include",                                           -- Ogg
     "../../Libraries/ogre/Dependencies/include",                             -- OIS
     "../../Libraries/ogre/OgreMain/include",                                 -- Ogre
@@ -120,6 +114,7 @@ package.includepaths = {
 
     "./ext",                                                                 -- 'External' stuff
     "./include"                                                              -- GraLL2 files
+    "./lib"                                                                  -- NGF, BtOgre
 }
 
 package.libpaths = {
@@ -162,12 +157,6 @@ release.links = {
 -- 'External' files too, like Ngf.cpp etc.
 package.files = {
     matchrecursive("*.h", "*.cpp"),
-
-    "../../Libraries/btogre/BtOgre.cpp",
-    "../../Libraries/ngf/Ngf.cpp",
-    "../../Libraries/ngf/plugins/ngfbullet/NgfBullet.cpp",
-    "../../Libraries/ngf/plugins/ngfpython/NgfPython.cpp",
-    "../../Libraries/ngf/plugins/ngfserialisation/NgfSerialisation.cpp"
 }
 
 -- Debug configuration ----------------------------------------------------------------------
