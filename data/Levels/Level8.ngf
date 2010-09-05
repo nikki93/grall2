@@ -1864,7 +1864,7 @@ ngflevel Level8
 			       : 
 			       : def levelStart(self):
 			       : 	#Set the initially viewed dimension.
-			       : 	GraLL2.setDimension(2)
+			       : 	GraLL2.setDimension(1)
 			       : 	
 			       : 	#Set the bonus time for this level.
 			       : 	GraLL2.setBonusTime(0)
@@ -1913,7 +1913,7 @@ ngflevel Level8
 	{
 		type Player
 		name player1
-		position 0.024759 0.400000 0.004831
+		position 0.024759 0.400000 18.004831
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
