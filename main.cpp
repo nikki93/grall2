@@ -217,15 +217,17 @@ class Game
             new Globals();
             GlbVar.keyMap = new KeyMap();
 
+            //We don't 'require' Settings.ini because if it doesn't exist we use the one
+            //in DATA_PREFIX.
             Util::requireDirectory(USER_PREFIX);
-            Util::requireFile(USER_PREFIX "Settings.ini");
             Util::requireFile(USER_PREFIX "Record");
             Util::requireDirectory(USER_PREFIX "Content");
             Util::requireDirectory(USER_PREFIX "Saves");
             Util::requireDirectory(USER_PREFIX "Screenshots");
             Util::requireDirectory(USER_PREFIX "Video");
-            Util::requireDirectory(DATA_PREFIX);
+
             loadSettings();
+
             Util::writeShaderConfig();
 
             //--- Ogre (Graphics) ------------------------------------------------------

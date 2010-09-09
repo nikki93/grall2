@@ -15,12 +15,17 @@
 
 #include "Globals.h"
 
-#define SETTINGS_FILE (USER_PREFIX "Settings.ini").c_str()
+#define SETTINGS_FILE (USER_PREFIX "Settings.ini")
+#define BACKUP_SETTINGS_FILE (DATA_PREFIX "Settings.ini")
 
 void loadSettings()
 {
     Ogre::ConfigFile cfg;
-    cfg.loadDirect(SETTINGS_FILE);
+
+    if (Util::pathExists(SETTINGS_FILE))
+        cfg.loadDirect(SETTINGS_FILE);
+    else
+        cfg.loadDirect(BACKUP_SETTINGS_FILE);
 
     //--- Ogre -------------------------------------------------------------------------
     
@@ -72,7 +77,7 @@ void loadSettings()
 
 void saveSettings()
 {
-    std::ofstream cfg(SETTINGS_FILE);
+    std::ofstream cfg(SETTINGS_FILE.c_str());
 
     //--- Ogre -------------------------------------------------------------------------
     
