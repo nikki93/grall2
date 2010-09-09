@@ -6,6 +6,8 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 Next
 ----
+- Fix cornering, speed/breaking.
+
 - Complete Level 8 (add dimension 2 part, final touches).
 
 - Add more graphics settings, optimise shaders.
@@ -975,3 +977,16 @@ Fri May 21 16:07:17 AST 2010
 - Added Material reloader - changes to material/shader files can be picked up while the game is running.
 - Added shader settings feature (normal mapping and parallax mapping can now be enabled/disabled).
 - Added shader settings to Options Dialog.
+
+Sun Sep  5 16:00:43 AST 2010
+----------------------------
+- Made more Linux install-friendly (can use /usr/share/grall2 for DATA_PREFIX or ~/.grall2 for
+  USER_PREFIX for example).
+
+Tue Sep  7 17:21:57 AST 2010
+----------------------------
+- Upgraded code to latest Ogre, MyGUI version.
+
+Thu Sep  9 18:38:28 AST 2010
+----------------------------
+- Can search for 'backup Settings.ini' in DATA_PREFIX.
