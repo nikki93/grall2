@@ -26,8 +26,7 @@ namespace Util {
 //Checks whether a file or directory exists.
 inline bool pathExists(const Ogre::String &filename)
 {
-    struct stat st;
-    return stat(filename.c_str(), &st) == 0;
+    return boost::filesystem::exists(filename);
 }
 inline bool touchFile(const Ogre::String &filename)
 {
