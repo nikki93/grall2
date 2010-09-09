@@ -26,7 +26,8 @@ release = package.config["Release"]
 if (linux) then
 
 package.postbuildcommands = { 
-    "rm `find -name '*.d'`"
+    "rm -f `find -name '*.d'`",
+    "scripts/compilePython.sh"
 }
 
 if (options["data_prefix"]) then
@@ -64,7 +65,6 @@ package.links = {
 
 -- Files ------------------------------------------------------------------------------------
 
--- 'External' files are symlinked.
 package.files = {
     matchrecursive("*.h", "*.cpp"),
 }
@@ -153,7 +153,6 @@ release.links = {
 
 -- Files ------------------------------------------------------------------------------------
 
--- 'External' files too, like Ngf.cpp etc.
 package.files = {
     matchrecursive("*.h", "*.cpp"),
 }

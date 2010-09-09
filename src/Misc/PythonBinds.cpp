@@ -703,11 +703,16 @@ void initPythonBinds()
     initGraLL2();
 
     //Compile all scripts to .pyc.
+    //
+    //NOTE: Not doing this now - do when building for install (DATA_PREFIX must
+    //be read-only).
+    /*
     PyRun_SimpleString(
             "import compileall\n\n"
 
             "compileall.compile_dir('" DATA_PREFIX "Python')"
             );
+    */
 }
 
 void runPythonStartupScript()
