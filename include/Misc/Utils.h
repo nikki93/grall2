@@ -28,13 +28,13 @@ inline bool pathExists(const Ogre::String &filename)
 {
     return boost::filesystem::exists(filename);
 }
-inline bool touchFile(const Ogre::String &filename)
+inline void touchFile(const Ogre::String &filename)
 {
     std::ofstream out(filename.c_str());
     out << std::endl;
     out.close();
 }
-inline bool touchDirectory(const Ogre::String &path)
+inline void touchDirectory(const Ogre::String &path)
 {
     boost::filesystem::create_directory(path);
 }
