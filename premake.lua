@@ -104,6 +104,7 @@ package.includepaths = {
     "../../Libraries/boost",                                                 -- Boost
     "../../Libraries/bullet/include",                                        -- Bullet
     "../../Libraries/mygui/MyGUIEngine/include",                             -- MyGUI
+    "../../Libraries/mygui/Platforms/Ogre/OgrePlatform/include",             -- MyGUI.OgrePlatform
     "../../Libraries/ogg/include",                                           -- Ogg
     "../../Libraries/ogre/Dependencies/include",                             -- OIS
     "../../Libraries/ogre/OgreMain/include",                                 -- Ogre
@@ -119,7 +120,7 @@ package.includepaths = {
 package.libpaths = {
     "../../Libraries/boost/lib",                                             -- Boost
     "../../Libraries/bullet/lib/$(ConfigurationName)",                       -- Bullet
-    "../../Libraries/mygui/MyGUIEngine/lib/$(ConfigurationName)",            -- MyGUI
+    "../../Libraries/mygui/build/lib/$(ConfigurationName)",                  -- MyGUI
     "../../Libraries/ogre/Dependencies/lib/$(ConfigurationName)",            -- OIS
     "../../Libraries/ogre/build/lib/$(ConfigurationName)",                   -- Ogre
     "../../Libraries/ogreal/lib/$(ConfigurationName)",                       -- OgreAL
@@ -136,7 +137,8 @@ debug.links = {
     "python26",
     "OIS_d",
     "OgreMain_d",
-    "MyGUI_d",
+    "MyGUIEngine_d",
+    "MyGUI.OgrePlatform_d",
     "OgreAL_d"
 }
 
@@ -147,7 +149,8 @@ release.links = {
     "python26",
     "OIS",
     "OgreMain",
-    "MyGUI",
+    "MyGUIEngine",
+    "MyGUI.OgrePlatform",
     "OgreAL"
 }
 

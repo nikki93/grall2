@@ -2,7 +2,7 @@ compositor Compositor/Dimension2
 {
     technique
     {
-        texture rt0 target_width target_height PF_A8R8G8B8 pooled
+        texture rt0 target_width target_height PF_A8R8G8B8
 
         target rt0
         {

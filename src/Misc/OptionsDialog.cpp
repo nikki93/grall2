@@ -90,9 +90,14 @@ void OptionsDialog::tick()
 
             //If it's a key displayer, make it display the key it wants to display.
             if (widget->getUserString("type") == "KeyDisplay") 
-                widget->setCaption(GlbVar.keyMap->keyToString(
-                            GlbVar.settings.controls.keys[widget->getUserString("key")]
-                            ));
+			{
+				MyGUI::StaticText *st = dynamic_cast<MyGUI::StaticText*>(widget);
+
+				if (st)
+					st->setCaption(GlbVar.keyMap->keyToString(
+								GlbVar.settings.controls.keys[widget->getUserString("key")]
+								));
+			}
         }
 
         //Tell user to press key if he has to.
