@@ -16,7 +16,12 @@
 #include "Globals.h"
 
 #define SETTINGS_FILE (USER_PREFIX "Settings.ini")
-#define BACKUP_SETTINGS_FILE (DATA_PREFIX "Settings.ini")
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+#define DEFAULT_SETTINGS_FILE (DATA_PREFIX "DefaultSettingsWindows.ini")
+#else
+#define DEFAULT_SETTINGS_FILE (DATA_PREFIX "DefaultSettingsLinux.ini")
+#endif
 
 void loadSettings()
 {
@@ -25,7 +30,7 @@ void loadSettings()
     if (Util::pathExists(SETTINGS_FILE))
         cfg.loadDirect(SETTINGS_FILE);
     else
-        cfg.loadDirect(BACKUP_SETTINGS_FILE);
+        cfg.loadDirect(DEFAULT_SETTINGS_FILE);
 
     //--- Ogre -------------------------------------------------------------------------
     
