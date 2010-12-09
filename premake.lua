@@ -45,7 +45,7 @@ package.linkoptions = { "`pkg-config --libs OGRE MYGUI bullet OgreAL OIS`" }
 -- Search paths -----------------------------------------------------------------------------
 
 package.includepaths = {
-    "/usr/include/python2.6",                                                -- Python
+    "/usr/include/python2.7",                                                -- Python
     "./include",                                                             -- GraLL2 files
     "./lib"                                                                  -- NGF, BtOgre
 }
@@ -60,7 +60,7 @@ package.links = {
     "boost_python",
     "boost_filesystem",
     "boost_serialization",
-    "python2.6"
+    "python2.7"
 }
 
 -- Files ------------------------------------------------------------------------------------
