@@ -3,7 +3,7 @@
 #mv data/Python/pyo/* data/Python
 #rm -rf data/Python/pyo
 
-python -m compileall data/Python
+python2.7 -m compileall data/Python
 
 #cd data/Python
 #mkdir pyo
