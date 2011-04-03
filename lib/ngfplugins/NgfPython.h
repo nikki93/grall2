@@ -19,10 +19,10 @@
 #include <Ogre.h> //Change this to only include specific headers when done.
 #include <Ngf.h>
 
-#include <python2.6/Python.h>
-#include <python2.6/marshal.h>
-#include <python2.6/import.h>
-#include <python2.6/pydebug.h>
+#include <python2.7/Python.h>
+#include <python2.7/marshal.h>
+#include <python2.7/import.h>
+#include <python2.7/pydebug.h>
 #include <boost/python.hpp>
 #include <boost/shared_ptr.hpp>
 
