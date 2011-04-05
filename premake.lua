@@ -131,18 +131,6 @@ package.libpaths = {
 
 -- Libraries --------------------------------------------------------------------------------
 
-debug.links = {
-    "bulletdynamics",
-    "bulletcollision",
-    "linearmath",
-    "python27",
-    "OIS_d",
-    "OgreMain_d",
-    "MyGUIEngine_d",
-    "MyGUI.OgrePlatform_d",
-    "OgreAL_d"
-}
-
 release.links = {
     "bulletdynamics",
     "bulletcollision",
@@ -153,6 +141,18 @@ release.links = {
     "MyGUIEngine",
     "MyGUI.OgrePlatform",
     "OgreAL"
+}
+
+debug.links = {
+    "bulletdynamics",
+    "bulletcollision",
+    "linearmath",
+    "python27_d",
+    "OIS_d",
+    "OgreMain_d",
+    "MyGUIEngine_d",
+    "MyGUI.OgrePlatform_d",
+    "OgreAL_d"
 }
 
 -- Files ------------------------------------------------------------------------------------
