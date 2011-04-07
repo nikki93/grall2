@@ -23,8 +23,6 @@
 template<> NGF::Python::PythonManager* Ogre::Singleton<NGF::Python::PythonManager>::ms_Singleton = 0;
 NGF::Python::PythonManager::PrintFunc NGF::Python::PythonManager::mPrinter = 0;
 
-#define LOG(msg) Ogre::LogManager::getSingleton().logMessage(msg)
-
 //Some functions used for file-reading.
 
 static void runPycFile(FILE *fp, const char *filename)
@@ -67,19 +65,18 @@ static void runPycFile(FILE *fp, const char *filename)
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 static FILE *fmemopen_w(void *buf, size_t size, char *name)
 {
+	char path[MAX_PATH];
+	int e = GetTempPath(MAX_PATH, path);
+
 	FILE *f;
-	char tmpname[L_tmpnam_s];
-
-	if (!tmpnam_s(tmpname, L_tmpnam_s))
-		if (GetCurrentDirectory(MAX_PATH - 1, name))
-			if (f = fopen(strcat(name, tmpname), "w+"))
-			{
-				LOG("tmpfile is: " + Ogre::StringConverter::toString((int) f) +", " + tmpname);
-				fwrite(buf, 1, size, f);
-				rewind(f);
-
-				return f;
-			}
+	if (e && e < MAX_PATH 
+		&& GetTempFileName(path, "grall2", 0, name)
+		&& (f = fopen(name, "w+")))
+	{
+		fwrite(buf, 1, size, f);
+		rewind(f);
+		return f;
+	}
 	
 	OGRE_EXCEPT(Ogre::Exception::ERR_CANNOT_WRITE_TO_FILE, 
 	    "Cannot create temporary file!", "NGF::Python::Util::runFile()");
