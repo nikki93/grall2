@@ -155,8 +155,8 @@ void BasePerLight_fp
 
          //Shadow stuff.
          sampler2D shadowMap : register(s2),
-         uniform float4 invSMSize,
-         uniform float4 depthRange,
+         //uniform float4 invSMSize,
+         //uniform float4 depthRange,
 
          out float4 oColor : COLOR
     )
@@ -193,7 +193,7 @@ void BasePerLight_fp
     }
 
     //Shadow. It's /that/ easy, thanks to nullsquared. :D
-    oColor *= shadow(shadowMap, ShadowMapPos, (LightDist - depthRange.x) * depthRange.w, 3, invSMSize.xy);
+    //oColor *= shadow(shadowMap, ShadowMapPos, (LightDist - depthRange.x) * depthRange.w, 3, invSMSize.xy);
 
     //Diffuse texture.
     oColor *= tex2D(diffuseMap, uv);
