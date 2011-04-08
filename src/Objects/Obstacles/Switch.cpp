@@ -92,9 +92,6 @@ void Switch::unpausedTick(const Ogre::FrameEvent &evt)
     GraLL2GameObject::unpausedTick(evt);
 
     //Handle on/off.
-    if (mTime > 0)
-        mTime -= evt.timeSinceLastFrame;
-
     switch (mType)
     {
         case ST_ONCE:
@@ -118,6 +115,8 @@ void Switch::unpausedTick(const Ogre::FrameEvent &evt)
             break;
     }
 
+    if (mTime > 0)
+        mTime -= evt.timeSinceLastFrame;
     mTimePrev = mTime;
 
     //Event calling.

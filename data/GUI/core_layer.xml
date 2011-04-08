@@ -1,21 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<MyGUI type="Layer" version="1.0">
+<MyGUI type="Layer" version="1.2">
 
-    <Layer name="Back" overlapped="false" pick="true"/>
-    <Layer name="Overlapped" overlapped="true" pick="true"/>
-    <Layer name="Middle" overlapped="false" pick="true"/>
-    <Layer name="Modal" overlapped="true" pick="true"/>
-    <Layer name="Main" overlapped="true" pick="true"/>
-    <Layer name="Console" overlapped="false" pick="true"/>
-    <Layer name="Popup" overlapped="true" pick="true"/>
-    <Layer name="FadeMiddle" overlapped="false" pick="false"/>
-    <Layer name="Info" overlapped="true" pick="true"/>
-    <Layer name="ToolTip" overlapped="false" pick="false"/>
-    <Layer name="DragAndDrop" overlapped="false" pick="false"/>
-    <Layer name="FadeBusy" overlapped="false" pick="false"/>
-    <Layer name="Pointer" overlapped="false" pick="false"/>
-    <Layer name="Fade" overlapped="false" pick="false"/>
-    <Layer name="Statistic" overlapped="false" pick="false"/>
-
+	<Layer type="SharedLayer" name="Wallpaper">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	<Layer type="SharedLayer" name="Back">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="OverlappedLayer" name="Overlapped">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="SharedLayer" name="Middle">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="OverlappedLayer" name="Modal">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="SharedLayer" name="Main">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="SharedLayer" name="Console">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="OverlappedLayer" name="Popup">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="SharedLayer" name="FadeMiddle">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	<Layer type="OverlappedLayer" name="Info">
+		<Property key="Pick" value="true"/>
+	</Layer>
+	<Layer type="SharedLayer" name="ToolTip">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	<Layer type="SharedLayer" name="DragAndDrop">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	<Layer type="SharedLayer" name="FadeBusy">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	<Layer type="SharedLayer" name="Pointer">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	<Layer type="SharedLayer" name="Fade">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	<Layer type="SharedLayer" name="Statistic">
+		<Property key="Pick" value="false"/>
+	</Layer>
+	
 </MyGUI>

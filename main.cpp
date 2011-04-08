@@ -166,7 +166,8 @@ class GameListener :
                     break;
 
                 case OIS::KC_R:
-                    Util::reloadMaterials();
+					if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+						Util::reloadMaterials();
                     break;
             }
 

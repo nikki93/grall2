@@ -15,6 +15,9 @@
 
 #include "ngfplugins/NgfPython.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <boost/python/stl_iterator.hpp>
 
 template<> NGF::Python::PythonManager* Ogre::Singleton<NGF::Python::PythonManager>::ms_Singleton = 0;
@@ -60,13 +63,25 @@ static void runPycFile(FILE *fp, const char *filename)
 }
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
-static FILE *fmemopen (void *buf, size_t size, const char *opentype)
+static FILE *fmemopen_w(void *buf, size_t size, char *name)
 {
-    FILE *f = tmpfile();
-    fwrite(buf, 1, size, f);
-    rewind(f);
+	char path[MAX_PATH];
+	int e = GetTempPath(MAX_PATH, path);
 
-    return f;
+	FILE *f;
+	if (e && e < MAX_PATH 
+		&& GetTempFileName(path, "grall2", 0, name)
+		&& (f = fopen(name, "w+")))
+	{
+		fwrite(buf, 1, size, f);
+		rewind(f);
+		return f;
+	}
+	
+	OGRE_EXCEPT(Ogre::Exception::ERR_CANNOT_WRITE_TO_FILE, 
+	    "Cannot create temporary file!", "NGF::Python::Util::runFile()");
+
+    return 0;
 }
 #endif
 
@@ -630,24 +645,40 @@ namespace Util {
                 Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, resourceGroup);
                 size_t size = stream->size();
 
-                void *data = malloc(size);
-                stream->read(data, size);
-
                 //If .pyc/.pyo, run .pyc/.pyo, else run .py.
                 if ((last == 'c') || (last == 'o' && (Py_OptimizeFlag = 1)))
                 {
-                        FILE *fp = fmemopen(data, size, "rb");
+					    void *data = malloc(size);
+                        stream->read(data, size);
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+						char tmp[MAX_PATH + L_tmpnam_s];
+						FILE *fp = fmemopen_w(data, size, tmp);
+#else
+						FILE *fp = fmemopen(data, size, "rb");
+#endif
+                        
                         runPycFile(fp, filename.c_str());
                         fclose(fp);
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+						remove(tmp);
+#endif
+
+						free(data);
                 }
                 else
                 {
-                        FILE *fp = fmemopen(data, size, "r");
-                        PyRun_AnyFile(fp, filename.c_str());
-                        fclose(fp);
-                }
+					    char *str = new char[size + 1];
+						stream->read(str, size);
+						str[size] = '\0';
 
-                free(data);
+						py::exec(str, 
+							PythonManager::getSingleton().getMainNamespace(), 
+							PythonManager::getSingleton().getMainNamespace());
+
+						delete str;
+                }
         }
 
 }

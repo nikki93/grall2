@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿1<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
-    <Widget type="Window" skin="WindowC" position="345 51 572 396" layer="Main" name="win_options">
+    <Widget type="Window" skin="WindowC" position="25 43 572 396" layer="Main" name="win_options">
         <Property key="Widget_Caption" value="Options"/>
         <Widget type="Tab" skin="Tab" position="8 10 544 307" layer="Main">
             <Widget type="TabItem" skin="Default" position="4 26 535 275" layer="Main" name="o_tab_controls">
-                <Property key="Sheet_Select" value="true"/>
+                <Property key="TabItem_Select" value="true"/>
                 <Property key="Widget_Caption" value="Controls"/>
                 <Widget type="StaticText" skin="StaticText" position="132 10 80 18" layer="Main" name="o_c_txt_forward">
                     <UserString key="type" value="KeyDisplay"/>
