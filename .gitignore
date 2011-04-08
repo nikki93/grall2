@@ -28,5 +28,4 @@ local
 
 #User files.
 usr/*
-!usr/Settings.ini
 
