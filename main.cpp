@@ -239,16 +239,6 @@ class Game
             //Root.
             GlbVar.ogreRoot = new Ogre::Root("", "", USER_PREFIX "main.log");
 
-            /*
-            if (!GlbVar.ogreRoot->restoreConfig())
-                if (!GlbVar.ogreRoot->showConfigDialog())
-                {
-                    Ogre::LogManager::getSingleton().logMessage("Configuration aborted, shutting down!");
-                    delete GlbVar.ogreRoot;
-                    return false;
-                }
-            */
-
             //Plugins.
             switch (GlbVar.settings.ogre.renderer)
             {
