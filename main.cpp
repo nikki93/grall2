@@ -363,7 +363,7 @@ class Game
 
             //--- MyGUI (GUI) ----------------------------------------------------------
             MyGUI::OgrePlatform *guiPlatform = new MyGUI::OgrePlatform();
-            guiPlatform->initialise(GlbVar.ogreWindow, GlbVar.ogreSmgr);
+            guiPlatform->initialise(GlbVar.ogreWindow, GlbVar.ogreSmgr, "General", USER_PREFIX "gui.log");
             GlbVar.gui = new MyGUI::Gui();
             GlbVar.gui->initialise("core.xml", USER_PREFIX "gui.log");
 
