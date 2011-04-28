@@ -111,6 +111,7 @@ package.includepaths = {
     "../../Libraries/ogreal/include",                                        -- OgreAL
     "../../Libraries/openal/include",                                        -- OpenAL
     "../../Libraries/python/include",                                        -- Python
+    "../../Libraries/python/PC",                                             -- Python (Windows config)
     "../../Libraries/vorbis/include",                                        -- Vorbis
 
     "./include",                                                             -- GraLL2 files
@@ -118,40 +119,40 @@ package.includepaths = {
 }
 
 package.libpaths = {
-    "../../Libraries/boost/lib",                                             -- Boost
+    "../../Libraries/boost/stage/lib",                                       -- Boost
     "../../Libraries/bullet/lib/$(ConfigurationName)",                       -- Bullet
     "../../Libraries/mygui/build/lib/$(ConfigurationName)",                  -- MyGUI
     "../../Libraries/ogre/Dependencies/lib/$(ConfigurationName)",            -- OIS
     "../../Libraries/ogre/build/lib/$(ConfigurationName)",                   -- Ogre
     "../../Libraries/ogreal/lib/$(ConfigurationName)",                       -- OgreAL
     "../../Libraries/openal/libs/Win32",                                     -- OpenAL
-    "../../Libraries/python/libs"                                            -- Python
+    "../../Libraries/python/PCBuild"                                         -- Python
 }
 
 -- Libraries --------------------------------------------------------------------------------
-
-debug.links = {
-    "bulletdynamics",
-    "bulletcollision",
-    "linearmath",
-    "python26",
-    "OIS_d",
-    "OgreMain_d",
-    "MyGUIEngine_d",
-    "MyGUI.OgrePlatform_d",
-    "OgreAL_d"
-}
 
 release.links = {
     "bulletdynamics",
     "bulletcollision",
     "linearmath",
-    "python26",
+    "python27",
     "OIS",
     "OgreMain",
     "MyGUIEngine",
     "MyGUI.OgrePlatform",
     "OgreAL"
+}
+
+debug.links = {
+    "bulletdynamics",
+    "bulletcollision",
+    "linearmath",
+    "python27_d",
+    "OIS_d",
+    "OgreMain_d",
+    "MyGUIEngine_d",
+    "MyGUI.OgrePlatform_d",
+    "OgreAL_d"
 }
 
 -- Files ------------------------------------------------------------------------------------

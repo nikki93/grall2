@@ -718,5 +718,5 @@ void initPythonBinds()
 void runPythonStartupScript()
 {
     //Run the startup script.
-    NGF::Python::Util::runFile("Startup.py", "General");
+    NGF::Python::Util::runFile("Startup.pyo", "General");
 }

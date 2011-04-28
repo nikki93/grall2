@@ -29,6 +29,10 @@
  *
  */
 
+#if (OGRE_PLATFORM == OGRE_PLATFORM_WIN32)
+#define USE_OWN_PY_STDLIB
+#endif
+
 #include "Globals.h"
 
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
@@ -166,7 +170,8 @@ class GameListener :
                     break;
 
                 case OIS::KC_R:
-                    Util::reloadMaterials();
+					if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+						Util::reloadMaterials();
                     break;
             }
 
@@ -211,7 +216,7 @@ class Game
         btSequentialImpulseConstraintSolver *mSolver;
 
     public:
-        bool init()
+        bool init(char *progname)
         {
             //--- Globals, settings ----------------------------------------------------
             new Globals();
@@ -358,7 +363,7 @@ class Game
 
             //--- MyGUI (GUI) ----------------------------------------------------------
             MyGUI::OgrePlatform *guiPlatform = new MyGUI::OgrePlatform();
-            guiPlatform->initialise(GlbVar.ogreWindow, GlbVar.ogreSmgr);
+            guiPlatform->initialise(GlbVar.ogreWindow, GlbVar.ogreSmgr, "General", USER_PREFIX "gui.log");
             GlbVar.gui = new MyGUI::Gui();
             GlbVar.gui->initialise("core.xml", USER_PREFIX "gui.log");
 
@@ -382,7 +387,12 @@ class Game
             GlbVar.woMgr = new NGF::WorldManager();
             GlbVar.lvlLoader = new NGF::Loading::Loader();
 
-            //Python, GraLL2 python bindings, python console.
+            //Python, GraLL2 python bindings, python console. Tell Python to use packaged stdlib if needed.
+#ifdef USE_OWN_PY_STDLIB
+			Py_SetProgramName(progname);
+			Py_SetPath(DATA_PREFIX "Python/python27.zip");
+			Py_SetPythonHome(DATA_PREFIX "Python");
+#endif
             Py_Initialize();
             GlbVar.console = new Console();
             new NGF::Python::PythonManager(fastdelegate::MakeDelegate(GlbVar.console, &Console::print));
@@ -558,7 +568,7 @@ int main(int argc, char *argv[])
     try
     {
         //Init.
-        if(!(game.init()))
+        if(!(game.init(argv[0])))
             return 0;   
         Ogre::LogManager::getSingleton().logMessage("*********** Systems Intialised *************\n");
         game.start();

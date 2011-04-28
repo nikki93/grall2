@@ -90,8 +90,8 @@ fragment_program BasePerLight_fp cg
                 param_named_auto lightAtten light_attenuation 0
                 param_named_auto spotlightParams spotlight_params 0
 
-                param_named_auto invSMSize inverse_texture_size 2
-                param_named_auto depthRange shadow_scene_depth_range 0
+                //param_named_auto invSMSize inverse_texture_size 2
+                //param_named_auto depthRange shadow_scene_depth_range 0
 
                 param_named exponent float 127
         } 
@@ -134,8 +134,8 @@ fragment_program BasePerLightNormalMap_fp cg
                 param_named_auto lightAtten light_attenuation 0
                 param_named_auto spotlightParams spotlight_params 0
 
-                param_named_auto invSMSize inverse_texture_size 2
-                param_named_auto depthRange shadow_scene_depth_range 0
+                //param_named_auto invSMSize inverse_texture_size 2
+                //param_named_auto depthRange shadow_scene_depth_range 0
 
                 param_named exponent float 127
         } 
@@ -178,8 +178,8 @@ fragment_program BasePerLightNormalMapParallax_fp cg
                 param_named_auto lightAtten light_attenuation 0
                 param_named_auto spotlightParams spotlight_params 0
 
-                param_named_auto invSMSize inverse_texture_size 2
-                param_named_auto depthRange shadow_scene_depth_range 0
+                //param_named_auto invSMSize inverse_texture_size 2
+                //param_named_auto depthRange shadow_scene_depth_range 0
 
                 param_named exponent float 127
         } 
