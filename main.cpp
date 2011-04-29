@@ -29,11 +29,11 @@
  *
  */
 
+#include "Globals.h"
+
 #if (OGRE_PLATFORM == OGRE_PLATFORM_WIN32)
 #define USE_OWN_PY_STDLIB
 #endif
-
-#include "Globals.h"
 
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
 #include "MyGUI_OgrePlatform.h"
