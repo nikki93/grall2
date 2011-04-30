@@ -493,7 +493,7 @@ class Game
                 }
 
                 //Exit if F12 pressed.
-                if (GlbVar.keyboard->isKeyDown(OIS::KC_F12))
+                if (GlbVar.keyboard->isKeyDown(OIS::KC_F12) || GlbVar.ogreWindow->isClosed())
                     GlbVar.woMgr->shutdown();
 
                 //Update Ogre.
