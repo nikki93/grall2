@@ -4,22 +4,18 @@
 
 Remember: Try to keep things as scriptable as possible. /Everything/ must be scriptable!
 
-Next
-----
-- Fix cornering, speed/breaking.
-
-- Complete Level 8 (add dimension 2 part, final touches).
-
-- Add more graphics settings, optimise shaders.
-
-Side
-----
-- Work on first story slideshow.
+New
+---
+- Try different Player mass.
 
 - Make more brush textures, decorate levels (textures, props).
 
 Bugs
 ----
+- Fix window resizing.
+
+- Fix checkpoint collision detection.
+
 - Fix shadows.
 
 +---------------------------+
