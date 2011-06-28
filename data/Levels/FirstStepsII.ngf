@@ -469,6 +469,10 @@ ngflevel FirstStepsII
 			       : 	
 			       : 	#Gravity is initially normal.
 			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Running start.
+			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -5)
+			       : 	GraLL2.player.applyCentralImpulse(v)
 			       : 
 			       : def levelStop(self):
 			       : 	pass
@@ -655,8 +659,8 @@ ngflevel FirstStepsII
 	{
 		type Player
 		name player1
-		position -0.499782 0.389544 -1.499271
-		rotation 1.000000 0.000000 0.000000 -0.000000
+		position -2.030442 0.389542 -0.428184
+		rotation 0.987075 -0.000000 -0.160260 0.000000
 
 		properties
 		{

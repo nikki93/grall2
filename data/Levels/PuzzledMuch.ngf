@@ -792,6 +792,9 @@ ngflevel PuzzledMuch
 			       : 	#Gravity is initially normal.
 			       : 	GraLL2.setUp(True)
 			       : 	
+			       : 	#Falling start.
+			       : 	GraLL2.player.applyCentralImpulse(Ngf.Vector3(0,-25,-2))
+			       : 	
 			       : 	#Testing music.
 			       : 	#GraLL2.playMusic("track1")
 			       : 	#GraLL2.switchMusicMood("calm")
@@ -1144,7 +1147,7 @@ ngflevel PuzzledMuch
 	{
 		type Player
 		name player1
-		position 0.000218 0.389544 -5.999271
+		position 0.000218 3.996118 -4.936197
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -1152,7 +1155,7 @@ ngflevel PuzzledMuch
 			dimensions 3
 			minHeight -4.0
 			captureCameraHandler 1
-			canSwitchDimensions 0
+			canSwitchDimensions 1
 		}
 	}
 	object

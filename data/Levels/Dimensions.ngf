@@ -963,6 +963,10 @@ ngflevel Dimensions
 			       : 	#Haven't gotten the key yet.
 			       : 	self.m_startBombs = False
 			       : 	self.m_movingBombsStopped = False
+			       : 	
+			       : 	#Running start.
+			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -6)
+			       : 	GraLL2.player.applyCentralImpulse(v)
 			       : 
 			       : def levelStop(self):
 			       : 	pass
@@ -1064,7 +1068,7 @@ ngflevel Dimensions
 	{
 		type Player
 		name player1
-		position 0.000218 0.089857 12.000729
+		position 0.000218 0.089857 12.735774
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties

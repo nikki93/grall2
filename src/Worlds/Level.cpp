@@ -56,7 +56,7 @@ void Level::tick(const Ogre::FrameEvent &evt)
         mFirstFrame = false;
 
         //Fade in.
-        GlbVar.fader->fadeOut(Ogre::ColourValue::Black, 0.5);
+        GlbVar.fader->fadeOut(Ogre::ColourValue::Black, 0.7);
     }
     
     //Some key stuff.

@@ -1082,7 +1082,7 @@ ngflevel FirstStepsI-B
 	{
 		type Player
 		name player1
-		position 5.500218 4.989544 14.500729
+		position 5.500218 4.989544 11.500729
 		rotation 0.000000 0.000000 1.000000 -0.000000
 
 		properties
@@ -1090,7 +1090,7 @@ ngflevel FirstStepsI-B
 			dimensions 3
 			minHeight -4.0
 			captureCameraHandler 1
-			canSwitchDimensions 1
+			canSwitchDimensions 0
 		}
 	}
 	object
@@ -1119,6 +1119,10 @@ ngflevel FirstStepsI-B
 			       : 	
 			       : 	#Gravity is initially normal.
 			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Running start.
+			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -5)
+			       : 	GraLL2.player.applyCentralImpulse(v)
 			       : 
 			       : def levelStop(self):
 			       : 	pass
