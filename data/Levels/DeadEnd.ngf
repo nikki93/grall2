@@ -1,0 +1,1050 @@
+ngflevel DeadEnd
+{
+	object
+	{
+		type Director
+		name noname
+		position -4.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -8.500000 -0.250000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.560000002384
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Director
+		name dir12
+		position 3.908062 0.500000 7.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 4.19999980927
+			enabled 0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 10.000000 0.500000 7.564978
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile DeadEnd_b0.mesh
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.getName() == "mb"):
+			       : 		Ngf.getObject("dir12").p_enabled = True	
+			       : 		Ngf.destroyObject(self)
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 1.500000 3.500000 9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.02 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -9.500000 3.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.5 0.02
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -1.500000 3.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.8 0.8
+			attenuation 70 1 0.02 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -7.500000 3.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.2 0.9 0.5
+			attenuation 70 1 0.4 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -4.500000 3.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.2 0.5 0.9
+			attenuation 70 1 0.03 0.2
+		}
+	}
+	object
+	{
+		type Director
+		name none
+		position -2.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 4.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -7.000000 0.500000 2.564978
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile DeadEnd_b1.mesh
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.getName() == "mb"):
+			       : 		Ngf.getObject("dir2").p_enabled = False
+			       : 		Ngf.getObject("dir8").p_enabled = True
+			       : 		Ngf.getObject("dir9").p_enabled = True		
+			       : 		Ngf.getObject("dir10").p_enabled = True		
+			       : 		Ngf.destroyObject(self)
+		}
+	}
+	object
+	{
+		type Director
+		name dir10
+		position -2.500000 0.500000 0.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 0
+		}
+	}
+	object
+	{
+		type Director
+		name dir9
+		position -2.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 1.89999997616
+			enabled 0
+		}
+	}
+	object
+	{
+		type Director
+		name dir8
+		position -4.500000 0.500000 2.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 0
+		}
+	}
+	object
+	{
+		type Director
+		name dir6
+		position -8.500000 0.500000 4.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 1.60000002384
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name dir5
+		position -8.500000 0.500000 2.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name dir4
+		position -0.500000 0.500000 2.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name dir3
+		position -0.500000 0.500000 0.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name dir2
+		position -2.500000 0.500000 0.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed -1.0
+			enabled 1
+		}
+	}
+	object
+	{
+		type Director
+		name noname
+		position -5.500000 0.500000 7.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 1.60000002384
+			enabled 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 0.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -7.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -7.500000 0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.500000 0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.500000 0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 0.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -0.500000 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 0.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -5.000000 0.500000 7.564978
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile DeadEnd_b2.mesh
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.getName() == "mb"):
+			       : 		Ngf.getObject("dir1").p_enabled = True
+			       : 		Ngf.destroyObject(self)
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -5.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -4.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 5.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 6.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 4.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 3.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 2.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green 0
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(0)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Running start.
+			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -5)
+			       : 	GraLL2.player.applyCentralImpulse(v)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -2.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile DeadEnd_b3.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position 0.141935 0.389547 12.049744
+		rotation 0.989885 -0.000000 -0.141871 0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4.0
+			captureCameraHandler 1
+			canSwitchDimensions 1
+		}
+	}
+	object
+	{
+		type MovingBomb
+		name mb
+		position -2.500000 0.500000 7.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 1
+			speed 2.5
+			enabled 0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 1.500000 0.500000 7.564978
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile DeadEnd_b4.mesh
+			script : import Ngf
+			       : 
+			       : def touchPlayer(self):
+			       : 	Ngf.getObject("mb").p_enabled = True
+			       : 	Ngf.destroyObject(self)
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position 7.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyR
+			meshFile Mesh_Key.mesh
+			material Objects/KeyR
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -6.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			pickupType KeyB
+			meshFile Mesh_Key.mesh
+			material Objects/KeyB
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+		}
+	}
+	object
+	{
+		type Director
+		name dir1
+		position -2.500000 0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			speed 2.0
+			enabled 0
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -2.500000 0.500000 5.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 0.999000012875
+			ignoreCollisions 0
+			brushMeshFile DeadEnd_b5.mesh
+			repeat 1
+			condition : GraLL2.player.hasDecPickup("KeyR")
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -3.500000 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 0.999000012875
+			ignoreCollisions 1
+			brushMeshFile DeadEnd_b6.mesh
+			repeat 1
+			condition : GraLL2.player.hasDecPickup("KeyB")
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -4.500000 0.500000 0.500000
+		rotation -0.000000 0.000000 1.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 0.999000012875
+			ignoreCollisions 1
+			brushMeshFile DeadEnd_b7.mesh
+			repeat 1
+			condition : GraLL2.player.hasDecPickup("KeyG")
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -5.500000 -0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_Acid.pyo
+			brushMeshFile DeadEnd_b8.mesh
+		}
+	}
+	object
+	{
+		type OneWay
+		name noname
+		position -6.500000 1.000000 5.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile DeadEnd_b9.mesh
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -8.500000 0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyG
+			meshFile Mesh_Key.mesh
+			material Objects/KeyG
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -7.500000 -0.250000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.560000002384
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -7.000000 1.500000 -4.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+}
+

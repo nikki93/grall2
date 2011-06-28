@@ -15,6 +15,7 @@ Player.cpp
 #include "Objects/Misc/ParticleEffect.h"
 
 #define PLAYER_TORQUE 7.77
+#define PLAYER_RADIUS 0.42
 
 //Makes sure the ghost object stays with us.
 class PlayerMotionState : public BtOgre::RigidBodyState
@@ -101,8 +102,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     mGhostObject = new btPairCachingGhostObject();
 
     //Create the Physics stuff.
-    BtOgre::StaticMeshToShapeConverter converter(mEntity);
-    mShape = converter.createSphere();
+    mShape = new btSphereShape(PLAYER_RADIUS);
     btScalar mass = 2;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
@@ -122,7 +122,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     setBulletObject(mBody);
 
     //Configure the GhostObject.
-    mGhostShape = new btSphereShape(converter.getRadius() - 0.01);
+    mGhostShape = new btSphereShape(PLAYER_RADIUS - 0.01);
     mGhostObject->setCollisionShape(mGhostShape);
     mGhostObject->setCollisionFlags(mGhostObject->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
     GlbVar.phyWorld->addCollisionObject(mGhostObject

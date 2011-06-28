@@ -144,6 +144,7 @@ void Empty::createBody(int shape, int bodyType, int flags)
             {
                 BtOgre::StaticMeshToShapeConverter converter(mEntity);
                 mShape = converter.createConvex();
+                mShape->setMargin(0);
             }
             break;
     }

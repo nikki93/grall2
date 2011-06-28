@@ -34,7 +34,7 @@
                     <Property key="Widget_Caption" value="Gravity switch:"/>
                 </Widget>
                 <Widget type="StaticText" skin="StaticText" position="8 166 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Self destuct:"/>
+                    <Property key="Widget_Caption" value="Self destruct:"/>
                 </Widget>
                 <Widget type="StaticText" skin="StaticText" position="8 202 124 18" layer="Main">
                     <Property key="Widget_Caption" value="Peep left:"/>

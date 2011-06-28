@@ -26,9 +26,9 @@ Trigger::Trigger(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Prope
     Ogre::String mesh = mProperties.getValue("brushMeshFile", 0, "Player.mesh");
     Ogre::Entity *ent = GlbVar.ogreSmgr->createEntity(mOgreName, mesh);
     BtOgre::StaticMeshToShapeConverter converter(ent);
-    GlbVar.ogreSmgr->destroyEntity(ent->getName());
 
     mShape = converter.createTrimesh();
+    GlbVar.ogreSmgr->destroyEntity(ent->getName());
 
     BtOgre::RigidBodyState *state = new BtOgre::RigidBodyState(mNode);
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
