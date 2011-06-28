@@ -617,6 +617,9 @@ ngflevel Subway
 			       : 	
 			       : 	#Gravity is initially normal.
 			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Falling start.
+			       : 	GraLL2.player.applyCentralImpulse(Ngf.Vector3(0,-22,-1.5))
 			       : 
 			       : def levelStop(self):
 			       : 	pass
@@ -714,8 +717,8 @@ ngflevel Subway
 	{
 		type Player
 		name player1
-		position 11.500218 0.389544 11.500729
-		rotation 1.000000 0.000000 0.000000 -0.000000
+		position 12.433433 5.808345 12.409384
+		rotation 0.988647 0.000000 0.150259 -0.000000
 
 		properties
 		{
