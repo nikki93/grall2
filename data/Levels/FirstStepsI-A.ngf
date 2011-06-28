@@ -1,0 +1,512 @@
+ngflevel FirstStepsI-A
+{
+	object
+	{
+		type Trigger
+		name noname
+		position 5.500000 5.100000 13.400000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b0.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey oneway
+			time 6.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 5.000000 5.100000 2.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b1.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey ice
+			time 4.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -7.000000 1.100000 6.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b2.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey greenbomb
+			time 5.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 3.000000 -0.100000 6.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b3.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey bomb
+			time 5.0
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position 5.500000 5.759853 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 5.500000 4.350000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			friction 0.0
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 5.500000 4.350000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			friction 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -7.500000 1.350000 6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -8.500000 1.100000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -7.500000 1.100000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -1.500000 -0.500000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 0.500000 -0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 1.500000 0.750000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -0.500000 0.750000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -5.500000 -0.250000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 5.500000 8.500000 14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.7 0.7 0.7
+			attenuation 60 1 0.02 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 5.500000 8.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.7 0.7 0.7
+			attenuation 70 1 0.02 0.01
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -7.500000 2.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.6 0.7 0.9
+			attenuation 70 1 0.02 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 5.500000 2.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.7 0.7 0.7
+			attenuation 70 1 0.02 0.1
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(90)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 0.500000 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b4.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 5.500000 4.500000 10.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b5.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -7.499782 -0.610456 -3.499271
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4.0
+			captureCameraHandler 1
+			canSwitchDimensions 0
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -6.500000 2.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.01 0.2
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -4.500000 -0.250000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 3.000000 -1.000000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_Acid.pyo
+			brushMeshFile FirstStepsI-A_b6.mesh
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position 8.500000 0.159853 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.500000 -0.500000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -6.500000 1.100000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type Ice
+		name noname
+		position 5.500000 4.350000 6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			friction 0.0
+		}
+	}
+	object
+	{
+		type OneWay
+		name noname
+		position 5.500000 5.600000 14.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile FirstStepsI-A_b7.mesh
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -4.500000 -0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b8.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : Crates can be pushed around.
+			time 5.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 0.000000 0.500000 -3.600000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b9.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : Stay out of the Acid. Push Crates into it to cross it.
+			time 5.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 8.500000 -0.100000 1.100000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile FirstStepsI-A_b10.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey checkpoint
+			time 9.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 5.500000 6.900000 23.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+}
+
