@@ -2,45 +2,6 @@ ngflevel PuzzledMuch
 {
 	object
 	{
-		type Bomb
-		name noname
-		position -1.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -1.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position 1.500000 0.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 0
-		}
-	}
-	object
-	{
 		type Light
 		name noname
 		position -0.500000 1.703550 -55.000000
@@ -755,7 +716,7 @@ ngflevel PuzzledMuch
 	{
 		type StaticBrush
 		name noname
-		position -0.000000 -0.500000 -12.500000
+		position 0.000000 -0.500000 -12.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -860,7 +821,7 @@ ngflevel PuzzledMuch
 	{
 		type Pickup
 		name noname
-		position 0.000000 0.500000 -12.500000
+		position -0.500000 0.500000 -12.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -1215,15 +1176,24 @@ ngflevel PuzzledMuch
 	}
 	object
 	{
-		type Bomb
+		type SlidingBrush
 		name noname
-		position 1.500000 0.500000 -11.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
+		position 0.500000 0.450000 -12.500000
+		rotation 0.707107 -0.707107 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			green 0
+			enabled 1
+			speed 1.0
+			distance 0.898999989033
+			ignoreCollisions 0
+			brushMeshFile PuzzledMuch_b20.mesh
+			repeat 1
+			condition True
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
 		}
 	}
 }

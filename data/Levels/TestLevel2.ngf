@@ -833,5 +833,27 @@ ngflevel TestLevel2
 			transparent 1
 		}
 	}
+	object
+	{
+		type RigidBody
+		name noname
+		position -7.500000 0.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			mass 2.0
+			friction 0.5
+			restitution 0.0
+			linearDamping 0.0
+			angularDamping 0.0
+			brushMeshFile TestLevel2_b8.mesh
+			shape convex
+			script : def create(self):
+			       : 	self.addFlag("Jumper")
+			magnetic yes
+		}
+	}
 }
 

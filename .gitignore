@@ -19,6 +19,7 @@ bin/release/
 .vimrc
 tags
 *.blend1
+*.swp
 
 #Unneeded data files.
 *.log
