@@ -7,7 +7,7 @@ def init(self):
     #The mesh is a brush representing the acid region.
     self.createBrushMesh()
     self.setMaterial("Objects/Acid")
-    self.createBody(GraLL2.CollisionShape.Concave,
+    self.createBody(GraLL2.CollisionShape.Convex,
                     GraLL2.BodyType.Static | GraLL2.BodyType.No_Contact,
                     GraLL2.CollisionFlags.No_Dim_Check |
                     GraLL2.CollisionFlags.No_Crate_Check |
