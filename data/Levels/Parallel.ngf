@@ -1,0 +1,518 @@
+ngflevel Parallel
+{
+	object
+	{
+		type Switch
+		name noname
+		position -13.500000 -0.400000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType press
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.m_door = self.getProperty("door", 0, "door4")
+			       : 
+			       : def on(self):
+			       : 	Ngf.getObject(self.m_door).open()
+			       : 	
+			       : def off(self):
+			       : 	Ngf.getObject(self.m_door).close()
+			door door6
+		}
+	}
+	object
+	{
+		type Switch
+		name noname
+		position -13.500000 -0.400000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType press
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.m_door = self.getProperty("door", 0, "door4")
+			       : 
+			       : def on(self):
+			       : 	Ngf.getObject(self.m_door).open()
+			       : 	
+			       : def off(self):
+			       : 	Ngf.getObject(self.m_door).close()
+			door door5
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door6
+		position -21.500000 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 2.99900007248
+			ignoreCollisions 0
+			brushMeshFile Parallel_b0.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door5
+		position -19.500000 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 2.99900007248
+			ignoreCollisions 0
+			brushMeshFile Parallel_b1.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
+		type Switch
+		name switch3
+		position 5.500000 1.750000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType press
+			prop 
+		}
+	}
+	object
+	{
+		type Switch
+		name switch2
+		position 6.500000 1.750000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType press
+			prop 
+		}
+	}
+	object
+	{
+		type Switch
+		name switch1
+		position 5.500000 1.750000 6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType press
+			prop 
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door3
+		position 2.500000 1.000000 3.500000
+		rotation 0.707107 -0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 2.0
+			ignoreCollisions 0
+			brushMeshFile Parallel_b2.mesh
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door2
+		position 2.500000 1.000000 5.500000
+		rotation 0.707107 -0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.79999995232
+			ignoreCollisions 0
+			brushMeshFile Parallel_b3.mesh
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 4.200000 2.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Parallel_b4.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 4.200000 2.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Parallel_b5.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def init(self):
+			       : 	self.m_ptr = False
+			       : 	
+			       : def utick(self, elapsed):
+			       : 	if (not self.m_ptr):
+			       : 		#Remember door, switch pointers (do it here
+			       : 		#because maybe we're deserialising).
+			       : 		self.v_d1 = Ngf.getObject("door1")
+			       : 		self.v_d2 = Ngf.getObject("door2")
+			       : 		self.v_d3 = Ngf.getObject("door3")
+			       : 		
+			       : 		self.v_s1 = Ngf.getObject("switch1")
+			       : 		self.v_s2 = Ngf.getObject("switch2")
+			       : 		self.v_s3 = Ngf.getObject("switch3")
+			       : 		
+			       : 		self.m_ptr = True
+			       : 		
+			       : 	#Puzzle: Two switches for each door.
+			       : 	self.v_d1.p_forward = self.v_s1.p_on and self.v_s2.p_on
+			       : 	self.v_d2.p_forward = self.v_s1.p_on and self.v_s3.p_on
+			       : 	self.v_d3.p_forward = self.v_s2.p_on and self.v_s3.p_on
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(0)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)	
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -0.500000 -0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Parallel_b6.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -11.999782 2.389544 -0.999271
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4.0
+			captureCameraHandler 1
+			canSwitchDimensions 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 4.200000 2.500000 8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Parallel_b7.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type RigidBody
+		name noname
+		position -10.500000 1.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			mass 3.0
+			friction 0.5
+			restitution 3.0
+			linearDamping 0.0
+			angularDamping 0.0
+			brushMeshFile Parallel_b8.mesh
+			shape sphere
+			script : def create(self):
+			       : 	self.addFlag("Switcher")
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door1
+		position 2.500000 1.000000 7.500000
+		rotation 0.707107 -0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.60000002384
+			ignoreCollisions 0
+			brushMeshFile Parallel_b9.mesh
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 5.500000 2.750000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 5.784928 2.500017 3.615153
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Parallel_b10.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : Hmm... Maybe the marks on the floor here mean something...
+			messageKey default
+			time 8.0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position -2.500000 0.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green 1
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name door4
+		position -17.500000 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 2.99900007248
+			ignoreCollisions 0
+			brushMeshFile Parallel_b11.mesh
+			repeat 1
+			condition False
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
+		type Switch
+		name noname
+		position -13.500000 -0.400000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			switchType press
+			script : import Ngf
+			       : 
+			       : def create(self):
+			       : 	self.m_door = self.getProperty("door", 0, "door4")
+			       : 
+			       : def on(self):
+			       : 	Ngf.getObject(self.m_door).open()
+			       : 	
+			       : def off(self):
+			       : 	Ngf.getObject(self.m_door).close()
+			door door4
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -13.500000 0.500000 -6.500000
+		rotation 0.707107 0.000000 0.707107 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 2.99900007248
+			ignoreCollisions 0
+			brushMeshFile Parallel_b12.mesh
+			repeat 1
+			condition : GraLL2.player.hasDecPickup("KeyB")
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -25.500000 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType KeyB
+			meshFile Mesh_Key.mesh
+			material Objects/KeyB
+			spin 49.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.34999999404
+		}
+	}
+	object
+	{
+		type Teleporter
+		name noname
+		position -28.500000 -0.250000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			targetPoint teleTarget
+		}
+	}
+	object
+	{
+		type Point
+		name teleTarget
+		position -13.500000 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -24.544121 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Parallel_b13.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey teleporter
+			time 5.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -13.500000 1.500000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+}
+

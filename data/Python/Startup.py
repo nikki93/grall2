@@ -98,5 +98,8 @@ You cannot switch dimensions when there's an object in your position in the
 other dimension.""", 12),
 
 "dimCareful":
-("""Be careful where you switch dimensions!""", 6)
+("""Be careful where you switch dimensions!""", 6),
+
+"teleporter":
+("""Teleporters take you places.""", 7)
 }
