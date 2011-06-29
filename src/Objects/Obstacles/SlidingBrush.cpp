@@ -136,7 +136,7 @@ void SlidingBrush::unpausedTick(const Ogre::FrameEvent &evt)
                 mCurrentPlace += mForward ? 1 : -1;
 
             //Call the Python 'point' event. Cut out repeated events using a 'last place' idea.
-            if (mLastPlace != currPlace)
+            //if (mLastPlace != currPlace)
                 NGF_PY_CALL_EVENT(point, currPlace);
             mLastPlace = currPlace;
         }
