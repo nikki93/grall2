@@ -55,6 +55,12 @@ Controller::Controller(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     //setPersistent(true);
 }
 //-------------------------------------------------------------------------------
+void Controller::postLoad()
+{
+    //Create.
+    NGF_PY_CALL_EVENT(create);
+}
+//-------------------------------------------------------------------------------
 Controller::~Controller()
 {
     GlbVar.controller = NULL;
@@ -126,12 +132,15 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
 
     //Update alarms (from AlarmGameObject).
     updateAlarms(evt.timeSinceLastFrame);
+
+    //Python utick event.
+    NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
-void Controller::postLoad()
+void Controller::pausedTick(const Ogre::FrameEvent &evt)
 {
-    //Create.
-    NGF_PY_CALL_EVENT(create);
+    //Python ptick event.
+    NGF_PY_CALL_EVENT(ptick, evt.timeSinceLastFrame);
 }
 //-------------------------------------------------------------------------------
 NGF::MessageReply Controller::receiveMessage(NGF::Message msg)

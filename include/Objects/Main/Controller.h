@@ -46,7 +46,7 @@ class Controller :
         //--- Events -------------------------------------------------------------------
         void postLoad();
         void unpausedTick(const Ogre::FrameEvent &evt);
-        void pausedTick(const Ogre::FrameEvent &evt) {}
+        void pausedTick(const Ogre::FrameEvent &evt);
         void alarm(Alarm a) { NGF_PY_CALL_EVENT(alarm, a); }
         NGF::MessageReply receiveMessage(NGF::Message msg);
 
