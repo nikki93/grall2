@@ -61,6 +61,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     addFlag("Switcher");
     addFlag("Doorer");
     addFlag("OneWayer");
+    addFlag("Jumper");
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);

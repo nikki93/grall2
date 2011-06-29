@@ -29,7 +29,7 @@ def utick(self, elapsed):
         self.m_canJump -= elapsed
 
 def collide(self, other):
-    if (self.m_canJump <= 0 and other.hasFlag("Player")):
+    if (self.m_canJump <= 0 and other.hasFlag("Jumper")):
         self.m_canJump = 0.5
         self.v_sound.stop()
         self.v_sound.play()
