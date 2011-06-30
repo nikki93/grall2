@@ -19,7 +19,7 @@ ngflevel Parallel
 	{
 		type Light
 		name noname
-		position -23.152046 4.996251 -0.445912
+		position -23.152046 4.196250 -0.445912
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -34,7 +34,7 @@ ngflevel Parallel
 	{
 		type Light
 		name noname
-		position -13.465866 4.778516 1.939430
+		position -13.465866 3.978516 1.939430
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -64,7 +64,7 @@ ngflevel Parallel
 	{
 		type Switch
 		name noname
-		position -13.500000 -0.400000 7.500000
+		position -13.500000 -1.200000 7.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -88,7 +88,7 @@ ngflevel Parallel
 	{
 		type Switch
 		name noname
-		position -13.500000 -0.400000 5.500000
+		position -13.500000 -1.200000 5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -112,7 +112,7 @@ ngflevel Parallel
 	{
 		type SlidingBrush
 		name door6
-		position -21.500000 0.500000 -0.500000
+		position -21.500000 -0.300000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -134,7 +134,7 @@ ngflevel Parallel
 	{
 		type SlidingBrush
 		name door5
-		position -19.500000 0.500000 -0.500000
+		position -19.500000 -0.300000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -270,10 +270,10 @@ ngflevel Parallel
 			       : import GraLL2
 			       : 
 			       : def init(self):
-			       : 	self.m_ptr = False
+			       : 	self.v_ptr = False
 			       : 	
 			       : def utick(self, elapsed):
-			       : 	if (not self.m_ptr):
+			       : 	if (not self.v_ptr):
 			       : 		#Remember door, switch pointers (do it here
 			       : 		#because maybe we're deserialising).
 			       : 		self.v_d1 = Ngf.getObject("door1")
@@ -284,7 +284,7 @@ ngflevel Parallel
 			       : 		self.v_s2 = Ngf.getObject("switch2")
 			       : 		self.v_s3 = Ngf.getObject("switch3")
 			       : 		
-			       : 		self.m_ptr = True
+			       : 		self.v_ptr = True
 			       : 		
 			       : 	#Puzzle: Two switches for each door.
 			       : 	self.v_d1.p_forward = self.v_s1.p_on and self.v_s2.p_on
@@ -303,7 +303,11 @@ ngflevel Parallel
 			       : 	self.showLevelText(2,4,3)
 			       : 	
 			       : 	#Gravity is initially normal.
-			       : 	GraLL2.setUp(True)	
+			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Running start.
+			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -5)
+			       : 	GraLL2.player.applyCentralImpulse(v)
 			       : 
 			       : def levelStop(self):
 			       : 	pass
@@ -333,8 +337,8 @@ ngflevel Parallel
 	{
 		type Player
 		name player1
-		position 10.000218 2.389544 10.000729
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		position 11.506747 2.389580 10.969684
+		rotation 0.837984 0.000000 0.545695 -0.000000
 
 		properties
 		{
@@ -361,9 +365,9 @@ ngflevel Parallel
 	object
 	{
 		type RigidBody
-		name noname
-		position 2.500000 1.500000 10.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
+		name ball
+		position 0.372955 1.470960 10.357905
+		rotation 0.791170 -0.536021 0.118350 0.269675
 
 		properties
 		{
@@ -375,7 +379,7 @@ ngflevel Parallel
 			angularDamping 0.0
 			brushMeshFile Parallel_b8.mesh
 			shape sphere
-			script : def create(self):
+			script : def init(self):
 			       : 	self.addFlag("Switcher")
 		}
 	}
@@ -430,7 +434,7 @@ ngflevel Parallel
 	{
 		type SlidingBrush
 		name door4
-		position -17.500000 0.500000 -0.500000
+		position -17.500000 -0.300000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -452,7 +456,7 @@ ngflevel Parallel
 	{
 		type Switch
 		name noname
-		position -13.500000 -0.400000 3.500000
+		position -13.500000 -1.200000 3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -476,7 +480,7 @@ ngflevel Parallel
 	{
 		type SlidingBrush
 		name noname
-		position -13.500000 0.500000 -6.500000
+		position -13.500000 -0.300000 -6.500000
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -497,7 +501,7 @@ ngflevel Parallel
 	{
 		type Pickup
 		name noname
-		position -25.500000 0.500000 -0.500000
+		position -25.500000 -0.300000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -515,7 +519,7 @@ ngflevel Parallel
 	{
 		type Teleporter
 		name noname
-		position -28.500000 -0.250000 -0.500000
+		position -28.500000 -1.050000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -528,14 +532,14 @@ ngflevel Parallel
 	{
 		type Point
 		name teleTarget
-		position -13.500000 0.500000 -0.500000
+		position -12.500000 -0.300000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Trigger
 		name noname
-		position -24.544121 0.500000 -0.500000
+		position -24.544121 -0.300000 -0.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -552,7 +556,7 @@ ngflevel Parallel
 	{
 		type Empty
 		name noname
-		position -13.500000 1.900000 -9.500000
+		position -13.500000 1.100000 -9.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -575,6 +579,49 @@ ngflevel Parallel
 			colour 0.8 0.5 0.1
 			attenuation 70 1 0.1 0.08
 		}
+	}
+	object
+	{
+		type SlidingBrush
+		name ballEntryDoor
+		position 0.746342 1.500000 9.330561
+		rotation 0.000000 0.000000 1.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 1.20000004768
+			ignoreCollisions 0
+			brushMeshFile Parallel_b14.mesh
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position 2.739832 0.500000 10.124610
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Parallel_b15.mesh
+			script : import Ngf
+			       : 
+			       : def collide(self, other):
+			       : 	if (other.getName() == "ball"):
+			       : 		Ngf.getObject("ballEntryDoor").p_forward = True;
+			       : 		Ngf.destroyObject(self)
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position -2.500000 1.159853 -0.500000
+		rotation 0.707107 -0.000000 -0.707107 -0.000000
 	}
 }
 
