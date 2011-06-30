@@ -2,6 +2,66 @@ ngflevel Parallel
 {
 	object
 	{
+		type Light
+		name noname
+		position 2.469819 5.590083 5.702651
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.8 0.8
+			attenuation 70 1 0.1 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -23.152046 4.996251 -0.445912
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.9 0.9
+			attenuation 70 1 0.1 0.01
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -13.465866 4.778516 1.939430
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.5 0.3
+			attenuation 70 1 0.08 0.02
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 4.119639 6.119028 0.167530
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.1 0.005
+		}
+	}
+	object
+	{
 		type Switch
 		name noname
 		position -13.500000 -0.400000 7.500000
@@ -273,7 +333,7 @@ ngflevel Parallel
 	{
 		type Player
 		name player1
-		position -11.999782 2.389544 -0.999271
+		position 10.000218 2.389544 10.000729
 		rotation 0.707107 0.000000 0.707107 -0.000000
 
 		properties
@@ -302,15 +362,15 @@ ngflevel Parallel
 	{
 		type RigidBody
 		name noname
-		position -10.500000 1.500000 -0.500000
+		position 2.500000 1.500000 10.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			mass 3.0
+			mass 1.0
 			friction 0.5
-			restitution 3.0
+			restitution 30.0
 			linearDamping 0.0
 			angularDamping 0.0
 			brushMeshFile Parallel_b8.mesh
@@ -364,19 +424,6 @@ ngflevel Parallel
 			message : Hmm... Maybe the marks on the floor here mean something...
 			messageKey default
 			time 8.0
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -2.500000 0.500000 -1.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
 		}
 	}
 	object
@@ -505,13 +552,28 @@ ngflevel Parallel
 	{
 		type Empty
 		name noname
-		position -13.500000 1.500000 -9.500000
+		position -13.500000 1.900000 -9.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 7.201215 4.812838 9.944121
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.8 0.5 0.1
+			attenuation 70 1 0.1 0.08
 		}
 	}
 }
