@@ -14,7 +14,8 @@ Player.cpp
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/ParticleEffect.h"
 
-#define PLAYER_TORQUE 7.77
+#define PLAYER_TORQUE_1 11
+#define PLAYER_TORQUE_2 7
 #define PLAYER_RADIUS 0.42
 
 //Makes sure the ghost object stays with us.
@@ -112,7 +113,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
     info.m_friction = Ogre::Math::POS_INFINITY;
     info.m_linearDamping = 0.1;
-    info.m_angularDamping = 0.6;
+    info.m_angularDamping = 0.9;
 
     mBody = new btRigidBody(info);
     mBody->setActivationState(DISABLE_DEACTIVATION);
@@ -215,12 +216,16 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETPOSITION, mNode->getPosition()));
 
     //Controls.
-    if (mBody->getAngularVelocity().length2() < 600)
+    float sqVel = mBody->getAngularVelocity().length2();
+    if (sqVel < 600)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
         torque.x =  GlbVar.gravMgr->getSign() * (isKeyDown(GlbVar.settings.controls.keys["backward"]) - isKeyDown(GlbVar.settings.controls.keys["forward"]));
         torque.z =  (isKeyDown(GlbVar.settings.controls.keys["left"]) - isKeyDown(GlbVar.settings.controls.keys["right"]));
-        torque *= PLAYER_TORQUE;
+        if (sqVel < 180)
+            torque *= PLAYER_TORQUE_1;
+        else
+            torque *= PLAYER_TORQUE_2;
 
         mBody->applyTorque(BtOgre::Convert::toBullet(mControlNode->getOrientation() * torque));
     }

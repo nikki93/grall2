@@ -2,6 +2,28 @@ ngflevel PuzzledMuch
 {
 	object
 	{
+		type SlidingBrush
+		name noname
+		position -1.500000 0.450000 -12.500000
+		rotation 0.707107 -0.707107 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			speed 1.0
+			distance 0.898999989033
+			ignoreCollisions 0
+			brushMeshFile PuzzledMuch_b0.mesh
+			repeat 1
+			condition True
+			autoClose 0
+			scriptFile Prefab_Door.pyo
+			playSound 1
+		}
+	}
+	object
+	{
 		type Light
 		name noname
 		position -0.500000 1.703550 -55.000000
@@ -41,7 +63,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			enabled 1
-			brushMeshFile PuzzledMuch_b0.mesh
+			brushMeshFile PuzzledMuch_b1.mesh
 			speed 2.04999995232
 			followDirectors 1
 		}
@@ -367,7 +389,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			enabled 1
-			brushMeshFile PuzzledMuch_b1.mesh
+			brushMeshFile PuzzledMuch_b2.mesh
 			speed 2.04999995232
 			followDirectors 1
 		}
@@ -550,7 +572,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 1
-			brushMeshFile PuzzledMuch_b2.mesh
+			brushMeshFile PuzzledMuch_b3.mesh
 		}
 	}
 	object
@@ -563,7 +585,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			brushMeshFile PuzzledMuch_b3.mesh
+			brushMeshFile PuzzledMuch_b4.mesh
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player") and Ngf.getObject("crateTrigger").m_crateTouched):
 			       : 		Ngf.getObject("crateBlocker").open()
@@ -613,7 +635,7 @@ ngflevel PuzzledMuch
 			speed 1.0
 			distance 2.99900007248
 			ignoreCollisions 0
-			brushMeshFile PuzzledMuch_b4.mesh
+			brushMeshFile PuzzledMuch_b5.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyR")
 			autoClose 0
@@ -648,7 +670,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 1
-			brushMeshFile PuzzledMuch_b5.mesh
+			brushMeshFile PuzzledMuch_b6.mesh
 		}
 	}
 	object
@@ -704,8 +726,8 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			enabled 0
-			brushMeshFile PuzzledMuch_b6.mesh
-			speed 2.04999995232
+			brushMeshFile PuzzledMuch_b7.mesh
+			speed 1.75
 			followDirectors 1
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
@@ -722,7 +744,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			brushMeshFile PuzzledMuch_b7.mesh
+			brushMeshFile PuzzledMuch_b8.mesh
 			convex 1
 		}
 	}
@@ -780,7 +802,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			brushMeshFile PuzzledMuch_b8.mesh
+			brushMeshFile PuzzledMuch_b9.mesh
 			convex 1
 		}
 	}
@@ -795,8 +817,8 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			enabled 0
-			brushMeshFile PuzzledMuch_b9.mesh
-			speed 2.04999995232
+			brushMeshFile PuzzledMuch_b10.mesh
+			speed 1.75
 			followDirectors 1
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
@@ -845,7 +867,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			brushMeshFile PuzzledMuch_b10.mesh
+			brushMeshFile PuzzledMuch_b11.mesh
 			convex 0
 		}
 	}
@@ -859,7 +881,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			brushMeshFile PuzzledMuch_b11.mesh
+			brushMeshFile PuzzledMuch_b12.mesh
 			convex 0
 			transparent 1
 		}
@@ -878,7 +900,7 @@ ngflevel PuzzledMuch
 			speed 1.0
 			distance 1.29999995232
 			ignoreCollisions 0
-			brushMeshFile PuzzledMuch_b12.mesh
+			brushMeshFile PuzzledMuch_b13.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -908,7 +930,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 1
-			brushMeshFile PuzzledMuch_b13.mesh
+			brushMeshFile PuzzledMuch_b14.mesh
 		}
 	}
 	object
@@ -974,7 +996,7 @@ ngflevel PuzzledMuch
 			speed 1.0
 			distance 1.99900007248
 			ignoreCollisions 0
-			brushMeshFile PuzzledMuch_b14.mesh
+			brushMeshFile PuzzledMuch_b15.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyB")
 			autoClose 0
@@ -995,7 +1017,7 @@ ngflevel PuzzledMuch
 			speed 1.0
 			distance 2.99900007248
 			ignoreCollisions 0
-			brushMeshFile PuzzledMuch_b15.mesh
+			brushMeshFile PuzzledMuch_b16.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyG")
 			autoClose 0
@@ -1016,7 +1038,7 @@ ngflevel PuzzledMuch
 			speed 1.0
 			distance 1.99900007248
 			ignoreCollisions 0
-			brushMeshFile PuzzledMuch_b16.mesh
+			brushMeshFile PuzzledMuch_b17.mesh
 			repeat 1
 			condition : GraLL2.player.hasDecPickup("KeyG")
 			autoClose 0
@@ -1071,7 +1093,7 @@ ngflevel PuzzledMuch
 			speed 0.699999988079
 			distance 3.0
 			ignoreCollisions 0
-			brushMeshFile PuzzledMuch_b17.mesh
+			brushMeshFile PuzzledMuch_b18.mesh
 			repeat 1
 			condition False
 			autoClose 0
@@ -1095,7 +1117,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			brushMeshFile PuzzledMuch_b18.mesh
+			brushMeshFile PuzzledMuch_b19.mesh
 			script : def create(self):
 			       : 	self.m_crateTouched = False
 			       : 
@@ -1157,7 +1179,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			brushMeshFile PuzzledMuch_b19.mesh
+			brushMeshFile PuzzledMuch_b20.mesh
 			convex 0
 		}
 	}
@@ -1188,7 +1210,7 @@ ngflevel PuzzledMuch
 			speed 1.0
 			distance 0.898999989033
 			ignoreCollisions 0
-			brushMeshFile PuzzledMuch_b20.mesh
+			brushMeshFile PuzzledMuch_b21.mesh
 			repeat 1
 			condition True
 			autoClose 0
