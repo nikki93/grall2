@@ -101,5 +101,12 @@ other dimension.""", 12),
 ("""Be careful where you switch dimensions!""", 6),
 
 "teleporter":
-("""Teleporters take you places.""", 7)
+("""Teleporters take you places.""", 7),
+
+"jumpPad":
+("""Jump Pads give you a vertical push.""", 7),
+
+"speedBoost":
+("""Speed Boosts multiply your speed. So, the faster you're already going,
+the greater the boost.""", 7)
 }

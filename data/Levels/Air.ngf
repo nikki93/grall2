@@ -1,0 +1,506 @@
+ngflevel Air
+{
+	object
+	{
+		type Checkpoint
+		name noname
+		position -19.500000 4.159853 -21.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -20.500000 2.500000 -52.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b0.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -30.500000 5.500000 -14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType SpeedBoost
+			meshFile SpeedBoost.mesh
+			material Objects/SpeedBoost
+			spin 20.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.5
+			scriptFile Prefab_SpeedBoost.pyo
+			multiplier 3.0
+			removeY 1
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -31.500000 2.750000 -23.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 21.0
+			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
+		type Point
+		name teleTarg2
+		position -19.500000 3.500000 -23.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Teleporter
+		name noname
+		position -30.500000 2.750000 -25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			target 0 5 0
+			targetPoint teleTarg2
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -32.500000 4.500000 -14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b1.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -19.500000 2.750000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 25.0
+			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -18.000000 2.500000 -25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b2.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position -21.500000 0.659853 -33.500000
+		rotation -0.000000 0.000000 1.000000 -0.000000
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -21.500000 -0.750000 -37.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 20.0
+			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -15.500000 -1.250000 -41.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -8.500000 -0.250000 -34.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 15.0
+			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -15.500000 1.000000 -32.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b3.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -16.500000 -1.250000 -42.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -17.500000 -1.250000 -40.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -9.500000 -0.500000 -32.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b4.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -1.500000 2.500000 -4.692649
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b5.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey speedBoost
+			time 5.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -1.500000 1.750000 -12.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 17.0
+			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -1.500000 1.500000 -10.499999
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b6.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(0)
+			       : 	
+			       : 	#Show the white text with the level number
+			       : 	#and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 	
+			       : 	#Running start.
+			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -8)
+			       : 	GraLL2.player.applyCentralImpulse(v)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -1.500000 -0.500000 3.500001
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b7.mesh
+			convex 1
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -0.187164 0.389577 9.546768
+		rotation 0.994846 0.000000 0.101393 -0.000000
+
+		properties
+		{
+			dimensions 3
+			minHeight -4.0
+			captureCameraHandler 1
+			canSwitchDimensions 1
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -1.500000 -0.250000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			impulse 15.0
+			scriptFile Prefab_JumpPad.pyo
+		}
+	}
+	object
+	{
+		type Trigger
+		name noname
+		position -1.500000 0.500000 4.814380
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b8.mesh
+			scriptFile Prefab_MessageTrigger.pyo
+			message : <message>
+			messageKey jumpPad
+			time 5.0
+		}
+	}
+	object
+	{
+		type Pickup
+		name noname
+		position -1.500000 2.500000 -8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			pickupType SpeedBoost
+			meshFile SpeedBoost.mesh
+			material Objects/SpeedBoost
+			spin 20.0
+			bobAmplitude 0.15000000596
+			bobFrequency 0.5
+			scriptFile Prefab_SpeedBoost.pyo
+			multiplier 3.0
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -1.500000 -0.500000 -32.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b9.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position -17.500000 -1.250000 -38.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Checkpoint
+		name noname
+		position 2.500000 1.159853 -34.500000
+		rotation 0.707107 0.000000 -0.707107 -0.000000
+	}
+	object
+	{
+		type Teleporter
+		name noname
+		position -17.500000 -2.250000 -29.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			target 0 5 0
+			targetPoint teleTarg1
+		}
+	}
+	object
+	{
+		type Point
+		name teleTarg1
+		position -6.500000 0.500000 -34.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type MovingBrush
+		name noname
+		position -17.000000 2.800000 -35.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled 1
+			brushMeshFile Air_b10.mesh
+			speed 1.5
+			followDirectors 1
+			boxShape 1
+			transparent 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -17.000000 2.800000 -42.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b11.mesh
+			convex 1
+			transparent 1
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -32.500000 2.500000 -27.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b12.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -19.500000 5.100000 -55.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+}
+
