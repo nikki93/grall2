@@ -114,7 +114,7 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         }
 
         mViewOffset = Ogre::Vector3(0, Ogre::Math::Sin(mViewAngle), Ogre::Math::Cos(mViewAngle)) * 10;
-        mLookAtOffset = Ogre::Vector3(0,2,0);
+        mLookAtOffset = Ogre::Vector3(0,3,0);
 
         if (mViewAngle > Ogre::Degree(50))
         {
