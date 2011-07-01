@@ -828,8 +828,8 @@ ngflevel FirstStepsI-B
 		{
 			dimensions 3
 			lightType point
-			colour 0.7 0.7 0.7
-			attenuation 60 1 0.02 0.2
+			colour 0.8 0.5 0.1
+			attenuation 60 1 0.02 0.1
 		}
 	}
 	object

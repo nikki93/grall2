@@ -70,13 +70,6 @@ ngflevel FirstStepsI-A
 	}
 	object
 	{
-		type Checkpoint
-		name noname
-		position 5.500000 5.759853 10.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-	}
-	object
-	{
 		type Ice
 		name noname
 		position 5.500000 4.350000 4.500000
