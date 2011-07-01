@@ -12,8 +12,6 @@ Bugs
 ----
 - Fix window resizing.
 
-- Fix checkpoint collision detection.
-
 - Fix shadows.
 
 +---------------------------+

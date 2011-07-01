@@ -38,6 +38,9 @@ Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     mBody = new btRigidBody(0, state, mShape, btVector3(0,0,0));
     initBody();
 
+    //Create the cast shape (which detects Player).
+    mCastShape = new btBoxShape(btVector3(0.5, 1, 0.06));
+
     //Create sound.
     mSound = GlbVar.soundMgr->createSound(mOgreName + "_sound", "Checkpoint.wav", false, false);
     mNode->attachObject(mSound);
@@ -89,6 +92,51 @@ void Checkpoint::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
 
+    if (mEnabled)
+    {
+        struct CheckpointCheckResult : public btDynamicsWorld::ConvexResultCallback
+        {
+            bool mPlayerHit;
+            int mDim;
+
+            CheckpointCheckResult(int dim)
+                : mPlayerHit(false),
+                  mDim(dim)
+            {
+            }
+
+            virtual btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &, bool)
+            {
+                mPlayerHit = true;
+            }
+
+            bool needsCollision(btBroadphaseProxy* proxy0) const
+            {
+                return (proxy0->m_collisionFilterGroup & DimensionManager::PLAYER) //Must be the Player.
+                    && (proxy0->m_collisionFilterGroup & mDim); //Must be in this dimension.
+            }
+        } res(mDimensions);
+        
+        btTransform trans1 = mBody->getWorldTransform();
+        btTransform trans2 = btTransform(trans1.getRotation(), trans1.getOrigin() - btVector3(0, 0.1, 0));
+
+        GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
+
+        if (res.mPlayerHit)
+        {
+            /*
+            //Should be 'inside' enough.
+            Ogre::Vector3 playerPos = GlbVar.goMgr->sendMessageWithReply<Ogre::Vector3>(GlbVar.player, NGF_MESSAGE(MSG_GETPOSITION));
+            Ogre::Vector3 playerDisp = playerPos - mNode->getPosition();
+            Ogre::Vector3 localZ = mNode->getOrientation() * Ogre::Vector3::UNIT_Z;
+            Ogre::Real zDist = playerDisp.dotProduct(localZ); //Component of Player displacement along local Z.
+
+            if (Ogre::Math::Abs(zDist) < 0.2)
+            */
+                playerTouched();
+        }
+    }
+
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
 }
@@ -109,6 +157,7 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
     if (!other)
         return;
 
+    /*
     if (mEnabled && other->hasFlag("Player"))
     {
         //Check he's within some limits, we're a 'gate-like' object.
@@ -120,20 +169,9 @@ void Checkpoint::collide(GameObject *other, btCollisionObject *otherPhysicsObjec
 
         if (Ogre::Math::Abs(playerDisp.x) < 0.5 && Ogre::Math::Abs(playerDisp.z) <= 0.2)
         {
-            //Save the game. Disable before saving though, so we're loaded disabled.
-            mEnabled = false;
-
-            //Change light colour.
-            setLightColour(false);
-
-            Util::saveCheckpoint();
-            mEntity->setMaterialName("Objects/CheckpointOff");
-            
-            //Play the sound.
-            mSound->stop();
-            mSound->play();
         }
     }
+    */
 
     //Python collide event.
     NGF::Python::PythonGameObject *oth = dynamic_cast<NGF::Python::PythonGameObject*>(other);
@@ -150,6 +188,22 @@ void Checkpoint::setLightColour(bool blue)
         Ogre::ColourValue colour = blue ? Ogre::ColourValue(BLUE_LIGHT) : Ogre::ColourValue(RED_LIGHT);
         GlbVar.goMgr->sendMessage(mLight, NGF_MESSAGE(MSG_SETDIFFUSECOLOUR, colour));
     }
+}
+//-------------------------------------------------------------------------------
+void Checkpoint::playerTouched()
+{
+    //Save the game. Disable before saving though, so we're loaded disabled.
+    mEnabled = false;
+
+    //Change light colour.
+    setLightColour(false);
+
+    Util::saveCheckpoint();
+    mEntity->setMaterialName("Objects/CheckpointOff");
+
+    //Play the sound.
+    mSound->stop();
+    mSound->play();
 }
 //-------------------------------------------------------------------------------
 

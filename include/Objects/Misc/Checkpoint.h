@@ -24,6 +24,7 @@ class Checkpoint :
 {
     protected:
         btCollisionShape *mShape;
+        btBoxShape *mCastShape;
         Ogre::Entity *mEntity;
         
         bool mEnabled;
@@ -42,6 +43,7 @@ class Checkpoint :
         void pausedTick(const Ogre::FrameEvent &evt);
         NGF::MessageReply receiveMessage(NGF::Message msg);
         void collide(GameObject *other, btCollisionObject *otherPhysicsObject, btManifoldPoint &contact);
+        void playerTouched();
 
         //--- Non-NGF ------------------------------------------------------------------
         void setLightColour(bool blue);
