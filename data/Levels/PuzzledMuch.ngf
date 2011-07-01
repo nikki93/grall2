@@ -732,6 +732,7 @@ ngflevel PuzzledMuch
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
 			       : 		self.p_enabled = True
+			boxShape 1
 		}
 	}
 	object
@@ -823,6 +824,7 @@ ngflevel PuzzledMuch
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
 			       : 		self.p_enabled = True
+			boxShape 1
 		}
 	}
 	object
