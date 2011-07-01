@@ -222,6 +222,7 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
         torque.x =  GlbVar.gravMgr->getSign() * (isKeyDown(GlbVar.settings.controls.keys["backward"]) - isKeyDown(GlbVar.settings.controls.keys["forward"]));
         torque.z =  (isKeyDown(GlbVar.settings.controls.keys["left"]) - isKeyDown(GlbVar.settings.controls.keys["right"]));
+        torque.normalise();
         if (sqVel < 180)
             torque *= PLAYER_TORQUE_1;
         else
