@@ -192,7 +192,7 @@ fragment_program BasePerLightNormalMapParallax_fp cg
 material Base
 { 
         receive_shadows on
-        lod_values 14
+        lod_values 30
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -275,7 +275,7 @@ material Base
 material BaseNormalMap
 {
         receive_shadows on
-        lod_values 14
+        lod_values 30
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -424,7 +424,7 @@ material BaseNormalMap
 material BaseNormalMapParallax
 {
         receive_shadows on
-        lod_values 14
+        lod_values 30
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -574,7 +574,7 @@ material BaseNormalMapParallax
 material BaseGlow
 { 
         receive_shadows on
-        lod_values 14
+        lod_values 30
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -738,7 +738,7 @@ material BaseGlow
 material BaseNormalMapGlow
 {
         receive_shadows on
-        lod_values 14
+        lod_values 30
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -910,7 +910,7 @@ material BaseNormalMapGlow
 material BaseNormalMapParallaxGlow
 {
         receive_shadows on
-        lod_values 14
+        lod_values 30
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
