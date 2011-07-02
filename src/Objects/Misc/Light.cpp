@@ -32,9 +32,9 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
             ));
 
     mLight->setSpecularColour(mSpecularColour = Ogre::ColourValue(
-            Ogre::StringConverter::parseReal(mProperties.getValue("specular", 0, "0.4")),
-            Ogre::StringConverter::parseReal(mProperties.getValue("specular", 1, "0.4")),
-            Ogre::StringConverter::parseReal(mProperties.getValue("specular", 2, "0.4"))
+            Ogre::StringConverter::parseReal(mProperties.getValue("specular", 0, "0.7")),
+            Ogre::StringConverter::parseReal(mProperties.getValue("specular", 1, "0.7")),
+            Ogre::StringConverter::parseReal(mProperties.getValue("specular", 2, "0.7"))
             ));
 
     mLight->setAttenuation(
