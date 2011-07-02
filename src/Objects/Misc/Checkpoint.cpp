@@ -105,9 +105,10 @@ void Checkpoint::unpausedTick(const Ogre::FrameEvent &evt)
             {
             }
 
-            virtual btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &, bool)
+            btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &, bool)
             {
                 mPlayerHit = true;
+                return 1;
             }
 
             bool needsCollision(btBroadphaseProxy* proxy0) const
