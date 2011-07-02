@@ -982,3 +982,5 @@ Tue Sep  7 17:21:57 AST 2010
 Thu Sep  9 18:38:28 AST 2010
 ----------------------------
 - Can search for 'backup Settings.ini' in DATA_PREFIX.
+
+<ChangeLog not updated in a while, check git log>
