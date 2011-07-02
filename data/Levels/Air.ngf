@@ -2,6 +2,110 @@ ngflevel Air
 {
 	object
 	{
+		type StaticBrush
+		name noname
+		position -32.500000 4.500000 -14.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air_b0.001.mesh
+			convex 0
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -30.480938 9.417433 -11.474333
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.5 0.3
+			attenuation 30 1 0.2 0.01
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -31.733267 5.500000 -27.458717
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.45 0.1 0.9
+			attenuation 30 1 0.2 0.3
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -16.923567 5.499968 -27.868013
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.7 0.9 0.7
+			attenuation 30 1 0.2 0.2
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -19.164061 6.748897 -38.667969
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.4 0.1
+			attenuation 30 1 0.1 0.01
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -5.500000 4.500000 -34.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.9 0.9
+			attenuation 30 1 0.1 0.1
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -1.500000 4.500000 -9.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0.9 0.3 0
+			attenuation 30 1 0.1 0.01
+		}
+	}
+	object
+	{
 		type Checkpoint
 		name noname
 		position -19.500000 4.159853 -21.500000
@@ -17,7 +121,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b0.mesh
+			brushMeshFile Air_b1.001.mesh
 			convex 0
 		}
 	}
@@ -87,7 +191,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b1.mesh
+			brushMeshFile Air_b2.001.mesh
 			convex 0
 		}
 	}
@@ -115,7 +219,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b2.mesh
+			brushMeshFile Air_b3.001.mesh
 			convex 0
 		}
 	}
@@ -123,14 +227,14 @@ ngflevel Air
 	{
 		type Checkpoint
 		name noname
-		position -21.500000 0.659853 -33.500000
+		position -21.500000 0.659853 -32.500000
 		rotation -0.000000 0.000000 1.000000 -0.000000
 	}
 	object
 	{
 		type Empty
 		name noname
-		position -21.500000 -0.750000 -37.500000
+		position -21.500000 -0.750000 -36.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -171,13 +275,13 @@ ngflevel Air
 	{
 		type StaticBrush
 		name noname
-		position -15.500000 1.000000 -32.500000
+		position -15.500000 1.000000 -31.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b3.mesh
+			brushMeshFile Air_b4.001.mesh
 			convex 1
 		}
 	}
@@ -217,7 +321,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b4.mesh
+			brushMeshFile Air_b5.001.mesh
 			convex 0
 		}
 	}
@@ -231,7 +335,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b5.mesh
+			brushMeshFile Air_b6.001.mesh
 			scriptFile Prefab_MessageTrigger.pyo
 			message : <message>
 			messageKey speedBoost
@@ -262,7 +366,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b6.mesh
+			brushMeshFile Air_b7.001.mesh
 			convex 1
 		}
 	}
@@ -317,7 +421,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b7.mesh
+			brushMeshFile Air_b8.001.mesh
 			convex 1
 		}
 	}
@@ -360,7 +464,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b8.mesh
+			brushMeshFile Air_b9.001.mesh
 			scriptFile Prefab_MessageTrigger.pyo
 			message : <message>
 			messageKey jumpPad
@@ -397,7 +501,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b9.mesh
+			brushMeshFile Air_b10.001.mesh
 			convex 0
 		}
 	}
@@ -453,7 +557,7 @@ ngflevel Air
 		{
 			dimensions 3
 			enabled 1
-			brushMeshFile Air_b10.mesh
+			brushMeshFile Air_b11.001.mesh
 			speed 1.5
 			followDirectors 1
 			boxShape 1
@@ -470,7 +574,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b11.mesh
+			brushMeshFile Air_b12.001.mesh
 			convex 1
 			transparent 1
 		}
@@ -485,7 +589,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b12.mesh
+			brushMeshFile Air_b13.mesh
 			convex 0
 		}
 	}
@@ -500,6 +604,21 @@ ngflevel Air
 		{
 			dimensions 3
 			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position -1.500000 2.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType point
+			colour 0 0.3 0.9
+			attenuation 30 1 0.2 0.01
 		}
 	}
 }
