@@ -951,7 +951,7 @@ ngflevel Dimensions
 			       : 	GraLL2.setDimension(1)
 			       : 	
 			       : 	#Set the bonus time for this level.
-			       : 	GraLL2.setBonusTime(0)
+			       : 	GraLL2.setBonusTime(500)
 			       : 	
 			       : 	#Show the white text with the level number
 			       : 	#and caption.

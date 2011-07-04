@@ -767,7 +767,7 @@ ngflevel PuzzledMuch
 			       : 	GraLL2.setDimension(1)
 			       : 	
 			       : 	#Set the bonus time for this level.
-			       : 	GraLL2.setBonusTime(2379)
+			       : 	GraLL2.setBonusTime(700)
 			       : 	
 			       : 	#Show the white text with the level number
 			       : 	#and caption.
