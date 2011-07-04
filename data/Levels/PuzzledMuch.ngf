@@ -571,7 +571,7 @@ ngflevel PuzzledMuch
 
 		properties
 		{
-			dimensions 1
+			dimensions 3
 			brushMeshFile PuzzledMuch_b3.mesh
 		}
 	}
@@ -669,7 +669,7 @@ ngflevel PuzzledMuch
 
 		properties
 		{
-			dimensions 1
+			dimensions 3
 			brushMeshFile PuzzledMuch_b6.mesh
 		}
 	}
@@ -931,7 +931,7 @@ ngflevel PuzzledMuch
 
 		properties
 		{
-			dimensions 1
+			dimensions 3
 			brushMeshFile PuzzledMuch_b14.mesh
 		}
 	}
