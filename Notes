@@ -8,11 +8,17 @@ New
 ---
 - Make more brush textures, decorate levels (textures, props).
 
+- Put all Objects.blend, Prefab.blend, etc. objects in both dimensions.
+
+- Add bonus times to 'First Steps II', 'Parallel' and 'Air'.
+
 Bugs
 ----
 - Fix window resizing.
 
 - Fix shadows.
+
+- Level 'Puzzled Much?' OneWays should be in both dimensions.
 
 +---------------------------+
 |         ChangeLog         |

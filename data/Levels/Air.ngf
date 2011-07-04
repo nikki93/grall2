@@ -10,7 +10,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b0.001.mesh
+			brushMeshFile Air_b0.mesh
 			convex 0
 		}
 	}
@@ -121,7 +121,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b1.001.mesh
+			brushMeshFile Air_b1.mesh
 			convex 0
 		}
 	}
@@ -191,7 +191,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b2.001.mesh
+			brushMeshFile Air_b2.mesh
 			convex 0
 		}
 	}
@@ -219,7 +219,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b3.001.mesh
+			brushMeshFile Air_b3.mesh
 			convex 0
 		}
 	}
@@ -281,7 +281,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b4.001.mesh
+			brushMeshFile Air_b4.mesh
 			convex 1
 		}
 	}
@@ -321,7 +321,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b5.001.mesh
+			brushMeshFile Air_b5.mesh
 			convex 0
 		}
 	}
@@ -335,7 +335,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b6.001.mesh
+			brushMeshFile Air_b6.mesh
 			scriptFile Prefab_MessageTrigger.pyo
 			message : <message>
 			messageKey speedBoost
@@ -366,7 +366,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b7.001.mesh
+			brushMeshFile Air_b7.mesh
 			convex 1
 		}
 	}
@@ -421,7 +421,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b8.001.mesh
+			brushMeshFile Air_b8.mesh
 			convex 1
 		}
 	}
@@ -464,7 +464,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b9.001.mesh
+			brushMeshFile Air_b9.mesh
 			scriptFile Prefab_MessageTrigger.pyo
 			message : <message>
 			messageKey jumpPad
@@ -501,7 +501,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b10.001.mesh
+			brushMeshFile Air_b10.mesh
 			convex 0
 		}
 	}
@@ -557,7 +557,7 @@ ngflevel Air
 		{
 			dimensions 3
 			enabled 1
-			brushMeshFile Air_b11.001.mesh
+			brushMeshFile Air_b11.mesh
 			speed 1.5
 			followDirectors 1
 			boxShape 1
@@ -574,7 +574,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b12.001.mesh
+			brushMeshFile Air_b12.mesh
 			convex 1
 			transparent 1
 		}
