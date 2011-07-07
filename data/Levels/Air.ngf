@@ -388,7 +388,7 @@ ngflevel Air
 			       : 	GraLL2.setDimension(1)
 			       : 	
 			       : 	#Set the bonus time for this level.
-			       : 	GraLL2.setBonusTime(400)
+			       : 	GraLL2.setBonusTime(0)
 			       : 	
 			       : 	#Show the white text with the level number
 			       : 	#and caption.
@@ -437,7 +437,7 @@ ngflevel Air
 			dimensions 3
 			minHeight -4.0
 			captureCameraHandler 1
-			canSwitchDimensions 1
+			canSwitchDimensions 0
 		}
 	}
 	object
