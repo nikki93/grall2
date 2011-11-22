@@ -108,6 +108,7 @@ package.includepaths = {
     "../../Libraries/ogg/include",                                           -- Ogg
     "../../Libraries/ogre/Dependencies/include",                             -- OIS
     "../../Libraries/ogre/OgreMain/include",                                 -- Ogre
+    "../../Libraries/ogre/build/include",                                    -- Ogre build
     "../../Libraries/ogreal/include",                                        -- OgreAL
     "../../Libraries/openal/include",                                        -- OpenAL
     "../../Libraries/python/include",                                        -- Python
