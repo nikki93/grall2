@@ -71,7 +71,7 @@ class Console
         Console()
         {
             mHistoryIter = mHistory.begin();
-            MyGUI::LayoutManager::getInstance().load("Console.layout");
+            MyGUI::LayoutManager::getInstance().loadLayout("Console.layout");
 
             mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_console");
             mWindow->setAlpha(0.75);
@@ -85,9 +85,9 @@ class Console
 	    mInputBox->setFontName("Mono");
 
 	    MyGUI::ButtonPtr button = GlbVar.gui->findWidget<MyGUI::Button>("but_consoleRun");
-	    button->eventMouseButtonClick = MyGUI::newDelegate(this, &Console::_onClickRun);
+	    button->eventMouseButtonClick += MyGUI::newDelegate(this, &Console::_onClickRun);
             button = GlbVar.gui->findWidget<MyGUI::Button>("but_consoleClose");
-	    button->eventMouseButtonClick = MyGUI::newDelegate(this, &Console::_onClickClose);
+	    button->eventMouseButtonClick += MyGUI::newDelegate(this, &Console::_onClickClose);
 
             mWindow->setVisible(false);
             mVisible = false;
@@ -129,7 +129,7 @@ class Console
 
         inline bool isVisible()
         {
-            return mWindow->isVisible();
+            return mWindow->getVisible();
         }
 
         void print(Ogre::String str)

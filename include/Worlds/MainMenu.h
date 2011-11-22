@@ -18,6 +18,8 @@
 
 #include "Globals.h"
 
+#include "MessageBox.h"
+
 class LevelSelect;
 
 class MainMenu : 

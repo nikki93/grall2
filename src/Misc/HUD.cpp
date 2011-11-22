@@ -60,7 +60,7 @@ static inline Ogre::Vector2 iconPosition(int i, int num)
 //Creates a MyGUI::StaticText for HUD.
 static inline MyGUI::StaticTextPtr createStaticText(const MyGUI::IntCoord &coord, MyGUI::Align align, const Ogre::ColourValue &colour = Ogre::ColourValue::White)
 {
-    MyGUI::StaticTextPtr txt = GlbVar.gui->createWidget<MyGUI::StaticText>("StaticText", coord, MyGUI::Align::Default, HUD_LAYER);
+    MyGUI::StaticTextPtr txt = GlbVar.gui->createWidget<MyGUI::StaticText>("TextBox", coord, MyGUI::Align::Default, HUD_LAYER);
 
     align |= MyGUI::Align::Bottom;
     txt->setTextAlign(align);

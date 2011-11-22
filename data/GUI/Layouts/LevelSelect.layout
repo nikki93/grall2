@@ -1,35 +1,35 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
     <Widget type="Window" skin="WindowC" position="232 40 700 432" layer="Main" name="win_levelSelect">
-        <Property key="Widget_Caption" value="Level Select"/>
-        <Widget type="List" skin="List" position="12 11 204 373" layer="Main" name="lst_ls_levelList">
+        <Property key="Caption" value="Level Select"/>
+        <Widget type="ListBox" skin="ListBox" position="12 11 204 373" layer="Main" name="lst_ls_levelList">
             <UserString key="" value=""/>
         </Widget>
-        <Widget type="Widget" skin="Separator2" position="230 0 2 396" layer="Main"/>
-        <Widget type="StaticText" skin="StaticText" position="252 17 84 15" layer="Main">
-            <Property key="Widget_Caption" value="Caption:"/>
+        <Widget type="Widget" skin="SepDownVSkin" position="230 0 2 396" layer="Main"/>
+        <Widget type="TextBox" skin="TextBox" position="252 17 84 15" layer="Main">
+            <Property key="Caption" value="Caption:"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="340 17 332 15" layer="Main" name="txt_ls_caption"/>
-        <Widget type="StaticText" skin="StaticText" position="252 41 84 15" layer="Main">
-            <Property key="Widget_Caption" value="Score:"/>
+        <Widget type="TextBox" skin="TextBox" position="340 17 332 15" layer="Main" name="txt_ls_caption"/>
+        <Widget type="TextBox" skin="TextBox" position="252 41 84 15" layer="Main">
+            <Property key="Caption" value="Score:"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="340 41 116 16" layer="Main" name="txt_ls_score"/>
-        <Widget type="StaticText" skin="StaticText" position="252 89 88 15" layer="Main">
-            <Property key="Widget_Caption" value="Checkpoint:"/>
+        <Widget type="TextBox" skin="TextBox" position="340 41 116 16" layer="Main" name="txt_ls_score"/>
+        <Widget type="TextBox" skin="TextBox" position="252 89 88 15" layer="Main">
+            <Property key="Caption" value="Checkpoint:"/>
         </Widget>
         <Widget type="Button" skin="Button" position="252 345 128 32" layer="Main" name="but_ls_play">
-            <Property key="Widget_Caption" value="Play Level"/>
+            <Property key="Caption" value="Play Level"/>
         </Widget>
         <Widget type="Button" skin="Button" position="388 345 148 32" layer="Main" name="but_ls_removeCheckpoint">
-            <Property key="Widget_Caption" value="Remove Checkpoint"/>
+            <Property key="Caption" value="Remove Checkpoint"/>
         </Widget>
         <Widget type="Button" skin="Button" position="544 345 128 32" layer="Main" name="but_ls_cancel">
-            <Property key="Widget_Caption" value="Cancel"/>
+            <Property key="Caption" value="Cancel"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="340 89 116 15" layer="Main" name="txt_ls_checkpoint"/>
-        <Widget type="StaticText" skin="StaticText" position="252 65 88 16" layer="Main">
-            <Property key="Widget_Caption" value="Losses:"/>
+        <Widget type="TextBox" skin="TextBox" position="340 89 116 15" layer="Main" name="txt_ls_checkpoint"/>
+        <Widget type="TextBox" skin="TextBox" position="252 65 88 16" layer="Main">
+            <Property key="Caption" value="Losses:"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="340 65 116 15" layer="Main" name="txt_ls_losses"/>
+        <Widget type="TextBox" skin="TextBox" position="340 65 116 15" layer="Main" name="txt_ls_losses"/>
     </Widget>
 </MyGUI>

@@ -7,6 +7,8 @@ MainMenu.cpp
 #include "Worlds/MainMenu.h"
 #include "Worlds/Level.h"
 
+#include "MessageBox.h"
+
 #define LOGO_WIDTH 480
 #define LOGO_HEIGHT 151
 
@@ -49,7 +51,7 @@ void MainMenu::init()
     GlbVar.fader->abortFade(0);
 
     //Gotta see where we click. :-)
-    GlbVar.gui->setVisiblePointer(true);
+    MyGUI::PointerManager::getInstance().setVisible(true);
 
     //Background, logo.
     mBackground = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Back");
@@ -61,37 +63,37 @@ void MainMenu::init()
     mLogo->setImageTexture("MainMenuLogo.png");
 
     //Get the Window.
-    MyGUI::LayoutManager::getInstance().load("MainMenu.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("MainMenu.layout");
     mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_mainMenu");
 
     //Buttons, events.
     MyGUI::ButtonPtr button;
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_newGame");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickNewGame);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickNewGame);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_continueGame");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickContinueGame);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickContinueGame);
     if (GlbVar.records.firstTime)
         button->setEnabled(false);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_levelSelect");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickLevelSelect);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickLevelSelect);
     if (GlbVar.records.firstTime)
         button->setEnabled(false);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_userLevel");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickUserLevel);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickUserLevel);
     if (GlbVar.userNgfNames.empty())
         button->setEnabled(false);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_options");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickOptions);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickOptions);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_credits");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCredits);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickCredits);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_quit");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickQuit);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickQuit);
 
     //Window properties.
     //Children don't inherit alpha.
@@ -110,7 +112,7 @@ void MainMenu::init()
     mLevelSelect = new LevelSelect();
 
     //Credits.
-    MyGUI::LayoutManager::getInstance().load("Credits.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("Credits.layout");
     mCreditsWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_credits");
     mCreditsWindow->setVisible(false);
 
@@ -119,14 +121,14 @@ void MainMenu::init()
     mCreditsWindow->setCoord(MyGUI::IntCoord((winWidth - width)*0.5, (winHeight - height)*0.5, width, height));
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_cr_ok");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCloseCredits);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickCloseCredits);
 
     MyGUI::EditPtr credits = GlbVar.gui->findWidget<MyGUI::Edit>("edt_cr_credits");
     credits->setOnlyText(creditsStr);
     credits->setTextAlign(MyGUI::Align::Left | MyGUI::Align::Top);
 
     //User level.
-    MyGUI::LayoutManager::getInstance().load("LoadUserLevel.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("LoadUserLevel.layout");
     mUserLevelWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_userLevel");
     height = mUserLevelWindow->getHeight();
     width = mUserLevelWindow->getWidth();
@@ -135,10 +137,10 @@ void MainMenu::init()
 
     //Tell the buttons to tell us.
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_loadUserLevel");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickLoadUserLevel);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickLoadUserLevel);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_cancelUserLevel");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MainMenu::onClickCancelUserLevel);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MainMenu::onClickCancelUserLevel);
 
     //Populate the user level list.
     MyGUI::ComboBox *list = GlbVar.gui->findWidget<MyGUI::ComboBox>("cmb_userLevel");
@@ -180,8 +182,8 @@ void MainMenu::onClickNewGame(MyGUI::WidgetPtr)
             "your previous progress!";
 
         MyGUI::MessagePtr message = MyGUI::Message::createMessageBox("Message", "Warning!",
-                warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No);
-        message->eventMessageBoxResult = MyGUI::newDelegate(this, &MainMenu::onConfirmNewGame);
+                warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No | MyGUI::MessageBoxStyle::IconWarning);
+        message->eventMessageBoxResult += MyGUI::newDelegate(this, &MainMenu::onConfirmNewGame);
     }
 }
 void MainMenu::onConfirmNewGame(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result)
@@ -260,7 +262,7 @@ void MainMenu::onClickLoadUserLevel(MyGUI::WidgetPtr)
 LevelSelect::LevelSelect()
     : mCurrentLevelIndex(GlbVar.records.highestLevelIndex)
 {
-    MyGUI::LayoutManager::getInstance().load("LevelSelect.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("LevelSelect.layout");
     mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_levelSelect");
     mWindow->setVisible(false);
 
@@ -274,19 +276,19 @@ LevelSelect::LevelSelect()
     //Stuff, events.
     MyGUI::ButtonPtr button;
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_ls_cancel");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &LevelSelect::onClickCancel);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &LevelSelect::onClickCancel);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_ls_removeCheckpoint");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &LevelSelect::onClickRemoveCheckpoint);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &LevelSelect::onClickRemoveCheckpoint);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_ls_play");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &LevelSelect::onClickPlay);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &LevelSelect::onClickPlay);
 
     mList = GlbVar.gui->findWidget<MyGUI::List>("lst_ls_levelList");
     populateLevelList();
     mList->setIndexSelected(Util::worldNumToLevelNum(GlbVar.records.highestLevelIndex) - 1); //Select current highest level.
-    mList->eventListMouseItemActivate = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
-    mList->eventListSelectAccept = MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
+    mList->eventListMouseItemActivate += MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
+    mList->eventListSelectAccept += MyGUI::newDelegate(this, &LevelSelect::onSelectLevel);
     updateLevelInfo();
 }
 //-------------------------------------------------------------------------------
@@ -362,8 +364,8 @@ void LevelSelect::onClickRemoveCheckpoint(MyGUI::WidgetPtr)
                            "your progress in the level!";
 
     MyGUI::MessagePtr message = MyGUI::Message::createMessageBox("Message", "Warning!",
-            warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No);
-    message->eventMessageBoxResult = MyGUI::newDelegate(this, &LevelSelect::onConfirmRemoveCheckpoint);
+            warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No | MyGUI::MessageBoxStyle::IconWarning);
+    message->eventMessageBoxResult += MyGUI::newDelegate(this, &LevelSelect::onConfirmRemoveCheckpoint);
 }
 void LevelSelect::onConfirmRemoveCheckpoint(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result)
 {

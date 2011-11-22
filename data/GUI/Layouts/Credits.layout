@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
     <Widget type="Window" skin="WindowC" position="584 188 436 456" layer="Main" name="win_credits">
-        <Property key="Widget_Caption" value="Credits"/>
-        <Widget type="Edit" skin="EditStretch" position="4 5 416 367" layer="Main" name="edt_cr_credits">
+        <Property key="Caption" value="Credits"/>
+        <Widget type="Edit" skin="EditBoxStretch" position="4 5 416 367" layer="Main" name="edt_cr_credits">
             <Property key="Edit_MultiLine" value="true"/>
             <Property key="Edit_ReadOnly" value="true"/>
         </Widget>
         <Widget type="Button" skin="Button" position="292 381 128 31" layer="Main" name="but_cr_ok">
-            <Property key="Widget_Caption" value="OK"/>
+            <Property key="Caption" value="OK"/>
         </Widget>
     </Widget>
 </MyGUI>

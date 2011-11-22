@@ -89,7 +89,7 @@ void Level::startLevel()
     GlbVar.paused = false;
 
     //No stuff blocking our view.
-    GlbVar.gui->setVisiblePointer(false);
+    MyGUI::PointerManager::getInstance().setVisible(false);
 
     //If there's a checkpoint, and we're loading games, load it.
     if (!(GlbVar.loadGame && Util::loadCheckpoint()))

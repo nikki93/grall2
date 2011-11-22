@@ -196,17 +196,8 @@ public:
 		mLineDrawer = new DynamicLines(Ogre::RenderOperation::OT_LINE_LIST);
 		mNode->attachObject(mLineDrawer);
 
-		Ogre::StringVector groups = Ogre::ResourceGroupManager::getSingleton().getResourceGroups();
-		Ogre::StringVector::iterator i = groups.begin();
-
-		do
-			if (i == groups.end())
-			{
-				Ogre::ResourceGroupManager::getSingleton().createResourceGroup("BtOgre");
-				break;
-			}
-		while (*i++ != "BtOgre");
-                                    
+                if (!Ogre::ResourceGroupManager::getSingleton().resourceGroupExists("BtOgre"))
+                    Ogre::ResourceGroupManager::getSingleton().createResourceGroup("BtOgre");
                 if (!Ogre::MaterialManager::getSingleton().resourceExists("BtOgre/DebugLines"))
                 {
                     Ogre::MaterialPtr mat = Ogre::MaterialManager::getSingleton().create("BtOgre/DebugLines", "BtOgre");

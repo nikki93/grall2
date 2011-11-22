@@ -18,10 +18,12 @@
 
 #include "Globals.h"
 
+#include <MyGUI_TileRect.h>
+
 class Fader
 {
     protected: 
-        MyGUI::StaticTextPtr mImage;
+        MyGUI::TextBox *mImage;
 
         enum
         {
@@ -42,7 +44,7 @@ class Fader
         {
             int winHeight = GlbVar.ogreWindow->getHeight();
             int winWidth = GlbVar.ogreWindow->getWidth();
-            mImage = GlbVar.gui->createWidget<MyGUI::StaticText>("RawRect", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Fade");
+            mImage = GlbVar.gui->createWidget<MyGUI::TextBox>("ClientTileSkin", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Fade");
             mImage->setAlpha(0);
 
             mState = FM_NONE;
@@ -72,8 +74,8 @@ class Fader
         inline void setColour(const Ogre::ColourValue &colour)
         {
             MyGUI::Colour col(colour.r, colour.g, colour.b, colour.a);
-            MyGUI::RawRect *raw = mImage->getSubWidgetMain()->castType<MyGUI::RawRect>();
-            raw->setRectColour(col, col, col, col);
+            MyGUI::TileRect *raw = mImage->getSubWidgetMain()->castType<MyGUI::TileRect>();
+            raw->_setColour(col);
         }
 
         //Abort the fading, and jump to given alpha.

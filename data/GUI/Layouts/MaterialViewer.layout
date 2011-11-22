@@ -1,39 +1,39 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
     <Widget type="Window" skin="WindowC" position="24 32 352 392" layer="Main" name="win_materialViewer">
-        <Property key="Widget_Caption" value="Material Editor"/>
-        <Widget type="StaticText" skin="StaticText" position="12 9 108 23" layer="Main">
-            <Property key="Widget_Caption" value="Material type"/>
+        <Property key="Caption" value="Material Editor"/>
+        <Widget type="TextBox" skin="TextBox" position="12 9 108 23" layer="Main">
+            <Property key="Caption" value="Material type"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 41 108 23" layer="Main">
-            <Property key="Widget_Caption" value="Texture"/>
+        <Widget type="TextBox" skin="TextBox" position="12 41 108 23" layer="Main">
+            <Property key="Caption" value="Texture"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 153 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Normal map"/>
+        <Widget type="TextBox" skin="TextBox" position="12 153 108 24" layer="Main">
+            <Property key="Caption" value="Normal map"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 209 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Glow map"/>
+        <Widget type="TextBox" skin="TextBox" position="12 209 108 24" layer="Main">
+            <Property key="Caption" value="Glow map"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 73 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Ambient"/>
+        <Widget type="TextBox" skin="TextBox" position="12 73 108 24" layer="Main">
+            <Property key="Caption" value="Ambient"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 97 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Diffuse"/>
+        <Widget type="TextBox" skin="TextBox" position="12 97 108 24" layer="Main">
+            <Property key="Caption" value="Diffuse"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 121 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Specular"/>
+        <Widget type="TextBox" skin="TextBox" position="12 121 108 24" layer="Main">
+            <Property key="Caption" value="Specular"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 177 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Scale/bias"/>
+        <Widget type="TextBox" skin="TextBox" position="12 177 108 24" layer="Main">
+            <Property key="Caption" value="Scale/bias"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 233 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Glow amount"/>
+        <Widget type="TextBox" skin="TextBox" position="12 233 108 24" layer="Main">
+            <Property key="Caption" value="Glow amount"/>
         </Widget>
         <Widget type="Button" skin="Button" position="12 313 128 31" layer="Main" name="but_applyMaterial">
-            <Property key="Widget_Caption" value="Apply"/>
+            <Property key="Caption" value="Apply"/>
         </Widget>
         <Widget type="Button" skin="Button" position="204 313 128 32" layer="Main" name="but_saveMaterial">
-            <Property key="Widget_Caption" value="Write .material"/>
+            <Property key="Caption" value="Write .material"/>
         </Widget>
         <Widget type="ComboBox" skin="ComboBox" position="124 9 208 24" layer="Main" name="cmb_materialType">
             <Property key="Edit_ReadOnly" value="true"/>
@@ -78,12 +78,12 @@
             <UserString key="property" value="glow_amount"/>
             <UserString key="type" value="MaterialProperty"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="12 273 108 24" layer="Main">
-            <Property key="Widget_Caption" value="Light colour"/>
+        <Widget type="TextBox" skin="TextBox" position="12 273 108 24" layer="Main">
+            <Property key="Caption" value="Light colour"/>
         </Widget>
         <Widget type="Edit" skin="Edit" position="124 273 132 24" layer="Main" name="edt_lightColour"/>
         <Widget type="Button" skin="Button" position="260 273 72 24" layer="Main" name="but_createLight">
-            <Property key="Widget_Caption" value="Create"/>
+            <Property key="Caption" value="Create"/>
         </Widget>
     </Widget>
 </MyGUI>

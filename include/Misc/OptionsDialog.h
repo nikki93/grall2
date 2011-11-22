@@ -67,7 +67,7 @@ class OptionsDialog
         void setVisible(bool visible);
         bool getVisible()
         {
-            return mWindow->isVisible();
+            return mWindow->getVisible();
         }
 };
 

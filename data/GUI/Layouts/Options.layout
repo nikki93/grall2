@@ -1,148 +1,148 @@
 ﻿1<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout">
     <Widget type="Window" skin="WindowC" position="25 43 572 396" layer="Main" name="win_options">
-        <Property key="Widget_Caption" value="Options"/>
-        <Widget type="Tab" skin="Tab" position="8 10 544 307" layer="Main">
+        <Property key="Caption" value="Options"/>
+        <Widget type="TabControl" skin="TabControl" position="8 10 544 307" layer="Main">
             <Widget type="TabItem" skin="Default" position="4 26 535 275" layer="Main" name="o_tab_controls">
                 <Property key="TabItem_Select" value="true"/>
-                <Property key="Widget_Caption" value="Controls"/>
-                <Widget type="StaticText" skin="StaticText" position="132 10 80 18" layer="Main" name="o_c_txt_forward">
+                <Property key="Caption" value="Controls"/>
+                <Widget type="TextBox" skin="TextBox" position="132 10 80 18" layer="Main" name="o_c_txt_forward">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="forward"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 10 60 18" layer="Main" name="o_c_but_forward">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="forward"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 10 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Forward:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 10 124 18" layer="Main">
+                    <Property key="Caption" value="Forward:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 34 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Backward:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 34 124 18" layer="Main">
+                    <Property key="Caption" value="Backward:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 58 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Left:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 58 124 18" layer="Main">
+                    <Property key="Caption" value="Left:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 82 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Right:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 82 124 18" layer="Main">
+                    <Property key="Caption" value="Right:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 118 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Dimension switch:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 118 124 18" layer="Main">
+                    <Property key="Caption" value="Dimension switch:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 142 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Gravity switch:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 142 124 18" layer="Main">
+                    <Property key="Caption" value="Gravity switch:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 166 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Self destruct:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 166 124 18" layer="Main">
+                    <Property key="Caption" value="Self destruct:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 202 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Peep left:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 202 124 18" layer="Main">
+                    <Property key="Caption" value="Peep left:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 226 124 18" layer="Main">
-                    <Property key="Widget_Caption" value="Peep right:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 226 124 18" layer="Main">
+                    <Property key="Caption" value="Peep right:"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 34 80 18" layer="Main" name="o_c_txt_backward">
+                <Widget type="TextBox" skin="TextBox" position="132 34 80 18" layer="Main" name="o_c_txt_backward">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="backward"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 58 80 18" layer="Main" name="o_c_txt_left">
+                <Widget type="TextBox" skin="TextBox" position="132 58 80 18" layer="Main" name="o_c_txt_left">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="left"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 82 80 18" layer="Main" name="o_c_txt_right">
+                <Widget type="TextBox" skin="TextBox" position="132 82 80 18" layer="Main" name="o_c_txt_right">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="right"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 118 80 18" layer="Main" name="o_c_txt_dimensionSwitch">
+                <Widget type="TextBox" skin="TextBox" position="132 118 80 18" layer="Main" name="o_c_txt_dimensionSwitch">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="dimensionSwitch"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 142 80 18" layer="Main" name="o_c_txt_gravitySwitch">
+                <Widget type="TextBox" skin="TextBox" position="132 142 80 18" layer="Main" name="o_c_txt_gravitySwitch">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="gravitySwitch"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 166 80 18" layer="Main" name="o_c_txt_selfDestruct">
+                <Widget type="TextBox" skin="TextBox" position="132 166 80 18" layer="Main" name="o_c_txt_selfDestruct">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="selfDestruct"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 202 80 18" layer="Main" name="o_c_txt_peepLeft">
+                <Widget type="TextBox" skin="TextBox" position="132 202 80 18" layer="Main" name="o_c_txt_peepLeft">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="peepLeft"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="132 226 80 18" layer="Main" name="o_c_txt_peepRight">
+                <Widget type="TextBox" skin="TextBox" position="132 226 80 18" layer="Main" name="o_c_txt_peepRight">
                     <UserString key="type" value="KeyDisplay"/>
                     <UserString key="key" value="peepRight"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 34 60 18" layer="Main" name="o_c_but_backward">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="backward"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 58 60 18" layer="Main" name="o_c_but_left">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="left"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 82 60 18" layer="Main" name="o_c_but_right">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="right"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 118 60 18" layer="Main" name="o_c_but_dimensionSwitch">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="dimensionSwitch"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 142 60 18" layer="Main" name="o_c_but_gravitySwitch">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="gravitySwitch"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 166 60 18" layer="Main" name="o_c_but_selfDestruct">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="selfDestruct"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 202 60 18" layer="Main" name="o_c_but_peepLeft">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="peepLeft"/>
                 </Widget>
                 <Widget type="Button" skin="Button" position="216 226 60 18" layer="Main" name="o_c_but_peepRight">
-                    <Property key="Widget_Caption" value="Change"/>
+                    <Property key="Caption" value="Change"/>
                     <UserString key="type" value="KeyChange"/>
                     <UserString key="key" value="peepRight"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 254 256 18" layer="Back" name="o_c_txt_pressKey">
-                    <Property key="Widget_Caption" value="Press the new key!"/>
+                <Widget type="TextBox" skin="TextBox" position="8 254 256 18" layer="Back" name="o_c_txt_pressKey">
+                    <Property key="Caption" value="Press the new key!"/>
                     <Property key="Text_TextAlign" value="Center"/>
                     <Property key="Text_TextColour" value="0.8 0.6 0.1"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="308 10 184 18" layer="Back">
-                    <Property key="Widget_Caption" value="Left-right mouse sensitivity:"/>
+                <Widget type="TextBox" skin="TextBox" position="308 10 184 18" layer="Back">
+                    <Property key="Caption" value="Left-right mouse sensitivity:"/>
                 </Widget>
-                <Widget type="HScroll" skin="HSlider" position="308 34 216 16" layer="Back" name="o_c_sli_turningSensitivity"/>
-                <Widget type="StaticText" skin="StaticText" position="692 -10 128 4" layer="Back"/>
-                <Widget type="StaticText" skin="StaticText" position="308 70 184 18" layer="Back">
-                    <Property key="Widget_Caption" value="Up-down mouse sensitivity:"/>
+                <Widget type="HScroll" skin="SliderH" position="308 34 216 16" layer="Back" name="o_c_sli_turningSensitivity"/>
+                <Widget type="TextBox" skin="TextBox" position="692 -10 128 4" layer="Back"/>
+                <Widget type="TextBox" skin="TextBox" position="308 70 184 18" layer="Back">
+                    <Property key="Caption" value="Up-down mouse sensitivity:"/>
                 </Widget>
-                <Widget type="HScroll" skin="HSlider" position="308 94 216 16" layer="Back" name="o_c_sli_upDownSensitivity"/>
-                <Widget type="StaticText" skin="StaticText" position="308 130 152 18" layer="Back">
-                    <Property key="Widget_Caption" value="Invert mouse vertically"/>
+                <Widget type="HScroll" skin="SliderH" position="308 94 216 16" layer="Back" name="o_c_sli_upDownSensitivity"/>
+                <Widget type="TextBox" skin="TextBox" position="308 130 152 18" layer="Back">
+                    <Property key="Caption" value="Invert mouse vertically"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="504 130 20 20" layer="Back" name="o_c_chk_invertMouse"/>
-                <Widget type="StaticText" skin="StaticText" position="492 10 32 18" layer="Back" name="o_c_txt_turningSensitivity">
+                <Widget type="TextBox" skin="TextBox" position="492 10 32 18" layer="Back" name="o_c_txt_turningSensitivity">
                     <Property key="Text_TextAlign" value="Right VCenter"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="492 70 32 18" layer="Back" name="o_c_txt_upDownSensitivity">
+                <Widget type="TextBox" skin="TextBox" position="492 70 32 18" layer="Back" name="o_c_txt_upDownSensitivity">
                     <Property key="Text_TextAlign" value="Right VCenter"/>
                 </Widget>
             </Widget>
             <Widget type="TabItem" skin="Default" position="4 26 535 275" layer="Main">
-                <Property key="Widget_Caption" value="Graphics"/>
-                <Widget type="StaticText" skin="StaticText" position="8 34 96 18" layer="Back">
-                    <Property key="Widget_Caption" value="Resolution:"/>
+                <Property key="Caption" value="Graphics"/>
+                <Widget type="TextBox" skin="TextBox" position="8 34 96 18" layer="Back">
+                    <Property key="Caption" value="Resolution:"/>
                 </Widget>
                 <Widget type="ComboBox" skin="ComboBox" position="112 34 128 18" layer="Back" name="o_g_cmb_resolution">
                     <Property key="ComboBox_AddItem" value="800x600"/>
@@ -159,37 +159,37 @@
                     <Property key="ComboBox_AddItem" value="1920x1080"/>
                     <Property key="ComboBox_AddItem" value="1920x1200"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="8 58 84 20" layer="Back">
-                    <Property key="Widget_Caption" value="Fullscreen:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 58 84 20" layer="Back">
+                    <Property key="Caption" value="Fullscreen:"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="112 54 28 24" layer="Back" name="o_g_chk_fullscreen"/>
-                <Widget type="StaticText" skin="StaticText" position="8 10 104 18" layer="Back">
-                    <Property key="Widget_Caption" value="Renderer:"/>
+                <Widget type="TextBox" skin="TextBox" position="8 10 104 18" layer="Back">
+                    <Property key="Caption" value="Renderer:"/>
                 </Widget>
                 <Widget type="ComboBox" skin="ComboBox" position="112 10 128 20" layer="Back" name="o_g_cmb_renderer">
                     <Property key="ComboBox_AddItem" value="OpenGL"/>
                     <Property key="ComboBox_AddItem" value="Direct3D"/>
                 </Widget>
-                <Widget type="StaticText" skin="StaticText" position="307 10 154 18" layer="Back">
-                    <Property key="Widget_Caption" value="Lighting:"/>
+                <Widget type="TextBox" skin="TextBox" position="307 10 154 18" layer="Back">
+                    <Property key="Caption" value="Lighting:"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="466 6 24 24" layer="Back" name="o_g_chk_lighting"/>
-                <Widget type="StaticText" skin="StaticText" position="307 34 153 18" layer="Back">
-                    <Property key="Widget_Caption" value="Normal mapping:"/>
+                <Widget type="TextBox" skin="TextBox" position="307 34 153 18" layer="Back">
+                    <Property key="Caption" value="Normal mapping:"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="466 30 48 24" layer="Back" name="o_g_chk_normalMap"/>
-                <Widget type="StaticText" skin="StaticText" position="307 58 156 18" layer="Back">
-                    <Property key="Widget_Caption" value="Parallax mapping:"/>
+                <Widget type="TextBox" skin="TextBox" position="307 58 156 18" layer="Back">
+                    <Property key="Caption" value="Parallax mapping:"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="466 54 48 24" layer="Back" name="o_g_chk_parallaxMap"/>
                 <Widget type="Button" skin="Button" position="412 236 117 32" layer="Back" name="o_g_but_apply">
-                    <Property key="Widget_Caption" value="Apply Changes"/>
+                    <Property key="Caption" value="Apply Changes"/>
                 </Widget>
             </Widget>
         </Widget>
         <Widget type="Button" skin="Button" position="424 322 128 32" layer="Back" name="o_but_ok">
-            <Property key="Widget_Caption" value="OK"/>
+            <Property key="Caption" value="OK"/>
         </Widget>
-        <Widget type="StaticText" skin="StaticText" position="299 -107 44 88" layer="Back"/>
+        <Widget type="TextBox" skin="TextBox" position="299 -107 44 88" layer="Back"/>
     </Widget>
 </MyGUI>

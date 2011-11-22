@@ -38,7 +38,7 @@
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
 #include "MyGUI_OgrePlatform.h"
 
-template<> Globals* Ogre::Singleton<Globals>::ms_Singleton = 0;
+template<> Globals* Ogre::Singleton<Globals>::msSingleton = 0;
 
 //--------------------------------------------------------------------------------------
 class MaterialListener : 
@@ -76,7 +76,7 @@ class GameListener :
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
             //GUI update.
-            //GlbVar.gui->injectFrameEntered(evt.timeSinceLastFrame);
+            //MyGUI::InputManager::getInstance().injectFrameEntered(evt.timeSinceLastFrame);
 
             //Physics update.
             if (!GlbVar.paused)
@@ -118,7 +118,7 @@ class GameListener :
             GlbVar.optionsDialog->keyPressed(mCurrKey);
 
             //Tell MyGUI.
-            GlbVar.gui->injectKeyPress(MyGUI::KeyCode::Enum(arg.key), arg.text);
+            MyGUI::InputManager::getInstance().injectKeyPress(MyGUI::KeyCode::Enum(arg.key), arg.text);
 
             //Tell all GameObjects.
             if (!GlbVar.console->isVisible())
@@ -179,23 +179,23 @@ class GameListener :
         }
         bool keyReleased(const OIS::KeyEvent &arg)
         {
-            GlbVar.gui->injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
+            MyGUI::InputManager::getInstance().injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
             return true;
         }
 
         bool mouseMoved(const OIS::MouseEvent &arg)
         {
-            GlbVar.gui->injectMouseMove(arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
+            MyGUI::InputManager::getInstance().injectMouseMove(arg.state.X.abs, arg.state.Y.abs, arg.state.Z.abs);
             return true;
         }
         bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
         {
-            GlbVar.gui->injectMousePress(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+            MyGUI::InputManager::getInstance().injectMousePress(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
             return true;
         }
         bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
         {
-            GlbVar.gui->injectMouseRelease(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+            MyGUI::InputManager::getInstance().injectMouseRelease(arg.state.X.abs, arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
             return true;
         }
 };
@@ -355,7 +355,8 @@ class Game
             MyGUI::OgrePlatform *guiPlatform = new MyGUI::OgrePlatform();
             guiPlatform->initialise(GlbVar.ogreWindow, GlbVar.ogreSmgr, "General", USER_PREFIX "gui.log");
             GlbVar.gui = new MyGUI::Gui();
-            GlbVar.gui->initialise("core.xml", USER_PREFIX "gui.log");
+            GlbVar.gui->initialise("MyGUI_Core.xml");
+            MyGUI::ResourceManager::getInstance().load("MessageBoxResources.xml");
 
             //--- OgreAL (Sound) -------------------------------------------------------
             GlbVar.soundMgr = new OgreAL::SoundManager();

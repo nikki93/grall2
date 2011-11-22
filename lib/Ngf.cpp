@@ -22,9 +22,9 @@
 using namespace std;
 using namespace Ogre;
 
-template<> NGF::GameObjectFactory* Ogre::Singleton<NGF::GameObjectFactory>::ms_Singleton = 0;
-template<> NGF::GameObjectManager* Ogre::Singleton<NGF::GameObjectManager>::ms_Singleton = 0;
-template<> NGF::WorldManager* Ogre::Singleton<NGF::WorldManager>::ms_Singleton = 0;
+template<> NGF::GameObjectFactory* Ogre::Singleton<NGF::GameObjectFactory>::msSingleton = 0;
+template<> NGF::GameObjectManager* Ogre::Singleton<NGF::GameObjectManager>::msSingleton = 0;
+template<> NGF::WorldManager* Ogre::Singleton<NGF::WorldManager>::msSingleton = 0;
 
 namespace NGF {
 
@@ -142,11 +142,11 @@ namespace NGF {
 
     GameObjectFactory& GameObjectFactory::getSingleton(void)
     {
-	    assert(ms_Singleton); return *ms_Singleton;
+	    assert(msSingleton); return *msSingleton;
     }
     GameObjectFactory* GameObjectFactory::getSingletonPtr(void)
     {
-	    return ms_Singleton;
+	    return msSingleton;
     }
     //----------------------------------------------------------------------------------
     GameObject* GameObjectFactory::createObject(Ogre::String type, Ogre::Vector3 pos, Ogre::Quaternion rot, PropertyList props, Ogre::String name)
@@ -175,11 +175,11 @@ namespace NGF {
 
     GameObjectManager* GameObjectManager::getSingletonPtr(void)
     {
-	    return ms_Singleton;
+	    return msSingleton;
     }
     GameObjectManager& GameObjectManager::getSingleton(void)
     {
-	    assert(ms_Singleton); return *ms_Singleton;
+	    assert(msSingleton); return *msSingleton;
     }
     //----------------------------------------------------------------------------------
     GameObjectManager::GameObjectManager()
@@ -311,11 +311,11 @@ namespace NGF {
 
     WorldManager& WorldManager::getSingleton(void)
     {
-	    assert(ms_Singleton); return *ms_Singleton;
+	    assert(msSingleton); return *msSingleton;
     }
     WorldManager* WorldManager::getSingletonPtr(void)
     {
-	    return ms_Singleton;
+	    return msSingleton;
     }
     //----------------------------------------------------------------------------------
     WorldManager::WorldManager()

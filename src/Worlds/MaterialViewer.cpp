@@ -8,6 +8,8 @@ MaterialViewer.cpp
 
 #include "Objects/Misc/Light.h"
 
+#include "MessageBox.h"
+
 //-------------------------------------------------------------------------------
 void MaterialViewer::init()
 {
@@ -37,18 +39,18 @@ void MaterialViewer::init()
     compileMaterial();
 
     //Load the layout.
-    MyGUI::LayoutManager::getInstance().load("MaterialViewer.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("MaterialViewer.layout");
     mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_materialViewer");
 
     //Callbacks.
     MyGUI::ButtonPtr button = GlbVar.gui->findWidget<MyGUI::Button>("but_applyMaterial");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MaterialViewer::onClickApply);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MaterialViewer::onClickApply);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_saveMaterial");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MaterialViewer::onClickSave);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MaterialViewer::onClickSave);
 
     button = GlbVar.gui->findWidget<MyGUI::Button>("but_createLight");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &MaterialViewer::onClickCreateLight);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &MaterialViewer::onClickCreateLight);
 
     //Update the editboxes.
     MyGUI::EnumeratorWidgetPtr iter = mWindow->getEnumerator();
@@ -175,7 +177,8 @@ void MaterialViewer::onClickSave(MyGUI::WidgetPtr)
     out.close();
 
     MyGUI::Message::createMessageBox("Message", "File '" + filename + "' saved!", 
-            "Your material file has been saved as 'Content/" + filename + "' in the user directory!");
+            "Your material file has been saved as 'Content/" + filename + "' in the user directory!", 
+            MyGUI::MessageBoxStyle::IconInfo);
 }
 //-------------------------------------------------------------------------------
 void MaterialViewer::onClickCreateLight(MyGUI::WidgetPtr)

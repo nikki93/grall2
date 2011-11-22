@@ -11,7 +11,7 @@ OptionsDialog::OptionsDialog()
     : mCurrKey(""),
       mListeningForKey(false)
 {
-    MyGUI::LayoutManager::getInstance().load("Options.layout");
+    MyGUI::LayoutManager::getInstance().loadLayout("Options.layout");
 
     mWindow = GlbVar.gui->findWidget<MyGUI::Window>("win_options");
 
@@ -23,18 +23,18 @@ OptionsDialog::OptionsDialog()
     mUpDownScroll = GlbVar.gui->findWidget<MyGUI::HScroll>("o_c_sli_upDownSensitivity");
     mUpDownText = GlbVar.gui->findWidget<MyGUI::StaticText>("o_c_txt_upDownSensitivity");
     mInvertMouseCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_c_chk_invertMouse");
-    mInvertMouseCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickInvertMouse);
+    mInvertMouseCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickInvertMouse);
 
     mResolutionsBox = GlbVar.gui->findWidget<MyGUI::ComboBox>("o_g_cmb_resolution");
-    //mResolutionsBox->eventComboAccept = MyGUI::newDelegate(this, &OptionsDialog::onSelectResolution);
+    //mResolutionsBox->eventComboAccept += MyGUI::newDelegate(this, &OptionsDialog::onSelectResolution);
     mFullscreenCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_fullscreen");
-    mFullscreenCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickFullscreen);
+    mFullscreenCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickFullscreen);
     mLightingCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_lighting");
-    mLightingCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickLighting);
+    mLightingCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickLighting);
     mNormalMapCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_normalMap");
-    mNormalMapCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickNormalMap);
+    mNormalMapCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickNormalMap);
     mParallaxMapCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_parallaxMap");
-    mParallaxMapCheckBox->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickParallaxMap);
+    mParallaxMapCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickParallaxMap);
     mRenderersBox = GlbVar.gui->findWidget<MyGUI::ComboBox>("o_g_cmb_renderer");
 
     //Configure sliders.
@@ -58,15 +58,15 @@ OptionsDialog::OptionsDialog()
 
         //If it's a key setter, give it the key setting callback.
         if (widget->getUserString("type") == "KeyChange") 
-            widget->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickChangeKey);
+            widget->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickChangeKey);
     }
 
     //OK! :P
     MyGUI::ButtonPtr button;
     button = GlbVar.gui->findWidget<MyGUI::Button>("o_but_ok");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickOK);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickOK);
     button = GlbVar.gui->findWidget<MyGUI::Button>("o_g_but_apply");
-    button->eventMouseButtonClick = MyGUI::newDelegate(this, &OptionsDialog::onClickGraphicsApply);
+    button->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickGraphicsApply);
 
     //Quick hack to update.
     setVisible(true);
@@ -115,7 +115,7 @@ void OptionsDialog::tick()
         //Update slider text and checkbox. We update the sliders themselves only when we become visible.
         mTurningText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.turningSensitivity, 2));
         mUpDownText->setCaption(Ogre::StringConverter::toString(GlbVar.settings.controls.upDownSensitivity, 2));
-        mInvertMouseCheckBox->setStateCheck(GlbVar.settings.controls.invertMouse);
+        mInvertMouseCheckBox->setStateSelected(GlbVar.settings.controls.invertMouse);
 
         //Update graphics settings display.
         Ogre::String res = mResolutionsBox->getItemNameAt(mResolutionsBox->getIndexSelected());
@@ -132,10 +132,10 @@ void OptionsDialog::tick()
             }
         }
 
-        mFullscreenCheckBox->setStateCheck(GlbVar.settings.ogre.winFullscreen);
-        mLightingCheckBox->setStateCheck(GlbVar.settings.graphics.lighting);
-        mNormalMapCheckBox->setStateCheck(GlbVar.settings.graphics.normalMapping);
-        mParallaxMapCheckBox->setStateCheck(GlbVar.settings.graphics.parallaxMapping);
+        mFullscreenCheckBox->setStateSelected(GlbVar.settings.ogre.winFullscreen);
+        mLightingCheckBox->setStateSelected(GlbVar.settings.graphics.lighting);
+        mNormalMapCheckBox->setStateSelected(GlbVar.settings.graphics.normalMapping);
+        mParallaxMapCheckBox->setStateSelected(GlbVar.settings.graphics.parallaxMapping);
 
         GlbVar.settings.ogre.renderer = mRenderersBox->getIndexSelected() == 1 ? Globals::Settings::OgreSettings::DIRECT3D : Globals::Settings::OgreSettings::OPENGL;
     }
@@ -239,7 +239,7 @@ void OptionsDialog::setVisible(bool visible)
     if (visible)
     {
         //Gotta see where we click!
-        GlbVar.gui->setVisiblePointer(true);
+        MyGUI::PointerManager::getInstance().setVisible(true);
 
         //Update scrolls.
         mTurningScroll->setScrollPosition((GlbVar.settings.controls.turningSensitivity / SLIDER_QUANTUM) - 1);
@@ -263,7 +263,7 @@ void OptionsDialog::setVisible(bool visible)
     {
         unsigned int curInd = GlbVar.woMgr->getCurrentWorldIndex();
         if (curInd >= GlbVar.firstLevel && curInd <= GlbVar.records.highestLevelIndex)
-            GlbVar.gui->setVisiblePointer(false);
+            MyGUI::PointerManager::getInstance().setVisible(false);
     }
 }
 //-------------------------------------------------------------------------------
