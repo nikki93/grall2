@@ -29,6 +29,13 @@
 
 #include "FastDelegate.h"
 
+//Name of singleton member depends on Ogre version.
+#if (OGRE_VERSION < ((1 << 16) | (8 << 8)))
+#define SINGLETON_MEMBER ms_Singleton
+#else
+#define SINGLETON_MEMBER msSingleton
+#endif
+
 //Register a GameObject type. For easy registration if you're too lazy to type both the
 //typename and a string. ;-)
 #define NGF_REGISTER_OBJECT_TYPE(type) NGF::GameObjectFactory::getSingleton().registerObjectType< class type >( #type )

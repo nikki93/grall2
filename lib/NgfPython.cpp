@@ -20,7 +20,7 @@
 
 #include <boost/python/stl_iterator.hpp>
 
-template<> NGF::Python::PythonManager* Ogre::Singleton<NGF::Python::PythonManager>::msSingleton = 0;
+template<> NGF::Python::PythonManager* Ogre::Singleton<NGF::Python::PythonManager>::SINGLETON_MEMBER = 0;
 NGF::Python::PythonManager::PrintFunc NGF::Python::PythonManager::mPrinter = 0;
 
 //Some functions used for file-reading.
@@ -511,13 +511,13 @@ namespace NGF { namespace Python {
     //--------------------------------------------------------------------------------------
     PythonManager& PythonManager::getSingleton(void)
     {
-            assert(msSingleton);
-            return *msSingleton;
+            assert(SINGLETON_MEMBER);
+            return *SINGLETON_MEMBER;
     }
     //--------------------------------------------------------------------------------------
     PythonManager* PythonManager::getSingletonPtr(void)
     {
-            return msSingleton;
+            return SINGLETON_MEMBER;
     }
     //--------------------------------------------------------------------------------------
     PythonObjectConnectorPtr PythonManager::_createObject(std::string type, std::string name, Ogre::Vector3 pos, 

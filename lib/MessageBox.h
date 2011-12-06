@@ -13,7 +13,6 @@
 namespace MyGUI
 {
 	class Message;
-        typedef Message *MessagePtr;
 
 	typedef delegates::CMultiDelegate2<Message*, MessageBoxStyle> EventHandle_MessageBoxPtrMessageStyle;
 

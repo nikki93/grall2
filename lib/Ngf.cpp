@@ -22,9 +22,9 @@
 using namespace std;
 using namespace Ogre;
 
-template<> NGF::GameObjectFactory* Ogre::Singleton<NGF::GameObjectFactory>::msSingleton = 0;
-template<> NGF::GameObjectManager* Ogre::Singleton<NGF::GameObjectManager>::msSingleton = 0;
-template<> NGF::WorldManager* Ogre::Singleton<NGF::WorldManager>::msSingleton = 0;
+template<> NGF::GameObjectFactory* Ogre::Singleton<NGF::GameObjectFactory>::SINGLETON_MEMBER = 0;
+template<> NGF::GameObjectManager* Ogre::Singleton<NGF::GameObjectManager>::SINGLETON_MEMBER = 0;
+template<> NGF::WorldManager* Ogre::Singleton<NGF::WorldManager>::SINGLETON_MEMBER = 0;
 
 namespace NGF {
 
@@ -142,11 +142,11 @@ namespace NGF {
 
     GameObjectFactory& GameObjectFactory::getSingleton(void)
     {
-	    assert(msSingleton); return *msSingleton;
+	    assert(SINGLETON_MEMBER); return *SINGLETON_MEMBER;
     }
     GameObjectFactory* GameObjectFactory::getSingletonPtr(void)
     {
-	    return msSingleton;
+	    return SINGLETON_MEMBER;
     }
     //----------------------------------------------------------------------------------
     GameObject* GameObjectFactory::createObject(Ogre::String type, Ogre::Vector3 pos, Ogre::Quaternion rot, PropertyList props, Ogre::String name)
@@ -175,11 +175,11 @@ namespace NGF {
 
     GameObjectManager* GameObjectManager::getSingletonPtr(void)
     {
-	    return msSingleton;
+	    return SINGLETON_MEMBER;
     }
     GameObjectManager& GameObjectManager::getSingleton(void)
     {
-	    assert(msSingleton); return *msSingleton;
+	    assert(SINGLETON_MEMBER); return *SINGLETON_MEMBER;
     }
     //----------------------------------------------------------------------------------
     GameObjectManager::GameObjectManager()
@@ -311,11 +311,11 @@ namespace NGF {
 
     WorldManager& WorldManager::getSingleton(void)
     {
-	    assert(msSingleton); return *msSingleton;
+	    assert(SINGLETON_MEMBER); return *SINGLETON_MEMBER;
     }
     WorldManager* WorldManager::getSingletonPtr(void)
     {
-	    return msSingleton;
+	    return SINGLETON_MEMBER;
     }
     //----------------------------------------------------------------------------------
     WorldManager::WorldManager()

@@ -38,7 +38,11 @@
 #include "BulletCollision/CollisionDispatch/btGhostObject.h"
 #include "MyGUI_OgrePlatform.h"
 
+#if (OGRE_VERSION < ((1 << 16) | (8 << 8)))
+template<> Globals* Ogre::Singleton<Globals>::ms_Singleton = 0;
+#else
 template<> Globals* Ogre::Singleton<Globals>::msSingleton = 0;
+#endif
 
 //--------------------------------------------------------------------------------------
 class MaterialListener : 

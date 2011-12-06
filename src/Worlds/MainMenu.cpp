@@ -181,12 +181,12 @@ void MainMenu::onClickNewGame(MyGUI::WidgetPtr)
         Ogre::String warning = "Are you sure you want to start a new game? This will erase\n"
             "your previous progress!";
 
-        MyGUI::MessagePtr message = MyGUI::Message::createMessageBox("Message", "Warning!",
+        MyGUI::Message *message = MyGUI::Message::createMessageBox("Message", "Warning!",
                 warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No | MyGUI::MessageBoxStyle::IconWarning);
         message->eventMessageBoxResult += MyGUI::newDelegate(this, &MainMenu::onConfirmNewGame);
     }
 }
-void MainMenu::onConfirmNewGame(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result)
+void MainMenu::onConfirmNewGame(MyGUI::Message*, MyGUI::MessageBoxStyle result)
 {
     if (result == MyGUI::MessageBoxStyle::Yes)
     {
@@ -363,11 +363,11 @@ void LevelSelect::onClickRemoveCheckpoint(MyGUI::WidgetPtr)
     Ogre::String warning = "Are you sure you want remove the checkpoint? This will erase\n"
                            "your progress in the level!";
 
-    MyGUI::MessagePtr message = MyGUI::Message::createMessageBox("Message", "Warning!",
+    MyGUI::Message *message = MyGUI::Message::createMessageBox("Message", "Warning!",
             warning, MyGUI::MessageBoxStyle::Yes | MyGUI::MessageBoxStyle::No | MyGUI::MessageBoxStyle::IconWarning);
     message->eventMessageBoxResult += MyGUI::newDelegate(this, &LevelSelect::onConfirmRemoveCheckpoint);
 }
-void LevelSelect::onConfirmRemoveCheckpoint(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result)
+void LevelSelect::onConfirmRemoveCheckpoint(MyGUI::Message*, MyGUI::MessageBoxStyle result)
 {
     if (result == MyGUI::MessageBoxStyle::Yes)
     {

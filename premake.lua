@@ -59,6 +59,7 @@ package.links = {
     "MyGUI.OgrePlatform",
     "boost_python",
     "boost_filesystem",
+    "boost_system",
     "boost_serialization",
     "python2.7"
 }

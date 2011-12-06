@@ -44,7 +44,7 @@ class MainMenu :
 
         //--- Events -------------------------------------------------------------------
         void onClickNewGame(MyGUI::WidgetPtr);
-        void onConfirmNewGame(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result);
+        void onConfirmNewGame(MyGUI::Message*, MyGUI::MessageBoxStyle result);
         void onClickContinueGame(MyGUI::WidgetPtr);
         void onClickLevelSelect(MyGUI::WidgetPtr);
         void onClickQuit(MyGUI::WidgetPtr);
@@ -78,7 +78,7 @@ class LevelSelect
         void onClickCancel(MyGUI::WidgetPtr);
         void onSelectLevel(MyGUI::ListPtr sender, size_t index);
         void onClickRemoveCheckpoint(MyGUI::WidgetPtr);
-        void onConfirmRemoveCheckpoint(MyGUI::MessagePtr, MyGUI::MessageBoxStyle result);
+        void onConfirmRemoveCheckpoint(MyGUI::Message*, MyGUI::MessageBoxStyle result);
         void onClickPlay(MyGUI::WidgetPtr);
 };
 
