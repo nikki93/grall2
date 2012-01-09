@@ -23,7 +23,8 @@ CameraHandler::CameraHandler(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id
       mSplineAnimState(NULL),
       mSplineTrack(NULL),
       mLastKeyFrameTime(0),
-      mViewRoll(Ogre::Quaternion::IDENTITY)
+      mViewRoll(Ogre::Quaternion::IDENTITY),
+      mInitialShakeTime(-1)
 {
     Ogre::String ogreName = "id" + Ogre::StringConverter::toString(getID());
     addFlag("CameraHandler");
@@ -93,6 +94,10 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
         mTargetNodeName = "";
     }
     */
+
+    //If shaking rotate smooth.
+    if (mInitialShakeTime > 0)
+        mRotationFactor = 10;
 
     //Peeping.
     if (Util::isKeyDown(GlbVar.settings.controls.keys["peepLeft"]) && Util::isKeyDown(GlbVar.settings.controls.keys["peepRight"]))
@@ -252,6 +257,30 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
             break;
     }
 
+    //Camera shake.
+    if (mInitialShakeTime > 0)
+    {
+        if (mCurrShakeTime > 0)
+        {
+            if (mNextShakeTime > 0)
+                mNextShakeTime -= evt.timeSinceLastFrame;
+            else
+            {
+                Ogre::Vector3 currDir = mCamNode->_getDerivedOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
+                mCamNode->setDirection(currDir.randomDeviant(mShakeAmplitude * mCurrShakeTime / mInitialShakeTime), 
+                            Ogre::Node::TS_WORLD);
+
+                mNextShakeTime = mShakeInterval;
+            }
+            mCurrShakeTime -= evt.timeSinceLastFrame;
+        }
+        else
+        {
+            mRotationFactor = mPreShakeRotationFactor;
+            mInitialShakeTime = -1;
+        }
+    }
+
     //Alarms.
     updateAlarms(evt.timeSinceLastFrame);
 }
@@ -383,10 +412,28 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
 
         NGF_PY_RETURN();
     }
+    NGF_PY_METHOD_IMPL(shake)
+    {
+        mShakeAmplitude = py::extract<Ogre::Radian>(args[0]);
+        mInitialShakeTime = mCurrShakeTime = py::extract<Ogre::Real>(args[1]);
+        mShakeInterval = py::extract<Ogre::Real>(args[2]);
+        mPreShakeRotationFactor = mRotationFactor;
+    }
 
     NGF_PY_PROPERTY_IMPL(currState, mCurrState, int)
     NGF_PY_PROPERTY_IMPL(movementFactor, mMovementFactor, Ogre::Real)
-    NGF_PY_PROPERTY_IMPL(rotationFactor, mRotationFactor, Ogre::Real)
+
+    //mRotationFactor setting is more involved in case we're shaking.
+    case pget_rotationFactor:
+    if (mInitialShakeTime > 0)
+        return py::object(mPreShakeRotationFactor);
+    return py::object(mRotationFactor);
+    case pset_rotationFactor:
+    if (mInitialShakeTime > 0)
+        mPreShakeRotationFactor = py::extract<Ogre::Real>(args[0]);
+    else
+        mRotationFactor = py::extract<Ogre::Real>(args[0]);
+    return py::object();
 }
 NGF_PY_END_IMPL
 //-------------------------------------------------------------------------------

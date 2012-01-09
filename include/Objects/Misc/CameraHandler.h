@@ -66,6 +66,13 @@ class CameraHandler :
         Ogre::Vector3 mGhostOffset;
         bool mGhostDirection;
 
+        Ogre::Real mInitialShakeTime; //Initial setting for shake time.
+        Ogre::Real mCurrShakeTime; //Time left in current shake.
+        Ogre::Real mNextShakeTime; //Time left to next vibration.
+        Ogre::Radian mShakeAmplitude;
+        Ogre::Real mShakeInterval;
+        Ogre::Real mPreShakeRotationFactor;
+
         int mCurrState;
 
     public:
@@ -113,6 +120,8 @@ class CameraHandler :
             NGF_PY_METHOD_DECL(addSplinePoint)
             NGF_PY_METHOD_DECL(addSplinePointAbsolute)
             NGF_PY_METHOD_DECL(endSpline)
+            //(Radian amplitude, time, interval)
+            NGF_PY_METHOD_DECL(shake)
             
             NGF_PY_PROPERTY_DECL(currState)
             NGF_PY_PROPERTY_DECL(movementFactor)
@@ -131,12 +140,14 @@ class CameraHandler :
             Ogre::Real splineState;
             Ogre::Real splineLength;
             Ogre::Real viewAngle;
+            Ogre::Real shakeAmplitude;
 
             //While saving, store stuff.
             NGF_SERIALISE_ON_SAVE
             {
                 targetName = mTargetNode ? mTargetNode->getName() : "NULL";
                 splineNodePos = mSplineNode->getPosition();
+                shakeAmplitude = mShakeAmplitude.valueRadians();
 
                 //Save spline points (if any).
                 if (mSplineAnim && mSplineAnimState && mSplineTrack)
@@ -178,6 +189,12 @@ class CameraHandler :
             NGF_SERIALISE_OGRE(Vector3, mGhostPos);
             NGF_SERIALISE_OGRE(Vector3, mGhostOffset);
             NGF_SERIALISE_OGRE(Quaternion, mViewRoll);
+            NGF_SERIALISE_OGRE(Real, mInitialShakeTime);
+            NGF_SERIALISE_OGRE(Real, mCurrShakeTime);
+            NGF_SERIALISE_OGRE(Real, mNextShakeTime);
+            NGF_SERIALISE_OGRE(Real, shakeAmplitude);
+            NGF_SERIALISE_OGRE(Real, mShakeInterval);
+            NGF_SERIALISE_OGRE(Real, mPreShakeRotationFactor);
 
             NGF_SERIALISE_STL_CONTAINER(splineStrMap);
 
@@ -187,6 +204,8 @@ class CameraHandler :
                     mTargetNode = GlbVar.ogreSmgr->getSceneNode(targetName);
 
                 mSplineNode->setPosition(splineNodePos);
+
+                mShakeAmplitude = shakeAmplitude;
 
                 if (!splineStrMap.empty())
                 {
@@ -294,8 +313,8 @@ NGF_PY_CLASS_GPERF(CameraHandler)::MakeHash (register const char *str, register 
       44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
       44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
       44, 44, 44, 44, 44, 44, 44,  0,  0, 25,
-      44, 10, 44,  5, 44, 44, 44, 44,  0, 10,
-       0,  0,  0, 44,  0,  0,  5, 44, 44, 44,
+      44, 15, 44,  5, 44, 44, 44, 44,  0, 10,
+       0,  0,  0, 44,  0,  0,  0, 44, 44, 44,
       44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
       44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
       44, 44, 44, 44, 44, 44, 44, 44, 44, 44,
@@ -319,8 +338,8 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
 {
   enum
     {
-      TOTAL_KEYWORDS = 16,
-      MIN_WORD_LENGTH = 8,
+      TOTAL_KEYWORDS = 17,
+      MIN_WORD_LENGTH = 5,
       MAX_WORD_LENGTH = 22,
       MIN_HASH_VALUE = 8,
       MAX_HASH_VALUE = 43
@@ -339,11 +358,13 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
       {"getPosition", NGF_PY_METHOD_GPERF(CameraHandler, getPosition)},
       {""},
       {"set_rotationFactor", NGF_PY_SET_GPERF(CameraHandler, rotationFactor)},
-      {"endSpline", NGF_PY_METHOD_GPERF(CameraHandler, endSpline)},
-      {""}, {""},
+      {""},
+      {"shake", NGF_PY_METHOD_GPERF(CameraHandler, shake)},
+      {""},
       {"addSplinePointAbsolute", NGF_PY_METHOD_GPERF(CameraHandler, addSplinePointAbsolute)},
       {"get_rotationFactor", NGF_PY_GET_GPERF(CameraHandler, rotationFactor)},
-      {""}, {""}, {""},
+      {"endSpline", NGF_PY_METHOD_GPERF(CameraHandler, endSpline)},
+      {""}, {""},
       {"targetPlayer", NGF_PY_METHOD_GPERF(CameraHandler, targetPlayer)},
       {"set_movementFactor", NGF_PY_SET_GPERF(CameraHandler, movementFactor)},
       {""}, {""}, {""}, {""},
@@ -367,8 +388,8 @@ NGF_PY_CLASS_GPERF(CameraHandler)::Lookup (register const char *str, register un
         }
     }
   return 0;
-}/*}}}*/
+}
 
-#endif
+#endif/*}}}*/
 
 #endif
