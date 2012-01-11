@@ -172,7 +172,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name last
-		position -0.500000 -2.500000 1.672008
+		position -0.500000 -2.500000 3.686842
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -190,7 +190,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 1.500000 -2.500000 0.235460
+		position 1.500000 -2.500000 2.250294
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -208,7 +208,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 0.500000 -2.500000 1.672008
+		position 0.500000 -2.500000 3.686842
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -226,7 +226,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 0.500000 -2.500000 -0.764540
+		position 0.500000 -2.500000 0.628066
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -244,7 +244,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position -0.500000 -2.500000 -0.764540
+		position -0.500000 -2.500000 0.628066
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -262,7 +262,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position -1.500000 -2.500000 -4.230464
+		position -1.500000 -2.500000 -3.282306
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -316,7 +316,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position -0.500000 -2.500000 -3.764540
+		position -0.500000 -2.500000 -2.816382
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -334,7 +334,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 1.500000 -2.500000 -4.246533
+		position 1.500000 -2.500000 -3.298376
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -352,7 +352,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 0.500000 -2.500000 -3.764540
+		position 0.500000 -2.500000 -2.816382
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -370,7 +370,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position -0.500000 -2.500000 -9.323153
+		position 0.500000 -2.500000 -6.825006
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -388,7 +388,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 0.500000 -2.500000 -7.175685
+		position -0.500000 -2.500000 -9.628614
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -406,7 +406,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position -0.500000 -2.500000 -10.323153
+		position 0.500000 -2.500000 -10.187581
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -424,7 +424,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 0.500000 -2.500000 -10.456435
+		position 1.500000 -2.500000 -10.684138
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -442,7 +442,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 1.500000 -2.500000 -11.323153
+		position 0.500000 -2.500000 -13.893539
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -460,25 +460,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position 0.500000 -2.500000 -13.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			speed 2.0
-			script : import GraLL2
-			       : 
-			       : def utick(self, other):
-			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
-		}
-	}
-	object
-	{
-		type MovingBomb
-		name noname
-		position -0.500000 -2.500000 -12.974189
+		position -0.500000 -2.500000 -13.367728
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -510,7 +492,7 @@ ngflevel Dimensions
 	{
 		type MovingBomb
 		name noname
-		position -1.500000 -2.500000 -12.704482
+		position -1.500000 -2.500000 -13.098022
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -1368,7 +1350,6 @@ ngflevel Dimensions
 			       : wall that blocked your path in Dimension 1 isn't here in Dimension 2.
 			       : 
 			       : The icon in the bottom of the screen shows which dimension you're in.
-			       : 
 			       : You can press %s to switch back to Dimension 1.""" % GraLL2.getControl("dimensionSwitch"), 20)
 			       : 		
 			       : 		Ngf.destroyObject(self)
