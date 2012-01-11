@@ -283,85 +283,7 @@ ngflevel FirstStepsII
 	{
 		type Bomb
 		name noname
-		position -8.500000 0.500000 -25.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -8.500000 0.500000 -26.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -8.500000 0.500000 -27.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
 		position -9.500000 0.500000 -27.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -10.500000 0.500000 -27.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -11.500000 0.500000 -27.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -11.500000 0.500000 -26.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -620,19 +542,6 @@ ngflevel FirstStepsII
 			spin 49.0
 			bobAmplitude 0.15000000596
 			bobFrequency 0.34999999404
-		}
-	}
-	object
-	{
-		type Bomb
-		name noname
-		position -11.500000 0.500000 -25.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			green 1
 		}
 	}
 	object

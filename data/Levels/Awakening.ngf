@@ -96,42 +96,42 @@ ngflevel Awakening
 	{
 		type Point
 		name camPoint8
-		position 7.424202 1.468542 9.350673
+		position 7.783031 1.468542 9.413078
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camPoint7
-		position 9.662710 1.345531 7.874728
+		position 10.520341 1.345531 7.919816
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camPoint6
-		position 13.060408 1.210469 8.155353
+		position 13.018146 1.210469 8.606950
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camPoint5
-		position 14.294789 1.222649 11.636704
+		position 14.436822 1.222649 11.430520
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camPoint4
-		position 13.126402 1.326002 14.162512
+		position 13.010715 1.326002 14.219269
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
 	{
 		type Point
 		name camPoint3
-		position 10.500000 1.406993 14.873978
+		position 10.484399 1.406993 15.101520
 		rotation 1.000000 0.000000 0.000000 -0.000000
 	}
 	object
@@ -547,7 +547,7 @@ ngflevel Awakening
 			       : 				self.v_hitSound1.play()
 			       : 				self.m_colTime = 1.2
 			       : 				
-			       : 				GraLL2.cameraHandler.shake(Ngf.Radian(0.02), 0.5, 0.001)
+			       : 				GraLL2.cameraHandler.shake(Ngf.Radian(0.01), 0.3, 0.001)
 			       : 	elif (other.getName() == "glass"):
 			       : 		if (self.m_colTime <= 0):
 			       : 			self.v_hitSound1.setGain(1.2)
@@ -558,7 +558,7 @@ ngflevel Awakening
 			       : 			
 			       : 			self.m_colTime = 50
 			       : 			
-			       : 			GraLL2.cameraHandler.shake(Ngf.Radian(0.04), 0.5, 0.0005)
+			       : 			GraLL2.cameraHandler.shake(Ngf.Radian(0.02), 0.4, 0.0005)
 			       : 
 		}
 	}
