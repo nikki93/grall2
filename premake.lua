@@ -169,13 +169,13 @@ debug.defines = { "DEBUG", "_DEBUG" }
 debug.objdir = "obj/debug"
 debug.target = "debug/" .. package.name .. "_d"
 
-debug.linkoptions = { "/NODEFAULTLIB:libcpmt.lib", "/NODEFAULTLIB:LIBCMT" }
+debug.linkoptions = { "/NODEFAULTLIB:libcpmt.lib", "/NODEFAULTLIB:LIBCMT", "/SUBSYSTEM:WINDOWS" }
 
 -- Release configuration --------------------------------------------------------------------
 
 release.objdir = "obj/release"
 release.target = "release/" .. package.name
 
-release.linkoptions = { "/NODEFAULTLIB:libcpmt.lib", "/NODEFAULTLIB:LIBCMT" }
+release.linkoptions = { "/NODEFAULTLIB:libcpmt.lib", "/NODEFAULTLIB:LIBCMT", "/SUBSYSTEM:WINDOWS" }
 
 end
