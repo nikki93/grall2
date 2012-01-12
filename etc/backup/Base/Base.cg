@@ -23,6 +23,7 @@ float2 blurTex2D(sampler2D map, float2 uv, float radius, float2 offset)
 float shadow(sampler2D shadowMap, float4 shadowMapPos, float ourDepth, float radius, float2 offset) 
 {
     float2 suv = shadowMapPos.xy / shadowMapPos.w;
+    return tex2D(shadowMap, suv.xy);
 
     float2 moments = blurTex2D(shadowMap, suv, radius, offset);
     float litFactor = (ourDepth <= moments.x ? 1 : 0);

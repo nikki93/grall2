@@ -25,6 +25,8 @@
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/map.hpp>
 
+#define SHAKE_RECOVER_TIME 0.1
+
 class CameraHandler :
     public NGF::Python::PythonGameObject,
     public NGF::Serialisation::SerialisableGameObject,
@@ -105,6 +107,13 @@ class CameraHandler :
             }
 
             mCamNode->setDirection(res, Ogre::Node::TS_WORLD);
+        }
+        inline void shake(Ogre::Radian amp, Ogre::Real time, Ogre::Real interval)
+        {
+            mShakeAmplitude = amp;
+            mInitialShakeTime = mCurrShakeTime = time + SHAKE_RECOVER_TIME;
+            mShakeInterval = interval;
+            mPreShakeRotationFactor = mRotationFactor;
         }
 
         //--- Python interface ---------------------------------------------------------

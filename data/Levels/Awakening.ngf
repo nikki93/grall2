@@ -547,7 +547,7 @@ ngflevel Awakening
 			       : 				self.v_hitSound1.play()
 			       : 				self.m_colTime = 1.2
 			       : 				
-			       : 				GraLL2.cameraHandler.shake(Ngf.Radian(0.01), 0.3, 0.001)
+			       : 				GraLL2.cameraHandler.shake(Ngf.Radian(0.02), 0.3, 0.001)
 			       : 	elif (other.getName() == "glass"):
 			       : 		if (self.m_colTime <= 0):
 			       : 			self.v_hitSound1.setGain(1.2)
@@ -558,7 +558,7 @@ ngflevel Awakening
 			       : 			
 			       : 			self.m_colTime = 50
 			       : 			
-			       : 			GraLL2.cameraHandler.shake(Ngf.Radian(0.02), 0.4, 0.0005)
+			       : 			GraLL2.cameraHandler.shake(Ngf.Radian(0.03), 0.4, 0.0005)
 			       : 
 		}
 	}

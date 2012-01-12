@@ -30,21 +30,6 @@ ngflevel TestLevel3
 	{
 		type Light
 		name noname
-		position -4.500000 3.500000 -5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			lightType point
-			colour 0.1 0.2 0.6
-			attenuation 70 1 0.01 0.1
-		}
-	}
-	object
-	{
-		type Light
-		name noname
 		position -5.500000 9.500000 -10.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
@@ -54,21 +39,6 @@ ngflevel TestLevel3
 			lightType point
 			colour 0.8 0.5 0.1
 			attenuation 10 1 0.01 0.1
-		}
-	}
-	object
-	{
-		type Light
-		name noname
-		position -6.500000 7.500000 -5.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			lightType point
-			colour 0.8 0.5 0.1
-			attenuation 10 1 0.05 0.1
 		}
 	}
 	object
@@ -225,21 +195,6 @@ ngflevel TestLevel3
 	}
 	object
 	{
-		type Light
-		name noname
-		position 1.500000 2.500000 -2.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			lightType point
-			colour 0.8 0.3 0.2
-			attenuation 70 1 0.01 0.1
-		}
-	}
-	object
-	{
 		type Pickup
 		name noname
 		position 2.500000 0.500000 -3.500000
@@ -343,6 +298,23 @@ ngflevel TestLevel3
 			       : def alarm(self, n):
 			       : 	if (n == 0):
 			       : 		self.p_forward = False
+		}
+	}
+	object
+	{
+		type Light
+		name noname
+		position 1.500000 7.500000 -6.500000
+		rotation 0.806980 0.590578 0.000000 0.000000
+
+		properties
+		{
+			dimensions 3
+			lightType spot
+			colour 0.5 0.5 0.5
+			attenuation 70 1 0.01 0.001
+			innerAngle 10.0
+			outerAngle 85.0
 		}
 	}
 }

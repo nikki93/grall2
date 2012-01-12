@@ -53,7 +53,7 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
                 Ogre::Degree(Ogre::StringConverter::parseReal(mProperties.getValue("outerAngle", 1, "45")))
                 );
         mLight->setDirection(Ogre::Vector3(0,0,-1));
-        mLight->setCastShadows(true);
+        mLight->setCastShadows(false);
     }
     else
     {

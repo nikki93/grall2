@@ -156,6 +156,7 @@ class GameListener :
                 case OIS::KC_F9:
                     //Util::highResScreenshot(GlbVar.ogreWindow, GlbVar.ogreCamera, 3, "HiResScreenshot", ".png", true);
                     Util::screenshot("Screenshot", ".png");
+                    GlbVar.ogreSmgr->getShadowTexture(0)->getBuffer()->getRenderTarget()->writeContentsToFile("shadow.png");
                     break;
 
                 case OIS::KC_X:
@@ -290,19 +291,6 @@ class Game
             GlbVar.ogreSmgr = GlbVar.ogreRoot->createSceneManager(Ogre::ST_GENERIC);
             GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.49,0.49,0.49));
 
-            /*
-            GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
-            GlbVar.ogreSmgr->setShadowColour(Ogre::ColourValue(0.7,0.7,0.7));
-            */
-            
-            /*
-            Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
-            light->setType(Ogre::Light::LT_DIRECTIONAL);
-            light->setDiffuseColour(Ogre::ColourValue(0.15,0.15,0.15));
-            light->setSpecularColour(Ogre::ColourValue(0,0,0));
-            light->setDirection(Ogre::Vector3(1,-2.5,1)); 
-            */
-
             //Camera, Viewport.
             GlbVar.ogreCamera = GlbVar.ogreSmgr->createCamera("mainCamera");
             Ogre::Viewport *viewport = GlbVar.ogreWindow->addViewport(GlbVar.ogreCamera);
@@ -398,7 +386,7 @@ class Game
             Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
             //Shadows.
-            //initShadows();
+            initShadows();
             
             //Compositor chain.
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Glow");
@@ -457,6 +445,14 @@ class Game
 
             //Run the startup script (we do it here so that all managers and stuff are created and initialised).
             runPythonStartupScript();
+
+            //Main light
+            Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
+            light->setType(Ogre::Light::LT_DIRECTIONAL);
+            light->setDiffuseColour(Ogre::ColourValue(0.15,0.15,0.15));
+            light->setSpecularColour(Ogre::ColourValue(0,0,0));
+            light->setDirection(Ogre::Vector3(1,-2.5,1)); 
+            light->setCastShadows(true);
 
             //Start running the Worlds.
             GlbVar.woMgr->start(0);

@@ -561,6 +561,12 @@ void Player::die(bool explode, bool corpse, bool offLight)
         Util::createExplosion(mNode->getPosition());
         GlbVar.playerExplosionSound->stop();
         GlbVar.playerExplosionSound->play();
+
+        //Camera shake
+        if (GlbVar.currCameraHandler)
+            GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, 
+                    NGF_MESSAGE(MSG_SHAKE, Ogre::Radian(0.02), 0.4f, 0.0005f));
+
     }
 
     //And of course, we don't exist anymore. :-( If leaving a corpse, then just lose

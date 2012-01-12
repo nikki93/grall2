@@ -276,6 +276,7 @@ enum
     MSG_MAGNET,               //In a magnetic field.
     MSG_GRAVITYCHANGE,        //Gravity changed.
     MSG_GETCRATEFORCE,        //Get 'crate-pushing' force (for Player).
+    MSG_SHAKE,                //Camera shake (for CameraHandler).
 };
 
 //Flags for creating Physics bodies from Python.

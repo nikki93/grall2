@@ -260,21 +260,21 @@ void CameraHandler::unpausedTick(const Ogre::FrameEvent &evt)
     //Camera shake.
     if (mInitialShakeTime > 0)
     {
-        if (mCurrShakeTime > 0)
+        mCurrShakeTime -= evt.timeSinceLastFrame;
+        if (mCurrShakeTime > SHAKE_RECOVER_TIME)
         {
             if (mNextShakeTime > 0)
                 mNextShakeTime -= evt.timeSinceLastFrame;
             else
             {
                 Ogre::Vector3 currDir = mCamNode->_getDerivedOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
-                mCamNode->setDirection(currDir.randomDeviant(mShakeAmplitude * mCurrShakeTime / mInitialShakeTime), 
+                mCamNode->setDirection(currDir.randomDeviant(mShakeAmplitude * (mCurrShakeTime - SHAKE_RECOVER_TIME) / mInitialShakeTime), 
                             Ogre::Node::TS_WORLD);
 
                 mNextShakeTime = mShakeInterval;
             }
-            mCurrShakeTime -= evt.timeSinceLastFrame;
         }
-        else
+        else if (mCurrShakeTime <= 0)
         {
             mRotationFactor = mPreShakeRotationFactor;
             mInitialShakeTime = -1;
@@ -312,6 +312,7 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
                     mTargetNode = 0;
                     break;
                 case CS_DEATH:
+                    mRotationFactor = 10;
                     mGhostPos = mTargetNode ? mTargetNode->getPosition() : Ogre::Vector3::ZERO;
                     //mGhostOffset = mViewRoll * (mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + 1, 3));
                     mGhostOffset = mTargetNode->getOrientation() * Ogre::Vector3(0, mViewOffset.y + GlbVar.gravMgr->getSign(), 3);
@@ -326,14 +327,21 @@ NGF::MessageReply CameraHandler::receiveMessage(NGF::Message msg)
             break;
 
         case MSG_TELEPORT:
-            //Get current offset, and then move to the teleported position with same offset.
-            Ogre::Vector3 currOffset;
-            if (mTargetNode)
-                currOffset = mCamNode->getPosition() - mTargetNode->getPosition();
-            else
-                currOffset = 0;
-            Ogre::Vector3 newPos = msg.getParam<Ogre::Vector3>(0) + currOffset;
-            mCamNode->setPosition(newPos);
+            {
+                //Get current offset, and then move to the teleported position with same offset.
+                Ogre::Vector3 currOffset;
+                if (mTargetNode)
+                    currOffset = mCamNode->getPosition() - mTargetNode->getPosition();
+                else
+                    currOffset = 0;
+                Ogre::Vector3 newPos = msg.getParam<Ogre::Vector3>(0) + currOffset;
+                mCamNode->setPosition(newPos);
+            }
+            break;
+
+        case MSG_SHAKE:
+            shake(msg.getParam<Ogre::Radian>(0), msg.getParam<Ogre::Real>(1),
+                    msg.getParam<Ogre::Real>(2));
             break;
     }
     NGF_NO_REPLY();
@@ -414,10 +422,8 @@ NGF_PY_BEGIN_IMPL(CameraHandler)
     }
     NGF_PY_METHOD_IMPL(shake)
     {
-        mShakeAmplitude = py::extract<Ogre::Radian>(args[0]);
-        mInitialShakeTime = mCurrShakeTime = py::extract<Ogre::Real>(args[1]);
-        mShakeInterval = py::extract<Ogre::Real>(args[2]);
-        mPreShakeRotationFactor = mRotationFactor;
+        shake(py::extract<Ogre::Radian>(args[0]), py::extract<Ogre::Real>(args[1]),
+                py::extract<Ogre::Real>(args[2]));
     }
 
     NGF_PY_PROPERTY_IMPL(currState, mCurrState, int)
