@@ -51,6 +51,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     : NGF::GameObject(pos, rot, id , properties, name),
       mUnderControl(true),
       mDead(false),
+      mExploded(false),
       mLight(0),
       mInvincible(false), //This makes the game harder.
       mWon(false),
@@ -543,42 +544,44 @@ void Player::switchDimension()
 //-------------------------------------------------------------------------------
 void Player::die(bool explode, bool corpse, bool offLight)
 {
-    //We're not going through this twice!
-    if (mDead)
-        return;
+    if (!corpse)
+	{
+		//Explosions!
+        if (!mExploded && !corpse && explode)
+        {
+            Util::createExplosion(mNode->getPosition());
+            GlbVar.playerExplosionSound->stop();
+            GlbVar.playerExplosionSound->play();
 
-    //If we're invincible, nah! :P
-    if (mWon || mInvincible)
-        return;
+            //Camera shake
+            if (GlbVar.currCameraHandler)
+                GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, 
+                        NGF_MESSAGE(MSG_SHAKE, Ogre::Radian(0.02), 0.4f, 0.0005f));
 
-    //We lost the level.
-    //if (!mWon)
-    loseLevel();
+            mExploded = true;
+        }
+	}
 
-    //Explosions!
-    if (explode)
-    {
-        Util::createExplosion(mNode->getPosition());
-        GlbVar.playerExplosionSound->stop();
-        GlbVar.playerExplosionSound->play();
+    if (!mDead)
+	{
+        //If we're invincible, nope!
+        if (mWon || mInvincible)
+            return;
 
-        //Camera shake
-        if (GlbVar.currCameraHandler)
-            GlbVar.goMgr->sendMessage(GlbVar.currCameraHandler, 
-                    NGF_MESSAGE(MSG_SHAKE, Ogre::Radian(0.02), 0.4f, 0.0005f));
+        //We lost the level.
+        loseLevel();
 
-    }
+		//Might not want to disappear.
+		if (corpse)
+        {
+            mUnderControl = false;
 
-    //And of course, we don't exist anymore. :-( If leaving a corpse, then just lose
-    //control, switch of light if needed.
-    if (corpse)
-    {
-        mUnderControl = false;
+            if (offLight)
+                lightOff();
+        }
+	}
 
-        if (offLight)
-            lightOff();
-    }
-    else
+    if (!corpse)
         GlbVar.goMgr->requestDestroy(getID());
     mDead = true;
 }
