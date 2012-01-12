@@ -287,9 +287,8 @@ class Game
             GlbVar.ogreWindow->setActive(true);
             GlbVar.ogreWindow->setAutoUpdated(true);
 
-            //SceneManager, main lights.
+            //SceneManager.
             GlbVar.ogreSmgr = GlbVar.ogreRoot->createSceneManager(Ogre::ST_GENERIC);
-            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.49,0.49,0.49));
 
             //Camera, Viewport.
             GlbVar.ogreCamera = GlbVar.ogreSmgr->createCamera("mainCamera");
@@ -446,10 +445,12 @@ class Game
             //Run the startup script (we do it here so that all managers and stuff are created and initialised).
             runPythonStartupScript();
 
-            //Main light
+            //Main lights.
+            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.3,0.3,0.3));
+
             Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
             light->setType(Ogre::Light::LT_DIRECTIONAL);
-            light->setDiffuseColour(Ogre::ColourValue(0.15,0.15,0.15));
+            light->setDiffuseColour(Ogre::ColourValue(0.22,0.22,0.22));
             light->setSpecularColour(Ogre::ColourValue(0,0,0));
             light->setDirection(Ogre::Vector3(1,-2.5,1)); 
             light->setCastShadows(true);

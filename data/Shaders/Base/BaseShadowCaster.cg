@@ -4,41 +4,26 @@
 void BaseShadowCaster_vp
     (
         float4 position : POSITION,
-        out float4 outPos : POSITION,
-        out float2 outDepth : TEXCOORD0,
 
-        uniform float4x4 worldViewProj,
-        uniform float4 texelOffsets,
-        uniform float4 depthRange
+        out float4 oPos : POSITION,
+        out float2 oDepth : TEXCOORD0,
+
+        uniform float4x4 worldViewProj
     )
 {
-    outPos = mul(worldViewProj, position);
+    oPos = mul(worldViewProj, position);
 
-    // fix pixel / texel alignment
-    outPos.xy += texelOffsets.zw * outPos.w;
-    // linear depth storage
-    // offset / scale range output
-#if LINEAR_RANGE
-    outDepth.x = (outPos.z - depthRange.x) * depthRange.w;
-#else
-    outDepth.x = outPos.z;
-#endif
-    outDepth.y = outPos.w;
+    oDepth.x = oPos.z;
+    oDepth.y = oPos.w;
 }
 
 void BaseShadowCaster_fp
     (
         float2 depth : TEXCOORD0,
-        out float4 result : COLOR
+        out float4 oColor : COLOR
     )
 {
-#if LINEAR_RANGE
-    float finalDepth = depth.x;
-#else
     float finalDepth = depth.x / depth.y;
-#endif
-    // just smear across all components 
-    // therefore this one needs high individual channel precision
-    result = float4(finalDepth, finalDepth * finalDepth, 1, 1);
+    oColor = float4(finalDepth, finalDepth, 1, 1);
 }
 

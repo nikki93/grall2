@@ -44,7 +44,7 @@ class Fader
         {
             int winHeight = GlbVar.ogreWindow->getHeight();
             int winWidth = GlbVar.ogreWindow->getWidth();
-            mImage = GlbVar.gui->createWidget<MyGUI::TextBox>("ClientTileSkin", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Fade");
+            mImage = GlbVar.gui->createWidget<MyGUI::TextBox>("FaderSkin", MyGUI::IntCoord(0,0,winWidth,winHeight), MyGUI::Align::Default, "Fade");
             mImage->setAlpha(0);
 
             mState = FM_NONE;

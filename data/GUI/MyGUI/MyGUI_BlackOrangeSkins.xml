@@ -737,6 +737,15 @@
             <State name="normal" offset="375 4 66 59"/>
         </BasisSkin>
     </Resource>
+    <Resource type="ResourceSkin" name="FaderSkin" size="34 18" texture="fade.png">
+        <BasisSkin type="TileRect" offset="0 0 34 18" align="Stretch">
+            <State name="normal" offset="392 88 34 18">
+                <Property key="TileSize" value="34 18"/>
+                <Property key="TileH" value="true"/>
+                <Property key="TileV" value="true"/>
+            </State>
+        </BasisSkin>
+    </Resource>
     <Resource type="ResourceSkin" name="ClientTileSkin" size="34 18" texture="MyGUI_BlackOrangeSkins.png">
         <BasisSkin type="TileRect" offset="0 0 34 18" align="Stretch">
             <State name="normal" offset="392 88 34 18">

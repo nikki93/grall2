@@ -15,39 +15,52 @@
 
 #include "Globals.h"
 
-struct ShadowListener : public Ogre::SceneManager::Listener
-{
-    void shadowTextureCasterPreViewProj(Ogre::Light *light, Ogre::Camera *cam, size_t)
-    {
-        cam->setNearClipDistance(0.01);
-        cam->setFarClipDistance(light->getAttenuationRange());
-    }
-
-    //Pure virtuals.
-    void shadowTexturesUpdated(size_t) {}
-    void shadowTextureReceiverPreViewProj(Ogre::Light*, Ogre::Frustum*) {}
-    void preFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}
-    void postFindVisibleObjects(Ogre::SceneManager*, Ogre::SceneManager::IlluminationRenderStage, Ogre::Viewport*) {}
-} shadowListener;
-
 void initShadows()
 {
-    const int numShadowTex = 1;
+    GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED);
 
+    // 3 textures per directional light
+    GlbVar.ogreSmgr->setShadowTextureCountPerLightType(Ogre::Light::LT_DIRECTIONAL, 3);
+    GlbVar.ogreSmgr->setShadowTextureCount(3);
+    GlbVar.ogreSmgr->setShadowTextureConfig(0, 2048, 2048, Ogre::PF_FLOAT32_R);
+    GlbVar.ogreSmgr->setShadowTextureConfig(1, 2048, 2048, Ogre::PF_FLOAT32_R);
+    GlbVar.ogreSmgr->setShadowTextureConfig(1, 1024, 1024, Ogre::PF_FLOAT32_R);
     GlbVar.ogreSmgr->setShadowTextureSelfShadow(true);
+    GlbVar.ogreSmgr->setShadowCasterRenderBackFaces(true);
+
+    // Set up caster material - this is just a standard depth/shadow map caster
     GlbVar.ogreSmgr->setShadowTextureCasterMaterial("BaseShadowCaster");
-    GlbVar.ogreSmgr->setShadowTexturePixelFormat(Ogre::PF_FLOAT32_RGB);
-    GlbVar.ogreSmgr->setShadowTextureSize(2048);
-    GlbVar.ogreSmgr->setShadowCasterRenderBackFaces(false);
-    GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED);
+
+    // shadow camera setup
+    Ogre::PSSMShadowCameraSetup::SplitPointList splits;
+    splits.push_back(0.1f);
+    splits.push_back(18.7167f);
+    splits.push_back(77.4301f);
+    splits.push_back(1000.0f);
+
+    Ogre::PSSMShadowCameraSetup* pssmSetup = new Ogre::PSSMShadowCameraSetup();
+    pssmSetup->setSplitPoints(splits);
+    pssmSetup->setSplitPadding(10);
+    pssmSetup->setOptimalAdjustFactor(0, 5);
+    pssmSetup->setOptimalAdjustFactor(1, 3);
+    pssmSetup->setOptimalAdjustFactor(2, 0.1);
+    GlbVar.ogreSmgr->setShadowCameraSetup(Ogre::ShadowCameraSetupPtr(pssmSetup));
+
+    // print points
+    const Ogre::PSSMShadowCameraSetup::SplitPointList &list = pssmSetup->getSplitPoints();
+    for (Ogre::PSSMShadowCameraSetup::SplitPointList::const_iterator iter = list.begin();
+            iter != list.end(); ++iter)
+        Ogre::LogManager::getSingleton().logMessage("SPLIT: " + Ogre::StringConverter::toString(*iter));
 
     //Debug overlays
+    /*
     unsigned int w = GlbVar.ogreWindow->getWidth();
-    for (unsigned int i = 0; i < numShadowTex; ++i)
+    for (unsigned int i = 0; i < 3; ++i)
     {
         MyGUI::StaticImagePtr img = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", w - 250 , 50 + 210*i, 200, 200, MyGUI::Align::Default, "Main");
         img->setImageTexture(GlbVar.ogreSmgr->getShadowTexture(i)->getName());
         img->setVisible(true);
     }
+    */
 }
 
