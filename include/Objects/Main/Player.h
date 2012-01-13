@@ -34,6 +34,7 @@ class Player :
 
         bool mUnderControl; //Whether the Player can control us.
         bool mDead;
+        bool mExploded;
         bool mInvincible;
         bool mWon;
 
@@ -121,6 +122,7 @@ class Player :
             NGF_SERIALISE_OGRE(Quaternion, controlRot);
             NGF_SERIALISE_OGRE(Bool, mUnderControl);
             NGF_SERIALISE_OGRE(Bool, mDead);
+            NGF_SERIALISE_OGRE(Bool, mExploded);
             NGF_SERIALISE_GAMEOBJECTPTR(mLight);
             NGF_SERIALISE_STL_CONTAINER(mPickups);
             NGF_SERIALISE_OGRE(Bool, mCanSwitchDimensions);

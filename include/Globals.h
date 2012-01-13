@@ -26,7 +26,11 @@
 #ifdef USE_HOME
 #define USER_PREFIX Ogre::String(getenv("HOME")) + "/.grall2/"
 #else
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+#define USER_PREFIX Ogre::String(getenv("APPDATA")) + "/GraLL 2/"
+#else
 #define USER_PREFIX Ogre::String("../../usr/") + ""
+#endif
 #endif
 
 #ifndef DATA_PREFIX
