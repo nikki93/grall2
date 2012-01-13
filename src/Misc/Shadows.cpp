@@ -19,7 +19,7 @@ void initShadows()
 {
     GlbVar.ogreSmgr->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED);
 
-    // 3 textures per directional light
+    //3 textures per directional light.
     GlbVar.ogreSmgr->setShadowTextureCountPerLightType(Ogre::Light::LT_DIRECTIONAL, 3);
     GlbVar.ogreSmgr->setShadowTextureCount(3);
     GlbVar.ogreSmgr->setShadowTextureConfig(0, 2048, 2048, Ogre::PF_FLOAT32_R);
@@ -28,10 +28,10 @@ void initShadows()
     GlbVar.ogreSmgr->setShadowTextureSelfShadow(true);
     GlbVar.ogreSmgr->setShadowCasterRenderBackFaces(true);
 
-    // Set up caster material - this is just a standard depth/shadow map caster
+    //Caster material.
     GlbVar.ogreSmgr->setShadowTextureCasterMaterial("BaseShadowCaster");
 
-    // shadow camera setup
+    //Shadow camera setup.
     Ogre::PSSMShadowCameraSetup::SplitPointList splits;
     splits.push_back(0.1f);
     splits.push_back(18.7167f);
@@ -45,12 +45,6 @@ void initShadows()
     pssmSetup->setOptimalAdjustFactor(1, 3);
     pssmSetup->setOptimalAdjustFactor(2, 0.1);
     GlbVar.ogreSmgr->setShadowCameraSetup(Ogre::ShadowCameraSetupPtr(pssmSetup));
-
-    // print points
-    const Ogre::PSSMShadowCameraSetup::SplitPointList &list = pssmSetup->getSplitPoints();
-    for (Ogre::PSSMShadowCameraSetup::SplitPointList::const_iterator iter = list.begin();
-            iter != list.end(); ++iter)
-        Ogre::LogManager::getSingleton().logMessage("SPLIT: " + Ogre::StringConverter::toString(*iter));
 
     //Debug overlays
     /*

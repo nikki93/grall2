@@ -212,10 +212,11 @@ void BasePerLight_fp
     //Diffuse texture.
     oColor *= tex2D(diffuseMap, uv.xy);
 
-    if (lightPosition.w)
-        return;
-
     //Shadows
+
+    if (lightPosition.w)
+        return; //Directional lights only.
+
     if (uv.z <= 18.7167)
     {
         shadowPos0 /= shadowPos0.w;
