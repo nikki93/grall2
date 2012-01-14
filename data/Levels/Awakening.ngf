@@ -366,6 +366,8 @@ ngflevel Awakening
 			       : 	
 			       : 	self.setAlarm(8.2, 0)
 			       : 	
+			       : 	GraLL2.fadeOutColour(Ngf.ColourValue(0,0,0), 5)
+			       : 	
 			       : def levelStop(self):
 			       : 	pass
 			       : 

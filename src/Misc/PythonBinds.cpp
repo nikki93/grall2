@@ -512,11 +512,11 @@ BOOST_PYTHON_MODULE(GraLL2)
     //Fades.
     py::def("fadeInColour", py_fadeInScreen,
             "fadeInColour(time)\n"
-            "Fades in the the fade colour in given time."
+            "Fades in the fade colour in given time."
             );
     py::def("fadeOutColour", py_fadeOutScreen,
             "fadeOutColour(time)\n"
-            "Fades out the the fade colour in given time."
+            "Fades out the fade colour in given time."
             );
     py::def("fadeInOutColour", py_fadeInOutScreen,
             "fadeInOutColour(in,pause,out)\n"

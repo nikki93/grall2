@@ -14,8 +14,11 @@ Player.cpp
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/ParticleEffect.h"
 
-#define PLAYER_TORQUE_1 11
-#define PLAYER_TORQUE_2 7
+#define PLAYER_TORQUE_1 10
+#define PLAYER_SQVEL_SPLITPOINT 100
+#define PLAYER_TORQUE_2 8
+#define PLAYER_SQVEL_MAX 600
+
 #define PLAYER_RADIUS 0.42
 
 //Makes sure the ghost object stays with us.
@@ -42,7 +45,7 @@ class PlayerMotionState : public BtOgre::RigidBodyState
         virtual void setWorldTransform(const btTransform &in) 
         {
             mGhostObject->setWorldTransform(in);
-            BtOgre::RigidBodyState::setWorldTransform(in); //Let base do it's stuff.
+            BtOgre::RigidBodyState::setWorldTransform(in); //Let base do its stuff.
         }
 };
 
@@ -68,7 +71,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
     //Python init event.
     NGF_PY_CALL_EVENT(init);
 
-    //Do away with the previous fellow (if any).
+    //Do away with the previous one (if any).
     if (GlbVar.player)
         GlbVar.goMgr->destroyObject(GlbVar.player->getID());
     GlbVar.player = this;
@@ -113,6 +116,7 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
     info.m_friction = Ogre::Math::POS_INFINITY;
+    info.m_restitution = 0;
     info.m_linearDamping = 0.1;
     info.m_angularDamping = 0.9;
 
@@ -218,13 +222,13 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
 
     //Controls.
     float sqVel = mBody->getAngularVelocity().length2();
-    if (sqVel < 600)
+    if (sqVel < PLAYER_SQVEL_MAX)
     {
         Ogre::Vector3 torque = Ogre::Vector3::ZERO;
         torque.x =  GlbVar.gravMgr->getSign() * (isKeyDown(GlbVar.settings.controls.keys["backward"]) - isKeyDown(GlbVar.settings.controls.keys["forward"]));
         torque.z =  (isKeyDown(GlbVar.settings.controls.keys["left"]) - isKeyDown(GlbVar.settings.controls.keys["right"]));
         torque.normalise();
-        if (sqVel < 180)
+        if (sqVel < PLAYER_SQVEL_SPLITPOINT)
             torque *= PLAYER_TORQUE_1;
         else
             torque *= PLAYER_TORQUE_2;
@@ -275,7 +279,9 @@ void Player::unpausedTick(const Ogre::FrameEvent &evt)
     else
         GlbVar.hud->removeIcon("gravity");
 
-    //Log force.
+    //Log stuff.
+    //LOG(Ogre::StringConverter::toString(mBody->getWorldTransform().getOrigin().getY()));
+    //LOG(Ogre::StringConverter::toString(sqVel));
     //Ogre::Vector3 torque = BtOgre::Convert::toOgre(mBody->getTotalTorque());
     //Ogre::Vector3 velocity = BtOgre::Convert::toOgre(mBody->getLinearVelocity());
     //Ogre::LogManager::getSingleton().logMessage("torque: " + Ogre::StringConverter::toString(torque));
@@ -328,6 +334,9 @@ NGF::MessageReply Player::receiveMessage(NGF::Message msg)
                 GlbVar.phyWorld->removeRigidBody(mBody);
                 mBody->setWorldTransform(btTransform(oldTrans.getRotation(), BtOgre::Convert::toBullet(target)));
                 GlbVar.phyWorld->addRigidBody(mBody, mDimensions | oldFlags, mDimensions);
+                btVector3 vel = mBody->getLinearVelocity();
+                vel.setY(0);
+                mBody->setLinearVelocity(vel);
             }
             NGF_NO_REPLY();
 
