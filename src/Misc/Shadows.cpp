@@ -24,7 +24,7 @@ void initShadows()
     GlbVar.ogreSmgr->setShadowTextureCount(3);
     GlbVar.ogreSmgr->setShadowTextureConfig(0, 2048, 2048, Ogre::PF_FLOAT32_R);
     GlbVar.ogreSmgr->setShadowTextureConfig(1, 2048, 2048, Ogre::PF_FLOAT32_R);
-    GlbVar.ogreSmgr->setShadowTextureConfig(1, 1024, 1024, Ogre::PF_FLOAT32_R);
+    GlbVar.ogreSmgr->setShadowTextureConfig(2, 1024, 1024, Ogre::PF_FLOAT32_R);
     GlbVar.ogreSmgr->setShadowTextureSelfShadow(true);
     GlbVar.ogreSmgr->setShadowCasterRenderBackFaces(true);
 
@@ -45,14 +45,5 @@ void initShadows()
     pssmSetup->setOptimalAdjustFactor(1, 3);
     pssmSetup->setOptimalAdjustFactor(2, 0.1);
     GlbVar.ogreSmgr->setShadowCameraSetup(Ogre::ShadowCameraSetupPtr(pssmSetup));
-
-    //Debug overlays
-    unsigned int w = GlbVar.ogreWindow->getWidth();
-    for (unsigned int i = 0; i < 3; ++i)
-    {
-        MyGUI::StaticImagePtr img = GlbVar.gui->createWidget<MyGUI::StaticImage>("StaticImage", w - 250 , 50 + 210*i, 200, 200, MyGUI::Align::Default, "Main");
-        img->setImageTexture(GlbVar.ogreSmgr->getShadowTexture(i)->getName());
-        img->setVisible(true);
-    }
 }
 
