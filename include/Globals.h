@@ -130,6 +130,9 @@ struct Globals : public Ogre::Singleton<Globals>
     //Preload overlay.
     Ogre::Entity *preloadEntity;
 
+    //Sun.
+    Ogre::Light *sun;
+
     //--- Global 'data' ----------------------------------------------------------------
     
     //Globally required data.
@@ -169,6 +172,7 @@ struct Globals : public Ogre::Singleton<Globals>
         struct GraphicsSettings
         {
             bool lighting;
+            bool shadows;
             bool normalMapping;
             bool parallaxMapping;
         } graphics;

@@ -64,7 +64,7 @@ ngflevel Parallel
 	{
 		type Switch
 		name noname
-		position -13.500000 -1.200000 7.500000
+		position -13.500000 -1.300000 7.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -88,7 +88,7 @@ ngflevel Parallel
 	{
 		type Switch
 		name noname
-		position -13.500000 -1.200000 5.500000
+		position -13.500000 -1.300000 5.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -366,7 +366,7 @@ ngflevel Parallel
 	{
 		type RigidBody
 		name ball
-		position 0.372955 1.470960 10.357905
+		position 2.372955 1.470960 1.357905
 		rotation 0.791170 -0.536021 0.118350 0.269675
 
 		properties
@@ -456,7 +456,7 @@ ngflevel Parallel
 	{
 		type Switch
 		name noname
-		position -13.500000 -1.200000 3.500000
+		position -13.500000 -1.300000 3.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties

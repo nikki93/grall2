@@ -144,7 +144,7 @@
                 <Widget type="TextBox" skin="TextBox" position="8 34 96 18" layer="Back">
                     <Property key="Caption" value="Resolution:"/>
                 </Widget>
-                <Widget type="ComboBox" skin="ComboBox" position="112 34 128 18" layer="Back" name="o_g_cmb_resolution">
+                <Widget type="ComboBox" skin="ComboBox" position="112 32 128 20" layer="Back" name="o_g_cmb_resolution">
                     <Property key="ComboBox_AddItem" value="800x600"/>
                     <Property key="ComboBox_AddItem" value="1024x768"/>
                     <Property key="ComboBox_AddItem" value="1152x864"/>
@@ -166,22 +166,31 @@
                 <Widget type="TextBox" skin="TextBox" position="8 10 104 18" layer="Back">
                     <Property key="Caption" value="Renderer:"/>
                 </Widget>
-                <Widget type="ComboBox" skin="ComboBox" position="112 10 128 20" layer="Back" name="o_g_cmb_renderer">
+                <Widget type="ComboBox" skin="ComboBox" position="112 8 128 20" layer="Back" name="o_g_cmb_renderer">
                     <Property key="ComboBox_AddItem" value="OpenGL"/>
                     <Property key="ComboBox_AddItem" value="Direct3D"/>
                 </Widget>
+
                 <Widget type="TextBox" skin="TextBox" position="307 10 154 18" layer="Back">
                     <Property key="Caption" value="Lighting:"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="466 6 24 24" layer="Back" name="o_g_chk_lighting"/>
+
                 <Widget type="TextBox" skin="TextBox" position="307 34 153 18" layer="Back">
                     <Property key="Caption" value="Normal mapping:"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="466 30 48 24" layer="Back" name="o_g_chk_normalMap"/>
+
                 <Widget type="TextBox" skin="TextBox" position="307 58 156 18" layer="Back">
                     <Property key="Caption" value="Parallax mapping:"/>
                 </Widget>
                 <Widget type="Button" skin="CheckBox" position="466 54 48 24" layer="Back" name="o_g_chk_parallaxMap"/>
+
+                <Widget type="TextBox" skin="TextBox" position="307 82 156 18" layer="Back">
+                    <Property key="Caption" value="Shadows:"/>
+                </Widget>
+                <Widget type="Button" skin="CheckBox" position="466 78 48 24" layer="Back" name="o_g_chk_shadows"/>
+
                 <Widget type="Button" skin="Button" position="412 236 117 32" layer="Back" name="o_g_but_apply">
                     <Property key="Caption" value="Apply Changes"/>
                 </Widget>

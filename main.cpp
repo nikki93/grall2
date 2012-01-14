@@ -76,11 +76,34 @@ class GameListener :
     protected:
         static OIS::KeyCode mCurrKey; //Stores keycode to broadcast to GameObjects.
 
+        bool mLightingPrev;
+
     public:
+        GameListener()
+            : mLightingPrev(GlbVar.settings.graphics.lighting)
+        {
+        }
+
+        void updateLightingSetting()
+        {
+            mLightingPrev = GlbVar.settings.graphics.lighting;
+            if (GlbVar.settings.graphics.lighting)
+                GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.3,0.3,0.3));
+            else
+                GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.49, 0.49, 0.49));
+            GlbVar.sun->setVisible(GlbVar.settings.graphics.lighting);
+        }
+
         bool frameStarted(const Ogre::FrameEvent &evt)
         {
             //GUI update.
             //MyGUI::InputManager::getInstance().injectFrameEntered(evt.timeSinceLastFrame);
+
+            //Handle lighting options changes.
+            if (GlbVar.settings.graphics.lighting != mLightingPrev)
+                updateLightingSetting();
+            if (GlbVar.settings.graphics.lighting)
+                GlbVar.sun->setCastShadows(GlbVar.settings.graphics.shadows);
 
             //Physics update.
             if (!GlbVar.paused)
@@ -225,6 +248,7 @@ class Game
         {
             //--- Globals, settings ----------------------------------------------------
             new Globals();
+            GlbVar.sun = NULL;
             GlbVar.keyMap = new KeyMap();
 
             //We don't 'require' Settings.ini because if it doesn't exist we use the one
@@ -445,15 +469,9 @@ class Game
             //Run the startup script (we do it here so that all managers and stuff are created and initialised).
             runPythonStartupScript();
 
-            //Main lights.
-            GlbVar.ogreSmgr->setAmbientLight(Ogre::ColourValue(0.3,0.3,0.3));
-
-            Ogre::Light *light = GlbVar.ogreSmgr->createLight("mainLight");
-            light->setType(Ogre::Light::LT_DIRECTIONAL);
-            light->setDiffuseColour(Ogre::ColourValue(0.22,0.22,0.22));
-            light->setSpecularColour(Ogre::ColourValue(0,0,0));
-            light->setDirection(Ogre::Vector3(1,-2.5,1)); 
-            light->setCastShadows(true);
+            //Main lighting.
+            Util::reloadSun();
+            mGameListener->updateLightingSetting();
 
             //Start running the Worlds.
             GlbVar.woMgr->start(0);

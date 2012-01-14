@@ -247,6 +247,20 @@ inline void writeShaderConfig()
 
     config << "#define SET_NORMAL_MAPPING " << GlbVar.settings.graphics.normalMapping << std::endl;
     config << "#define SET_PARALLAX_MAPPING " << GlbVar.settings.graphics.parallaxMapping << std::endl;
+    config << "#define SET_SHADOWS " << GlbVar.settings.graphics.shadows << std::endl;
+}
+
+//Create the sun.
+inline void reloadSun()
+{
+    if (GlbVar.sun)
+        GlbVar.ogreSmgr->destroyLight(GlbVar.sun);
+    GlbVar.sun = GlbVar.ogreSmgr->createLight("sun");
+    GlbVar.sun->setType(Ogre::Light::LT_DIRECTIONAL);
+    GlbVar.sun->setDiffuseColour(Ogre::ColourValue(0.22,0.22,0.22));
+    GlbVar.sun->setSpecularColour(Ogre::ColourValue(0,0,0));
+    GlbVar.sun->setDirection(Ogre::Vector3(1,-2.5,1)); 
+    GlbVar.sun->setCastShadows(GlbVar.settings.graphics.shadows);
 }
 
 } //namespace Util

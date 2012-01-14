@@ -27,14 +27,18 @@ OptionsDialog::OptionsDialog()
 
     mResolutionsBox = GlbVar.gui->findWidget<MyGUI::ComboBox>("o_g_cmb_resolution");
     //mResolutionsBox->eventComboAccept += MyGUI::newDelegate(this, &OptionsDialog::onSelectResolution);
+
     mFullscreenCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_fullscreen");
-    mFullscreenCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickFullscreen);
+    mFullscreenCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickCheckBox);
     mLightingCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_lighting");
-    mLightingCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickLighting);
+    mLightingCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickCheckBox);
     mNormalMapCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_normalMap");
-    mNormalMapCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickNormalMap);
+    mNormalMapCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickCheckBox);
     mParallaxMapCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_parallaxMap");
-    mParallaxMapCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickParallaxMap);
+    mParallaxMapCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickCheckBox);
+    mShadowsCheckBox = GlbVar.gui->findWidget<MyGUI::Button>("o_g_chk_shadows");
+    mShadowsCheckBox->eventMouseButtonClick += MyGUI::newDelegate(this, &OptionsDialog::onClickCheckBox);
+
     mRenderersBox = GlbVar.gui->findWidget<MyGUI::ComboBox>("o_g_cmb_renderer");
 
     //Configure sliders.
@@ -132,11 +136,6 @@ void OptionsDialog::tick()
             }
         }
 
-        mFullscreenCheckBox->setStateSelected(GlbVar.settings.ogre.winFullscreen);
-        mLightingCheckBox->setStateSelected(GlbVar.settings.graphics.lighting);
-        mNormalMapCheckBox->setStateSelected(GlbVar.settings.graphics.normalMapping);
-        mParallaxMapCheckBox->setStateSelected(GlbVar.settings.graphics.parallaxMapping);
-
         GlbVar.settings.ogre.renderer = mRenderersBox->getIndexSelected() == 1 ? Globals::Settings::OgreSettings::DIRECT3D : Globals::Settings::OgreSettings::OPENGL;
     }
 }
@@ -190,24 +189,11 @@ void OptionsDialog::onClickInvertMouse(MyGUI::WidgetPtr button)
     GlbVar.settings.controls.invertMouse = !GlbVar.settings.controls.invertMouse;
 }
 //-------------------------------------------------------------------------------
-void OptionsDialog::onClickFullscreen(MyGUI::WidgetPtr button)
+void OptionsDialog::onClickCheckBox(MyGUI::WidgetPtr widget)
 {
-    GlbVar.settings.ogre.winFullscreen = !GlbVar.settings.ogre.winFullscreen;
-}
-//-------------------------------------------------------------------------------
-void OptionsDialog::onClickLighting(MyGUI::WidgetPtr button)
-{
-    GlbVar.settings.graphics.lighting = !GlbVar.settings.graphics.lighting;
-}
-//-------------------------------------------------------------------------------
-void OptionsDialog::onClickNormalMap(MyGUI::WidgetPtr button)
-{
-    GlbVar.settings.graphics.normalMapping = !GlbVar.settings.graphics.normalMapping;
-}
-//-------------------------------------------------------------------------------
-void OptionsDialog::onClickParallaxMap(MyGUI::WidgetPtr button)
-{
-    GlbVar.settings.graphics.parallaxMapping = !GlbVar.settings.graphics.parallaxMapping;
+    MyGUI::ButtonPtr button = dynamic_cast<MyGUI::Button *>(widget);
+    if (button)
+        button->setStateSelected(!button->getStateSelected());
 }
 //-------------------------------------------------------------------------------
 void OptionsDialog::onSelectResolution(MyGUI::ComboBoxPtr, size_t index)
@@ -258,6 +244,13 @@ void OptionsDialog::setVisible(bool visible)
 
         //Update renderer ComboBox.
         mRenderersBox->setIndexSelected(GlbVar.settings.ogre.renderer);
+
+        //Update check boxes.
+        mFullscreenCheckBox->setStateSelected(GlbVar.settings.ogre.winFullscreen);
+        mLightingCheckBox->setStateSelected(GlbVar.settings.graphics.lighting);
+        mNormalMapCheckBox->setStateSelected(GlbVar.settings.graphics.normalMapping);
+        mParallaxMapCheckBox->setStateSelected(GlbVar.settings.graphics.parallaxMapping);
+        mShadowsCheckBox->setStateSelected(GlbVar.settings.graphics.shadows);
     }
     else
     {
@@ -269,6 +262,12 @@ void OptionsDialog::setVisible(bool visible)
 //-------------------------------------------------------------------------------
 void OptionsDialog::onClickGraphicsApply(MyGUI::WidgetPtr)
 {
+    GlbVar.settings.ogre.winFullscreen = mFullscreenCheckBox->getStateSelected();
+    GlbVar.settings.graphics.lighting = mLightingCheckBox->getStateSelected();
+    GlbVar.settings.graphics.normalMapping = mNormalMapCheckBox->getStateSelected();
+    GlbVar.settings.graphics.parallaxMapping = mParallaxMapCheckBox->getStateSelected();
+    GlbVar.settings.graphics.shadows = mShadowsCheckBox->getStateSelected();
+
     Util::writeShaderConfig();
     Util::reloadMaterials();
 }

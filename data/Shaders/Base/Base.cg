@@ -56,13 +56,13 @@ void BasePerLight_vp
          uniform float4x4 worldViewProj,
          uniform float4x4 world, //world_matrix
 
-         uniform float4 lightPosition,
-         uniform float4 spotlightDir,
-
          //PSSM shadow projections
          uniform float4x4 twvp0,
          uniform float4x4 twvp1,
          uniform float4x4 twvp2,
+
+         uniform float4 lightPosition,
+         uniform float4 spotlightDir,
 
          //Lighting calculations
          out float4 oPos : POSITION,
@@ -74,12 +74,15 @@ void BasePerLight_vp
 #endif
          out float4 oLight4 : TEXCOORD2, //(dir, dist)
          out float3 oHalfAngle : TEXCOORD3,
-         out float3 oSpotlightDir : TEXCOORD4,
+         out float3 oSpotlightDir : TEXCOORD4
 
          //PSSM shadow positions
+#if SET_SHADOWS
+         ,
          out float4 oShadowPos0 : TEXCOORD5,
          out float4 oShadowPos1 : TEXCOORD6,
          out float4 oShadowPos2 : TEXCOORD7
+#endif
      ) 
 {
     oPos = mul(worldViewProj, position);
@@ -121,9 +124,11 @@ void BasePerLight_vp
     //Put in oLight4
     oLight4.xyz = lightDir;
 
+#if SET_SHADOWS
     oShadowPos0 = mul(twvp0, position);
     oShadowPos1 = mul(twvp1, position);
     oShadowPos2 = mul(twvp2, position);
+#endif
 }
 
 void BasePerLight_fp
@@ -168,7 +173,6 @@ void BasePerLight_fp
          uniform float4 invShadowMapSize0,
          uniform float4 invShadowMapSize1,
          uniform float4 invShadowMapSize2,
-         uniform float4 pssmSplitPoints,
          sampler2D shadowMap0 : TEXUNIT2,
          sampler2D shadowMap1 : TEXUNIT3,
          sampler2D shadowMap2 : TEXUNIT4,
@@ -213,7 +217,7 @@ void BasePerLight_fp
     oColor *= tex2D(diffuseMap, uv.xy);
 
     //Shadows
-
+#if SET_SHADOWS
     if (lightPosition.w)
         return; //Directional lights only.
 
@@ -235,6 +239,7 @@ void BasePerLight_fp
         //shadowPos2.z += 0.0001;
         oColor *= shadow(shadowMap2, shadowPos2);// + float4(0.1, 0.1, 0, 1);
     }
+#endif
 }
 
 //--- The ambient one-time shader -----------------------------------------------------

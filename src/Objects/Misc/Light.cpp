@@ -58,7 +58,7 @@ Light::Light(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
     else
     {
         mLight->setType(Ogre::Light::LT_POINT);
-        mLight->setCastShadows(false); //Non-spotlights don't cast shadows.
+        mLight->setCastShadows(false);
     }
 
     //If we're timed...

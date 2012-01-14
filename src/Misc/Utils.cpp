@@ -214,6 +214,7 @@ static void LoadResource(Ogre::ResourceManager* resMgr, const std::string& resou
         return;
     }
 
+    rPtr->escalateLoading();
     rPtr->reload();
     if (rPtr->isLoaded())
     {
@@ -581,10 +582,14 @@ static void ReloadMaterial(const std::string& materialName, const std::string& g
 void reloadMaterials()
 {
     ReloadMaterial("Objects/Player", "General", "Base.program", true);
+    ReloadMaterial("Objects/Player", "General", "BaseShadowCaster.program", true);
+    GlbVar.ogreSmgr->setShadowTextureCasterMaterial("BaseShadowCaster");
 
     ReloadMaterial("Objects/Player", "General", "Objects.material", true);
     ReloadMaterial("Objects/Player", "General", "Brushes.material", true);
     ReloadMaterial("Objects/Player", "General", "Props.material", true);
+
+    Util::reloadSun();
 }
 
 }

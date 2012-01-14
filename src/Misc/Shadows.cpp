@@ -47,7 +47,6 @@ void initShadows()
     GlbVar.ogreSmgr->setShadowCameraSetup(Ogre::ShadowCameraSetupPtr(pssmSetup));
 
     //Debug overlays
-    /*
     unsigned int w = GlbVar.ogreWindow->getWidth();
     for (unsigned int i = 0; i < 3; ++i)
     {
@@ -55,6 +54,5 @@ void initShadows()
         img->setImageTexture(GlbVar.ogreSmgr->getShadowTexture(i)->getName());
         img->setVisible(true);
     }
-    */
 }
 

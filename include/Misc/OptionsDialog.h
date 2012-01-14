@@ -41,6 +41,7 @@ class OptionsDialog
         MyGUI::ButtonPtr mLightingCheckBox;
         MyGUI::ButtonPtr mNormalMapCheckBox;
         MyGUI::ButtonPtr mParallaxMapCheckBox;
+        MyGUI::ButtonPtr mShadowsCheckBox;
         MyGUI::ComboBoxPtr mRenderersBox;
 
     public:
@@ -57,10 +58,7 @@ class OptionsDialog
         void onClickOK(MyGUI::WidgetPtr);
         void onClickInvertMouse(MyGUI::WidgetPtr);
         void onSelectResolution(MyGUI::ComboBoxPtr, size_t index);
-        void onClickFullscreen(MyGUI::WidgetPtr);
-        void onClickLighting(MyGUI::WidgetPtr);
-        void onClickNormalMap(MyGUI::WidgetPtr);
-        void onClickParallaxMap(MyGUI::WidgetPtr);
+        void onClickCheckBox(MyGUI::WidgetPtr);
         void onClickGraphicsApply(MyGUI::WidgetPtr);
 
         //--- Visibility ---------------------------------------------------------------
