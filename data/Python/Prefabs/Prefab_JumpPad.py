@@ -12,7 +12,7 @@ def init(self):
                     GraLL2.CollisionFlags.Static)
 
     #We get the jump impulse from the properties.
-    self.m_impulse = float(self.getProperty("impulse", 0, "15"))
+    self.m_impulse = float(self.getProperty("impulse", 0, "15")) * 0.5
 
     #Create sound.
     self.v_sound = GraLL2.createSound("JumpPad.wav", False, False)
@@ -21,16 +21,20 @@ def init(self):
     self.v_sound.setGain(7)
 
 def create(self):
-    #Shouldn't we be using alarms for this?
-    self.m_canJump = 0
-
-def utick(self, elapsed):
-    if (self.m_canJump > 0):
-        self.m_canJump -= elapsed
+    self.m_canJump = True
 
 def collide(self, other):
-    if (self.m_canJump <= 0 and other.hasFlag("Jumper")):
-        self.m_canJump = 0.5
+    if (self.m_canJump and other.hasFlag("Jumper")):
+        #Play sound.
         self.v_sound.stop()
         self.v_sound.play()
+
+        #Jump!
         other.applyCentralImpulse(Ngf.Vector3(0,self.m_impulse,0))
+
+        #Don't jump too frequently.
+        self.m_canJump = False
+        self.setAlarm(0.5, 0)
+
+def alarm(self, n):
+    self.m_canJump = True

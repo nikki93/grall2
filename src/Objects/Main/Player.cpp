@@ -14,9 +14,11 @@ Player.cpp
 #include "Objects/Misc/Light.h"
 #include "Objects/Misc/ParticleEffect.h"
 
-#define PLAYER_TORQUE_1 10
+#include <limits>
+
+#define PLAYER_TORQUE_1 5
 #define PLAYER_SQVEL_SPLITPOINT 100
-#define PLAYER_TORQUE_2 8
+#define PLAYER_TORQUE_2 4
 #define PLAYER_SQVEL_MAX 600
 
 #define PLAYER_RADIUS 0.42
@@ -109,13 +111,13 @@ Player::Player(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::Propert
 
     //Create the Physics stuff.
     mShape = new btSphereShape(PLAYER_RADIUS);
-    btScalar mass = 2;
+    btScalar mass = 1;
     btVector3 inertia;
     mShape->calculateLocalInertia(mass, inertia);
     PlayerMotionState *state = new PlayerMotionState(mNode, mGhostObject);
 
     btRigidBody::btRigidBodyConstructionInfo info(mass, state, mShape, inertia);
-    info.m_friction = Ogre::Math::POS_INFINITY;
+    info.m_friction = SIMD_INFINITY;
     info.m_restitution = 0;
     info.m_linearDamping = 0.1;
     info.m_angularDamping = 0.9;

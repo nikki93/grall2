@@ -16,6 +16,8 @@ Bugs
 
 - Controller win/lose level timers some times fail.
 
+- Make Teleporter, Switch and other pad objects use a convex cast to detect Player.
+
 +---------------------------+
 |         ChangeLog         |
 +---------------------------+

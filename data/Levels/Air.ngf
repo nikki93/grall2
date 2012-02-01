@@ -245,7 +245,7 @@ ngflevel Air
 	{
 		type Crate
 		name noname
-		position -18.500000 -1.250000 -34.500000
+		position -18.500000 -1.250000 -42.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -452,7 +452,7 @@ ngflevel Air
 	{
 		type Crate
 		name noname
-		position -17.500000 -1.250000 -34.500000
+		position -17.500000 -1.250000 -40.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties

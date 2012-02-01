@@ -1,3 +1,8 @@
+#include "ShaderConfig.h"
+
+#define RENDER_SCENE 1
+#define BLUR_RADIUS 2
+
 //A.
 float4 GlowA_fp
     (
@@ -7,8 +12,6 @@ float4 GlowA_fp
          uniform float4 invTexSize
          //uniform float time
     ) : COLOR
-#define RENDER_SCENE 1
-#define BLUR_RADIUS 2
 {
     float4 colour = float4(0);
     float blurSize = BLUR_RADIUS * invTexSize.x;

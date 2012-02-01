@@ -1,20 +1,24 @@
 //--- Helper functions ----------------------------------------------------------------
 #include "ShaderConfig.h"
 
+#define FADE_DEPTH -10
+#define FADE_DIST 9
+
+#define PCF_RADIUS 1
+#define INV_SHADOWMAP_SIZE_0 0.00048828125
+#define INV_SHADOWMAP_SIZE_1 0.00048828125
+#define INV_SHADOWMAP_SIZE_2 0.0009765625
+
 //Expand a compressed vector.
 float3 expand(float3 v)
 {
     return v * 2.0 - 1.0;
 }
 
-#define FADE_DEPTH -10
-#define FADE_DIST 9
-#define PCF_RADIUS 1
-
-float shadowPCF9(sampler2D shadowMap, float4 shadowMapPos, float2 offset)
+float shadowPCF9(sampler2D shadowMap, float4 shadowMapPos, float offset)
 {
     float2 uv = shadowMapPos.xy;
-    float3 o = float3(offset, -offset.x) * PCF_RADIUS;
+    float3 o = float3(offset, offset, -offset.x) * PCF_RADIUS;
 
     float c = (shadowMapPos.z <= tex2D(shadowMap, uv.xy - o.xy).r) ? 1 : 0; // top left
     c +=      (shadowMapPos.z <= tex2D(shadowMap, uv.xy + o.xy).r) ? 1 : 0; // bottom right
@@ -27,10 +31,10 @@ float shadowPCF9(sampler2D shadowMap, float4 shadowMapPos, float2 offset)
     c +=      (shadowMapPos.z <= tex2D(shadowMap, float2(uv.x + o.x, uv.y)).r) ? 1 : 0; // right
     return c / 9;
 }
-float shadowPCF4(sampler2D shadowMap, float4 shadowMapPos, float2 offset)
+float shadowPCF4(sampler2D shadowMap, float4 shadowMapPos, float offset)
 {
     float2 uv = shadowMapPos.xy;
-    float3 o = float3(offset, -offset.x) * PCF_RADIUS;
+    float3 o = float3(offset, offset, -offset.x) * PCF_RADIUS;
 
     float c = (shadowMapPos.z <= tex2D(shadowMap, uv.xy - o.xy).r) ? 1 : 0; // top left
     c +=      (shadowMapPos.z <= tex2D(shadowMap, uv.xy + o.xy).r) ? 1 : 0; // bottom right
@@ -170,9 +174,9 @@ void BasePerLight_fp
          uniform float exponent,
 
          //Shadow properties
-         uniform float4 invShadowMapSize0,
-         uniform float4 invShadowMapSize1,
-         uniform float4 invShadowMapSize2,
+         //uniform float4 invShadowMapSize0,
+         //uniform float4 invShadowMapSize1,
+         //uniform float4 invShadowMapSize2,
          sampler2D shadowMap0 : TEXUNIT2,
          sampler2D shadowMap1 : TEXUNIT3,
          sampler2D shadowMap2 : TEXUNIT4,
@@ -225,13 +229,15 @@ void BasePerLight_fp
     {
         shadowPos0 /= shadowPos0.w;
         shadowPos0.z += 0.0001;
-        oColor *= shadowPCF9(shadowMap0, shadowPos0, invShadowMapSize0.xy);// + float4(0.1, 0, 0, 1);
+        //oColor *= shadow(shadowMap0, shadowPos0);// + float4(0.1, 0, 0, 1);
+        oColor *= shadowPCF9(shadowMap0, shadowPos0, INV_SHADOWMAP_SIZE_0);// + float4(0.1, 0, 0, 1);
     }
     else if (uv.z <= 77.4301)
     {
         shadowPos1 /= shadowPos1.w;
         //shadowPos1.z += 0.0001;
-        oColor *= shadowPCF9(shadowMap1, shadowPos1, invShadowMapSize1.xy);// + float4(0, 0.1, 0, 1);
+        //oColor *= shadow(shadowMap1, shadowPos1);// + float4(0, 0.1, 0, 1);
+        oColor *= shadowPCF9(shadowMap1, shadowPos1, INV_SHADOWMAP_SIZE_1);// + float4(0, 0.1, 0, 1);
     }
     else
     {

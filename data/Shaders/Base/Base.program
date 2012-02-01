@@ -95,9 +95,9 @@ fragment_program BasePerLight_fp cg
                 param_named_auto spotlightParams spotlight_params 0
                 param_named_auto lightPosition light_position 0
 
-                param_named_auto invShadowMapSize0 inverse_texture_size 2
-                param_named_auto invShadowMapSize1 inverse_texture_size 3
-                param_named_auto invShadowMapSize2 inverse_texture_size 4
+                //param_named_auto invShadowMapSize0 inverse_texture_size 2
+                //param_named_auto invShadowMapSize1 inverse_texture_size 3
+                //param_named_auto invShadowMapSize2 inverse_texture_size 4
 
                 param_named exponent float 127
         } 
@@ -143,9 +143,9 @@ fragment_program BasePerLightNormalMap_fp cg
                 param_named_auto spotlightParams spotlight_params 0
                 param_named_auto lightPosition light_position 0
 
-                param_named_auto invShadowMapSize0 inverse_texture_size 2
-                param_named_auto invShadowMapSize1 inverse_texture_size 3
-                param_named_auto invShadowMapSize2 inverse_texture_size 4
+                //param_named_auto invShadowMapSize0 inverse_texture_size 2
+                //param_named_auto invShadowMapSize1 inverse_texture_size 3
+                //param_named_auto invShadowMapSize2 inverse_texture_size 4
 
                 param_named exponent float 127
         } 
@@ -191,9 +191,9 @@ fragment_program BasePerLightNormalMapParallax_fp cg
                 param_named_auto spotlightParams spotlight_params 0
                 param_named_auto lightPosition light_position 0
 
-                param_named_auto invShadowMapSize0 inverse_texture_size 2
-                param_named_auto invShadowMapSize1 inverse_texture_size 3
-                param_named_auto invShadowMapSize2 inverse_texture_size 4
+                //param_named_auto invShadowMapSize0 inverse_texture_size 2
+                //param_named_auto invShadowMapSize1 inverse_texture_size 3
+                //param_named_auto invShadowMapSize2 inverse_texture_size 4
 
                 param_named exponent float 127
         } 
