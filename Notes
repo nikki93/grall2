@@ -10,13 +10,15 @@ New
 
 Bugs
 ----
-- Fix window resizing (main issues fixed)
-  - MessageBox
-  - Controller (level text)
+- Release build doesn't work under Linux (?)
+
+- Controller win/lose level timers some times fail.
 
 - Fix shadows (disable-enable causes far-away PSSM levels to fail)
 
-- Controller win/lose level timers some times fail.
+- Fix window resizing (main issues fixed)
+  - MessageBox
+  - Controller (level text)
 
 - Make Teleporter, Switch and other pad objects use a convex cast to detect Player.
 
