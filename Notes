@@ -14,7 +14,7 @@ Bugs
   - MessageBox
   - Controller (level text)
 
-- Fix shadows.
+- Fix shadows (disable-enable causes far-away PSSM levels to fail)
 
 - Controller win/lose level timers some times fail.
 
