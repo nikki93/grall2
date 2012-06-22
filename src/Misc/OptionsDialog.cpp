@@ -47,13 +47,6 @@ OptionsDialog::OptionsDialog()
     mTurningScroll->setMoveToClick(true);
     mUpDownScroll->setMoveToClick(true);
 
-    //Center it.
-    int winHeight = GlbVar.ogreWindow->getHeight();
-    int winWidth = GlbVar.ogreWindow->getWidth();
-    int height = mWindow->getHeight();
-    int width = mWindow->getWidth();
-    mWindow->setCoord(MyGUI::IntCoord((winWidth - width)*0.5, (winHeight - height)*0.5, width, height));
-
     //Set key setter callback.
     MyGUI::EnumeratorWidgetPtr iter = GlbVar.gui->findWidget<MyGUI::TabItem>("o_tab_controls")->getEnumerator();
     while (iter.next())
@@ -226,6 +219,13 @@ void OptionsDialog::setVisible(bool visible)
     {
         //Gotta see where we click!
         MyGUI::PointerManager::getInstance().setVisible(true);
+
+        //Center
+        int winHeight = GlbVar.ogreWindow->getHeight();
+        int winWidth = GlbVar.ogreWindow->getWidth();
+        int width = mWindow->getWidth();
+        int height = mWindow->getHeight();
+        mWindow->setPosition(MyGUI::IntPoint((winWidth - width)*0.5, (winHeight - height)*0.5));
 
         //Update scrolls.
         mTurningScroll->setScrollPosition((GlbVar.settings.controls.turningSensitivity / SLIDER_QUANTUM) - 1);

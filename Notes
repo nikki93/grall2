@@ -10,7 +10,9 @@ New
 
 Bugs
 ----
-- Fix window resizing.
+- Fix window resizing (main issues fixed)
+  - MessageBox
+  - Controller (level text)
 
 - Fix shadows.
 

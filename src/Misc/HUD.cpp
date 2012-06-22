@@ -73,7 +73,6 @@ static inline MyGUI::StaticTextPtr createStaticText(const MyGUI::IntCoord &coord
 //--- HUD -----------------------------------------------------------------------
 HUD::HUD()
 {
-    size_t winHeight = GlbVar.ogreWindow->getHeight();
     Ogre::Vector2 pos = timerPosition(0);
     mBonusTimer = createStaticText(MyGUI::IntCoord(pos.x, pos.y, TEXT_WIDTH, TEXT_HEIGHT), MyGUI::Align::Right, Ogre::ColourValue::White);
 }
@@ -133,7 +132,11 @@ void HUD::tick(const Ogre::FrameEvent &evt)
     //If there's a bonus time, show it, else don't.
     if (mBonusTimer)
         if (GlbVar.bonusTime > 0)
+        {
+            Ogre::Vector2 pos = timerPosition(0);
+            mBonusTimer->setCoord(MyGUI::IntCoord(pos.x, pos.y, TEXT_WIDTH, TEXT_HEIGHT));
             mBonusTimer->setCaption(Ogre::StringConverter::toString((int) GlbVar.bonusTime));
+        }
         else
             mBonusTimer->setCaption("");
 }

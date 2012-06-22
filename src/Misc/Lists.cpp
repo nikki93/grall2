@@ -43,6 +43,7 @@
 #include "Objects/Obstacles/FallingBrush.h"
 #include "Objects/Obstacles/OneWay.h"
 #include "Objects/Obstacles/Magnet.h"
+#include "Objects/Misc/Slideshow.h"
 
 //World headers.
 #include "Worlds/TestWorld.h"
@@ -80,6 +81,7 @@ void registerGameObjectTypes()
     NGF_REGISTER_OBJECT_TYPE(FallingBrush);
     NGF_REGISTER_OBJECT_TYPE(OneWay);
     NGF_REGISTER_OBJECT_TYPE(Magnet);
+    NGF_REGISTER_OBJECT_TYPE(Slideshow);
 }
 
 //Register worlds.

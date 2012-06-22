@@ -27,10 +27,12 @@ class Slideshow :
         MyGUI::StaticImagePtr mBackground;
         MyGUI::StaticImagePtr mImage;
 
-        bool mEnabled;
-        std::vector<Ogre::String> mSlides;
+        std::vector<Ogre::String> mSlides; //stores slide 2 onward
         int mCurrInd;
         Ogre::Real mCurrTime;
+
+        int mImgWidth;
+        int mImgHeight;
 
     public:
         Slideshow(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
@@ -42,6 +44,9 @@ class Slideshow :
         void pausedTick(const Ogre::FrameEvent &evt);
         void alarm(Alarm a);
         NGF::MessageReply receiveMessage(NGF::Message msg);
+
+        //--- Non-NGF ------------------------------------------------------------------
+        void updateCoords();
 
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Slideshow)

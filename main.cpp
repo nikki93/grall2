@@ -45,6 +45,39 @@ template<> Globals* Ogre::Singleton<Globals>::msSingleton = 0;
 #endif
 
 //--------------------------------------------------------------------------------------
+class WindowListener : 
+    public Ogre::WindowEventListener
+{
+    public:
+        void windowResized(Ogre::RenderWindow *win)
+        {
+            //Update viewports
+            unsigned int vps = win->getNumViewports();
+            for (unsigned int j = 0; j < vps; ++j)
+            {
+                Ogre::Viewport *vp = win->getViewport(j);
+
+                Ogre::Camera *cam = vp->getCamera();
+                if (cam)
+                    cam->setAspectRatio(((float) vp->getActualWidth()) / (vp->getActualHeight()));
+
+                if (Ogre::CompositorManager::getSingleton().hasCompositorChain(vp))
+                {
+                    Ogre::CompositorChain *chain = 
+                        Ogre::CompositorManager::getSingleton().getCompositorChain(vp);
+                    unsigned int n = chain->getNumCompositors();
+                    for (int i = 0; i < n; ++i)
+                        if (chain->getCompositor(i)->getEnabled())
+                        {
+                            chain->setCompositorEnabled(i, false);
+                            chain->setCompositorEnabled(i, true);
+                        }
+                }
+            }
+        }
+};
+
+//--------------------------------------------------------------------------------------
 class MaterialListener : 
     public Ogre::MaterialManager::Listener
 {
@@ -198,8 +231,8 @@ class GameListener :
                     break;
 
                 case OIS::KC_R:
-					if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
-						Util::reloadMaterials();
+                    if (GlbVar.keyboard->isKeyDown(OIS::KC_LCONTROL))
+                        Util::reloadMaterials();
                     break;
             }
 
@@ -237,6 +270,7 @@ class Game
 
         GameListener *mGameListener;
         MaterialListener *mMaterialListener;
+        WindowListener *mWindowListener;
 
         btAxisSweep3 *mBroadphase;
         btDefaultCollisionConfiguration *mCollisionConfig;
@@ -354,6 +388,9 @@ class Game
             mMaterialListener = new MaterialListener();
             Ogre::MaterialManager::getSingleton().addListener(mMaterialListener);
 
+            mWindowListener = new WindowListener();
+            Ogre::WindowEventUtilities::addWindowEventListener(GlbVar.ogreWindow, mWindowListener);
+
             //--- Bullet (Physics) -----------------------------------------------------
             mBroadphase = new btAxisSweep3(btVector3(-10000,-10000,-10000), btVector3(10000,10000,10000), 1024);
             mBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(new btGhostPairCallback());
@@ -395,9 +432,9 @@ class Game
 
             //Python, GraLL2 python bindings, python console. Tell Python to use packaged stdlib if needed.
 #ifdef USE_OWN_PY_STDLIB
-			Py_SetProgramName(progname);
-			Py_SetPath(DATA_PREFIX "Python/python27.zip");
-			Py_SetPythonHome(DATA_PREFIX "Python");
+            Py_SetProgramName(progname);
+            Py_SetPath(DATA_PREFIX "Python/python27.zip");
+            Py_SetPythonHome(DATA_PREFIX "Python");
 #endif
             Py_Initialize();
             GlbVar.console = new Console();
@@ -410,7 +447,7 @@ class Game
 
             //Shadows.
             initShadows();
-            
+
             //Compositor chain.
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Glow");
             Ogre::CompositorManager::getSingleton().addCompositor(viewport, "Compositor/Dimension2");
@@ -556,6 +593,7 @@ class Game
             //Listeners.
             delete mMaterialListener;
             delete mGameListener;
+            delete mWindowListener;
 
             //Input.
             mInputManager->destroyInputObject(GlbVar.mouse);

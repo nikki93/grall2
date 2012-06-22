@@ -39,5 +39,8 @@ void Fader::tick(const Ogre::FrameEvent &evt)
             }
             break;
 
+        default:
+            return;
     }
+    mImage->setCoord(MyGUI::IntCoord(0,0,GlbVar.ogreWindow->getWidth(),GlbVar.ogreWindow->getHeight()));
 }

@@ -92,7 +92,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b0.001.mesh
+			brushMeshFile Air_b0.mesh
 			convex 0
 		}
 	}
@@ -224,7 +224,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			brushMeshFile Air_b2.001.mesh
+			brushMeshFile Air_b2.mesh
 			convex 1
 		}
 	}

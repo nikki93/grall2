@@ -155,6 +155,15 @@ void MainMenu::init()
 void MainMenu::tick(const Ogre::FrameEvent &evt)
 {
     mWindow->setPosition(30,5);
+
+    //Update stuff in case window resized
+    int winHeight = GlbVar.ogreWindow->getHeight();
+    int winWidth = GlbVar.ogreWindow->getWidth();
+    mBackground->setCoord(MyGUI::IntCoord(0,0,winWidth,winHeight));
+
+    int logoX = winWidth - (LOGO_WIDTH + 5);
+    int logoY = winHeight - (LOGO_HEIGHT + 5);
+    mLogo->setPosition(MyGUI::IntPoint(logoX, logoY));
 }
 //-------------------------------------------------------------------------------
 void MainMenu::stop()

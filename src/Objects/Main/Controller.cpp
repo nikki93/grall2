@@ -123,6 +123,11 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
                 mLevelText->setAlpha(Util::clamp(mLevelText->getAlpha() + (mLevelTextRate = -1/mLevelTextOut) * evt.timeSinceLastFrame, 0.0f, 1.0f));
         }
 
+        //Update position
+        int w = GlbVar.ogreWindow->getWidth();
+        int h = GlbVar.ogreWindow->getHeight();
+        mLevelText->setCoord(MyGUI::IntCoord(0, (int)(0.25 * h - 25), w, 50));
+
         if (mLevelText->getAlpha() == 0)
         {
             GlbVar.gui->destroyWidget(mLevelText);
