@@ -80,7 +80,7 @@ ngflevel Air
 		type Checkpoint
 		name noname
 		position -19.500000 4.159853 -21.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 	}
 	object
 	{
@@ -93,7 +93,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b0.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -110,11 +110,11 @@ ngflevel Air
 			meshFile SpeedBoost.mesh
 			material Objects/SpeedBoost
 			spin 20.0
-			bobAmplitude 0.15000000596
+			bobAmplitude 0.15000000596046448
 			bobFrequency 0.5
 			scriptFile Prefab_SpeedBoost.pyo
-			multiplier 2.29999995232
-			removeY 1
+			multiplier 2.299999952316284
+			removeY True
 		}
 	}
 	object
@@ -163,7 +163,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b1.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -171,7 +171,7 @@ ngflevel Air
 		type Checkpoint
 		name noname
 		position -21.500000 0.659853 -32.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 	}
 	object
 	{
@@ -225,7 +225,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b2.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -265,7 +265,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b3.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -310,7 +310,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b5.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -323,35 +323,7 @@ ngflevel Air
 		properties
 		{
 			dimensions 1
-			script : import Ngf
-			       : import GraLL2
-			       : 
-			       : def levelStart(self):
-			       : 	#Set the initially viewed dimension.
-			       : 	GraLL2.setDimension(1)
-			       : 	
-			       : 	#Set the bonus time for this level.
-			       : 	GraLL2.setBonusTime(0)
-			       : 	
-			       : 	#Show the white text with the level number
-			       : 	#and caption.
-			       : 	self.showLevelText(2,4,3)
-			       : 	
-			       : 	#Gravity is initially normal.
-			       : 	GraLL2.setUp(True)
-			       : 	
-			       : 	#Running start.
-			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -8)
-			       : 	GraLL2.player.applyCentralImpulse(v)
-			       : 
-			       : def levelStop(self):
-			       : 	pass
-			       : 
-			       : def winLevel(self):
-			       : 	pass
-			       : 
-			       : def loseLevel(self):
-			       : 	pass
+			script refText ControlScript
 		}
 	}
 	object
@@ -365,7 +337,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b6.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -379,8 +351,8 @@ ngflevel Air
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 1
+			captureCameraHandler True
+			canSwitchDimensions True
 		}
 	}
 	object
@@ -428,7 +400,7 @@ ngflevel Air
 			meshFile SpeedBoost.mesh
 			material Objects/SpeedBoost
 			spin 20.0
-			bobAmplitude 0.15000000596
+			bobAmplitude 0.15000000596046448
 			bobFrequency 0.5
 			scriptFile Prefab_SpeedBoost.pyo
 			multiplier 3.0
@@ -445,7 +417,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b8.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -466,7 +438,7 @@ ngflevel Air
 		type Checkpoint
 		name noname
 		position 2.500000 1.159853 -34.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 	}
 	object
 	{
@@ -499,12 +471,12 @@ ngflevel Air
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			brushMeshFile Air_b9.mesh
 			speed 1.5
-			followDirectors 1
-			boxShape 1
-			transparent 1
+			followDirectors True
+			boxShape True
+			transparent True
 		}
 	}
 	object
@@ -518,8 +490,8 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b10.mesh
-			convex 1
-			transparent 1
+			convex True
+			transparent True
 		}
 	}
 	object
@@ -533,7 +505,7 @@ ngflevel Air
 		{
 			dimensions 3
 			brushMeshFile Air_b11.mesh
-			convex 0
+			convex False
 		}
 	}
 	object

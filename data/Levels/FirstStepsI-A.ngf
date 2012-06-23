@@ -70,7 +70,7 @@ ngflevel FirstStepsI-A
 		type Trigger
 		name noname
 		position -18.400000 1.100000 2.499999
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
@@ -87,7 +87,7 @@ ngflevel FirstStepsI-A
 		type Trigger
 		name noname
 		position -10.387644 1.100000 2.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -104,7 +104,7 @@ ngflevel FirstStepsI-A
 		type Trigger
 		name noname
 		position -7.000000 1.100000 6.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -121,7 +121,7 @@ ngflevel FirstStepsI-A
 		type Trigger
 		name noname
 		position 3.000000 -0.100000 6.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -156,7 +156,7 @@ ngflevel FirstStepsI-A
 		properties
 		{
 			dimensions 3
-			green 1
+			green True
 		}
 	}
 	object
@@ -169,7 +169,7 @@ ngflevel FirstStepsI-A
 		properties
 		{
 			dimensions 3
-			green 1
+			green True
 		}
 	}
 	object
@@ -182,7 +182,7 @@ ngflevel FirstStepsI-A
 		properties
 		{
 			dimensions 3
-			green 0
+			green False
 		}
 	}
 	object
@@ -195,7 +195,7 @@ ngflevel FirstStepsI-A
 		properties
 		{
 			dimensions 3
-			green 0
+			green False
 		}
 	}
 	object
@@ -242,7 +242,7 @@ ngflevel FirstStepsI-A
 		type Light
 		name noname
 		position -19.500000 4.500000 2.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -307,36 +307,7 @@ ngflevel FirstStepsI-A
 		properties
 		{
 			dimensions 1
-			script : import Ngf
-			       : import GraLL2
-			       : 
-			       : def levelStart(self):
-			       : 	#Set the initially viewed dimension.
-			       : 	GraLL2.setDimension(1)
-			       : 	
-			       : 	#Set the bonus time for this level.
-			       : 	GraLL2.setBonusTime(90)
-			       : 	
-			       : 	#Show the white text with the level number
-			       : 	#and caption.
-			       : 	self.showLevelText(2,4,3)
-			       : 	
-			       : 	#Gravity is initially normal.
-			       : 	GraLL2.setUp(True)
-			       : 	
-			       : 	#Running start.
-			       : 	v = GraLL2.player.getControlOrientation() * Ngf.Vector3(0, 0, -3.2)
-			       : 	GraLL2.player.applyCentralImpulse(v)
-			       : 
-			       : 
-			       : def levelStop(self):
-			       : 	pass
-			       : 
-			       : def winLevel(self):
-			       : 	pass
-			       : 
-			       : def loseLevel(self):
-			       : 	pass
+			script refText ControlScript
 		}
 	}
 	object
@@ -350,7 +321,7 @@ ngflevel FirstStepsI-A
 		{
 			dimensions 3
 			brushMeshFile FirstStepsI-A_b4.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -358,13 +329,13 @@ ngflevel FirstStepsI-A
 		type StaticBrush
 		name noname
 		position -15.500000 0.500000 2.499999
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			brushMeshFile FirstStepsI-A_b5.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -372,14 +343,14 @@ ngflevel FirstStepsI-A
 		type Player
 		name player1
 		position -9.499782 0.389544 -3.499271
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 0
+			captureCameraHandler True
+			canSwitchDimensions False
 		}
 	}
 	object
@@ -441,7 +412,7 @@ ngflevel FirstStepsI-A
 		properties
 		{
 			dimensions 3
-			green 0
+			green False
 		}
 	}
 	object
@@ -454,7 +425,7 @@ ngflevel FirstStepsI-A
 		properties
 		{
 			dimensions 3
-			green 1
+			green True
 		}
 	}
 	object
@@ -462,7 +433,7 @@ ngflevel FirstStepsI-A
 		type OneWay
 		name noname
 		position -19.500000 1.600000 2.500000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
@@ -524,7 +495,7 @@ ngflevel FirstStepsI-A
 		type Empty
 		name noname
 		position -28.500000 2.900000 2.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
