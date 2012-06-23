@@ -319,9 +319,8 @@ namespace NGF {
     }
     //----------------------------------------------------------------------------------
     WorldManager::WorldManager()
+        : currentWorld(-1), shuttingdown(false), stoppedLast(false)
     {
-	    shuttingdown = false;
-	    stoppedLast = false;
     }
     //----------------------------------------------------------------------------------
     WorldManager::~WorldManager()
@@ -380,7 +379,8 @@ namespace NGF {
     {
 	    if ((currentWorld + 1) < worlds.size())
 	    {
-		    worlds[currentWorld]->stop();
+		    if (currentWorld >= 0)
+			    worlds[currentWorld]->stop();
 		    worlds[++currentWorld]->init();
 	    }
 	    else
@@ -393,7 +393,8 @@ namespace NGF {
     {
 	    if(currentWorld != 0)
 	    {
-		    worlds[currentWorld]->stop();
+		    if (currentWorld >= 0)
+			    worlds[currentWorld]->stop();
 		    worlds[--currentWorld]->init();
 
 		    return true;
@@ -405,7 +406,8 @@ namespace NGF {
     {
 	    if (worldNumber < worlds.size() && worldNumber != -1)
 	    {
-		    worlds[currentWorld]->stop();
+		    if (currentWorld >= 0)
+			    worlds[currentWorld]->stop();
 		    worlds[(currentWorld = worldNumber)]->init();
 	    }
 	    else

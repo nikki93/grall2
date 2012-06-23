@@ -406,7 +406,7 @@ public:
 class WorldManager : public Ogre::Singleton<NGF::WorldManager>
 {
 protected:
-	unsigned int currentWorld;
+	int currentWorld;
 	std::vector<World*> worlds;
 	bool shuttingdown;
 	bool stoppedLast;
