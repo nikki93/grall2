@@ -7,17 +7,17 @@ find data/*Meshes -name '*.log'
 echo "OK?"
 read xyz
 
-rm -v `find data/*Meshes -name '*.mesh.xml'` `find data/*Meshes -name '*.log'`
+rm -vf `find data/*Meshes -name '*.mesh.xml'` `find data/*Meshes -name '*.log'`
 
 echo ""
 
 #.blend1 files.
-find etc/ -name '*.blend1'
+find -regex '.*\.blend.+'
 
 echo "OK?"
 read xyz
 
-rm -v `find etc/ -name '*.blend1'`
+rm -vf `find -regex '.*\.blend.+'`
 
 echo ""
 
