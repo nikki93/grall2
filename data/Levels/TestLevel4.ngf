@@ -2,6 +2,21 @@ ngflevel TestLevel4
 {
 	object
 	{
+		type Light
+		name noname
+		position -0.289869 2.500002 -9.678768
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			lightType point
+			colour 0.1 0.5 0.8
+			attenuation 70 1 0.01 0.001
+		}
+	}
+	object
+	{
 		type Controller
 		name noname
 		position 0.000000 -6.500000 -0.000000
