@@ -5,21 +5,21 @@ ngflevel PuzzledMuch
 		type SlidingBrush
 		name noname
 		position -1.500000 0.450000 -12.500000
-		rotation 0.707107 -0.707107 0.000000 -0.000000
+		rotation 0.707107 -0.707107 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 0.898999989033
-			ignoreCollisions 0
+			distance 0.8989999890327454
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b0.mesh
-			repeat 1
+			repeat True
 			condition True
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -57,15 +57,15 @@ ngflevel PuzzledMuch
 		type MovingBrush
 		name noname
 		position 4.000000 -0.500000 -64.000000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			brushMeshFile PuzzledMuch_b1.mesh
-			speed 2.04999995232
-			followDirectors 1
+			speed 2.049999952316284
+			followDirectors True
 		}
 	}
 	object
@@ -73,13 +73,13 @@ ngflevel PuzzledMuch
 		type Director
 		name noname
 		position 6.000000 -0.500000 -64.000000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -87,13 +87,13 @@ ngflevel PuzzledMuch
 		type Director
 		name noname
 		position -5.000000 -0.500000 -64.000000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -355,13 +355,13 @@ ngflevel PuzzledMuch
 		type Director
 		name noname
 		position 6.000000 -0.500000 -55.000000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -369,13 +369,13 @@ ngflevel PuzzledMuch
 		type Director
 		name noname
 		position -5.000000 -0.500000 -55.000000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -383,15 +383,15 @@ ngflevel PuzzledMuch
 		type MovingBrush
 		name noname
 		position -1.000000 -0.500000 -55.000000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			brushMeshFile PuzzledMuch_b2.mesh
-			speed 2.04999995232
-			followDirectors 1
+			speed 2.049999952316284
+			followDirectors True
 		}
 	}
 	object
@@ -567,7 +567,7 @@ ngflevel PuzzledMuch
 		type OneWay
 		name noname
 		position 8.000000 0.900000 -34.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -603,7 +603,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -617,7 +617,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -631,14 +631,14 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 2.99900007248
-			ignoreCollisions 0
+			distance 2.999000072479248
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b5.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyR")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -656,8 +656,8 @@ ngflevel PuzzledMuch
 			meshFile Mesh_Key.mesh
 			material Objects/KeyG
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -665,7 +665,7 @@ ngflevel PuzzledMuch
 		type OneWay
 		name noname
 		position 11.500000 0.900000 -32.000000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 
 		properties
 		{
@@ -684,7 +684,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			speed 0.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -698,7 +698,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			speed 0.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -712,7 +712,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -720,19 +720,19 @@ ngflevel PuzzledMuch
 		type MovingBrush
 		name noname
 		position -1.000000 -0.500000 -2.000000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 0
+			enabled False
 			brushMeshFile PuzzledMuch_b7.mesh
 			speed 1.75
-			followDirectors 1
+			followDirectors True
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
 			       : 		self.p_enabled = True
-			boxShape 1
+			boxShape True
 		}
 	}
 	object
@@ -746,7 +746,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			brushMeshFile PuzzledMuch_b8.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -804,7 +804,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			brushMeshFile PuzzledMuch_b9.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -812,19 +812,19 @@ ngflevel PuzzledMuch
 		type MovingBrush
 		name noname
 		position 1.000000 -0.500000 -2.000000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 0
+			enabled False
 			brushMeshFile PuzzledMuch_b10.mesh
 			speed 1.75
-			followDirectors 1
+			followDirectors True
 			script : def collide(self, other):
 			       : 	if (other.hasFlag("Player")):
 			       : 		self.p_enabled = True
-			boxShape 1
+			boxShape True
 		}
 	}
 	object
@@ -838,7 +838,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -855,8 +855,8 @@ ngflevel PuzzledMuch
 			meshFile Mesh_Key.mesh
 			material Objects/KeyG
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -870,7 +870,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			brushMeshFile PuzzledMuch_b11.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -884,8 +884,8 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			brushMeshFile PuzzledMuch_b12.mesh
-			convex 0
-			transparent 1
+			convex False
+			transparent True
 		}
 	}
 	object
@@ -898,14 +898,14 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.29999995232
-			ignoreCollisions 0
+			distance 1.2999999523162842
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b13.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -927,7 +927,7 @@ ngflevel PuzzledMuch
 		type OneWay
 		name noname
 		position -3.500000 0.900000 -28.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -945,7 +945,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			green 1
+			green True
 		}
 	}
 	object
@@ -962,8 +962,8 @@ ngflevel PuzzledMuch
 			meshFile Mesh_Key.mesh
 			material Objects/KeyB
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -980,8 +980,8 @@ ngflevel PuzzledMuch
 			meshFile Mesh_Key.mesh
 			material Objects/KeyR
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -989,19 +989,19 @@ ngflevel PuzzledMuch
 		type SlidingBrush
 		name noname
 		position 9.500000 0.900000 -34.000000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 -0.000000 -1.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b15.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyB")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1015,14 +1015,14 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 2.99900007248
-			ignoreCollisions 0
+			distance 2.999000072479248
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b16.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyG")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1036,14 +1036,14 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b17.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyG")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1057,7 +1057,7 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -1091,14 +1091,14 @@ ngflevel PuzzledMuch
 		properties
 		{
 			dimensions 3
-			enabled 1
-			speed 0.699999988079
+			enabled True
+			speed 0.699999988079071
 			distance 3.0
-			ignoreCollisions 0
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b18.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1139,8 +1139,8 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 1
+			captureCameraHandler True
+			canSwitchDimensions True
 		}
 	}
 	object
@@ -1182,7 +1182,7 @@ ngflevel PuzzledMuch
 		{
 			dimensions 3
 			brushMeshFile PuzzledMuch_b20.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -1203,21 +1203,21 @@ ngflevel PuzzledMuch
 		type SlidingBrush
 		name noname
 		position 0.500000 0.450000 -12.500000
-		rotation 0.707107 -0.707107 0.000000 -0.000000
+		rotation 0.707107 -0.707107 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 0.898999989033
-			ignoreCollisions 0
+			distance 0.8989999890327454
+			ignoreCollisions False
 			brushMeshFile PuzzledMuch_b21.mesh
-			repeat 1
+			repeat True
 			condition True
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 }

@@ -10,7 +10,30 @@ ngflevel TestLevel4
 		properties
 		{
 			dimensions 1
-			script refText ControlScript
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(0)
+			       : 	
+			       : 	#Show the white text with the level number and caption.
+			       : 	self.showLevelText(2,4,3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
 		}
 	}
 	object
@@ -22,7 +45,7 @@ ngflevel TestLevel4
 
 		properties
 		{
-			dimensions 1
+			dimensions 3
 			brushMeshFile TestLevel4_b0.mesh
 			convex False
 		}
@@ -46,8 +69,8 @@ ngflevel TestLevel4
 	{
 		type Player
 		name player1
-		position 2.500218 0.389544 -2.499271
-		rotation -0.172773 0.000000 -0.984962 -0.000000
+		position 3.406226 0.389544 -3.477611
+		rotation -0.957841 0.000000 0.287297 -0.000000
 
 		properties
 		{
@@ -55,6 +78,20 @@ ngflevel TestLevel4
 			minHeight -4.0
 			captureCameraHandler True
 			canSwitchDimensions True
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 1.500000 -0.500000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_Acid.pyo
+			brushMeshFile TestLevel4_b1.mesh
 		}
 	}
 }

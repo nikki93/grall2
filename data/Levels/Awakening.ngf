@@ -62,7 +62,7 @@ ngflevel Awakening
 		type StaticBrush
 		name stopBrush
 		position 9.618255 0.700000 11.500279
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -253,7 +253,7 @@ ngflevel Awakening
 		type StaticBrush
 		name noname
 		position 11.500000 0.500000 11.500000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
@@ -267,7 +267,7 @@ ngflevel Awakening
 		type StaticBrush
 		name noname
 		position 10.500000 0.500000 10.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 
 		properties
 		{
@@ -281,7 +281,7 @@ ngflevel Awakening
 		type StaticBrush
 		name noname
 		position 9.500000 0.500000 12.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -295,7 +295,7 @@ ngflevel Awakening
 		type StaticBrush
 		name noname
 		position 9.500000 0.500000 10.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -309,7 +309,7 @@ ngflevel Awakening
 		type StaticBrush
 		name noname
 		position 11.500000 0.500000 12.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -323,7 +323,7 @@ ngflevel Awakening
 		type StaticBrush
 		name noname
 		position 10.500000 0.500000 12.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 
 		properties
 		{
@@ -337,7 +337,7 @@ ngflevel Awakening
 		type StaticBrush
 		name noname
 		position 11.500000 0.500000 10.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -421,8 +421,8 @@ ngflevel Awakening
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 0
-			canSwitchDimensions 0
+			captureCameraHandler False
+			canSwitchDimensions False
 			script : import Ngf
 			       : import random
 			       : 
@@ -620,7 +620,7 @@ ngflevel Awakening
 		type CameraHandler
 		name noname
 		position 10.500000 24.835087 11.962250
-		rotation 0.707107 -0.707107 0.000000 -0.000000
+		rotation 0.707107 -0.707107 0.000000 0.000000
 
 		properties
 		{
@@ -691,10 +691,10 @@ ngflevel Awakening
 			dimensions 1
 			scriptFile Prefab_AmbientSound.pyo
 			soundFile AmbientSpooky.wav
-			loop 1
-			stream 1
+			loop True
+			stream True
 			attenuation -1 5 5
-			initPlay 1
+			initPlay True
 			gain 3.638671875
 		}
 	}

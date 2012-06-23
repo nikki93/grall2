@@ -515,7 +515,6 @@ class Game
             {
                 GlbVar.loadGame = false;
                 Util::loadUserLevel(ngfName); //Load NGF script
-                GlbVar.loadGame = true;
             }
             else
                 GlbVar.woMgr->start(0); //Normal game

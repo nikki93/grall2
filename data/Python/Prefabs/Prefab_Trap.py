@@ -34,7 +34,7 @@ def collide(self, other):
 def alarm(self, n):
     #Bombs away! :D Create the Bomb in our Dimension.
     Ngf.createObject("Bomb", "", self.getPosition() + self.getOrientation() *
-                     Ngf.Vector3(0,0.75,0), Ngf.Quaternion.IDENTITY, 
+                     Ngf.Vector3(0,0.75,0), Ngf.Quaternion.IDENTITY,
                      {
                          "dimensions" : str(self.getDimension())
                      })

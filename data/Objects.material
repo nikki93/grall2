@@ -335,7 +335,7 @@ material Objects/EndPoint : BaseTransparent
 }
 
 //--- Acid ----------------------------------------------------------------------------
-material Objects/Acid : BaseTransparent
+material Objects/Acid
 {
         set $diffuse_tex "Acid.png"
         set $glow_tex "Acid.png"
@@ -365,10 +365,61 @@ material Objects/Acid : BaseTransparent
                         
                         texture_unit DiffuseMap
                         {
-                                scroll_anim 2 2
+                                scroll_anim 0.05 0.04
                                 texture $diffuse_tex
                         }
                 }
+                pass 
+                {
+                        max_lights 12
+                        scene_blend add
+                        iteration once_per_light
+
+                        diffuse $diffuse
+                        specular $specular
+
+                        vertex_program_ref BasePerLight_vp
+                        { 
+                        }   
+
+                        fragment_program_ref BasePerLight_fp
+                        {
+                        } 
+                        
+                        texture_unit DiffuseMap
+                        {
+                                scroll_anim 0.05 0.04
+                                texture $diffuse_tex
+                        }
+                        
+                        texture_unit NormalMap
+                        {
+                        }
+
+                        texture_unit ShadowMap0
+                        {
+                                content_type shadow
+                                tex_address_mode clamp
+                                filtering anisotropic
+                                max_anisotropy 16
+                        }
+
+                        texture_unit ShadowMap1
+                        {
+                                content_type shadow
+                                tex_address_mode clamp
+                                filtering anisotropic
+                                max_anisotropy 16
+                        }
+
+                        texture_unit ShadowMap2
+                        {
+                                content_type shadow
+                                tex_address_mode clamp
+                                filtering anisotropic
+                                max_anisotropy 16
+                        }
+                }  
         }  
         technique Glow
         { 
@@ -387,6 +438,7 @@ material Objects/Acid : BaseTransparent
                         
                         texture_unit GlowMap
                         {
+                                scroll_anim 0.05 0.04
                                 texture $glow_tex
                         }
                 }
@@ -403,7 +455,7 @@ material Objects/Acid : BaseTransparent
                         
                         texture_unit DiffuseMap
                         {
-                                scroll_anim 2 2
+                                scroll_anim 0.05 0.04
                                 texture $diffuse_tex
                         }
                 }

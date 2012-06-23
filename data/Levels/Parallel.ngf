@@ -118,16 +118,16 @@ ngflevel Parallel
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 2.99900007248
-			ignoreCollisions 0
+			distance 2.999000072479248
+			ignoreCollisions False
 			brushMeshFile Parallel_b0.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -140,16 +140,16 @@ ngflevel Parallel
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 2.99900007248
-			ignoreCollisions 0
+			distance 2.999000072479248
+			ignoreCollisions False
 			brushMeshFile Parallel_b1.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -199,15 +199,15 @@ ngflevel Parallel
 		type SlidingBrush
 		name door3
 		position 2.500000 1.000000 3.500000
-		rotation 0.707107 -0.707107 0.000000 -0.000000
+		rotation 0.707107 -0.707107 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
 			distance 2.0
-			ignoreCollisions 0
+			ignoreCollisions False
 			brushMeshFile Parallel_b2.mesh
 		}
 	}
@@ -216,15 +216,15 @@ ngflevel Parallel
 		type SlidingBrush
 		name door2
 		position 2.500000 1.000000 5.500000
-		rotation 0.707107 -0.707107 0.000000 -0.000000
+		rotation 0.707107 -0.707107 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.79999995232
-			ignoreCollisions 0
+			distance 1.7999999523162842
+			ignoreCollisions False
 			brushMeshFile Parallel_b3.mesh
 		}
 	}
@@ -239,7 +239,7 @@ ngflevel Parallel
 		{
 			dimensions 3
 			brushMeshFile Parallel_b4.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -253,7 +253,7 @@ ngflevel Parallel
 		{
 			dimensions 3
 			brushMeshFile Parallel_b5.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -330,7 +330,7 @@ ngflevel Parallel
 		{
 			dimensions 3
 			brushMeshFile Parallel_b6.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -344,8 +344,8 @@ ngflevel Parallel
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 0
+			captureCameraHandler True
+			canSwitchDimensions False
 		}
 	}
 	object
@@ -359,7 +359,7 @@ ngflevel Parallel
 		{
 			dimensions 3
 			brushMeshFile Parallel_b7.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -388,15 +388,15 @@ ngflevel Parallel
 		type SlidingBrush
 		name door1
 		position 2.500000 1.000000 7.500000
-		rotation 0.707107 -0.707107 0.000000 -0.000000
+		rotation 0.707107 -0.707107 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.60000002384
-			ignoreCollisions 0
+			distance 1.600000023841858
+			ignoreCollisions False
 			brushMeshFile Parallel_b9.mesh
 		}
 	}
@@ -440,16 +440,16 @@ ngflevel Parallel
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 2.99900007248
-			ignoreCollisions 0
+			distance 2.999000072479248
+			ignoreCollisions False
 			brushMeshFile Parallel_b11.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -486,14 +486,14 @@ ngflevel Parallel
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 2.99900007248
-			ignoreCollisions 0
+			distance 2.999000072479248
+			ignoreCollisions False
 			brushMeshFile Parallel_b12.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyB")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -511,8 +511,8 @@ ngflevel Parallel
 			meshFile Mesh_Key.mesh
 			material Objects/KeyB
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -585,15 +585,15 @@ ngflevel Parallel
 		type SlidingBrush
 		name ballEntryDoor
 		position 0.746342 1.500000 9.330561
-		rotation 0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 1.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.20000004768
-			ignoreCollisions 0
+			distance 1.2000000476837158
+			ignoreCollisions False
 			brushMeshFile Parallel_b14.mesh
 		}
 	}

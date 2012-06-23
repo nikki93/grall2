@@ -60,6 +60,8 @@ void BasePerLight_vp
          uniform float4x4 worldViewProj,
          uniform float4x4 world, //world_matrix
 
+         uniform float4x4 textureMat,
+
          //PSSM shadow projections
          uniform float4x4 twvp0,
          uniform float4x4 twvp1,
@@ -90,7 +92,7 @@ void BasePerLight_vp
      ) 
 {
     oPos = mul(worldViewProj, position);
-    oUv.xy = uv;
+    oUv.xy = mul(textureMat, float4(uv, 0, 1)).xy;
     oUv.z = oPos.z;
 
     //Relative light position.
@@ -257,6 +259,8 @@ void BaseAmbient_vp
          uniform float4x4 worldViewProj,
          uniform float4x4 world, //world_matrix
 
+         uniform float4x4 textureMat,
+
          uniform float3 eyePosition,
 
 #if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
@@ -271,7 +275,7 @@ void BaseAmbient_vp
    )
 {
     oPos = mul(worldViewProj, position);
-    oUv = uv;
+    oUv = mul(textureMat, float4(uv, 0, 1)).xy;
 
 #if (PARALLAX_MAPPING && SET_PARALLAX_MAPPING)
     float3 binormal = cross(tangent, normal);

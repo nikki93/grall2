@@ -52,7 +52,7 @@ ngflevel Dimensions
 		type MovingBomb
 		name noname
 		position -4.500000 -0.100000 -19.500000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -70,7 +70,7 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 2
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -84,7 +84,7 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			green 1
+			green True
 		}
 	}
 	object
@@ -97,7 +97,7 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 2
-			green 1
+			green True
 		}
 	}
 	object
@@ -110,7 +110,7 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 2
-			heightDeficiency -0.119999997318
+			heightDeficiency -0.11999999731779099
 		}
 	}
 	object
@@ -146,7 +146,7 @@ ngflevel Dimensions
 		type OneWay
 		name noname
 		position 5.000000 0.300000 -30.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation 0.000000 0.000000 1.000000 -0.000000
 
 		properties
 		{
@@ -165,7 +165,7 @@ ngflevel Dimensions
 		{
 			dimensions 2
 			brushMeshFile Dimensions_b2.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -183,7 +183,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -196,12 +196,12 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			speed 1.89999997616
+			speed 1.899999976158142
 			script : import GraLL2
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -219,7 +219,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -237,7 +237,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -255,7 +255,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -268,12 +268,12 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			speed 1.86000001431
+			speed 1.8600000143051147
 			script : import GraLL2
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -291,7 +291,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -309,7 +309,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -327,7 +327,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -345,7 +345,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -363,7 +363,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -381,7 +381,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -399,7 +399,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -417,7 +417,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -435,7 +435,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -453,7 +453,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -471,7 +471,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -503,7 +503,7 @@ ngflevel Dimensions
 			       : 
 			       : def utick(self, other):
 			       : 	self.p_enabled = GraLL2.controller.m_startBombs
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -511,13 +511,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 1.500000 -1.500000 4.500000
-		rotation 1.000000 0.000000 -0.000000 -0.000000
+		rotation -1.000000 -0.000000 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -525,13 +525,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 0.500000 -1.500000 4.500000
-		rotation 1.000000 0.000000 -0.000000 -0.000000
+		rotation -1.000000 -0.000000 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -539,13 +539,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -0.500000 -1.500000 4.500000
-		rotation 1.000000 0.000000 -0.000000 -0.000000
+		rotation -1.000000 -0.000000 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -553,13 +553,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -1.500000 -1.500000 4.500000
-		rotation 1.000000 0.000000 -0.000000 -0.000000
+		rotation -1.000000 -0.000000 0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -567,13 +567,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -1.500000 0.500000 4.500000
-		rotation 0.707107 -0.707107 -0.000000 0.000000
+		rotation -0.707107 0.707107 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -581,13 +581,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -0.500000 0.500000 4.500000
-		rotation 0.707107 -0.707107 -0.000000 0.000000
+		rotation -0.707107 0.707107 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -595,13 +595,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 0.500000 0.500000 4.500000
-		rotation 0.707107 -0.707107 -0.000000 0.000000
+		rotation -0.707107 0.707107 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -609,13 +609,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 1.500000 0.500000 4.500000
-		rotation 0.707107 -0.707107 -0.000000 0.000000
+		rotation -0.707107 0.707107 0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -623,13 +623,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 1.500000 0.500000 -17.500000
-		rotation 0.000000 1.000000 -0.000000 -0.000000
+		rotation -0.000000 1.000000 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -637,13 +637,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 0.500000 0.500000 -17.500000
-		rotation 0.000000 1.000000 -0.000000 -0.000000
+		rotation -0.000000 1.000000 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -651,13 +651,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -0.500000 0.500000 -17.500000
-		rotation 0.000000 1.000000 -0.000000 -0.000000
+		rotation -0.000000 1.000000 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -665,13 +665,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -1.500000 0.500000 -17.500000
-		rotation 0.000000 1.000000 -0.000000 -0.000000
+		rotation -0.000000 1.000000 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -679,13 +679,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -1.500000 -2.500000 -17.500000
-		rotation 0.707107 0.707107 0.000000 -0.000000
+		rotation 0.707107 0.707107 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -693,13 +693,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position -0.500000 -2.500000 -17.500000
-		rotation 0.707107 0.707107 0.000000 -0.000000
+		rotation 0.707107 0.707107 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -707,13 +707,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 0.500000 -2.500000 -17.500000
-		rotation 0.707107 0.707107 0.000000 -0.000000
+		rotation 0.707107 0.707107 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -741,16 +741,16 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.29999995232
-			ignoreCollisions 1
+			distance 1.2999999523162842
+			ignoreCollisions True
 			brushMeshFile Dimensions_b4.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -765,21 +765,21 @@ ngflevel Dimensions
 		type SlidingBrush
 		name bombDoor1
 		position -0.000000 0.900000 -2.500000
-		rotation 0.500000 -0.500000 -0.500000 -0.500000
+		rotation -0.500000 0.500000 0.500000 0.500000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.7990000248
-			ignoreCollisions 0
+			distance 1.7990000247955322
+			ignoreCollisions False
 			brushMeshFile Dimensions_b5.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -832,21 +832,21 @@ ngflevel Dimensions
 		type SlidingBrush
 		name trap2
 		position 2.500000 -0.998324 5.500000
-		rotation -0.000000 -0.000000 0.707107 -0.707107
+		rotation 0.000000 0.000000 -0.707107 0.707107
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
 			distance 2.0
-			ignoreCollisions 0
+			ignoreCollisions False
 			brushMeshFile Dimensions_b6.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 0
+			playSound False
 		}
 	}
 	object
@@ -854,21 +854,21 @@ ngflevel Dimensions
 		type SlidingBrush
 		name trap4
 		position -2.500000 -0.998324 5.500000
-		rotation -0.000000 -0.000000 0.707107 -0.707107
+		rotation 0.000000 0.000000 -0.707107 0.707107
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
 			distance 2.0
-			ignoreCollisions 0
+			ignoreCollisions False
 			brushMeshFile Dimensions_b7.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -876,21 +876,21 @@ ngflevel Dimensions
 		type SlidingBrush
 		name trap3
 		position 0.000000 -0.898324 5.500000
-		rotation -0.000000 -0.000000 0.707107 -0.707107
+		rotation 0.000000 0.000000 -0.707107 0.707107
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.79999995232
-			ignoreCollisions 0
+			distance 1.7999999523162842
+			ignoreCollisions False
 			brushMeshFile Dimensions_b8.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 0
+			playSound False
 		}
 	}
 	object
@@ -903,16 +903,16 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.79999995232
-			ignoreCollisions 0
+			distance 1.7999999523162842
+			ignoreCollisions False
 			brushMeshFile Dimensions_b9.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 0
+			playSound False
 		}
 	}
 	object
@@ -1021,7 +1021,7 @@ ngflevel Dimensions
 		{
 			dimensions 3
 			brushMeshFile Dimensions_b10.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -1034,16 +1034,16 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.79999995232
-			ignoreCollisions 0
+			distance 1.7999999523162842
+			ignoreCollisions False
 			brushMeshFile Dimensions_b11.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 0
+			playSound False
 		}
 	}
 	object
@@ -1057,8 +1057,8 @@ ngflevel Dimensions
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 0
+			captureCameraHandler True
+			canSwitchDimensions False
 		}
 	}
 	object
@@ -1074,8 +1074,8 @@ ngflevel Dimensions
 			brushMeshFile Dimensions_b12.mesh
 			pickupType DimSwitch
 			spin 20.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.17499999702
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.17499999701976776
 			script : import GraLL2
 			       : import Ngf
 			       : 
@@ -1105,19 +1105,19 @@ ngflevel Dimensions
 		type SlidingBrush
 		name noname
 		position -0.000000 0.900000 7.500000
-		rotation 0.500000 -0.500000 -0.500000 -0.500000
+		rotation -0.500000 0.500000 0.500000 0.500000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.7990000248
-			ignoreCollisions 0
+			distance 1.7990000247955322
+			ignoreCollisions False
 			brushMeshFile Dimensions_b13.mesh
-			repeat 1
+			repeat True
 			condition True
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1143,15 +1143,15 @@ ngflevel Dimensions
 		type SlidingBrush
 		name bombOutlet1
 		position -0.000000 -0.200000 4.500000
-		rotation 0.707107 -0.707107 0.000000 0.000000
+		rotation 0.707107 -0.707107 -0.000000 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
-			speed 0.600000023842
+			enabled True
+			speed 0.6000000238418579
 			distance n
-			ignoreCollisions 0
+			ignoreCollisions False
 			brushMeshFile Dimensions_b15.mesh
 			script : import Ngf
 			       : 
@@ -1191,16 +1191,16 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.29999995232
-			ignoreCollisions 1
+			distance 1.2999999523162842
+			ignoreCollisions True
 			brushMeshFile Dimensions_b17.mesh
-			repeat 1
+			repeat True
 			condition False
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
-			playSound 1
+			playSound True
 		}
 	}
 	object
@@ -1208,13 +1208,13 @@ ngflevel Dimensions
 		type Director
 		name noname
 		position 1.500000 -2.500000 -17.500000
-		rotation 0.707107 0.707107 0.000000 -0.000000
+		rotation 0.707107 0.707107 -0.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -1250,7 +1250,7 @@ ngflevel Dimensions
 		{
 			dimensions 1
 			brushMeshFile Dimensions_b19.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -1258,7 +1258,7 @@ ngflevel Dimensions
 		type OneWay
 		name noname
 		position 2.500000 0.300000 -28.000000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -1280,8 +1280,8 @@ ngflevel Dimensions
 			meshFile Mesh_Key.mesh
 			material Objects/KeyR
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -1295,7 +1295,7 @@ ngflevel Dimensions
 		{
 			dimensions 3
 			brushMeshFile Dimensions_b21.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -1303,19 +1303,19 @@ ngflevel Dimensions
 		type SlidingBrush
 		name noname
 		position -2.500000 0.300000 -34.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 -0.000000 -1.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 2.99900007248
-			ignoreCollisions 0
+			distance 2.999000072479248
+			ignoreCollisions False
 			brushMeshFile Dimensions_b22.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyR")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1370,7 +1370,7 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 2
-			heightDeficiency 0.10000000149
+			heightDeficiency 0.10000000149011612
 		}
 	}
 	object
@@ -1383,7 +1383,7 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			green 1
+			green True
 		}
 	}
 	object
@@ -1396,7 +1396,7 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 1
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -1414,8 +1414,8 @@ ngflevel Dimensions
 			meshFile Mesh_Key.mesh
 			material Objects/KeyG
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -1428,14 +1428,14 @@ ngflevel Dimensions
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile Dimensions_b24.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyG")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1457,7 +1457,7 @@ ngflevel Dimensions
 		type MovingBomb
 		name noname
 		position -6.500000 -0.100000 -19.500000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -1493,7 +1493,7 @@ ngflevel Dimensions
 		{
 			dimensions 1
 			brushMeshFile Dimensions_b26.mesh
-			convex 1
+			convex True
 		}
 	}
 }

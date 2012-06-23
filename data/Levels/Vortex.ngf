@@ -5,7 +5,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position -0.732653 0.500000 -2.179756
-		rotation 0.909615 0.000000 -0.415452 -0.000000
+		rotation -0.909615 0.000000 0.415452 -0.000000
 
 		properties
 		{
@@ -25,9 +25,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.34999999404
-			enabled 0
+			clockwise True
+			rotFreq 0.3499999940395355
+			enabled False
 		}
 	}
 	object
@@ -35,7 +35,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position -1.258523 0.500000 -3.302919
-		rotation 0.920532 0.000000 -0.390668 -0.000000
+		rotation 0.920532 0.000000 -0.390668 0.000000
 
 		properties
 		{
@@ -55,9 +55,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.300000011921
-			enabled 0
+			clockwise True
+			rotFreq 0.30000001192092896
+			enabled False
 		}
 	}
 	object
@@ -85,9 +85,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.300000011921
-			enabled 0
+			clockwise True
+			rotFreq 0.30000001192092896
+			enabled False
 		}
 	}
 	object
@@ -95,7 +95,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position -2.171584 0.500000 -0.756530
-		rotation 0.999630 0.000000 0.027214 -0.000000
+		rotation -0.999630 -0.000000 -0.027214 -0.000000
 
 		properties
 		{
@@ -115,9 +115,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.34999999404
-			enabled 0
+			clockwise True
+			rotFreq 0.3499999940395355
+			enabled False
 		}
 	}
 	object
@@ -125,7 +125,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position -1.578603 0.500000 1.672163
-		rotation 0.824251 0.000000 0.566224 -0.000000
+		rotation -0.824251 -0.000000 -0.566224 -0.000000
 
 		properties
 		{
@@ -145,9 +145,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.34999999404
-			enabled 0
+			clockwise True
+			rotFreq 0.3499999940395355
+			enabled False
 		}
 	}
 	object
@@ -175,9 +175,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.300000011921
-			enabled 0
+			clockwise True
+			rotFreq 0.30000001192092896
+			enabled False
 		}
 	}
 	object
@@ -205,9 +205,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.300000011921
-			enabled 0
+			clockwise True
+			rotFreq 0.30000001192092896
+			enabled False
 		}
 	}
 	object
@@ -215,7 +215,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position 0.613634 0.500000 2.216206
-		rotation 0.439918 0.000000 0.898038 -0.000000
+		rotation -0.439918 -0.000000 -0.898038 -0.000000
 
 		properties
 		{
@@ -235,9 +235,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.34999999404
-			enabled 0
+			clockwise True
+			rotFreq 0.3499999940395355
+			enabled False
 		}
 	}
 	object
@@ -265,9 +265,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.34999999404
-			enabled 0
+			clockwise True
+			rotFreq 0.3499999940395355
+			enabled False
 		}
 	}
 	object
@@ -275,7 +275,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position 3.470433 0.500000 0.670258
-		rotation 0.106421 0.000000 -0.994321 -0.000000
+		rotation -0.106421 -0.000000 0.994321 -0.000000
 
 		properties
 		{
@@ -295,9 +295,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.300000011921
-			enabled 0
+			clockwise True
+			rotFreq 0.30000001192092896
+			enabled False
 		}
 	}
 	object
@@ -305,7 +305,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position 1.800534 0.500000 -3.041584
-		rotation 0.659509 0.000000 -0.751696 -0.000000
+		rotation -0.659509 -0.000000 0.751696 -0.000000
 
 		properties
 		{
@@ -325,9 +325,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.300000011921
-			enabled 0
+			clockwise True
+			rotFreq 0.30000001192092896
+			enabled False
 		}
 	}
 	object
@@ -355,9 +355,9 @@ ngflevel Vortex
 			       : 	else:
 			       : 		self.m_firstframe = False
 			       : 
-			clockwise 1
-			rotFreq 0.34999999404
-			enabled 0
+			clockwise True
+			rotFreq 0.3499999940395355
+			enabled False
 		}
 	}
 	object
@@ -410,14 +410,14 @@ ngflevel Vortex
 		type MovingBrush
 		name noname
 		position 0.000000 -0.500000 -0.000000
-		rotation 0.865529 0.000000 -0.500859 -0.000000
+		rotation 0.865529 0.000000 -0.500859 0.000000
 
 		properties
 		{
 			dimensions 2
 			brushMeshFile Vortex_b0.mesh
-			enabled 1
-			followDirectors 0
+			enabled True
+			followDirectors False
 			speed 0.0
 			script : import Ngf
 			       : import GraLL2
@@ -425,7 +425,7 @@ ngflevel Vortex
 			       : def utick(self, elapsed):
 			       : 	rot = self.getOrientation()
 			       : 	self.setOrientation(rot * Ngf.Quaternion(Ngf.Radian(0.164 * elapsed), Ngf.Vector3.NEGATIVE_UNIT_Y))
-			boxShape 1
+			boxShape True
 		}
 	}
 	object
@@ -433,13 +433,13 @@ ngflevel Vortex
 		type StaticBrush
 		name noname
 		position -0.000001 -0.000000 4.000000
-		rotation 0.707107 0.000000 -0.707107 0.000000
+		rotation -0.707107 -0.000000 0.707107 -0.000000
 
 		properties
 		{
 			dimensions 2
 			brushMeshFile Vortex_b1.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -447,13 +447,13 @@ ngflevel Vortex
 		type StaticBrush
 		name noname
 		position -4.000000 0.000000 -0.000001
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation 0.000000 0.000000 1.000000 -0.000000
 
 		properties
 		{
 			dimensions 2
 			brushMeshFile Vortex_b2.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -461,13 +461,13 @@ ngflevel Vortex
 		type StaticBrush
 		name noname
 		position -17.500000 -0.500000 -2.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			brushMeshFile Vortex_b3.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -475,7 +475,7 @@ ngflevel Vortex
 		type Checkpoint
 		name noname
 		position 1.500000 1.159853 18.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 	}
 	object
 	{
@@ -491,8 +491,8 @@ ngflevel Vortex
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -501,12 +501,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 10.465425 0.500153 3.946071
-		rotation 0.917247 0.000000 -0.398320 -0.000000
+		rotation 0.917247 0.000000 -0.398320 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -514,12 +514,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 11.421645 0.500153 3.719429
-		rotation 0.917247 0.000000 -0.398320 -0.000000
+		rotation 0.917247 0.000000 -0.398320 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -527,12 +527,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 12.260202 0.500153 4.160178
-		rotation 0.917247 0.000000 -0.398320 -0.000000
+		rotation 0.917247 0.000000 -0.398320 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -540,12 +540,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 10.810946 0.500153 0.981207
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -553,12 +553,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 9.547592 0.500153 0.869735
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -566,12 +566,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 10.810946 0.500153 -1.656971
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -579,12 +579,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 11.777039 0.500153 -2.400120
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -592,12 +592,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 12.483030 0.500153 -3.477686
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -605,13 +605,13 @@ ngflevel Vortex
 		type Director
 		name noname
 		position 5.453661 0.500000 -11.710485
-		rotation 0.209663 0.000000 0.977774 -0.000000
+		rotation -0.209663 -0.000000 -0.977774 -0.000000
 
 		properties
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -619,7 +619,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position 4.821348 0.500000 -10.303870
-		rotation 0.209663 0.000000 0.977774 -0.000000
+		rotation -0.209663 -0.000000 -0.977774 -0.000000
 
 		properties
 		{
@@ -632,13 +632,13 @@ ngflevel Vortex
 		type Director
 		name noname
 		position 3.443457 0.500000 -7.238679
-		rotation 0.977774 0.000000 -0.209663 -0.000000
+		rotation 0.977774 0.000000 -0.209663 0.000000
 
 		properties
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -646,13 +646,13 @@ ngflevel Vortex
 		type Director
 		name noname
 		position 2.423572 0.500000 -7.640822
-		rotation 0.989822 0.000000 -0.142310 -0.000000
+		rotation 0.989822 0.000000 -0.142310 0.000000
 
 		properties
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -660,7 +660,7 @@ ngflevel Vortex
 		type MovingBomb
 		name noname
 		position 2.774753 0.500000 -8.836874
-		rotation 0.142310 0.000000 0.989822 -0.000000
+		rotation -0.142310 -0.000000 -0.989822 -0.000000
 
 		properties
 		{
@@ -673,13 +673,13 @@ ngflevel Vortex
 		type Director
 		name noname
 		position 3.804821 0.500000 -12.345088
-		rotation 0.142310 0.000000 0.989822 -0.000000
+		rotation -0.142310 -0.000000 -0.989822 -0.000000
 
 		properties
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -687,13 +687,13 @@ ngflevel Vortex
 		type Director
 		name noname
 		position -0.475200 0.500000 -8.001877
-		rotation 0.999183 0.000000 0.040427 -0.000000
+		rotation 0.999182 0.000000 0.040427 -0.000000
 
 		properties
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -720,7 +720,7 @@ ngflevel Vortex
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -734,7 +734,7 @@ ngflevel Vortex
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -761,7 +761,7 @@ ngflevel Vortex
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -778,8 +778,8 @@ ngflevel Vortex
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -788,12 +788,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 8.131333 0.500084 -3.558849
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -801,12 +801,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 8.654417 0.500075 -4.605021
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -814,12 +814,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 8.724161 0.500074 -5.930175
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -827,12 +827,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 8.061589 0.500085 -7.011225
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -840,12 +840,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 6.945680 0.500105 -7.569191
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -853,12 +853,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 5.515924 0.500130 -7.604072
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -866,12 +866,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 6.228978 0.500148 -5.250629
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -879,12 +879,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 5.217690 0.500166 -4.274212
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -892,12 +892,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 4.225659 0.500153 -6.802017
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -905,12 +905,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 8.001925 0.500151 3.205600
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -918,12 +918,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 6.921383 0.500151 7.656331
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -931,12 +931,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 6.640543 0.500152 6.584026
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -944,12 +944,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 5.950006 0.500153 5.449273
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -957,12 +957,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 5.676668 0.500151 4.315838
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -970,12 +970,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 4.297081 0.500153 3.418537
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -983,12 +983,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 3.399779 0.500153 2.521235
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -996,12 +996,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 7.697383 0.500153 2.096197
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1009,12 +1009,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 8.264101 0.500153 1.104441
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1022,12 +1022,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 8.358554 0.500153 -0.170673
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1035,12 +1035,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 7.886289 0.500153 -1.493014
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1048,12 +1048,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 7.083439 0.500153 -2.531997
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1061,12 +1061,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 2.756656 0.500189 -0.695431
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1074,12 +1074,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 3.165158 0.500189 0.998192
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1087,12 +1087,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 4.176462 0.500189 -0.187474
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1109,8 +1109,8 @@ ngflevel Vortex
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -1128,8 +1128,8 @@ ngflevel Vortex
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -1138,12 +1138,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 1.925032 0.499939 -3.146516
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1151,12 +1151,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 1.644179 0.499970 -2.125236
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1164,12 +1164,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 3.462812 0.500097 -5.606405
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1177,12 +1177,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 2.696853 0.500065 -6.653207
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1190,12 +1190,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 1.573449 0.500059 -6.857461
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1203,12 +1203,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 0.424512 0.500054 -7.010652
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1216,12 +1216,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -0.852082 0.500037 -7.061707
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1229,12 +1229,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -1.924422 0.500023 -6.244675
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1242,12 +1242,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -3.124424 0.500007 -5.912750
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1255,12 +1255,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -2.287771 0.499996 2.189689
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1268,12 +1268,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -0.934567 0.499996 2.853525
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1281,12 +1281,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 0.188847 0.499996 3.083314
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1294,12 +1294,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 1.286730 0.499996 2.879057
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1307,12 +1307,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 1.976098 0.499996 2.087561
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1320,12 +1320,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position 1.644180 0.499996 -1.257151
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1338,7 +1338,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1351,7 +1351,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1364,7 +1364,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1377,7 +1377,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1390,7 +1390,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1403,7 +1403,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1416,7 +1416,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1424,13 +1424,13 @@ ngflevel Vortex
 		type Director
 		name noname
 		position 0.000000 0.500000 -3.034011
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 -0.000000 -1.000000 -0.000000
 
 		properties
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -1438,12 +1438,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -1.703449 0.499998 -3.027476
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1460,8 +1460,8 @@ ngflevel Vortex
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -1470,12 +1470,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -2.521807 0.499996 -3.712484
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1483,12 +1483,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -3.231627 0.499996 -4.416867
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1496,12 +1496,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -3.941447 0.499996 -5.121250
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1509,12 +1509,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -6.070907 0.499996 -7.234399
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1522,12 +1522,12 @@ ngflevel Vortex
 		type Bomb
 		name noname
 		position -6.780727 0.499996 -7.938782
-		rotation 0.924613 0.000000 -0.380907 -0.000000
+		rotation 0.924613 0.000000 -0.380907 0.000000
 
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1540,7 +1540,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1553,7 +1553,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1566,7 +1566,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1579,7 +1579,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1592,7 +1592,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1605,7 +1605,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1618,7 +1618,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1635,8 +1635,8 @@ ngflevel Vortex
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -1650,7 +1650,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1663,7 +1663,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1676,7 +1676,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1689,7 +1689,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1702,7 +1702,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1715,7 +1715,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1728,7 +1728,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1741,7 +1741,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1754,7 +1754,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1767,7 +1767,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1780,7 +1780,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1793,7 +1793,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1806,7 +1806,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1819,7 +1819,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1832,7 +1832,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1846,7 +1846,7 @@ ngflevel Vortex
 		{
 			dimensions 3
 			brushMeshFile Vortex_b4.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -1897,8 +1897,8 @@ ngflevel Vortex
 		{
 			dimensions 1
 			brushMeshFile Vortex_b5.mesh
-			enabled 1
-			followDirectors 0
+			enabled True
+			followDirectors False
 			speed 0.0
 			script : import Ngf
 			       : import GraLL2
@@ -1906,7 +1906,7 @@ ngflevel Vortex
 			       : def utick(self, elapsed):
 			       : 	rot = self.getOrientation()
 			       : 	self.setOrientation(rot * Ngf.Quaternion(Ngf.Radian(0.164 * elapsed), Ngf.Vector3.NEGATIVE_UNIT_Y))
-			boxShape 1
+			boxShape True
 		}
 	}
 	object
@@ -1920,8 +1920,8 @@ ngflevel Vortex
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 1
+			captureCameraHandler True
+			canSwitchDimensions True
 		}
 	}
 	object
@@ -1934,7 +1934,7 @@ ngflevel Vortex
 		properties
 		{
 			dimensions 1
-			green 0
+			green False
 		}
 	}
 	object
@@ -1942,7 +1942,7 @@ ngflevel Vortex
 		type Pickup
 		name noname
 		position -8.936733 0.499991 7.537523
-		rotation 0.998656 0.000000 -0.051825 -0.000000
+		rotation 0.998656 0.000000 -0.051825 0.000000
 
 		properties
 		{
@@ -1951,8 +1951,8 @@ ngflevel Vortex
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -1980,7 +1980,7 @@ ngflevel Vortex
 		{
 			dimensions 1
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -1994,7 +1994,7 @@ ngflevel Vortex
 		{
 			dimensions 3
 			brushMeshFile Vortex_b6.mesh
-			convex 1
+			convex True
 		}
 	}
 	object
@@ -2002,7 +2002,7 @@ ngflevel Vortex
 		type Checkpoint
 		name noname
 		position -1.500000 1.159853 18.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 	}
 	object
 	{

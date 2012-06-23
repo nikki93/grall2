@@ -11,7 +11,7 @@ ngflevel DeadEnd
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -24,7 +24,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -38,8 +38,8 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 3
-			speed 4.19999980927
-			enabled 0
+			speed 4.199999809265137
+			enabled False
 		}
 	}
 	object
@@ -147,7 +147,7 @@ ngflevel DeadEnd
 		{
 			dimensions 3
 			speed 4.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -183,7 +183,7 @@ ngflevel DeadEnd
 		{
 			dimensions 3
 			speed -1.0
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -196,8 +196,8 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 3
-			speed 1.89999997616
-			enabled 0
+			speed 1.899999976158142
+			enabled False
 		}
 	}
 	object
@@ -205,13 +205,13 @@ ngflevel DeadEnd
 		type Director
 		name dir8
 		position -4.500000 0.500000 2.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -219,13 +219,13 @@ ngflevel DeadEnd
 		type Director
 		name dir6
 		position -8.500000 0.500000 4.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
-			speed 1.60000002384
-			enabled 1
+			speed 1.600000023841858
+			enabled True
 		}
 	}
 	object
@@ -233,13 +233,13 @@ ngflevel DeadEnd
 		type Director
 		name dir5
 		position -8.500000 0.500000 2.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 -0.000000 -1.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -247,13 +247,13 @@ ngflevel DeadEnd
 		type Director
 		name dir4
 		position -0.500000 0.500000 2.500000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -261,13 +261,13 @@ ngflevel DeadEnd
 		type Director
 		name dir3
 		position -0.500000 0.500000 0.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -275,13 +275,13 @@ ngflevel DeadEnd
 		type Director
 		name dir2
 		position -2.500000 0.500000 0.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
 			speed -1.0
-			enabled 1
+			enabled True
 		}
 	}
 	object
@@ -289,13 +289,13 @@ ngflevel DeadEnd
 		type Director
 		name noname
 		position -5.500000 0.500000 7.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
-			speed 1.60000002384
-			enabled 1
+			speed 1.600000023841858
+			enabled True
 		}
 	}
 	object
@@ -308,7 +308,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -321,7 +321,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -334,7 +334,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -347,7 +347,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -360,7 +360,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -373,7 +373,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -386,7 +386,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -399,7 +399,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -412,7 +412,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -425,7 +425,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -438,7 +438,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -451,7 +451,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -464,7 +464,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -477,7 +477,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -490,7 +490,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -503,7 +503,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -516,7 +516,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -529,7 +529,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -542,7 +542,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -555,7 +555,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -568,7 +568,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -581,7 +581,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -594,7 +594,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -607,7 +607,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -639,7 +639,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -652,7 +652,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -665,7 +665,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -678,7 +678,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -691,7 +691,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -704,7 +704,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -717,7 +717,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -730,7 +730,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -743,7 +743,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -756,7 +756,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 2
-			green 0
+			green False
 		}
 	}
 	object
@@ -811,7 +811,7 @@ ngflevel DeadEnd
 		{
 			dimensions 3
 			brushMeshFile DeadEnd_b3.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -825,8 +825,8 @@ ngflevel DeadEnd
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 1
+			captureCameraHandler True
+			canSwitchDimensions True
 		}
 	}
 	object
@@ -834,13 +834,13 @@ ngflevel DeadEnd
 		type MovingBomb
 		name mb
 		position -2.500000 0.500000 7.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 1
 			speed 2.5
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -875,8 +875,8 @@ ngflevel DeadEnd
 			meshFile Mesh_Key.mesh
 			material Objects/KeyR
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -893,8 +893,8 @@ ngflevel DeadEnd
 			meshFile Mesh_Key.mesh
 			material Objects/KeyB
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -908,7 +908,7 @@ ngflevel DeadEnd
 		{
 			dimensions 3
 			speed 2.0
-			enabled 0
+			enabled False
 		}
 	}
 	object
@@ -916,19 +916,19 @@ ngflevel DeadEnd
 		type SlidingBrush
 		name noname
 		position -2.500000 0.500000 5.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 0.999000012875
-			ignoreCollisions 0
+			distance 0.9990000128746033
+			ignoreCollisions False
 			brushMeshFile DeadEnd_b5.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyR")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -942,14 +942,14 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 0.999000012875
-			ignoreCollisions 1
+			distance 0.9990000128746033
+			ignoreCollisions True
 			brushMeshFile DeadEnd_b6.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyB")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -958,19 +958,19 @@ ngflevel DeadEnd
 		type SlidingBrush
 		name noname
 		position -4.500000 0.500000 0.500000
-		rotation -0.000000 0.000000 1.000000 0.000000
+		rotation -0.000000 -0.000000 -1.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 0.999000012875
-			ignoreCollisions 1
+			distance 0.9990000128746033
+			ignoreCollisions True
 			brushMeshFile DeadEnd_b7.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyG")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -1015,8 +1015,8 @@ ngflevel DeadEnd
 			meshFile Mesh_Key.mesh
 			material Objects/KeyG
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -1029,7 +1029,7 @@ ngflevel DeadEnd
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}

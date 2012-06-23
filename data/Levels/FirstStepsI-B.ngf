@@ -2,10 +2,136 @@ ngflevel FirstStepsI-B
 {
 	object
 	{
+		type Empty
+		name noname
+		position 4.500000 5.150000 23.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 5.500000 5.150000 23.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 6.500000 5.150000 23.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 4.500000 5.150000 25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 5.500000 5.150000 25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 6.500000 5.150000 25.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 4.500000 5.150000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 5.500000 5.150000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 6.500000 5.150000 24.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5600000023841858
+			scriptFile Prefab_Trap.pyo
+		}
+	}
+	object
+	{
 		type Trigger
 		name noname
 		position 22.000000 5.900000 18.000000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation -0.707107 0.000000 0.707107 -0.000000
 
 		properties
 		{
@@ -22,7 +148,7 @@ ngflevel FirstStepsI-B
 		type Trigger
 		name noname
 		position 16.000000 5.900000 20.000000
-		rotation 1.000000 0.000000 -0.000000 -0.000000
+		rotation -1.000000 0.000000 0.000000 -0.000000
 
 		properties
 		{
@@ -39,7 +165,7 @@ ngflevel FirstStepsI-B
 		type Trigger
 		name noname
 		position 14.000000 5.900000 33.000000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
@@ -56,7 +182,7 @@ ngflevel FirstStepsI-B
 		type Trigger
 		name noname
 		position 9.000000 5.900000 33.000000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
@@ -73,7 +199,7 @@ ngflevel FirstStepsI-B
 		type Trigger
 		name noname
 		position 5.500000 5.100000 19.400000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 
 		properties
 		{
@@ -103,7 +229,7 @@ ngflevel FirstStepsI-B
 		type FallingBrush
 		name noname
 		position 30.500000 4.100000 19.500000
-		rotation 0.707107 0.000000 0.707107 -0.000000
+		rotation -0.707107 -0.000000 -0.707107 -0.000000
 
 		properties
 		{
@@ -169,7 +295,7 @@ ngflevel FirstStepsI-B
 		type FallingBrush
 		name noname
 		position 29.500000 4.100000 18.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 
 		properties
 		{
@@ -183,7 +309,7 @@ ngflevel FirstStepsI-B
 		type FallingBrush
 		name noname
 		position 32.500000 4.100000 16.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -301,7 +427,7 @@ ngflevel FirstStepsI-B
 		type FallingBrush
 		name noname
 		position 32.500000 4.100000 19.500000
-		rotation -0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 -1.000000 0.000000
 
 		properties
 		{
@@ -315,7 +441,7 @@ ngflevel FirstStepsI-B
 		type FallingBrush
 		name noname
 		position 32.500000 4.100000 17.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -329,7 +455,7 @@ ngflevel FirstStepsI-B
 		type FallingBrush
 		name noname
 		position 28.500000 4.100000 18.500000
-		rotation 0.707107 0.000000 -0.707107 -0.000000
+		rotation 0.707107 0.000000 -0.707107 0.000000
 
 		properties
 		{
@@ -405,8 +531,8 @@ ngflevel FirstStepsI-B
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -424,8 +550,8 @@ ngflevel FirstStepsI-B
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -443,8 +569,8 @@ ngflevel FirstStepsI-B
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -458,7 +584,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -472,7 +598,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -486,7 +612,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -500,7 +626,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -514,7 +640,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -528,7 +654,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -542,7 +668,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -556,7 +682,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -570,49 +696,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 4.500000 5.150000 25.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 5.500000 5.150000 25.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 6.500000 5.150000 25.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -626,7 +710,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -640,7 +724,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -654,91 +738,7 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 4.500000 5.150000 24.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 5.500000 5.150000 24.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 6.500000 5.150000 24.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 6.500000 5.150000 23.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 5.500000 5.150000 23.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
-			scriptFile Prefab_Trap.pyo
-		}
-	}
-	object
-	{
-		type Empty
-		name noname
-		position 4.500000 5.150000 23.500000
-		rotation 1.000000 0.000000 0.000000 -0.000000
-
-		properties
-		{
-			dimensions 3
-			time 0.560000002384
+			time 0.5600000023841858
 			scriptFile Prefab_Trap.pyo
 		}
 	}
@@ -843,7 +843,7 @@ ngflevel FirstStepsI-B
 		{
 			dimensions 3
 			brushMeshFile FirstStepsI-B_b12.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -857,7 +857,7 @@ ngflevel FirstStepsI-B
 		{
 			dimensions 3
 			brushMeshFile FirstStepsI-B_b13.mesh
-			convex 0
+			convex False
 		}
 	}
 	object
@@ -870,14 +870,14 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile FirstStepsI-B_b14.mesh
-			repeat 1
+			repeat True
 			condition True
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -891,14 +891,14 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile FirstStepsI-B_b15.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyR")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -912,14 +912,14 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile FirstStepsI-B_b16.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyG")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -933,14 +933,14 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile FirstStepsI-B_b17.mesh
-			repeat 1
+			repeat True
 			condition : GraLL2.player.hasDecPickup("KeyB")
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -954,14 +954,14 @@ ngflevel FirstStepsI-B
 		properties
 		{
 			dimensions 3
-			enabled 1
+			enabled True
 			speed 1.0
-			distance 1.99900007248
-			ignoreCollisions 0
+			distance 1.999000072479248
+			ignoreCollisions False
 			brushMeshFile FirstStepsI-B_b18.mesh
-			repeat 1
+			repeat True
 			condition : yellowKeysTaken()
-			autoClose 0
+			autoClose False
 			scriptFile Prefab_Door.pyo
 		}
 	}
@@ -979,8 +979,8 @@ ngflevel FirstStepsI-B
 			meshFile Mesh_Key.mesh
 			material Objects/KeyY
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 			scriptFile Prefab_KeyY.pyo
 		}
 	}
@@ -998,8 +998,8 @@ ngflevel FirstStepsI-B
 			meshFile Mesh_Key.mesh
 			material Objects/KeyR
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -1016,8 +1016,8 @@ ngflevel FirstStepsI-B
 			meshFile Mesh_Key.mesh
 			material Objects/KeyG
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -1034,8 +1034,8 @@ ngflevel FirstStepsI-B
 			meshFile Mesh_Key.mesh
 			material Objects/KeyB
 			spin 49.0
-			bobAmplitude 0.15000000596
-			bobFrequency 0.34999999404
+			bobAmplitude 0.15000000596046448
+			bobFrequency 0.3499999940395355
 		}
 	}
 	object
@@ -1083,14 +1083,14 @@ ngflevel FirstStepsI-B
 		type Player
 		name player1
 		position 5.500218 4.989544 11.500729
-		rotation 0.000000 0.000000 1.000000 -0.000000
+		rotation -0.000000 0.000000 1.000000 -0.000000
 
 		properties
 		{
 			dimensions 3
 			minHeight -4.0
-			captureCameraHandler 1
-			canSwitchDimensions 0
+			captureCameraHandler True
+			canSwitchDimensions False
 		}
 	}
 	object
