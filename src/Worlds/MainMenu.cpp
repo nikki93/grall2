@@ -8,6 +8,7 @@ MainMenu.cpp
 #include "Worlds/Level.h"
 
 #include "MessageBox.h"
+#include "Misc/Utils.h"
 
 #define LOGO_WIDTH 480
 #define LOGO_HEIGHT 151
@@ -249,15 +250,9 @@ void MainMenu::onClickCancelUserLevel(MyGUI::WidgetPtr)
 //-------------------------------------------------------------------------------
 void MainMenu::onClickLoadUserLevel(MyGUI::WidgetPtr)
 {
-    unsigned int worldNum = GlbVar.firstLevel - 1;
-    Level *userLevel = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(worldNum));
-
     MyGUI::ComboBox *list = GlbVar.gui->findWidget<MyGUI::ComboBox>("cmb_userLevel");
     Ogre::String ngf = list->getItemNameAt(list->getIndexSelected());
-    userLevel->setNgfName(ngf);
-    userLevel->setCaption(ngf);
-
-    GlbVar.woMgr->gotoWorld(worldNum);
+    Util::loadUserLevel(ngf);
 }
 //-------------------------------------------------------------------------------
 

@@ -17,6 +17,8 @@
 #define __UTILS_H__
 
 #include "Globals.h"
+#include "Misc/Utils.h"
+#include "Worlds/Level.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -229,6 +231,15 @@ inline void clearLevel()
 {
     ExtraEventListener::callPreClear();
     GlbVar.goMgr->destroyAll();
+}
+inline void loadUserLevel(const Ogre::String &ngfName)
+{
+    unsigned int worldNum = GlbVar.firstLevel - 1;
+    Level *userLevel = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(worldNum));
+    userLevel->setNgfName(ngfName);
+    userLevel->setCaption(ngfName);
+
+    GlbVar.woMgr->gotoWorld(worldNum);
 }
 
 //Preload a material.

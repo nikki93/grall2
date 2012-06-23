@@ -463,7 +463,7 @@ class Game
             return true;
         }
 
-        void start()
+        void start(char *ngfName = NULL)
         {
             //Not paused in the beginning.
             GlbVar.paused = false;
@@ -511,7 +511,14 @@ class Game
             mGameListener->updateLightingSetting();
 
             //Start running the Worlds.
-            GlbVar.woMgr->start(0);
+            if (ngfName)
+            {
+                GlbVar.loadGame = false;
+                Util::loadUserLevel(ngfName); //Load NGF script
+                GlbVar.loadGame = true;
+            }
+            else
+                GlbVar.woMgr->start(0); //Normal game
         }
 
         void loop()
@@ -619,7 +626,11 @@ int main(int argc, char *argv[])
         if(!(game.init(argv[0])))
             return 0;   
         Ogre::LogManager::getSingleton().logMessage("*********** Systems Intialised *************\n");
-        game.start();
+
+        if (argc > 1)
+            game.start(argv[1]); //Load NGF script given on command line
+        else
+            game.start();
 
         //Loop.
         Ogre::LogManager::getSingleton().logMessage("*********** Entering Mainloop **************\n");
