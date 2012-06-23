@@ -211,7 +211,7 @@ void BasePerLight_fp
     //Spotlight effect.
     if (spotlightParams[2] != 0)
     {
-        float angCos = dot(normalize(-LightDir), normalize(-SpotlightDir)); //light -> object = - (object -> light)
+        float angCos = dot(normalize(LightDir), normalize(SpotlightDir)); //light -> object = - (object -> light)
         float i = spotlightParams[0];
         float o = spotlightParams[1];
         oColor *= smoothstep((2*o*o)-1, (2*i*i)-1, angCos);
