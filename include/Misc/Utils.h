@@ -232,15 +232,7 @@ inline void clearLevel()
     ExtraEventListener::callPreClear();
     GlbVar.goMgr->destroyAll();
 }
-inline void loadUserLevel(const Ogre::String &ngfName)
-{
-    unsigned int worldNum = GlbVar.firstLevel - 1;
-    Level *userLevel = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(worldNum));
-    userLevel->setNgfName(ngfName);
-    userLevel->setCaption(ngfName);
-
-    GlbVar.woMgr->gotoWorld(worldNum);
-}
+void loadUserLevel(const Ogre::String &ngfName);
 
 //Preload a material.
 inline void preloadMaterial(const Ogre::String &name)

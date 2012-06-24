@@ -489,6 +489,7 @@ class Game
             GlbVar.worldSwitch = -1;
             GlbVar.loadGame = true;
             GlbVar.bonusTime = 0;
+            GlbVar.commandLine = false;
 
             //Add Worlds, register GameObjects.
             addWorlds();
@@ -513,7 +514,7 @@ class Game
             //Start running the Worlds.
             if (ngfName)
             {
-                GlbVar.loadGame = false;
+                GlbVar.commandLine = true;
                 Util::loadUserLevel(ngfName); //Load NGF script
             }
             else

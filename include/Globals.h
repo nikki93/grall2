@@ -138,6 +138,7 @@ struct Globals : public Ogre::Singleton<Globals>
     //Globally required data.
     bool paused;
     bool loadGame;
+    bool commandLine; //Whether running a single level from commandline argument.
     unsigned int firstLevel; //World number of first level.
     Ogre::Real bonusTime; //Count down.
 

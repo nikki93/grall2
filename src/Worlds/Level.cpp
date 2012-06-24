@@ -64,6 +64,9 @@ void Level::tick(const Ogre::FrameEvent &evt)
         winLevel();
     if (Util::isKeyDown(OIS::KC_ESCAPE))
     {
+        if (GlbVar.commandLine)
+            GlbVar.woMgr->shutdown(); //If running a single level, leave.
+
         if (mUserLevel)
             mNgfName = "NULL";
 
@@ -79,6 +82,9 @@ void Level::stop()
     Util::clearLevel();
     GlbVar.hud->clear();
     GlbVar.bonusTime = 0;
+
+    if (GlbVar.commandLine)
+        GlbVar.woMgr->shutdown();
 }
 //-------------------------------------------------------------------------------
 void Level::startLevel()
@@ -92,7 +98,7 @@ void Level::startLevel()
     MyGUI::PointerManager::getInstance().setVisible(false);
 
     //If there's a checkpoint, and we're loading games, load it.
-    if (!(GlbVar.loadGame && Util::loadCheckpoint()))
+    if (!(GlbVar.loadGame && !GlbVar.commandLine && Util::loadCheckpoint()))
     {
         //Otherwise read in the level from the .ngf file.
         Util::loadNgf(mNgfName);

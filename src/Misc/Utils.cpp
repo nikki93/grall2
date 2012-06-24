@@ -28,6 +28,16 @@ Ogre::String checkpointName(unsigned int worldNum)
     return "NULL";
 }
 
+void loadUserLevel(const Ogre::String &ngfName)
+{
+    unsigned int worldNum = GlbVar.firstLevel - 1;
+    Level *userLevel = dynamic_cast<Level*>(GlbVar.woMgr->getWorld(worldNum));
+    userLevel->setNgfName(ngfName);
+    userLevel->setCaption(ngfName);
+
+    GlbVar.woMgr->gotoWorld(worldNum);
+}
+
 void screenshot(Ogre::String filename, const Ogre::String &extension)
 {
     //Keep a count.

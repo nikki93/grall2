@@ -1,10 +1,11 @@
 import bpy
 import functools
 import subprocess
+from bpy.app.handlers import persistent
 
 bl_info = {
-    "name": "GraLL 2 NGF Exporter",
-    "description": "Exports a GraLL 2 NGF level",
+    "name": "GraLL 2",
+    "description": "Blender plugins for GraLL 2 development",
     "author": "Nikhilesh Sigatapu",
     "version": (1, 0),
     "blender": (2, 63, 0),
@@ -13,12 +14,109 @@ bl_info = {
     "category": "Import-Export"
 }
 
+#class GraLL2Panel(bpy.types.Panel):
+#    bl_label = "GraLL 2"
+#    bl_idname = "grall2_panel"
+#    bl_space_type = "VIEW_3D"
+#    bl_region_type = "TOOLS"
+#
+#    @classmethod
+#    def poll(cls, context):
+#        return True
+#
+#    def draw(self, context):
+#        layout = self.layout
+
+# select script for selected object
+# 'makeNew' is whether to make a new one if it doesn't exist
+def selectScript(obj, makeNew = False):
+    # if the 'script' property exists, figure out the text name
+    # else add a new 'script' property
+
+    props = obj.game.properties
+
+    if 'script' in props.keys():
+        str = props['script'].value
+        if str.startswith('refText ') and len(str) > 8:
+            textname = str[8:]
+        else:
+            return {'FINISHED'}
+    elif makeNew: # add script property if it doesn't exist
+        bpy.ops.object.game_property_new(type='STRING', name='script')
+        props['script'].value = 'refText ' + obj.name
+        textname = obj.name
+    else:
+        return {'FINISHED'}
+
+    # if the text object exists, use it, else create one and set
+    # its name
+
+    texts = bpy.data.texts
+    if textname in texts.keys():
+        text = texts[textname]
+    elif makeNew:
+        oldNames = set(bpy.data.texts.keys())
+        bpy.ops.text.new()
+        newNames = set(bpy.data.texts.keys())
+        diff = newNames - oldNames
+        if len(diff) == 1:
+            text = texts[diff.pop()]
+            text.name = textname
+            text.from_string('import Ngf\nimport GraLL2\n\n')
+        else:
+            return {'CANCELLED'}
+    else:
+        return {'FINISHED'}
+
+    # finally, focus the text object in the first text editor
+    # space found (if any)
+
+    try:
+        textarea = next(area for area in
+                bpy.context.screen.areas if area.type == 'TEXT_EDITOR')
+        textarea.spaces[0].text = text
+    except StopIteration:
+        pass
+
+prevSelect = None
+@persistent
+def handler(dummy):
+    obj = bpy.context.object
+    global prevSelect
+    if obj != prevSelect:
+        selectScript(obj, False)
+        prevSelect = obj
+bpy.app.handlers.scene_update_pre.append(handler)
+
+class GraLL2OpenScript(bpy.types.Operator):
+    bl_idname = "grall2.open_script"
+    bl_label = "Open (or create) GameObject Python script"
+
+    @classmethod
+    def poll(cls, context):
+        return True
+
+    def execute(self, context):
+        selectScript(context.object, True)
+        return {'FINISHED'}
+
+class GraLL2Menu(bpy.types.Menu):
+    bl_idname = "VIEW3D_MT_grall2"
+    bl_label = "GraLL 2"
+
+    def draw(self, context):
+        layout = self.layout
+
+        layout.operator("grall2.export", text="Level export")
+        layout.operator("grall2.export_with_meshes", text="Mesh export")
+        layout.operator("grall2.run", text="Run")
+        layout.operator("grall2.open_script", text="Script")
+
 GRALL2_COMMAND='/home/nikki/Development/Projects/grall2/bin/debug/GraLL2_d'
 GRALL2_CWD='/home/nikki/Development/Projects/grall2/bin/debug/'
-
 class GraLL2RunGame(bpy.types.Operator):
-    bl_idname = "export.grall2_run_game"
-    bl_label = "Run GraLL 2 game with currently edited level"
+    bl_idname = "grall2.run"
+    bl_label = "Run GraLL 2 Level"
 
     @classmethod
     def poll(cls, context):
@@ -30,22 +128,22 @@ class GraLL2RunGame(bpy.types.Operator):
         return {'FINISHED'}
 
 class GraLL2OgreMeshes(bpy.types.Operator):
-    bl_idname = "export.grall2_ngf_ogre_meshes"
-    bl_label = "Export GraLL 2 NGF Level and run Ogre Mesh Exporter"
+    bl_idname = "grall2.export_with_meshes"
+    bl_label = "Export GraLL 2 Level and run Ogre Mesh Exporter"
 
     @classmethod
     def poll(cls, context):
         return True
 
     def execute(self, context):
-        bpy.ops.export.grall2_ngf()
+        bpy.ops.grall2.export()
         #bpy.ops.ogre3d.export() # doesn't work at the moment
 
         return {'FINISHED'}
 
 class GraLL2Exporter(bpy.types.Operator):
-    bl_idname = "export.grall2_ngf"
-    bl_label = "Export GraLL 2 NGF Level"
+    bl_idname = "grall2.export"
+    bl_label = "Export GraLL 2 Level"
 
     filepath = bpy.props.StringProperty(subtype="FILE_PATH")
 
@@ -179,7 +277,7 @@ class GraLL2Exporter(bpy.types.Operator):
 # Blender registration
 def menu_func(self, context):
     self.layout.operator_context = 'INVOKE_DEFAULT'
-    self.layout.operator(GraLL2Exporter.bl_idname, text='GraLL 2 NGF Exporter')
+    self.layout.operator(GraLL2Exporter.bl_idname, text='GraLL 2 Level (.ngf)')
 def register():
     bpy.utils.register_module(__name__)
     bpy.types.INFO_MT_file_export.append(menu_func)

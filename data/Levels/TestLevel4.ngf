@@ -109,5 +109,30 @@ ngflevel TestLevel4
 			brushMeshFile TestLevel4_b1.mesh
 		}
 	}
+	object
+	{
+		type RigidBody
+		name noname
+		position 1.958270 0.292426 -1.461289
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			mass 5.0
+			friction 0.5
+			restitution 0.0
+			linearDamping 0.0
+			angularDamping 0.0
+			brushMeshFile TestLevel4_b2.mesh
+			shape sphere
+			magnetic False
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def create(self):
+			       :     self.applyCentralImpulse(Ngf.Vector3(0, 20, -20))
+		}
+	}
 }
 
