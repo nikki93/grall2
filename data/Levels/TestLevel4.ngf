@@ -84,7 +84,7 @@ ngflevel TestLevel4
 	{
 		type Player
 		name player1
-		position 3.406226 0.389544 -3.477611
+		position 0.406226 0.389544 -0.477611
 		rotation -0.957841 0.000000 0.287297 -0.000000
 
 		properties
