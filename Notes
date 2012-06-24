@@ -22,11 +22,11 @@ Bugs
 
 - Fix shadows (disable-enable causes far-away PSSM levels to fail)
 
+- Make Teleporter, Switch and other pad objects use a convex cast to detect Player.
+
 - Fix window resizing (main issues fixed)
   - MessageBox
   - Controller (level text)
-
-- Make Teleporter, Switch and other pad objects use a convex cast to detect Player.
 
 +---------------------------+
 |         ChangeLog         |
