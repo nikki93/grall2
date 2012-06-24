@@ -2,6 +2,110 @@ ngflevel TestLevel4
 {
 	object
 	{
+		type Crate
+		name noname
+		position 1.500000 0.750000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -4.500000 -0.250000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -4.500000 -0.250000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -3.500000 -0.250000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -3.500000 -0.250000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -2.500000 -0.250000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -2.500000 -0.250000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -1.500000 -0.250000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
 		type Light
 		name noname
 		position -0.289869 2.500002 -9.678768
@@ -131,7 +235,61 @@ ngflevel TestLevel4
 			       : import GraLL2
 			       : 
 			       : def create(self):
-			       :     self.applyCentralImpulse(Ngf.Vector3(0, 20, -20))
+			       :     self.applyCentralImpulse(Ngf.Vector3(0, 20, 0))
+			       : 
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position -1.500000 -0.250000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 0.500000 0.750000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position -8.000000 1.500000 -1.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			scriptFile Prefab_EndPoint.pyo
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -5.500000 -0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			brushMeshFile TestLevel4_b3.mesh
+			convex True
 		}
 	}
 }

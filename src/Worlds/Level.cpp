@@ -65,8 +65,7 @@ void Level::tick(const Ogre::FrameEvent &evt)
     if (Util::isKeyDown(OIS::KC_ESCAPE))
     {
         if (GlbVar.commandLine)
-            GlbVar.woMgr->shutdown(); //If running a single level, leave.
-
+            GlbVar.woMgr->shutdown(); //If just running a single level, leave.
         if (mUserLevel)
             mNgfName = "NULL";
 
@@ -82,9 +81,6 @@ void Level::stop()
     Util::clearLevel();
     GlbVar.hud->clear();
     GlbVar.bonusTime = 0;
-
-    if (GlbVar.commandLine)
-        GlbVar.woMgr->shutdown();
 }
 //-------------------------------------------------------------------------------
 void Level::startLevel()

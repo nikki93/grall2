@@ -79,7 +79,7 @@ void BasePerLight_vp
          out float3 oNorm : TEXCOORD1,
 #endif
          out float4 oLight4 : TEXCOORD2, //(dir, dist)
-         out float3 oHalfAngle : TEXCOORD3,
+         out float4 oHalfAngle : TEXCOORD3,
          out float3 oSpotlightDir : TEXCOORD4
 
          //PSSM shadow positions
@@ -119,7 +119,8 @@ void BasePerLight_vp
     oSpotlightDir = mul(rotation, oSpotlightDir);
 #endif
 
-    oHalfAngle = normalize(lightDir + EyeDir);
+    oHalfAngle = float4(normalize(lightDir + EyeDir),
+            mul(world, position).y);
 
 #if (NORMAL_MAPPING && SET_NORMAL_MAPPING)
     oEyeDir = EyeDir;
@@ -148,7 +149,7 @@ void BasePerLight_fp
          float3 normal: TEXCOORD1,
 #endif
          float4 Light4: TEXCOORD2, //(dir, dist)
-         float3 HalfAngle: TEXCOORD3,
+         float4 HalfAngle: TEXCOORD3,
          float3 SpotlightDir: TEXCOORD4,
 
          //PSSM shadow positions
@@ -221,6 +222,10 @@ void BasePerLight_fp
 
     //Diffuse texture.
     oColor *= tex2D(diffuseMap, uv.xy);
+
+    //Fade out near bottom of world.
+    if (HalfAngle.w < FADE_DEPTH)
+        oColor *= saturate((HalfAngle.w -(FADE_DEPTH) + FADE_DIST) / FADE_DIST);
 
     //Shadows
 #if SET_SHADOWS
@@ -315,7 +320,7 @@ void BaseAmbient_fp
 
     oColor = tex2D(diffuseMap, uv) * matAmbient * lightAmbient;
 
-    //If lower, darker.
+    //Fade out near bottom of world.
     if (WorldPos.y < FADE_DEPTH)
         oColor *= saturate((WorldPos.y -(FADE_DEPTH) + FADE_DIST) / FADE_DIST);
 }

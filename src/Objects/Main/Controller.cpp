@@ -83,7 +83,9 @@ void Controller::unpausedTick(const Ogre::FrameEvent &evt)
         if (mEndCountDown < 777)
         {
             if (mWin)
-                if (GlbVar.newLevel)
+                if (GlbVar.commandLine)
+                    GlbVar.woMgr->shutdown(); //If running a single level, leave.
+                else if (GlbVar.newLevel)
                     Util::nextWorld();
                 else
                     Util::gotoWorld(0);
