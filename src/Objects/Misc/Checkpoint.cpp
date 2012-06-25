@@ -39,7 +39,7 @@ Checkpoint::Checkpoint(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF:
     initBody();
 
     //Create the cast shape (which detects Player).
-    mCastShape = new btBoxShape(btVector3(0.5, 1, 0.12));
+    mCastShape = new btBoxShape(btVector3(0.5, 1, 0.3));
 
     //Create sound.
     mSound = GlbVar.soundMgr->createSound(mOgreName + "_sound", "Checkpoint.wav", false, false);

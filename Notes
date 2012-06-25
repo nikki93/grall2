@@ -6,25 +6,25 @@ Remember: Try to keep things as scriptable as possible. /Everything/ must be scr
 
 New
 ---
+- Have Key, Switch colors be unchanged in Dimension 2.
+
 - Make more brush textures.
 
 - Make more levels.
-
-- Have Key, Switch colors be unchanged in Dimension 2.
 
 Bugs
 ----
 - Release build doesn't work under Linux (?)
 
+- Make Pad objects use convex cast for Player detection
+    - Teleporter
+    - FallingBrush
+    - Switch
+    - Trap
+
 - Controller win/lose level timers some times fail.
 
 - Fix shadows (disable-enable causes far-away PSSM levels to fail)
-
-- Make Teleporter, Switch and other pad objects use a convex cast to detect Player.
-
-- Fix window resizing (main issues fixed)
-  - MessageBox
-  - Controller (level text)
 
 +---------------------------+
 |         ChangeLog         |
