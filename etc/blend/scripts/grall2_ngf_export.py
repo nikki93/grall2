@@ -112,8 +112,8 @@ class GraLL2Menu(bpy.types.Menu):
         layout.operator("grall2.run", text="Run")
         layout.operator("grall2.open_script", text="Script")
 
-GRALL2_COMMAND='/home/nikki/Development/Projects/grall2/bin/debug/GraLL2_d'
-GRALL2_CWD='/home/nikki/Development/Projects/grall2/bin/debug/'
+GRALL2_COMMAND='/home/nikki/Development/Projects/grall2/bin/release/GraLL2'
+GRALL2_CWD='/home/nikki/Development/Projects/grall2/bin/release/'
 class GraLL2RunGame(bpy.types.Operator):
     bl_idname = "grall2.run"
     bl_label = "Run GraLL 2 Level"
