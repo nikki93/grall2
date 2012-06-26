@@ -14,13 +14,11 @@ New
 
 Bugs
 ----
-- Release build doesn't work under Linux (?)
-
 - Make Pad objects use convex cast for Player detection
     - Teleporter
+    - Trap
     - FallingBrush
     - Switch
-    - Trap
 
 - Controller win/lose level timers some times fail.
 
