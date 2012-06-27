@@ -24,7 +24,7 @@ float4 Dimension2_fp
     //Direction (from center), distance and normalise direction.
     float2 dir = 0.5 - texCoord;
     float dist = length(dir.xy);
-    dir = normalize(dir);
+    dir /= dist;
 
     //Main colour.
     float4 colour = tex2D(scene, texCoord);
@@ -41,7 +41,7 @@ float4 Dimension2_fp
     avg /= 11;
 
     //Amount of blur to mix.
-    float amount = saturate(dist * 2.2);
+    float amount = saturate(dist * 1.8);
 
     //Blend the original color with the averaged pixels, invert and darken.
     return (1 - lerp(colour, avg, amount)) * 0.8;
