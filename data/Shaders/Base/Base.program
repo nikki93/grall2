@@ -1,3 +1,11 @@
+//--- White ---------------------------------------------------------------------------
+fragment_program BaseWhite_fp cg
+{
+    source Base.cg
+    entry_point BaseWhite_fp
+    profiles ps_2_0 arbfp1
+}
+
 //--- Ambient -------------------------------------------------------------------------
 vertex_program BaseAmbient_vp cg
 {
@@ -577,6 +585,15 @@ material BaseNormalMapParallax
                                 max_anisotropy 16
                         }
                 }  
+                pass
+                {
+                        fragment_program_ref BaseWhite_fp
+                        {
+                        }
+
+                        scene_blend one one
+                        scene_blend_op subtract
+                }
         }  
         technique Shaders2
         { 

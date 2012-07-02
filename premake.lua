@@ -46,6 +46,7 @@ package.linkoptions = { "`pkg-config --libs OGRE MYGUI bullet OgreAL OIS`" }
 
 package.includepaths = {
     "/usr/include/python2.7",                                                -- Python
+
     "./include",                                                             -- GraLL2 files
     "./lib"                                                                  -- NGF, BtOgre
 }

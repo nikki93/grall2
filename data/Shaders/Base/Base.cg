@@ -323,4 +323,13 @@ void BaseAmbient_fp
         oColor *= saturate((WorldPos.y -(FADE_DEPTH) + FADE_DIST) / FADE_DIST);
 }
 
+//--- Plain white for invert ----------------------------------------------------------
+
+void BaseWhite_fp
+    (
+        out float4 oColor : COLOR
+    )
+{
+    oColor = float4(1, 1, 1, 1);
+}
 
