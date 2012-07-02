@@ -6,6 +6,18 @@ fragment_program BaseWhite_fp cg
     profiles ps_2_0 arbfp1
 }
 
+// for inversion use:
+//
+// pass
+// {
+//         fragment_program_ref BaseWhite_fp
+//         {
+//         }
+// 
+//         scene_blend one one
+//         scene_blend_op subtract
+// }
+
 //--- Ambient -------------------------------------------------------------------------
 vertex_program BaseAmbient_vp cg
 {
@@ -215,11 +227,107 @@ fragment_program BasePerLightNormalMapParallax_fp cg
         profiles ps_2_0 arbfp1
 } 
 
-//--- Material bases ------------------------------------------------------------------
+//--- Basic ---------------------------------------------------------------------------
+
+scene_blend alpha_blend
+depth_write off
+
+// abstract one-time ambient pass that is run before the per-light passes
+abstract pass Pass/Ambient
+{
+        ambient $ambient
+        scene_blend $scene_blend
+        depth_write $depth_write
+        
+        vertex_program_ref BaseAmbient_vp { }   
+        fragment_program_ref BaseAmbient_fp { } 
+        
+        texture_unit DiffuseMap
+        {
+                texture $diffuse_tex
+        }
+}
+
+// abstract per-light pass that is run once for each light, effects can be filled in
+// later
+abstract pass Pass/PerLight
+{
+        max_lights 12
+        scene_blend add
+        iteration once_per_light
+
+        diffuse $diffuse
+        specular $specular
+
+        vertex_program_ref BasePerLight_vp { }   
+        fragment_program_ref BasePerLight_fp { } 
+        
+        texture_unit DiffuseMap
+        {
+                texture $diffuse_tex
+        }
+
+        texture_unit NormalMap
+        {
+                texture $normal_tex
+        }
+        
+        texture_unit ShadowMap0
+        {
+                content_type shadow
+                tex_address_mode clamp
+                filtering anisotropic
+                max_anisotropy 16
+        }
+
+        texture_unit ShadowMap1
+        {
+                content_type shadow
+                tex_address_mode clamp
+                filtering anisotropic
+                max_anisotropy 16
+        }
+
+        texture_unit ShadowMap2
+        {
+                content_type shadow
+                tex_address_mode clamp
+                filtering anisotropic
+                max_anisotropy 16
+        }
+}  
+
+// the basic lighting technique for far away LOD, skip normal mapping, parallax
+// mapping, etc.
+abstract technique Technique/FarLOD
+{
+        pass Ambient : Pass/Ambient { }
+        pass PerLight : Pass/PerLight { }
+}
+
+// fallback technique to use when no shaders are available, doesn't look particularly
+// cool
+abstract technique Technique/Fallback
+{ 
+        pass
+        {
+                ambient $ambient
+                diffuse $diffuse
+                specular $specular
+                scene_blend $scene_blend
+                depth_write $depth_write
+                
+                texture_unit DiffuseMap
+                {
+                        texture $diffuse_tex
+                }
+        }
+}  
+
+// basic material
 material Base
 { 
         receive_shadows on
-        lod_values 30
 
         set $diffuse_tex "Player.png"
         set $normal_tex "Plain_NM.png"
@@ -228,1104 +336,135 @@ material Base
         set $diffuse "0.9 0.9 0.9 1"
         set $specular "0.9 0.9 0.9 1"
 
-        technique Shaders1
-        { 
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
+        set $scene_blend "one zero"
+        set $depth_write "on"
 
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-
-        }  
-        technique Fallback
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
+        technique Shaders1 : Technique/FarLOD { }  
+        technique Fallback : Technique/Fallback { }
 }
-material BaseNormalMap
+
+// Base + normal mapping, fall back to Base far away
+material BaseNormalMap : Base
 {
-        receive_shadows on
         lod_values 30
-
-        set $diffuse_tex "Player.png"
-        set $normal_tex "Plain_NM.png"
-
-        set $ambient "0.8 0.8 0.8 1"
-        set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.9 0.9 0.9 1"
-
-        set $scaleBias "0.04 0.02"
 
         technique Shaders1
         { 
                 lod_index 0
-                pass
+                pass Ambient : Pass/Ambient
                 {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
                         texture_unit NormalMap
                         {
                                 texture $normal_tex
                         }
                 }
-                pass 
+                pass PerLight : Pass/PerLight
                 {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLightNormalMap_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLightNormalMap_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
+                        vertex_program_ref BasePerLightNormalMap_vp { }   
+                        fragment_program_ref BasePerLightNormalMap_fp { } 
+        
                         texture_unit NormalMap
                         {
                                 texture $normal_tex
                         }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
                 }  
-
         }  
-        technique Shaders2
+        technique Shaders2 : Technique/FarLOD
         { 
                 lod_index 1
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-
-        }  
-        technique Fallback
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
         }  
 }
-material BaseNormalMapParallax
+
+// BaseNormalMap + parallax mapping, fall back to Base far away
+material BaseNormalMapParallax : BaseNormalMap
 {
-        receive_shadows on
-        lod_values 30
-
-        set $diffuse_tex "Player.png"
-        set $normal_tex "Plain_NM.png"
-
-        set $ambient "0.8 0.8 0.8 1"
-        set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.9 0.9 0.9 1"
-
         set $scaleBias "0.04 0.02"
 
         technique Shaders1
         { 
-                lod_index 0
-                pass
+                pass Ambient : Pass/Ambient
                 {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbientNormalMapParallax_vp
-                        { 
-                        }   
-
+                        vertex_program_ref BaseAmbientNormalMapParallax_vp { }   
                         fragment_program_ref BaseAmbientNormalMapParallax_fp
-                        {
-                                param_named scaleBias float4 $scaleBias 0 1
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
-                        texture_unit NormalMap
-                        {
-                                texture $normal_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLightNormalMapParallax_vp
                         { 
-                        }   
-
+                                param_named scaleBias float4 $scaleBias 0 1 
+                        } 
+                }
+                pass PerLight : Pass/PerLight
+                {
+                        vertex_program_ref BasePerLightNormalMapParallax_vp { }   
                         fragment_program_ref BasePerLightNormalMapParallax_fp
-                        {
-                                param_named scaleBias float4 $scaleBias 0 1
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
-                        texture_unit NormalMap
-                        {
-                                texture $normal_tex
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-                pass
-                {
-                        fragment_program_ref BaseWhite_fp
-                        {
-                        }
-
-                        scene_blend one one
-                        scene_blend_op subtract
-                }
-        }  
-        technique Shaders2
-        { 
-                lod_index 1
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
                         { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
+                                param_named scaleBias float4 $scaleBias 0 1 
                         } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
                 }  
-
-        }  
-        technique Fallback
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
+        }
 }
-material BaseGlow
+
+//--- Glow ----------------------------------------------------------------------------
+
+// add a technique that under Scheme/Glow (used by the Glow compositor) renders the 
+// glow texture, which shows up in the glow buffer
+
+abstract technique Technique/Glow
+{
+        scheme Scheme/Glow
+        pass
+        {
+                ambient $glow_amount $glow_amount $glow_amount 1
+                
+                vertex_program_ref BaseAmbient_vp
+                { 
+                }   
+
+                fragment_program_ref BaseAmbient_fp
+                {
+                } 
+                
+                texture_unit GlowMap
+                {
+                        texture $glow_tex
+                }
+        }
+}
+
+material BaseGlow : Base
 { 
-        receive_shadows on
-        lod_values 30
-
-        set $diffuse_tex "Player.png"
-        set $normal_tex "Plain_NM.png"
+        set $glow_amount "0.7"
         set $glow_tex "Black.png"
 
-        set $ambient "0.8 0.8 0.8 1"
-        set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.9 0.9 0.9 1"
-        set $glow_amount "0.7"
-
-        technique Shaders1
-        { 
-                lod_index 0
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-
-        }  
-        technique Shaders2
-        { 
-                lod_index 1
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-
-        }  
-        technique Fallback
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
-        technique Glow
-        { 
-                scheme Scheme/Glow
-                pass
-                {
-                        ambient $glow_amount $glow_amount $glow_amount 1
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit GlowMap
-                        {
-                                texture $glow_tex
-                        }
-                }
-        }  
+        technique Glow : Technique/Glow { }
 }
-material BaseNormalMapGlow
-{
-        receive_shadows on
-        lod_values 30
-
-        set $diffuse_tex "Player.png"
-        set $normal_tex "Plain_NM.png"
+material BaseNormalMapGlow : BaseNormalMap
+{ 
+        set $glow_amount "0.7"
         set $glow_tex "Black.png"
 
-        set $ambient "0.8 0.8 0.8 1"
-        set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.9 0.9 0.9 1"
-        set $glow_amount "0.7"
-
-        set $scaleBias "0.04 0.02"
-
-        technique Shaders1
-        { 
-                lod_index 0
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
-                        texture_unit NormalMap
-                        {
-                                texture $normal_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLightNormalMap_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLightNormalMap_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
-                        texture_unit NormalMap
-                        {
-                                texture $normal_tex
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-
-        }  
-        technique Shaders2
-        { 
-                lod_index 1
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-
-        }  
-        technique Fallback
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
-        technique Glow
-        { 
-                scheme Scheme/Glow
-                pass
-                {
-                        ambient $glow_amount $glow_amount $glow_amount 1
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit GlowMap
-                        {
-                                texture $glow_tex
-                        }
-                }
-        }  
+        technique Glow : Technique/Glow { }
 }
-material BaseNormalMapParallaxGlow
-{
-        receive_shadows on
-        lod_values 30
-
-        set $diffuse_tex "Player.png"
-        set $normal_tex "Plain_NM.png"
+material BaseNormalMapParallaxGlow : BaseNormalMapParallax
+{ 
+        set $glow_amount "0.7"
         set $glow_tex "Black.png"
 
-        set $ambient "0.8 0.8 0.8 1"
-        set $diffuse "0.9 0.9 0.9 1"
-        set $specular "0.9 0.9 0.9 1"
-        set $glow_amount "0.7"
-
-        set $scaleBias "0.04 0.02"
-
-        technique Shaders1
-        { 
-                lod_index 0
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbientNormalMapParallax_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbientNormalMapParallax_fp
-                        {
-                                param_named scaleBias float4 $scaleBias 0 1
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
-                        texture_unit NormalMap
-                        {
-                                texture $normal_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLightNormalMapParallax_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLightNormalMapParallax_fp
-                        {
-                                param_named scaleBias float4 $scaleBias 0 1
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-
-                        texture_unit NormalMap
-                        {
-                                texture $normal_tex
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-        }  
-        technique Shaders2
-        { 
-                lod_index 1
-                pass
-                {
-                        ambient $ambient
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-                pass 
-                {
-                        max_lights 12
-                        scene_blend add
-                        iteration once_per_light
-
-                        diffuse $diffuse
-                        specular $specular
-
-                        vertex_program_ref BasePerLight_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BasePerLight_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                        
-                        texture_unit NormalMap
-                        {
-                        }
-
-                        texture_unit ShadowMap0
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap1
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-
-                        texture_unit ShadowMap2
-                        {
-                                content_type shadow
-                                tex_address_mode clamp
-                                filtering anisotropic
-                                max_anisotropy 16
-                        }
-                }  
-
-        }  
-        technique Fallback
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
-        technique Glow
-        { 
-                scheme Scheme/Glow
-                pass
-                {
-                        ambient $glow_amount $glow_amount $glow_amount 1
-                        
-                        vertex_program_ref BaseAmbientNormalMapParallax_vp
-                        { 
-                        }   
-
-                        fragment_program_ref BaseAmbientNormalMapParallax_fp
-                        {
-                                param_named scaleBias float4 $scaleBias 0 1
-                        } 
-                        
-                        texture_unit GlowMap
-                        {
-                                texture $glow_tex
-                        }
-                }
-        }  
+        technique Glow : Technique/Glow { }
 }
+
+//--- Transparent ---------------------------------------------------------------------
+
+// use alpha_blend on the ambient shader and the fallback technique, and also don't 
+// render anything to the Glow buffer (as opposed to the default black) so that things 
+// can glow through transparent objects
+
 material BaseTransparent : Base
 { 
-        technique Shaders1
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        scene_blend alpha_blend
-                        depth_write off
-                        
-                        vertex_program_ref BaseAmbient_vp
-                        { 
-                        }   
+        set $scene_blend "alpha_blend"
+        set $depth_write "off"
 
-                        fragment_program_ref BaseAmbient_fp
-                        {
-                        } 
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
         technique Glow
         { 
                 scheme Scheme/Glow
         }  
-        technique Fallback
-        { 
-                pass
-                {
-                        ambient $ambient
-                        diffuse $diffuse
-                        specular $specular
-                        scene_blend alpha_blend
-                        depth_write off
-                        
-                        texture_unit DiffuseMap
-                        {
-                                texture $diffuse_tex
-                        }
-                }
-        }  
 }
+
+
