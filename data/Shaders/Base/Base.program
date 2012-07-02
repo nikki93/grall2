@@ -413,13 +413,8 @@ abstract technique Technique/Glow
         {
                 ambient $glow_amount $glow_amount $glow_amount 1
                 
-                vertex_program_ref BaseAmbient_vp
-                { 
-                }   
-
-                fragment_program_ref BaseAmbient_fp
-                {
-                } 
+                vertex_program_ref BaseAmbient_vp { }   
+                fragment_program_ref BaseAmbient_fp { } 
                 
                 texture_unit GlowMap
                 {
