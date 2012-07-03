@@ -80,6 +80,7 @@ Checkpoint::~Checkpoint()
         GlbVar.goMgr->destroyObject(mLight->getID());
 
     //We only clear up stuff that we did.
+    delete mCastShape;
     destroyBody();
     delete mShape;
 
