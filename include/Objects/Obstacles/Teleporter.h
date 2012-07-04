@@ -26,6 +26,8 @@ class Teleporter :
         btCollisionShape *mShape;
         Ogre::Entity *mEntity;
 
+        btConvexShape *mCastShape;
+
         Ogre::Vector3 mTarget;
         Ogre::Real mTime;
 

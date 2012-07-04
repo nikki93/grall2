@@ -12,9 +12,10 @@ def init(self):
                     GraLL2.CollisionFlags.Static)
 
     #Create Player detection cast.
+    unitY = self.getOrientation() * Ngf.Vector3.UNIT_Y
     self.createBoxCast(Ngf.Vector3(0.3, 0.1, 0.3), 1.2, 
-            self.getPosition() + Ngf.Vector3(0, 0.35, 0),
-            self.getPosition() + Ngf.Vector3(0, 0.45, 0))
+            self.getPosition() + 0.35*unitY,
+            self.getPosition() + 0.45*unitY)
 
     #We get the jump impulse from the properties.
     self.m_impulse = float(self.getProperty("impulse", 0, "15")) * 0.5
@@ -31,5 +32,9 @@ def cast(self):
      self.v_sound.play()
 
      #Jump!
-     GraLL2.player.applyCentralImpulse(Ngf.Vector3(0,self.m_impulse,0))
+     v = GraLL2.player.getLinearVelocity()
+     if (GraLL2.isUp):
+         GraLL2.player.setLinearVelocity(Ngf.Vector3(v.x, self.m_impulse, v.z))
+     else:
+         GraLL2.player.setLinearVelocity(Ngf.Vector3(v.x, -self.m_impulse, v.z))
 
