@@ -16,6 +16,7 @@ Bugs
 
 - Make Pad objects use convex cast for Player detection
     - Teleporter
+    - JumpPad
     - Trap
     - FallingBrush
     - Switch

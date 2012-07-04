@@ -11,6 +11,11 @@ def init(self):
     self.createBody(GraLL2.CollisionShape.Box, GraLL2.BodyType.Static,
                     GraLL2.CollisionFlags.Static)
 
+    #Create Player detection cast.
+    self.createBoxCast(Ngf.Vector3(0.3, 0.1, 0.3), 1.2, 
+            self.getPosition() + Ngf.Vector3(0, 0.35, 0),
+            self.getPosition() + Ngf.Vector3(0, 0.45, 0))
+
     #We get the jump impulse from the properties.
     self.m_impulse = float(self.getProperty("impulse", 0, "15")) * 0.5
 
@@ -20,21 +25,11 @@ def init(self):
     self.v_sound.setReferenceDistance(1.2)
     self.v_sound.setGain(7)
 
-def create(self):
-    self.m_canJump = True
+def cast(self):
+     #Play sound.
+     self.v_sound.stop()
+     self.v_sound.play()
 
-def collide(self, other):
-    if (self.m_canJump and other.hasFlag("Jumper")):
-        #Play sound.
-        self.v_sound.stop()
-        self.v_sound.play()
+     #Jump!
+     GraLL2.player.applyCentralImpulse(Ngf.Vector3(0,self.m_impulse,0))
 
-        #Jump!
-        other.applyCentralImpulse(Ngf.Vector3(0,self.m_impulse,0))
-
-        #Don't jump too frequently.
-        self.m_canJump = False
-        self.setAlarm(0.5, 0)
-
-def alarm(self, n):
-    self.m_canJump = True

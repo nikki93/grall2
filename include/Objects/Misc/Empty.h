@@ -37,6 +37,12 @@ class Empty :
         Ogre::Real mp_LinearDamping;
         Ogre::Real mp_AngularDamping;
 
+        //For convex casts.
+        btConvexShape *mCastShape;
+        btVector3 mCastFrom, mCastTo; //Start, end positions of cast
+        Ogre::Real mCastPeriod; //Max value of timer
+        Ogre::Real mCastTimer;  //Actual timer
+
     public:
         Empty(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyList properties, Ogre::String name);
         virtual ~Empty();
@@ -69,6 +75,10 @@ class Empty :
             NGF_PY_METHOD_DECL(getPosition)
             NGF_PY_METHOD_DECL(getOrientation)
 
+            // createBoxCast(halfExtents, period, from, to)
+            NGF_PY_METHOD_DECL(createBoxCast)
+            NGF_PY_METHOD_DECL(destroyCast)
+
 
             NGF_PY_PROPERTY_DECL(mass)
             NGF_PY_PROPERTY_DECL(friction)
@@ -81,6 +91,14 @@ class Empty :
         //--- Serialisation ------------------------------------------------------------
         NGF_SERIALISE_BEGIN(Empty)
         {
+            Ogre::Vector3 castFrom, castTo;
+
+            NGF_SERIALISE_ON_SAVE
+            {
+                castFrom = BtOgre::Convert::toOgre(mCastFrom);
+                castTo = BtOgre::Convert::toOgre(mCastTo);
+            }
+
             GRALL2_SERIALISE_GAMEOBJECT();
 
             //GraLL2GameObject will skip if no SceneNode, so do it.
@@ -95,6 +113,17 @@ class Empty :
             NGF_SERIALISE_OGRE(Real, mp_Restitution);
             NGF_SERIALISE_OGRE(Real, mp_LinearDamping);
             NGF_SERIALISE_OGRE(Real, mp_AngularDamping);
+
+            NGF_SERIALISE_OGRE(Real, mCastPeriod);
+            NGF_SERIALISE_OGRE(Real, mCastTimer);
+            NGF_SERIALISE_OGRE(Vector3, castFrom);
+            NGF_SERIALISE_OGRE(Vector3, castTo);
+
+            NGF_SERIALISE_ON_LOAD
+            {
+                mCastFrom = BtOgre::Convert::toBullet(castFrom);
+                mCastTo = BtOgre::Convert::toBullet(castTo);
+            }
         }
         NGF_SERIALISE_END
 };
@@ -163,12 +192,12 @@ NGF_PY_CLASS_GPERF(Empty)::MakeHash (register const char *str, register unsigned
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 10, 36, 36, 36,
-      36, 36, 36, 36, 36, 36, 36, 20, 36, 36,
+      36, 36, 36, 36, 36, 36, 36,  5, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
-      36, 36, 36, 36, 36, 36, 36, 36, 36,  5,
-      36,  0, 36,  5, 36,  5, 36, 36, 36, 36,
+      36, 36, 36, 36, 36, 36, 36, 36, 36, 10,
+      10,  0, 36,  5, 36,  5, 36, 36, 36, 36,
       10, 36, 36, 36, 36,  0, 36, 36, 36, 36,
-      36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
+      36,  5, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
       36, 36, 36, 36, 36, 36, 36, 36, 36, 36,
@@ -191,7 +220,7 @@ NGF_PY_CLASS_GPERF(Empty)::Lookup (register const char *str, register unsigned i
 {
   enum
     {
-      TOTAL_KEYWORDS = 18,
+      TOTAL_KEYWORDS = 20,
       MIN_WORD_LENGTH = 8,
       MAX_WORD_LENGTH = 18,
       MIN_HASH_VALUE = 8,
@@ -217,16 +246,17 @@ NGF_PY_CLASS_GPERF(Empty)::Lookup (register const char *str, register unsigned i
       {"get_friction", NGF_PY_GET_GPERF(Empty, friction)},
       {"set_angularDamping", NGF_PY_SET_GPERF(Empty, angularDamping)},
       {""},
-      {"createBody", NGF_PY_METHOD_GPERF(Empty, createBody)},
-      {""},
+      {"createMesh", NGF_PY_METHOD_GPERF(Empty, createMesh)},
+      {"destroyCast", NGF_PY_METHOD_GPERF(Empty, destroyCast)},
       {"set_linearDamping", NGF_PY_SET_GPERF(Empty, linearDamping)},
       {"get_angularDamping", NGF_PY_GET_GPERF(Empty, angularDamping)},
-      {"createBoxShape", NGF_PY_METHOD_GPERF(Empty, createBoxShape)},
-      {"createBrushMesh", NGF_PY_METHOD_GPERF(Empty, createBrushMesh)},
+      {""},
+      {"createBody", NGF_PY_METHOD_GPERF(Empty, createBody)},
       {""},
       {"get_linearDamping", NGF_PY_GET_GPERF(Empty, linearDamping)},
-      {""}, {""},
-      {"createMesh", NGF_PY_METHOD_GPERF(Empty, createMesh)}
+      {"createBoxCast", NGF_PY_METHOD_GPERF(Empty, createBoxCast)},
+      {"createBoxShape", NGF_PY_METHOD_GPERF(Empty, createBoxShape)},
+      {"createBrushMesh", NGF_PY_METHOD_GPERF(Empty, createBrushMesh)}
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
@@ -242,8 +272,8 @@ NGF_PY_CLASS_GPERF(Empty)::Lookup (register const char *str, register unsigned i
         }
     }
   return 0;
-}/*}}}*/
+}
 
-#endif
+#endif/*}}}*/
 
 #endif

@@ -217,7 +217,7 @@ ngflevel TestLevel4
 	{
 		type RigidBody
 		name noname
-		position 1.958270 0.292426 -1.461289
+		position -1.602237 0.292425 -1.202095
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -290,6 +290,20 @@ ngflevel TestLevel4
 			dimensions 1
 			brushMeshFile TestLevel4_b3.mesh
 			convex True
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 2.500000 -0.250000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			impulse 15.0
+			scriptFile Prefab_JumpPad.pyo
 		}
 	}
 }

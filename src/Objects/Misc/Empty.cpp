@@ -19,7 +19,9 @@ Empty::Empty(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
       mp_Friction(0.5),
       mp_Restitution(0),
       mp_LinearDamping(0),
-      mp_AngularDamping(0)
+      mp_AngularDamping(0),
+      mCastShape(0),
+      mCastTimer(-1)
 {
     addFlag("Empty");
 
@@ -27,6 +29,9 @@ Empty::Empty(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, NGF::PropertyL
 
     mNode = 0;
     mBody = 0;
+
+    //Save cast event.
+    NGF_PY_SAVE_EVENT(cast);
 
     //Python init event.
     NGF_PY_CALL_EVENT(init);
@@ -47,6 +52,8 @@ Empty::~Empty()
     destroyBody();
     if (mShape)
         delete mShape;
+    if (mCastShape)
+        delete mCastShape;
 
     if (mNode && mEntity)
     {
@@ -58,6 +65,48 @@ Empty::~Empty()
 void Empty::unpausedTick(const Ogre::FrameEvent &evt)
 {
     GraLL2GameObject::unpausedTick(evt);
+
+    //Handle cast if necessary.
+    if (mCastShape)
+        if (mCastTimer > 0)
+            mCastTimer -= evt.timeSinceLastFrame;
+        else
+        {
+            //For now only detect Player.
+            struct EmptyCastResult : public btDynamicsWorld::ConvexResultCallback
+            {
+                bool mPlayerHit;
+                int mDim;
+
+                EmptyCastResult(int dim)
+                    : mPlayerHit(false), mDim(dim)
+                {
+                }
+                btScalar addSingleResult(btDynamicsWorld::LocalConvexResult &, bool)
+                {
+                    mPlayerHit = true;
+                    return 1;
+                }
+
+                bool needsCollision(btBroadphaseProxy* proxy0) const
+                {
+                    return (proxy0->m_collisionFilterGroup & DimensionManager::PLAYER) //Must be the Player.
+                        && (proxy0->m_collisionFilterGroup & mDim); //Must be in this dimension.
+                }
+            } res(mDimensions);
+
+            btQuaternion rot = mBody->getWorldTransform().getRotation();
+            btTransform trans1 = btTransform(rot, mCastFrom);
+            btTransform trans2 = btTransform(rot, mCastTo);
+
+            GlbVar.phyWorld->convexSweepTest(mCastShape, trans1, trans2, res);
+
+            if (res.mPlayerHit)
+            {
+                mCastTimer = mCastPeriod; //Reset timer.
+                NGF_PY_CALL_EVENT(cast);
+            }
+        }
     
     //Python utick event.
     NGF_PY_CALL_EVENT(utick, evt.timeSinceLastFrame);
@@ -260,6 +309,29 @@ NGF_PY_BEGIN_IMPL(Empty)
             NGF_PY_RETURN(mNode->getOrientation());
         else
             NGF_PY_RETURN(mRot);
+    }
+
+    NGF_PY_METHOD_IMPL(createBoxCast)
+    {
+        Ogre::Vector3 box = py::extract<Ogre::Vector3>(args[0]);
+        mCastShape = new btBoxShape(BtOgre::Convert::toBullet(box));
+        mCastPeriod = py::extract<Ogre::Real>(args[1]);
+        mCastFrom = BtOgre::Convert::toBullet(py::extract<Ogre::Vector3>(args[2]));
+        mCastTo = BtOgre::Convert::toBullet(py::extract<Ogre::Vector3>(args[3]));
+
+        GlbVar.console->print("pos: " + Ogre::StringConverter::toString(mNode->getPosition()) + "\n");
+        GlbVar.console->print("from: " + Ogre::StringConverter::toString(BtOgre::Convert::toOgre(mCastFrom)) + "\n");
+        GlbVar.console->print("to: " + Ogre::StringConverter::toString(BtOgre::Convert::toOgre(mCastTo)) + "\n");
+
+        NGF_PY_RETURN();
+    }
+    NGF_PY_METHOD_IMPL(destroyCast)
+    {
+        if (mCastShape)
+            delete mCastShape;
+        mCastShape = 0;
+
+        NGF_PY_RETURN();
     }
 
     NGF_PY_PROPERTY_IMPL(mass, mp_Mass, Ogre::Real);
