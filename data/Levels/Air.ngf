@@ -372,7 +372,7 @@ ngflevel Air
 	{
 		type Player
 		name player1
-		position -31.070169 3.389577 -18.704596
+		position -0.187164 0.389577 10.546768
 		rotation 0.994846 0.000000 0.101393 -0.000000
 
 		properties
