@@ -556,8 +556,8 @@ void Player::switchDimension()
 void Player::die(bool explode, bool corpse, bool offLight)
 {
     if (!corpse)
-	{
-		//Explosions!
+    {
+        //Explosions!
         if (!mExploded && !corpse && explode)
         {
             Util::createExplosion(mNode->getPosition());
@@ -571,10 +571,10 @@ void Player::die(bool explode, bool corpse, bool offLight)
 
             mExploded = true;
         }
-	}
+    }
 
     if (!mDead)
-	{
+    {
         //If we're invincible, nope!
         if (mWon || mInvincible)
             return;
@@ -582,15 +582,15 @@ void Player::die(bool explode, bool corpse, bool offLight)
         //We lost the level.
         loseLevel();
 
-		//Might not want to disappear.
-		if (corpse)
+        //Might not want to disappear.
+        if (corpse)
         {
             mUnderControl = false;
 
             if (offLight)
                 lightOff();
         }
-	}
+    }
 
     if (!corpse)
         GlbVar.goMgr->requestDestroy(getID());

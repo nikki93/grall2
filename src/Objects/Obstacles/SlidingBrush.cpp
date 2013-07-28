@@ -51,13 +51,9 @@ SlidingBrush::SlidingBrush(Ogre::Vector3 pos, Ogre::Quaternion rot, NGF::ID id, 
     mPoints.push_back(pos);
 
     //If we're a simple slider, we just move in one direction till a point and then return.
-    Ogre::String distanceStr = mProperties.getValue("distance", 0, "n");
-
-    if(!(distanceStr == "n"))
-    {
-        Ogre::Real distance = Ogre::StringConverter::parseReal(distanceStr);
+    Ogre::Real distance = Ogre::StringConverter::parseReal(mProperties.getValue("distance", 0, "n"));
+    if (distance != 0.0f)
         mPoints.push_back(pos + (rot * Ogre::Vector3(0,0,-distance)));
-    }
     
     mIgnoreCollisions = Ogre::StringConverter::parseBool(mProperties.getValue("ignoreCollisions", 0, "no"));
     //mIgnoreCollisions = true;

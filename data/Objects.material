@@ -340,7 +340,7 @@ material Objects/Acid
 {
         set $diffuse_tex "Acid.png"
         set $glow_tex "Acid.png"
-        set $glow_amount 0.8
+        set $glow_amount 0.4
 
         set $ambient "0.95 0.95 0.95 1"
         set $diffuse "0.7 0.7 0.7 1"

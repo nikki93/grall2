@@ -4,7 +4,7 @@ ngflevel TestLevel4
 	{
 		type Crate
 		name noname
-		position 1.500000 0.750000 -3.500000
+		position 1.500000 0.750000 -1.500000
 		rotation 1.000000 0.000000 0.000000 -0.000000
 
 		properties
@@ -188,7 +188,7 @@ ngflevel TestLevel4
 	{
 		type Player
 		name player1
-		position 0.406226 0.389544 -0.477611
+		position 1.064080 0.389544 -3.628386
 		rotation -0.957841 0.000000 0.287297 -0.000000
 
 		properties
@@ -235,7 +235,7 @@ ngflevel TestLevel4
 			       : import GraLL2
 			       : 
 			       : def create(self):
-			       :     self.applyCentralImpulse(Ngf.Vector3(0, 20, 0))
+			       :     self.applyCentralImpulse(Ngf.Vector3(0, 50, 0))
 			       : 
 		}
 	}

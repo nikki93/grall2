@@ -1,0 +1,1608 @@
+ngflevel Air2
+{
+	object
+	{
+		type Crate
+		name noname
+		position 33.500000 3.750000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 32.500000 3.750000 8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 37.500000 3.750000 7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 40.465588 3.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Point
+		name slider1p5
+		position 45.500000 2.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 41.465588 3.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 42.465588 3.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 45.465588 3.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 45.465588 3.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 45.465588 3.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 40.465588 3.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 38.465588 3.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 38.465588 3.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 39.465588 3.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 39.465588 3.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Point
+		name slider1p6
+		position 32.500000 2.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 45.465588 3.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 45.465588 3.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 45.465588 3.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Point
+		name slider1p4
+		position 39.500000 2.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 12.989946 0.500000 1.712624
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 12.989946 0.500000 -1.678151
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 14.581913 0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Point
+		name slider1p3
+		position 45.500000 2.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -2.500000 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air2_b0.mesh
+			convex False
+		}
+	}
+	object
+	{
+		type Point
+		name slider1p2
+		position 22.500000 2.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 1.769957 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 42.802616 2.750000 -6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 42.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 41.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 40.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 39.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 38.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 37.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 36.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 35.302616 2.750000 -7.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 40.465588 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 39.465588 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 38.465588 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 37.465588 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 40.465588 3.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 40.465588 3.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 36.465588 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 40.465588 3.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 40.465588 3.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 39.465588 3.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 30.035564 3.428603 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 27.255383 3.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 24.696627 3.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 -3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 -4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 11.581913 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 4.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 3.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 -0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 -1.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 -2.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type Controller
+		name noname
+		position 0.000000 -6.500000 -0.000000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def levelStart(self):
+			       : 	#Set the initially viewed dimension.
+			       : 	GraLL2.setDimension(1)
+			       : 	
+			       : 	#Set the bonus time for this level.
+			       : 	GraLL2.setBonusTime(0)
+			       : 	
+			       : 	#Show the white text with the level number and caption.
+			       : 	self.showLevelText(2, 4, 3)
+			       : 	
+			       : 	#Gravity is initially normal.
+			       : 	GraLL2.setUp(True)
+			       : 
+			       : def levelStop(self):
+			       : 	pass
+			       : 
+			       : def winLevel(self):
+			       : 	pass
+			       : 
+			       : def loseLevel(self):
+			       : 	pass
+			       : 
+		}
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position -2.500000 -0.500000 0.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air2_b1.mesh
+			convex False
+		}
+	}
+	object
+	{
+		type Player
+		name player1
+		position -8.496181 0.389544 -0.652454
+		rotation 0.704230 0.000000 -0.709972 -0.000000
+
+		properties
+		{
+			dimensions 1
+			minHeight -4.0
+			captureCameraHandler True
+			canSwitchDimensions True
+		}
+	}
+	object
+	{
+		type SlidingBrush
+		name noname
+		position -2.500000 -0.500000 -5.500000
+		rotation 0.707107 0.000000 -0.707107 0.000000
+
+		properties
+		{
+			dimensions 3
+			enabled False
+			speed 2.0
+			distance n
+			ignoreCollisions True
+			brushMeshFile Air2_b2.mesh
+			script : import Ngf
+			       : import GraLL2
+			       : 
+			       : def init(self):
+			       :     self.m_pointsAdded = False
+			       :     
+			       : def create(self):
+			       :     if not self.m_pointsAdded:
+			       :         self.addPoint(Ngf.getObject("slider1p1").getPosition())
+			       :         self.addPoint(Ngf.getObject("slider1p2").getPosition())
+			       :         self.addPoint(Ngf.getObject("slider1p3").getPosition())
+			       :         self.addPoint(Ngf.getObject("slider1p4").getPosition())
+			       :         self.addPoint(Ngf.getObject("slider1p5").getPosition())
+			       :         self.addPoint(Ngf.getObject("slider1p6").getPosition())
+			       :         self.m_pointsAdded = True
+			       : 
+			       : def collide(self, other):
+			       :     if self.p_enabled == False and other.hasFlag("Player"):
+			       :         self.p_enabled = True
+			       :         self.p_forward = True
+		}
+	}
+	object
+	{
+		type Bomb
+		name noname
+		position 7.426146 0.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			green False
+		}
+	}
+	object
+	{
+		type FallingBrush
+		name noname
+		position 34.802616 2.750000 -6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 1
+			time 0.5
+		}
+	}
+	object
+	{
+		type Point
+		name slider1p1
+		position 16.500000 -0.500000 -5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+	}
+	object
+	{
+		type StaticBrush
+		name noname
+		position 46.500000 0.000000 5.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			brushMeshFile Air2_b3.mesh
+			convex False
+		}
+	}
+	object
+	{
+		type Crate
+		name noname
+		position 36.500000 3.750000 8.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 2
+			heightDeficiency 0.0
+		}
+	}
+	object
+	{
+		type Empty
+		name noname
+		position 25.500000 2.000000 6.500000
+		rotation 1.000000 0.000000 0.000000 -0.000000
+
+		properties
+		{
+			dimensions 3
+			scriptFile Prefab_Acid.pyo
+			brushMeshFile Air2_b4.mesh
+		}
+	}
+}
+

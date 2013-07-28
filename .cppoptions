@@ -1,0 +1,11 @@
+-I/usr/include/python2.7
+-I./include
+-I./lib
+-I/usr/include/MYGUI
+-I/usr/include/bullet
+-I/usr/include/OgreAL
+-I/usr/include/OGRE
+-I/usr/include/AL
+-I/usr/include/OIS
+-DDEBUG
+-D_DEBUG
